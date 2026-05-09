@@ -21,12 +21,15 @@ export async function generateMetadata({
   if (!SITE_CONFIG.locales.includes(locale as Locale)) return {};
   const post = await getPost(slug, locale as Locale);
   if (!post) return {};
+  const path = `/${locale}/posts/${slug}`;
   return {
     title: post.frontmatter.title,
     description: post.frontmatter.excerpt,
+    alternates: { canonical: path },
     openGraph: {
       title: post.frontmatter.title,
       description: post.frontmatter.excerpt,
+      url: path,
       type: "article",
       publishedTime: post.frontmatter.date,
     },

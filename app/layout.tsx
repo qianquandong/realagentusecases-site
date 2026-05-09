@@ -24,12 +24,25 @@ const sourceSerif = Source_Serif_4({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(
+    process.env.NEXT_PUBLIC_SITE_URL ?? "https://jackqian.com",
+  ),
   title: {
     default: "Jack Qian — Field Reports on AI Agents",
     template: "%s · Jack Qian",
   },
   description:
-    "Monthly breakdowns of real-world AI agent workflows for working professionals — by Jack Qian.",
+    "I interview working professionals about how they actually use AI agents to automate their day-to-day. One issue a week. Free.",
+  openGraph: {
+    type: "website",
+    siteName: "Jack Qian",
+  },
+  twitter: {
+    card: "summary_large_image",
+  },
+  icons: {
+    icon: "/favicon.ico",
+  },
 };
 
 const easterEgg = `console.log("%cCurious what powers this site? It's just Next.js + my caffeine.\\nSubscribe so I can buy more coffee → ${SITE_CONFIG.substackUrl}", "color:#5fa37c;font-family:ui-monospace,monospace;font-size:12px;line-height:1.6");`;

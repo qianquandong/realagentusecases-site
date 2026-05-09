@@ -33,15 +33,6 @@ export function Footer({ locale }: { locale: Locale }) {
           <Link href={SITE_CONFIG.substackUrl} className={navLink}>
             {t.footer.nav.subscribe}
           </Link>
-          <Link href={`/${locale}/about`} className={navLink}>
-            {t.footer.nav.about}
-          </Link>
-          <Link href={`/${locale}/archive`} className={navLink}>
-            {t.footer.nav.archive}
-          </Link>
-          <Link href={`/${locale}/events`} className={navLink}>
-            {t.footer.nav.events}
-          </Link>
         </nav>
 
         <div className="flex justify-center md:justify-end gap-4">

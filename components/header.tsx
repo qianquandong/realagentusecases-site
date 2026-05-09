@@ -6,8 +6,6 @@ import type { Locale } from "@/lib/config";
 
 export function Header({ locale }: { locale: Locale }) {
   const t = getDict(locale);
-  const navLink =
-    "text-sm text-(--color-muted-foreground) hover:text-(--color-brand) transition-colors";
 
   return (
     <header className="sticky top-0 z-40 border-b border-(--color-border) bg-background/80 backdrop-blur supports-backdrop-filter:bg-background/60">
@@ -19,15 +17,6 @@ export function Header({ locale }: { locale: Locale }) {
           Jack Qian
         </Link>
         <nav className="flex items-center gap-5 sm:gap-6">
-          <Link href={`/${locale}/about`} className={`${navLink} hidden sm:inline`}>
-            {t.header.about}
-          </Link>
-          <Link href={`/${locale}/archive`} className={navLink}>
-            {t.header.archive}
-          </Link>
-          <Link href={`/${locale}/events`} className={`${navLink} hidden sm:inline`}>
-            {t.header.events}
-          </Link>
           <LanguageSwitch locale={locale} />
           <SubscribeButton size="sm">{t.header.subscribe}</SubscribeButton>
         </nav>

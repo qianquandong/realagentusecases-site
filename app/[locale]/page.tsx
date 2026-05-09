@@ -1,7 +1,32 @@
 import { notFound } from "next/navigation";
+import type { Metadata } from "next";
 import { getDict } from "@/lib/i18n";
 import { SITE_CONFIG, type Locale } from "@/lib/config";
 import { SubscribeButton } from "@/components/subscribe-button";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  if (!SITE_CONFIG.locales.includes(locale as Locale)) return {};
+  const t = getDict(locale as Locale).meta;
+  return {
+    title: { absolute: t.siteTitle },
+    description: t.siteDescription,
+    alternates: {
+      canonical: `/${locale}`,
+      languages: { en: "/en", "zh-CN": "/zh" },
+    },
+    openGraph: {
+      title: t.siteTitle,
+      description: t.siteDescription,
+      url: `/${locale}`,
+      type: "website",
+    },
+  };
+}
 
 export default async function HomePage({
   params,
