@@ -1,7 +1,7 @@
+import { notFound } from "next/navigation";
 import { getDict } from "@/lib/i18n";
 import { SITE_CONFIG, type Locale } from "@/lib/config";
 import { SubscribeButton } from "@/components/subscribe-button";
-import { notFound } from "next/navigation";
 
 export default async function HomePage({
   params,
@@ -11,26 +11,98 @@ export default async function HomePage({
   const { locale } = await params;
   if (!SITE_CONFIG.locales.includes(locale as Locale)) notFound();
   const typed = locale as Locale;
-  const t = getDict(typed);
+  const t = getDict(typed).home;
 
   return (
-    <section className="mx-auto max-w-[var(--container-prose)] px-6 py-24 text-center space-y-6">
-      <p className="font-mono text-xs uppercase tracking-widest text-(--color-muted-foreground)">
-        Step 3 placeholder · {locale}
+    <>
+      <Hero t={t} />
+      <Divider />
+      <About t={t} locale={typed} />
+      <Divider />
+      <FinalCta t={t} />
+    </>
+  );
+}
+
+type HomeDict = ReturnType<typeof getDict>["home"];
+
+function Hero({ t }: { t: HomeDict }) {
+  return (
+    <section className="mx-auto max-w-3xl px-6 pt-20 pb-24 sm:pt-28 sm:pb-32 text-center">
+      <p className="font-mono text-xs uppercase tracking-[0.2em] text-(--color-muted-foreground) mb-6">
+        {t.kicker}
       </p>
-      <h1 className="text-3xl font-semibold tracking-tight">
-        {t.meta.siteTitle}
+
+      <h1 className="text-4xl sm:text-5xl md:text-6xl font-semibold tracking-tight leading-[1.1] text-balance">
+        {t.h1}
       </h1>
-      <p className="text-(--color-muted-foreground)">
-        {locale === "zh"
-          ? "Header / Footer / 语言切换 / 中间件已就绪。真首页在步骤 4。"
-          : "Header / footer / language switch / middleware are wired. Real homepage lands in step 4."}
+
+      <p className="mt-6 text-lg sm:text-xl text-(--color-muted-foreground) leading-relaxed text-balance max-w-2xl mx-auto">
+        {t.subtitle}
       </p>
-      <div className="pt-2">
-        <SubscribeButton size="lg">
-          {locale === "zh" ? "免费订阅 →" : "Subscribe — free →"}
-        </SubscribeButton>
+
+      <ul className="mt-10 mx-auto inline-flex flex-col gap-2 text-sm sm:text-[15px] text-(--color-muted-foreground) text-left">
+        {t.bullets.map((b, i) => (
+          <li key={i} className="flex items-start gap-3">
+            <span
+              aria-hidden
+              className="mt-[0.6em] block size-1 rounded-full bg-(--color-brand) shrink-0"
+            />
+            <span>{b}</span>
+          </li>
+        ))}
+      </ul>
+
+      <div className="mt-10">
+        <SubscribeButton size="lg">{t.cta}</SubscribeButton>
+        <p className="mt-3 text-xs text-(--color-muted-foreground)">
+          {t.finePrint}
+        </p>
+      </div>
+
+      <p className="mt-12 font-mono text-[11px] uppercase tracking-[0.18em] text-(--color-muted-foreground)/70">
+        {t.socialProof(SITE_CONFIG.subscriberCount)}
+      </p>
+    </section>
+  );
+}
+
+function About({ t, locale }: { t: HomeDict; locale: Locale }) {
+  return (
+    <section className="mx-auto max-w-2xl px-6 py-20 sm:py-24">
+      <h2 className="text-2xl sm:text-3xl font-semibold tracking-tight mb-8">
+        {t.about.heading}
+      </h2>
+      <div
+        className={`space-y-5 text-[17px] sm:text-lg leading-[1.75] text-(--color-foreground)/90 ${
+          locale === "en" ? "font-serif" : ""
+        }`}
+      >
+        {t.about.paragraphs.map((p, i) => (
+          <p key={i}>{p}</p>
+        ))}
       </div>
     </section>
+  );
+}
+
+function FinalCta({ t }: { t: HomeDict }) {
+  return (
+    <section className="mx-auto max-w-3xl px-6 py-24 sm:py-28 text-center">
+      <p className="text-2xl sm:text-3xl font-semibold tracking-tight text-balance">
+        {t.finalCta.lead}
+      </p>
+      <div className="mt-8">
+        <SubscribeButton size="lg">{t.finalCta.cta}</SubscribeButton>
+      </div>
+    </section>
+  );
+}
+
+function Divider() {
+  return (
+    <div className="mx-auto max-w-3xl px-6">
+      <div className="border-t border-(--color-border)/60" />
+    </div>
   );
 }

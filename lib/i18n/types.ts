@@ -10,6 +10,31 @@ export interface Dict {
     subscribe: string;
     languageSwitchAria: string;
   };
+  post: {
+    ctaHeading: string;
+    ctaBody: string;
+    ctaButton: string;
+    notFoundTitle: string;
+    notFoundBody: string;
+    backHome: string;
+  };
+  home: {
+    kicker: string;
+    h1: string;
+    subtitle: string;
+    bullets: [string, string, string];
+    cta: string;
+    finePrint: string;
+    socialProof: (count: number) => string;
+    about: {
+      heading: string;
+      paragraphs: [string, string, string];
+    };
+    finalCta: {
+      lead: string;
+      cta: string;
+    };
+  };
   footer: {
     copyright: (year: number) => string;
     builtIn: string;

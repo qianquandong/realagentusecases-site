@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist, Geist_Mono, Source_Serif_4 } from "next/font/google";
 import { headers } from "next/headers";
 import "./globals.css";
 import { SITE_CONFIG, type Locale } from "@/lib/config";
@@ -16,6 +16,13 @@ const geistMono = Geist_Mono({
   display: "swap",
 });
 
+const sourceSerif = Source_Serif_4({
+  variable: "--font-source-serif",
+  subsets: ["latin"],
+  display: "swap",
+  weight: ["400", "500", "600", "700"],
+});
+
 export const metadata: Metadata = {
   title: {
     default: "Jack Qian — Field Reports on AI Agents",
@@ -25,7 +32,7 @@ export const metadata: Metadata = {
     "Monthly breakdowns of real-world AI agent workflows for working professionals — by Jack Qian.",
 };
 
-const easterEgg = `console.log("%cCurious what powers this site? It's just Next.js + my caffeine.\\nSubscribe so I can buy more coffee → ${SITE_CONFIG.substackUrl}", "color:#1a3d2e;font-family:ui-monospace,monospace;font-size:12px;line-height:1.6");`;
+const easterEgg = `console.log("%cCurious what powers this site? It's just Next.js + my caffeine.\\nSubscribe so I can buy more coffee → ${SITE_CONFIG.substackUrl}", "color:#5fa37c;font-family:ui-monospace,monospace;font-size:12px;line-height:1.6");`;
 
 export default async function RootLayout({
   children,
@@ -38,7 +45,7 @@ export default async function RootLayout({
   return (
     <html
       lang={locale}
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      className={`${geistSans.variable} ${geistMono.variable} ${sourceSerif.variable} h-full antialiased`}
     >
       <head>
         <script dangerouslySetInnerHTML={{ __html: easterEgg }} />

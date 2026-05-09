@@ -7,14 +7,14 @@ import type { Locale } from "@/lib/config";
 export function Header({ locale }: { locale: Locale }) {
   const t = getDict(locale);
   const navLink =
-    "text-sm text-(--color-muted-foreground) hover:text-brand transition-colors";
+    "text-sm text-(--color-muted-foreground) hover:text-(--color-brand) transition-colors";
 
   return (
     <header className="sticky top-0 z-40 border-b border-(--color-border) bg-background/80 backdrop-blur supports-backdrop-filter:bg-background/60">
       <div className="mx-auto max-w-6xl px-6 h-14 flex items-center justify-between">
         <Link
           href={`/${locale}`}
-          className="font-mono text-sm tracking-tight hover:text-brand transition-colors"
+          className="font-mono text-sm tracking-tight hover:text-(--color-brand) transition-colors"
         >
           Jack Qian
         </Link>

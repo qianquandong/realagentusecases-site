@@ -13,7 +13,7 @@ export function Footer({ locale }: { locale: Locale }) {
   const year = new Date().getFullYear();
 
   const navLink =
-    "text-sm text-(--color-muted-foreground) hover:text-brand transition-colors";
+    "text-sm text-(--color-muted-foreground) hover:text-(--color-brand) transition-colors";
 
   const socials = [
     { url: SITE_CONFIG.social.xiaohongshu, label: t.footer.socialLabels.xiaohongshu, Icon: XiaohongshuIcon },
@@ -55,7 +55,7 @@ export function Footer({ locale }: { locale: Locale }) {
                 key={label}
                 href={url}
                 aria-label={label}
-                className="text-(--color-muted-foreground) hover:text-brand transition-colors"
+                className="text-(--color-muted-foreground) hover:text-(--color-brand) transition-colors"
               >
                 <Icon />
               </Link>

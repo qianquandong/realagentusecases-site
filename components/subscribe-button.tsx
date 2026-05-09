@@ -12,9 +12,10 @@ const sizeClasses: Record<Size, string> = {
 };
 
 const variantClasses: Record<Variant, string> = {
-  primary: "bg-brand text-brand-foreground hover:bg-brand-hover",
+  primary:
+    "bg-(--color-brand) text-(--color-brand-foreground) hover:bg-(--color-brand-hover)",
   outline:
-    "border border-(--color-border) text-foreground hover:bg-muted hover:border-foreground/20",
+    "border border-(--color-border) text-(--color-foreground) hover:bg-(--color-muted) hover:border-(--color-foreground)/20",
 };
 
 export function SubscribeButton({
