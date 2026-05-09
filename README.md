@@ -108,40 +108,60 @@ Subscriber count placeholder: `lib/config.ts` → `subscriberCount`. Update it m
 
 ## Environment
 
-`.env.local` (not committed) and `.env.production` (set in Vercel UI):
+`.env.local` (local dev, not committed) and Cloudflare Pages env vars (production):
 
-| Var | What |
-|---|---|
-| `NEXT_PUBLIC_SUBSTACK_URL` | Real Substack subscribe URL. Every "Subscribe" button + the `/subscribe` redirect points here. |
-| `NEXT_PUBLIC_SITE_URL` | Canonical site URL — used in sitemap, og:url, robots. |
+| Var | Where it's used | What |
+|---|---|---|
+| `NEXT_PUBLIC_SUBSTACK_URL` | Build (Subscribe buttons) + runtime function (`/subscribe` redirect) | Real Substack subscribe URL |
+| `NEXT_PUBLIC_SITE_URL` | Build (sitemap, og:url, metadata) | Canonical site URL (e.g. `https://realagentusecases.com`) |
 
 ---
 
-## Deploying to Vercel
+## Deploying to Cloudflare Pages
 
-1. **Push to GitHub.** Create a new private repo on github.com. Then:
-   ```bash
-   git remote add origin git@github.com:<you>/realagentusecases-site.git
-   git push -u origin main
-   ```
+This site is a **static export** (`output: 'export'` in next.config.ts) plus **two Cloudflare Pages Functions** in `functions/`:
 
-2. **Import to Vercel.** Go to [vercel.com/new](https://vercel.com/new), pick the repo. Defaults are fine — Vercel auto-detects Next.js.
+- `functions/_middleware.ts` — root path locale redirect (Accept-Language → `/en` or `/zh`)
+- `functions/subscribe.ts` — `/subscribe` → 308 to Substack
 
-3. **Set env vars** in the Vercel dashboard before first deploy:
-   - `NEXT_PUBLIC_SUBSTACK_URL` — your real Substack subscribe URL (e.g. `https://jackqian.substack.com/subscribe`)
-   - `NEXT_PUBLIC_SITE_URL` — your production URL (e.g. `https://realagentusecases.com`)
+### One-time setup
 
-4. **Click Deploy.** First build ~60s.
+1. **Push to GitHub** (this repo is already on GitHub).
 
-5. **Add custom domain.** Vercel dashboard → Domains → add `realagentusecases.com` (or whichever). Vercel gives you DNS records to add at your registrar (Namecheap / Cloudflare / etc.). Wait 5–30 min for DNS propagation.
+2. **Cloudflare Pages → Create project → Connect to Git**
+   - Pick `realagentusecases-site`
+   - Production branch: `main`
 
-6. **Verify after DNS:**
-   - `curl -I https://realagentusecases.com/subscribe` → should return `308` and `Location: <substack url>`
-   - `https://realagentusecases.com/sitemap.xml` lists every page
-   - `https://realagentusecases.com/opengraph-image` returns a PNG
-   - Open in iPhone Safari, Android Chrome, desktop Chrome
+3. **Build settings**:
+   - Framework preset: **Next.js (Static HTML Export)** — or "None" + manual config below
+   - Build command: `pnpm build`
+   - Build output directory: `out`
+   - Root directory: leave empty
+   - Node version: `20` or higher
 
-7. **Future deploys** — every `git push origin main` triggers a new Vercel deploy automatically. Preview deploys for branches and PRs come for free.
+4. **Environment variables** (under "Settings → Environment variables"):
+   - `NEXT_PUBLIC_SUBSTACK_URL` = your real Substack subscribe URL
+   - `NEXT_PUBLIC_SITE_URL` = `https://realagentusecases.com`
+
+5. **First deploy.** Build ~60-90s. You'll get a `*.pages.dev` URL.
+
+### Custom domain
+
+6. Cloudflare Pages dashboard → **Custom domains** → Add `realagentusecases.com`
+   - Since the domain was bought through Cloudflare Registrar, DNS records are added automatically. No manual config needed.
+   - SSL provisions in ~1 minute.
+
+### Verify after deploy
+
+- `curl -I https://realagentusecases.com/subscribe` → `308` + `Location: <substack url>`
+- `https://realagentusecases.com/sitemap.xml` lists every page
+- `https://realagentusecases.com/opengraph-image` returns a PNG
+- Hit `/` from a Chinese-locale browser → redirects to `/zh/`; from English → `/en/`
+- Open in iPhone Safari, Android Chrome, desktop Chrome
+
+### Future deploys
+
+Every `git push origin main` triggers a new Cloudflare Pages build automatically. Preview deploys for branches and PRs come for free.
 
 ---
 

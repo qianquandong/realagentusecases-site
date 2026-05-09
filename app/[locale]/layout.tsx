@@ -19,11 +19,12 @@ export default async function LocaleLayout({
     notFound();
   }
   const typed = locale as Locale;
+  const htmlLang = typed === "zh" ? "zh-CN" : "en";
   return (
-    <>
+    <div lang={htmlLang} className="contents">
       <Header locale={typed} />
       <main className="flex-1">{children}</main>
       <Footer locale={typed} />
-    </>
+    </div>
   );
 }

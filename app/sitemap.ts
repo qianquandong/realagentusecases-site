@@ -2,6 +2,8 @@ import type { MetadataRoute } from "next";
 import { getAllPostParams } from "@/lib/content";
 import { SITE_CONFIG } from "@/lib/config";
 
+export const dynamic = "force-static";
+
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl =
     process.env.NEXT_PUBLIC_SITE_URL ?? "https://jackqian.com";
