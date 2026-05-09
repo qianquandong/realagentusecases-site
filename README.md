@@ -1,36 +1,145 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Jack Qian — Field Reports on AI Agents
 
-## Getting Started
+The funnel website for [Jack Qian's Substack newsletter](https://jackqian.substack.com).
+**Single purpose:** convert visitors to free subscribers.
 
-First, run the development server:
+If you're reading this, this is *not* the newsletter — it's the doormat.
+
+---
+
+## Stack
+
+- Next.js 16 (App Router) + TypeScript
+- Tailwind CSS v4 (CSS-based config in `app/globals.css`)
+- MDX articles via `next-mdx-remote` + `gray-matter`
+- Geist Sans / Mono + Source Serif 4 (via `next/font`)
+- Bilingual (English + Chinese) — no i18n library, just two TS dictionaries
+
+---
+
+## Quick start
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+pnpm install
+cp .env.example .env.local       # fill the placeholders
+pnpm dev                         # http://localhost:3000
+pnpm build                       # production build
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Where things live
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```
+app/
+  layout.tsx                    # root layout, fonts, og defaults, console easter egg
+  globals.css                   # theme tokens (@theme), .post-body styles
+  [locale]/
+    layout.tsx                  # wraps locale pages with Header + Footer
+    page.tsx                    # homepage: Hero / About / Final CTA
+    posts/[slug]/page.tsx       # single article page (MDX)
+  subscribe/route.ts            # GET → 308 redirect to NEXT_PUBLIC_SUBSTACK_URL
+  sitemap.ts                    # dynamic sitemap.xml from posts
+  robots.ts                     # robots.txt
+  opengraph-image.tsx           # 1200×630 OG card (dynamic, branded)
+proxy.ts                        # Next 16 successor to middleware — locale routing
+content/posts/                  # *-en.mdx + *-zh.mdx pairs (drop new posts here)
+components/                     # Header, Footer, SubscribeButton, PostCta, etc.
+lib/
+  config.ts                     # Substack URL, locales, subscriber count
+  content.ts                    # MDX file reader + frontmatter parser
+  i18n/                         # en.ts, zh.ts, types.ts
+```
 
-## Learn More
+---
 
-To learn more about Next.js, take a look at the following resources:
+## Writing a new post
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Posts are MDX files in `content/posts/`. Each issue has **two files** — one per locale:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```
+content/posts/
+  2026-05-13-welcome-en.mdx
+  2026-05-13-welcome-zh.mdx
+```
 
-## Deploy on Vercel
+Filename format: `<slug>-<en|zh>.mdx`. The `<slug>` is what shows in the URL — keep it lowercase, dash-separated.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Frontmatter for each file:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```mdx
+---
+title: "Field Reports starts here"
+date: "2026-05-13"
+excerpt: "One-sentence summary used in og:description and meta description."
+---
+
+Body in MDX — markdown plus React components if you want them.
+```
+
+**You don't need to ship both languages at once.** If only `*-en.mdx` exists, the post shows on `/en/posts/<slug>` but not on `/zh/...` (404 there). Add the matching `-zh.mdx` later.
+
+The post page renders body text in **Source Serif 4** for English, system Chinese sans for Chinese.
+
+---
+
+## Editing site copy
+
+Hero / About / final CTA copy lives in `lib/i18n/en.ts` and `lib/i18n/zh.ts`. Change strings there — both files share the same `Dict` shape from `lib/i18n/types.ts`.
+
+Subscriber count placeholder: `lib/config.ts` → `subscriberCount`. Update it manually each milestone (every 100 readers, say). The hero social-proof line auto-switches between "Be among the first readers" (when 0) and "Joined by N readers" (when > 0).
+
+---
+
+## Environment
+
+`.env.local` (not committed) and `.env.production` (set in Vercel UI):
+
+| Var | What |
+|---|---|
+| `NEXT_PUBLIC_SUBSTACK_URL` | Real Substack subscribe URL. Every "Subscribe" button + the `/subscribe` redirect points here. |
+| `NEXT_PUBLIC_SITE_URL` | Canonical site URL — used in sitemap, og:url, robots. |
+
+---
+
+## Deploying to Vercel
+
+1. **Push to GitHub.** Create a new private repo on github.com. Then:
+   ```bash
+   git remote add origin git@github.com:<you>/jackqian-site.git
+   git push -u origin main
+   ```
+
+2. **Import to Vercel.** Go to [vercel.com/new](https://vercel.com/new), pick the repo. Defaults are fine — Vercel auto-detects Next.js.
+
+3. **Set env vars** in the Vercel dashboard before first deploy:
+   - `NEXT_PUBLIC_SUBSTACK_URL` — your real Substack subscribe URL (e.g. `https://jackqian.substack.com/subscribe`)
+   - `NEXT_PUBLIC_SITE_URL` — your production URL (e.g. `https://jackqian.com`)
+
+4. **Click Deploy.** First build ~60s.
+
+5. **Add custom domain.** Vercel dashboard → Domains → add `jackqian.com` (or whichever). Vercel gives you DNS records to add at your registrar (Namecheap / Cloudflare / etc.). Wait 5–30 min for DNS propagation.
+
+6. **Verify after DNS:**
+   - `curl -I https://jackqian.com/subscribe` → should return `308` and `Location: <substack url>`
+   - `https://jackqian.com/sitemap.xml` lists every page
+   - `https://jackqian.com/opengraph-image` returns a PNG
+   - Open in iPhone Safari, Android Chrome, desktop Chrome
+
+7. **Future deploys** — every `git push origin main` triggers a new Vercel deploy automatically. Preview deploys for branches and PRs come for free.
+
+---
+
+## Notes
+
+- **Dark theme by default.** Light mode wasn't built — there's a `color-scheme: dark` declaration in `globals.css`. If you want both, you'd add a `[data-theme]` toggle and duplicate the theme tokens.
+- **No analytics installed.** Add Plausible or Vercel Analytics post-launch, after the first 100 subscribers, when there's actually data to look at.
+- **No tests, no Storybook, no monorepo.** This is a 4-page funnel; complexity should match.
+- **Console easter egg** — open DevTools on any page, you'll see a hello message in `--color-brand`-ish green.
+- **Footer easter egg** — hover the small italic line at the very bottom. Slowly.
+
+---
+
+## License
+
+Personal project. Not open-sourced.
