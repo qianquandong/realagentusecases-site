@@ -2,6 +2,7 @@
   "name": "realagentusecases-site",
   "version": "0.1.0",
   "private": true,
+  "packageManager": "pnpm@11.0.9",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -31,5 +32,13 @@
     "tailwindcss": "^4",
     "typescript": "^5",
     "wrangler": "^4.90.0"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "esbuild",
+      "sharp",
+      "unrs-resolver",
+      "workerd"
+    ]
   }
 }
