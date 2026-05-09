@@ -39,6 +39,9 @@ export const en: Dict = {
       count > 0
         ? `Industrial Engineer → Business Planner · Hosting AI hackathons in Dallas · Joined by ${count.toLocaleString()} readers`
         : "Industrial Engineer → Business Planner · Hosting AI hackathons in Dallas · Be among the first readers",
+    latestPosts: {
+      heading: "Read a sample issue.",
+    },
     about: {
       heading: "About Jack",
       paragraphs: [

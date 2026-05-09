@@ -37,6 +37,9 @@ export const zh: Dict = {
       count > 0
         ? `工业工程师 → 业务规划师 · 在达拉斯组织 AI 黑客松 · 已有 ${count.toLocaleString()} 名职场人在读`
         : "工业工程师 → 业务规划师 · 在达拉斯组织 AI 黑客松 · 现在订阅，做第一批读者",
+    latestPosts: {
+      heading: "先读一篇看看。",
+    },
     about: {
       heading: "关于 Jack",
       paragraphs: [

@@ -26,6 +26,9 @@ export interface Dict {
     cta: string;
     finePrint: string;
     socialProof: (count: number) => string;
+    latestPosts: {
+      heading: string;
+    };
     about: {
       heading: string;
       paragraphs: [string, string, string];

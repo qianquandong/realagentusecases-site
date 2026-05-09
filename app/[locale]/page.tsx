@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { getDict } from "@/lib/i18n";
 import { SITE_CONFIG, type Locale } from "@/lib/config";
 import { SubscribeButton } from "@/components/subscribe-button";
+import { LatestPosts } from "@/components/latest-posts";
 
 export async function generateMetadata({
   params,
@@ -41,6 +42,7 @@ export default async function HomePage({
   return (
     <>
       <Hero t={t} />
+      <LatestPosts locale={typed} />
       <Divider />
       <About t={t} locale={typed} />
       <Divider />
