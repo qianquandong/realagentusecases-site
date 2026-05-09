@@ -1,9 +1,12 @@
-# Jack Qian — Field Reports on AI Agents
+# Real Agent Use Cases
 
-The funnel website for [Jack Qian's Substack newsletter](https://jackqian.substack.com).
-**Single purpose:** convert visitors to free subscribers.
+The funnel site for **Real Agent Use Cases** — Jack Qian's weekly interview series with working professionals about how they actually use AI agents.
+**Single purpose of this site:** convert visitors to free subscribers (Substack).
 
-If you're reading this, this is *not* the newsletter — it's the doormat.
+If you're reading this, this is *not* the newsletter / podcast / video — it's the doormat.
+
+Hosted at: [realagentusecases.com](https://realagentusecases.com)
+Each interview ships in three formats: written breakdown (here + email), audio podcast (Xiaoyuzhou), and video (YouTube).
 
 ---
 
@@ -69,7 +72,7 @@ Frontmatter for each file:
 
 ```mdx
 ---
-title: "Field Reports starts here"
+title: "Welcome — Real Agent Use Cases starts here"
 date: "2026-05-13"
 excerpt: "One-sentence summary used in og:description and meta description."
 ---
@@ -80,6 +83,18 @@ Body in MDX — markdown plus React components if you want them.
 **You don't need to ship both languages at once.** If only `*-en.mdx` exists, the post shows on `/en/posts/<slug>` but not on `/zh/...` (404 there). Add the matching `-zh.mdx` later.
 
 The post page renders body text in **Source Serif 4** for English, system Chinese sans for Chinese.
+
+### Embedding YouTube
+
+Inside any MDX file you can drop the YouTube interview right into the body:
+
+```mdx
+<YouTube id="dQw4w9WgXcQ" title="Interview with [Name] — How they actually use AI for FP&A" />
+```
+
+The `id` is the YouTube video ID (the part after `v=` in the URL). Renders as a 16:9 lazy-loaded `youtube-nocookie` iframe.
+
+To add a podcast embed (Xiaoyuzhou / Spotify / Apple) later, add a similar component under `components/mdx/` and re-export it from the MDX components map in `app/[locale]/posts/[slug]/page.tsx`.
 
 ---
 
@@ -106,7 +121,7 @@ Subscriber count placeholder: `lib/config.ts` → `subscriberCount`. Update it m
 
 1. **Push to GitHub.** Create a new private repo on github.com. Then:
    ```bash
-   git remote add origin git@github.com:<you>/jackqian-site.git
+   git remote add origin git@github.com:<you>/realagentusecases-site.git
    git push -u origin main
    ```
 
@@ -114,16 +129,16 @@ Subscriber count placeholder: `lib/config.ts` → `subscriberCount`. Update it m
 
 3. **Set env vars** in the Vercel dashboard before first deploy:
    - `NEXT_PUBLIC_SUBSTACK_URL` — your real Substack subscribe URL (e.g. `https://jackqian.substack.com/subscribe`)
-   - `NEXT_PUBLIC_SITE_URL` — your production URL (e.g. `https://jackqian.com`)
+   - `NEXT_PUBLIC_SITE_URL` — your production URL (e.g. `https://realagentusecases.com`)
 
 4. **Click Deploy.** First build ~60s.
 
-5. **Add custom domain.** Vercel dashboard → Domains → add `jackqian.com` (or whichever). Vercel gives you DNS records to add at your registrar (Namecheap / Cloudflare / etc.). Wait 5–30 min for DNS propagation.
+5. **Add custom domain.** Vercel dashboard → Domains → add `realagentusecases.com` (or whichever). Vercel gives you DNS records to add at your registrar (Namecheap / Cloudflare / etc.). Wait 5–30 min for DNS propagation.
 
 6. **Verify after DNS:**
-   - `curl -I https://jackqian.com/subscribe` → should return `308` and `Location: <substack url>`
-   - `https://jackqian.com/sitemap.xml` lists every page
-   - `https://jackqian.com/opengraph-image` returns a PNG
+   - `curl -I https://realagentusecases.com/subscribe` → should return `308` and `Location: <substack url>`
+   - `https://realagentusecases.com/sitemap.xml` lists every page
+   - `https://realagentusecases.com/opengraph-image` returns a PNG
    - Open in iPhone Safari, Android Chrome, desktop Chrome
 
 7. **Future deploys** — every `git push origin main` triggers a new Vercel deploy automatically. Preview deploys for branches and PRs come for free.

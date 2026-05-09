@@ -2,9 +2,9 @@ import type { Dict } from "./types";
 
 export const en: Dict = {
   meta: {
-    siteTitle: "Jack Qian — Field Reports on AI Agents",
+    siteTitle: "Real Agent Use Cases — How working professionals use AI",
     siteDescription:
-      "I interview working professionals about how they actually use AI agents to automate their day-to-day. One issue a week. Free.",
+      "Every week I record a conversation with a working professional about how they actually use AI agents. Podcast, YouTube, and a written breakdown — free.",
   },
   header: {
     about: "About",
@@ -16,48 +16,48 @@ export const en: Dict = {
   post: {
     ctaHeading: "Liked this?",
     ctaBody:
-      "One write-up like this lands in your inbox every week. Free, no upsell.",
+      "One interview a week, straight to your inbox. Free, no upsell.",
     ctaButton: "Subscribe — free",
-    notFoundTitle: "Post not found",
+    notFoundTitle: "Episode not found",
     notFoundBody:
-      "Either I haven't written this one yet, or the link's wrong.",
+      "Either I haven't recorded this one yet, or the link's wrong.",
     backHome: "Back to home",
   },
   home: {
-    kicker: "Field Reports on AI Agents",
+    kicker: "Weekly · Hosted by Jack Qian",
     h1: "How working professionals actually use AI.",
     subtitle:
-      "Every month I interview 3–4 people — finance, data, ops, planning — about the AI agents they live with day-to-day. Full prompts, copyable workflows, no fluff.",
+      "Every week I sit down with someone in finance, data, ops, or planning — they walk me through the AI agents they live with day-to-day. The conversation goes out as a podcast, a YouTube video, and a written breakdown with every prompt published in full.",
     bullets: [
-      "3–4 interviews per month, plus my own field notes",
-      "Every prompt published in full — copy-paste ready",
-      "Across finance, data, ops, planning, and supply chain",
+      "Weekly drop: podcast + video + article from one real interview",
+      "Every prompt and workflow published in full — copy-paste ready",
+      "Across finance, data, ops, supply chain, and beyond",
     ],
     cta: "Subscribe — free →",
-    finePrint: "100% free. One issue a week. Unsubscribe anytime.",
+    finePrint: "100% free. One drop a week. Unsubscribe anytime.",
     socialProof: (count) =>
       count > 0
         ? `Industrial Engineer → Business Planner · Hosting AI hackathons in Dallas · Joined by ${count.toLocaleString()} readers`
         : "Industrial Engineer → Business Planner · Hosting AI hackathons in Dallas · Be among the first readers",
     latestPosts: {
-      heading: "Read a sample issue.",
+      heading: "Read a sample interview.",
     },
     about: {
-      heading: "About Jack",
+      heading: "About",
       paragraphs: [
-        "I'm Jack Qian. I work as an Industrial Engineer at Texas Instruments, moving into Business Planning in April 2026 — which means I spend my days trying to bend AI agents to do real supply-chain work.",
-        "I take notes on what works and what doesn't, then I track down other working professionals and ask them the same questions. Their answers turn into the next issue.",
-        "I also run a monthly AI hackathon in Dallas. Locals welcome. But the newsletter is the main course.",
+        "I'm Jack Qian. Industrial Engineer at Texas Instruments, moving into Business Planning in April 2026 — which means I spend my days trying to bend AI agents to do real supply-chain work.",
+        "Each week I track down another working professional and ask them the same set of questions: what did you actually use AI for this month? What's the prompt you'd never delete? What broke? Then I record it.",
+        "The conversation goes out three ways — podcast, YouTube, and a written breakdown to your inbox. I also run a monthly AI hackathon in Dallas; locals welcome. But the recordings are the main course.",
       ],
     },
     finalCta: {
-      lead: "One issue a week, straight to your inbox.",
+      lead: "One drop a week, straight to your inbox.",
       cta: "Subscribe — free",
     },
   },
   footer: {
-    copyright: (year) => `© ${year} Jack Qian`,
-    builtIn: "Built in Dallas",
+    copyright: (year) => `© ${year} Real Agent Use Cases`,
+    builtIn: "By Jack Qian · Built in Dallas",
     nav: {
       subscribe: "Subscribe",
       about: "About",
@@ -71,6 +71,6 @@ export const en: Dict = {
       github: "GitHub",
     },
     tagline:
-      "This site is the doormat to my newsletter on Substack. The newsletter is the real thing.",
+      "This site is the doormat. The interviews are the real thing.",
   },
 };

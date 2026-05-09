@@ -5,6 +5,9 @@ import { getAllPostParams, getPost } from "@/lib/content";
 import { getDict } from "@/lib/i18n";
 import { SITE_CONFIG, type Locale } from "@/lib/config";
 import { PostCta } from "@/components/post-cta";
+import { YouTube } from "@/components/mdx/youtube";
+
+const mdxComponents = { YouTube };
 
 type RouteParams = { locale: string; slug: string };
 
@@ -58,6 +61,7 @@ export default async function PostPage({
 
   const { content } = await compileMDX({
     source: post.body,
+    components: mdxComponents,
     options: { parseFrontmatter: false },
   });
 

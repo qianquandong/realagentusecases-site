@@ -1,6 +1,6 @@
 import { ImageResponse } from "next/og";
 
-export const alt = "Jack Qian — Field Reports on AI Agents";
+export const alt = "Real Agent Use Cases — How working professionals actually use AI";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -19,8 +19,8 @@ export default function OG() {
           fontFamily: "ui-monospace, SFMono-Regular, monospace",
         }}
       >
-        <div style={{ fontSize: 24, color: "#a3a3a3", letterSpacing: 2 }}>
-          jackqian.com
+        <div style={{ fontSize: 22, color: "#a3a3a3", letterSpacing: 2 }}>
+          REAL AGENT USE CASES
         </div>
         <div
           style={{
@@ -37,10 +37,10 @@ export default function OG() {
               letterSpacing: -2,
             }}
           >
-            Field Reports on AI Agents.
+            How working professionals actually use AI.
           </div>
-          <div style={{ fontSize: 28, marginTop: 28, color: "#a3a3a3" }}>
-            How working professionals actually use AI. Free, weekly.
+          <div style={{ fontSize: 26, marginTop: 28, color: "#a3a3a3" }}>
+            Weekly podcast + YouTube + written breakdown. Free.
           </div>
         </div>
         <div

@@ -12,9 +12,9 @@ export function Header({ locale }: { locale: Locale }) {
       <div className="mx-auto max-w-6xl px-6 h-14 flex items-center justify-between">
         <Link
           href={`/${locale}`}
-          className="font-mono text-sm tracking-tight hover:text-(--color-brand) transition-colors"
+          className="font-mono text-xs sm:text-sm tracking-tight hover:text-(--color-brand) transition-colors"
         >
-          Jack Qian
+          Real Agent Use Cases
         </Link>
         <nav className="flex items-center gap-5 sm:gap-6">
           <LanguageSwitch locale={locale} />

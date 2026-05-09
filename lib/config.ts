@@ -1,6 +1,7 @@
 export const SITE_CONFIG = {
-  name: "Jack Qian",
-  domain: "jackqian.com",
+  name: "Real Agent Use Cases",
+  host: "Jack Qian",
+  domain: "realagentusecases.com",
   defaultLocale: "en" as const,
   locales: ["en", "zh"] as const,
   substackUrl:
@@ -11,6 +12,8 @@ export const SITE_CONFIG = {
     twitter: "",
     linkedin: "",
     github: "",
+    youtube: "",
+    xiaoyuzhou: "",
   },
 } as const;
 

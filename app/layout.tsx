@@ -25,17 +25,18 @@ const sourceSerif = Source_Serif_4({
 
 export const metadata: Metadata = {
   metadataBase: new URL(
-    process.env.NEXT_PUBLIC_SITE_URL ?? "https://jackqian.com",
+    process.env.NEXT_PUBLIC_SITE_URL ?? "https://realagentusecases.com",
   ),
   title: {
-    default: "Jack Qian — Field Reports on AI Agents",
-    template: "%s · Jack Qian",
+    default:
+      "Real Agent Use Cases — How working professionals actually use AI",
+    template: "%s · Real Agent Use Cases",
   },
   description:
-    "I interview working professionals about how they actually use AI agents to automate their day-to-day. One issue a week. Free.",
+    "Every week I record a conversation with a working professional about how they actually use AI agents. Podcast, YouTube, written breakdown — free.",
   openGraph: {
     type: "website",
-    siteName: "Jack Qian",
+    siteName: "Real Agent Use Cases",
   },
   twitter: {
     card: "summary_large_image",
@@ -45,7 +46,7 @@ export const metadata: Metadata = {
   },
 };
 
-const easterEgg = `console.log("%cCurious what powers this site? It's just Next.js + my caffeine.\\nSubscribe so I can buy more coffee → ${SITE_CONFIG.substackUrl}", "color:#5fa37c;font-family:ui-monospace,monospace;font-size:12px;line-height:1.6");`;
+const easterEgg = `console.log("%cCurious what powers this site? It's just Next.js + my caffeine.\\nSubscribe so Jack can buy more coffee → ${SITE_CONFIG.substackUrl}", "color:#5fa37c;font-family:ui-monospace,monospace;font-size:12px;line-height:1.6");`;
 
 export default async function RootLayout({
   children,
@@ -63,7 +64,12 @@ export default async function RootLayout({
       <head>
         <script dangerouslySetInnerHTML={{ __html: easterEgg }} />
       </head>
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body
+        className="min-h-full flex flex-col"
+        suppressHydrationWarning
+      >
+        {children}
+      </body>
     </html>
   );
 }
