@@ -1,0 +1,37 @@
+import Link from "next/link";
+import { LanguageSwitch } from "./language-switch";
+import { SubscribeButton } from "./subscribe-button";
+import { getDict } from "@/lib/i18n";
+import type { Locale } from "@/lib/config";
+
+export function Header({ locale }: { locale: Locale }) {
+  const t = getDict(locale);
+  const navLink =
+    "text-sm text-(--color-muted-foreground) hover:text-brand transition-colors";
+
+  return (
+    <header className="sticky top-0 z-40 border-b border-(--color-border) bg-background/80 backdrop-blur supports-backdrop-filter:bg-background/60">
+      <div className="mx-auto max-w-6xl px-6 h-14 flex items-center justify-between">
+        <Link
+          href={`/${locale}`}
+          className="font-mono text-sm tracking-tight hover:text-brand transition-colors"
+        >
+          Jack Qian
+        </Link>
+        <nav className="flex items-center gap-5 sm:gap-6">
+          <Link href={`/${locale}/about`} className={`${navLink} hidden sm:inline`}>
+            {t.header.about}
+          </Link>
+          <Link href={`/${locale}/archive`} className={navLink}>
+            {t.header.archive}
+          </Link>
+          <Link href={`/${locale}/events`} className={`${navLink} hidden sm:inline`}>
+            {t.header.events}
+          </Link>
+          <LanguageSwitch locale={locale} />
+          <SubscribeButton size="sm">{t.header.subscribe}</SubscribeButton>
+        </nav>
+      </div>
+    </header>
+  );
+}
