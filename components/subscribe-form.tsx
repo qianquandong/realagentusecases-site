@@ -94,7 +94,7 @@ export function SubscribeForm({
           aria-label={placeholder}
           className={cn(
             "flex-1 min-w-0 rounded-md px-4",
-            "bg-(--color-muted)/50 border border-(--color-border)",
+            "bg-(--color-muted) border border-(--color-muted-foreground)/30",
             "text-(--color-foreground)",
             "placeholder:text-(--color-muted-foreground)",
             "focus:outline-none focus:border-(--color-brand)",

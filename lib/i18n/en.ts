@@ -32,7 +32,7 @@ export const en: Dict = {
   },
   home: {
     kicker: "Weekly · Hosted by Jack Qian",
-    h1: "How working professionals actually use AI.",
+    h1: "The prompts working professionals actually use at work.",
     subtitle:
       "Every week I sit down with someone in finance, data, ops, or planning — they walk me through the AI agents they live with day-to-day. The conversation goes out as a podcast, a YouTube video, and a written breakdown with every prompt published in full.",
     bullets: [

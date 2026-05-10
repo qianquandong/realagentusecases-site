@@ -2,9 +2,9 @@ import type { Dict } from "./types";
 
 export const zh: Dict = {
   meta: {
-    siteTitle: "Real Agent Use Cases · AI agent 真实工作流",
+    siteTitle: "Real Agent Use Cases · 看真人怎么用 AI agent 干活",
     siteDescription:
-      "每周一期：找一位职场人录他们怎么真用 AI agents。播客、YouTube、文字版——全免费。",
+      "每周找一位职场人，聊他怎么真在用 AI agent 干活。播客、YouTube、文字稿，全免费。",
   },
   header: {
     about: "关于",
@@ -29,30 +29,30 @@ export const zh: Dict = {
     backHome: "回首页",
   },
   home: {
-    kicker: "每周一期 · Jack Qian 主持",
-    h1: "看真实职场人在怎么用 AI。",
+    kicker: "每周一期 · Jack Qian 主理",
+    h1: "职场人真正在用的 prompt。",
     subtitle:
-      "我每周找一位职场人——财务、数据、运营、业务规划——让他们带我走一遍真用 AI agents 干活的流程。对话录成播客和 YouTube 视频，文字版发到邮箱和这里，prompt 完整放出。",
+      "每周找一位职场人——做财务的、做数据的、做运营的、做业务规划的——请他带我把手头一个真在跑的 AI agent 流程走一遍。对话录成播客和 YouTube，文字稿发邮箱也发这里，所有 prompt 原样放出，不删。",
     bullets: [
-      "每周一期：播客 + YouTube + 文字版，三种形态",
-      "完整 prompt 和 workflow 放出，可直接复制",
+      "每周一期，一次访谈拆成三份：播客、YouTube、文字稿",
+      "prompt 和工作流原样放出，复制就能用",
       "覆盖财务、数据、运营、供应链、规划等多个职能",
     ],
     cta: "免费订阅 →",
     finePrint: "完全免费，每周一期，随时退订。",
     socialProof: (count) =>
       count > 0
-        ? `工业工程师 → 业务规划师 · 在达拉斯组织 AI 黑客松 · 已有 ${count.toLocaleString()} 名职场人在读`
+        ? `工业工程师 → 业务规划师 · 在达拉斯组织 AI 黑客松 · ${count.toLocaleString()} 位职场人已经在订阅`
         : "工业工程师 → 业务规划师 · 在达拉斯组织 AI 黑客松 · 现在订阅，做第一批读者",
     latestPosts: {
-      heading: "先听一期看看。",
+      heading: "先读一期看看。",
     },
     about: {
       heading: "关于",
       paragraphs: [
-        "我是 Jack Qian。在德州仪器（Texas Instruments）做工业工程师，2026 年 4 月转到业务规划岗——这意味着我每天都在用 AI agent 改造真实的供应链工作。",
-        "每周我找一位职场人，问他们同一组问题：这个月你真把 AI 用到哪些事上了？哪条 prompt 你绝对不会删？哪里翻车了？然后把对话录下来。",
-        "对话会以三种形态发出——播客、YouTube、和发到你邮箱的文字版。我每月在达拉斯还办一次 AI 实战黑客松，本地朋友欢迎来。但访谈是主菜。",
+        "我是 Jack Qian，在德州仪器（Texas Instruments）做工业工程师，2026 年 4 月转去做业务规划——也就是说，我每天都在拿 AI agent 折腾真实的供应链活儿。",
+        "每周找一个人，问同一组问题：这个月你到底拿 AI 干了什么？哪条 prompt 你打死不删？哪里翻车了？然后把对话录下来。",
+        "对话会以三种方式发出：播客、YouTube，加一份发到你邮箱的文字稿。我每月在达拉斯还办一次 AI 实战黑客松，本地朋友欢迎来。但访谈是主菜。",
       ],
     },
     finalCta: {

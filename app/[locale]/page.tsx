@@ -54,8 +54,8 @@ export default async function HomePage({
 function Hero({ dict }: { dict: Dict }) {
   const t = dict.home;
   return (
-    <section className="mx-auto max-w-3xl px-6 pt-20 pb-24 sm:pt-28 sm:pb-32 text-center">
-      <p className="font-mono text-xs uppercase tracking-[0.2em] text-(--color-muted-foreground) mb-6">
+    <section className="mx-auto max-w-3xl px-6 pt-16 pb-20 sm:pt-24 sm:pb-28 text-center">
+      <p className="font-mono text-xs uppercase tracking-[0.2em] text-(--color-muted-foreground) mb-5">
         {t.kicker}
       </p>
 
@@ -63,11 +63,11 @@ function Hero({ dict }: { dict: Dict }) {
         {t.h1}
       </h1>
 
-      <p className="mt-6 text-lg sm:text-xl text-(--color-muted-foreground) leading-relaxed text-balance max-w-2xl mx-auto">
+      <p className="mt-5 text-lg sm:text-xl text-(--color-muted-foreground) leading-relaxed text-balance max-w-2xl mx-auto">
         {t.subtitle}
       </p>
 
-      <ul className="mt-10 mx-auto inline-flex flex-col gap-2 text-sm sm:text-[15px] text-(--color-muted-foreground) text-left">
+      <ul className="mt-7 mx-auto inline-flex flex-col gap-2 text-sm sm:text-[15px] text-(--color-muted-foreground) text-left">
         {t.bullets.map((b, i) => (
           <li key={i} className="flex items-start gap-3">
             <span
@@ -79,7 +79,7 @@ function Hero({ dict }: { dict: Dict }) {
         ))}
       </ul>
 
-      <div className="mt-10 scroll-mt-24" id="subscribe">
+      <div className="mt-8 scroll-mt-24" id="subscribe">
         <SubscribeForm
           size="lg"
           cta={t.cta.replace(/\s*→\s*$/, "")}
@@ -92,7 +92,7 @@ function Hero({ dict }: { dict: Dict }) {
         />
       </div>
 
-      <p className="mt-12 font-mono text-[11px] uppercase tracking-[0.18em] text-(--color-muted-foreground)/70">
+      <p className="mt-10 font-mono text-[11px] uppercase tracking-[0.18em] text-(--color-muted-foreground)/70">
         {t.socialProof(SITE_CONFIG.subscriberCount)}
       </p>
     </section>

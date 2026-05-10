@@ -10,9 +10,14 @@ function formatDate(dateStr: string, locale: Locale): string {
   );
 }
 
+// Hide the section until at least 3 real posts exist for this locale.
+// A single welcome post on its own breaks the "sample interview" promise.
+const MIN_POSTS_TO_SHOW = 3;
+
 export async function LatestPosts({ locale }: { locale: Locale }) {
-  const posts = (await getAllPosts(locale)).slice(0, 3);
-  if (posts.length === 0) return null;
+  const all = await getAllPosts(locale);
+  if (all.length < MIN_POSTS_TO_SHOW) return null;
+  const posts = all.slice(0, 3);
 
   const t = getDict(locale).home.latestPosts;
 
