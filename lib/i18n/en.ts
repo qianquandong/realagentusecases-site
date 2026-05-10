@@ -4,7 +4,7 @@ export const en: Dict = {
   meta: {
     siteTitle: "Real Agent Use Cases — How working professionals use AI",
     siteDescription:
-      "Every week I record a conversation with a working professional about how they actually use AI agents. Podcast, YouTube, and a written breakdown — free.",
+      "One real AI workflow per week, from someone doing the work. Every prompt published in full. Free.",
   },
   header: {
     about: "About",
@@ -17,44 +17,44 @@ export const en: Dict = {
     placeholder: "you@example.com",
     submitting: "Subscribing…",
     successHeading: "You're on the list.",
-    successBody: "I'll send the next interview to your inbox.",
+    successBody: "The next workflow lands in your inbox.",
     errorMsg: "Something broke. Try again?",
   },
   post: {
     ctaHeading: "Liked this?",
     ctaBody:
-      "One interview a week, straight to your inbox. Free, no upsell.",
+      "One real workflow a week, straight to your inbox. Free, no upsell.",
     ctaButton: "Subscribe — free",
     notFoundTitle: "Episode not found",
     notFoundBody:
-      "Either I haven't recorded this one yet, or the link's wrong.",
+      "Either it hasn't shipped yet, or the link's wrong.",
     backHome: "Back to home",
   },
   home: {
-    kicker: "Weekly · Hosted by Jack Qian",
+    kicker: "Weekly. Free forever.",
     h1: "The prompts working professionals actually use at work.",
     subtitle:
-      "Every week I sit down with someone in finance, data, ops, or planning — they walk me through the AI agents they live with day-to-day. The conversation goes out as a podcast, a YouTube video, and a written breakdown with every prompt published in full.",
+      "Every week, get one real AI workflow from someone doing the work — finance, data, ops, planning. Every prompt published in full. Pick your format: podcast, video, or written breakdown.",
     bullets: [
-      "Weekly drop: podcast + video + article from one real interview",
-      "Every prompt and workflow published in full — copy-paste ready",
-      "Across finance, data, ops, supply chain, and beyond",
+      "One real workflow per week — not theory, not demos",
+      "Every prompt and workflow published in full — copy, paste, use",
+      "Finance, data, ops, supply chain — real jobs, real outputs",
     ],
     cta: "Subscribe — free →",
     finePrint: "100% free. One drop a week. Unsubscribe anytime.",
     socialProof: (count) =>
       count > 0
-        ? `Industrial Engineer → Business Planner · Hosting AI hackathons in Dallas · Joined by ${count.toLocaleString()} readers`
-        : "Industrial Engineer → Business Planner · Hosting AI hackathons in Dallas · Be among the first readers",
+        ? `Joined by ${count.toLocaleString()} working professionals.`
+        : "Be among the first readers.",
     latestPosts: {
       heading: "Read a sample interview.",
     },
     about: {
       heading: "About",
       paragraphs: [
-        "I'm Jack Qian. Industrial Engineer at Texas Instruments, moving into Business Planning in April 2026 — which means I spend my days trying to bend AI agents to do real supply-chain work.",
-        "Each week I track down another working professional and ask them the same set of questions: what did you actually use AI for this month? What's the prompt you'd never delete? What broke? Then I record it.",
-        "The conversation goes out three ways — podcast, YouTube, and a written breakdown to your inbox. I also run a monthly AI hackathon in Dallas; locals welcome. But the recordings are the main course.",
+        "Most useful AI workflows at work aren't written down anywhere. The people who've figured them out are too busy doing the work to publish — so what actually works stays inside their heads.",
+        "This newsletter changes that. Every week, one working professional walks us through one real workflow — in finance, data, ops, or planning. All prompts published in full. No filler. No paid tier.",
+        "Hosted by Jack Qian — industrial engineer at Texas Instruments turning business planner, based in Dallas. There's a monthly AI hackathon if you're in town. But the recordings are the meal.",
       ],
     },
     finalCta: {
@@ -64,7 +64,7 @@ export const en: Dict = {
   },
   footer: {
     copyright: (year) => `© ${year} Real Agent Use Cases`,
-    builtIn: "By Jack Qian · Built in Dallas",
+    builtIn: "Built in Dallas",
     nav: {
       subscribe: "Subscribe",
       about: "About",
