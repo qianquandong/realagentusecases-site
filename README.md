@@ -41,7 +41,7 @@ app/
     layout.tsx                  # wraps locale pages with Header + Footer
     page.tsx                    # homepage: Hero / About / Final CTA
     posts/[slug]/page.tsx       # single article page (MDX)
-  subscribe/route.ts            # GET → 308 redirect to NEXT_PUBLIC_SUBSTACK_URL
+                                # /subscribe is now handled by worker/index.ts (legacy URL)
   sitemap.ts                    # dynamic sitemap.xml from posts
   robots.ts                     # robots.txt
   opengraph-image.tsx           # 1200×630 OG card (dynamic, branded)
@@ -112,56 +112,77 @@ Subscriber count placeholder: `lib/config.ts` → `subscriberCount`. Update it m
 
 | Var | Where it's used | What |
 |---|---|---|
-| `NEXT_PUBLIC_SUBSTACK_URL` | Build (Subscribe buttons) + runtime function (`/subscribe` redirect) | Real Substack subscribe URL |
+| `NEXT_PUBLIC_SUBSCRIBE_FORM_URL` | Client-side form action (Formspree endpoint) | Endpoint that receives email submissions. Default: a Formspree form id |
 | `NEXT_PUBLIC_SITE_URL` | Build (sitemap, og:url, metadata) | Canonical site URL (e.g. `https://realagentusecases.com`) |
 
 ---
 
 ## Deploying to Cloudflare Pages
 
-This site is a **static export** (`output: 'export'` in next.config.ts) plus **two Cloudflare Pages Functions** in `functions/`:
+This site is a **static export** (`output: 'export'` in next.config.ts) plus a single **Cloudflare Worker** at `worker/index.ts` (declared in `wrangler.jsonc`):
 
-- `functions/_middleware.ts` — root path locale redirect (Accept-Language → `/en` or `/zh`)
-- `functions/subscribe.ts` — `/subscribe` → 308 to Substack
+- `/` — Worker reads `Accept-Language` + `NEXT_LOCALE` cookie → 302 to `/en/` or `/zh/`
+- `/subscribe` — legacy URL, 302 to homepage `#subscribe` anchor
+- Everything else — falls through to the static asset binding (`out/` directory)
 
 ### One-time setup
 
 1. **Push to GitHub** (this repo is already on GitHub).
 
-2. **Cloudflare Pages → Create project → Connect to Git**
+2. **Workers & Pages → Create application → Connect to Git** (Cloudflare's unified Workers Builds flow)
    - Pick `realagentusecases-site`
    - Production branch: `main`
 
-3. **Build settings**:
-   - Framework preset: **Next.js (Static HTML Export)** — or "None" + manual config below
-   - Build command: `pnpm build`
-   - Build output directory: `out`
-   - Root directory: leave empty
-   - Node version: `20` or higher
+3. **Build settings** (most are auto-detected from `wrangler.jsonc`):
+   - Build command: `pnpm run build`
+   - Deploy command: `npx wrangler deploy` (default)
+   - Root directory: `/`
 
-4. **Environment variables** (under "Settings → Environment variables"):
-   - `NEXT_PUBLIC_SUBSTACK_URL` = your real Substack subscribe URL
+4. **Environment variables** (under "Settings → Variables and Secrets"):
+   - `NEXT_PUBLIC_SUBSCRIBE_FORM_URL` = your Formspree endpoint, e.g. `https://formspree.io/f/xxxxxxxx`
    - `NEXT_PUBLIC_SITE_URL` = `https://realagentusecases.com`
 
-5. **First deploy.** Build ~60-90s. You'll get a `*.pages.dev` URL.
+5. **First deploy.** Build ~60-90s. You'll get a `*.workers.dev` URL.
 
 ### Custom domain
 
-6. Cloudflare Pages dashboard → **Custom domains** → Add `realagentusecases.com`
-   - Since the domain was bought through Cloudflare Registrar, DNS records are added automatically. No manual config needed.
+6. Workers project → **Settings → Domains & Routes → Add custom domain** → `realagentusecases.com`
+   - Domain bought through Cloudflare Registrar = DNS records added automatically.
    - SSL provisions in ~1 minute.
 
 ### Verify after deploy
 
-- `curl -I https://realagentusecases.com/subscribe` → `308` + `Location: <substack url>`
+- `curl -I https://realagentusecases.com/subscribe` → `302` + `Location: /en/#subscribe` (or `/zh/`)
 - `https://realagentusecases.com/sitemap.xml` lists every page
 - `https://realagentusecases.com/opengraph-image` returns a PNG
 - Hit `/` from a Chinese-locale browser → redirects to `/zh/`; from English → `/en/`
+- Submit the email form → check Formspree dashboard for the new submission + your inbox for a notification email
 - Open in iPhone Safari, Android Chrome, desktop Chrome
 
 ### Future deploys
 
 Every `git push origin main` triggers a new Cloudflare Pages build automatically. Preview deploys for branches and PRs come for free.
+
+---
+
+## Email collection ≠ newsletter sending
+
+Formspree captures email submissions and emails them to the form owner —
+it does **not** send newsletters back to subscribers. To actually deliver
+the next interview to the inbox of everyone on the list, you'll need a
+sending tool. Cheap options:
+
+- **Manual:** export the Formspree CSV every issue, paste into Gmail BCC.
+  Works up to ~50 subscribers.
+- **Buttondown / Mailerlite / Beehiiv:** import the CSV when you outgrow
+  manual sending. All have free tiers.
+- **Substack:** import emails into a Substack publication and send through
+  it; site stays Formspree-driven for collection, Substack just handles
+  delivery.
+
+The `subscribeFormUrl` field in `lib/config.ts` (or env var) is the only
+thing tying the site to Formspree — swap to a different form provider
+without touching components.
 
 ---
 

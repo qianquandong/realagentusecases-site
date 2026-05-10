@@ -1,8 +1,8 @@
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
-import { getDict } from "@/lib/i18n";
+import { getDict, type Dict } from "@/lib/i18n";
 import { SITE_CONFIG, type Locale } from "@/lib/config";
-import { SubscribeButton } from "@/components/subscribe-button";
+import { SubscribeForm } from "@/components/subscribe-form";
 import { LatestPosts } from "@/components/latest-posts";
 
 export async function generateMetadata({
@@ -37,23 +37,22 @@ export default async function HomePage({
   const { locale } = await params;
   if (!SITE_CONFIG.locales.includes(locale as Locale)) notFound();
   const typed = locale as Locale;
-  const t = getDict(typed).home;
+  const dict = getDict(typed);
 
   return (
     <>
-      <Hero t={t} />
+      <Hero dict={dict} />
       <LatestPosts locale={typed} />
       <Divider />
-      <About t={t} locale={typed} />
+      <About dict={dict} locale={typed} />
       <Divider />
-      <FinalCta t={t} />
+      <FinalCta dict={dict} />
     </>
   );
 }
 
-type HomeDict = ReturnType<typeof getDict>["home"];
-
-function Hero({ t }: { t: HomeDict }) {
+function Hero({ dict }: { dict: Dict }) {
+  const t = dict.home;
   return (
     <section className="mx-auto max-w-3xl px-6 pt-20 pb-24 sm:pt-28 sm:pb-32 text-center">
       <p className="font-mono text-xs uppercase tracking-[0.2em] text-(--color-muted-foreground) mb-6">
@@ -80,11 +79,17 @@ function Hero({ t }: { t: HomeDict }) {
         ))}
       </ul>
 
-      <div className="mt-10">
-        <SubscribeButton size="lg">{t.cta}</SubscribeButton>
-        <p className="mt-3 text-xs text-(--color-muted-foreground)">
-          {t.finePrint}
-        </p>
+      <div className="mt-10 scroll-mt-24" id="subscribe">
+        <SubscribeForm
+          size="lg"
+          cta={t.cta.replace(/\s*→\s*$/, "")}
+          placeholder={dict.email.placeholder}
+          submitting={dict.email.submitting}
+          finePrint={t.finePrint}
+          successHeading={dict.email.successHeading}
+          successBody={dict.email.successBody}
+          errorMsg={dict.email.errorMsg}
+        />
       </div>
 
       <p className="mt-12 font-mono text-[11px] uppercase tracking-[0.18em] text-(--color-muted-foreground)/70">
@@ -94,7 +99,8 @@ function Hero({ t }: { t: HomeDict }) {
   );
 }
 
-function About({ t, locale }: { t: HomeDict; locale: Locale }) {
+function About({ dict, locale }: { dict: Dict; locale: Locale }) {
+  const t = dict.home;
   return (
     <section className="mx-auto max-w-2xl px-6 py-20 sm:py-24">
       <h2 className="text-2xl sm:text-3xl font-semibold tracking-tight mb-8">
@@ -113,15 +119,22 @@ function About({ t, locale }: { t: HomeDict; locale: Locale }) {
   );
 }
 
-function FinalCta({ t }: { t: HomeDict }) {
+function FinalCta({ dict }: { dict: Dict }) {
+  const t = dict.home;
   return (
     <section className="mx-auto max-w-3xl px-6 py-24 sm:py-28 text-center">
-      <p className="text-2xl sm:text-3xl font-semibold tracking-tight text-balance">
+      <p className="text-2xl sm:text-3xl font-semibold tracking-tight text-balance mb-8">
         {t.finalCta.lead}
       </p>
-      <div className="mt-8">
-        <SubscribeButton size="lg">{t.finalCta.cta}</SubscribeButton>
-      </div>
+      <SubscribeForm
+        size="lg"
+        cta={t.finalCta.cta}
+        placeholder={dict.email.placeholder}
+        submitting={dict.email.submitting}
+        successHeading={dict.email.successHeading}
+        successBody={dict.email.successBody}
+        errorMsg={dict.email.errorMsg}
+      />
     </section>
   );
 }

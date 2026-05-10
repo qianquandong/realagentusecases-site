@@ -13,6 +13,13 @@ export const zh: Dict = {
     subscribe: "订阅",
     languageSwitchAria: "切换到英文",
   },
+  email: {
+    placeholder: "your@email.com",
+    submitting: "订阅中…",
+    successHeading: "收到，已加入名单。",
+    successBody: "下一期访谈会发到你邮箱。",
+    errorMsg: "出错了，再试一次？",
+  },
   post: {
     ctaHeading: "喜欢这一期？",
     ctaBody: "每周一期访谈，发到你邮箱。免费，没有付费墙。",

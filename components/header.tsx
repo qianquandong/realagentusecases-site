@@ -18,7 +18,9 @@ export function Header({ locale }: { locale: Locale }) {
         </Link>
         <nav className="flex items-center gap-5 sm:gap-6">
           <LanguageSwitch locale={locale} />
-          <SubscribeButton size="sm">{t.header.subscribe}</SubscribeButton>
+          <SubscribeButton size="sm" href={`/${locale}/#subscribe`}>
+            {t.header.subscribe}
+          </SubscribeButton>
         </nav>
       </div>
     </header>

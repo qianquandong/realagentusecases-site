@@ -18,6 +18,13 @@ export interface Dict {
     notFoundBody: string;
     backHome: string;
   };
+  email: {
+    placeholder: string;
+    submitting: string;
+    successHeading: string;
+    successBody: string;
+    errorMsg: string;
+  };
   home: {
     kicker: string;
     h1: string;

@@ -30,7 +30,7 @@ export function Footer({ locale }: { locale: Locale }) {
         </p>
 
         <nav className="flex justify-center gap-5">
-          <Link href={SITE_CONFIG.substackUrl} className={navLink}>
+          <Link href={`/${locale}/#subscribe`} className={navLink}>
             {t.footer.nav.subscribe}
           </Link>
         </nav>

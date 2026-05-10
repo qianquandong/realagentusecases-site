@@ -27,6 +27,12 @@
     color-scheme: dark;
   }
 
+  @media (prefers-reduced-motion: no-preference) {
+    html {
+      scroll-behavior: smooth;
+    }
+  }
+
   body {
     background: var(--color-background);
     color: var(--color-foreground);

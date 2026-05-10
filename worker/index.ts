@@ -1,11 +1,11 @@
 // Cloudflare Workers entry point.
 // Two dynamic routes; everything else falls through to static assets.
 //   /            → 302 to /en/ or /zh/ (Accept-Language + cookie)
-//   /subscribe   → 308 to NEXT_PUBLIC_SUBSTACK_URL
+//   /subscribe   → 302 to /en/#subscribe or /zh/#subscribe
+//                 (legacy URL preserved for old social bios)
 
 interface Env {
   ASSETS: { fetch: (req: Request) => Promise<Response> };
-  NEXT_PUBLIC_SUBSTACK_URL?: string;
 }
 
 const LOCALES = ["en", "zh"] as const;
@@ -23,25 +23,27 @@ function pickLocale(acceptLanguage: string | null): Locale {
   return "en";
 }
 
+function resolveLocale(request: Request): Locale {
+  const cookie = request.headers.get("cookie") ?? "";
+  const cookieMatch = cookie.match(/(?:^|;\s*)NEXT_LOCALE=(en|zh)/);
+  const cookieLocale = cookieMatch?.[1] as Locale | undefined;
+  return (
+    cookieLocale ?? pickLocale(request.headers.get("accept-language"))
+  );
+}
+
 export default {
   async fetch(request: Request, env: Env): Promise<Response> {
     const url = new URL(request.url);
     const path = url.pathname;
 
     if (path === "/subscribe" || path === "/subscribe/") {
-      const target =
-        env.NEXT_PUBLIC_SUBSTACK_URL ??
-        "https://jackqian.substack.com/subscribe";
-      return Response.redirect(target, 308);
+      const locale = resolveLocale(request);
+      return Response.redirect(`${url.origin}/${locale}/#subscribe`, 302);
     }
 
     if (path === "/") {
-      const cookie = request.headers.get("cookie") ?? "";
-      const cookieMatch = cookie.match(/(?:^|;\s*)NEXT_LOCALE=(en|zh)/);
-      const cookieLocale = cookieMatch?.[1] as Locale | undefined;
-      const locale =
-        cookieLocale ??
-        pickLocale(request.headers.get("accept-language"));
+      const locale = resolveLocale(request);
       return Response.redirect(`${url.origin}/${locale}/`, 302);
     }
 

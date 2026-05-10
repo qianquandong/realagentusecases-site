@@ -13,6 +13,13 @@ export const en: Dict = {
     subscribe: "Subscribe",
     languageSwitchAria: "Switch to Chinese",
   },
+  email: {
+    placeholder: "you@example.com",
+    submitting: "Subscribing…",
+    successHeading: "You're on the list.",
+    successBody: "I'll send the next interview to your inbox.",
+    errorMsg: "Something broke. Try again?",
+  },
   post: {
     ctaHeading: "Liked this?",
     ctaBody:

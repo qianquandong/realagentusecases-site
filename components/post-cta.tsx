@@ -1,9 +1,10 @@
 import { getDict } from "@/lib/i18n";
 import type { Locale } from "@/lib/config";
-import { SubscribeButton } from "./subscribe-button";
+import { SubscribeForm } from "./subscribe-form";
 
 export function PostCta({ locale }: { locale: Locale }) {
-  const t = getDict(locale).post;
+  const dict = getDict(locale);
+  const t = dict.post;
   return (
     <aside
       className="mt-16 mx-auto max-w-[var(--container-prose)] rounded-xl border border-(--color-border) bg-(--color-muted)/40 px-6 py-8 sm:px-8 sm:py-10 text-center"
@@ -14,7 +15,15 @@ export function PostCta({ locale }: { locale: Locale }) {
       </p>
       <p className="mt-3 text-(--color-muted-foreground)">{t.ctaBody}</p>
       <div className="mt-6">
-        <SubscribeButton size="lg">{t.ctaButton}</SubscribeButton>
+        <SubscribeForm
+          size="lg"
+          cta={t.ctaButton}
+          placeholder={dict.email.placeholder}
+          submitting={dict.email.submitting}
+          successHeading={dict.email.successHeading}
+          successBody={dict.email.successBody}
+          errorMsg={dict.email.errorMsg}
+        />
       </div>
     </aside>
   );

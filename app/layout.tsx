@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono, Source_Serif_4 } from "next/font/google";
 import "./globals.css";
-import { SITE_CONFIG } from "@/lib/config";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -45,7 +44,7 @@ export const metadata: Metadata = {
   },
 };
 
-const easterEgg = `console.log("%cCurious what powers this site? It's just Next.js + my caffeine.\\nSubscribe so Jack can buy more coffee → ${SITE_CONFIG.substackUrl}", "color:#5fa37c;font-family:ui-monospace,monospace;font-size:12px;line-height:1.6");`;
+const easterEgg = `console.log("%cCurious what powers this site? It's just Next.js + my caffeine.\\nSubscribe so Jack can buy more coffee.", "color:#5fa37c;font-family:ui-monospace,monospace;font-size:12px;line-height:1.6");`;
 
 export default function RootLayout({
   children,
