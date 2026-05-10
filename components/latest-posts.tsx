@@ -24,7 +24,7 @@ export async function LatestPosts({ locale }: { locale: Locale }) {
   return (
     <>
       <div className="mx-auto max-w-3xl px-6">
-        <div className="border-t border-(--color-border)/60" />
+        <div className="border-t border-(--color-border)/40" />
       </div>
       <section className="mx-auto max-w-2xl px-6 py-20 sm:py-24">
       <h2 className="text-2xl sm:text-3xl font-semibold tracking-tight mb-10">

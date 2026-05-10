@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { getDict, type Dict } from "@/lib/i18n";
 import { SITE_CONFIG, type Locale } from "@/lib/config";
 import { SubscribeForm } from "@/components/subscribe-form";
+import { SubscribeButton } from "@/components/subscribe-button";
 import { LatestPosts } from "@/components/latest-posts";
 
 export async function generateMetadata({
@@ -54,8 +55,8 @@ export default async function HomePage({
 function Hero({ dict }: { dict: Dict }) {
   const t = dict.home;
   return (
-    <section className="mx-auto max-w-3xl px-6 pt-16 pb-20 sm:pt-24 sm:pb-28 text-center">
-      <p className="font-mono text-xs uppercase tracking-[0.2em] text-(--color-muted-foreground) mb-5">
+    <section className="mx-auto max-w-3xl px-6 pt-16 pb-28 sm:pt-24 sm:pb-36 text-center">
+      <p className="font-mono text-xs uppercase tracking-[0.2em] text-(--color-muted-foreground) mb-6">
         {t.kicker}
       </p>
 
@@ -121,20 +122,16 @@ function About({ dict, locale }: { dict: Dict; locale: Locale }) {
 
 function FinalCta({ dict }: { dict: Dict }) {
   const t = dict.home;
+  // Don't repeat the email field — that reads as redundant on a short page.
+  // Repeat the promise + send the visitor back to the hero form anchor.
   return (
     <section className="mx-auto max-w-3xl px-6 py-24 sm:py-28 text-center">
       <p className="text-2xl sm:text-3xl font-semibold tracking-tight text-balance mb-8">
         {t.finalCta.lead}
       </p>
-      <SubscribeForm
-        size="lg"
-        cta={t.finalCta.cta}
-        placeholder={dict.email.placeholder}
-        submitting={dict.email.submitting}
-        successHeading={dict.email.successHeading}
-        successBody={dict.email.successBody}
-        errorMsg={dict.email.errorMsg}
-      />
+      <SubscribeButton size="lg" href="#subscribe">
+        {t.finalCta.cta}
+      </SubscribeButton>
     </section>
   );
 }
@@ -142,7 +139,7 @@ function FinalCta({ dict }: { dict: Dict }) {
 function Divider() {
   return (
     <div className="mx-auto max-w-3xl px-6">
-      <div className="border-t border-(--color-border)/60" />
+      <div className="border-t border-(--color-border)/40" />
     </div>
   );
 }

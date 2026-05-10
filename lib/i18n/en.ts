@@ -50,7 +50,7 @@ export const en: Dict = {
       heading: "Read a sample interview.",
     },
     about: {
-      heading: "About",
+      heading: "Why this exists",
       paragraphs: [
         "Most useful AI workflows at work aren't written down anywhere. The people who've figured them out are too busy doing the work to publish — so what actually works stays inside their heads.",
         "This newsletter changes that. Every week, one working professional walks us through one real workflow — in finance, data, ops, or planning. All prompts published in full. No filler. No paid tier.",
