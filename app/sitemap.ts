@@ -6,7 +6,7 @@ export const dynamic = "force-static";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl =
-    process.env.NEXT_PUBLIC_SITE_URL ?? "https://jackqian.com";
+    process.env.NEXT_PUBLIC_SITE_URL ?? "https://realagentusecases.com";
   const posts = await getAllPostParams();
 
   const urls: MetadataRoute.Sitemap = [];
