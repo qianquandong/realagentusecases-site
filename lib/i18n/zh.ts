@@ -2,9 +2,9 @@ import type { Dict } from "./types";
 
 export const zh: Dict = {
   meta: {
-    siteTitle: "Real Agent Use Cases · 看真人怎么用 AI agent 干活",
+    siteTitle: "Real Agent Use Cases · 职场人真正在用的 AI agent",
     siteDescription:
-      "每周一个真在跑的 AI 工作流，来自做这事的人。所有 prompt 原样放出。完全免费。",
+      "每周一个真在跑的 AI agent，来自正在用它的人。完整搭建步骤——prompt、工具、连接方式——原样放出。完全免费。",
   },
   header: {
     about: "关于",
@@ -17,12 +17,12 @@ export const zh: Dict = {
     placeholder: "your@email.com",
     submitting: "订阅中…",
     successHeading: "收到，已加入名单。",
-    successBody: "下一个工作流会发到你邮箱。",
+    successBody: "下一个 agent 拆解会发到你邮箱。",
     errorMsg: "出错了，再试一次？",
   },
   post: {
     ctaHeading: "喜欢这一期？",
-    ctaBody: "每周一个真工作流，发到你邮箱。免费，没有付费档。",
+    ctaBody: "每周一个真 AI agent，发到你邮箱。免费，没有付费档。",
     ctaButton: "免费订阅",
     notFoundTitle: "这一期没找到",
     notFoundBody: "要么还没发，要么链接错了。",
@@ -30,13 +30,13 @@ export const zh: Dict = {
   },
   home: {
     kicker: "每周一期 · 永久免费",
-    h1: "职场人真正在用的 prompt。",
+    h1: "职场人真正在用的 AI agent。",
     subtitle:
-      "每周一个真在跑的 AI 工作流——来自做财务、做数据、做运营、做业务规划的人。所有 prompt 原样放出。播客、视频、文字稿，挑你方便的。",
+      "市场、销售、HR、设计、运营、财务、法务、教育、新闻——每个岗位都有 AI agent 等着被搭起来。每周一位职场人，带我把他们真在跑的那个走一遍。完整搭建步骤——prompt、工具、连接方式，原样放出。",
     bullets: [
-      "每周一个真在跑的工作流——不是空谈、不是 demo",
-      "所有 prompt 和工作流原样放出，复制粘贴就能用",
-      "财务、数据、运营、供应链——真岗位、真产出",
+      "每周一个真在跑的 AI agent——搭建者每天都在用",
+      "完整搭建步骤放出——prompt、工具、连接方式，照着搭就能跑",
+      "覆盖所有职能——市场、销售、运营、财务、HR、设计、法务",
     ],
     cta: "免费订阅 →",
     finePrint: "完全免费，每周一期，随时退订。",
@@ -50,8 +50,8 @@ export const zh: Dict = {
     about: {
       heading: "为什么做这件事",
       paragraphs: [
-        "工作里真正有用的 AI 工作流，多数没人写下来。摸索出来的人忙着干活，没时间发表——于是真正有效的方法都留在了他们脑子里。",
-        "这个 newsletter 改这件事。每周一位职场人——做财务、做数据、做运营或做业务规划的——带我们走一遍真在跑的工作流。所有 prompt 原样放出。没废话、没付费档。",
+        "工作里真正在跑的 AI agent，多数没人写下来。摸索出来的人忙着干活，没时间发表——于是真正有效的搭建方法都留在了他们脑子里。",
+        "这个 newsletter 改这件事。每周一位职场人——不管做什么岗位、什么行业——带我们走一遍他真在跑的那个 AI agent。完整搭建步骤：prompt、工具、连接方式——原样放出。没废话、没付费档。",
         "主理人 Jack Qian——德州仪器（Texas Instruments）工业工程师，正转去做业务规划，在达拉斯。每月也办一次 AI 实战黑客松，本地朋友欢迎来。但访谈才是主菜。",
       ],
     },

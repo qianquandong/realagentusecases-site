@@ -2,9 +2,9 @@ import type { Dict } from "./types";
 
 export const en: Dict = {
   meta: {
-    siteTitle: "Real Agent Use Cases — How working professionals use AI",
+    siteTitle: "Real Agent Use Cases — The AI agents working professionals run at work",
     siteDescription:
-      "One real AI workflow per week, from someone doing the work. Every prompt published in full. Free.",
+      "One real AI agent per week, from someone doing the work. Full setup published — prompts, tools, integrations. Free.",
   },
   header: {
     about: "About",
@@ -17,13 +17,13 @@ export const en: Dict = {
     placeholder: "you@example.com",
     submitting: "Subscribing…",
     successHeading: "You're on the list.",
-    successBody: "The next workflow lands in your inbox.",
+    successBody: "The next agent walkthrough lands in your inbox.",
     errorMsg: "Something broke. Try again?",
   },
   post: {
     ctaHeading: "Liked this?",
     ctaBody:
-      "One real workflow a week, straight to your inbox. Free, no upsell.",
+      "One real AI agent a week, straight to your inbox. Free, no upsell.",
     ctaButton: "Subscribe — free",
     notFoundTitle: "Episode not found",
     notFoundBody:
@@ -32,13 +32,13 @@ export const en: Dict = {
   },
   home: {
     kicker: "Weekly. Free forever.",
-    h1: "The prompts working professionals actually use at work.",
+    h1: "The AI agents working professionals run at work.",
     subtitle:
-      "Every week, get one real AI workflow from someone doing the work — finance, data, ops, planning. Every prompt published in full. Pick your format: podcast, video, or written breakdown.",
+      "Marketing, sales, HR, design, ops, finance, legal, education, journalism — every job has AI agents waiting to be built. Every week, one working professional walks me through one they actually run. Full setup, all prompts, tools, and connections — published in full.",
     bullets: [
-      "One real workflow per week — not theory, not demos",
-      "Every prompt and workflow published in full — copy, paste, use",
-      "Finance, data, ops, supply chain — real jobs, real outputs",
+      "One real AI agent per week — built and run by someone using it daily",
+      "Full setup published — prompts, tools, integrations — copy and run",
+      "Every job, every industry — marketing, sales, ops, finance, HR, design, legal",
     ],
     cta: "Subscribe — free →",
     finePrint: "100% free. One drop a week. Unsubscribe anytime.",
@@ -52,8 +52,8 @@ export const en: Dict = {
     about: {
       heading: "Why this exists",
       paragraphs: [
-        "Most useful AI workflows at work aren't written down anywhere. The people who've figured them out are too busy doing the work to publish — so what actually works stays inside their heads.",
-        "This newsletter changes that. Every week, one working professional walks us through one real workflow — in finance, data, ops, or planning. All prompts published in full. No filler. No paid tier.",
+        "Most useful AI agents at work aren't written down anywhere. The people who've figured out how to actually run them are too busy doing the work to publish — so what works stays inside their heads.",
+        "This newsletter changes that. Every week, one working professional walks us through one AI agent they actually run — in any job, any industry. Full setup published: prompts, tools, integrations. No filler. No paid tier.",
         "Hosted by Jack Qian — industrial engineer at Texas Instruments turning business planner, based in Dallas. There's a monthly AI hackathon if you're in town. But the recordings are the meal.",
       ],
     },
