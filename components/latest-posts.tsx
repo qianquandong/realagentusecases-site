@@ -10,9 +10,11 @@ function formatDate(dateStr: string, locale: Locale): string {
   );
 }
 
-// Hide the section until at least 3 real posts exist for this locale.
-// A single welcome post on its own breaks the "sample interview" promise.
-const MIN_POSTS_TO_SHOW = 3;
+// Show LatestPosts whenever there's at least one post.
+// (Previously held until 3 posts existed to avoid a thin section. Now that
+// Issue #001 is real, surface it from the homepage so visitors have a path
+// in beyond the form.)
+const MIN_POSTS_TO_SHOW = 1;
 
 export async function LatestPosts({ locale }: { locale: Locale }) {
   const all = await getAllPosts(locale);

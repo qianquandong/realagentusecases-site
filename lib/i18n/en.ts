@@ -47,7 +47,7 @@ export const en: Dict = {
         ? `Joined by ${count.toLocaleString()} working professionals.`
         : "Be among the first readers.",
     latestPosts: {
-      heading: "Read a sample interview.",
+      heading: "Read the latest.",
     },
     about: {
       heading: "Why this exists",
