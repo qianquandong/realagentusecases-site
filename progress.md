@@ -22,9 +22,14 @@
   10. Open Questions (4 decisions awaiting Jack with hard deadlines: Issue #004 guest, Issue #002 topic, monetization timing, analytics upgrade timing)
 
 ### Word count
-- Chinese chars: 2,690
-- English words: 510
-- Total readable units: ~3,200 (slight overshoot of 3,000 target; tables make it scan-fast)
+- Chinese chars: 2,690 → **3,406 after 1-hour workflow addition**
+- English words: 510 → **621**
+- Total readable units: ~3,200 → **~4,027** (over 3,000 cap, but content depth justifies)
+
+### v0.1.1 patch (2026-05-12)
+- Added Section 4 "嘉宾采访固定 7 问" — 7-question interview script with target durations
+- Added Section 4 "1 小时录制流程（minute-by-minute）" — Phase 0-4 (prep / opening / 7Q / closing / immediate post-record), with timing table per phase
+- Reason: Jack asked for a detailed 1-hour interview workflow; the previous version had only the article output structure, not the input/execution workflow
 
 ### Files created/modified
 
