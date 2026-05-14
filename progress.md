@@ -31,6 +31,25 @@
 - Added Section 4 "1 小时录制流程（minute-by-minute）" — Phase 0-4 (prep / opening / 7Q / closing / immediate post-record), with timing table per phase
 - Reason: Jack asked for a detailed 1-hour interview workflow; the previous version had only the article output structure, not the input/execution workflow
 
+### v0.1.2 patch (2026-05-12)
+- Restructured "嘉宾采访 7 问" → **"Tier 1 核心 7 问 + Tier 2 备用 13 问"** (total 20-question bank)
+  - Tier 1 (Q1-Q7): locked, every guest, every episode — preserves cross-episode comparability
+  - Tier 2 (Q8-Q20): 13-question追问池 in 5 categories (工具/成本, 风险/合规, 团队/协作, 行为改变, 宏观判断), pick 2-3 per episode based on guest type
+- Added "抽题套路" lookup table (5 guest types → recommended Tier 2 picks)
+- Updated Phase 0 prep (send full question list = Tier 1 + selected Tier 2)
+- Updated Phase 2 execution rule (Tier 2 inserted after corresponding Tier 1 题, must not单独成段; if Tier 2 overruns, cut it — Tier 1 owns the time budget)
+- Updated Phase 1 opening script ("7 个核心问题 + 几个针对你情况的追问")
+- Reason: Jack flagged 7 questions would "用完" — risk of staleness by episode 10. The 2-tier design preserves the research-value engine (same 7) while adding rotation/variety (13 supplementary)
+
+### Chinese rewrite pass (2026-05-12, post-PRD)
+- Installed `translate` skill from `feiskyer/claude-code-settings/skills/translate` at `~/.claude/skills/translate/SKILL.md`
+- Skill enforces 3-step process: 直译 → 问题识别 → 意译优化
+- Applied skill to two files:
+  - `lib/i18n/zh.ts` — site UI copy (meta, hero, bullets, About paragraphs, CTAs, footer tagline). Major fixes: "被搭起来" passive → 主动 "该搭的"; "原样放出" 生硬 → "原原本本放出来"; "没付费档" 不像中文 → "不卖课"; "走一遍" 直译 → "走一遍他每天真在用的那一个"
+  - `content/posts/2026-05-13-gmail-ai-agent-zh.mdx` — Issue #001 Chinese article. ~12 targeted edits including title, "我一整天有了形状" → "对今天一整天的轮廓就清楚了"; "月费数学" → "月费账"; "3 分钟内整天就 ready" → "三分钟内一整天就安排好了"; "12 条线程" → "12 封回复深处"; "不可省" → "不能省"; design-notes 3 bullets rewritten for cadence
+- Created `~/.claude/CLAUDE.md` — global user memory with: (a) rule to always use translate skill for any Chinese, (b) Chinese quality bar (no awkward 被…起来 / 不是 X 而是 Y / 残留英文 "ready" "feature"), (c) user context, (d) project root + Chinese source file paths
+- Build verified: `pnpm build` passes, both locales render, sitemap + 2 static pages generated
+
 ### Files created/modified
 
 - `task_plan.md` (created → Phase 2 done after this session)
