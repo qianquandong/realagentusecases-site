@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { getAllPosts } from "@/lib/content";
+import { getAllContent, contentHref } from "@/lib/content";
 import { getDict } from "@/lib/i18n";
 import type { Locale } from "@/lib/config";
 
@@ -17,7 +17,7 @@ function formatDate(dateStr: string, locale: Locale): string {
 const MIN_POSTS_TO_SHOW = 1;
 
 export async function LatestPosts({ locale }: { locale: Locale }) {
-  const all = await getAllPosts(locale);
+  const all = await getAllContent(locale);
   if (all.length < MIN_POSTS_TO_SHOW) return null;
   const posts = all.slice(0, 3);
 
@@ -34,9 +34,9 @@ export async function LatestPosts({ locale }: { locale: Locale }) {
       </h2>
       <ul className="space-y-10">
         {posts.map((post) => (
-          <li key={post.slug}>
+          <li key={`${post.type}-${post.slug}`}>
             <Link
-              href={`/${locale}/posts/${post.slug}`}
+              href={contentHref(post.locale, post.type, post.slug)}
               className="group block"
             >
               <time

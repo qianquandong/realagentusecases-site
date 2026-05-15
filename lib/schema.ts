@@ -1,0 +1,117 @@
+import { SITE_CONFIG, type Locale } from "@/lib/config";
+
+// JSON-LD structured data builders. Sitewide graph (Organization + Person +
+// WebSite) goes in the root layout; per-article schema (BlogPosting +
+// BreadcrumbList) goes on each article page.
+
+const SITE_URL = (
+  process.env.NEXT_PUBLIC_SITE_URL ?? "https://realagentusecases.com"
+).replace(/\/$/, "");
+
+/** Resolve a site-relative path to an absolute URL. */
+export function absoluteUrl(path: string): string {
+  return `${SITE_URL}${path.startsWith("/") ? "" : "/"}${path}`;
+}
+
+const PERSON_ID = `${SITE_URL}/#jack-qian`;
+const ORG_ID = `${SITE_URL}/#organization`;
+const WEBSITE_ID = `${SITE_URL}/#website`;
+
+function personSchema() {
+  return {
+    "@type": "Person",
+    "@id": PERSON_ID,
+    name: SITE_CONFIG.host,
+    url: SITE_URL,
+    jobTitle: "Industrial Engineer",
+    worksFor: { "@id": ORG_ID },
+    description:
+      "Industrial engineer at Texas Instruments turning business planner, based in Dallas. Host of Real Agent Use Cases.",
+  };
+}
+
+function organizationSchema() {
+  return {
+    "@type": "Organization",
+    "@id": ORG_ID,
+    name: SITE_CONFIG.name,
+    url: SITE_URL,
+    founder: { "@id": PERSON_ID },
+    description:
+      "A weekly newsletter, podcast, and YouTube series documenting the AI agents working professionals actually run at work.",
+  };
+}
+
+function websiteSchema() {
+  return {
+    "@type": "WebSite",
+    "@id": WEBSITE_ID,
+    name: SITE_CONFIG.name,
+    url: SITE_URL,
+    publisher: { "@id": ORG_ID },
+    inLanguage: ["en", "zh-CN"],
+  };
+}
+
+/** Combined sitewide graph — render once in the root layout. */
+export function siteGraph() {
+  return {
+    "@context": "https://schema.org",
+    "@graph": [organizationSchema(), personSchema(), websiteSchema()],
+  };
+}
+
+export interface ArticleSchemaInput {
+  title: string;
+  description?: string;
+  /** Site-relative path, e.g. /en/news/my-slug/ */
+  path: string;
+  datePublished: string;
+  locale: Locale;
+}
+
+/** BlogPosting schema for an article page. */
+export function articleSchema({
+  title,
+  description,
+  path,
+  datePublished,
+  locale,
+}: ArticleSchemaInput) {
+  const url = absoluteUrl(path);
+  return {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "@id": `${url}#article`,
+    headline: title,
+    ...(description ? { description } : {}),
+    url,
+    datePublished,
+    dateModified: datePublished,
+    inLanguage: locale === "zh" ? "zh-CN" : "en",
+    author: { "@id": PERSON_ID },
+    publisher: { "@id": ORG_ID },
+    isPartOf: { "@id": WEBSITE_ID },
+    mainEntityOfPage: url,
+  };
+}
+
+export interface BreadcrumbItem {
+  name: string;
+  /** Site-relative path, e.g. /en/news/ */
+  path: string;
+}
+
+/** BreadcrumbList schema. Pass items in order: Home → News → Article. */
+export function breadcrumbSchema(items: BreadcrumbItem[]) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: items.map((item, i) => ({
+      "@type": "ListItem",
+      position: i + 1,
+      name: item.name,
+      item: absoluteUrl(item.path),
+    })),
+  };
+}

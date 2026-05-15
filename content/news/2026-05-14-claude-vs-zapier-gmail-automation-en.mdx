@@ -1,0 +1,66 @@
+---
+title: "Claude vs Zapier vs n8n: Building a Gmail AI Agent"
+date: "2026-05-14"
+excerpt: "I tested four ways to build the same Gmail AI agent — Claude.ai, Zapier, n8n, and Apps Script. Here's the real setup time, cost, and the catch with each."
+---
+
+Before the Gmail agent in [Issue #001](/en/posts/2026-05-13-gmail-ai-agent/) settled on its final stack, it ran on three others first. Same job every time — read the inbox each morning, output a prioritized to-do list — but four different ways to wire it up.
+
+Most "Claude vs Zapier" comparisons are written by people who picked one and never tried the rest. This one isn't. Here's what actually happened with each stack, measured against the exact same agent.
+
+## Answer Summary
+
+- **Claude.ai + Gmail Connector** won for this use case: ~20 min setup, $20/mo, zero code — but it only runs on a manual trigger.
+- **Zapier / Make.com** is the fastest no-code path and the easiest to hand to a teammate, but it runs $20-50+/mo and the logic is a black box when something breaks.
+- **n8n (self-hosted)** is the most powerful and portable option (~$5/mo on a VPS), but it's another tool you have to babysit.
+- **Google Apps Script** is the cheapest to run (~$3/mo) and the only one with native scheduled triggers — but you're writing and maintaining JavaScript.
+- Pick by what you're optimizing: simplicity → Claude.ai; shareability → Zapier; control → n8n; cost + scheduling → Apps Script.
+
+## What we're comparing
+
+The job is fixed: an AI agent that reads the last 24 hours of Gmail every morning and returns a P0/P1/P2 to-do list with time blocks and links back to each source email. Four stacks were tested against that exact spec — so the differences below are about the *wiring*, not the agent's behavior.
+
+## The comparison
+
+| Stack | Setup | Monthly cost | Best for | The catch |
+|---|---|---|---|---|
+| **Claude.ai + Gmail Connector** | ~20 min, zero code | $20 (Claude Pro) | Simplicity — no code, no API key | Manual trigger only; no scheduled runs |
+| **Zapier / Make.com + Claude API** | ~30 min, visual | $20-50+ | No-code, easy to share with a team | Expensive at volume; black-box when debugging |
+| **n8n (self-hosted) + Claude API** | ~60 min, some YAML | ~$5 (VPS) | Power and portability | Yet another tool to host and babysit |
+| **Google Apps Script + Anthropic API** | ~45 min, some JavaScript | ~$3 (API usage) | Cheap to run; native cron triggers | You're writing and maintaining code |
+
+Claude.ai wins on **simplicity vs. capability** for a personal agent: the Gmail Connector lives inside the Claude.ai UI, so once you authorize it, Claude reads your inbox the same way you do — no API key, no hosting. Zapier and n8n both need a Claude API key and a place for the workflow to live. Apps Script is the only one that can run on a schedule by itself.
+
+## When to pick each one
+
+- **Pick Claude.ai** if it's a personal agent and you want it working today. The manual trigger is fine — arguably a feature — when the whole point is that you start your day inside the system.
+- **Pick Zapier / Make** if a non-technical teammate needs to own or edit the workflow, or it has to connect to a dozen other apps. You pay for that convenience.
+- **Pick n8n** if you want Zapier's visual flow without Zapier's bill, you're comfortable running a small VPS, and portability matters.
+- **Pick Apps Script** if cost and a true scheduled trigger matter more than avoiding code — it's the cheapest way to run an unattended Gmail agent.
+
+## What this means for you
+
+Start with the simplest stack that does the job, not the most powerful one. For a personal agent, that's almost always Claude.ai — you can have it running in 20 minutes and find out whether the agent is even worth keeping before you invest in scheduling or hosting. If it earns its place, *then* move it to Apps Script or n8n for unattended runs. Building the n8n version first is how good agents die in week two.
+
+## FAQ
+
+**Is Claude or Zapier better for automating email?**
+For a personal email agent, Claude.ai is simpler and cheaper to start: ~20 minutes, $20/mo, no code, no API key. Zapier is better when a team needs to own the workflow or it must connect to many other apps — but it costs more and is harder to debug.
+
+**Do I need to know how to code to build a Gmail AI agent?**
+No. The Claude.ai + Gmail Connector path is zero-code. n8n needs a little YAML and Apps Script needs JavaScript, but the simplest working version requires neither.
+
+**Why not just use Zapier for everything?**
+Zapier is fast to set up but runs $20-50+/mo and its logic is a black box — when an automation misbehaves, debugging is slow. For a single personal agent, that overhead isn't worth it.
+
+**Which stack can run on a schedule without me?**
+Google Apps Script has native time-based triggers; n8n and Zapier can also schedule runs. Claude.ai + Gmail Connector cannot — it needs a manual trigger.
+
+**What's the cheapest way to run a Gmail AI agent?**
+Google Apps Script + the Anthropic API, at roughly $3/mo in API usage, with free hosting and cron triggers — at the cost of writing and maintaining code.
+
+## Related Workflows
+
+- [The Gmail AI Agent That Writes My Daily To-Do List](/en/posts/2026-05-13-gmail-ai-agent/) — the full build on the winning stack: prompt, setup, failure modes, and the math.
+
+One real AI agent a week, straight to your inbox. Free, no upsell.

@@ -1,0 +1,66 @@
+---
+title: "Gmail agent 怎么搭：Claude/Zapier/n8n"
+date: "2026-05-14"
+excerpt: "同一个 Gmail AI agent，我试了四种搭法：Claude.ai、Zapier、n8n、Apps Script。真实的搭建时间、月费、各自的坑都在这。"
+---
+
+[Issue #001](/zh/posts/2026-05-13-gmail-ai-agent/) 里那个 Gmail agent，定下最终技术栈之前，先在另外三套上跑过。每次干的活儿都一样——每天早上读收件箱，输出一份排好优先级的 to-do——但接线方式有四种。
+
+大多数 "Claude vs Zapier" 的对比，是没真用过其中几个的人写的。这篇不是。下面是每套技术栈实际跑下来的样子，对着的是同一个 agent。
+
+## 速读结论
+
+- **Claude.ai + Gmail Connector** 在这个用例里赢了：约 20 分钟搭好，月费 $20，零代码——但它只能手动触发。
+- **Zapier / Make.com** 是最快的零代码路径，也最容易交给同事，但月费 $20-50+，出问题时逻辑是个黑盒。
+- **n8n（自托管）** 最强、最好迁移（VPS 上约 $5/月），但它是又一个要你照看的工具。
+- **Google Apps Script** 跑起来最便宜（约 $3/月），也是唯一自带定时触发的——但你得写、还得维护 JavaScript。
+- 看你优先要什么：要简单 → Claude.ai；要好分享 → Zapier；要掌控力 → n8n；要便宜且能定时 → Apps Script。
+
+## 在比什么
+
+活儿是固定的：一个 AI agent，每天早上读最近 24 小时的 Gmail，返回一份带时间块、附原邮件链接的 P0/P1/P2 to-do。四套技术栈测的都是这同一个规格——所以下面的差别讲的是*接线方式*，不是 agent 的行为。
+
+## 对比
+
+| 技术栈 | 搭建 | 月费 | 最适合 | 坑在哪 |
+|---|---|---|---|---|
+| **Claude.ai + Gmail Connector** | 约 20 分钟，零代码 | $20（Claude Pro） | 简单——零代码、零 API key | 只能手动触发，不能定时 |
+| **Zapier / Make.com + Claude API** | 约 30 分钟，可视化 | $20-50+ | 零代码，方便团队分享 | 量大了贵；debug 时是黑盒 |
+| **n8n（自托管）+ Claude API** | 约 60 分钟，要写点 YAML | 约 $5（VPS） | 强大、好迁移 | 又一个要托管、要照看的工具 |
+| **Google Apps Script + Anthropic API** | 约 45 分钟，要写点 JavaScript | 约 $3（API 用量） | 跑起来便宜；自带 cron 定时 | 要写代码，还要维护 |
+
+对个人 agent 来说，Claude.ai 在 **"简单 vs 能力"** 这条线上赢了：Gmail Connector 就住在 Claude.ai 的 UI 里，授权一次之后，Claude 读你的收件箱就跟你自己读一样——不用 API key，不用托管。Zapier 和 n8n 都需要一个 Claude API key，还得有个地方放工作流。Apps Script 是唯一能自己定时跑的。
+
+## 各自该在什么时候选
+
+- **选 Claude.ai**——如果这是个人 agent、你想今天就让它跑起来。手动触发没问题，甚至算个 feature：这套东西的意义本来就是你每天靠它把一天打开。
+- **选 Zapier / Make**——如果工作流要交给一个不写代码的同事来管、来改，或者它得连十几个别的 app。这份方便是要花钱买的。
+- **选 n8n**——如果你想要 Zapier 那种可视化流程、又不想付 Zapier 的账单，自己跑个小 VPS 也无所谓，而且在意可迁移。
+- **选 Apps Script**——如果"便宜"和"真能定时触发"比"不写代码"更重要。它是无人值守跑 Gmail agent 最便宜的方式。
+
+## 对你来说意味着什么
+
+从能干完活儿的*最简单*那套开始，不是最强的那套。对个人 agent 来说，那基本上永远是 Claude.ai——20 分钟就能跑起来，在你为定时、托管投入精力之前，先搞清楚这个 agent 到底值不值得留。如果它证明了自己，*那时候*再把它搬到 Apps Script 或 n8n 上无人值守地跑。一上来就先搭 n8n 版本，好好的 agent 就是这么在第二周死掉的。
+
+## FAQ
+
+**自动化邮件，Claude 和 Zapier 哪个更好？**
+对个人邮件 agent 来说，Claude.ai 起步更简单也更便宜：约 20 分钟、月费 $20、零代码、零 API key。当工作流需要团队来管、或者要连很多别的 app 时，Zapier 更合适——但它更贵，也更难 debug。
+
+**搭一个 Gmail AI agent 需要会写代码吗？**
+不需要。Claude.ai + Gmail Connector 这条路是零代码。n8n 要写一点 YAML，Apps Script 要写 JavaScript，但能跑起来的最简单版本两样都不需要。
+
+**为什么不干脆全用 Zapier？**
+Zapier 搭起来快，但月费 $20-50+，逻辑还是个黑盒——自动化一出毛病，debug 很慢。就为了一个个人 agent，这份额外开销不值。
+
+**哪套技术栈能不靠我、自己定时跑？**
+Google Apps Script 自带基于时间的触发器；n8n 和 Zapier 也能定时跑。Claude.ai + Gmail Connector 不行——它需要手动触发。
+
+**跑一个 Gmail AI agent 最便宜的方式是什么？**
+Google Apps Script + Anthropic API，API 用量大概每月 $3，托管免费、还有 cron 定时——代价是要写代码、还要维护。
+
+## 相关工作流
+
+- [每天给我写待办清单的 Gmail AI agent](/zh/posts/2026-05-13-gmail-ai-agent/)——在赢的那套技术栈上的完整搭建：prompt、步骤、翻车点、成本账。
+
+每周一个真在用的 AI agent，直接发到你邮箱。免费，不卖课。

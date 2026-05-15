@@ -10,8 +10,17 @@ export const en: Dict = {
     about: "About",
     archive: "Archive",
     events: "Events",
+    news: "News",
     subscribe: "Subscribe",
     languageSwitchAria: "Switch to Chinese",
+  },
+  news: {
+    heading: "News & guides",
+    intro:
+      "Every weekly agent interview, plus practical guides on building AI agents that do real work.",
+    tagIssue: "Interview",
+    tagGuide: "Guide",
+    empty: "Nothing published yet — check back soon.",
   },
   email: {
     placeholder: "you@example.com",

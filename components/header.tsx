@@ -17,6 +17,12 @@ export function Header({ locale }: { locale: Locale }) {
           Real Agent Use Cases
         </Link>
         <nav className="flex items-center gap-5 sm:gap-6">
+          <Link
+            href={`/${locale}/news`}
+            className="text-xs sm:text-sm text-(--color-muted-foreground) hover:text-(--color-brand) transition-colors"
+          >
+            {t.header.news}
+          </Link>
           <LanguageSwitch locale={locale} />
           <SubscribeButton size="sm" href={`/${locale}/#subscribe`}>
             {t.header.subscribe}

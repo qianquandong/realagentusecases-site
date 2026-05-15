@@ -4,7 +4,20 @@ import matter from "gray-matter";
 import readingTime from "reading-time";
 import { SITE_CONFIG, type Locale } from "@/lib/config";
 
-const POSTS_DIR = path.join(process.cwd(), "content/posts");
+// Two content streams, both rendered through the unified /news hub:
+//   - "issue": hand-written newsletter issues          -> content/posts  -> /[locale]/posts/[slug]
+//   - "news":  SEO auto-articles (pipeline-generated)   -> content/news   -> /[locale]/news/[slug]
+export type ContentType = "issue" | "news";
+
+const CONTENT_DIRS: Record<ContentType, string> = {
+  issue: path.join(process.cwd(), "content/posts"),
+  news: path.join(process.cwd(), "content/news"),
+};
+
+const ROUTE_SEGMENT: Record<ContentType, string> = {
+  issue: "posts",
+  news: "news",
+};
 
 export interface PostFrontmatter {
   title: string;
@@ -15,12 +28,22 @@ export interface PostFrontmatter {
 export interface PostMeta {
   slug: string;
   locale: Locale;
+  type: ContentType;
   frontmatter: PostFrontmatter;
   readingTime: { text: string; minutes: number };
 }
 
 export interface Post extends PostMeta {
   body: string;
+}
+
+/** Route href for a content item, e.g. /en/posts/slug or /zh/news/slug */
+export function contentHref(
+  locale: Locale,
+  type: ContentType,
+  slug: string,
+): string {
+  return `/${locale}/${ROUTE_SEGMENT[type]}/${slug}`;
 }
 
 function parseFilename(
@@ -33,64 +56,119 @@ function parseFilename(
   return { slug: match[1], locale };
 }
 
-async function readPostsDir(): Promise<string[]> {
+async function readContentDir(type: ContentType): Promise<string[]> {
   try {
-    return await readdir(POSTS_DIR);
+    return await readdir(CONTENT_DIRS[type]);
   } catch {
     return [];
   }
 }
 
-export async function getAllPosts(locale: Locale): Promise<PostMeta[]> {
-  const filenames = await readPostsDir();
+async function readType(type: ContentType, locale: Locale): Promise<PostMeta[]> {
+  const filenames = await readContentDir(type);
   const posts: PostMeta[] = [];
   for (const filename of filenames) {
     const parsed = parseFilename(filename);
     if (!parsed || parsed.locale !== locale) continue;
-    const raw = await readFile(path.join(POSTS_DIR, filename), "utf8");
+    const raw = await readFile(
+      path.join(CONTENT_DIRS[type], filename),
+      "utf8",
+    );
     const { data, content } = matter(raw);
     posts.push({
       slug: parsed.slug,
       locale: parsed.locale,
+      type,
       frontmatter: data as PostFrontmatter,
       readingTime: readingTime(content),
     });
   }
-  return posts.sort((a, b) =>
-    b.frontmatter.date.localeCompare(a.frontmatter.date),
-  );
+  return posts;
 }
 
+function byDateDesc(a: PostMeta, b: PostMeta): number {
+  return b.frontmatter.date.localeCompare(a.frontmatter.date);
+}
+
+/** All content of one type, newest first. */
+export async function getContentByType(
+  type: ContentType,
+  locale: Locale,
+): Promise<PostMeta[]> {
+  return (await readType(type, locale)).sort(byDateDesc);
+}
+
+/** Newsletter issues only (content/posts). Back-compat alias. */
+export async function getAllPosts(locale: Locale): Promise<PostMeta[]> {
+  return getContentByType("issue", locale);
+}
+
+/** Every content item across both streams, newest first — powers /news + the homepage. */
+export async function getAllContent(locale: Locale): Promise<PostMeta[]> {
+  const [issues, news] = await Promise.all([
+    readType("issue", locale),
+    readType("news", locale),
+  ]);
+  return [...issues, ...news].sort(byDateDesc);
+}
+
+/** Load one item. If `type` is omitted, search issues first, then news. */
 export async function getPost(
   slug: string,
   locale: Locale,
+  type?: ContentType,
 ): Promise<Post | null> {
-  const filename = `${slug}-${locale}.mdx`;
-  const filepath = path.join(POSTS_DIR, filename);
-  let raw: string;
-  try {
-    raw = await readFile(filepath, "utf8");
-  } catch {
-    return null;
+  const types: ContentType[] = type ? [type] : ["issue", "news"];
+  for (const t of types) {
+    const filepath = path.join(CONTENT_DIRS[t], `${slug}-${locale}.mdx`);
+    let raw: string;
+    try {
+      raw = await readFile(filepath, "utf8");
+    } catch {
+      continue;
+    }
+    const { data, content } = matter(raw);
+    return {
+      slug,
+      locale,
+      type: t,
+      frontmatter: data as PostFrontmatter,
+      readingTime: readingTime(content),
+      body: content,
+    };
   }
-  const { data, content } = matter(raw);
-  return {
-    slug,
-    locale,
-    frontmatter: data as PostFrontmatter,
-    readingTime: readingTime(content),
-    body: content,
-  };
+  return null;
 }
 
-export async function getAllPostParams(): Promise<
-  { slug: string; locale: Locale }[]
-> {
-  const filenames = await readPostsDir();
+/** Static params for one type's detail route. */
+export async function getParamsByType(
+  type: ContentType,
+): Promise<{ slug: string; locale: Locale }[]> {
+  const filenames = await readContentDir(type);
   const params: { slug: string; locale: Locale }[] = [];
   for (const filename of filenames) {
     const parsed = parseFilename(filename);
     if (parsed) params.push(parsed);
   }
   return params;
+}
+
+/** Back-compat: params for the /posts/[slug] route (issues only). */
+export async function getAllPostParams(): Promise<
+  { slug: string; locale: Locale }[]
+> {
+  return getParamsByType("issue");
+}
+
+/** Every detail-route param across both streams — for the sitemap. */
+export async function getAllContentParams(): Promise<
+  { slug: string; locale: Locale; type: ContentType }[]
+> {
+  const out: { slug: string; locale: Locale; type: ContentType }[] = [];
+  for (const type of ["issue", "news"] as ContentType[]) {
+    for (const p of await getParamsByType(type)) {
+      out.push({ ...p, type });
+    }
+  }
+  return out;
 }

@@ -1,0 +1,193 @@
+{
+  "$comment": "SEO keyword feed — a living file. The scheduled Cowork routine ideates entries; scripts/seo/feeds.mjs persists them (dedupe + status + timestamps). intent: informational|commercial|transactional. funnel: TOFU|MOFU|BOFU. cluster: use-case|template|comparison|industry|tool-stack. status: new|used.",
+  "updatedAt": "2026-05-15",
+  "keywords": [
+    {
+      "term": "AI agent use cases",
+      "intent": "informational",
+      "funnel": "TOFU",
+      "cluster": "use-case",
+      "locale": "both",
+      "status": "used",
+      "addedAt": "2026-05-14",
+      "note": "First shipped article (content/news/2026-05-14-ai-agent-use-cases)."
+    },
+    {
+      "term": "real AI agent examples",
+      "intent": "informational",
+      "funnel": "TOFU",
+      "cluster": "use-case",
+      "locale": "both",
+      "status": "new",
+      "addedAt": "2026-05-14",
+      "note": "Matches the brand name almost exactly — high relevance."
+    },
+    {
+      "term": "AI agents for work",
+      "intent": "informational",
+      "funnel": "TOFU",
+      "cluster": "use-case",
+      "locale": "both",
+      "status": "new",
+      "addedAt": "2026-05-14"
+    },
+    {
+      "term": "how to build an AI agent",
+      "intent": "informational",
+      "funnel": "MOFU",
+      "cluster": "tool-stack",
+      "locale": "both",
+      "status": "new",
+      "addedAt": "2026-05-14",
+      "note": "Core seed keyword; high competition — pair with a strong real build."
+    },
+    {
+      "term": "how to build an AI agent without code",
+      "intent": "informational",
+      "funnel": "MOFU",
+      "cluster": "tool-stack",
+      "locale": "both",
+      "status": "new",
+      "addedAt": "2026-05-14"
+    },
+    {
+      "term": "no-code AI agent tools",
+      "intent": "commercial",
+      "funnel": "MOFU",
+      "cluster": "tool-stack",
+      "locale": "both",
+      "status": "new",
+      "addedAt": "2026-05-14"
+    },
+    {
+      "term": "best tools to build AI agents",
+      "intent": "commercial",
+      "funnel": "MOFU",
+      "cluster": "tool-stack",
+      "locale": "both",
+      "status": "new",
+      "addedAt": "2026-05-14"
+    },
+    {
+      "term": "Gmail AI agent",
+      "intent": "informational",
+      "funnel": "MOFU",
+      "cluster": "use-case",
+      "locale": "both",
+      "status": "new",
+      "addedAt": "2026-05-14",
+      "note": "Issue #001 is the real build behind this — strong support."
+    },
+    {
+      "term": "AI agent for email management",
+      "intent": "informational",
+      "funnel": "MOFU",
+      "cluster": "use-case",
+      "locale": "both",
+      "status": "new",
+      "addedAt": "2026-05-14"
+    },
+    {
+      "term": "AI agent for daily to-do list",
+      "intent": "informational",
+      "funnel": "MOFU",
+      "cluster": "use-case",
+      "locale": "both",
+      "status": "new",
+      "addedAt": "2026-05-14"
+    },
+    {
+      "term": "AI agent for meeting prep",
+      "intent": "informational",
+      "funnel": "MOFU",
+      "cluster": "use-case",
+      "locale": "both",
+      "status": "new",
+      "addedAt": "2026-05-14"
+    },
+    {
+      "term": "Claude system prompt for email triage",
+      "intent": "informational",
+      "funnel": "BOFU",
+      "cluster": "template",
+      "locale": "both",
+      "status": "new",
+      "addedAt": "2026-05-14",
+      "note": "Issue #001 already contains the full prompt — repackage as a template page."
+    },
+    {
+      "term": "AI agent prompt template",
+      "intent": "informational",
+      "funnel": "MOFU",
+      "cluster": "template",
+      "locale": "both",
+      "status": "new",
+      "addedAt": "2026-05-14"
+    },
+    {
+      "term": "Claude vs Zapier for automation",
+      "intent": "commercial",
+      "funnel": "MOFU",
+      "cluster": "comparison",
+      "locale": "both",
+      "status": "used",
+      "addedAt": "2026-05-14",
+      "note": "Captures competitor keyword; Issue #001 already has the stack comparison table."
+    },
+    {
+      "term": "n8n vs Zapier for AI agents",
+      "intent": "commercial",
+      "funnel": "MOFU",
+      "cluster": "comparison",
+      "locale": "both",
+      "status": "new",
+      "addedAt": "2026-05-14"
+    },
+    {
+      "term": "Claude vs ChatGPT for work automation",
+      "intent": "commercial",
+      "funnel": "MOFU",
+      "cluster": "comparison",
+      "locale": "both",
+      "status": "new",
+      "addedAt": "2026-05-14"
+    },
+    {
+      "term": "AI agents for recruiters",
+      "intent": "informational",
+      "funnel": "TOFU",
+      "cluster": "industry",
+      "locale": "both",
+      "status": "new",
+      "addedAt": "2026-05-14"
+    },
+    {
+      "term": "AI agents for realtors",
+      "intent": "informational",
+      "funnel": "TOFU",
+      "cluster": "industry",
+      "locale": "both",
+      "status": "new",
+      "addedAt": "2026-05-14"
+    },
+    {
+      "term": "AI agents for financial analysts",
+      "intent": "informational",
+      "funnel": "TOFU",
+      "cluster": "industry",
+      "locale": "both",
+      "status": "new",
+      "addedAt": "2026-05-14",
+      "note": "Close to Jack's own background — authentic angle."
+    },
+    {
+      "term": "AI agents for founders",
+      "intent": "informational",
+      "funnel": "TOFU",
+      "cluster": "industry",
+      "locale": "both",
+      "status": "new",
+      "addedAt": "2026-05-14"
+    }
+  ]
+}

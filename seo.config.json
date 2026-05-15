@@ -1,0 +1,60 @@
+{
+  "$comment": "Config for the AI SEO/GEO automation pipeline. The knowledge base (source of truth) lives in Notion — see knowledgeBase below. seedKeywords + competitors mirror the Notion KB; edit them in Notion and re-sync.",
+  "site": {
+    "name": "Real Agent Use Cases",
+    "url": "https://realagentusecases.com",
+    "host": "Jack Qian"
+  },
+  "knowledgeBase": {
+    "$comment": "Notion is the source of truth. The scheduled Cowork routine re-fetches this page via the Notion MCP and rewrites syncedTo before each content run. Edit the KB in Notion, not in the repo.",
+    "source": "notion",
+    "notionPageId": "3612a68c-2ce7-812e-a8e3-f406aec3ec99",
+    "notionUrl": "https://www.notion.so/3612a68c2ce7812ea8e3f406aec3ec99",
+    "syncedTo": "content/seo/brand-kb/knowledge-base.md"
+  },
+  "seedKeywords": [
+    "AI agent use cases",
+    "real AI agent examples",
+    "AI agents for work",
+    "no-code AI agent workflows",
+    "Claude agent prompt",
+    "ChatGPT agent workflows",
+    "Gmail AI agent",
+    "AI productivity agent",
+    "AI automation workflows",
+    "AI agent templates"
+  ],
+  "competitors": [
+    "https://zapier.com/blog",
+    "https://n8n.io/blog",
+    "https://www.make.com/en/blog",
+    "https://www.lindy.ai/use-cases",
+    "https://relevanceai.com/templates",
+    "https://openai.com/stories",
+    "https://www.anthropic.com/customers"
+  ],
+  "targetCountry": "United States",
+  "primaryLocale": "en",
+  "locales": ["en", "zh"],
+  "section": {
+    "$comment": "SEO auto-articles are the 'news' content stream: written to content/news/, served at /[locale]/news/[slug], and listed alongside hand-written issues on the unified /news hub.",
+    "contentDir": "content/news",
+    "routeBase": "/news",
+    "type": "news"
+  },
+  "cadence": {
+    "keywordResearch": "weekly",
+    "publish": "weekly",
+    "postsPerRun": 1
+  },
+  "audit": {
+    "$comment": "EN thresholds tuned for Google SERP truncation; ZH thresholds lower because Chinese characters are denser.",
+    "titleMaxChars": 60,
+    "titleMaxCharsZh": 36,
+    "excerptMinChars": 110,
+    "excerptMaxChars": 160,
+    "excerptMinCharsZh": 50,
+    "excerptMaxCharsZh": 100,
+    "internalLinksPerPost": 2
+  }
+}

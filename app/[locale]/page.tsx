@@ -18,13 +18,13 @@ export async function generateMetadata({
     title: { absolute: t.siteTitle },
     description: t.siteDescription,
     alternates: {
-      canonical: `/${locale}`,
-      languages: { en: "/en", "zh-CN": "/zh" },
+      canonical: `/${locale}/`,
+      languages: { en: "/en/", "zh-CN": "/zh/" },
     },
     openGraph: {
       title: t.siteTitle,
       description: t.siteDescription,
-      url: `/${locale}`,
+      url: `/${locale}/`,
       type: "website",
     },
   };

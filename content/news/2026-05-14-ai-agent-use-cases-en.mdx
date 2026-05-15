@@ -1,0 +1,50 @@
+---
+title: "AI Agent Use Cases: What Actually Works at Work"
+date: "2026-05-14"
+excerpt: "Most AI agent use cases you read about are demos. Here's a 4-question test for the ones that actually hold up at work — plus the patterns that keep showing up."
+---
+
+A coworker sends you a thread on X: someone built an AI agent that "runs their entire marketing department." You try to copy it. Two hours later you have a chatbot that summarizes one PDF. The agent was a demo. The thread was the product.
+
+Most AI agent use cases fall apart like this — not because the idea is bad, but because the use case was never real. Below is how to tell the difference, and the handful of patterns that actually survive contact with a real job.
+
+## The 4-question test
+
+Before you spend an afternoon building anything, run the use case through four questions. Fail any one of them and you have a demo, not a use case.
+
+1. **Is the task repetitive?** You should be able to point to three times you did it this week. Agents earn their setup cost through repetition. A one-off task is faster to just do.
+2. **Is the input messy but bounded?** Email, meeting notes, a spreadsheet column, a support queue — varied every time, but the *shape* is known. If the input is wide open, the agent can't be reliable. If it's perfectly clean, you didn't need an agent.
+3. **Can you check the output in seconds?** You have to be able to glance at the result and know if it's wrong. A to-do list, a draft, a flagged row — yes. A legal opinion, a financial forecast — no, not yet.
+4. **Does it have a trigger?** A real agent runs *when something happens* — a morning, a new email, a form submission. "I'll open it when I remember" is not a trigger, and an agent you have to remember to run quietly dies in week two.
+
+## The patterns that actually work
+
+Across the agents working professionals actually run, the winners cluster into a few shapes:
+
+- **Inbox and queue triage.** Read everything that piled up, sort it by what needs you now versus later versus never. Email, support tickets, Slack mentions, PR review queues.
+- **Meeting and call prep.** Before a call, pull the last thread, the CRM notes, the open action items, and hand you a one-page brief. The work is real; it's just tedious enough that nobody does it.
+- **First-draft generation.** Status updates, release notes, recurring reports, follow-up emails. The agent gets you to 80%; you spend five minutes instead of forty.
+- **Data cleanup and reconciliation.** Normalize a column, match records across two systems, flag the rows that don't add up. Bounded input, checkable output — a textbook fit.
+- **Monitoring and digests.** Watch a feed, a channel, a set of pages, and send one summary when something actually changes. Replaces the tab you keep meaning to check.
+
+Notice what these share: repetitive, bounded input, output you can verify at a glance, a clear trigger. They pass the test.
+
+## What doesn't work yet
+
+Be honest about the other side:
+
+- **Judgment calls with real consequences.** Anything where a wrong output costs money, trust, or a job — the agent can draft, but a human still decides.
+- **Tasks you can't check fast.** If verifying the output takes as long as doing the work, the agent saved you nothing.
+- **"Do my whole job" agents.** Your job is a hundred small tasks glued together by context only you have. Automate one task. Then the next. The thread on X skipped this part.
+
+## The one fully documented example
+
+Issue #001 walks through a real one end to end: a Gmail agent that reads the inbox every morning and outputs a P0/P1/P2 to-do list with time blocks. Twenty-minute setup, $20/month, no code. It passes all four questions — the task is repetitive, the input is messy but bounded, you can check the output in seconds, and it runs on a morning trigger.
+
+Read the full build here: [The Gmail AI Agent That Writes My Daily To-Do List](/en/posts/2026-05-13-gmail-ai-agent).
+
+## Try it yourself
+
+Pick one task you did three times this week. Run it through the four questions. If it passes, that is your first agent — start there, not with the thread on X.
+
+One real AI agent a week, straight to your inbox. Free, no upsell.

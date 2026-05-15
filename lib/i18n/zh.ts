@@ -10,8 +10,17 @@ export const zh: Dict = {
     about: "关于",
     archive: "文章",
     events: "活动",
+    news: "文章",
     subscribe: "订阅",
     languageSwitchAria: "切换到英文",
+  },
+  news: {
+    heading: "访谈与指南",
+    intro:
+      "每周一期 agent 访谈，再加一批实战指南——教你搭出真正能干活的 AI agent。",
+    tagIssue: "访谈",
+    tagGuide: "指南",
+    empty: "还没有发布内容，过阵子再来看看。",
   },
   email: {
     placeholder: "your@email.com",

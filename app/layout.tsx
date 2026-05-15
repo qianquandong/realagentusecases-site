@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono, Source_Serif_4 } from "next/font/google";
+import { JsonLd } from "@/components/json-ld";
+import { siteGraph } from "@/lib/schema";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -57,6 +59,7 @@ export default function RootLayout({
       className={`${geistSans.variable} ${geistMono.variable} ${sourceSerif.variable} h-full antialiased`}
     >
       <head>
+        <JsonLd data={siteGraph()} />
         <script dangerouslySetInnerHTML={{ __html: easterEgg }} />
       </head>
       <body

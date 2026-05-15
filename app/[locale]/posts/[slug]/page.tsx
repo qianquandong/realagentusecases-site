@@ -6,6 +6,8 @@ import { getDict } from "@/lib/i18n";
 import { SITE_CONFIG, type Locale } from "@/lib/config";
 import { PostCta } from "@/components/post-cta";
 import { YouTube } from "@/components/mdx/youtube";
+import { JsonLd } from "@/components/json-ld";
+import { articleSchema, breadcrumbSchema } from "@/lib/schema";
 
 const mdxComponents = { YouTube };
 
@@ -24,11 +26,17 @@ export async function generateMetadata({
   if (!SITE_CONFIG.locales.includes(locale as Locale)) return {};
   const post = await getPost(slug, locale as Locale);
   if (!post) return {};
-  const path = `/${locale}/posts/${slug}`;
+  const path = `/${locale}/posts/${slug}/`;
   return {
     title: post.frontmatter.title,
     description: post.frontmatter.excerpt,
-    alternates: { canonical: path },
+    alternates: {
+      canonical: path,
+      languages: {
+        en: `/en/posts/${slug}/`,
+        "zh-CN": `/zh/posts/${slug}/`,
+      },
+    },
     openGraph: {
       title: post.frontmatter.title,
       description: post.frontmatter.excerpt,
@@ -65,8 +73,29 @@ export default async function PostPage({
     options: { parseFrontmatter: false },
   });
 
+  const dict = getDict(typed);
+  const articlePath = `/${typed}/posts/${slug}/`;
+  const jsonLd = [
+    articleSchema({
+      title: post.frontmatter.title,
+      description: post.frontmatter.excerpt,
+      path: articlePath,
+      datePublished: post.frontmatter.date,
+      locale: typed,
+    }),
+    breadcrumbSchema([
+      { name: SITE_CONFIG.name, path: `/${typed}/` },
+      { name: dict.header.news, path: `/${typed}/news/` },
+      { name: post.frontmatter.title, path: articlePath },
+    ]),
+  ];
+
   return (
-    <article className="mx-auto max-w-[var(--container-prose)] px-6 pt-16 pb-24 sm:pt-24">
+    <>
+      {jsonLd.map((data, i) => (
+        <JsonLd key={i} data={data} />
+      ))}
+      <article className="mx-auto max-w-[var(--container-prose)] px-6 pt-16 pb-24 sm:pt-24">
       <header className="mb-12 text-center">
         <time
           dateTime={post.frontmatter.date}
@@ -86,6 +115,7 @@ export default async function PostPage({
       </div>
 
       <PostCta locale={typed} />
-    </article>
+      </article>
+    </>
   );
 }

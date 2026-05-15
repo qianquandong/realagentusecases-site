@@ -1,0 +1,5 @@
+{
+  "$comment": "LLM brand-mention tracking time series. The scheduled Cowork routine appends one snapshot per run: which target prompts surfaced the brand, in which LLMs, with what sentiment.",
+  "updatedAt": null,
+  "snapshots": []
+}

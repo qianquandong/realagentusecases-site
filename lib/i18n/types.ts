@@ -7,8 +7,16 @@ export interface Dict {
     about: string;
     archive: string;
     events: string;
+    news: string;
     subscribe: string;
     languageSwitchAria: string;
+  };
+  news: {
+    heading: string;
+    intro: string;
+    tagIssue: string;
+    tagGuide: string;
+    empty: string;
   };
   post: {
     ctaHeading: string;
