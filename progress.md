@@ -41,6 +41,15 @@
 - Updated Phase 1 opening script ("7 个核心问题 + 几个针对你情况的追问")
 - Reason: Jack flagged 7 questions would "用完" — risk of staleness by episode 10. The 2-tier design preserves the research-value engine (same 7) while adding rotation/variety (13 supplementary)
 
+### v0.1.3 patch (2026-05-13)
+- Rewrote Tier 1 核心 7 问 → **口语、对话感话术**（播客 register，不是问卷腔）
+  - Q1 "用 30 秒介绍..." → "先简单介绍下你自己——你是做什么的，在哪家公司？"
+  - Q2-Q3, Q5, Q7 reworded casual; Q6 expanded to natural spoken form
+  - **Q4 重大改动**："把你的完整 prompt 念一下" → "你这套 prompt 里，最关键的是哪几条规则？" — 播客上没人想听念 prompt。完整 prompt 走 Phase 3 录后单独索取（嘉宾发文件 / 录中截屏），放文字稿
+- Updated Phase 2 Q4 technique line + Q6 引导话术 to match
+- Synced "TL;DR 不问嘉宾" note → "速读 不问嘉宾"（article heading renamed TL;DR→速读 earlier）
+- Reason: Jack flagged the 7 questions read like a survey, not a podcast; explicitly rejected "念完整 prompt"
+
 ### Chinese rewrite pass (2026-05-12, post-PRD)
 - Installed `translate` skill from `feiskyer/claude-code-settings/skills/translate` at `~/.claude/skills/translate/SKILL.md`
 - Skill enforces 3-step process: 直译 → 问题识别 → 意译优化
