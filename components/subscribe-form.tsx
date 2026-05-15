@@ -37,16 +37,49 @@ export function SubscribeForm({
     e.preventDefault();
     setStatus("loading");
     const formData = new FormData(e.currentTarget);
+    const email = formData.get("email");
+
+    // Honeypot — if a bot filled this, lie about success and bail.
+    if (formData.get("_gotcha")) {
+      setStatus("success");
+      return;
+    }
+
+    if (typeof email !== "string" || !email) {
+      setStatus("error");
+      return;
+    }
+
+    const base = SITE_CONFIG.substackUrl;
+    if (!base) {
+      // Misconfiguration — no Substack URL set.
+      setStatus("error");
+      return;
+    }
+
+    const apiUrl = `${base}/api/v1/free`;
+    const fallbackUrl =
+      `${base}/subscribe` +
+      `?email=${encodeURIComponent(email)}&utm_source=realagentusecases`;
 
     try {
-      const res = await fetch(SITE_CONFIG.subscribeFormUrl, {
+      const res = await fetch(apiUrl, {
         method: "POST",
-        body: formData,
-        headers: { Accept: "application/json" },
+        mode: "cors",
+        credentials: "omit",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, source: "web" }),
       });
-      setStatus(res.ok ? "success" : "error");
+      if (res.ok) {
+        setStatus("success");
+      } else {
+        // Substack rejected (CAPTCHA / rate limit / changed API).
+        // Fall back to the hosted subscribe page with email prefilled.
+        window.location.href = fallbackUrl;
+      }
     } catch {
-      setStatus("error");
+      // Network / CORS — same fallback.
+      window.location.href = fallbackUrl;
     }
   }
 
@@ -103,7 +136,7 @@ export function SubscribeForm({
             inputSize,
           )}
         />
-        {/* Honeypot — bots fill this; Formspree drops the submission */}
+        {/* Honeypot — bots fill this; handler short-circuits on submit */}
         <input
           type="text"
           name="_gotcha"

@@ -25,8 +25,9 @@ export const en: Dict = {
   email: {
     placeholder: "you@example.com",
     submitting: "Subscribing…",
-    successHeading: "You're on the list.",
-    successBody: "The next agent walkthrough lands in your inbox.",
+    successHeading: "Almost there — check your inbox.",
+    successBody:
+      "Substack just sent a confirmation email. Click the link inside and you're in.",
     errorMsg: "Something broke. Try again?",
   },
   post: {

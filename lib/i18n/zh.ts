@@ -25,8 +25,8 @@ export const zh: Dict = {
   email: {
     placeholder: "your@email.com",
     submitting: "订阅中…",
-    successHeading: "已加入。",
-    successBody: "下一期 agent 拆解会发到你邮箱。",
+    successHeading: "差最后一步：去邮箱确认。",
+    successBody: "Substack 刚发了一封确认邮件过去，点里面的链接就好了。",
     errorMsg: "出错了，再试一次？",
   },
   post: {

@@ -4,11 +4,12 @@ export const SITE_CONFIG = {
   domain: "realagentusecases.com",
   defaultLocale: "en" as const,
   locales: ["en", "zh"] as const,
-  // Email collection endpoint (Formspree). Submissions are emailed
-  // to the form owner; export to a real newsletter platform later.
-  subscribeFormUrl:
-    process.env.NEXT_PUBLIC_SUBSCRIBE_FORM_URL ??
-    "https://formspree.io/f/xkoypjdo",
+  // Substack publication base URL — works for both <sub>.substack.com
+  // and custom domains (e.g. newsletter.realagentusecases.com).
+  // Form posts to <url>/api/v1/free; on failure (CORS / 4xx / network),
+  // falls back to redirecting to <url>/subscribe with email prefilled.
+  // No trailing slash.
+  substackUrl: process.env.NEXT_PUBLIC_SUBSTACK_URL ?? "",
   subscriberCount: 0,
   social: {
     xiaohongshu: "",
