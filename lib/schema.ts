@@ -115,3 +115,48 @@ export function breadcrumbSchema(items: BreadcrumbItem[]) {
     })),
   };
 }
+
+export interface FaqItem {
+  q: string;
+  a: string;
+}
+
+/**
+ * Extract FAQ Q/A pairs from an article body. Convention: a `## FAQ` section
+ * with question lines wrapped in `**...**` followed by the answer paragraph
+ * until the next blank-line + `**` or the next `## ` heading. Returns [] if
+ * no FAQ section is found.
+ */
+export function extractFaq(body: string): FaqItem[] {
+  // Match the FAQ section: from "## FAQ" or "## 常见问题" / "## FAQ" up to next H2 or end.
+  const faqMatch = body.match(/##\s+(?:FAQ|常见问题)\b([\s\S]*?)(?=\n##\s|\n#\s[^#]|$)/i);
+  if (!faqMatch) return [];
+  const block = faqMatch[1];
+
+  const items: FaqItem[] = [];
+  // **Question?** followed by answer until next blank-line + ** or end of block.
+  const re = /\*\*([^*\n]+?)\*\*\s*\n([\s\S]*?)(?=\n\s*\n\*\*|\n##|$)/g;
+  let m: RegExpExecArray | null;
+  while ((m = re.exec(block)) !== null) {
+    const q = m[1].trim();
+    const a = m[2].trim();
+    if (q && a) items.push({ q, a });
+  }
+  return items;
+}
+
+/** FAQPage schema. Big GEO win — answer engines extract individual Q/A pairs. */
+export function faqPageSchema(items: FaqItem[]) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: items.map((item) => ({
+      "@type": "Question",
+      name: item.q,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: item.a,
+      },
+    })),
+  };
+}

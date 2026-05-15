@@ -26,6 +26,10 @@ export async function generateMetadata({
       description: t.siteDescription,
       url: `/${locale}/`,
       type: "website",
+      siteName: "Real Agent Use Cases",
+      images: ["/opengraph-image"],
+      locale: locale === "zh" ? "zh_CN" : "en_US",
+      alternateLocale: locale === "zh" ? ["en_US"] : ["zh_CN"],
     },
   };
 }

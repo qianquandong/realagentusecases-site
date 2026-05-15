@@ -7,7 +7,12 @@ import { SITE_CONFIG, type Locale } from "@/lib/config";
 import { PostCta } from "@/components/post-cta";
 import { YouTube } from "@/components/mdx/youtube";
 import { JsonLd } from "@/components/json-ld";
-import { articleSchema, breadcrumbSchema } from "@/lib/schema";
+import {
+  articleSchema,
+  breadcrumbSchema,
+  extractFaq,
+  faqPageSchema,
+} from "@/lib/schema";
 
 const mdxComponents = { YouTube };
 
@@ -43,6 +48,10 @@ export async function generateMetadata({
       url: path,
       type: "article",
       publishedTime: post.frontmatter.date,
+      siteName: "Real Agent Use Cases",
+      images: ["/opengraph-image"],
+      locale: locale === "zh" ? "zh_CN" : "en_US",
+      alternateLocale: locale === "zh" ? ["en_US"] : ["zh_CN"],
     },
   };
 }
@@ -75,7 +84,7 @@ export default async function PostPage({
 
   const dict = getDict(typed);
   const articlePath = `/${typed}/posts/${slug}/`;
-  const jsonLd = [
+  const jsonLd: object[] = [
     articleSchema({
       title: post.frontmatter.title,
       description: post.frontmatter.excerpt,
@@ -89,6 +98,8 @@ export default async function PostPage({
       { name: post.frontmatter.title, path: articlePath },
     ]),
   ];
+  const faqItems = extractFaq(post.body);
+  if (faqItems.length > 0) jsonLd.push(faqPageSchema(faqItems));
 
   return (
     <>

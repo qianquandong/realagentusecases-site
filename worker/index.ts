@@ -32,6 +32,28 @@ function resolveLocale(request: Request): Locale {
   );
 }
 
+// Security / baseline-hygiene headers added to every response.
+// HSTS = Google quality signal + force HTTPS. nosniff + referrer-policy =
+// standard web hygiene. Permissions-Policy disables sensors we never use.
+function withSecurityHeaders(response: Response): Response {
+  const headers = new Headers(response.headers);
+  headers.set(
+    "Strict-Transport-Security",
+    "max-age=31536000; includeSubDomains; preload",
+  );
+  headers.set("X-Content-Type-Options", "nosniff");
+  headers.set("Referrer-Policy", "strict-origin-when-cross-origin");
+  headers.set(
+    "Permissions-Policy",
+    "camera=(), microphone=(), geolocation=(), payment=()",
+  );
+  return new Response(response.body, {
+    status: response.status,
+    statusText: response.statusText,
+    headers,
+  });
+}
+
 export default {
   async fetch(request: Request, env: Env): Promise<Response> {
     const url = new URL(request.url);
@@ -47,6 +69,6 @@ export default {
       return Response.redirect(`${url.origin}/${locale}/`, 302);
     }
 
-    return env.ASSETS.fetch(request);
+    return withSecurityHeaders(await env.ASSETS.fetch(request));
   },
 };

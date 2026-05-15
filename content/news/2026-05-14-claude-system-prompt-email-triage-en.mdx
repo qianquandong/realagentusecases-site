@@ -1,0 +1,170 @@
+---
+title: "Claude System Prompt for Email Triage"
+date: "2026-05-14"
+excerpt: "The exact Claude system prompt I run every morning to triage my Gmail into a P0/P1/P2 to-do list. Copy, swap the bracketed sections, run today."
+---
+
+At 7:15am I open Claude on my phone and type one word: `triage`. Forty seconds later, my Gmail is sorted into a P0/P1/P2 to-do list with time blocks — and the prompt below is what's doing the work.
+
+This page is the prompt itself, lifted from [Issue #001](/en/posts/2026-05-13-gmail-ai-agent/) and packaged for copy-and-use. The full build (stack decision, day-by-day failure log, the math) lives there. If you just want the prompt — here it is.
+
+## Answer Summary
+
+- Drives a Gmail triage agent on Claude.ai (Pro plan) using the Gmail Connector — no code, no API key.
+- Reads the last 24 hours of email, sorts into 4 buckets, returns a P0/P1/P2 to-do list with source links.
+- Setup ~20 minutes. Cost $20/month (Claude Pro). Daily runtime ~40 seconds, manual trigger from the phone.
+- Tested for two weeks; saves ~25 minutes of inbox staring per morning.
+- Five `[bracketed]` sections to customize — role, manager, projects, focus, skip-senders.
+
+## What this prompt does
+
+- Sorts your Gmail inbox into four buckets: must handle today / follow up this week / FYI / skip.
+- Returns a prioritized to-do list with 🔴 P0 (urgent + important), 🟡 P1 (important), 🟢 P2 (optional).
+- Each P0/P1 item includes the email subject, the specific action, a time window, and a time estimate.
+- Ends with a `Sources:` block — every priority claim links straight back to the original Gmail thread.
+
+## Who it's for
+
+- Anyone who starts the day in Gmail and loses the first hour to inbox triage.
+- Roles where email actually decides the day: analysts, managers, ops, founders, recruiters, support leads.
+- Not for you if your inbox is already nearly empty, or if you don't have Claude Pro + the Gmail Connector.
+
+## The full prompt
+
+```text
+Your task: triage the user's Gmail inbox and produce a prioritized to-do
+list for today, based on email content.
+
+## Execution
+
+1. Pull recent emails
+   - Use Gmail tool `search_threads` to search for emails in the last
+     24 hours (query: `newer_than:1d` or `is:unread newer_than:2d`).
+   - If many unread, also run `is:important newer_than:3d` to catch
+     read-but-important threads.
+   - For ambiguous emails, use `get_thread` to fetch full content
+     before classifying.
+
+2. Categorize each email into one of four buckets, with a one-line
+   summary of sender, subject, and core ask:
+   - Must handle today (clear deadline, boss/client follow-up,
+     interview/meeting confirmation)
+   - Follow up this week
+   - FYI only (newsletters, notifications, receipts)
+   - Skip / archive (promotional, low-value subscriptions, spam)
+
+3. Generate the prioritized to-do list:
+   - 🔴 P0: urgent AND important (must be done today)
+   - 🟡 P1: important but not urgent (advance today)
+   - 🟢 P2: optional / low priority
+
+   For each item include: source email subject, specific action,
+   time window (morning / afternoon / evening), and time estimate.
+
+4. Output format: Markdown.
+   Start with a one-line summary (e.g., "3 must-dos, 5 follow-ups").
+   Then the categorized email summary, then the to-do list.
+   End with a "Sources:" section linking each referenced thread as
+   `[subject](https://mail.google.com/mail/u/0/#inbox/THREAD_ID)`.
+
+## Constraints
+- Do NOT auto-reply or delete any email. Triage and recommend only.
+- If the Gmail Connector is unauthorized or unreachable, say so clearly
+  and tell the user to re-authorize.
+- If there are fewer than 3 emails for the day, say "inbox is quiet"
+  and give optional items only. Do not invent tasks to fill space.
+- Be concise. No long explanations.
+
+## My context (CUSTOMIZE THIS SECTION)
+- Role: [your role, e.g. "Industrial Engineer at Texas Instruments,
+  transitioning to Business Planning in April"]
+- Manager: [name + email]
+- Active projects: [project names — boost any email about these to P0/P1]
+- Current focus: [what you're heads-down on this month]
+- Always skip senders: [newsletter@..., notifications@..., etc.]
+```
+
+## How to customize it
+
+Five spots have `[brackets]` — those are the only edits that matter. The structure is universal; the customization is where the prompt earns its keep.
+
+1. **`[your role, ...]`** — your job title and current focus. Be specific. "Senior data analyst at a fintech, owning the weekly KPI report" beats "data analyst."
+2. **`[Manager: name + email]`** — your manager's email. The agent uses this to detect "your manager replied" and boost priority.
+3. **`[Active projects]`** — current project names. Any email mentioning these gets nudged into P0/P1.
+4. **`[Current focus]`** — what you're heads-down on this month. Helps the agent pick the right "important" over the wrong "important."
+5. **`[Always skip senders]`** — emails or domains you ignore. These cannot land in P0, no matter what subject they use.
+
+## Example output
+
+A real morning's output from this prompt:
+
+```markdown
+# Daily Triage — Monday, May 11
+3 must-do, 2 follow-ups, 3 quick wins. 13 promotional + 11 system noise filtered.
+
+## 🔴 URGENT — handle in next 2 hours
+- **[P0] Submit AIGC Challenge entry** — deadline 5/15 23:59 CDT.
+  Action: finalize submission, push to portal. ~60min. Block at 2pm.
+
+## 🟡 IMPORTANT — handle today
+- **[P1] Amazon: 3 packages "Delivery attempted"** — WeDoi / SUMK / Lumlazni.
+  Action: reschedule via Amazon, choose locker pickup. ~10min. 3:30pm.
+- **[P1] Capital One Venture X statement** — confirm due date + autopay.
+  Action: log in, verify autopay is on. ~10min. 4pm.
+
+## ⚡ QUICK — under 5 minutes each
+- [P2] Bulk archive 13 promotional emails — Slickdeals / Macy's / Princess Polly. ~10min. 9:15pm.
+
+Sources:
+[AIGC Challenge](https://mail.google.com/mail/u/0/#inbox/THREAD_ID)
+[Amazon delivery](https://mail.google.com/mail/u/0/#inbox/THREAD_ID)
+```
+
+## Tools and cost
+
+| Item | Detail |
+|---|---|
+| Stack | Claude.ai (Pro plan) + Gmail Connector |
+| Monthly cost | $20 (Claude Pro) — no API key, no extra subscriptions |
+| Setup time | ~20 minutes one-time |
+| Daily trigger | Manual, ~30 seconds on your phone |
+| Code required | None |
+
+If you cancel Claude Pro the agent simply stops — nothing to clean up.
+
+## Common failure modes
+
+These are the real ones from the first two weeks of running it. **Fix the prompt, not the output** — every prompt edit makes tomorrow's triage permanently better.
+
+- **A "thanks" reply lands in P0.** Add a rule: replies that just acknowledge something are never P0.
+- **A buried meeting confirmation gets missed.** Add a rule: for any thread with more than 5 messages, always call `get_thread` to read the full thread before classifying.
+- **Amazon/delivery notifications over-flag.** Add specific senders to a "summary-only" list — return one count, not one item per message.
+- **A marketing "Final notice" misread as urgent.** Add a rule: senders in your skip-list cannot be P0, no matter the subject.
+- **Days 1-7 are noisy.** Expect ~90% accuracy only after a week of prompt tuning. Don't judge it before then.
+
+## FAQ
+
+**Where do I paste this prompt?**
+Into Claude's Project system prompt, or as a Custom Instruction. Open Claude.ai → Settings → Custom Instructions, or create a new Project and put it in the project's system prompt slot.
+
+**Do I need a Claude API key?**
+No. This prompt runs entirely inside Claude.ai (Pro plan) — no API, no code. The Gmail Connector is a Pro feature you authorize once.
+
+**Will the agent send or delete email?**
+No. The Constraints section explicitly forbids it. The agent only reads, classifies, and recommends — the actions stay yours.
+
+**Can I use ChatGPT or Gemini instead?**
+The prompt structure transfers, but the Gmail Connector is Claude-specific. ChatGPT can read Gmail via a custom GPT + Zapier, but you lose the no-code, no-API-key path.
+
+**How long until it's accurate?**
+About 5-7 days of prompt tuning. The first week, expect to add one or two rules per morning. After that it stabilizes at roughly 90% accurate priority calls.
+
+**What if my inbox has fewer than three emails on a day?**
+The prompt explicitly tells the agent to say "inbox is quiet" rather than invent tasks. Quiet mornings are okay.
+
+## Related Workflows
+
+- [The Gmail AI Agent That Writes My Daily To-Do List](/en/posts/2026-05-13-gmail-ai-agent/) — the full build narrative: why this stack, day-by-day failure log, the math.
+- [Claude vs Zapier vs n8n: Building a Gmail AI Agent](/en/news/2026-05-14-claude-vs-zapier-gmail-automation/) — why this prompt runs on Claude.ai rather than Zapier or n8n.
+
+One real AI agent a week, straight to your inbox. Free, no upsell.

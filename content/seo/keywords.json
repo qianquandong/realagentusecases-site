@@ -111,7 +111,7 @@
       "funnel": "BOFU",
       "cluster": "template",
       "locale": "both",
-      "status": "new",
+      "status": "used",
       "addedAt": "2026-05-14",
       "note": "Issue #001 already contains the full prompt — repackage as a template page."
     },
