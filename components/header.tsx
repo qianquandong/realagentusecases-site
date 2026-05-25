@@ -31,6 +31,12 @@ export function Header({ locale }: { locale: Locale }) {
           >
             {t.header.news}
           </Link>
+                <Link
+                        href="/jack.html"
+                                className="text-[13px] sm:text-sm whitespace-nowrap text-(--color-muted-foreground) hover:text-(--color-brand) transition-colors"
+                                      >
+                                              Jack
+                                                    </Link>
           <LanguageSwitch locale={locale} />
           <SubscribeButton
             size="sm"
