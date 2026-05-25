@@ -13,7 +13,7 @@ export async function generateMetadata({
   params: Promise<{ locale: string }>;
 }): Promise<Metadata> {
   const { locale } = await params;
-  if (!SITE_CONFIG.locales.includes(locale as Locale)) return {};
+  if (!SITE_CONFIG.locales.includes(local as Locale)) return {};
   const t = getDict(locale as Locale).meta;
   return {
     title: { absolute: t.siteTitle },
@@ -111,9 +111,8 @@ function Featured({ locale }: { locale: Locale }) {
   const seriesLabel =
     locale === "zh"
       ? `系列入门 · 共 ${episodes.length} 期`
-      : `Intro series · ${episodes.length} ${
-          episodes.length === 1 ? "episode" : "episodes"
-        }`;
+      : `Intro series · ${episodes.length} ${episodes.length === 1 ? "episode" : "episodes"
+      }`;
   return (
     <>
       <div className="mx-auto max-w-3xl px-6">
@@ -211,13 +210,20 @@ function About({ dict, locale }: { dict: Dict; locale: Locale }) {
         {t.about.heading}
       </h2>
       <div
-        className={`space-y-5 text-[17px] sm:text-lg leading-[1.75] text-(--color-foreground)/90 ${
-          locale === "en" ? "font-serif" : ""
-        }`}
+        className={`space-y-5 text-[17px] sm:text-lg leading-[1.75] text-(--color-foreground)/90 ${locale === "en" ? "font-serif" : ""
+          }`}
       >
         {t.about.paragraphs.map((p, i) => (
           <p key={i}>{p}</p>
         ))}
+      </div>
+      <div className="mt-6">
+        <Link
+          href="/jack.html"
+          className="inline-flex items-center gap-1.5 text-sm font-medium text-white bg-(--color-brand) hover:bg-(--color-brand-hover) px-4 py-2 rounded-md transition-all duration-150 hover:-translate-y-px"
+        >
+          {locale === "zh" ? "关于主持人 →" : "Meet Jack →"}
+        </Link>
       </div>
     </section>
   );
