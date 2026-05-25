@@ -4,6 +4,7 @@ import type { Metadata } from "next";
 import { getAllContent, contentHref } from "@/lib/content";
 import { getDict } from "@/lib/i18n";
 import { SITE_CONFIG, type Locale } from "@/lib/config";
+import { formatContentDate } from "@/lib/date";
 
 export async function generateMetadata({
   params,
@@ -31,13 +32,6 @@ export async function generateMetadata({
       alternateLocale: locale === "zh" ? ["en_US"] : ["zh_CN"],
     },
   };
-}
-
-function formatDate(dateStr: string, locale: Locale): string {
-  return new Date(dateStr).toLocaleDateString(
-    locale === "zh" ? "zh-CN" : "en-US",
-    { year: "numeric", month: "long", day: "numeric" },
-  );
 }
 
 export default async function NewsPage({
@@ -80,7 +74,7 @@ export default async function NewsPage({
                     dateTime={post.frontmatter.date}
                     className="font-mono text-[11px] uppercase tracking-[0.18em] text-(--color-muted-foreground)"
                   >
-                    {formatDate(post.frontmatter.date, typed)}
+                    {formatContentDate(post.frontmatter.date, typed)}
                   </time>
                 </div>
                 <h2 className="mt-2 text-xl sm:text-[22px] font-semibold tracking-tight leading-snug group-hover:text-(--color-brand) transition-colors text-balance">

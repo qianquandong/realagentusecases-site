@@ -52,7 +52,7 @@ export const zh: Dict = {
     socialProof: (count) =>
       count > 0
         ? `已经有 ${count.toLocaleString()} 位职场人在读。`
-        : "做最早的几位订户。",
+        : "先人一步。",
     latestPosts: {
       heading: "先读一期看看。",
     },

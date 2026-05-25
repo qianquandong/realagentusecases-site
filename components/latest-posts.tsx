@@ -1,14 +1,8 @@
 import Link from "next/link";
 import { getAllContent, contentHref } from "@/lib/content";
 import { getDict } from "@/lib/i18n";
+import { formatContentDate } from "@/lib/date";
 import type { Locale } from "@/lib/config";
-
-function formatDate(dateStr: string, locale: Locale): string {
-  return new Date(dateStr).toLocaleDateString(
-    locale === "zh" ? "zh-CN" : "en-US",
-    { year: "numeric", month: "long", day: "numeric" },
-  );
-}
 
 // Show LatestPosts whenever there's at least one post.
 // (Previously held until 3 posts existed to avoid a thin section. Now that
@@ -43,7 +37,7 @@ export async function LatestPosts({ locale }: { locale: Locale }) {
                 dateTime={post.frontmatter.date}
                 className="font-mono text-[11px] uppercase tracking-[0.18em] text-(--color-muted-foreground)"
               >
-                {formatDate(post.frontmatter.date, locale)}
+                {formatContentDate(post.frontmatter.date, locale)}
               </time>
               <h3 className="mt-2 text-xl sm:text-[22px] font-semibold tracking-tight leading-snug group-hover:text-(--color-brand) transition-colors text-balance">
                 {post.frontmatter.title}

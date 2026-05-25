@@ -4,6 +4,7 @@ import type { Metadata } from "next";
 import { getAllPostParams, getPost } from "@/lib/content";
 import { getDict } from "@/lib/i18n";
 import { SITE_CONFIG, type Locale } from "@/lib/config";
+import { formatContentDate } from "@/lib/date";
 import { PostCta } from "@/components/post-cta";
 import { YouTube } from "@/components/mdx/youtube";
 import { JsonLd } from "@/components/json-ld";
@@ -56,15 +57,6 @@ export async function generateMetadata({
   };
 }
 
-function formatDate(dateStr: string, locale: Locale): string {
-  const date = new Date(dateStr);
-  return date.toLocaleDateString(locale === "zh" ? "zh-CN" : "en-US", {
-    year: "numeric",
-    month: "long",
-    day: "numeric",
-  });
-}
-
 export default async function PostPage({
   params,
 }: {
@@ -112,7 +104,7 @@ export default async function PostPage({
           dateTime={post.frontmatter.date}
           className="font-mono text-xs uppercase tracking-[0.2em] text-(--color-muted-foreground)"
         >
-          {formatDate(post.frontmatter.date, typed)}
+          {formatContentDate(post.frontmatter.date, typed)}
         </time>
         <h1 className="mt-4 text-3xl sm:text-4xl md:text-5xl font-semibold tracking-tight leading-[1.15] text-balance">
           {post.frontmatter.title}

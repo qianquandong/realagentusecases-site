@@ -16,7 +16,7 @@ export function LanguageSwitch({ locale }: { locale: Locale }) {
     <Link
       href={newPath}
       aria-label={aria}
-      className="text-sm font-mono tracking-tight text-(--color-muted-foreground) hover:text-(--color-brand) transition-colors"
+      className="text-xs sm:text-sm font-mono tracking-tight whitespace-nowrap text-(--color-muted-foreground) hover:text-(--color-brand) transition-colors"
     >
       {label}
     </Link>

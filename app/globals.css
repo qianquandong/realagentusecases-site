@@ -13,9 +13,9 @@
 
   --font-sans: var(--font-geist-sans), -apple-system, BlinkMacSystemFont,
     "PingFang SC", "Microsoft YaHei", "Hiragino Sans GB", sans-serif;
-  --font-mono: var(--font-geist-mono), ui-monospace, SFMono-Regular, monospace;
-  --font-serif: var(--font-source-serif), "Songti SC", "STSong", Georgia,
-    "Times New Roman", serif;
+  --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Monaco,
+    Consolas, "Liberation Mono", monospace;
+  --font-serif: Georgia, "Songti SC", "STSong", "Times New Roman", serif;
 
   --container-prose: 680px;
 }

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono, Source_Serif_4 } from "next/font/google";
+import { Geist } from "next/font/google";
 import { JsonLd } from "@/components/json-ld";
 import { siteGraph } from "@/lib/schema";
 import "./globals.css";
@@ -8,19 +8,6 @@ const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
   display: "swap",
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-  display: "swap",
-});
-
-const sourceSerif = Source_Serif_4({
-  variable: "--font-source-serif",
-  subsets: ["latin"],
-  display: "swap",
-  weight: ["400", "500", "600", "700"],
 });
 
 export const metadata: Metadata = {
@@ -60,6 +47,37 @@ export const metadata: Metadata = {
 
 const easterEgg = `console.log("%cCurious what powers this site? It's just Next.js + my caffeine.\\nSubscribe so Jack can buy more coffee.", "color:#5fa37c;font-family:ui-monospace,monospace;font-size:12px;line-height:1.6");`;
 
+function deferredThirdPartyScripts(): string {
+  const snippets = [easterEgg];
+  const cfToken = process.env.NEXT_PUBLIC_CF_BEACON_TOKEN;
+  const gaId = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID;
+
+  if (cfToken) {
+    snippets.push(`const cfBeacon = document.createElement("script");
+cfBeacon.defer = true;
+cfBeacon.src = "https://static.cloudflareinsights.com/beacon.min.js";
+cfBeacon.setAttribute("data-cf-beacon", ${JSON.stringify(JSON.stringify({ token: cfToken }))});
+document.head.appendChild(cfBeacon);`);
+  }
+
+  if (gaId) {
+    snippets.push(`window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag("js", new Date());
+gtag("config", ${JSON.stringify(gaId)});
+const gaScript = document.createElement("script");
+gaScript.async = true;
+gaScript.src = ${JSON.stringify(`https://www.googletagmanager.com/gtag/js?id=${gaId}`)};
+document.head.appendChild(gaScript);`);
+  }
+
+  return `window.addEventListener("load", () => {
+  window.setTimeout(() => {
+${snippets.join("\n")}
+  }, 0);
+});`;
+}
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -68,24 +86,21 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} ${sourceSerif.variable} h-full antialiased`}
+      className={`${geistSans.variable} h-full antialiased`}
     >
       <head>
         <JsonLd data={siteGraph()} />
-        <script dangerouslySetInnerHTML={{ __html: easterEgg }} />
-        {process.env.NEXT_PUBLIC_CF_BEACON_TOKEN && (
-          <script
-            defer
-            src="https://static.cloudflareinsights.com/beacon.min.js"
-            data-cf-beacon={`{"token": "${process.env.NEXT_PUBLIC_CF_BEACON_TOKEN}"}`}
-          />
-        )}
       </head>
       <body
         className="min-h-full flex flex-col"
         suppressHydrationWarning
       >
         {children}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: deferredThirdPartyScripts(),
+          }}
+        />
       </body>
     </html>
   );
