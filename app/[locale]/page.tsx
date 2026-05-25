@@ -12,9 +12,8 @@ export async function generateMetadata({
 }: {
   params: Promise<{ locale: string }>;
 }): Promise<Metadata> {
-  const { locale } = await params;
-  if (!SITE_CONFIG.locales.includes(local as Locale)) return {};
-  const t = getDict(locale as Locale).meta;
+  const { locale } = await params;  if (!SITE_CONFIG.locales.includes(locale as Locale)) return {};
+  const t = getDict(locale as Locale).meta
   return {
     title: { absolute: t.siteTitle },
     description: t.siteDescription,
