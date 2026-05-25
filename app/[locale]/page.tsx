@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { getDict, type Dict } from "@/lib/i18n";
@@ -47,11 +48,109 @@ export default async function HomePage({
   return (
     <>
       <Hero dict={dict} />
+      <Featured locale={typed} />
       <LatestPosts locale={typed} />
       <Divider />
       <About dict={dict} locale={typed} />
       <Divider />
       <FinalCta dict={dict} />
+    </>
+  );
+}
+
+// Agent 101 series episodes. Add new entries to the top of this list as new episodes ship.
+type Episode = {
+  ep: string;
+  date: string;
+  href: string;
+  title: string;
+  excerpt: string;
+};
+
+const AGENT_101_EPISODES_ZH: ReadonlyArray<Episode> = [
+  {
+    ep: "02",
+    date: "2026.05.17",
+    href: "/agent-101/02-multi-agent/",
+    title: "一个 Agent，干不完一件像样的事。",
+    excerpt:
+      "Multi-agent 与 Skills 不是两种新技术——是分工这个老问题的两种解法。单 Agent 的 4 个天花板、Skills 的轻量解、Multi-agent 的 4 种协作模式 + 6 个真实工作流。",
+  },
+  {
+    ep: "01",
+    date: "2026.03.17",
+    href: "/agent-101/",
+    title: "「Agent」这个词，在三种人嘴里是三件事。",
+    excerpt:
+      "90 分钟讲清楚 AI Agent 是什么、不是什么、四类职业怎么用、9 个真实工作流——不画饼的入门讲义。",
+  },
+];
+
+const AGENT_101_EPISODES_EN: ReadonlyArray<Episode> = [
+  {
+    ep: "02",
+    date: "2026.05.17",
+    href: "/en/agent-101/02-multi-agent/",
+    title: "One Agent can't finish anything worth shipping.",
+    excerpt:
+      "Skills and Multi-agent aren't two new technologies — they're two answers to the same old problem: division of labor. Single-agent has 4 ceilings, Skills compress instructions, Multi-agent compresses context, and 6 real workflows show how they combine.",
+  },
+  {
+    ep: "01",
+    date: "2026.03.17",
+    href: "/en/agent-101/",
+    title: "「Agent」 means three different things to three different people.",
+    excerpt:
+      "A 90-minute deep dive on what AI Agent actually is, what it isn't, how four professions use it, and 9 real workflows you can run today.",
+  },
+];
+
+function Featured({ locale }: { locale: Locale }) {
+  const episodes =
+    locale === "zh" ? AGENT_101_EPISODES_ZH : AGENT_101_EPISODES_EN;
+  const seriesLabel =
+    locale === "zh"
+      ? `系列入门 · 共 ${episodes.length} 期`
+      : `Intro series · ${episodes.length} ${
+          episodes.length === 1 ? "episode" : "episodes"
+        }`;
+  return (
+    <>
+      <div className="mx-auto max-w-3xl px-6">
+        <div className="border-t border-(--color-border)/40" />
+      </div>
+      <section className="mx-auto max-w-2xl px-6 py-16 sm:py-20">
+        <div className="flex items-baseline justify-between mb-8 gap-4">
+          <h2 className="text-2xl sm:text-3xl font-semibold tracking-tight">
+            Agent 101
+          </h2>
+          <span className="font-mono text-[11px] uppercase tracking-[0.18em] text-(--color-muted-foreground) shrink-0">
+            {seriesLabel}
+          </span>
+        </div>
+        <ul className="space-y-10">
+          {episodes.map((episode) => (
+            <li key={episode.ep}>
+              <Link href={episode.href} className="group block">
+                <div className="flex items-baseline gap-3">
+                  <span className="font-mono text-[11px] uppercase tracking-[0.18em] text-(--color-brand)">
+                    EP {episode.ep}
+                  </span>
+                  <time className="font-mono text-[11px] uppercase tracking-[0.18em] text-(--color-muted-foreground)">
+                    {episode.date}
+                  </time>
+                </div>
+                <h3 className="mt-2 text-xl sm:text-[22px] font-semibold tracking-tight leading-snug group-hover:text-(--color-brand) transition-colors text-balance">
+                  {episode.title}
+                </h3>
+                <p className="mt-2 text-(--color-muted-foreground) leading-relaxed text-balance">
+                  {episode.excerpt}
+                </p>
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </section>
     </>
   );
 }

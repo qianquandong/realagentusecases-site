@@ -1,0 +1,2054 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Agent 101 第 02 期 · Multi-agent 与 Skills · 一个 Agent 为什么不够用、什么时候用 Skills、什么时候搭多 Agent · Real Agent Use Cases">
+<title>Agent 101 · 第 02 期 · Multi-agent &amp; Skills · Real Agent Use Cases</title>
+<link rel="canonical" href="https://realagentusecases.com/agent-101/02-multi-agent/">
+<link rel="alternate" hrefLang="zh" href="https://realagentusecases.com/agent-101/02-multi-agent/">
+<link rel="alternate" hrefLang="en" href="https://realagentusecases.com/en/agent-101/02-multi-agent/">
+
+<!-- Open Graph -->
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Real Agent Use Cases">
+<meta property="og:title" content="Agent 101 · 第 02 期 · 一个 Agent 干不完一件像样的事">
+<meta property="og:description" content="单 Agent 有 4 个天花板。Skills 和 Multi-agent 不是两种新技术——是分工这个老问题的两种解法。6 个真实工作流案例。">
+<meta property="og:url" content="https://realagentusecases.com/agent-101/02-multi-agent/">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:locale:alternate" content="en_US">
+<meta property="og:image" content="https://realagentusecases.com/og/agent-101/02-multi-agent/opengraph-image">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:alt" content="Agent 101 · Episode 02 · Multi-agent and Skills">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Agent 101 · 第 02 期 · 一个 Agent 干不完一件像样的事">
+<meta name="twitter:description" content="单 Agent 有 4 个天花板。Skills 和 Multi-agent 是分工这个老问题的两种解法。6 个工作流。">
+<meta name="twitter:image" content="https://realagentusecases.com/og/agent-101/02-multi-agent/opengraph-image">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@300..900&family=Geist+Mono:wght@300..700&family=Source+Serif+4:ital,wght@0,400..700;1,400..700&display=swap">
+<style>
+  /* ==========================================================
+     Tokens — mirrors realagentusecases.com
+     ========================================================== */
+  :root {
+    --color-background: #0a0a0a;
+    --color-foreground: #f2f2f2;
+    --color-muted: #161616;
+    --color-muted-foreground: #a3a3a3;
+    --color-border: #262626;
+    --color-brand: #2d5e44;
+    --color-brand-hover: #387554;
+    --color-brand-foreground: #fff;
+
+    --font-sans: "Geist", -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", "Hiragino Sans GB", sans-serif;
+    --font-serif: "Source Serif 4", "Songti SC", "STSong", Georgia, "Times New Roman", serif;
+    --font-mono: "Geist Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+
+    --tracking-tight: -0.025em;
+    --leading-snug: 1.375;
+    --leading-relaxed: 1.625;
+
+    --radius-md: 0.375rem;
+    --radius-lg: 0.5rem;
+    --radius-xl: 0.75rem;
+
+    --container-2xl: 42rem; /* 672 — body sections */
+    --container-3xl: 48rem; /* 768 — hero */
+    --container-6xl: 72rem; /* 1152 — nav */
+  }
+
+  /* ==========================================================
+     Reset & base
+     ========================================================== */
+  *, *::before, *::after { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    background: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    line-height: var(--leading-relaxed);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+  h1, h2, h3, h4 {
+    color: var(--color-foreground);
+    font-weight: 600;
+    letter-spacing: var(--tracking-tight);
+    line-height: var(--leading-snug);
+    margin: 0;
+    text-wrap: balance;
+  }
+  p { margin: 0 0 1rem; }
+  a {
+    color: var(--color-foreground);
+    text-decoration: none;
+    transition: color 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  a:hover { color: var(--color-brand); }
+  ::selection { background: var(--color-brand); color: white; }
+  img, svg { max-width: 100%; display: block; }
+
+  /* ==========================================================
+     Layout primitives
+     ========================================================== */
+  .mx-auto { margin-left: auto; margin-right: auto; }
+  .max-w-6xl { max-width: var(--container-6xl); }
+  .max-w-3xl { max-width: var(--container-3xl); }
+  .max-w-2xl { max-width: var(--container-2xl); }
+  .px-6 { padding-left: 1.5rem; padding-right: 1.5rem; }
+  main { min-height: 100vh; }
+
+  /* ==========================================================
+     Sticky nav (matches parent site)
+     ========================================================== */
+  nav.topnav {
+    position: sticky;
+    top: 0;
+    z-index: 40;
+    border-bottom: 1px solid var(--color-border);
+    background: rgba(10, 10, 10, 0.8);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+  }
+  @supports (backdrop-filter: blur(12px)) {
+    nav.topnav { background: rgba(10, 10, 10, 0.6); }
+  }
+  .nav-inner {
+    max-width: var(--container-6xl);
+    margin: 0 auto;
+    padding: 0 1.5rem;
+    height: 3.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .brand {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    letter-spacing: -0.01em;
+    color: var(--color-foreground);
+  }
+  @media (min-width: 640px) { .brand { font-size: 0.875rem; } }
+  .brand:hover { color: var(--color-brand); }
+  .nav-right {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+  }
+  @media (min-width: 640px) { .nav-right { gap: 1.5rem; } }
+  .nav-link {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--color-muted-foreground);
+    letter-spacing: -0.01em;
+    transition: color 0.15s;
+  }
+  @media (min-width: 640px) { .nav-link { font-size: 0.875rem; } }
+  .nav-link:hover { color: var(--color-brand); }
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--radius-md);
+    font-family: var(--font-sans);
+    font-weight: 500;
+    font-size: 0.875rem;
+    height: 2.25rem;
+    padding: 0 1rem;
+    background: var(--color-brand);
+    color: var(--color-brand-foreground);
+    transition: background-color 0.15s, transform 0.15s;
+    cursor: pointer;
+    border: none;
+  }
+  .btn:hover {
+    background: var(--color-brand-hover);
+    color: var(--color-brand-foreground);
+    transform: translateY(-1px);
+  }
+  .btn:active { transform: translateY(0); }
+  .btn.btn-lg { height: 3rem; padding: 0 1.5rem; font-size: 1rem; }
+
+  /* ==========================================================
+     Eyebrow (mono uppercase label)
+     ========================================================== */
+  .eyebrow {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--color-muted-foreground);
+    font-weight: 400;
+  }
+  .eyebrow-lg {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: var(--color-muted-foreground);
+  }
+
+  /* ==========================================================
+     Hero
+     ========================================================== */
+  .hero {
+    max-width: var(--container-3xl);
+    margin: 0 auto;
+    padding: 4rem 1.5rem 7rem;
+    text-align: center;
+  }
+  @media (min-width: 640px) {
+    .hero { padding: 6rem 1.5rem 9rem; }
+  }
+  .hero .eyebrow-lg { display: block; margin-bottom: 1.5rem; }
+  .hero h1 {
+    font-size: 2.25rem;
+    font-weight: 600;
+    letter-spacing: var(--tracking-tight);
+    line-height: 1.1;
+    text-wrap: balance;
+  }
+  @media (min-width: 640px) { .hero h1 { font-size: 3rem; } }
+  @media (min-width: 768px) { .hero h1 { font-size: 3.75rem; } }
+  .hero h1 .brand-word {
+    color: var(--color-brand);
+  }
+  .hero-sub {
+    margin: 1.25rem auto 0;
+    max-width: var(--container-2xl);
+    font-size: 1.125rem;
+    color: var(--color-muted-foreground);
+    line-height: var(--leading-relaxed);
+    text-wrap: balance;
+  }
+  @media (min-width: 640px) { .hero-sub { font-size: 1.25rem; } }
+
+  .hero-list {
+    margin: 1.75rem auto 0;
+    max-width: 30rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    text-align: left;
+    font-size: 0.9375rem;
+    color: var(--color-muted-foreground);
+  }
+  @media (min-width: 640px) { .hero-list { font-size: 0.9375rem; } }
+  .hero-list-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+  }
+  .dot {
+    width: 0.25rem;
+    height: 0.25rem;
+    border-radius: 9999px;
+    background: var(--color-brand);
+    flex-shrink: 0;
+    margin-top: 0.6em;
+  }
+  .hero-ctas {
+    margin-top: 2.5rem;
+    display: flex;
+    gap: 0.75rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .hero-foot {
+    margin-top: 2.5rem;
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: rgba(163, 163, 163, 0.7);
+  }
+
+  /* ==========================================================
+     Section base (essay-style)
+     ========================================================== */
+  section.essay {
+    border-top: 1px solid rgba(38, 38, 38, 0.4);
+  }
+  .essay-inner {
+    max-width: var(--container-2xl);
+    margin: 0 auto;
+    padding: 5rem 1.5rem;
+  }
+  @media (min-width: 640px) {
+    .essay-inner { padding: 6rem 1.5rem; }
+  }
+  .essay-inner.wide {
+    max-width: var(--container-3xl);
+  }
+  .section-head { margin-bottom: 2.5rem; }
+  .section-head .eyebrow { display: block; margin-bottom: 0.75rem; }
+  .section-head h2 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    letter-spacing: var(--tracking-tight);
+    line-height: var(--leading-snug);
+  }
+  @media (min-width: 640px) {
+    .section-head h2 { font-size: 1.875rem; }
+  }
+  .section-head .lede {
+    margin-top: 0.875rem;
+    font-size: 1.0625rem;
+    color: var(--color-muted-foreground);
+    line-height: var(--leading-relaxed);
+  }
+  .essay-body p {
+    color: var(--color-muted-foreground);
+    line-height: var(--leading-relaxed);
+    font-size: 1rem;
+  }
+  .essay-body strong { color: var(--color-foreground); font-weight: 600; }
+
+  /* ==========================================================
+     Item list (matches "Read the latest" article list)
+     ========================================================== */
+  .item-list {
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .item {
+    display: block;
+  }
+  .item .item-eyebrow {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--color-muted-foreground);
+  }
+  .item h3 {
+    margin-top: 0.5rem;
+    font-size: 1.25rem;
+    font-weight: 600;
+    letter-spacing: var(--tracking-tight);
+    line-height: var(--leading-snug);
+    color: var(--color-foreground);
+  }
+  @media (min-width: 640px) {
+    .item h3 { font-size: 1.375rem; }
+  }
+  .item p {
+    margin-top: 0.5rem;
+    color: var(--color-muted-foreground);
+    line-height: var(--leading-relaxed);
+  }
+
+  /* ==========================================================
+     Compare table (Chatbot vs Agent) — minimal two-col
+     ========================================================== */
+  .compare {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+  }
+  @media (min-width: 640px) {
+    .compare { grid-template-columns: 1fr 1fr; }
+  }
+  .compare-cell {
+    padding: 1.75rem;
+    background: var(--color-muted);
+  }
+  .compare-cell + .compare-cell {
+    border-top: 1px solid var(--color-border);
+  }
+  @media (min-width: 640px) {
+    .compare-cell + .compare-cell {
+      border-top: none;
+      border-left: 1px solid var(--color-border);
+    }
+  }
+  .compare-cell.is-agent { background: rgba(45, 94, 68, 0.08); }
+  .compare-cell .item-eyebrow { display: block; margin-bottom: 0.5rem; }
+  .compare-cell .is-agent-eyebrow { color: var(--color-brand); }
+  .compare-cell h3 {
+    font-size: 1.125rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+  }
+  .compare-cell > p {
+    color: var(--color-muted-foreground);
+    font-size: 0.9375rem;
+    margin-bottom: 1rem;
+  }
+  .compare-cell ul {
+    list-style: none;
+    padding: 0;
+    margin: 0.75rem 0 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  .compare-cell li {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.625rem;
+    font-size: 0.9375rem;
+    color: var(--color-muted-foreground);
+  }
+  .compare-cell li::before {
+    content: "×";
+    color: var(--color-muted-foreground);
+    font-family: var(--font-mono);
+    flex-shrink: 0;
+    margin-top: 0.05em;
+  }
+  .compare-cell.is-agent li::before {
+    content: "✓";
+    color: var(--color-brand);
+  }
+
+  /* ==========================================================
+     Pull-quote / aside (analogy block)
+     ========================================================== */
+  .aside {
+    margin-top: 2rem;
+    padding: 1.75rem;
+    border-left: 2px solid var(--color-brand);
+    background: var(--color-muted);
+    border-radius: 0 var(--radius-lg) var(--radius-lg) 0;
+  }
+  .aside .aside-label {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--color-brand);
+    display: block;
+    margin-bottom: 0.625rem;
+  }
+  .aside p {
+    margin: 0;
+    color: var(--color-foreground);
+    font-family: var(--font-serif);
+    font-size: 1.0625rem;
+    line-height: var(--leading-relaxed);
+    font-style: italic;
+  }
+  .aside p strong { font-style: normal; }
+
+  /* ==========================================================
+     Agent loop (SVG + steps)
+     ========================================================== */
+  .loop-wrap {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+    align-items: center;
+  }
+  @media (min-width: 760px) {
+    .loop-wrap { grid-template-columns: 280px 1fr; gap: 3rem; }
+  }
+  .loop-svg { width: 100%; max-width: 280px; margin: 0 auto; }
+  .loop-steps {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  .loop-step {
+    display: grid;
+    grid-template-columns: 2rem 1fr;
+    gap: 0.875rem;
+    align-items: start;
+  }
+  .loop-step .n {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--color-brand);
+    letter-spacing: 0.05em;
+    padding-top: 0.125rem;
+  }
+  .loop-step h4 {
+    font-size: 1.0625rem;
+    margin-bottom: 0.25rem;
+  }
+  .loop-step h4 .en {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--color-muted-foreground);
+    margin-left: 0.5rem;
+    font-weight: 400;
+    letter-spacing: 0.05em;
+  }
+  .loop-step p { margin: 0; color: var(--color-muted-foreground); font-size: 0.9375rem; }
+
+  /* ==========================================================
+     Use cases — vertical list with mono labels (no flashy cards)
+     ========================================================== */
+  .use-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+  .use {
+    padding: 2rem 0;
+    border-top: 1px solid var(--color-border);
+  }
+  .use:first-child { border-top: none; padding-top: 0; }
+  .use:last-child { padding-bottom: 0; }
+  .use-top {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 0.5rem;
+    flex-wrap: wrap;
+  }
+  .use-top .use-label {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--color-muted-foreground);
+  }
+  .use-top .use-gain {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--color-brand);
+    letter-spacing: 0.05em;
+  }
+  .use h3 {
+    font-size: 1.25rem;
+    margin-bottom: 0.625rem;
+  }
+  @media (min-width: 640px) { .use h3 { font-size: 1.375rem; } }
+  .use p { color: var(--color-muted-foreground); margin-bottom: 0.875rem; }
+  .use-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 0.875rem;
+  }
+  .chip {
+    display: inline-block;
+    padding: 0.25rem 0.625rem;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    color: var(--color-muted-foreground);
+    letter-spacing: 0.02em;
+  }
+
+  /* ==========================================================
+     Demo block — mono code-style terminal mock
+     ========================================================== */
+  .demo {
+    margin-top: 2.5rem;
+    padding-top: 2.5rem;
+    border-top: 1px solid var(--color-border);
+  }
+  .demo:first-of-type { border-top: none; padding-top: 0; margin-top: 0; }
+  .demo-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-bottom: 0.625rem;
+  }
+  .demo-num {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--color-brand);
+  }
+  .demo-time {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    color: var(--color-muted-foreground);
+    letter-spacing: 0.05em;
+  }
+  .demo h3 {
+    font-size: 1.375rem;
+    margin-bottom: 0.625rem;
+  }
+  .demo > p {
+    color: var(--color-muted-foreground);
+    margin-bottom: 1.25rem;
+  }
+  .demo-steps {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 1.5rem;
+    counter-reset: step;
+  }
+  .demo-steps li {
+    counter-increment: step;
+    padding: 0.625rem 0 0.625rem 2rem;
+    position: relative;
+    color: var(--color-muted-foreground);
+    font-size: 0.9375rem;
+    line-height: var(--leading-relaxed);
+    border-top: 1px dashed rgba(38, 38, 38, 0.6);
+  }
+  .demo-steps li:first-child { border-top: none; }
+  .demo-steps li::before {
+    content: counter(step, decimal-leading-zero);
+    position: absolute;
+    left: 0;
+    top: 0.625rem;
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    color: var(--color-brand);
+    letter-spacing: 0.05em;
+  }
+  .demo-steps strong { color: var(--color-foreground); font-weight: 600; }
+
+  .terminal {
+    background: var(--color-muted);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    font-family: var(--font-mono);
+    font-size: 0.8125rem;
+    line-height: 1.7;
+    color: var(--color-foreground);
+    overflow: hidden;
+  }
+  .terminal-bar {
+    padding: 0.625rem 0.875rem;
+    background: rgba(0, 0, 0, 0.3);
+    border-bottom: 1px solid var(--color-border);
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    color: var(--color-muted-foreground);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .terminal-body { padding: 1.125rem; }
+  .terminal-body .row { padding: 0.05rem 0; }
+  .terminal-body .mu { color: var(--color-muted-foreground); }
+  .terminal-body .ok { color: var(--color-brand); }
+  .terminal-body .label {
+    display: inline-block;
+    color: var(--color-muted-foreground);
+    margin-right: 0.5rem;
+  }
+  .terminal-body .label.user { color: #c2a8ff; }
+  .terminal-body .label.bot { color: var(--color-brand); }
+  .terminal-body .label.tool { color: #d4a657; }
+  .terminal-body .hr {
+    border-top: 1px dashed var(--color-border);
+    margin: 0.5rem 0;
+  }
+  /* Workflow terminal helpers */
+  .terminal-body .step {
+    display: inline-block;
+    min-width: 6.5rem;
+    color: var(--color-foreground);
+    font-weight: 500;
+  }
+  .terminal-body .num {
+    display: inline-block;
+    width: 1.75rem;
+    color: var(--color-brand);
+  }
+  .terminal-body .meta {
+    color: var(--color-brand);
+    font-weight: 500;
+  }
+  .terminal-title-tag {
+    display: inline-block;
+    padding: 1px 6px;
+    margin-right: 0.5rem;
+    background: var(--color-brand);
+    color: var(--color-brand-foreground);
+    border-radius: 3px;
+    font-size: 0.625rem;
+    letter-spacing: 0.1em;
+    font-weight: 600;
+  }
+
+  /* Case-list divider: visual separation between "by-job" and "by-scenario" cases */
+  .case-divider {
+    margin: 3rem 0;
+    padding: 2.25rem 1.5rem;
+    border-top: 1px solid var(--color-border);
+    border-bottom: 1px solid var(--color-border);
+    text-align: center;
+  }
+  .case-divider .eyebrow {
+    display: block;
+    margin-bottom: 0.75rem;
+    color: var(--color-brand);
+  }
+  .case-divider h3 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 0.625rem;
+    letter-spacing: var(--tracking-tight);
+  }
+  .case-divider p {
+    color: var(--color-muted-foreground);
+    max-width: 40rem;
+    margin: 0 auto;
+    font-size: 0.9375rem;
+    line-height: var(--leading-relaxed);
+  }
+
+  /* ==========================================================
+     Timeline — minimal vertical list with mono dates
+     ========================================================== */
+  .timeline {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+  .tl {
+    padding-left: 1.5rem;
+    border-left: 1px solid var(--color-border);
+    position: relative;
+  }
+  .tl::before {
+    content: "";
+    position: absolute;
+    left: -0.3125rem;
+    top: 0.4rem;
+    width: 0.5625rem;
+    height: 0.5625rem;
+    border-radius: 9999px;
+    background: var(--color-background);
+    border: 2px solid var(--color-brand);
+  }
+  .tl .tl-week {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--color-brand);
+    display: block;
+    margin-bottom: 0.375rem;
+  }
+  .tl h3 {
+    font-size: 1.125rem;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+  }
+  .tl p { margin: 0; color: var(--color-muted-foreground); }
+
+  /* ==========================================================
+     Subscribe / CTA
+     ========================================================== */
+  .subscribe {
+    margin: 2.5rem auto 0;
+    max-width: 28rem;
+  }
+  .subscribe-form {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  @media (min-width: 640px) {
+    .subscribe-form { flex-direction: row; }
+  }
+  .subscribe input[type="email"] {
+    flex: 1;
+    min-width: 0;
+    height: 3rem;
+    padding: 0 1rem;
+    border-radius: var(--radius-md);
+    background: var(--color-muted);
+    border: 1px solid rgba(163, 163, 163, 0.3);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    transition: border-color 0.15s;
+  }
+  .subscribe input[type="email"]::placeholder { color: var(--color-muted-foreground); }
+  .subscribe input[type="email"]:focus {
+    outline: none;
+    border-color: var(--color-brand);
+  }
+  .subscribe .btn { flex-shrink: 0; height: 3rem; padding: 0 1.5rem; font-size: 1rem; }
+  .subscribe-note {
+    margin-top: 0.75rem;
+    font-size: 0.75rem;
+    color: var(--color-muted-foreground);
+    text-align: center;
+  }
+
+  /* ==========================================================
+     Footer
+     ========================================================== */
+  footer.site {
+    border-top: 1px solid var(--color-border);
+    padding: 2.5rem 1.5rem;
+    margin-top: 4rem;
+  }
+  .footer-inner {
+    max-width: var(--container-2xl);
+    margin: 0 auto;
+    text-align: center;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--color-muted-foreground);
+    letter-spacing: 0.05em;
+  }
+  .footer-inner a { color: var(--color-muted-foreground); }
+  .footer-inner a:hover { color: var(--color-brand); }
+  .footer-inner .sep { color: var(--color-border); margin: 0 0.625rem; }
+
+  /* ==========================================================
+     Audience profile chart (donut + legend)
+     ========================================================== */
+  .audience {
+    margin-bottom: 4rem;
+    padding-bottom: 3rem;
+    border-bottom: 1px solid var(--color-border);
+  }
+  .audience-head { margin-bottom: 2rem; }
+  .audience-head .eyebrow { display: block; margin-bottom: 0.625rem; }
+  .audience-head h3 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    letter-spacing: var(--tracking-tight);
+  }
+  @media (min-width: 640px) { .audience-head h3 { font-size: 1.375rem; } }
+  .audience-head p { color: var(--color-muted-foreground); margin: 0; }
+
+  .audience-body {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    align-items: center;
+  }
+  @media (min-width: 720px) {
+    .audience-body { grid-template-columns: 260px 1fr; gap: 3rem; }
+  }
+
+  .donut {
+    width: 100%;
+    max-width: 240px;
+    margin: 0 auto;
+    aspect-ratio: 1;
+    position: relative;
+  }
+  .donut svg { width: 100%; height: 100%; display: block; }
+  .donut-center {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    pointer-events: none;
+  }
+  .donut-center .n {
+    font-family: var(--font-mono);
+    font-size: 1.875rem;
+    font-weight: 600;
+    color: var(--color-foreground);
+    line-height: 1;
+    letter-spacing: -0.02em;
+  }
+  .donut-center .lbl {
+    margin-top: 0.375rem;
+    font-family: var(--font-mono);
+    font-size: 0.625rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--color-muted-foreground);
+  }
+
+  .legend {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.875rem;
+  }
+  .legend li {
+    display: grid;
+    grid-template-columns: 0.625rem 1fr auto;
+    gap: 0.75rem;
+    align-items: center;
+    padding: 0.625rem 0;
+    border-top: 1px solid var(--color-border);
+  }
+  .legend li:first-child { border-top: none; padding-top: 0; }
+  .legend .swatch {
+    width: 0.625rem;
+    height: 0.625rem;
+    border-radius: 2px;
+  }
+  .legend .name {
+    color: var(--color-foreground);
+    font-size: 0.9375rem;
+    font-weight: 500;
+  }
+  .legend .pct {
+    font-family: var(--font-mono);
+    font-size: 0.9375rem;
+    color: var(--color-muted-foreground);
+    letter-spacing: 0.02em;
+    font-feature-settings: "tnum" 1;
+  }
+
+  /* Sub-bullets inside a use case */
+  .sub-list {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 0.875rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  .sub-list li {
+    display: grid;
+    grid-template-columns: 1.5rem 1fr;
+    gap: 0.5rem;
+    color: var(--color-muted-foreground);
+    font-size: 0.9375rem;
+    line-height: var(--leading-relaxed);
+  }
+  .sub-list li::before {
+    content: "→";
+    font-family: var(--font-mono);
+    color: var(--color-brand);
+    margin-top: 0.05em;
+  }
+  .sub-list strong { color: var(--color-foreground); font-weight: 600; }
+
+  /* ==========================================================
+     Utilities
+     ========================================================== */
+  .mono { font-family: var(--font-mono); }
+  .serif { font-family: var(--font-serif); }
+
+  /* ==========================================================
+     Episode tabs — sits between topnav and main on agent-101 pages
+     ========================================================== */
+  .ep-tabs {
+    position: sticky;
+    top: 3.5rem;
+    z-index: 39;
+    border-bottom: 1px solid var(--color-border);
+    background: var(--color-background);
+  }
+  .ep-tabs-inner {
+    max-width: var(--container-6xl);
+    margin: 0 auto;
+    padding: 0 1.5rem;
+    display: flex;
+    align-items: stretch;
+    gap: 1.25rem;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+  }
+  .ep-tabs-inner::-webkit-scrollbar { display: none; }
+  .ep-tabs-label {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--color-muted-foreground);
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    padding: 0.875rem 0;
+  }
+  .ep-tab {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    text-decoration: none;
+    white-space: nowrap;
+    padding: 0.875rem 0;
+    color: var(--color-muted-foreground);
+    transition: color 0.15s;
+    border-bottom: 2px solid transparent;
+    margin-bottom: -1px;
+  }
+  .ep-tab:hover { color: var(--color-foreground); text-decoration: none; }
+  .ep-tab.is-current {
+    color: var(--color-foreground);
+    border-bottom-color: var(--color-brand);
+  }
+  .ep-tab-num {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+    color: var(--color-brand);
+    font-weight: 600;
+  }
+  .ep-tab-title {
+    font-family: var(--font-sans);
+    font-size: 0.875rem;
+    font-weight: 500;
+  }
+  .ep-tab-lang {
+    font-family: var(--font-mono);
+    font-size: 0.625rem;
+    letter-spacing: 0.1em;
+    color: var(--color-muted-foreground);
+    margin-left: 0.375rem;
+    padding: 1px 5px;
+    border: 1px solid var(--color-border);
+    border-radius: 3px;
+  }
+  @media (max-width: 640px) {
+    .ep-tab-title { display: none; }
+    .ep-tabs-label { font-size: 0.6875rem; }
+    .ep-tabs-inner { gap: 1rem; }
+  }
+
+  /* ==========================================================
+     Definition card — used in Ep 02 §01
+     ========================================================== */
+  .def-card {
+    background: var(--color-muted);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    padding: 1.75rem;
+    margin-bottom: 1.25rem;
+  }
+  .def-card:last-child { margin-bottom: 0; }
+  .def-header {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1.25rem;
+    border-bottom: 1px solid var(--color-border);
+  }
+  .def-term {
+    font-family: var(--font-mono);
+    font-size: 1.625rem;
+    font-weight: 600;
+    color: var(--color-foreground);
+    letter-spacing: -0.02em;
+  }
+  .def-term .def-num {
+    color: var(--color-brand);
+    margin-right: 0.5rem;
+  }
+  .def-essence {
+    font-size: 1rem;
+    color: var(--color-foreground);
+    line-height: var(--leading-relaxed);
+  }
+  .def-body {
+    display: grid;
+    gap: 1.125rem;
+  }
+  .def-row {
+    display: grid;
+    grid-template-columns: 6rem 1fr;
+    gap: 1rem;
+    align-items: start;
+  }
+  @media (max-width: 560px) {
+    .def-row { grid-template-columns: 1fr; gap: 0.375rem; }
+  }
+  .def-label {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--color-muted-foreground);
+    padding-top: 0.15rem;
+  }
+  .def-content {
+    color: var(--color-foreground);
+    font-size: 0.9375rem;
+    line-height: var(--leading-relaxed);
+  }
+  .def-content ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    gap: 0.4rem;
+  }
+  .def-content ul li {
+    padding-left: 1rem;
+    position: relative;
+    color: var(--color-foreground);
+  }
+  .def-content ul li::before {
+    content: "·";
+    position: absolute;
+    left: 0;
+    color: var(--color-brand);
+    font-weight: 700;
+  }
+  .def-content ul li .mu { color: var(--color-muted-foreground); }
+  .def-content p { margin: 0; }
+  .def-content p + p { margin-top: 0.4rem; }
+  .def-content p .mu { color: var(--color-muted-foreground); }
+</style>
+</head>
+<body>
+
+<nav class="topnav">
+  <div class="nav-inner">
+    <a href="/" class="brand">realagentusecases.com</a>
+    <div class="nav-right">
+      <a href="/zh/news/" class="nav-link">News</a>
+      <a href="/en/agent-101/02-multi-agent/" class="nav-link">EN</a>
+      <a class="btn" href="#cta">Subscribe</a>
+    </div>
+  </div>
+</nav>
+
+<nav class="ep-tabs" aria-label="Agent 101 episode navigation">
+  <div class="ep-tabs-inner">
+    <span class="ep-tabs-label">Agent 101 ·</span>
+    <a href="/agent-101/" class="ep-tab">
+      <span class="ep-tab-num">EP 01</span>
+      <span class="ep-tab-title">What is AI Agent</span>
+    </a>
+    <a href="/agent-101/02-multi-agent/" class="ep-tab is-current">
+      <span class="ep-tab-num">EP 02</span>
+      <span class="ep-tab-title">Multi-agent &amp; Skills</span>
+    </a>
+  </div>
+</nav>
+
+<main>
+
+  <!-- ============ HERO ============ -->
+  <section class="hero">
+    <span class="eyebrow-lg">EPISODE 02 · MULTI-AGENT &amp; SKILLS · 2026.05.17</span>
+    <h1>
+      一个 <span class="brand-word">Agent</span>，<br>
+      干不完一件<span class="brand-word">像样的事</span>。
+    </h1>
+
+    <p class="hero-sub" style="margin-top: 1.5rem;">
+      这不是 Agent 不够强——是单 Agent 这种结构有天花板。<br>
+      Skills 和 Multi-agent 不是两种新技术，是<strong style="color: var(--color-foreground);">分工</strong>这个老问题的两种解法。
+    </p>
+
+    <ul class="hero-list">
+      <li class="hero-list-item"><span class="dot"></span><span>单 Agent 的 4 个天花板——什么时候你必须分工，不分就要翻车</span></li>
+      <li class="hero-list-item"><span class="dot"></span><span>Skills 是分工的"轻量解"——一个 Agent 也能像团队那样干活</span></li>
+      <li class="hero-list-item"><span class="dot"></span><span>Multi-agent 的 4 种协作模式——什么任务该用哪一种</span></li>
+      <li class="hero-list-item"><span class="dot"></span><span>6 个真实工作流 + 选型决策树 — 今天就能开始用</span></li>
+    </ul>
+
+    <div class="hero-ctas">
+      <a class="btn btn-lg" href="#deconstruct">看 Agent 的天花板 →</a>
+    </div>
+
+    <div class="hero-foot">
+      AGENT 101 SERIES · EP 02 · 不画饼版
+    </div>
+  </section>
+
+  <!-- ============ § 1 DEFINITIONS ============ -->
+  <section id="definitions" class="essay">
+    <div class="essay-inner">
+      <header class="section-head">
+        <span class="eyebrow">§ 01 · 三个定义</span>
+        <h2>Agent / Skill / Multi-agent — 先把这三个词的边界画清楚</h2>
+        <p class="lede">
+          这一课所有讨论都建立在这三个词上。它们在市场上经常被混用、被替换、被打包成同一件事——
+          但工程上有<strong style="color: var(--color-foreground);">清晰的边界</strong>。
+          先把定义说清楚，下面的讨论才有意义。
+        </p>
+      </header>
+
+      <div class="def-card">
+        <div class="def-header">
+          <div class="def-term"><span class="def-num">01</span>Agent</div>
+          <div class="def-essence">一个能"感知 → 规划 → 执行 → 反思"循环跑下去的 LLM 实例 —— 不是问一答一，是给目标让它自己干活。</div>
+        </div>
+        <div class="def-body">
+          <div class="def-row">
+            <span class="def-label">由什么组成</span>
+            <div class="def-content">
+              <ul>
+                <li><strong>LLM</strong> <span class="mu">— 大脑，做推理和决策</span></li>
+                <li><strong>Tools</strong> <span class="mu">— 接外部能力的接口（API / 数据库 / 浏览器 / 文件系统…）</span></li>
+                <li><strong>Memory</strong> <span class="mu">— 短期 context + 长期记忆（向量库 / 文件）</span></li>
+                <li><strong>Loop</strong> <span class="mu">— 循环执行，直到任务完成 / 失败 / 触发停止条件</span></li>
+              </ul>
+            </div>
+          </div>
+          <div class="def-row">
+            <span class="def-label">关键判定</span>
+            <div class="def-content">
+              <p><strong>能自主决定下一步</strong> = agent</p>
+              <p><span class="mu">只回答一个问题、没有下一步动作 = chatbot（不是 agent，不在本课讨论范围）</span></p>
+            </div>
+          </div>
+          <div class="def-row">
+            <span class="def-label">易混淆</span>
+            <div class="def-content">
+              <p><span class="mu">"AI 助手 / Copilot / 智能体"</span> — 第 01 期讲过，多数是营销话术，不再讨论。</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="def-card">
+        <div class="def-header">
+          <div class="def-term"><span class="def-num">02</span>Skill</div>
+          <div class="def-essence">Agent 内部可被调用的<u>模块化能力</u> —— 把工作流某段固化成独立单元，需要时调，不需要时不污染主上下文。</div>
+        </div>
+        <div class="def-body">
+          <div class="def-row">
+            <span class="def-label">由什么组成</span>
+            <div class="def-content">
+              <ul>
+                <li><strong>触发描述</strong> <span class="mu">— "什么场景下应该调用我"（让 agent 知道何时用）</span></li>
+                <li><strong>输入输出契约</strong> <span class="mu">— 需要什么输入、产出什么形态的输出</span></li>
+                <li><strong>prompt</strong> <span class="mu">— 这段任务的核心指令（可含 few-shot 示例）</span></li>
+                <li><strong>工具子集</strong> <span class="mu">— 这个 skill 允许调用的工具（不是 agent 的全部工具）</span></li>
+              </ul>
+            </div>
+          </div>
+          <div class="def-row">
+            <span class="def-label">关键判定</span>
+            <div class="def-content">
+              <p><strong>仍然在同一个 agent 的 context 内运行</strong> —— Skill 是 agent 的"内部模块"，不是独立的 LLM 实例。</p>
+              <p><span class="mu">把 prompt 文件叫"Skill"，跟把可复用函数叫"模块"是同一种命名 —— 重点不在词，在结构。</span></p>
+            </div>
+          </div>
+          <div class="def-row">
+            <span class="def-label">易混淆</span>
+            <div class="def-content">
+              <p><span class="mu">"199 元 1000 个 prompt 合集"</span> — 那不是 Skill，那是<u>静态 prompt 库</u>，没有触发逻辑、没有输入输出契约、不可程序化调用。</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="def-card">
+        <div class="def-header">
+          <div class="def-term"><span class="def-num">03</span>Multi-agent</div>
+          <div class="def-essence">多个 agent 在<u>独立 context 窗口</u>中协作 —— 每个看世界的一部分，通过协议交换压缩过的状态。</div>
+        </div>
+        <div class="def-body">
+          <div class="def-row">
+            <span class="def-label">由什么组成</span>
+            <div class="def-content">
+              <ul>
+                <li><strong>N 个 agent</strong> <span class="mu">— 各自独立的 LLM + Tools + Memory + Loop（即 N 个完整 agent）</span></li>
+                <li><strong>协议</strong> <span class="mu">— 怎么交换消息 / 状态（消息队列 / 共享文件 / 调用 API）</span></li>
+                <li><strong>协调机制</strong> <span class="mu">— 谁拆任务、谁汇总、谁停止整个流程</span></li>
+                <li><strong>失败处理</strong> <span class="mu">— 一个 agent 挂了 / 跑偏了，怎么办</span></li>
+              </ul>
+            </div>
+          </div>
+          <div class="def-row">
+            <span class="def-label">关键判定</span>
+            <div class="def-content">
+              <p><strong>agent 之间 context 真的独立</strong> = multi-agent</p>
+              <p><span class="mu">在一个 prompt 里写"你扮演 A，再扮演 B"≠ multi-agent，那是<u>角色扮演</u>，A 和 B 共享同一个 context。</span></p>
+            </div>
+          </div>
+          <div class="def-row">
+            <span class="def-label">易混淆</span>
+            <div class="def-content">
+              <p><span class="mu">"我有 100 个 Skills 的 Agent"</span> — 那是单 agent + 多 Skill，<u>不是</u> multi-agent。这是市场上最常见的命名混淆。</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <aside class="aside">
+        <span class="aside-label">三个定义之间的关系</span>
+        <p style="font-style: normal; font-family: var(--font-sans);">
+          <strong style="color: var(--color-foreground);">Agent 是基本单位</strong>。一个 agent 内部可以装 N 个 Skills（Skill 在 agent <u>内</u>）。
+          一个 multi-agent 系统由多个 agent 组成（multi-agent 在 agent <u>之间</u>）。
+          <br><br>
+          这三个不在同一层级——所以"<i>该用 Skill 还是该用 Multi-agent？</i>"这种问题，本身问错了维度。
+          下面 §02–§07，我们一步步把这件事讲清楚：先讲 agent 为什么撑不动（§02），
+          再讲 Skill 和 Multi-agent 各自怎么帮 agent 减负（§03 / §04），最后讲两者怎么组合（§05 矩阵）。
+        </p>
+      </aside>
+    </div>
+  </section>
+
+  <!-- ============ § 2 SINGLE-AGENT CEILINGS ============ -->
+  <section class="essay">
+    <div class="essay-inner">
+      <header class="section-head">
+        <span class="eyebrow">§ 02 · 单 Agent 的天花板</span>
+        <h2>同一个 Agent 干所有活，会以 4 种方式翻车</h2>
+        <p class="lede">
+          为什么需要 multi-agent 或 skills？因为单 Agent 在某种复杂度之后必然崩。
+          下面 4 个失败模式，每个都跟"agent 不够聪明"无关，是<strong>单一 context 这种结构本身</strong>的极限。
+        </p>
+      </header>
+
+      <ul class="item-list">
+        <li class="item">
+          <span class="item-eyebrow">天花板 · 01 · CONTEXT DRIFT</span>
+          <h3>任务超过 50 步后，前面的指令被新内容稀释</h3>
+          <p>
+            你给 agent 一个 system prompt + 任务目标，让它跑 80 步。
+            到第 50 步时，<strong style="color: var(--color-foreground);">agent 实际上已经看不太到原始 system prompt 了——它在被自己最近的输出 + tool 调用结果淹没。</strong>
+            观察症状：开头执行得很好，后面突然开始走样、忘记规则、答非所问。
+            模型再强也救不了——这是 attention 机制 + 上下文长度的物理限制。
+          </p>
+        </li>
+
+        <li class="item">
+          <span class="item-eyebrow">天花板 · 02 · TOOL OVERLOAD</span>
+          <h3>同一个 Agent 装了 20+ 个工具，调用判断越来越乱</h3>
+          <p>
+            随着你给 agent 加越来越多的 tool（Gmail、Calendar、Notion、SQL、Web search、自定义 API...），
+            <strong style="color: var(--color-foreground);">每次决策时它需要在 N 个 tool 之间选一个</strong>——选错就走偏。
+            实测：tool 数量超过 15 个后，agent 的 tool selection 准确率开始线性下降；超过 30 个，几乎不可用。
+            装得越多越无能——这是 Function Calling 的固有问题，不是 prompt 调教能解的。
+          </p>
+        </li>
+
+        <li class="item">
+          <span class="item-eyebrow">天花板 · 03 · ERROR COMPOUNDING</span>
+          <h3>单线程任务一旦中间出错，后面全部基于错信息往下推</h3>
+          <p>
+            agent 在第 12 步把客户名字读错了，从第 13 步开始的所有动作（查记录、写回复、发邮件）全是错的，
+            但 <strong style="color: var(--color-foreground);">agent 自己看不出来——它没有第二双眼睛检查它的中间结果</strong>。
+            到第 30 步你发现不对，回去查日志，发现问题源头是第 12 步——但这一切已经发生在生产环境。
+            这是单 agent 模式最常见的事故来源。
+          </p>
+        </li>
+
+        <li class="item">
+          <span class="item-eyebrow">天花板 · 04 · ROLE COLLAPSE</span>
+          <h3>同时要它"做+检查+报告"，哪一样都做不好</h3>
+          <p>
+            你写了一段巨长的 prompt：先研究市场、再起草文案、再批判性 review、最后输出 markdown 报告。
+            <strong style="color: var(--color-foreground);">agent 在每个角色里都浅尝辄止——因为它没法在同一次推理里真正切换思维模式。</strong>
+            尤其是 "Drafter + Critic" 不分开，几乎一定会自圆其说：写文案的它和批评文案的它本就是同一个推理流。
+          </p>
+        </li>
+      </ul>
+
+      <aside class="aside">
+        <span class="aside-label">大白话收尾</span>
+        <p style="font-style: normal; font-family: var(--font-sans);">
+          上面 4 个天花板的共同点是——<strong>它们不是「等下一代模型就能解决」的问题</strong>。
+          GPT-5、Claude Opus 5、Gemini 4——再强的模型，单 context 跑超过它能力边界的任务还是会崩。
+          想要在这种边界之外干活，必须换结构——不是换模型。下面两节讲两种换结构的办法：Skills 和 Multi-agent。
+        </p>
+      </aside>
+    </div>
+  </section>
+
+  <!-- ============ § 3 SKILLS ============ -->
+  <section class="essay">
+    <div class="essay-inner">
+      <header class="section-head">
+        <span class="eyebrow">§ 03 · 解法 A · Skills</span>
+        <h2>Skills——分工的"轻量解"</h2>
+        <p class="lede">
+          很多人以为 Skill 是给 Agent 加新能力的方式。
+          更准确的说法是：<strong>Skill 是给一个 Agent 内部做分工</strong>——把工作流的某一段抽成可调用的独立单元，让 Agent 在该用的时候调，不需要的时候不污染主上下文。
+        </p>
+      </header>
+
+      <div style="margin-bottom: 2.5rem;">
+        <h3 style="font-size: 1.25rem; font-weight: 600; margin-bottom: 0.875rem; letter-spacing: var(--tracking-tight);">一个 Skill 包含什么</h3>
+        <p style="color: var(--color-muted-foreground); margin-bottom: 1.25rem;">
+          标准的 Skill 文件（比如 Claude Skills 的 <code style="font-family: var(--font-mono); font-size: 0.875rem; background: var(--color-muted); padding: 1px 6px; border-radius: 4px;">SKILL.md</code>）四要素：
+        </p>
+        <div class="terminal">
+          <div class="terminal-bar"><span class="terminal-title-tag">SKILL.md</span>email-triage / 一个最小可用结构</div>
+          <div class="terminal-body">
+            <div class="row"><span class="num">01</span><span class="step">DESCRIPTION</span><span class="mu">什么场景下调用我（agent 决策依据）</span></div>
+            <div class="row"><span class="num">02</span><span class="step">CONTRACT</span><span class="mu">输入是什么 / 输出是什么 / 错误怎么报</span></div>
+            <div class="row"><span class="num">03</span><span class="step">PROMPT</span><span class="mu">这段任务的核心指令（可含 few-shot 示例）</span></div>
+            <div class="row"><span class="num">04</span><span class="step">TOOLS</span><span class="mu">这个 skill 允许用的工具子集（不是 agent 全部工具）</span></div>
+            <div class="hr"></div>
+            <div class="row"><span class="ok">CORE INSIGHT</span><span class="mu">Skill = 工作流模块化 · 跟"功能扩展"无关</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div style="margin-bottom: 2.5rem;">
+        <h3 style="font-size: 1.25rem; font-weight: 600; margin-bottom: 0.875rem; letter-spacing: var(--tracking-tight);">Skill 适合什么场景</h3>
+        <ul class="sub-list">
+          <li><span><strong>一个 Agent 要做多种类型的活</strong>：与其在一个巨长 prompt 里塞 10 种 if-else，不如每种做一个 Skill，agent 自己判断调哪个</span></li>
+          <li><span><strong>某段工作流被多处复用</strong>：邮件分类、CSV 探索这种通用动作，写成 Skill 后多个高层 agent 都能调</span></li>
+          <li><span><strong>需要版本化 / 可审计</strong>：Skill 是文件，git 管理；prompt 改了能 diff，错了能 revert</span></li>
+          <li><span><strong>团队多人协作维护同一个 agent</strong>：每个人改自己负责的 Skill 文件，不会互相覆盖一个巨型 system prompt</span></li>
+        </ul>
+      </div>
+
+      <div>
+        <h3 style="font-size: 1.25rem; font-weight: 600; margin-bottom: 0.875rem; letter-spacing: var(--tracking-tight);">3 个能跑通的 Skill 例子</h3>
+
+        <div class="terminal" style="margin-bottom: 1rem;">
+          <div class="terminal-bar"><span class="terminal-title-tag">SKILL 01</span>email-triage</div>
+          <div class="terminal-body">
+            <div class="row"><span class="num">·</span><span class="step">when</span><span class="mu">用户问"今天的邮件" / "邮箱状态" / 提到 Gmail</span></div>
+            <div class="row"><span class="num">·</span><span class="step">does</span><span class="mu">读 Gmail → 5 类分类 → 起草回复 → 优先级排序</span></div>
+            <div class="row"><span class="num">·</span><span class="step">tools</span><span class="mu">Gmail Connector · 不需要其他</span></div>
+            <div class="row"><span class="num">·</span><span class="step">output</span><span class="mu">结构化 to-do JSON + 草稿列表</span></div>
+          </div>
+        </div>
+
+        <div class="terminal" style="margin-bottom: 1rem;">
+          <div class="terminal-bar"><span class="terminal-title-tag">SKILL 02</span>csv-explore</div>
+          <div class="terminal-body">
+            <div class="row"><span class="num">·</span><span class="step">when</span><span class="mu">用户上传 CSV / 提到"看一下数据" / "做个分析"</span></div>
+            <div class="row"><span class="num">·</span><span class="step">does</span><span class="mu">读取 → schema 推断 → 跑 pandas → 出图 + 写 insight</span></div>
+            <div class="row"><span class="num">·</span><span class="step">tools</span><span class="mu">Code Interpreter · matplotlib</span></div>
+            <div class="row"><span class="num">·</span><span class="step">output</span><span class="mu">3 张关键图 + 3 句话洞察</span></div>
+          </div>
+        </div>
+
+        <div class="terminal">
+          <div class="terminal-bar"><span class="terminal-title-tag">SKILL 03</span>meeting-summary</div>
+          <div class="terminal-body">
+            <div class="row"><span class="num">·</span><span class="step">when</span><span class="mu">用户粘录音转录 / 提到"刚开完会" / Granola 输出</span></div>
+            <div class="row"><span class="num">·</span><span class="step">does</span><span class="mu">提取决策 + 行动项 + 负责人 + DDL + 起草跟进邮件</span></div>
+            <div class="row"><span class="num">·</span><span class="step">tools</span><span class="mu">无外部 tool（纯 prompt skill）</span></div>
+            <div class="row"><span class="num">·</span><span class="step">output</span><span class="mu">Markdown 纪要 + 邮件草稿</span></div>
+          </div>
+        </div>
+      </div>
+
+      <aside class="aside" style="margin-top: 2rem;">
+        <span class="aside-label">Skill 不能解决什么</span>
+        <p style="font-style: normal; font-family: var(--font-sans);">
+          Skills 还是在<strong>同一个 Agent 的 context 里</strong>跑——只是把"知道怎么做"的部分外置了。
+          §02 的 4 个天花板里，Skill 能缓解 #02（Tool Overload，把 tool 按 skill 分组）和 #04（Role Collapse，让 agent 在不同 skill 里"短暂换角色"）。
+          <strong>但 #01 Context Drift 和 #03 Error Compounding 还是没解</strong>——那两个需要真正分 context。下一节讲。
+        </p>
+      </aside>
+    </div>
+  </section>
+
+  <!-- ============ § 4 MULTI-AGENT ============ -->
+  <section class="essay">
+    <div class="essay-inner">
+      <header class="section-head">
+        <span class="eyebrow">§ 04 · 解法 B · Multi-agent</span>
+        <h2>Multi-agent——分工的"重型解"</h2>
+        <p class="lede">
+          当 Skills 不够用——任务太大、单 context 装不下、或者必须有独立审核者——
+          就要上 Multi-agent。这里的"多"不是个数，是<strong style="color: var(--color-foreground);">独立 context</strong>：每个 agent 看到的世界不一样，互相之间通过协议交换状态。
+        </p>
+      </header>
+
+      <p style="color: var(--color-foreground); font-weight: 500; margin-bottom: 1rem;">
+        判断"是不是真 multi-agent"，看一个标准：<strong style="color: var(--color-foreground);">两个 agent 各自的 context 窗口是不是真的独立</strong>。
+        如果只是同一个 system prompt 里 "you are agent A...you are agent B"，那只是个角色扮演——不是 multi-agent。
+      </p>
+      <p style="color: var(--color-muted-foreground); margin-bottom: 2rem;">
+        真正的 multi-agent 有 4 种典型协作模式。它们解决的问题不同，复杂度不同。多数生产系统是这 4 种的组合。
+      </p>
+
+      <ul class="item-list">
+        <li class="item">
+          <span class="item-eyebrow">模式 · 01 · MANAGER–WORKER</span>
+          <h3>一个 Manager 拆任务，N 个 Worker 各自执行</h3>
+          <p>
+            最常见、最容易理解。Manager agent 收到一个大任务，把它拆成 N 个子任务，
+            分发给专门的 Worker agents，<strong style="color: var(--color-foreground);">每个 worker 用独立 context 跑自己那一段</strong>，
+            完成后汇报给 manager，manager 汇总并出最终结果。
+          </p>
+          <div class="terminal" style="margin-top: 0.75rem;">
+            <div class="terminal-bar"><span class="terminal-title-tag">USE</span>写一份 50 页调研报告 · Manager–Worker 实现</div>
+            <div class="terminal-body">
+              <div class="row"><span class="num">·</span><span class="step">MANAGER</span><span class="mu">拆成 8 个章节 → 分配给 8 个 Researcher</span></div>
+              <div class="row"><span class="num">·</span><span class="step">WORKER ×8</span><span class="mu">每个独立查资料、写自己那章 · 互不干扰</span></div>
+              <div class="row"><span class="num">·</span><span class="step">MANAGER</span><span class="mu">收齐 8 份 → 统一风格 → 写引言 + 结论</span></div>
+              <div class="hr"></div>
+              <div class="row"><span class="ok">WHEN TO USE</span><span class="mu">任务能被静态拆分 · 子任务之间没有强依赖</span></div>
+            </div>
+          </div>
+        </li>
+
+        <li class="item">
+          <span class="item-eyebrow">模式 · 02 · PIPELINE</span>
+          <h3>Agent A → Agent B → Agent C，每步处理完丢给下一步</h3>
+          <p>
+            流水线式。每个 agent 负责一个阶段的转化，<strong style="color: var(--color-foreground);">前一个 agent 的输出 = 后一个 agent 的输入</strong>。
+            和 Manager–Worker 的区别：流水线是串行单线，没有中央调度者。
+          </p>
+          <div class="terminal" style="margin-top: 0.75rem;">
+            <div class="terminal-bar"><span class="terminal-title-tag">USE</span>内容生产 · Pipeline 实现</div>
+            <div class="terminal-body">
+              <div class="row"><span class="num">01</span><span class="step">RESEARCHER</span><span class="mu">挖 10 篇同行爆款 → 提炼共性</span></div>
+              <div class="row"><span class="num">02</span><span class="step">IDEATOR</span><span class="mu">基于研究 → 出 7 个选题 + 大纲</span></div>
+              <div class="row"><span class="num">03</span><span class="step">WRITER</span><span class="mu">写完整草稿</span></div>
+              <div class="row"><span class="num">04</span><span class="step">EDITOR</span><span class="mu">校稿、改人设语料</span></div>
+              <div class="row"><span class="num">05</span><span class="step">PUBLISHER</span><span class="mu">排版 + 多平台适配 + 排期</span></div>
+              <div class="hr"></div>
+              <div class="row"><span class="ok">WHEN TO USE</span><span class="mu">任务是一条线性产业链 · 每段都有专门技能要求</span></div>
+            </div>
+          </div>
+        </li>
+
+        <li class="item">
+          <span class="item-eyebrow">模式 · 03 · SPECIALIST ROUNDTABLE</span>
+          <h3>多个专家 Agent 并行看同一个问题，最后一个 Synthesizer 汇总</h3>
+          <p>
+            "三家会诊"模式。同一个输入<strong style="color: var(--color-foreground);">同时</strong>送给多个专家 agent，
+            每个 agent 用自己的专业 lens 看，给出独立判断；最后一个 synthesizer 把多视角合并。
+            重点是<strong>并行</strong>——专家之间互不沟通，避免彼此污染。
+          </p>
+          <div class="terminal" style="margin-top: 0.75rem;">
+            <div class="terminal-bar"><span class="terminal-title-tag">USE</span>股票决策 · Roundtable 实现</div>
+            <div class="terminal-body">
+              <div class="row"><span class="num">·</span><span class="step">QUANT</span><span class="mu">看技术面 (双均线、RSI、量价) · 独立打分</span></div>
+              <div class="row"><span class="num">·</span><span class="step">FUNDAMENTAL</span><span class="mu">看财报、行业、估值 · 独立打分</span></div>
+              <div class="row"><span class="num">·</span><span class="step">SENTIMENT</span><span class="mu">看新闻、社媒、机构动作 · 独立打分</span></div>
+              <div class="row"><span class="num">·</span><span class="step">RISK</span><span class="mu">看仓位、波动、关联性 · 独立打分</span></div>
+              <div class="row"><span class="num">·</span><span class="step">SYNTHESIZER</span><span class="mu">汇总 4 个独立结论 → 出决策建议</span></div>
+              <div class="hr"></div>
+              <div class="row"><span class="ok">WHEN TO USE</span><span class="mu">需要多个独立视角 · 怕"单一思维定式"</span></div>
+            </div>
+          </div>
+        </li>
+
+        <li class="item">
+          <span class="item-eyebrow">模式 · 04 · ADVERSARIAL</span>
+          <h3>Drafter 写，Critic 挑刺，反复迭代到收敛</h3>
+          <p>
+            对抗式。一个 agent 负责产出（Drafter），另一个 agent <strong style="color: var(--color-foreground);">天职就是找问题</strong>（Critic）。
+            两者来回多轮，直到 Critic 没意见或迭代次数到上限。
+            解决的核心问题：单 agent "自己审自己" 几乎一定自圆其说。
+          </p>
+          <div class="terminal" style="margin-top: 0.75rem;">
+            <div class="terminal-bar"><span class="terminal-title-tag">USE</span>代码 Review · Adversarial 实现</div>
+            <div class="terminal-body">
+              <div class="row"><span class="num">01</span><span class="step">DRAFTER</span><span class="mu">读 issue → 写实现 + 测试 → 提交 v1</span></div>
+              <div class="row"><span class="num">02</span><span class="step">CRITIC</span><span class="mu">挑刺 (边界、安全、性能、可读性) → 列改进项</span></div>
+              <div class="row"><span class="num">03</span><span class="step">DRAFTER</span><span class="mu">基于反馈改 → 提交 v2</span></div>
+              <div class="row"><span class="num">04</span><span class="step">CRITIC</span><span class="mu">再 review → 直到通过或达 3 轮</span></div>
+              <div class="hr"></div>
+              <div class="row"><span class="ok">WHEN TO USE</span><span class="mu">产出质量是死命题 · 错了代价大 (代码 / 合同 / 法律意见)</span></div>
+            </div>
+          </div>
+        </li>
+      </ul>
+
+      <aside class="aside" style="margin-top: 2rem;">
+        <span class="aside-label">大白话收尾</span>
+        <p style="font-style: normal; font-family: var(--font-sans);">
+          上面 4 种模式不互斥——多数真实生产系统是组合。
+          比如内容生产 pipeline 里，"Writer" 那一站可能本身是 Drafter+Critic 的 Adversarial 子结构；
+          "Researcher" 那一站可能是 Manager–Worker（manager 拆 5 个角度，5 个 worker 各查一份资料）。
+          <strong>设计 multi-agent 系统的核心，不是选哪种模式，而是想清楚每个 agent 看到什么、不看到什么。</strong>
+        </p>
+      </aside>
+    </div>
+  </section>
+
+  <!-- ============ § 5 USE CASES ============ -->
+  <section class="essay">
+    <div class="essay-inner wide">
+      <header class="section-head">
+        <span class="eyebrow">§ 05 · 6 个真实工作流</span>
+        <h2>每个工作流都是 §03/§04 讲过的一种结构</h2>
+        <p class="lede">
+          下面 6 个系统，覆盖 4 种 multi-agent 模式 + Skills 组合。
+          挑一个跟你工作最近的——复制结构，换里面的 prompt 和工具——多数情况能直接跑通。
+          每条都标了用的是哪种模式，方便你回头对照 §03/§04 看。
+        </p>
+      </header>
+
+      <ul class="use-list">
+
+        <!-- ───── CASE 01 · CUSTOMER SUPPORT · MANAGER-WORKER ───── -->
+        <li class="use">
+          <div class="use-top">
+            <span class="use-label" style="color:#2d5e44">CASE · 01 · 客户支持 · MANAGER-WORKER</span>
+            <span class="use-gain">单工单 8min → 1min · 人手减半</span>
+          </div>
+          <h3>200 张工单 5 个人处理不完——分类用 manager，处理用 worker</h3>
+          <p style="color:var(--color-foreground);font-weight:500;margin-bottom:1rem;">
+            反共识：客服效率瓶颈不是手速，是分类。
+            <strong>一个 manager 用 30 秒读完工单 + 分类，胜过 5 个客服各自 10 分钟的"先看是什么"</strong>。
+            然后每类工单交给专门 worker，每个 worker 只见过自己类别的训练上下文，处理质量比 generalist 高。
+          </p>
+          <div class="terminal">
+            <div class="terminal-bar"><span class="terminal-title-tag">WORKFLOW</span>客服工单自动分流（Manager-Worker · 含 Skill）</div>
+            <div class="terminal-body">
+              <div class="row"><span class="num">01</span><span class="step">INTAKE</span><span class="mu">Zendesk webhook · 新工单触发</span></div>
+              <div class="row"><span class="num">02</span><span class="step">MANAGER</span><span class="mu">读工单 · 5 类分类（退款 / 技术 / 投诉 / 咨询 / 升级）</span></div>
+              <div class="row"><span class="num">03</span><span class="step">WORKER A</span><span class="mu">退款 skill · 查订单 + 起草退款流程</span></div>
+              <div class="row"><span class="num">04</span><span class="step">WORKER B</span><span class="mu">技术 skill · 查日志 + 起草修复步骤</span></div>
+              <div class="row"><span class="num">05</span><span class="step">WORKER C</span><span class="mu">投诉 skill · 起草道歉 + 升级到人工</span></div>
+              <div class="row"><span class="num">06</span><span class="step">SUPERVISOR</span><span class="mu">随机抽 5% 由人工 review · 反馈优化 manager</span></div>
+              <div class="hr"></div>
+              <div class="row"><span class="ok">SETUP</span><span class="mu">2 周</span>　·　<span class="ok">ROI</span><span class="mu">8min → 1min · 客服团队 5 → 2 人</span></div>
+            </div>
+          </div>
+          <div class="use-meta">
+            <span class="chip">Claude API</span>
+            <span class="chip">Zendesk / Intercom</span>
+            <span class="chip">n8n</span>
+            <span class="chip">PostgreSQL</span>
+          </div>
+        </li>
+
+        <!-- ───── CASE 02 · SALES OUTREACH · PIPELINE ───── -->
+        <li class="use">
+          <div class="use-top">
+            <span class="use-label" style="color:#5a8270">CASE · 02 · 销售触达 · PIPELINE</span>
+            <span class="use-gain">触达 3× · 回复率 +40%</span>
+          </div>
+          <h3>200 个 prospect，4 段流水线干完 1 个 SDR 4 天的活</h3>
+          <p style="color:var(--color-foreground);font-weight:500;margin-bottom:1rem;">
+            反共识：个性化邮件慢，不是写得慢——是<strong>"研究 + 写"在同一个人脑里来回切换慢</strong>。
+            把这两步分成两个 agent，再加 sender + tracker，整个 pipeline 跑起来一个人能干四个人的活。
+          </p>
+          <div class="terminal">
+            <div class="terminal-bar"><span class="terminal-title-tag">WORKFLOW</span>Cold outreach（Pipeline · 4 段串行）</div>
+            <div class="terminal-body">
+              <div class="row"><span class="num">01</span><span class="step">RESEARCHER</span><span class="mu">输入公司列表 · 拉财报 / 新闻 / 决策链 / 痛点信号</span></div>
+              <div class="row"><span class="num">02</span><span class="step">PERSONALIZER</span><span class="mu">基于研究 · 写定制开场白 + 价值 hook</span></div>
+              <div class="row"><span class="num">03</span><span class="step">SENDER</span><span class="mu">按最佳时间发送 · 跟踪打开 / 点击</span></div>
+              <div class="row"><span class="num">04</span><span class="step">TRACKER</span><span class="mu">3 天未回 → 触发不同跟进策略（A/B）</span></div>
+              <div class="row"><span class="num">05</span><span class="step">FEEDBACK</span><span class="mu">回复内容 → 回到 Personalizer 调写作风格</span></div>
+              <div class="hr"></div>
+              <div class="row"><span class="ok">SETUP</span><span class="mu">1 周</span>　·　<span class="ok">ROI</span><span class="mu">每周触达 200 个 prospect · 回复率从 5% → 7%</span></div>
+            </div>
+          </div>
+          <div class="use-meta">
+            <span class="chip">Apollo</span>
+            <span class="chip">Clay</span>
+            <span class="chip">Claude API</span>
+            <span class="chip">Lemlist / Instantly</span>
+            <span class="chip">HubSpot</span>
+          </div>
+        </li>
+
+        <!-- ───── CASE 03 · CODE REVIEW · ADVERSARIAL ───── -->
+        <li class="use">
+          <div class="use-top">
+            <span class="use-label" style="color:#d4a657">CASE · 03 · 代码 Review · ADVERSARIAL</span>
+            <span class="use-gain">生产 bug -50% · PR 通过率 +30%</span>
+          </div>
+          <h3>Drafter + 3 个 Critic 互喷，bug 量减半</h3>
+          <p style="color:var(--color-foreground);font-weight:500;margin-bottom:1rem;">
+            反共识：让同一个 agent 写代码又 review 代码——它一定会觉得自己写得挺好。
+            <strong>必须用独立 context 的 critic agent，并且每个 critic 只负责一类风险</strong>。
+            安全 critic 不会被性能问题分心，性能 critic 不会忽略可读性——三个 critic 一起喷，才能让 drafter 真的改。
+          </p>
+          <div class="terminal">
+            <div class="terminal-bar"><span class="terminal-title-tag">WORKFLOW</span>PR 多视角 Review（Adversarial · 1 写 3 critic）</div>
+            <div class="terminal-body">
+              <div class="row"><span class="num">01</span><span class="step">DRAFTER</span><span class="mu">读 issue + 影响面 · 写实现 + 单测 · 提交 v1</span></div>
+              <div class="row"><span class="num">02</span><span class="step">CRITIC.SEC</span><span class="mu">SQL 注入 / XSS / 权限边界 / secret 泄露</span></div>
+              <div class="row"><span class="num">03</span><span class="step">CRITIC.PERF</span><span class="mu">N+1 / 死循环 / O(n²) / 缓存缺失</span></div>
+              <div class="row"><span class="num">04</span><span class="step">CRITIC.READ</span><span class="mu">命名 / 抽象层级 / 注释 / dead code</span></div>
+              <div class="row"><span class="num">05</span><span class="step">DRAFTER</span><span class="mu">合并 3 份反馈 → 出 v2 · 最多迭代 3 轮</span></div>
+              <div class="row"><span class="num">06</span><span class="step">HUMAN</span><span class="mu">你只看终版 + 各 critic 的最终 verdict</span></div>
+              <div class="hr"></div>
+              <div class="row"><span class="ok">SETUP</span><span class="mu">3 天</span>　·　<span class="ok">ROI</span><span class="mu">PR review 时间从 30min → 5min · 生产 bug -50%</span></div>
+            </div>
+          </div>
+          <div class="use-meta">
+            <span class="chip">Claude Code</span>
+            <span class="chip">GitHub Actions</span>
+            <span class="chip">Aider</span>
+            <span class="chip">Cursor</span>
+          </div>
+        </li>
+
+        <!-- ───── CASE 04 · MARKET INTELLIGENCE · ROUNDTABLE ───── -->
+        <li class="use">
+          <div class="use-top">
+            <span class="use-label" style="color:#c2a8ff">CASE · 04 · 竞品 / 市场情报 · ROUNDTABLE</span>
+            <span class="use-gain">单标的调研 1 周 → 1 小时</span>
+          </div>
+          <h3>4 个专家 agent 并行看同一家公司，最后 synthesizer 出威胁评级</h3>
+          <p style="color:var(--color-foreground);font-weight:500;margin-bottom:1rem;">
+            反共识：让一个 generalist agent 写一份"完整竞品报告"——它会写得四平八稳但没有 insight。
+            <strong>用 4 个 specialist agent 并行看同一家公司，每个只看自己的领域，最后 synthesizer 合并</strong>——
+            得到的报告比一个 agent 的强 3-5 倍，因为视角真的独立了。
+          </p>
+          <div class="terminal">
+            <div class="terminal-bar"><span class="terminal-title-tag">WORKFLOW</span>竞品多视角分析（Roundtable · 4 并行 + 1 合并）</div>
+            <div class="terminal-body">
+              <div class="row"><span class="num">·</span><span class="step">TECH</span><span class="mu">技术栈 / 产品矩阵 / 工程能力 / 招聘信号</span></div>
+              <div class="row"><span class="num">·</span><span class="step">FINANCIAL</span><span class="mu">融资节奏 / 财报 / 估值 / 烧钱速度</span></div>
+              <div class="row"><span class="num">·</span><span class="step">GTM</span><span class="mu">渠道 / 定价 / 营销动作 / 客户基础</span></div>
+              <div class="row"><span class="num">·</span><span class="step">PEOPLE</span><span class="mu">高管变动 / 团队规模 / 关键人物 X 动态</span></div>
+              <div class="hr"></div>
+              <div class="row"><span class="num">★</span><span class="step">SYNTHESIZER</span><span class="mu">汇总 4 个独立结论 · 出"威胁等级 + 你该做什么"</span></div>
+              <div class="hr"></div>
+              <div class="row"><span class="ok">SETUP</span><span class="mu">3 天</span>　·　<span class="ok">ROI</span><span class="mu">竞品调研 1 周 → 1 小时 · 月度刷新 5 个标的</span></div>
+            </div>
+          </div>
+          <div class="use-meta">
+            <span class="chip">Perplexity API</span>
+            <span class="chip">Crunchbase</span>
+            <span class="chip">LinkedIn API</span>
+            <span class="chip">Claude</span>
+            <span class="chip">Notion</span>
+          </div>
+        </li>
+
+        <!-- ───── CASE 05 · CONTENT PRODUCTION · HYBRID ───── -->
+        <li class="use">
+          <div class="use-top">
+            <span class="use-label" style="color:var(--color-foreground)">CASE · 05 · 内容生产 · HYBRID（Pipeline + Adversarial）</span>
+            <span class="use-gain">单人单日 1 篇 → 5 篇</span>
+          </div>
+          <h3>Pipeline 串 4 站 + 中间嵌一段 Adversarial，质量比单 agent 高 + 量翻 5 倍</h3>
+          <p style="color:var(--color-foreground);font-weight:500;margin-bottom:1rem;">
+            反共识：99% 的"AI 写作工具"是单 agent 跑全流程——结果是 AI 味浓 + 视角单一。
+            <strong>真正能稳定产出的内容工厂是混合结构：Pipeline 提供流水线效率，关键的"写 + 改"那站用 Adversarial 提供质量</strong>。
+          </p>
+          <div class="terminal">
+            <div class="terminal-bar"><span class="terminal-title-tag">WORKFLOW</span>内容工厂（Pipeline 主线 + Adversarial 嵌套）</div>
+            <div class="terminal-body">
+              <div class="row"><span class="num">01</span><span class="step">RESEARCHER</span><span class="mu">扫同行 + Perplexity Deep Research · 出选题 + 资料</span></div>
+              <div class="row"><span class="num">02a</span><span class="step">WRITER</span><span class="mu">基于资料写初稿 · 按人设语料调 voice</span></div>
+              <div class="row"><span class="num">02b</span><span class="step">EDITOR ⟷</span><span class="mu">挑刺 (节奏 / 钩子 / 反共识强度 / AI 味)</span></div>
+              <div class="row"><span class="num">02c</span><span class="step">WRITER ⟷</span><span class="mu">改 · 再 review · 最多 3 轮直到 EDITOR pass</span></div>
+              <div class="row"><span class="num">03</span><span class="step">ADAPTER</span><span class="mu">一稿多平台 (Twitter / 小红书 / 公众号 / YouTube 描述)</span></div>
+              <div class="row"><span class="num">04</span><span class="step">SCHEDULER</span><span class="mu">Buffer / Hypefury 排期 + 数据回流</span></div>
+              <div class="hr"></div>
+              <div class="row"><span class="ok">SETUP</span><span class="mu">2 周（建人设语料）</span>　·　<span class="ok">ROI</span><span class="mu">单人 1 篇/天 → 5 篇/天 · AI 味检测下降明显</span></div>
+            </div>
+          </div>
+          <div class="use-meta">
+            <span class="chip">Perplexity</span>
+            <span class="chip">Claude</span>
+            <span class="chip">Buffer / Hypefury</span>
+            <span class="chip">Notion</span>
+            <span class="chip">CapCut</span>
+          </div>
+        </li>
+
+        <!-- ───── CASE 06 · DATA EXPLORATION · MANAGER-WORKER ───── -->
+        <li class="use">
+          <div class="use-top">
+            <span class="use-label" style="color:var(--color-foreground)">CASE · 06 · 跨库数据探索 · MANAGER-WORKER</span>
+            <span class="use-gain">多表关联分析 4h → 15min</span>
+          </div>
+          <h3>50 张表关联分析——一个 Agent 装不下，10 个 Worker 并行查</h3>
+          <p style="color:var(--color-foreground);font-weight:500;margin-bottom:1rem;">
+            反共识：数据分析师最头疼的不是写 SQL，是<strong>10 张表的 schema 加起来塞不进一个 agent 的 context</strong>。
+            把"理解 schema"这一步分到各 worker（每个 worker 只熟悉一张表），manager 只负责拆问题 + 拼答案——
+            一个本来要"上下文塞不下"的任务，现在能 10 分钟交差。
+          </p>
+          <div class="terminal">
+            <div class="terminal-bar"><span class="terminal-title-tag">WORKFLOW</span>跨库探索（Manager-Worker · 解决 Context 容量）</div>
+            <div class="terminal-body">
+              <div class="row"><span class="num">01</span><span class="step">MANAGER</span><span class="mu">读用户问题 · 拆成 N 个独立子查询（每个只查 1-2 张表）</span></div>
+              <div class="row"><span class="num">02</span><span class="step">WORKER ×N</span><span class="mu">每个 worker 用独立 context · 只装自己负责的 schema</span></div>
+              <div class="row"><span class="num">03</span><span class="step">WORKER ×N</span><span class="mu">各自跑 SQL · 校验结果 · 输出结构化数据</span></div>
+              <div class="row"><span class="num">04</span><span class="step">MANAGER</span><span class="mu">收齐 N 份子结果 · 跨结果 JOIN / 计算 · 出图</span></div>
+              <div class="row"><span class="num">05</span><span class="step">MANAGER</span><span class="mu">写中文 insight + 异常提示</span></div>
+              <div class="hr"></div>
+              <div class="row"><span class="ok">SETUP</span><span class="mu">1 周</span>　·　<span class="ok">ROI</span><span class="mu">本来 context 装不下的任务 · 现在能跑通 · 4h → 15min</span></div>
+            </div>
+          </div>
+          <div class="use-meta">
+            <span class="chip">Claude Code</span>
+            <span class="chip">Snowflake / BigQuery</span>
+            <span class="chip">DuckDB</span>
+            <span class="chip">LangGraph</span>
+            <span class="chip">Plotly</span>
+          </div>
+        </li>
+
+      </ul>
+    </div>
+  </section>
+
+  <!-- ============ § 6 DECISION TREE ============ -->
+  <section class="essay">
+    <div class="essay-inner">
+      <header class="section-head">
+        <span class="eyebrow">§ 06 · 选型决策树</span>
+        <h2>单 Agent · Skill · Multi-agent — 什么时候选什么</h2>
+        <p class="lede">
+          选型不要看"看起来高不高级"——看你的任务有没有触发某个具体信号。
+          下面 3 个判断题，按顺序问，<strong style="color: var(--color-foreground);">停在第一个 YES</strong>。
+        </p>
+      </header>
+
+      <ul class="item-list">
+        <li class="item">
+          <span class="item-eyebrow">LEVEL · 01 · SINGLE AGENT</span>
+          <h3>你的任务能在 10 步内完成、且不会反复发生？</h3>
+          <p>
+            如果是：<strong style="color:var(--color-foreground);">不要上 Skill，更不要上 Multi-agent。</strong>
+            你只需要一个 ChatGPT / Claude 窗口 + 一段 prompt。Skills 和 Multi-agent 都有维护成本——任务不重复就别立基础设施。
+          </p>
+          <div style="margin-top: 0.875rem; color: var(--color-muted-foreground); font-size: 0.9375rem;">
+            <strong style="color: var(--color-foreground);">触发信号</strong>：每周 0-1 次的临时任务 · 单一职能 · 无并行需求
+            <br>
+            <strong style="color: var(--color-foreground);">真实例子</strong>：写一封一次性邮件 / 调研一个临时问题 / 查一份资料
+          </div>
+        </li>
+
+        <li class="item">
+          <span class="item-eyebrow">LEVEL · 02 · SINGLE AGENT + SKILLS</span>
+          <h3>同一个 Agent 要做 5+ 种类型的活，或者某段工作流反复复用？</h3>
+          <p>
+            如果是：上 Skills，<strong style="color:var(--color-foreground);">但还不需要 Multi-agent</strong>。
+            Skills 让一个 Agent 像一个团队那样干活——同一个 context，可调用模块化能力。维护成本中等：要写 SOP，但只有一个 agent 在跑。
+          </p>
+          <div style="margin-top: 0.875rem; color: var(--color-muted-foreground); font-size: 0.9375rem;">
+            <strong style="color: var(--color-foreground);">触发信号</strong>：同一 agent 处理 5+ 类任务 · 某段工作流被多处复用 · 需要团队协作维护 prompt
+            <br>
+            <strong style="color: var(--color-foreground);">真实例子</strong>：个人助理（邮件 + 日历 + Notion + 备忘） / 一体化客服（多类工单 + 知识库 + 升级）
+          </div>
+        </li>
+
+        <li class="item">
+          <span class="item-eyebrow">LEVEL · 03 · MULTI-AGENT</span>
+          <h3>任一信号触发：context 超载 / 需要独立审核者 / 需要真并行？</h3>
+          <p>
+            如果是：上 Multi-agent。<strong style="color:var(--color-foreground);">但准备好为协议设计、调试链路、监控状态多花 5-10×的工作量</strong>。
+            Multi-agent 不是"更高级的版本"，是<strong>不得不分工</strong>时的选择。
+          </p>
+          <div style="margin-top: 0.875rem; color: var(--color-muted-foreground); font-size: 0.9375rem;">
+            <strong style="color: var(--color-foreground);">触发信号</strong>：单 agent 跑过 50 步会漂移 · 必须独立眼挑刺 · 4+ 子任务可并行 · context 装不下完整 schema
+          </div>
+          <div class="terminal" style="margin-top: 1rem;">
+            <div class="terminal-bar"><span class="terminal-title-tag">SUB-CHOICE</span>4 种模式怎么选</div>
+            <div class="terminal-body">
+              <div class="row"><span class="num">·</span><span class="step">MANAGER-WORKER</span><span class="mu">任务能静态拆分 · 子任务互相独立</span></div>
+              <div class="row"><span class="num">·</span><span class="step">PIPELINE</span><span class="mu">任务是顺序转化 · 每步有专门技能</span></div>
+              <div class="row"><span class="num">·</span><span class="step">ROUNDTABLE</span><span class="mu">需要多个独立视角 · 怕思维定式</span></div>
+              <div class="row"><span class="num">·</span><span class="step">ADVERSARIAL</span><span class="mu">质量是死命题 · 错代价大 (代码 / 合同)</span></div>
+              <div class="hr"></div>
+              <div class="row"><span class="ok">REMEMBER</span><span class="mu">多数生产系统是 2-3 种模式的嵌套组合</span></div>
+            </div>
+          </div>
+        </li>
+      </ul>
+
+      <aside class="aside">
+        <span class="aside-label">大白话收尾</span>
+        <p style="font-style: normal; font-family: var(--font-sans);">
+          一个常见的错误：看到"Multi-agent"这个词就觉得高级，硬给一个简单任务搭多 agent。
+          <strong>正确的路径是反过来——能用单 agent 解决就别上 skill，能用 skill 就别上 multi-agent。</strong>
+          复杂度永远朝着低维度退——这不是"工程师懒"，是 §02 那 4 个天花板的反向应用：
+          维度越简单，越不容易踩到天花板。
+        </p>
+      </aside>
+    </div>
+  </section>
+
+  <!-- ============ § 7 MARKET OBSERVATION ============ -->
+  <section class="essay">
+    <div class="essay-inner">
+      <header class="section-head">
+        <span class="eyebrow">§ 07 · 市场观察</span>
+        <h2>关于 Multi-agent 和 Skills，市场上 5 句不太对的话</h2>
+        <p class="lede">
+          Ep 01 讲的是"AI 应用周边市场"——卖焦虑、卖确定性。
+          这一节聚焦 Ep 02 的两个词：multi-agent 和 skills 各自被市场加工成了什么。
+          看清楚之后，你能更快判断一个产品 / 文章 / 课程到底有没有真东西。
+        </p>
+      </header>
+
+      <ul class="item-list">
+        <li class="item">
+          <span class="item-eyebrow">观察 · 01 · LANGGRAPH WRAPPER</span>
+          <h3>"Multi-agent Platform / OS"</h3>
+          <p>
+            2024-2026 涌出大量"Multi-agent OS / 平台"创业项目。<strong style="color:var(--color-foreground);">多数本质是 LangGraph + 一层 UI</strong>，
+            agent 之间根本没有真正独立的 context。判断标准很简单：问他们"两个 agent 各自能看到什么 system prompt？"——
+            答不出具体边界，就是个 wrapper。
+          </p>
+        </li>
+
+        <li class="item">
+          <span class="item-eyebrow">观察 · 02 · MORE TOOLS &gt; BETTER AGENT</span>
+          <h3>"我们的 Agent 装了 100+ Skills"</h3>
+          <p>
+            "Skills 数量"被当成卖点，但 §02-02 的 Tool Overload 天花板对 skills 同样成立——
+            <strong style="color:var(--color-foreground);">装得越多，agent 选择哪个 skill 的判断越乱</strong>。
+            生产实测：超过 15-20 个 skills 后，召回准确率断崖式下跌。
+            装精的 10 个 &gt; 装杂的 50 个。
+          </p>
+        </li>
+
+        <li class="item">
+          <span class="item-eyebrow">观察 · 03 · ACADEMIC vs PRACTICAL</span>
+          <h3>"Multi-agent 是通向 AGI 的路径"</h3>
+          <p>
+            这是学术界辩了 20 年的话题（agent-based modeling, swarm intelligence, multi-agent reinforcement learning…），
+            <strong style="color:var(--color-foreground);">跟你今天搭一个能跑通客服工单的系统没有关系</strong>。
+            这种宏大叙事经常被用来给一个简单的 LangGraph demo 装门面——听到就先记住：再宏大也得能跑工单。
+          </p>
+        </li>
+
+        <li class="item">
+          <span class="item-eyebrow">观察 · 04 · PROPRIETARY FRAMING</span>
+          <h3>"Skill 是 Anthropic 的专有功能"</h3>
+          <p>
+            错。Skill 不是某个厂商的功能，是<strong style="color:var(--color-foreground);">一种设计模式</strong>。
+            它跟 OpenAI Custom GPT Actions、LangChain Tools、自己写的 modular prompt 文件、
+            甚至 Unix 工具 + 一段 README 文档，本质都是同一回事——把可复用的能力打包成可被发现 + 可被调用的单元。
+            谁封装得最干净是另一回事，但概念不归任何一家。
+          </p>
+        </li>
+
+        <li class="item">
+          <span class="item-eyebrow">观察 · 05 · WRONG ORDER</span>
+          <h3>"复杂任务必须用 Multi-agent"</h3>
+          <p>
+            通常说反了。复杂任务最该做的第一件事是<strong style="color:var(--color-foreground);">SOP 化</strong>——把它拆成可重复的步骤、明确每步的输入输出。
+            做完 SOP 之后，多数任务的"复杂度"会下降到能用单 agent + skills 解决；只有真正剩下的、需要并行 / 独立审核的部分才上 multi-agent。
+            顺序搞反——直接堆 multi-agent——结果是用昂贵的协调成本掩盖你没想清楚的工作流。
+          </p>
+        </li>
+      </ul>
+
+      <aside class="aside">
+        <span class="aside-label">大白话收尾</span>
+        <p style="font-style: normal; font-family: var(--font-sans);">
+          上面 5 条共同点：<strong>把工程问题包装成营销话题</strong>。
+          辨别一个 multi-agent / skill 产品有没有真东西，就一个问题——
+          它具体解决了 §02 那 4 个天花板中的哪一个？答不上来的，多半是包装。
+        </p>
+      </aside>
+    </div>
+  </section>
+
+  <!-- ============ § 8 90-DAY PATH ============ -->
+  <section class="essay">
+    <div class="essay-inner">
+      <header class="section-head">
+        <span class="eyebrow">§ 08 · 接下来 90 天</span>
+        <h2>从单 Agent 走向 Multi-agent 的 12 周</h2>
+        <p class="lede">
+          这是 Ep 01 的 90 天路径的延伸版——
+          假设你已经能用单 agent + 1 个 Project 解决日常任务（Ep 01 Week 9-12 走通的状态）。
+          接下来 12 周，从「单 agent + 1 Skill」走到「3 agent 协作系统」。
+          每周一个失败信号，亮了就回退。
+        </p>
+      </header>
+
+      <ul class="timeline">
+        <li class="tl">
+          <span class="tl-week">WEEK 1 – 2 · 找候选</span>
+          <h3>列出你工作流里 3 个最高频的子任务</h3>
+          <p>
+            <strong style="color: var(--color-foreground);">不是找"想用 AI 替代的活"</strong>——是找"每周做 5+ 次、每次步骤几乎一样"的事。
+            这些是 Skill 的天然候选。写下来：任务名 / 频率 / 输入 / 输出 / 当前耗时。
+            <strong style="color: var(--color-foreground);">失败信号：</strong>列不出 3 个——说明你的工作流还没规律化，回 Ep 01。
+            <strong>怎么办：</strong>继续做一周纯人工，每做一件事记一笔。
+          </p>
+        </li>
+        <li class="tl">
+          <span class="tl-week">WEEK 3 – 4 · 写第一个 Skill</span>
+          <h3>挑最痛的那个候选 — 写成 SKILL.md 跑通</h3>
+          <p>
+            按 §03 那 4 要素（DESCRIPTION / CONTRACT / PROMPT / TOOLS）写一个独立文件。
+            在 Claude Code 或自己的 agent 里挂上，连跑一周——<strong style="color: var(--color-foreground);">每次需要这个任务时只调它，不手写 prompt</strong>。
+            <strong style="color: var(--color-foreground);">失败信号：</strong>第 4 周末你还在频繁手动改 SKILL.md 里的 prompt。
+            <strong>怎么办：</strong>不是 Skill 不行——是你选的任务还不够 SOP。回去拆得更具体。
+          </p>
+        </li>
+        <li class="tl">
+          <span class="tl-week">WEEK 5 – 8 · 装满一个 Agent</span>
+          <h3>写 3-5 个 Skill，装到同一个 Agent</h3>
+          <p>
+            把 Week 1-2 列的另外 2-4 个任务也做成 Skill。
+            现在你的 agent 应该能在一个 context 里处理 5 种不同类型的活——
+            <strong style="color: var(--color-foreground);">体验上，从"通用助理"升级成"有专业能力的同事"</strong>。
+            <strong style="color: var(--color-foreground);">失败信号：</strong>agent 经常调错 Skill / 把两个 Skill 的逻辑混着用。
+            <strong>怎么办：</strong>说明你装太多了——压回 3 个最高频的，剩下的留到 Multi-agent 阶段。
+          </p>
+        </li>
+        <li class="tl">
+          <span class="tl-week">WEEK 9 – 12 · 第一次分工</span>
+          <h3>挑一个跑不通的复杂任务，设计 2-3 agent 协作</h3>
+          <p>
+            找一个 §02 天花板真撞到的任务——单 agent 跑过 50 步崩、或需要独立 critic、或需要并行处理。
+            按 §04 4 种模式选一种，搭一个最小可用 multi-agent 系统。
+            <strong style="color: var(--color-foreground);">不要做大、做完整——做能跑通最简单版本即可</strong>。
+            <strong style="color: var(--color-foreground);">失败信号：</strong>到第 12 周还在调 prompt / 协议，跑不通 end-to-end。
+            <strong>怎么办：</strong>多数时候是你想搭的系统太复杂——拆到只剩两个 agent，看哪个真有必要独立。
+          </p>
+        </li>
+      </ul>
+
+      <p style="margin-top: 2rem; color: var(--color-muted-foreground); font-size: 0.9375rem;">
+        <strong style="color: var(--color-foreground); font-weight: 600;">12 周后你该能回答这个问题：</strong>
+        "我现在每天工作的哪一段，是同一个 Agent 调一组 Skill 跑完的？哪一段是几个 Agent 协作跑完的？"
+        <br><br>
+        能具体指出这两段、有产出物、有日志——你就跨过了 Ep 01 → Ep 02 的边界。
+        回答不出来——说明你还是在用"一个 ChatGPT 窗口"在做事，没"搭系统"。
+      </p>
+    </div>
+  </section>
+
+  <!-- ============ CTA ============ -->
+  <section id="cta" class="essay">
+    <div class="essay-inner">
+      <header class="section-head" style="text-align:center;">
+        <span class="eyebrow" style="display:inline-block;">Real Agent Use Cases</span>
+        <h2 style="margin-top: 0.75rem;">从单 Agent 到 Multi-agent，差的不是新概念，是你<br>选一个工作流坐下来真搭</h2>
+        <p class="lede" style="margin-left:auto;margin-right:auto;">
+          这一课讲完，你能分清单 Agent / Skills / Multi-agent 各自该在哪用。
+          但<strong style="color:var(--color-foreground);">「分得清」≠「搭得出」</strong>。
+          下一节课讲哪个题，取决于这一课的内容你有没有真正落到一个跑得动的工作流上。
+        </p>
+      </header>
+
+      <div class="subscribe">
+        <form class="subscribe-form" onsubmit="event.preventDefault(); window.open('https://realagentusecases.com', '_blank');">
+          <input type="email" placeholder="your@email.com" required>
+          <button class="btn" type="submit">Subscribe — free</button>
+        </form>
+        <p class="subscribe-note">
+          每周一个完整可复制的 Agent 案例——prompt、工具、步骤全公开。<br>
+          这个 Newsletter 不"鼓励"你，能不能跑通是你的事。
+        </p>
+      </div>
+
+      <p style="margin-top: 3rem; text-align: center; font-family: var(--font-mono); font-size: 0.75rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--color-muted-foreground);">
+        ← <a href="/agent-101/" style="color: var(--color-muted-foreground); border-bottom: 1px solid var(--color-muted-foreground);">EP 01 · What is AI Agent</a>　·　EP 02（你在这里）　·　EP 03 (coming)
+      </p>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site">
+  <div class="footer-inner">
+    © 2026 · Jack Qian
+    <span class="sep">·</span>
+    <a href="https://realagentusecases.com">realagentusecases.com</a>
+    <span class="sep">·</span>
+    Dallas, TX
+  </div>
+</footer>
+
+</body>
+</html>

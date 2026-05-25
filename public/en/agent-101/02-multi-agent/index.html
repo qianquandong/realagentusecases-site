@@ -1,0 +1,2054 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Agent 101 Episode 02 · Multi-agent and Skills · Why one agent isn't enough, when to use Skills, when to use Multi-agent · Real Agent Use Cases">
+<title>Agent 101 · Episode 02 · Multi-agent &amp; Skills · Real Agent Use Cases</title>
+<link rel="canonical" href="https://realagentusecases.com/en/agent-101/02-multi-agent/">
+<link rel="alternate" hrefLang="zh" href="https://realagentusecases.com/agent-101/02-multi-agent/">
+<link rel="alternate" hrefLang="en" href="https://realagentusecases.com/en/agent-101/02-multi-agent/">
+
+<!-- Open Graph -->
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Real Agent Use Cases">
+<meta property="og:title" content="Agent 101 · Episode 02 · One Agent Isn't Enough for Real Work">
+<meta property="og:description" content="One agent has 4 ceilings. Skills and Multi-agent aren't two new technologies — they're two answers to the same old problem: division of labor. 6 real workflows.">
+<meta property="og:url" content="https://realagentusecases.com/en/agent-101/02-multi-agent/">
+<meta property="og:locale" content="en_US">
+<meta property="og:locale:alternate" content="zh_CN">
+<meta property="og:image" content="https://realagentusecases.com/og/agent-101/02-multi-agent/opengraph-image">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:alt" content="Agent 101 · Episode 02 · Multi-agent and Skills">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Agent 101 · Episode 02 · One Agent Isn't Enough">
+<meta name="twitter:description" content="One agent has 4 ceilings. Skills and Multi-agent are two orthogonal axes — not alternatives. 6 real workflows.">
+<meta name="twitter:image" content="https://realagentusecases.com/og/agent-101/02-multi-agent/opengraph-image">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@300..900&family=Geist+Mono:wght@300..700&family=Source+Serif+4:ital,wght@0,400..700;1,400..700&display=swap">
+<style>
+  /* ==========================================================
+     Tokens — mirrors realagentusecases.com
+     ========================================================== */
+  :root {
+    --color-background: #0a0a0a;
+    --color-foreground: #f2f2f2;
+    --color-muted: #161616;
+    --color-muted-foreground: #a3a3a3;
+    --color-border: #262626;
+    --color-brand: #2d5e44;
+    --color-brand-hover: #387554;
+    --color-brand-foreground: #fff;
+
+    --font-sans: "Geist", -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", "Hiragino Sans GB", sans-serif;
+    --font-serif: "Source Serif 4", "Songti SC", "STSong", Georgia, "Times New Roman", serif;
+    --font-mono: "Geist Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+
+    --tracking-tight: -0.025em;
+    --leading-snug: 1.375;
+    --leading-relaxed: 1.625;
+
+    --radius-md: 0.375rem;
+    --radius-lg: 0.5rem;
+    --radius-xl: 0.75rem;
+
+    --container-2xl: 42rem; /* 672 — body sections */
+    --container-3xl: 48rem; /* 768 — hero */
+    --container-6xl: 72rem; /* 1152 — nav */
+  }
+
+  /* ==========================================================
+     Reset & base
+     ========================================================== */
+  *, *::before, *::after { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    background: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    line-height: var(--leading-relaxed);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+  h1, h2, h3, h4 {
+    color: var(--color-foreground);
+    font-weight: 600;
+    letter-spacing: var(--tracking-tight);
+    line-height: var(--leading-snug);
+    margin: 0;
+    text-wrap: balance;
+  }
+  p { margin: 0 0 1rem; }
+  a {
+    color: var(--color-foreground);
+    text-decoration: none;
+    transition: color 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  a:hover { color: var(--color-brand); }
+  ::selection { background: var(--color-brand); color: white; }
+  img, svg { max-width: 100%; display: block; }
+
+  /* ==========================================================
+     Layout primitives
+     ========================================================== */
+  .mx-auto { margin-left: auto; margin-right: auto; }
+  .max-w-6xl { max-width: var(--container-6xl); }
+  .max-w-3xl { max-width: var(--container-3xl); }
+  .max-w-2xl { max-width: var(--container-2xl); }
+  .px-6 { padding-left: 1.5rem; padding-right: 1.5rem; }
+  main { min-height: 100vh; }
+
+  /* ==========================================================
+     Sticky nav (matches parent site)
+     ========================================================== */
+  nav.topnav {
+    position: sticky;
+    top: 0;
+    z-index: 40;
+    border-bottom: 1px solid var(--color-border);
+    background: rgba(10, 10, 10, 0.8);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+  }
+  @supports (backdrop-filter: blur(12px)) {
+    nav.topnav { background: rgba(10, 10, 10, 0.6); }
+  }
+  .nav-inner {
+    max-width: var(--container-6xl);
+    margin: 0 auto;
+    padding: 0 1.5rem;
+    height: 3.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .brand {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    letter-spacing: -0.01em;
+    color: var(--color-foreground);
+  }
+  @media (min-width: 640px) { .brand { font-size: 0.875rem; } }
+  .brand:hover { color: var(--color-brand); }
+  .nav-right {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+  }
+  @media (min-width: 640px) { .nav-right { gap: 1.5rem; } }
+  .nav-link {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--color-muted-foreground);
+    letter-spacing: -0.01em;
+    transition: color 0.15s;
+  }
+  @media (min-width: 640px) { .nav-link { font-size: 0.875rem; } }
+  .nav-link:hover { color: var(--color-brand); }
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--radius-md);
+    font-family: var(--font-sans);
+    font-weight: 500;
+    font-size: 0.875rem;
+    height: 2.25rem;
+    padding: 0 1rem;
+    background: var(--color-brand);
+    color: var(--color-brand-foreground);
+    transition: background-color 0.15s, transform 0.15s;
+    cursor: pointer;
+    border: none;
+  }
+  .btn:hover {
+    background: var(--color-brand-hover);
+    color: var(--color-brand-foreground);
+    transform: translateY(-1px);
+  }
+  .btn:active { transform: translateY(0); }
+  .btn.btn-lg { height: 3rem; padding: 0 1.5rem; font-size: 1rem; }
+
+  /* ==========================================================
+     Eyebrow (mono uppercase label)
+     ========================================================== */
+  .eyebrow {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--color-muted-foreground);
+    font-weight: 400;
+  }
+  .eyebrow-lg {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: var(--color-muted-foreground);
+  }
+
+  /* ==========================================================
+     Hero
+     ========================================================== */
+  .hero {
+    max-width: var(--container-3xl);
+    margin: 0 auto;
+    padding: 4rem 1.5rem 7rem;
+    text-align: center;
+  }
+  @media (min-width: 640px) {
+    .hero { padding: 6rem 1.5rem 9rem; }
+  }
+  .hero .eyebrow-lg { display: block; margin-bottom: 1.5rem; }
+  .hero h1 {
+    font-size: 2.25rem;
+    font-weight: 600;
+    letter-spacing: var(--tracking-tight);
+    line-height: 1.1;
+    text-wrap: balance;
+  }
+  @media (min-width: 640px) { .hero h1 { font-size: 3rem; } }
+  @media (min-width: 768px) { .hero h1 { font-size: 3.75rem; } }
+  .hero h1 .brand-word {
+    color: var(--color-brand);
+  }
+  .hero-sub {
+    margin: 1.25rem auto 0;
+    max-width: var(--container-2xl);
+    font-size: 1.125rem;
+    color: var(--color-muted-foreground);
+    line-height: var(--leading-relaxed);
+    text-wrap: balance;
+  }
+  @media (min-width: 640px) { .hero-sub { font-size: 1.25rem; } }
+
+  .hero-list {
+    margin: 1.75rem auto 0;
+    max-width: 30rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    text-align: left;
+    font-size: 0.9375rem;
+    color: var(--color-muted-foreground);
+  }
+  @media (min-width: 640px) { .hero-list { font-size: 0.9375rem; } }
+  .hero-list-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+  }
+  .dot {
+    width: 0.25rem;
+    height: 0.25rem;
+    border-radius: 9999px;
+    background: var(--color-brand);
+    flex-shrink: 0;
+    margin-top: 0.6em;
+  }
+  .hero-ctas {
+    margin-top: 2.5rem;
+    display: flex;
+    gap: 0.75rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .hero-foot {
+    margin-top: 2.5rem;
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: rgba(163, 163, 163, 0.7);
+  }
+
+  /* ==========================================================
+     Section base (essay-style)
+     ========================================================== */
+  section.essay {
+    border-top: 1px solid rgba(38, 38, 38, 0.4);
+  }
+  .essay-inner {
+    max-width: var(--container-2xl);
+    margin: 0 auto;
+    padding: 5rem 1.5rem;
+  }
+  @media (min-width: 640px) {
+    .essay-inner { padding: 6rem 1.5rem; }
+  }
+  .essay-inner.wide {
+    max-width: var(--container-3xl);
+  }
+  .section-head { margin-bottom: 2.5rem; }
+  .section-head .eyebrow { display: block; margin-bottom: 0.75rem; }
+  .section-head h2 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    letter-spacing: var(--tracking-tight);
+    line-height: var(--leading-snug);
+  }
+  @media (min-width: 640px) {
+    .section-head h2 { font-size: 1.875rem; }
+  }
+  .section-head .lede {
+    margin-top: 0.875rem;
+    font-size: 1.0625rem;
+    color: var(--color-muted-foreground);
+    line-height: var(--leading-relaxed);
+  }
+  .essay-body p {
+    color: var(--color-muted-foreground);
+    line-height: var(--leading-relaxed);
+    font-size: 1rem;
+  }
+  .essay-body strong { color: var(--color-foreground); font-weight: 600; }
+
+  /* ==========================================================
+     Item list (matches "Read the latest" article list)
+     ========================================================== */
+  .item-list {
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .item {
+    display: block;
+  }
+  .item .item-eyebrow {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--color-muted-foreground);
+  }
+  .item h3 {
+    margin-top: 0.5rem;
+    font-size: 1.25rem;
+    font-weight: 600;
+    letter-spacing: var(--tracking-tight);
+    line-height: var(--leading-snug);
+    color: var(--color-foreground);
+  }
+  @media (min-width: 640px) {
+    .item h3 { font-size: 1.375rem; }
+  }
+  .item p {
+    margin-top: 0.5rem;
+    color: var(--color-muted-foreground);
+    line-height: var(--leading-relaxed);
+  }
+
+  /* ==========================================================
+     Compare table (Chatbot vs Agent) — minimal two-col
+     ========================================================== */
+  .compare {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+  }
+  @media (min-width: 640px) {
+    .compare { grid-template-columns: 1fr 1fr; }
+  }
+  .compare-cell {
+    padding: 1.75rem;
+    background: var(--color-muted);
+  }
+  .compare-cell + .compare-cell {
+    border-top: 1px solid var(--color-border);
+  }
+  @media (min-width: 640px) {
+    .compare-cell + .compare-cell {
+      border-top: none;
+      border-left: 1px solid var(--color-border);
+    }
+  }
+  .compare-cell.is-agent { background: rgba(45, 94, 68, 0.08); }
+  .compare-cell .item-eyebrow { display: block; margin-bottom: 0.5rem; }
+  .compare-cell .is-agent-eyebrow { color: var(--color-brand); }
+  .compare-cell h3 {
+    font-size: 1.125rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+  }
+  .compare-cell > p {
+    color: var(--color-muted-foreground);
+    font-size: 0.9375rem;
+    margin-bottom: 1rem;
+  }
+  .compare-cell ul {
+    list-style: none;
+    padding: 0;
+    margin: 0.75rem 0 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  .compare-cell li {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.625rem;
+    font-size: 0.9375rem;
+    color: var(--color-muted-foreground);
+  }
+  .compare-cell li::before {
+    content: "×";
+    color: var(--color-muted-foreground);
+    font-family: var(--font-mono);
+    flex-shrink: 0;
+    margin-top: 0.05em;
+  }
+  .compare-cell.is-agent li::before {
+    content: "✓";
+    color: var(--color-brand);
+  }
+
+  /* ==========================================================
+     Pull-quote / aside (analogy block)
+     ========================================================== */
+  .aside {
+    margin-top: 2rem;
+    padding: 1.75rem;
+    border-left: 2px solid var(--color-brand);
+    background: var(--color-muted);
+    border-radius: 0 var(--radius-lg) var(--radius-lg) 0;
+  }
+  .aside .aside-label {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--color-brand);
+    display: block;
+    margin-bottom: 0.625rem;
+  }
+  .aside p {
+    margin: 0;
+    color: var(--color-foreground);
+    font-family: var(--font-serif);
+    font-size: 1.0625rem;
+    line-height: var(--leading-relaxed);
+    font-style: italic;
+  }
+  .aside p strong { font-style: normal; }
+
+  /* ==========================================================
+     Agent loop (SVG + steps)
+     ========================================================== */
+  .loop-wrap {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+    align-items: center;
+  }
+  @media (min-width: 760px) {
+    .loop-wrap { grid-template-columns: 280px 1fr; gap: 3rem; }
+  }
+  .loop-svg { width: 100%; max-width: 280px; margin: 0 auto; }
+  .loop-steps {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  .loop-step {
+    display: grid;
+    grid-template-columns: 2rem 1fr;
+    gap: 0.875rem;
+    align-items: start;
+  }
+  .loop-step .n {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--color-brand);
+    letter-spacing: 0.05em;
+    padding-top: 0.125rem;
+  }
+  .loop-step h4 {
+    font-size: 1.0625rem;
+    margin-bottom: 0.25rem;
+  }
+  .loop-step h4 .en {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--color-muted-foreground);
+    margin-left: 0.5rem;
+    font-weight: 400;
+    letter-spacing: 0.05em;
+  }
+  .loop-step p { margin: 0; color: var(--color-muted-foreground); font-size: 0.9375rem; }
+
+  /* ==========================================================
+     Use cases — vertical list with mono labels (no flashy cards)
+     ========================================================== */
+  .use-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+  .use {
+    padding: 2rem 0;
+    border-top: 1px solid var(--color-border);
+  }
+  .use:first-child { border-top: none; padding-top: 0; }
+  .use:last-child { padding-bottom: 0; }
+  .use-top {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 0.5rem;
+    flex-wrap: wrap;
+  }
+  .use-top .use-label {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--color-muted-foreground);
+  }
+  .use-top .use-gain {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--color-brand);
+    letter-spacing: 0.05em;
+  }
+  .use h3 {
+    font-size: 1.25rem;
+    margin-bottom: 0.625rem;
+  }
+  @media (min-width: 640px) { .use h3 { font-size: 1.375rem; } }
+  .use p { color: var(--color-muted-foreground); margin-bottom: 0.875rem; }
+  .use-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 0.875rem;
+  }
+  .chip {
+    display: inline-block;
+    padding: 0.25rem 0.625rem;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    color: var(--color-muted-foreground);
+    letter-spacing: 0.02em;
+  }
+
+  /* ==========================================================
+     Demo block — mono code-style terminal mock
+     ========================================================== */
+  .demo {
+    margin-top: 2.5rem;
+    padding-top: 2.5rem;
+    border-top: 1px solid var(--color-border);
+  }
+  .demo:first-of-type { border-top: none; padding-top: 0; margin-top: 0; }
+  .demo-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-bottom: 0.625rem;
+  }
+  .demo-num {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--color-brand);
+  }
+  .demo-time {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    color: var(--color-muted-foreground);
+    letter-spacing: 0.05em;
+  }
+  .demo h3 {
+    font-size: 1.375rem;
+    margin-bottom: 0.625rem;
+  }
+  .demo > p {
+    color: var(--color-muted-foreground);
+    margin-bottom: 1.25rem;
+  }
+  .demo-steps {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 1.5rem;
+    counter-reset: step;
+  }
+  .demo-steps li {
+    counter-increment: step;
+    padding: 0.625rem 0 0.625rem 2rem;
+    position: relative;
+    color: var(--color-muted-foreground);
+    font-size: 0.9375rem;
+    line-height: var(--leading-relaxed);
+    border-top: 1px dashed rgba(38, 38, 38, 0.6);
+  }
+  .demo-steps li:first-child { border-top: none; }
+  .demo-steps li::before {
+    content: counter(step, decimal-leading-zero);
+    position: absolute;
+    left: 0;
+    top: 0.625rem;
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    color: var(--color-brand);
+    letter-spacing: 0.05em;
+  }
+  .demo-steps strong { color: var(--color-foreground); font-weight: 600; }
+
+  .terminal {
+    background: var(--color-muted);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    font-family: var(--font-mono);
+    font-size: 0.8125rem;
+    line-height: 1.7;
+    color: var(--color-foreground);
+    overflow: hidden;
+  }
+  .terminal-bar {
+    padding: 0.625rem 0.875rem;
+    background: rgba(0, 0, 0, 0.3);
+    border-bottom: 1px solid var(--color-border);
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    color: var(--color-muted-foreground);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .terminal-body { padding: 1.125rem; }
+  .terminal-body .row { padding: 0.05rem 0; }
+  .terminal-body .mu { color: var(--color-muted-foreground); }
+  .terminal-body .ok { color: var(--color-brand); }
+  .terminal-body .label {
+    display: inline-block;
+    color: var(--color-muted-foreground);
+    margin-right: 0.5rem;
+  }
+  .terminal-body .label.user { color: #c2a8ff; }
+  .terminal-body .label.bot { color: var(--color-brand); }
+  .terminal-body .label.tool { color: #d4a657; }
+  .terminal-body .hr {
+    border-top: 1px dashed var(--color-border);
+    margin: 0.5rem 0;
+  }
+  /* Workflow terminal helpers */
+  .terminal-body .step {
+    display: inline-block;
+    min-width: 6.5rem;
+    color: var(--color-foreground);
+    font-weight: 500;
+  }
+  .terminal-body .num {
+    display: inline-block;
+    width: 1.75rem;
+    color: var(--color-brand);
+  }
+  .terminal-body .meta {
+    color: var(--color-brand);
+    font-weight: 500;
+  }
+  .terminal-title-tag {
+    display: inline-block;
+    padding: 1px 6px;
+    margin-right: 0.5rem;
+    background: var(--color-brand);
+    color: var(--color-brand-foreground);
+    border-radius: 3px;
+    font-size: 0.625rem;
+    letter-spacing: 0.1em;
+    font-weight: 600;
+  }
+
+  /* Case-list divider: visual separation between "by-job" and "by-scenario" cases */
+  .case-divider {
+    margin: 3rem 0;
+    padding: 2.25rem 1.5rem;
+    border-top: 1px solid var(--color-border);
+    border-bottom: 1px solid var(--color-border);
+    text-align: center;
+  }
+  .case-divider .eyebrow {
+    display: block;
+    margin-bottom: 0.75rem;
+    color: var(--color-brand);
+  }
+  .case-divider h3 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 0.625rem;
+    letter-spacing: var(--tracking-tight);
+  }
+  .case-divider p {
+    color: var(--color-muted-foreground);
+    max-width: 40rem;
+    margin: 0 auto;
+    font-size: 0.9375rem;
+    line-height: var(--leading-relaxed);
+  }
+
+  /* ==========================================================
+     Timeline — minimal vertical list with mono dates
+     ========================================================== */
+  .timeline {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+  .tl {
+    padding-left: 1.5rem;
+    border-left: 1px solid var(--color-border);
+    position: relative;
+  }
+  .tl::before {
+    content: "";
+    position: absolute;
+    left: -0.3125rem;
+    top: 0.4rem;
+    width: 0.5625rem;
+    height: 0.5625rem;
+    border-radius: 9999px;
+    background: var(--color-background);
+    border: 2px solid var(--color-brand);
+  }
+  .tl .tl-week {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--color-brand);
+    display: block;
+    margin-bottom: 0.375rem;
+  }
+  .tl h3 {
+    font-size: 1.125rem;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+  }
+  .tl p { margin: 0; color: var(--color-muted-foreground); }
+
+  /* ==========================================================
+     Subscribe / CTA
+     ========================================================== */
+  .subscribe {
+    margin: 2.5rem auto 0;
+    max-width: 28rem;
+  }
+  .subscribe-form {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  @media (min-width: 640px) {
+    .subscribe-form { flex-direction: row; }
+  }
+  .subscribe input[type="email"] {
+    flex: 1;
+    min-width: 0;
+    height: 3rem;
+    padding: 0 1rem;
+    border-radius: var(--radius-md);
+    background: var(--color-muted);
+    border: 1px solid rgba(163, 163, 163, 0.3);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    transition: border-color 0.15s;
+  }
+  .subscribe input[type="email"]::placeholder { color: var(--color-muted-foreground); }
+  .subscribe input[type="email"]:focus {
+    outline: none;
+    border-color: var(--color-brand);
+  }
+  .subscribe .btn { flex-shrink: 0; height: 3rem; padding: 0 1.5rem; font-size: 1rem; }
+  .subscribe-note {
+    margin-top: 0.75rem;
+    font-size: 0.75rem;
+    color: var(--color-muted-foreground);
+    text-align: center;
+  }
+
+  /* ==========================================================
+     Footer
+     ========================================================== */
+  footer.site {
+    border-top: 1px solid var(--color-border);
+    padding: 2.5rem 1.5rem;
+    margin-top: 4rem;
+  }
+  .footer-inner {
+    max-width: var(--container-2xl);
+    margin: 0 auto;
+    text-align: center;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--color-muted-foreground);
+    letter-spacing: 0.05em;
+  }
+  .footer-inner a { color: var(--color-muted-foreground); }
+  .footer-inner a:hover { color: var(--color-brand); }
+  .footer-inner .sep { color: var(--color-border); margin: 0 0.625rem; }
+
+  /* ==========================================================
+     Audience profile chart (donut + legend)
+     ========================================================== */
+  .audience {
+    margin-bottom: 4rem;
+    padding-bottom: 3rem;
+    border-bottom: 1px solid var(--color-border);
+  }
+  .audience-head { margin-bottom: 2rem; }
+  .audience-head .eyebrow { display: block; margin-bottom: 0.625rem; }
+  .audience-head h3 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    letter-spacing: var(--tracking-tight);
+  }
+  @media (min-width: 640px) { .audience-head h3 { font-size: 1.375rem; } }
+  .audience-head p { color: var(--color-muted-foreground); margin: 0; }
+
+  .audience-body {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    align-items: center;
+  }
+  @media (min-width: 720px) {
+    .audience-body { grid-template-columns: 260px 1fr; gap: 3rem; }
+  }
+
+  .donut {
+    width: 100%;
+    max-width: 240px;
+    margin: 0 auto;
+    aspect-ratio: 1;
+    position: relative;
+  }
+  .donut svg { width: 100%; height: 100%; display: block; }
+  .donut-center {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    pointer-events: none;
+  }
+  .donut-center .n {
+    font-family: var(--font-mono);
+    font-size: 1.875rem;
+    font-weight: 600;
+    color: var(--color-foreground);
+    line-height: 1;
+    letter-spacing: -0.02em;
+  }
+  .donut-center .lbl {
+    margin-top: 0.375rem;
+    font-family: var(--font-mono);
+    font-size: 0.625rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--color-muted-foreground);
+  }
+
+  .legend {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.875rem;
+  }
+  .legend li {
+    display: grid;
+    grid-template-columns: 0.625rem 1fr auto;
+    gap: 0.75rem;
+    align-items: center;
+    padding: 0.625rem 0;
+    border-top: 1px solid var(--color-border);
+  }
+  .legend li:first-child { border-top: none; padding-top: 0; }
+  .legend .swatch {
+    width: 0.625rem;
+    height: 0.625rem;
+    border-radius: 2px;
+  }
+  .legend .name {
+    color: var(--color-foreground);
+    font-size: 0.9375rem;
+    font-weight: 500;
+  }
+  .legend .pct {
+    font-family: var(--font-mono);
+    font-size: 0.9375rem;
+    color: var(--color-muted-foreground);
+    letter-spacing: 0.02em;
+    font-feature-settings: "tnum" 1;
+  }
+
+  /* Sub-bullets inside a use case */
+  .sub-list {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 0.875rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  .sub-list li {
+    display: grid;
+    grid-template-columns: 1.5rem 1fr;
+    gap: 0.5rem;
+    color: var(--color-muted-foreground);
+    font-size: 0.9375rem;
+    line-height: var(--leading-relaxed);
+  }
+  .sub-list li::before {
+    content: "→";
+    font-family: var(--font-mono);
+    color: var(--color-brand);
+    margin-top: 0.05em;
+  }
+  .sub-list strong { color: var(--color-foreground); font-weight: 600; }
+
+  /* ==========================================================
+     Utilities
+     ========================================================== */
+  .mono { font-family: var(--font-mono); }
+  .serif { font-family: var(--font-serif); }
+
+  /* ==========================================================
+     Episode tabs — sits between topnav and main on agent-101 pages
+     ========================================================== */
+  .ep-tabs {
+    position: sticky;
+    top: 3.5rem;
+    z-index: 39;
+    border-bottom: 1px solid var(--color-border);
+    background: var(--color-background);
+  }
+  .ep-tabs-inner {
+    max-width: var(--container-6xl);
+    margin: 0 auto;
+    padding: 0 1.5rem;
+    display: flex;
+    align-items: stretch;
+    gap: 1.25rem;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+  }
+  .ep-tabs-inner::-webkit-scrollbar { display: none; }
+  .ep-tabs-label {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--color-muted-foreground);
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    padding: 0.875rem 0;
+  }
+  .ep-tab {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    text-decoration: none;
+    white-space: nowrap;
+    padding: 0.875rem 0;
+    color: var(--color-muted-foreground);
+    transition: color 0.15s;
+    border-bottom: 2px solid transparent;
+    margin-bottom: -1px;
+  }
+  .ep-tab:hover { color: var(--color-foreground); text-decoration: none; }
+  .ep-tab.is-current {
+    color: var(--color-foreground);
+    border-bottom-color: var(--color-brand);
+  }
+  .ep-tab-num {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+    color: var(--color-brand);
+    font-weight: 600;
+  }
+  .ep-tab-title {
+    font-family: var(--font-sans);
+    font-size: 0.875rem;
+    font-weight: 500;
+  }
+  .ep-tab-lang {
+    font-family: var(--font-mono);
+    font-size: 0.625rem;
+    letter-spacing: 0.1em;
+    color: var(--color-muted-foreground);
+    margin-left: 0.375rem;
+    padding: 1px 5px;
+    border: 1px solid var(--color-border);
+    border-radius: 3px;
+  }
+  @media (max-width: 640px) {
+    .ep-tab-title { display: none; }
+    .ep-tabs-label { font-size: 0.6875rem; }
+    .ep-tabs-inner { gap: 1rem; }
+  }
+
+  /* ==========================================================
+     Definition card — used in Ep 02 §01
+     ========================================================== */
+  .def-card {
+    background: var(--color-muted);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    padding: 1.75rem;
+    margin-bottom: 1.25rem;
+  }
+  .def-card:last-child { margin-bottom: 0; }
+  .def-header {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1.25rem;
+    border-bottom: 1px solid var(--color-border);
+  }
+  .def-term {
+    font-family: var(--font-mono);
+    font-size: 1.625rem;
+    font-weight: 600;
+    color: var(--color-foreground);
+    letter-spacing: -0.02em;
+  }
+  .def-term .def-num {
+    color: var(--color-brand);
+    margin-right: 0.5rem;
+  }
+  .def-essence {
+    font-size: 1rem;
+    color: var(--color-foreground);
+    line-height: var(--leading-relaxed);
+  }
+  .def-body {
+    display: grid;
+    gap: 1.125rem;
+  }
+  .def-row {
+    display: grid;
+    grid-template-columns: 6rem 1fr;
+    gap: 1rem;
+    align-items: start;
+  }
+  @media (max-width: 560px) {
+    .def-row { grid-template-columns: 1fr; gap: 0.375rem; }
+  }
+  .def-label {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--color-muted-foreground);
+    padding-top: 0.15rem;
+  }
+  .def-content {
+    color: var(--color-foreground);
+    font-size: 0.9375rem;
+    line-height: var(--leading-relaxed);
+  }
+  .def-content ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    gap: 0.4rem;
+  }
+  .def-content ul li {
+    padding-left: 1rem;
+    position: relative;
+    color: var(--color-foreground);
+  }
+  .def-content ul li::before {
+    content: "·";
+    position: absolute;
+    left: 0;
+    color: var(--color-brand);
+    font-weight: 700;
+  }
+  .def-content ul li .mu { color: var(--color-muted-foreground); }
+  .def-content p { margin: 0; }
+  .def-content p + p { margin-top: 0.4rem; }
+  .def-content p .mu { color: var(--color-muted-foreground); }
+</style>
+</head>
+<body>
+
+<nav class="topnav">
+  <div class="nav-inner">
+    <a href="/" class="brand">realagentusecases.com</a>
+    <div class="nav-right">
+      <a href="/en/news/" class="nav-link">News</a>
+      <a href="/agent-101/02-multi-agent/" class="nav-link">中</a>
+      <a class="btn" href="#cta">Subscribe</a>
+    </div>
+  </div>
+</nav>
+
+<nav class="ep-tabs" aria-label="Agent 101 episode navigation">
+  <div class="ep-tabs-inner">
+    <span class="ep-tabs-label">Agent 101 ·</span>
+    <a href="/en/agent-101/" class="ep-tab">
+      <span class="ep-tab-num">EP 01</span>
+      <span class="ep-tab-title">What is AI Agent</span>
+    </a>
+    <a href="/en/agent-101/02-multi-agent/" class="ep-tab is-current">
+      <span class="ep-tab-num">EP 02</span>
+      <span class="ep-tab-title">Multi-agent &amp; Skills</span>
+    </a>
+  </div>
+</nav>
+
+<main>
+
+  <!-- ============ HERO ============ -->
+  <section class="hero">
+    <span class="eyebrow-lg">EPISODE 02 · MULTI-AGENT &amp; SKILLS · 2026.05.17</span>
+    <h1>
+      One <span class="brand-word">Agent</span><br>
+      can't finish anything <span class="brand-word">worth shipping</span>.
+    </h1>
+
+    <p class="hero-sub" style="margin-top: 1.5rem;">
+      It's not that the Agent isn't strong enough — single-agent as a structure has a ceiling.<br>
+      Skills and Multi-agent aren't two new technologies. They're two solutions to the old problem of <strong style="color: var(--color-foreground);">division of labor</strong>.
+    </p>
+
+    <ul class="hero-list">
+      <li class="hero-list-item"><span class="dot"></span><span>The 4 ceilings of a single Agent — when you must divide work, or things break</span></li>
+      <li class="hero-list-item"><span class="dot"></span><span>Skills is the "lightweight solution" — one Agent can act like a team</span></li>
+      <li class="hero-list-item"><span class="dot"></span><span>The 4 Multi-agent collaboration patterns — which one fits which task</span></li>
+      <li class="hero-list-item"><span class="dot"></span><span>6 real workflows + a selection decision tree — usable today</span></li>
+    </ul>
+
+    <div class="hero-ctas">
+      <a class="btn btn-lg" href="#deconstruct">See the Agent ceiling →</a>
+    </div>
+
+    <div class="hero-foot">
+      AGENT 101 SERIES · EP 02 · NO-BULLSHIT EDITION
+    </div>
+  </section>
+
+  <!-- ============ § 1 DEFINITIONS ============ -->
+  <section id="definitions" class="essay">
+    <div class="essay-inner">
+      <header class="section-head">
+        <span class="eyebrow">§ 01 · THREE DEFINITIONS</span>
+        <h2>Agent / Skill / Multi-agent — draw the boundaries first</h2>
+        <p class="lede">
+          Everything in this episode rides on these three words. The market mixes them, swaps them, packages them as the same thing —
+          but engineering gives them <strong style="color: var(--color-foreground);">clear boundaries</strong>.
+          Get the definitions straight first; only then does the rest make sense.
+        </p>
+      </header>
+
+      <div class="def-card">
+        <div class="def-header">
+          <div class="def-term"><span class="def-num">01</span>Agent</div>
+          <div class="def-essence">An LLM instance that runs the "Perceive → Plan → Act → Reflect" loop — not Q&amp;A, but "here's a goal, go work."</div>
+        </div>
+        <div class="def-body">
+          <div class="def-row">
+            <span class="def-label">What it contains</span>
+            <div class="def-content">
+              <ul>
+                <li><strong>LLM</strong> <span class="mu">— the brain, doing reasoning and decisions</span></li>
+                <li><strong>Tools</strong> <span class="mu">— interfaces to external capabilities (API / database / browser / filesystem…)</span></li>
+                <li><strong>Memory</strong> <span class="mu">— short-term context + long-term memory (vector store / files)</span></li>
+                <li><strong>Loop</strong> <span class="mu">— iterate until the task succeeds / fails / hits a stop condition</span></li>
+              </ul>
+            </div>
+          </div>
+          <div class="def-row">
+            <span class="def-label">Key test</span>
+            <div class="def-content">
+              <p><strong>Can autonomously decide the next step</strong> = agent</p>
+              <p><span class="mu">Answers one question, no next action = chatbot (not an agent, out of scope here)</span></p>
+            </div>
+          </div>
+          <div class="def-row">
+            <span class="def-label">Common confusion</span>
+            <div class="def-content">
+              <p><span class="mu">"AI assistant / Copilot / 智能体"</span> — covered in Ep 01: mostly marketing language, not discussed further.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="def-card">
+        <div class="def-header">
+          <div class="def-term"><span class="def-num">02</span>Skill</div>
+          <div class="def-essence">A <u>modular capability</u> callable inside an Agent — freeze one segment of a workflow into a standalone unit. Called when needed, doesn't pollute the main context when not.</div>
+        </div>
+        <div class="def-body">
+          <div class="def-row">
+            <span class="def-label">What it contains</span>
+            <div class="def-content">
+              <ul>
+                <li><strong>Trigger description</strong> <span class="mu">— "when should I be called" (so the agent knows when to use it)</span></li>
+                <li><strong>I/O contract</strong> <span class="mu">— what input it needs, what shape of output it produces</span></li>
+                <li><strong>Prompt</strong> <span class="mu">— the core instruction for this segment (can include few-shot examples)</span></li>
+                <li><strong>Tool subset</strong> <span class="mu">— the tools this skill is allowed to call (not the agent's full tool set)</span></li>
+              </ul>
+            </div>
+          </div>
+          <div class="def-row">
+            <span class="def-label">Key test</span>
+            <div class="def-content">
+              <p><strong>Still runs inside the same agent's context</strong> — a Skill is the agent's "internal module," not a separate LLM instance.</p>
+              <p><span class="mu">Calling a prompt file a "Skill" is the same kind of naming as calling a reusable function a "module" — the point isn't the word, it's the structure.</span></p>
+            </div>
+          </div>
+          <div class="def-row">
+            <span class="def-label">Common confusion</span>
+            <div class="def-content">
+              <p><span class="mu">"$29 for 1000 prompts"</span> — that's not a Skill. That's a <u>static prompt library</u>: no trigger logic, no I/O contract, not programmatically callable.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="def-card">
+        <div class="def-header">
+          <div class="def-term"><span class="def-num">03</span>Multi-agent</div>
+          <div class="def-essence">Multiple agents collaborating across <u>independent context windows</u> — each sees a slice of the world, exchanging compressed state through a protocol.</div>
+        </div>
+        <div class="def-body">
+          <div class="def-row">
+            <span class="def-label">What it contains</span>
+            <div class="def-content">
+              <ul>
+                <li><strong>N agents</strong> <span class="mu">— each with their own LLM + Tools + Memory + Loop (i.e., N complete agents)</span></li>
+                <li><strong>Protocol</strong> <span class="mu">— how messages/state are exchanged (message queue / shared files / API calls)</span></li>
+                <li><strong>Coordination</strong> <span class="mu">— who splits the task, who aggregates, who stops the whole flow</span></li>
+                <li><strong>Failure handling</strong> <span class="mu">— what to do when one agent crashes or goes off the rails</span></li>
+              </ul>
+            </div>
+          </div>
+          <div class="def-row">
+            <span class="def-label">Key test</span>
+            <div class="def-content">
+              <p><strong>The agents' contexts are genuinely independent</strong> = multi-agent</p>
+              <p><span class="mu">Writing "you are A, then you are B" in a single prompt is NOT multi-agent — that's <u>role-play</u>, and A and B share the same context.</span></p>
+            </div>
+          </div>
+          <div class="def-row">
+            <span class="def-label">Common confusion</span>
+            <div class="def-content">
+              <p><span class="mu">"My Agent has 100 Skills"</span> — that's one agent with many Skills, <u>not</u> multi-agent. This is the most common naming confusion in the market.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <aside class="aside">
+        <span class="aside-label">How the three relate</span>
+        <p style="font-style: normal; font-family: var(--font-sans);">
+          <strong style="color: var(--color-foreground);">Agent is the basic unit</strong>. One agent can hold N Skills (Skill lives <u>INSIDE</u> an agent).
+          A multi-agent system is made of multiple agents (Multi-agent operates <u>BETWEEN</u> agents).
+          <br><br>
+          The three aren't on the same level — which means "<i>should I use Skill or Multi-agent?</i>" is asking the wrong dimension.
+          §02–§07 below walk through this step by step: first why a single agent can't carry the load (§02),
+          then how Skill and Multi-agent each lighten the load (§03 / §04), and finally how to combine them (§05 matrix).
+        </p>
+      </aside>
+    </div>
+  </section>
+
+  <!-- ============ § 2 SINGLE-AGENT CEILINGS ============ -->
+  <section class="essay">
+    <div class="essay-inner">
+      <header class="section-head">
+        <span class="eyebrow">§ 02 · THE SINGLE-AGENT CEILING</span>
+        <h2>One Agent doing everything breaks in 4 ways</h2>
+        <p class="lede">
+          Why do you need multi-agent or skills? Because past a certain complexity, a single Agent must break.
+          The 4 failure modes below have nothing to do with "the agent isn't smart enough." They're the limits of <strong>the single-context structure itself</strong>.
+        </p>
+      </header>
+
+      <ul class="item-list">
+        <li class="item">
+          <span class="item-eyebrow">CEILING · 01 · CONTEXT DRIFT</span>
+          <h3>Past 50 steps, the original instructions get diluted by new content</h3>
+          <p>
+            You give the agent a system prompt + a goal, let it run 80 steps.
+            By step 50, <strong style="color: var(--color-foreground);">the agent can barely see the original system prompt anymore — it's drowning in its own recent outputs + tool results.</strong>
+            Symptom: opens strong, then drifts, forgets rules, answers the wrong question.
+            No stronger model fixes this — it's a physical limit of attention + context length.
+          </p>
+        </li>
+
+        <li class="item">
+          <span class="item-eyebrow">CEILING · 02 · TOOL OVERLOAD</span>
+          <h3>One Agent with 20+ tools — the routing decision falls apart</h3>
+          <p>
+            As you add more tools to an agent (Gmail, Calendar, Notion, SQL, Web search, custom APIs…),
+            <strong style="color: var(--color-foreground);">every decision becomes "pick one of N tools"</strong> — pick wrong and it drifts.
+            Measured in production: above 15 tools, tool-selection accuracy drops linearly; above 30, it's basically unusable.
+            More tools, less competence — this is a structural problem with Function Calling, not something prompt-tuning can fix.
+          </p>
+        </li>
+
+        <li class="item">
+          <span class="item-eyebrow">CEILING · 03 · ERROR COMPOUNDING</span>
+          <h3>Single-thread tasks: one wrong step poisons everything downstream</h3>
+          <p>
+            The agent misreads a customer name at step 12. Every action from step 13 on (lookup, draft reply, send email) is based on the wrong name,
+            but <strong style="color: var(--color-foreground);">the agent can't see this — there's no second pair of eyes on its intermediate results</strong>.
+            By step 30 you notice, dig through the log, trace it back to step 12 — but it already happened in production.
+            This is the most common incident pattern in single-agent setups.
+          </p>
+        </li>
+
+        <li class="item">
+          <span class="item-eyebrow">CEILING · 04 · ROLE COLLAPSE</span>
+          <h3>Asking it to "do + check + report" at once — none of them done well</h3>
+          <p>
+            You write a giant prompt: research the market, draft copy, critically review it, output a markdown report.
+            <strong style="color: var(--color-foreground);">The agent skims every role — it can't actually switch reasoning modes within one inference pass.</strong>
+            Especially "Drafter + Critic" — without separation it always rationalizes its own work: the writer and the critic are the same reasoning stream.
+          </p>
+        </li>
+      </ul>
+
+      <aside class="aside">
+        <span class="aside-label">Plain English summary</span>
+        <p style="font-style: normal; font-family: var(--font-sans);">
+          What these 4 ceilings have in common — <strong>none of them is "wait for the next model and it'll be fixed."</strong>
+          GPT-5, Claude Opus 5, Gemini 4 — no matter how strong the model, a single context running past its capacity still breaks.
+          To work beyond that boundary, change the structure — not the model. The next two sections cover two ways to do that: Skills and Multi-agent.
+        </p>
+      </aside>
+    </div>
+  </section>
+
+  <!-- ============ § 3 SKILLS ============ -->
+  <section class="essay">
+    <div class="essay-inner">
+      <header class="section-head">
+        <span class="eyebrow">§ 03 · SOLUTION A · SKILLS</span>
+        <h2>Skills — the "lightweight" division of labor</h2>
+        <p class="lede">
+          Most people think Skills is a way to add new capabilities to an Agent.
+          More accurate: <strong>Skill is how you divide labor INSIDE one Agent</strong> — extract a workflow segment into a callable, standalone unit. The Agent calls it when relevant, and doesn't pollute the main context when not.
+        </p>
+      </header>
+
+      <div style="margin-bottom: 2.5rem;">
+        <h3 style="font-size: 1.25rem; font-weight: 600; margin-bottom: 0.875rem; letter-spacing: var(--tracking-tight);">What a Skill contains</h3>
+        <p style="color: var(--color-muted-foreground); margin-bottom: 1.25rem;">
+          A standard Skill file (e.g. Claude Skills' <code style="font-family: var(--font-mono); font-size: 0.875rem; background: var(--color-muted); padding: 1px 6px; border-radius: 4px;">SKILL.md</code>) has four parts:
+        </p>
+        <div class="terminal">
+          <div class="terminal-bar"><span class="terminal-title-tag">SKILL.md</span>email-triage / a minimal viable structure</div>
+          <div class="terminal-body">
+            <div class="row"><span class="num">01</span><span class="step">DESCRIPTION</span><span class="mu">when to call me (the agent's routing signal)</span></div>
+            <div class="row"><span class="num">02</span><span class="step">CONTRACT</span><span class="mu">what's the input / what's the output / how errors are reported</span></div>
+            <div class="row"><span class="num">03</span><span class="step">PROMPT</span><span class="mu">the core instruction for this segment (can include few-shot examples)</span></div>
+            <div class="row"><span class="num">04</span><span class="step">TOOLS</span><span class="mu">the tool subset this skill is allowed to use (not the agent's full set)</span></div>
+            <div class="hr"></div>
+            <div class="row"><span class="ok">CORE INSIGHT</span><span class="mu">Skill = workflow modularization · NOT "feature expansion"</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div style="margin-bottom: 2.5rem;">
+        <h3 style="font-size: 1.25rem; font-weight: 600; margin-bottom: 0.875rem; letter-spacing: var(--tracking-tight);">When Skills fit</h3>
+        <ul class="sub-list">
+          <li><span><strong>One Agent doing many kinds of work</strong>: instead of cramming 10 if-else branches into a giant prompt, make one Skill per branch and let the agent route to it</span></li>
+          <li><span><strong>A workflow segment is reused across places</strong>: generic actions like email triage or CSV exploration — write them as Skills and multiple higher-level agents can call them</span></li>
+          <li><span><strong>You need versioning / audit trail</strong>: Skills are files, git-tracked; prompt changes are diff-able, errors are revertable</span></li>
+          <li><span><strong>Team collaborating on the same agent</strong>: each person edits the Skill file they own, instead of stomping over each other in one giant system prompt</span></li>
+        </ul>
+      </div>
+
+      <div>
+        <h3 style="font-size: 1.25rem; font-weight: 600; margin-bottom: 0.875rem; letter-spacing: var(--tracking-tight);">3 Skills that actually run</h3>
+
+        <div class="terminal" style="margin-bottom: 1rem;">
+          <div class="terminal-bar"><span class="terminal-title-tag">SKILL 01</span>email-triage</div>
+          <div class="terminal-body">
+            <div class="row"><span class="num">·</span><span class="step">when</span><span class="mu">user asks about "today's emails" / "inbox status" / mentions Gmail</span></div>
+            <div class="row"><span class="num">·</span><span class="step">does</span><span class="mu">read Gmail → classify into 5 buckets → draft replies → priority sort</span></div>
+            <div class="row"><span class="num">·</span><span class="step">tools</span><span class="mu">Gmail Connector · nothing else needed</span></div>
+            <div class="row"><span class="num">·</span><span class="step">output</span><span class="mu">structured to-do JSON + draft list</span></div>
+          </div>
+        </div>
+
+        <div class="terminal" style="margin-bottom: 1rem;">
+          <div class="terminal-bar"><span class="terminal-title-tag">SKILL 02</span>csv-explore</div>
+          <div class="terminal-body">
+            <div class="row"><span class="num">·</span><span class="step">when</span><span class="mu">user uploads a CSV / mentions "take a look at the data" / "run some analysis"</span></div>
+            <div class="row"><span class="num">·</span><span class="step">does</span><span class="mu">read → infer schema → run pandas → plot + write insight</span></div>
+            <div class="row"><span class="num">·</span><span class="step">tools</span><span class="mu">Code Interpreter · matplotlib</span></div>
+            <div class="row"><span class="num">·</span><span class="step">output</span><span class="mu">3 key charts + 3 sentences of insight</span></div>
+          </div>
+        </div>
+
+        <div class="terminal">
+          <div class="terminal-bar"><span class="terminal-title-tag">SKILL 03</span>meeting-summary</div>
+          <div class="terminal-body">
+            <div class="row"><span class="num">·</span><span class="step">when</span><span class="mu">user pastes a transcript / mentions "just had a meeting" / Granola output</span></div>
+            <div class="row"><span class="num">·</span><span class="step">does</span><span class="mu">extract decisions + action items + owners + deadlines + draft follow-up email</span></div>
+            <div class="row"><span class="num">·</span><span class="step">tools</span><span class="mu">no external tool (pure prompt skill)</span></div>
+            <div class="row"><span class="num">·</span><span class="step">output</span><span class="mu">Markdown notes + email draft</span></div>
+          </div>
+        </div>
+      </div>
+
+      <aside class="aside" style="margin-top: 2rem;">
+        <span class="aside-label">What Skills can't fix</span>
+        <p style="font-style: normal; font-family: var(--font-sans);">
+          Skills still run inside <strong>the same Agent's context</strong> — they just externalize the "how to do it" part.
+          Of the 4 ceilings in §02, Skills help with #02 (Tool Overload — group tools by skill) and #04 (Role Collapse — let the agent "briefly switch hats" inside a skill).
+          <strong>But #01 Context Drift and #03 Error Compounding are still unsolved</strong> — those need genuinely separate contexts. That's the next section.
+        </p>
+      </aside>
+    </div>
+  </section>
+
+  <!-- ============ § 4 MULTI-AGENT ============ -->
+  <section class="essay">
+    <div class="essay-inner">
+      <header class="section-head">
+        <span class="eyebrow">§ 04 · SOLUTION B · MULTI-AGENT</span>
+        <h2>Multi-agent — the "heavyweight" division of labor</h2>
+        <p class="lede">
+          When Skills isn't enough — task too large, single context can't hold it, or you must have an independent reviewer —
+          go multi-agent. "Multi" here isn't a count, it's <strong style="color: var(--color-foreground);">independent contexts</strong>: each agent sees a different slice of the world, exchanging state through a protocol.
+        </p>
+      </header>
+
+      <p style="color: var(--color-foreground); font-weight: 500; margin-bottom: 1rem;">
+        One test for "is this real multi-agent": <strong style="color: var(--color-foreground);">are the two agents' context windows genuinely independent?</strong>
+        If it's just "you are agent A… you are agent B" inside one system prompt, that's role-play — not multi-agent.
+      </p>
+      <p style="color: var(--color-muted-foreground); margin-bottom: 2rem;">
+        Real multi-agent has 4 archetypal collaboration patterns. They solve different problems, at different complexity levels. Most production systems combine them.
+      </p>
+
+      <ul class="item-list">
+        <li class="item">
+          <span class="item-eyebrow">PATTERN · 01 · MANAGER–WORKER</span>
+          <h3>One Manager splits the task, N Workers each execute a slice</h3>
+          <p>
+            The most common, easiest to grasp. The Manager agent receives a big task, splits it into N subtasks,
+            dispatches them to specialized Worker agents, <strong style="color: var(--color-foreground);">each worker runs its slice in an independent context</strong>,
+            reports back, and the manager aggregates and produces the final output.
+          </p>
+          <div class="terminal" style="margin-top: 0.75rem;">
+            <div class="terminal-bar"><span class="terminal-title-tag">USE</span>50-page research report · Manager–Worker implementation</div>
+            <div class="terminal-body">
+              <div class="row"><span class="num">·</span><span class="step">MANAGER</span><span class="mu">split into 8 chapters → assign to 8 Researchers</span></div>
+              <div class="row"><span class="num">·</span><span class="step">WORKER ×8</span><span class="mu">each independently researches and writes their chapter · no interference</span></div>
+              <div class="row"><span class="num">·</span><span class="step">MANAGER</span><span class="mu">collect 8 chapters → unify voice → write intro + conclusion</span></div>
+              <div class="hr"></div>
+              <div class="row"><span class="ok">WHEN TO USE</span><span class="mu">task splits statically · subtasks have no hard dependencies</span></div>
+            </div>
+          </div>
+        </li>
+
+        <li class="item">
+          <span class="item-eyebrow">PATTERN · 02 · PIPELINE</span>
+          <h3>Agent A → Agent B → Agent C — each finishes, hands off downstream</h3>
+          <p>
+            Assembly-line style. Each agent owns one stage of transformation, <strong style="color: var(--color-foreground);">the previous agent's output = the next agent's input</strong>.
+            Difference from Manager–Worker: a pipeline is serial and single-track, with no central dispatcher.
+          </p>
+          <div class="terminal" style="margin-top: 0.75rem;">
+            <div class="terminal-bar"><span class="terminal-title-tag">USE</span>Content production · Pipeline implementation</div>
+            <div class="terminal-body">
+              <div class="row"><span class="num">01</span><span class="step">RESEARCHER</span><span class="mu">mine 10 viral pieces from the niche → extract common patterns</span></div>
+              <div class="row"><span class="num">02</span><span class="step">IDEATOR</span><span class="mu">based on research → produce 7 topic ideas + outlines</span></div>
+              <div class="row"><span class="num">03</span><span class="step">WRITER</span><span class="mu">write the full draft</span></div>
+              <div class="row"><span class="num">04</span><span class="step">EDITOR</span><span class="mu">copyedit, adjust to voice corpus</span></div>
+              <div class="row"><span class="num">05</span><span class="step">PUBLISHER</span><span class="mu">format + multi-platform adapt + schedule</span></div>
+              <div class="hr"></div>
+              <div class="row"><span class="ok">WHEN TO USE</span><span class="mu">task is a linear chain · each stage needs a different specialty</span></div>
+            </div>
+          </div>
+        </li>
+
+        <li class="item">
+          <span class="item-eyebrow">PATTERN · 03 · SPECIALIST ROUNDTABLE</span>
+          <h3>Multiple expert Agents look at the same problem in parallel, one Synthesizer combines</h3>
+          <p>
+            "Three doctors in consultation" mode. The same input goes <strong style="color: var(--color-foreground);">simultaneously</strong> to multiple expert agents,
+            each looks through their own professional lens and produces an independent verdict; a final synthesizer merges the perspectives.
+            Key point: <strong>parallel</strong> — the experts don't talk to each other, to avoid cross-contamination.
+          </p>
+          <div class="terminal" style="margin-top: 0.75rem;">
+            <div class="terminal-bar"><span class="terminal-title-tag">USE</span>Stock decision · Roundtable implementation</div>
+            <div class="terminal-body">
+              <div class="row"><span class="num">·</span><span class="step">QUANT</span><span class="mu">technicals (MA crossover, RSI, volume/price) · independent score</span></div>
+              <div class="row"><span class="num">·</span><span class="step">FUNDAMENTAL</span><span class="mu">earnings, industry, valuation · independent score</span></div>
+              <div class="row"><span class="num">·</span><span class="step">SENTIMENT</span><span class="mu">news, social, institutional moves · independent score</span></div>
+              <div class="row"><span class="num">·</span><span class="step">RISK</span><span class="mu">position size, volatility, correlation · independent score</span></div>
+              <div class="row"><span class="num">·</span><span class="step">SYNTHESIZER</span><span class="mu">aggregate 4 independent verdicts → produce a recommendation</span></div>
+              <div class="hr"></div>
+              <div class="row"><span class="ok">WHEN TO USE</span><span class="mu">you need multiple independent perspectives · afraid of single-track thinking</span></div>
+            </div>
+          </div>
+        </li>
+
+        <li class="item">
+          <span class="item-eyebrow">PATTERN · 04 · ADVERSARIAL</span>
+          <h3>Drafter writes, Critic tears it apart, iterate until convergence</h3>
+          <p>
+            Adversarial. One agent produces (Drafter), another agent <strong style="color: var(--color-foreground);">exists to find problems</strong> (Critic).
+            They go back and forth until the Critic has nothing left or the iteration limit hits.
+            The core problem it solves: a single agent reviewing its own work always rationalizes.
+          </p>
+          <div class="terminal" style="margin-top: 0.75rem;">
+            <div class="terminal-bar"><span class="terminal-title-tag">USE</span>Code Review · Adversarial implementation</div>
+            <div class="terminal-body">
+              <div class="row"><span class="num">01</span><span class="step">DRAFTER</span><span class="mu">read issue → write implementation + tests → submit v1</span></div>
+              <div class="row"><span class="num">02</span><span class="step">CRITIC</span><span class="mu">tear it apart (edge cases, security, perf, readability) → list fixes</span></div>
+              <div class="row"><span class="num">03</span><span class="step">DRAFTER</span><span class="mu">apply feedback → submit v2</span></div>
+              <div class="row"><span class="num">04</span><span class="step">CRITIC</span><span class="mu">re-review → until approved or 3 rounds done</span></div>
+              <div class="hr"></div>
+              <div class="row"><span class="ok">WHEN TO USE</span><span class="mu">output quality is non-negotiable · wrong = expensive (code / contracts / legal opinions)</span></div>
+            </div>
+          </div>
+        </li>
+      </ul>
+
+      <aside class="aside" style="margin-top: 2rem;">
+        <span class="aside-label">Plain English summary</span>
+        <p style="font-style: normal; font-family: var(--font-sans);">
+          These 4 patterns aren't mutually exclusive — most real production systems combine them.
+          In a content production pipeline, the "Writer" stage might itself be a Drafter+Critic Adversarial sub-structure;
+          the "Researcher" stage might be Manager–Worker (manager splits 5 angles, 5 workers each pull research on one).
+          <strong>The core of designing a multi-agent system isn't picking which pattern, it's deciding what each agent sees and doesn't see.</strong>
+        </p>
+      </aside>
+    </div>
+  </section>
+
+  <!-- ============ § 5 USE CASES ============ -->
+  <section class="essay">
+    <div class="essay-inner wide">
+      <header class="section-head">
+        <span class="eyebrow">§ 05 · 6 REAL WORKFLOWS</span>
+        <h2>Each workflow is one of the structures from §03/§04</h2>
+        <p class="lede">
+          6 systems below, covering the 4 multi-agent patterns + Skills combos.
+          Pick the one closest to your work — copy the structure, swap the prompts and tools — in most cases it runs.
+          Each is tagged with the pattern it uses, so you can cross-reference §03/§04.
+        </p>
+      </header>
+
+      <ul class="use-list">
+
+        <!-- ───── CASE 01 · CUSTOMER SUPPORT · MANAGER-WORKER ───── -->
+        <li class="use">
+          <div class="use-top">
+            <span class="use-label" style="color:#2d5e44">CASE · 01 · Customer Support · MANAGER-WORKER</span>
+            <span class="use-gain">Per-ticket 8min → 1min · headcount halved</span>
+          </div>
+          <h3>200 tickets, 5 people can't clear them — manager classifies, workers handle</h3>
+          <p style="color:var(--color-foreground);font-weight:500;margin-bottom:1rem;">
+            Contrarian take: support throughput isn't bottlenecked by typing speed. It's bottlenecked by classification.
+            <strong>One manager reading + classifying a ticket in 30 seconds beats 5 agents each spending 10 minutes on "what is this even"</strong>.
+            Then each ticket type goes to a dedicated worker — each worker has only seen training context for its category, so its handling quality beats a generalist.
+          </p>
+          <div class="terminal">
+            <div class="terminal-bar"><span class="terminal-title-tag">WORKFLOW</span>Auto-routed support tickets (Manager-Worker · with Skills)</div>
+            <div class="terminal-body">
+              <div class="row"><span class="num">01</span><span class="step">INTAKE</span><span class="mu">Zendesk webhook · triggered on new ticket</span></div>
+              <div class="row"><span class="num">02</span><span class="step">MANAGER</span><span class="mu">read ticket · classify into 5 buckets (refund / technical / complaint / inquiry / escalation)</span></div>
+              <div class="row"><span class="num">03</span><span class="step">WORKER A</span><span class="mu">refund skill · pull order + draft refund flow</span></div>
+              <div class="row"><span class="num">04</span><span class="step">WORKER B</span><span class="mu">technical skill · pull logs + draft fix steps</span></div>
+              <div class="row"><span class="num">05</span><span class="step">WORKER C</span><span class="mu">complaint skill · draft apology + escalate to human</span></div>
+              <div class="row"><span class="num">06</span><span class="step">SUPERVISOR</span><span class="mu">random 5% reviewed by human · feedback tunes the manager</span></div>
+              <div class="hr"></div>
+              <div class="row"><span class="ok">SETUP</span><span class="mu">2 weeks</span>　·　<span class="ok">ROI</span><span class="mu">8min → 1min · support team 5 → 2</span></div>
+            </div>
+          </div>
+          <div class="use-meta">
+            <span class="chip">Claude API</span>
+            <span class="chip">Zendesk / Intercom</span>
+            <span class="chip">n8n</span>
+            <span class="chip">PostgreSQL</span>
+          </div>
+        </li>
+
+        <!-- ───── CASE 02 · SALES OUTREACH · PIPELINE ───── -->
+        <li class="use">
+          <div class="use-top">
+            <span class="use-label" style="color:#5a8270">CASE · 02 · Sales Outreach · PIPELINE</span>
+            <span class="use-gain">3× outreach · reply rate +40%</span>
+          </div>
+          <h3>200 prospects, a 4-stage pipeline does what an SDR needs 4 days for</h3>
+          <p style="color:var(--color-foreground);font-weight:500;margin-bottom:1rem;">
+            Contrarian take: personalized email isn't slow because writing is slow. It's slow because <strong>"research + write" thrashes inside one human brain</strong>.
+            Split those two steps into two agents, add a sender + tracker, and one person running the pipeline does the work of four.
+          </p>
+          <div class="terminal">
+            <div class="terminal-bar"><span class="terminal-title-tag">WORKFLOW</span>Cold outreach (Pipeline · 4 sequential stages)</div>
+            <div class="terminal-body">
+              <div class="row"><span class="num">01</span><span class="step">RESEARCHER</span><span class="mu">company list in · pull filings / news / decision chain / pain signals</span></div>
+              <div class="row"><span class="num">02</span><span class="step">PERSONALIZER</span><span class="mu">based on research · write custom opener + value hook</span></div>
+              <div class="row"><span class="num">03</span><span class="step">SENDER</span><span class="mu">send at optimal time · track opens / clicks</span></div>
+              <div class="row"><span class="num">04</span><span class="step">TRACKER</span><span class="mu">no reply in 3 days → trigger differentiated follow-up (A/B)</span></div>
+              <div class="row"><span class="num">05</span><span class="step">FEEDBACK</span><span class="mu">reply content → loop back to Personalizer to tune voice</span></div>
+              <div class="hr"></div>
+              <div class="row"><span class="ok">SETUP</span><span class="mu">1 week</span>　·　<span class="ok">ROI</span><span class="mu">200 prospects/week · reply rate 5% → 7%</span></div>
+            </div>
+          </div>
+          <div class="use-meta">
+            <span class="chip">Apollo</span>
+            <span class="chip">Clay</span>
+            <span class="chip">Claude API</span>
+            <span class="chip">Lemlist / Instantly</span>
+            <span class="chip">HubSpot</span>
+          </div>
+        </li>
+
+        <!-- ───── CASE 03 · CODE REVIEW · ADVERSARIAL ───── -->
+        <li class="use">
+          <div class="use-top">
+            <span class="use-label" style="color:#d4a657">CASE · 03 · Code Review · ADVERSARIAL</span>
+            <span class="use-gain">Production bugs -50% · PR pass rate +30%</span>
+          </div>
+          <h3>Drafter + 3 Critics tearing it apart cuts bugs in half</h3>
+          <p style="color:var(--color-foreground);font-weight:500;margin-bottom:1rem;">
+            Contrarian take: a single agent that writes code and reviews it always concludes its own work is fine.
+            <strong>You need critic agents with independent contexts, and each critic must own one class of risk</strong>.
+            The security critic isn't distracted by perf, the perf critic doesn't skip readability — three critics piling on is what forces the drafter to actually fix things.
+          </p>
+          <div class="terminal">
+            <div class="terminal-bar"><span class="terminal-title-tag">WORKFLOW</span>Multi-perspective PR Review (Adversarial · 1 writer, 3 critics)</div>
+            <div class="terminal-body">
+              <div class="row"><span class="num">01</span><span class="step">DRAFTER</span><span class="mu">read issue + impact area · write implementation + tests · submit v1</span></div>
+              <div class="row"><span class="num">02</span><span class="step">CRITIC.SEC</span><span class="mu">SQL injection / XSS / authz boundaries / secret leakage</span></div>
+              <div class="row"><span class="num">03</span><span class="step">CRITIC.PERF</span><span class="mu">N+1 / infinite loops / O(n²) / missing cache</span></div>
+              <div class="row"><span class="num">04</span><span class="step">CRITIC.READ</span><span class="mu">naming / abstraction layers / comments / dead code</span></div>
+              <div class="row"><span class="num">05</span><span class="step">DRAFTER</span><span class="mu">merge 3 sets of feedback → submit v2 · max 3 rounds</span></div>
+              <div class="row"><span class="num">06</span><span class="step">HUMAN</span><span class="mu">you only see the final version + each critic's final verdict</span></div>
+              <div class="hr"></div>
+              <div class="row"><span class="ok">SETUP</span><span class="mu">3 days</span>　·　<span class="ok">ROI</span><span class="mu">PR review time 30min → 5min · production bugs -50%</span></div>
+            </div>
+          </div>
+          <div class="use-meta">
+            <span class="chip">Claude Code</span>
+            <span class="chip">GitHub Actions</span>
+            <span class="chip">Aider</span>
+            <span class="chip">Cursor</span>
+          </div>
+        </li>
+
+        <!-- ───── CASE 04 · MARKET INTELLIGENCE · ROUNDTABLE ───── -->
+        <li class="use">
+          <div class="use-top">
+            <span class="use-label" style="color:#c2a8ff">CASE · 04 · Competitive / Market Intel · ROUNDTABLE</span>
+            <span class="use-gain">Per-target research 1 week → 1 hour</span>
+          </div>
+          <h3>4 expert agents look at the same company in parallel; synthesizer outputs a threat rating</h3>
+          <p style="color:var(--color-foreground);font-weight:500;margin-bottom:1rem;">
+            Contrarian take: ask one generalist agent for a "complete competitive report" and you get something balanced but devoid of insight.
+            <strong>Use 4 specialist agents in parallel on the same company, each looking only at their domain, then a synthesizer merges</strong> —
+            the report is 3-5× stronger than a single agent's, because the perspectives are genuinely independent.
+          </p>
+          <div class="terminal">
+            <div class="terminal-bar"><span class="terminal-title-tag">WORKFLOW</span>Multi-angle competitive analysis (Roundtable · 4 parallel + 1 synthesizer)</div>
+            <div class="terminal-body">
+              <div class="row"><span class="num">·</span><span class="step">TECH</span><span class="mu">stack / product matrix / engineering capability / hiring signals</span></div>
+              <div class="row"><span class="num">·</span><span class="step">FINANCIAL</span><span class="mu">funding cadence / filings / valuation / burn rate</span></div>
+              <div class="row"><span class="num">·</span><span class="step">GTM</span><span class="mu">channels / pricing / marketing moves / customer base</span></div>
+              <div class="row"><span class="num">·</span><span class="step">PEOPLE</span><span class="mu">exec changes / team size / key people's posts on X</span></div>
+              <div class="hr"></div>
+              <div class="row"><span class="num">★</span><span class="step">SYNTHESIZER</span><span class="mu">aggregate 4 independent verdicts · output "threat level + what you should do"</span></div>
+              <div class="hr"></div>
+              <div class="row"><span class="ok">SETUP</span><span class="mu">3 days</span>　·　<span class="ok">ROI</span><span class="mu">competitive research 1 week → 1 hour · monthly refresh of 5 targets</span></div>
+            </div>
+          </div>
+          <div class="use-meta">
+            <span class="chip">Perplexity API</span>
+            <span class="chip">Crunchbase</span>
+            <span class="chip">LinkedIn API</span>
+            <span class="chip">Claude</span>
+            <span class="chip">Notion</span>
+          </div>
+        </li>
+
+        <!-- ───── CASE 05 · CONTENT PRODUCTION · HYBRID ───── -->
+        <li class="use">
+          <div class="use-top">
+            <span class="use-label" style="color:var(--color-foreground)">CASE · 05 · Content Production · HYBRID (Pipeline + Adversarial)</span>
+            <span class="use-gain">1 piece/person/day → 5 pieces/day</span>
+          </div>
+          <h3>Pipeline of 4 stations + an Adversarial loop in the middle — higher quality than single-agent + 5× volume</h3>
+          <p style="color:var(--color-foreground);font-weight:500;margin-bottom:1rem;">
+            Contrarian take: 99% of "AI writing tools" run a single agent across the whole flow — the result reeks of AI and reads from one angle.
+            <strong>A real content factory is hybrid: Pipeline gives you assembly-line throughput, and the critical "write + revise" station uses Adversarial for quality</strong>.
+          </p>
+          <div class="terminal">
+            <div class="terminal-bar"><span class="terminal-title-tag">WORKFLOW</span>Content factory (Pipeline trunk + Adversarial nested)</div>
+            <div class="terminal-body">
+              <div class="row"><span class="num">01</span><span class="step">RESEARCHER</span><span class="mu">scan niche + Perplexity Deep Research · output topic + source material</span></div>
+              <div class="row"><span class="num">02a</span><span class="step">WRITER</span><span class="mu">write first draft from research · tune voice from persona corpus</span></div>
+              <div class="row"><span class="num">02b</span><span class="step">EDITOR ⟷</span><span class="mu">tear apart (pacing / hook / contrarian strength / AI tone)</span></div>
+              <div class="row"><span class="num">02c</span><span class="step">WRITER ⟷</span><span class="mu">revise · re-review · max 3 rounds until EDITOR passes</span></div>
+              <div class="row"><span class="num">03</span><span class="step">ADAPTER</span><span class="mu">one draft → multi-platform (Twitter / Xiaohongshu / WeChat / YouTube desc)</span></div>
+              <div class="row"><span class="num">04</span><span class="step">SCHEDULER</span><span class="mu">Buffer / Hypefury scheduling + analytics feedback</span></div>
+              <div class="hr"></div>
+              <div class="row"><span class="ok">SETUP</span><span class="mu">2 weeks (building voice corpus)</span>　·　<span class="ok">ROI</span><span class="mu">1 piece/day → 5/day per person · AI-tone detection drops noticeably</span></div>
+            </div>
+          </div>
+          <div class="use-meta">
+            <span class="chip">Perplexity</span>
+            <span class="chip">Claude</span>
+            <span class="chip">Buffer / Hypefury</span>
+            <span class="chip">Notion</span>
+            <span class="chip">CapCut</span>
+          </div>
+        </li>
+
+        <!-- ───── CASE 06 · DATA EXPLORATION · MANAGER-WORKER ───── -->
+        <li class="use">
+          <div class="use-top">
+            <span class="use-label" style="color:var(--color-foreground)">CASE · 06 · Cross-database Data Exploration · MANAGER-WORKER</span>
+            <span class="use-gain">Multi-table join analysis 4h → 15min</span>
+          </div>
+          <h3>50-table cross-join — one Agent can't hold it all; 10 Workers query in parallel</h3>
+          <p style="color:var(--color-foreground);font-weight:500;margin-bottom:1rem;">
+            Contrarian take: the data analyst's worst problem isn't writing SQL. It's that <strong>10 tables' schemas combined don't fit in one agent's context</strong>.
+            Push "understand the schema" down to each worker (each worker knows one table), let the manager only split the question and stitch the answer —
+            a task that used to "not fit in context" now ships in 10 minutes.
+          </p>
+          <div class="terminal">
+            <div class="terminal-bar"><span class="terminal-title-tag">WORKFLOW</span>Cross-database exploration (Manager-Worker · solving context capacity)</div>
+            <div class="terminal-body">
+              <div class="row"><span class="num">01</span><span class="step">MANAGER</span><span class="mu">read user question · split into N independent subqueries (each touches 1-2 tables)</span></div>
+              <div class="row"><span class="num">02</span><span class="step">WORKER ×N</span><span class="mu">each worker runs in its own context · only loads the schema it owns</span></div>
+              <div class="row"><span class="num">03</span><span class="step">WORKER ×N</span><span class="mu">run SQL · validate results · emit structured data</span></div>
+              <div class="row"><span class="num">04</span><span class="step">MANAGER</span><span class="mu">collect N subresults · cross-result JOIN / compute · chart</span></div>
+              <div class="row"><span class="num">05</span><span class="step">MANAGER</span><span class="mu">write insight + anomaly flags</span></div>
+              <div class="hr"></div>
+              <div class="row"><span class="ok">SETUP</span><span class="mu">1 week</span>　·　<span class="ok">ROI</span><span class="mu">previously context-blocked tasks · now runnable · 4h → 15min</span></div>
+            </div>
+          </div>
+          <div class="use-meta">
+            <span class="chip">Claude Code</span>
+            <span class="chip">Snowflake / BigQuery</span>
+            <span class="chip">DuckDB</span>
+            <span class="chip">LangGraph</span>
+            <span class="chip">Plotly</span>
+          </div>
+        </li>
+
+      </ul>
+    </div>
+  </section>
+
+  <!-- ============ § 6 DECISION TREE ============ -->
+  <section class="essay">
+    <div class="essay-inner">
+      <header class="section-head">
+        <span class="eyebrow">§ 06 · DECISION TREE</span>
+        <h2>Single Agent · Skill · Multi-agent — when to pick which</h2>
+        <p class="lede">
+          Don't pick based on "what looks more sophisticated" — pick based on whether your task triggers a specific signal.
+          Ask the 3 questions below in order, <strong style="color: var(--color-foreground);">stop at the first YES</strong>.
+        </p>
+      </header>
+
+      <ul class="item-list">
+        <li class="item">
+          <span class="item-eyebrow">LEVEL · 01 · SINGLE AGENT</span>
+          <h3>Can your task finish in 10 steps and won't recur?</h3>
+          <p>
+            If yes: <strong style="color:var(--color-foreground);">don't reach for Skill, definitely not Multi-agent.</strong>
+            All you need is a ChatGPT / Claude window + a prompt. Skills and Multi-agent both carry maintenance cost — don't build infrastructure for a one-off.
+          </p>
+          <div style="margin-top: 0.875rem; color: var(--color-muted-foreground); font-size: 0.9375rem;">
+            <strong style="color: var(--color-foreground);">Trigger signal</strong>: ad-hoc tasks that happen 0-1×/week · single function · no parallelism needed
+            <br>
+            <strong style="color: var(--color-foreground);">Real example</strong>: writing one-off email / researching an ad-hoc question / looking up a reference
+          </div>
+        </li>
+
+        <li class="item">
+          <span class="item-eyebrow">LEVEL · 02 · SINGLE AGENT + SKILLS</span>
+          <h3>Does the same Agent need to handle 5+ task types, or is one workflow segment reused everywhere?</h3>
+          <p>
+            If yes: add Skills, <strong style="color:var(--color-foreground);">but you don't need Multi-agent yet</strong>.
+            Skills lets one Agent operate like a team — same context, callable modular capabilities. Moderate maintenance cost: you write SOPs, but only one agent runs.
+          </p>
+          <div style="margin-top: 0.875rem; color: var(--color-muted-foreground); font-size: 0.9375rem;">
+            <strong style="color: var(--color-foreground);">Trigger signal</strong>: same agent handles 5+ task types · one workflow segment reused across places · team needs to collaborate on prompts
+            <br>
+            <strong style="color: var(--color-foreground);">Real example</strong>: personal assistant (email + calendar + Notion + memos) / all-in-one support (multi-class tickets + knowledge base + escalation)
+          </div>
+        </li>
+
+        <li class="item">
+          <span class="item-eyebrow">LEVEL · 03 · MULTI-AGENT</span>
+          <h3>Any of: context overload / need independent reviewer / need real parallelism?</h3>
+          <p>
+            If yes: go Multi-agent. <strong style="color:var(--color-foreground);">But be ready to spend 5-10× more on protocol design, debugging the chain, monitoring state</strong>.
+            Multi-agent isn't "the more advanced version" — it's the choice when <strong>you have no option but to divide labor</strong>.
+          </p>
+          <div style="margin-top: 0.875rem; color: var(--color-muted-foreground); font-size: 0.9375rem;">
+            <strong style="color: var(--color-foreground);">Trigger signal</strong>: single agent drifts past 50 steps · must have independent eyes critiquing · 4+ subtasks parallelizable · context can't hold the full schema
+          </div>
+          <div class="terminal" style="margin-top: 1rem;">
+            <div class="terminal-bar"><span class="terminal-title-tag">SUB-CHOICE</span>How to pick among the 4 patterns</div>
+            <div class="terminal-body">
+              <div class="row"><span class="num">·</span><span class="step">MANAGER-WORKER</span><span class="mu">task splits statically · subtasks independent</span></div>
+              <div class="row"><span class="num">·</span><span class="step">PIPELINE</span><span class="mu">task is sequential transformation · each stage needs a specialty</span></div>
+              <div class="row"><span class="num">·</span><span class="step">ROUNDTABLE</span><span class="mu">need multiple independent perspectives · afraid of groupthink</span></div>
+              <div class="row"><span class="num">·</span><span class="step">ADVERSARIAL</span><span class="mu">quality is non-negotiable · wrong = expensive (code / contracts)</span></div>
+              <div class="hr"></div>
+              <div class="row"><span class="ok">REMEMBER</span><span class="mu">most production systems are 2-3 patterns nested together</span></div>
+            </div>
+          </div>
+        </li>
+      </ul>
+
+      <aside class="aside">
+        <span class="aside-label">Plain English summary</span>
+        <p style="font-style: normal; font-family: var(--font-sans);">
+          A common mistake: see the word "Multi-agent," assume it's the sophisticated answer, and force a simple task into a multi-agent build.
+          <strong>The correct path is the reverse — if a single agent works, don't add a skill; if a skill works, don't add multi-agent.</strong>
+          Complexity should retreat toward the simplest dimension that works — this isn't "engineers being lazy," it's the §02 ceilings applied in reverse:
+          the simpler the dimension, the harder you hit a ceiling.
+        </p>
+      </aside>
+    </div>
+  </section>
+
+  <!-- ============ § 7 MARKET OBSERVATION ============ -->
+  <section class="essay">
+    <div class="essay-inner">
+      <header class="section-head">
+        <span class="eyebrow">§ 07 · MARKET OBSERVATION</span>
+        <h2>5 things the market says about Multi-agent and Skills that aren't quite right</h2>
+        <p class="lede">
+          Ep 01 covered the "AI peripheral market" — selling anxiety, selling certainty.
+          This section narrows to Ep 02's two words: what the market has done to multi-agent and skills.
+          Once you see it, you can tell faster whether a product / article / course has anything real behind it.
+        </p>
+      </header>
+
+      <ul class="item-list">
+        <li class="item">
+          <span class="item-eyebrow">OBSERVATION · 01 · LANGGRAPH WRAPPER</span>
+          <h3>"Multi-agent Platform / OS"</h3>
+          <p>
+            2024-2026 produced a flood of "Multi-agent OS / platform" startups. <strong style="color:var(--color-foreground);">Most are LangGraph + a UI layer</strong>,
+            with no genuinely independent contexts between agents. The test is simple: ask "what does each of your two agents see in their system prompt?" —
+            if they can't name specific boundaries, it's a wrapper.
+          </p>
+        </li>
+
+        <li class="item">
+          <span class="item-eyebrow">OBSERVATION · 02 · MORE TOOLS &gt; BETTER AGENT</span>
+          <h3>"Our Agent has 100+ Skills"</h3>
+          <p>
+            "Number of Skills" gets pitched as a selling point, but the Tool Overload ceiling from §02-02 applies to skills too —
+            <strong style="color:var(--color-foreground);">the more you load in, the worse the agent's skill-selection gets</strong>.
+            Production measurement: past 15-20 skills, recall accuracy falls off a cliff.
+            10 sharp Skills &gt; 50 noisy ones.
+          </p>
+        </li>
+
+        <li class="item">
+          <span class="item-eyebrow">OBSERVATION · 03 · ACADEMIC vs PRACTICAL</span>
+          <h3>"Multi-agent is the path to AGI"</h3>
+          <p>
+            This is an academic debate 20 years old (agent-based modeling, swarm intelligence, multi-agent reinforcement learning…) —
+            <strong style="color:var(--color-foreground);">it has nothing to do with you building a system that actually handles support tickets today</strong>.
+            This grand narrative gets used to dress up simple LangGraph demos — when you hear it, remember: however grand, it still has to handle a ticket.
+          </p>
+        </li>
+
+        <li class="item">
+          <span class="item-eyebrow">OBSERVATION · 04 · PROPRIETARY FRAMING</span>
+          <h3>"Skill is an Anthropic-proprietary feature"</h3>
+          <p>
+            Wrong. Skill isn't any vendor's feature — it's <strong style="color:var(--color-foreground);">a design pattern</strong>.
+            OpenAI Custom GPT Actions, LangChain Tools, your own modular prompt files,
+            even Unix tools + a README — they're all the same thing at the core: package reusable capability into a unit that's discoverable and callable.
+            Who packages it cleanest is a separate question, but the concept doesn't belong to anyone.
+          </p>
+        </li>
+
+        <li class="item">
+          <span class="item-eyebrow">OBSERVATION · 05 · WRONG ORDER</span>
+          <h3>"Complex tasks require Multi-agent"</h3>
+          <p>
+            Usually said backwards. The first thing to do with a complex task is <strong style="color:var(--color-foreground);">turn it into an SOP</strong> — break it into repeatable steps with explicit input/output per step.
+            After the SOP, most tasks' "complexity" drops to where single agent + skills handle it; only what truly remains — the parts needing parallelism or independent review — goes multi-agent.
+            Reverse the order — stack multi-agent first — and you're using expensive coordination cost to mask the fact you haven't thought through the workflow.
+          </p>
+        </li>
+      </ul>
+
+      <aside class="aside">
+        <span class="aside-label">Plain English summary</span>
+        <p style="font-style: normal; font-family: var(--font-sans);">
+          What the 5 share: <strong>packaging an engineering problem as a marketing topic</strong>.
+          One question to tell whether a multi-agent / skill product has anything real —
+          which of the 4 ceilings in §02 does it specifically solve? If they can't answer, it's packaging.
+        </p>
+      </aside>
+    </div>
+  </section>
+
+  <!-- ============ § 8 90-DAY PATH ============ -->
+  <section class="essay">
+    <div class="essay-inner">
+      <header class="section-head">
+        <span class="eyebrow">§ 08 · NEXT 90 DAYS</span>
+        <h2>12 weeks from single Agent to Multi-agent</h2>
+        <p class="lede">
+          This extends Ep 01's 90-day path —
+          assuming you can already handle daily tasks with a single agent + 1 Project (the Week 9-12 state from Ep 01).
+          The next 12 weeks take you from "single agent + 1 Skill" to "3-agent coordinated system."
+          Each week has a failure signal — when it lights up, roll back.
+        </p>
+      </header>
+
+      <ul class="timeline">
+        <li class="tl">
+          <span class="tl-week">WEEK 1 – 2 · FIND CANDIDATES</span>
+          <h3>List the 3 highest-frequency subtasks in your workflow</h3>
+          <p>
+            <strong style="color: var(--color-foreground);">Not "things I want to replace with AI"</strong> — things you do "5+ times a week, almost the same steps each time."
+            These are the natural Skill candidates. Write them down: name / frequency / input / output / current time spent.
+            <strong style="color: var(--color-foreground);">Failure signal:</strong> can't list 3 — your workflow isn't regular enough yet, go back to Ep 01.
+            <strong>What to do:</strong> spend another week doing it purely manually, jotting down every task as you do it.
+          </p>
+        </li>
+        <li class="tl">
+          <span class="tl-week">WEEK 3 – 4 · WRITE THE FIRST SKILL</span>
+          <h3>Pick the most painful candidate — write it as SKILL.md and run it</h3>
+          <p>
+            Write a standalone file with the 4 parts from §03 (DESCRIPTION / CONTRACT / PROMPT / TOOLS).
+            Hook it into Claude Code or your own agent and run it for a week — <strong style="color: var(--color-foreground);">every time the task comes up, just call it, never hand-write the prompt</strong>.
+            <strong style="color: var(--color-foreground);">Failure signal:</strong> by end of Week 4 you're still frequently editing the prompt inside SKILL.md.
+            <strong>What to do:</strong> it's not Skills failing — your task isn't SOP-ready. Go back and decompose it further.
+          </p>
+        </li>
+        <li class="tl">
+          <span class="tl-week">WEEK 5 – 8 · FILL UP ONE AGENT</span>
+          <h3>Write 3-5 Skills and load them into the same Agent</h3>
+          <p>
+            Turn the other 2-4 tasks from Week 1-2 into Skills too.
+            Your agent should now handle 5 different task types in a single context —
+            <strong style="color: var(--color-foreground);">experientially, it goes from "generalist assistant" to "colleague with real expertise"</strong>.
+            <strong style="color: var(--color-foreground);">Failure signal:</strong> agent routinely picks the wrong Skill / mixes logic from two Skills.
+            <strong>What to do:</strong> you loaded too many — trim back to the 3 highest-frequency, save the rest for the Multi-agent phase.
+          </p>
+        </li>
+        <li class="tl">
+          <span class="tl-week">WEEK 9 – 12 · FIRST DIVISION OF LABOR</span>
+          <h3>Pick a complex task that won't run, design a 2-3 agent collaboration</h3>
+          <p>
+            Find a task that actually hits a §02 ceiling — single agent breaks past 50 steps, or needs an independent critic, or needs parallel processing.
+            Pick one of the 4 patterns in §04 and build a minimal viable multi-agent system.
+            <strong style="color: var(--color-foreground);">Don't go big, don't aim for complete — just make the simplest version that runs end-to-end</strong>.
+            <strong style="color: var(--color-foreground);">Failure signal:</strong> by Week 12 you're still tweaking prompts / protocols, end-to-end doesn't run.
+            <strong>What to do:</strong> usually the system you designed is too complex — strip it down to two agents, then ask which one really needs to be independent.
+          </p>
+        </li>
+      </ul>
+
+      <p style="margin-top: 2rem; color: var(--color-muted-foreground); font-size: 0.9375rem;">
+        <strong style="color: var(--color-foreground); font-weight: 600;">After 12 weeks, you should be able to answer:</strong>
+        "Which part of my daily work is one Agent calling a set of Skills? Which part is multiple Agents collaborating?"
+        <br><br>
+        If you can point to both, with outputs and logs — you've crossed the Ep 01 → Ep 02 boundary.
+        If you can't — you're still working out of "one ChatGPT window," not "building a system."
+      </p>
+    </div>
+  </section>
+
+  <!-- ============ CTA ============ -->
+  <section id="cta" class="essay">
+    <div class="essay-inner">
+      <header class="section-head" style="text-align:center;">
+        <span class="eyebrow" style="display:inline-block;">Real Agent Use Cases</span>
+        <h2 style="margin-top: 0.75rem;">From single Agent to Multi-agent — what's missing isn't a new concept,<br>it's you picking one workflow and sitting down to build it</h2>
+        <p class="lede" style="margin-left:auto;margin-right:auto;">
+          After this episode, you can tell where single Agent / Skills / Multi-agent each belong.
+          But <strong style="color:var(--color-foreground);">"telling them apart" ≠ "building one"</strong>.
+          What the next episode covers depends on whether you actually land this one in a workflow that runs.
+        </p>
+      </header>
+
+      <div class="subscribe">
+        <form class="subscribe-form" onsubmit="event.preventDefault(); window.open('https://realagentusecases.com', '_blank');">
+          <input type="email" placeholder="your@email.com" required>
+          <button class="btn" type="submit">Subscribe — free</button>
+        </form>
+        <p class="subscribe-note">
+          One complete, copyable Agent case study every week — prompts, tools, steps, all public.<br>
+          This newsletter doesn't "cheer you on." Whether it runs is on you.
+        </p>
+      </div>
+
+      <p style="margin-top: 3rem; text-align: center; font-family: var(--font-mono); font-size: 0.75rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--color-muted-foreground);">
+        ← <a href="/en/agent-101/" style="color: var(--color-muted-foreground); border-bottom: 1px solid var(--color-muted-foreground);">EP 01 · What is AI Agent</a>　·　EP 02 (you are here)　·　EP 03 (coming)
+      </p>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site">
+  <div class="footer-inner">
+    © 2026 · Jack Qian
+    <span class="sep">·</span>
+    <a href="https://realagentusecases.com">realagentusecases.com</a>
+    <span class="sep">·</span>
+    Dallas, TX
+  </div>
+</footer>
+
+</body>
+</html>

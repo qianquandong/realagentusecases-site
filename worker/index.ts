@@ -35,7 +35,11 @@ function resolveLocale(request: Request): Locale {
 // Security / baseline-hygiene headers added to every response.
 // HSTS = Google quality signal + force HTTPS. nosniff + referrer-policy =
 // standard web hygiene. Permissions-Policy disables sensors we never use.
-function withSecurityHeaders(response: Response): Response {
+//
+// Path arg lets us patch Content-Type for extensionless files (e.g. Next.js
+// `opengraph-image` output) — without it, nosniff prevents browsers and
+// social-media crawlers from detecting the PNG byte signature.
+function withSecurityHeaders(response: Response, path: string): Response {
   const headers = new Headers(response.headers);
   headers.set(
     "Strict-Transport-Security",
@@ -47,6 +51,27 @@ function withSecurityHeaders(response: Response): Response {
     "Permissions-Policy",
     "camera=(), microphone=(), geolocation=(), payment=()",
   );
+
+  // Next.js `opengraph-image.tsx` outputs PNG files with no extension.
+  // Set Content-Type explicitly so social crawlers + direct browser opens work.
+  if (
+    path === "/opengraph-image" ||
+    path.endsWith("/opengraph-image")
+  ) {
+    headers.set("Content-Type", "image/png");
+  }
+
+  if (path.startsWith("/_next/static/")) {
+    headers.set(
+      "Cache-Control",
+      "public, max-age=31536000, immutable",
+    );
+  } else if (path === "/robots.txt" || path === "/sitemap.xml") {
+    headers.set("Cache-Control", "public, max-age=3600");
+  } else if (path === "/favicon.ico" || path.endsWith("/opengraph-image")) {
+    headers.set("Cache-Control", "public, max-age=86400");
+  }
+
   return new Response(response.body, {
     status: response.status,
     statusText: response.statusText,
@@ -69,6 +94,6 @@ export default {
       return Response.redirect(`${url.origin}/${locale}/`, 302);
     }
 
-    return withSecurityHeaders(await env.ASSETS.fetch(request));
+    return withSecurityHeaders(await env.ASSETS.fetch(request), path);
   },
 };

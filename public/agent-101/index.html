@@ -1,0 +1,2025 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="AI Agent 基础应用 · 不同职业的人如何用 AI Agent 真正提升效率 · 由 Real Agent Use Cases 出品">
+<title>Agent 101 · AI Agent 基础应用 · Real Agent Use Cases</title>
+<link rel="canonical" href="https://realagentusecases.com/agent-101/">
+<link rel="alternate" hrefLang="zh" href="https://realagentusecases.com/agent-101/">
+<link rel="alternate" hrefLang="en" href="https://realagentusecases.com/en/agent-101/">
+
+<!-- Open Graph -->
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Real Agent Use Cases">
+<meta property="og:title" content="Agent 101 · 第 01 期 · 「Agent」这个词在三种人嘴里是三件事">
+<meta property="og:description" content="90 分钟讲清楚 AI Agent 是什么、不是什么、四类职业怎么用、9 个真实工作流——不画饼的入门讲义。">
+<meta property="og:url" content="https://realagentusecases.com/agent-101/">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:locale:alternate" content="en_US">
+<meta property="og:image" content="https://realagentusecases.com/og/agent-101/opengraph-image">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:alt" content="Agent 101 · Episode 01 · «Agent» means three different things to three different people">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Agent 101 · 第 01 期 · 「Agent」这个词在三种人嘴里是三件事">
+<meta name="twitter:description" content="90 分钟讲清楚 AI Agent 是什么、不是什么、四类职业怎么用、9 个真实工作流——不画饼的入门讲义。">
+<meta name="twitter:image" content="https://realagentusecases.com/og/agent-101/opengraph-image">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@300..900&family=Geist+Mono:wght@300..700&family=Source+Serif+4:ital,wght@0,400..700;1,400..700&display=swap">
+<style>
+  /* ==========================================================
+     Tokens — mirrors realagentusecases.com
+     ========================================================== */
+  :root {
+    --color-background: #0a0a0a;
+    --color-foreground: #f2f2f2;
+    --color-muted: #161616;
+    --color-muted-foreground: #a3a3a3;
+    --color-border: #262626;
+    --color-brand: #2d5e44;
+    --color-brand-hover: #387554;
+    --color-brand-foreground: #fff;
+
+    --font-sans: "Geist", -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", "Hiragino Sans GB", sans-serif;
+    --font-serif: "Source Serif 4", "Songti SC", "STSong", Georgia, "Times New Roman", serif;
+    --font-mono: "Geist Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+
+    --tracking-tight: -0.025em;
+    --leading-snug: 1.375;
+    --leading-relaxed: 1.625;
+
+    --radius-md: 0.375rem;
+    --radius-lg: 0.5rem;
+    --radius-xl: 0.75rem;
+
+    --container-2xl: 42rem; /* 672 — body sections */
+    --container-3xl: 48rem; /* 768 — hero */
+    --container-6xl: 72rem; /* 1152 — nav */
+  }
+
+  /* ==========================================================
+     Reset & base
+     ========================================================== */
+  *, *::before, *::after { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    background: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    line-height: var(--leading-relaxed);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+  h1, h2, h3, h4 {
+    color: var(--color-foreground);
+    font-weight: 600;
+    letter-spacing: var(--tracking-tight);
+    line-height: var(--leading-snug);
+    margin: 0;
+    text-wrap: balance;
+  }
+  p { margin: 0 0 1rem; }
+  a {
+    color: var(--color-foreground);
+    text-decoration: none;
+    transition: color 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  a:hover { color: var(--color-brand); }
+  ::selection { background: var(--color-brand); color: white; }
+  img, svg { max-width: 100%; display: block; }
+
+  /* ==========================================================
+     Layout primitives
+     ========================================================== */
+  .mx-auto { margin-left: auto; margin-right: auto; }
+  .max-w-6xl { max-width: var(--container-6xl); }
+  .max-w-3xl { max-width: var(--container-3xl); }
+  .max-w-2xl { max-width: var(--container-2xl); }
+  .px-6 { padding-left: 1.5rem; padding-right: 1.5rem; }
+  main { min-height: 100vh; }
+
+  /* ==========================================================
+     Sticky nav (matches parent site)
+     ========================================================== */
+  nav.topnav {
+    position: sticky;
+    top: 0;
+    z-index: 40;
+    border-bottom: 1px solid var(--color-border);
+    background: rgba(10, 10, 10, 0.8);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+  }
+  @supports (backdrop-filter: blur(12px)) {
+    nav.topnav { background: rgba(10, 10, 10, 0.6); }
+  }
+  .nav-inner {
+    max-width: var(--container-6xl);
+    margin: 0 auto;
+    padding: 0 1.5rem;
+    height: 3.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .brand {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    letter-spacing: -0.01em;
+    color: var(--color-foreground);
+  }
+  @media (min-width: 640px) { .brand { font-size: 0.875rem; } }
+  .brand:hover { color: var(--color-brand); }
+  .nav-right {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+  }
+  @media (min-width: 640px) { .nav-right { gap: 1.5rem; } }
+  .nav-link {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--color-muted-foreground);
+    letter-spacing: -0.01em;
+    transition: color 0.15s;
+  }
+  @media (min-width: 640px) { .nav-link { font-size: 0.875rem; } }
+  .nav-link:hover { color: var(--color-brand); }
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--radius-md);
+    font-family: var(--font-sans);
+    font-weight: 500;
+    font-size: 0.875rem;
+    height: 2.25rem;
+    padding: 0 1rem;
+    background: var(--color-brand);
+    color: var(--color-brand-foreground);
+    transition: background-color 0.15s, transform 0.15s;
+    cursor: pointer;
+    border: none;
+  }
+  .btn:hover {
+    background: var(--color-brand-hover);
+    color: var(--color-brand-foreground);
+    transform: translateY(-1px);
+  }
+  .btn:active { transform: translateY(0); }
+  .btn.btn-lg { height: 3rem; padding: 0 1.5rem; font-size: 1rem; }
+
+  /* ==========================================================
+     Eyebrow (mono uppercase label)
+     ========================================================== */
+  .eyebrow {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--color-muted-foreground);
+    font-weight: 400;
+  }
+  .eyebrow-lg {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: var(--color-muted-foreground);
+  }
+
+  /* ==========================================================
+     Hero
+     ========================================================== */
+  .hero {
+    max-width: var(--container-3xl);
+    margin: 0 auto;
+    padding: 4rem 1.5rem 7rem;
+    text-align: center;
+  }
+  @media (min-width: 640px) {
+    .hero { padding: 6rem 1.5rem 9rem; }
+  }
+  .hero .eyebrow-lg { display: block; margin-bottom: 1.5rem; }
+  .hero h1 {
+    font-size: 2.25rem;
+    font-weight: 600;
+    letter-spacing: var(--tracking-tight);
+    line-height: 1.1;
+    text-wrap: balance;
+  }
+  @media (min-width: 640px) { .hero h1 { font-size: 3rem; } }
+  @media (min-width: 768px) { .hero h1 { font-size: 3.75rem; } }
+  .hero h1 .brand-word {
+    color: var(--color-brand);
+  }
+  .hero-sub {
+    margin: 1.25rem auto 0;
+    max-width: var(--container-2xl);
+    font-size: 1.125rem;
+    color: var(--color-muted-foreground);
+    line-height: var(--leading-relaxed);
+    text-wrap: balance;
+  }
+  @media (min-width: 640px) { .hero-sub { font-size: 1.25rem; } }
+
+  .hero-list {
+    margin: 1.75rem auto 0;
+    max-width: 30rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    text-align: left;
+    font-size: 0.9375rem;
+    color: var(--color-muted-foreground);
+  }
+  @media (min-width: 640px) { .hero-list { font-size: 0.9375rem; } }
+  .hero-list-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+  }
+  .dot {
+    width: 0.25rem;
+    height: 0.25rem;
+    border-radius: 9999px;
+    background: var(--color-brand);
+    flex-shrink: 0;
+    margin-top: 0.6em;
+  }
+  .hero-ctas {
+    margin-top: 2.5rem;
+    display: flex;
+    gap: 0.75rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .hero-foot {
+    margin-top: 2.5rem;
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: rgba(163, 163, 163, 0.7);
+  }
+
+  /* ==========================================================
+     Section base (essay-style)
+     ========================================================== */
+  section.essay {
+    border-top: 1px solid rgba(38, 38, 38, 0.4);
+  }
+  .essay-inner {
+    max-width: var(--container-2xl);
+    margin: 0 auto;
+    padding: 5rem 1.5rem;
+  }
+  @media (min-width: 640px) {
+    .essay-inner { padding: 6rem 1.5rem; }
+  }
+  .essay-inner.wide {
+    max-width: var(--container-3xl);
+  }
+  .section-head { margin-bottom: 2.5rem; }
+  .section-head .eyebrow { display: block; margin-bottom: 0.75rem; }
+  .section-head h2 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    letter-spacing: var(--tracking-tight);
+    line-height: var(--leading-snug);
+  }
+  @media (min-width: 640px) {
+    .section-head h2 { font-size: 1.875rem; }
+  }
+  .section-head .lede {
+    margin-top: 0.875rem;
+    font-size: 1.0625rem;
+    color: var(--color-muted-foreground);
+    line-height: var(--leading-relaxed);
+  }
+  .essay-body p {
+    color: var(--color-muted-foreground);
+    line-height: var(--leading-relaxed);
+    font-size: 1rem;
+  }
+  .essay-body strong { color: var(--color-foreground); font-weight: 600; }
+
+  /* ==========================================================
+     Item list (matches "Read the latest" article list)
+     ========================================================== */
+  .item-list {
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .item {
+    display: block;
+  }
+  .item .item-eyebrow {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--color-muted-foreground);
+  }
+  .item h3 {
+    margin-top: 0.5rem;
+    font-size: 1.25rem;
+    font-weight: 600;
+    letter-spacing: var(--tracking-tight);
+    line-height: var(--leading-snug);
+    color: var(--color-foreground);
+  }
+  @media (min-width: 640px) {
+    .item h3 { font-size: 1.375rem; }
+  }
+  .item p {
+    margin-top: 0.5rem;
+    color: var(--color-muted-foreground);
+    line-height: var(--leading-relaxed);
+  }
+
+  /* ==========================================================
+     Compare table (Chatbot vs Agent) — minimal two-col
+     ========================================================== */
+  .compare {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+  }
+  @media (min-width: 640px) {
+    .compare { grid-template-columns: 1fr 1fr; }
+  }
+  .compare-cell {
+    padding: 1.75rem;
+    background: var(--color-muted);
+  }
+  .compare-cell + .compare-cell {
+    border-top: 1px solid var(--color-border);
+  }
+  @media (min-width: 640px) {
+    .compare-cell + .compare-cell {
+      border-top: none;
+      border-left: 1px solid var(--color-border);
+    }
+  }
+  .compare-cell.is-agent { background: rgba(45, 94, 68, 0.08); }
+  .compare-cell .item-eyebrow { display: block; margin-bottom: 0.5rem; }
+  .compare-cell .is-agent-eyebrow { color: var(--color-brand); }
+  .compare-cell h3 {
+    font-size: 1.125rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+  }
+  .compare-cell > p {
+    color: var(--color-muted-foreground);
+    font-size: 0.9375rem;
+    margin-bottom: 1rem;
+  }
+  .compare-cell ul {
+    list-style: none;
+    padding: 0;
+    margin: 0.75rem 0 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  .compare-cell li {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.625rem;
+    font-size: 0.9375rem;
+    color: var(--color-muted-foreground);
+  }
+  .compare-cell li::before {
+    content: "×";
+    color: var(--color-muted-foreground);
+    font-family: var(--font-mono);
+    flex-shrink: 0;
+    margin-top: 0.05em;
+  }
+  .compare-cell.is-agent li::before {
+    content: "✓";
+    color: var(--color-brand);
+  }
+
+  /* ==========================================================
+     Pull-quote / aside (analogy block)
+     ========================================================== */
+  .aside {
+    margin-top: 2rem;
+    padding: 1.75rem;
+    border-left: 2px solid var(--color-brand);
+    background: var(--color-muted);
+    border-radius: 0 var(--radius-lg) var(--radius-lg) 0;
+  }
+  .aside .aside-label {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--color-brand);
+    display: block;
+    margin-bottom: 0.625rem;
+  }
+  .aside p {
+    margin: 0;
+    color: var(--color-foreground);
+    font-family: var(--font-serif);
+    font-size: 1.0625rem;
+    line-height: var(--leading-relaxed);
+    font-style: italic;
+  }
+  .aside p strong { font-style: normal; }
+
+  /* ==========================================================
+     Agent loop (SVG + steps)
+     ========================================================== */
+  .loop-wrap {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+    align-items: center;
+  }
+  @media (min-width: 760px) {
+    .loop-wrap { grid-template-columns: 280px 1fr; gap: 3rem; }
+  }
+  .loop-svg { width: 100%; max-width: 280px; margin: 0 auto; }
+  .loop-steps {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  .loop-step {
+    display: grid;
+    grid-template-columns: 2rem 1fr;
+    gap: 0.875rem;
+    align-items: start;
+  }
+  .loop-step .n {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--color-brand);
+    letter-spacing: 0.05em;
+    padding-top: 0.125rem;
+  }
+  .loop-step h4 {
+    font-size: 1.0625rem;
+    margin-bottom: 0.25rem;
+  }
+  .loop-step h4 .en {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--color-muted-foreground);
+    margin-left: 0.5rem;
+    font-weight: 400;
+    letter-spacing: 0.05em;
+  }
+  .loop-step p { margin: 0; color: var(--color-muted-foreground); font-size: 0.9375rem; }
+
+  /* ==========================================================
+     Use cases — vertical list with mono labels (no flashy cards)
+     ========================================================== */
+  .use-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+  .use {
+    padding: 2rem 0;
+    border-top: 1px solid var(--color-border);
+  }
+  .use:first-child { border-top: none; padding-top: 0; }
+  .use:last-child { padding-bottom: 0; }
+  .use-top {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 0.5rem;
+    flex-wrap: wrap;
+  }
+  .use-top .use-label {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--color-muted-foreground);
+  }
+  .use-top .use-gain {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--color-brand);
+    letter-spacing: 0.05em;
+  }
+  .use h3 {
+    font-size: 1.25rem;
+    margin-bottom: 0.625rem;
+  }
+  @media (min-width: 640px) { .use h3 { font-size: 1.375rem; } }
+  .use p { color: var(--color-muted-foreground); margin-bottom: 0.875rem; }
+  .use-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 0.875rem;
+  }
+  .chip {
+    display: inline-block;
+    padding: 0.25rem 0.625rem;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    color: var(--color-muted-foreground);
+    letter-spacing: 0.02em;
+  }
+
+  /* ==========================================================
+     Demo block — mono code-style terminal mock
+     ========================================================== */
+  .demo {
+    margin-top: 2.5rem;
+    padding-top: 2.5rem;
+    border-top: 1px solid var(--color-border);
+  }
+  .demo:first-of-type { border-top: none; padding-top: 0; margin-top: 0; }
+  .demo-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-bottom: 0.625rem;
+  }
+  .demo-num {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--color-brand);
+  }
+  .demo-time {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    color: var(--color-muted-foreground);
+    letter-spacing: 0.05em;
+  }
+  .demo h3 {
+    font-size: 1.375rem;
+    margin-bottom: 0.625rem;
+  }
+  .demo > p {
+    color: var(--color-muted-foreground);
+    margin-bottom: 1.25rem;
+  }
+  .demo-steps {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 1.5rem;
+    counter-reset: step;
+  }
+  .demo-steps li {
+    counter-increment: step;
+    padding: 0.625rem 0 0.625rem 2rem;
+    position: relative;
+    color: var(--color-muted-foreground);
+    font-size: 0.9375rem;
+    line-height: var(--leading-relaxed);
+    border-top: 1px dashed rgba(38, 38, 38, 0.6);
+  }
+  .demo-steps li:first-child { border-top: none; }
+  .demo-steps li::before {
+    content: counter(step, decimal-leading-zero);
+    position: absolute;
+    left: 0;
+    top: 0.625rem;
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    color: var(--color-brand);
+    letter-spacing: 0.05em;
+  }
+  .demo-steps strong { color: var(--color-foreground); font-weight: 600; }
+
+  .terminal {
+    background: var(--color-muted);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    font-family: var(--font-mono);
+    font-size: 0.8125rem;
+    line-height: 1.7;
+    color: var(--color-foreground);
+    overflow: hidden;
+  }
+  .terminal-bar {
+    padding: 0.625rem 0.875rem;
+    background: rgba(0, 0, 0, 0.3);
+    border-bottom: 1px solid var(--color-border);
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    color: var(--color-muted-foreground);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .terminal-body { padding: 1.125rem; }
+  .terminal-body .row { padding: 0.05rem 0; }
+  .terminal-body .mu { color: var(--color-muted-foreground); }
+  .terminal-body .ok { color: var(--color-brand); }
+  .terminal-body .label {
+    display: inline-block;
+    color: var(--color-muted-foreground);
+    margin-right: 0.5rem;
+  }
+  .terminal-body .label.user { color: #c2a8ff; }
+  .terminal-body .label.bot { color: var(--color-brand); }
+  .terminal-body .label.tool { color: #d4a657; }
+  .terminal-body .hr {
+    border-top: 1px dashed var(--color-border);
+    margin: 0.5rem 0;
+  }
+  /* Workflow terminal helpers */
+  .terminal-body .step {
+    display: inline-block;
+    min-width: 6.5rem;
+    color: var(--color-foreground);
+    font-weight: 500;
+  }
+  .terminal-body .num {
+    display: inline-block;
+    width: 1.75rem;
+    color: var(--color-brand);
+  }
+  .terminal-body .meta {
+    color: var(--color-brand);
+    font-weight: 500;
+  }
+  .terminal-title-tag {
+    display: inline-block;
+    padding: 1px 6px;
+    margin-right: 0.5rem;
+    background: var(--color-brand);
+    color: var(--color-brand-foreground);
+    border-radius: 3px;
+    font-size: 0.625rem;
+    letter-spacing: 0.1em;
+    font-weight: 600;
+  }
+
+  /* Case-list divider: visual separation between "by-job" and "by-scenario" cases */
+  .case-divider {
+    margin: 3rem 0;
+    padding: 2.25rem 1.5rem;
+    border-top: 1px solid var(--color-border);
+    border-bottom: 1px solid var(--color-border);
+    text-align: center;
+  }
+  .case-divider .eyebrow {
+    display: block;
+    margin-bottom: 0.75rem;
+    color: var(--color-brand);
+  }
+  .case-divider h3 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 0.625rem;
+    letter-spacing: var(--tracking-tight);
+  }
+  .case-divider p {
+    color: var(--color-muted-foreground);
+    max-width: 40rem;
+    margin: 0 auto;
+    font-size: 0.9375rem;
+    line-height: var(--leading-relaxed);
+  }
+
+  /* ==========================================================
+     Timeline — minimal vertical list with mono dates
+     ========================================================== */
+  .timeline {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+  .tl {
+    padding-left: 1.5rem;
+    border-left: 1px solid var(--color-border);
+    position: relative;
+  }
+  .tl::before {
+    content: "";
+    position: absolute;
+    left: -0.3125rem;
+    top: 0.4rem;
+    width: 0.5625rem;
+    height: 0.5625rem;
+    border-radius: 9999px;
+    background: var(--color-background);
+    border: 2px solid var(--color-brand);
+  }
+  .tl .tl-week {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--color-brand);
+    display: block;
+    margin-bottom: 0.375rem;
+  }
+  .tl h3 {
+    font-size: 1.125rem;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+  }
+  .tl p { margin: 0; color: var(--color-muted-foreground); }
+
+  /* ==========================================================
+     Subscribe / CTA
+     ========================================================== */
+  .subscribe {
+    margin: 2.5rem auto 0;
+    max-width: 28rem;
+  }
+  .subscribe-form {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  @media (min-width: 640px) {
+    .subscribe-form { flex-direction: row; }
+  }
+  .subscribe input[type="email"] {
+    flex: 1;
+    min-width: 0;
+    height: 3rem;
+    padding: 0 1rem;
+    border-radius: var(--radius-md);
+    background: var(--color-muted);
+    border: 1px solid rgba(163, 163, 163, 0.3);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    transition: border-color 0.15s;
+  }
+  .subscribe input[type="email"]::placeholder { color: var(--color-muted-foreground); }
+  .subscribe input[type="email"]:focus {
+    outline: none;
+    border-color: var(--color-brand);
+  }
+  .subscribe .btn { flex-shrink: 0; height: 3rem; padding: 0 1.5rem; font-size: 1rem; }
+  .subscribe-note {
+    margin-top: 0.75rem;
+    font-size: 0.75rem;
+    color: var(--color-muted-foreground);
+    text-align: center;
+  }
+
+  /* ==========================================================
+     Footer
+     ========================================================== */
+  footer.site {
+    border-top: 1px solid var(--color-border);
+    padding: 2.5rem 1.5rem;
+    margin-top: 4rem;
+  }
+  .footer-inner {
+    max-width: var(--container-2xl);
+    margin: 0 auto;
+    text-align: center;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--color-muted-foreground);
+    letter-spacing: 0.05em;
+  }
+  .footer-inner a { color: var(--color-muted-foreground); }
+  .footer-inner a:hover { color: var(--color-brand); }
+  .footer-inner .sep { color: var(--color-border); margin: 0 0.625rem; }
+
+  /* ==========================================================
+     Audience profile chart (donut + legend)
+     ========================================================== */
+  .audience {
+    margin-bottom: 4rem;
+    padding-bottom: 3rem;
+    border-bottom: 1px solid var(--color-border);
+  }
+  .audience-head { margin-bottom: 2rem; }
+  .audience-head .eyebrow { display: block; margin-bottom: 0.625rem; }
+  .audience-head h3 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    letter-spacing: var(--tracking-tight);
+  }
+  @media (min-width: 640px) { .audience-head h3 { font-size: 1.375rem; } }
+  .audience-head p { color: var(--color-muted-foreground); margin: 0; }
+
+  .audience-body {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    align-items: center;
+  }
+  @media (min-width: 720px) {
+    .audience-body { grid-template-columns: 260px 1fr; gap: 3rem; }
+  }
+
+  .donut {
+    width: 100%;
+    max-width: 240px;
+    margin: 0 auto;
+    aspect-ratio: 1;
+    position: relative;
+  }
+  .donut svg { width: 100%; height: 100%; display: block; }
+  .donut-center {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    pointer-events: none;
+  }
+  .donut-center .n {
+    font-family: var(--font-mono);
+    font-size: 1.875rem;
+    font-weight: 600;
+    color: var(--color-foreground);
+    line-height: 1;
+    letter-spacing: -0.02em;
+  }
+  .donut-center .lbl {
+    margin-top: 0.375rem;
+    font-family: var(--font-mono);
+    font-size: 0.625rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--color-muted-foreground);
+  }
+
+  .legend {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.875rem;
+  }
+  .legend li {
+    display: grid;
+    grid-template-columns: 0.625rem 1fr auto;
+    gap: 0.75rem;
+    align-items: center;
+    padding: 0.625rem 0;
+    border-top: 1px solid var(--color-border);
+  }
+  .legend li:first-child { border-top: none; padding-top: 0; }
+  .legend .swatch {
+    width: 0.625rem;
+    height: 0.625rem;
+    border-radius: 2px;
+  }
+  .legend .name {
+    color: var(--color-foreground);
+    font-size: 0.9375rem;
+    font-weight: 500;
+  }
+  .legend .pct {
+    font-family: var(--font-mono);
+    font-size: 0.9375rem;
+    color: var(--color-muted-foreground);
+    letter-spacing: 0.02em;
+    font-feature-settings: "tnum" 1;
+  }
+
+  /* Sub-bullets inside a use case */
+  .sub-list {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 0.875rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  .sub-list li {
+    display: grid;
+    grid-template-columns: 1.5rem 1fr;
+    gap: 0.5rem;
+    color: var(--color-muted-foreground);
+    font-size: 0.9375rem;
+    line-height: var(--leading-relaxed);
+  }
+  .sub-list li::before {
+    content: "→";
+    font-family: var(--font-mono);
+    color: var(--color-brand);
+    margin-top: 0.05em;
+  }
+  .sub-list strong { color: var(--color-foreground); font-weight: 600; }
+
+  /* ==========================================================
+     Utilities
+     ========================================================== */
+  .mono { font-family: var(--font-mono); }
+  .serif { font-family: var(--font-serif); }
+
+  /* ==========================================================
+     Episode tabs — sits between topnav and main on agent-101 pages
+     ========================================================== */
+  .ep-tabs {
+    position: sticky;
+    top: 3.5rem;
+    z-index: 39;
+    border-bottom: 1px solid var(--color-border);
+    background: var(--color-background);
+  }
+  .ep-tabs-inner {
+    max-width: var(--container-6xl);
+    margin: 0 auto;
+    padding: 0 1.5rem;
+    display: flex;
+    align-items: stretch;
+    gap: 1.25rem;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+  }
+  .ep-tabs-inner::-webkit-scrollbar { display: none; }
+  .ep-tabs-label {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--color-muted-foreground);
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    padding: 0.875rem 0;
+  }
+  .ep-tab {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    text-decoration: none;
+    white-space: nowrap;
+    padding: 0.875rem 0;
+    color: var(--color-muted-foreground);
+    transition: color 0.15s;
+    border-bottom: 2px solid transparent;
+    margin-bottom: -1px;
+  }
+  .ep-tab:hover { color: var(--color-foreground); text-decoration: none; }
+  .ep-tab.is-current {
+    color: var(--color-foreground);
+    border-bottom-color: var(--color-brand);
+  }
+  .ep-tab-num {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+    color: var(--color-brand);
+    font-weight: 600;
+  }
+  .ep-tab-title {
+    font-family: var(--font-sans);
+    font-size: 0.875rem;
+    font-weight: 500;
+  }
+  .ep-tab-lang {
+    font-family: var(--font-mono);
+    font-size: 0.625rem;
+    letter-spacing: 0.1em;
+    color: var(--color-muted-foreground);
+    margin-left: 0.375rem;
+    padding: 1px 5px;
+    border: 1px solid var(--color-border);
+    border-radius: 3px;
+  }
+  @media (max-width: 640px) {
+    .ep-tab-title { display: none; }
+    .ep-tabs-label { font-size: 0.6875rem; }
+    .ep-tabs-inner { gap: 1rem; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="topnav">
+  <div class="nav-inner">
+    <a href="/" class="brand">realagentusecases.com</a>
+    <div class="nav-right">
+      <a href="/zh/news/" class="nav-link">News</a>
+      <a href="/en/agent-101/" class="nav-link">EN</a>
+      <a class="btn" href="#cta">Subscribe</a>
+    </div>
+  </div>
+</nav>
+
+<nav class="ep-tabs" aria-label="Agent 101 episode navigation">
+  <div class="ep-tabs-inner">
+    <span class="ep-tabs-label">Agent 101 ·</span>
+    <a href="/agent-101/" class="ep-tab is-current">
+      <span class="ep-tab-num">EP 01</span>
+      <span class="ep-tab-title">What is AI Agent</span>
+    </a>
+    <a href="/agent-101/02-multi-agent/" class="ep-tab">
+      <span class="ep-tab-num">EP 02</span>
+      <span class="ep-tab-title">Multi-agent &amp; Skills</span>
+    </a>
+  </div>
+</nav>
+
+<main>
+
+  <!-- ============ HERO ============ -->
+  <section class="hero">
+    <span class="eyebrow-lg">EPISODE 01 · What is ai agent · 2026.05.17</span>
+    <h1>
+      <span class="brand-word">「Agent」</span>这个词，<br>
+      在三种人嘴里是<span class="brand-word">三件事</span>。
+    </h1>
+
+    <p class="hero-sub" style="margin-top: 1.5rem;">
+      这是一场关于 AI Agent 的讲座。<br>
+      但更准确地说——是教你别被「AI Agent」这四个字忽悠。
+    </p>
+
+    <ul class="hero-list">
+      <li class="hero-list-item"><span class="dot"></span><span>把 "Agent" 这个词拆开看 — 它在三种人嘴里完全不是同一件事</span></li>
+      <li class="hero-list-item"><span class="dot"></span><span>「用 AI 提升效率」是空转词 — 重写成可检查的具体动作</span></li>
+      <li class="hero-list-item"><span class="dot"></span><span>四类职业各自能干什么 — 不画饼，只讲今天回家能跑的事</span></li>
+    </ul>
+
+    <div class="hero-ctas">
+      <a class="btn btn-lg" href="#deconstruct">开始拆词 →</a>
+    </div>
+
+    <div class="hero-foot">
+      AGENT 101 SERIES · 90 MIN · 不画饼版
+    </div>
+  </section>
+
+  <!-- ============ § 1 DECONSTRUCT ============ -->
+  <section id="deconstruct" class="essay">
+    <div class="essay-inner">
+      <header class="section-head">
+        <span class="eyebrow">§ 01 · 先拆词</span>
+        <h2>「AI Agent」在三种人嘴里，完全不是同一件事</h2>
+        <p class="lede">
+          维特根斯坦说：一个词的含义，就是它在语言里的用法。当一个词在不同人嘴里指完全不同的东西，
+          这个词就开始空转——你以为自己在讨论同一件事，其实大家说的是三件事。
+        </p>
+      </header>
+
+      <ul class="item-list">
+        <li class="item">
+          <span class="item-eyebrow">用法 · 01 · 卖工具的人</span>
+          <h3>Agent = 我的产品</h3>
+          <p>"我们推出了一个全新的 AI Agent"——翻译过来就是"我有个新版本想卖给你"。这种语境下，Agent 是一种营销话术，跟"AI 助手""智能体""Copilot"是同义反复，没有任何新信息。</p>
+        </li>
+        <li class="item">
+          <span class="item-eyebrow">用法 · 02 · 写文章的人</span>
+          <h3>Agent = 一个时代标签</h3>
+          <p>"我们正进入 Agent 时代"——这一类用法，目的是让你觉得错过了什么。但说话的人自己也说不清"Agent 时代"和"不是 Agent 时代"的具体边界在哪。这种句子，去掉「Agent」二字，意思丝毫不变。</p>
+        </li>
+        <li class="item">
+          <span class="item-eyebrow">用法 · 03 · 真正在用的人</span>
+          <h3>Agent = LLM × 工具 × 循环</h3>
+          <p>这是唯一一个去掉「Agent」三个字会丢信息的用法。它指的是一个能自己规划步骤、调用工具、根据结果决定下一步的程序。这种意义上的 Agent，跟过去的 Chatbot 有本质区别——它能动手，而不是只会说话。</p>
+        </li>
+      </ul>
+
+      <aside class="aside">
+        <span class="aside-label">大白话收尾</span>
+        <p>
+          今天我们只讨论第三种用法——<strong>能自己跑多步骤、能调工具、能根据结果决定下一步的程序</strong>。
+          前两种用法，我建议你听到就直接跳过：发言的人很可能自己也不知道自己在说什么。
+        </p>
+      </aside>
+    </div>
+  </section>
+
+  <!-- ============ § 2 GOAL AUDIT ============ -->
+  <section class="essay">
+    <div class="essay-inner">
+      <header class="section-head">
+        <span class="eyebrow">§ 02 · 审计你的目标</span>
+        <h2>「我想用 AI 提升效率」是空转词</h2>
+        <p class="lede">
+          这句话听起来天经地义，但它过不了三个最简单的检查。把它拆开看你就明白——
+          多数人不是真的"在用 AI 失败"，而是从一开始就在追一个无法被验证的目标。
+        </p>
+      </header>
+
+      <ul class="item-list">
+        <li class="item">
+          <span class="item-eyebrow">用法测试 · 01</span>
+          <h3>谁说了「效率提升了」算数？</h3>
+          <p>你？你老板？某个 KPI 指标？如果你回答不上来，这个目标就没有验收人。没有验收人的目标，本质上是给自己写的安慰话。</p>
+        </li>
+        <li class="item">
+          <span class="item-eyebrow">用法测试 · 02</span>
+          <h3>能不能在某个具体时刻指物地说「这就是 Agent 替我做的」？</h3>
+          <p>"我每周省了 5 小时"——但具体省在哪？"我邮件处理变快了"——但快了多少？什么邮件？如果指不出一个具体的动作、一个具体的时间点、一个可以放在屏幕上展示的产出物，那这种"提升"就只是个人感受。</p>
+        </li>
+        <li class="item">
+          <span class="item-eyebrow">用法测试 · 03</span>
+          <h3>一周后没动作，问题是 AI 还是你？</h3>
+          <p>这是最关键的一条。如果"用 AI 提升效率"没跑通，你能不能在第二周一眼分辨出：是 Agent 不行、还是 prompt 写错了、还是你自己没坚持？分不出，就说明这个目标根本不是 Agent 任务，是你的心理任务。</p>
+        </li>
+      </ul>
+
+      <aside class="aside">
+        <span class="aside-label">重写：从空转词到可指物动作</span>
+        <p style="font-style: normal; font-family: var(--font-sans);">
+          <span style="color: var(--color-muted-foreground);">原句：</span><br>
+          <s style="color: var(--color-muted-foreground);">"我想用 AI 提升工作效率"</s><br><br>
+          <span style="color: var(--color-brand); font-family: var(--font-mono); font-size: 0.75rem; letter-spacing: 0.1em;">REWRITE ↓</span><br><br>
+          <strong>"我每天早上 8:00，让 Claude 替我读过去 24 小时的 Gmail，输出一份排好优先级的 to-do list。一周之后回来看：如果我每天打开邮箱的焦虑感没消失，就是 prompt 没写对，回来调。"</strong>
+        </p>
+      </aside>
+
+      <p style="margin-top: 2rem; color: var(--color-muted-foreground); font-size: 0.9375rem;">
+        看出区别了吗？前一句是愿望，后一句是可执行的协议——有具体动作、具体工具、具体时间、具体的失败信号。
+        <strong style="color: var(--color-foreground); font-weight: 600;">今天我们要讲的所有「Agent 应用」，都必须能被重写成第二种句子，否则就跳过。</strong>
+      </p>
+    </div>
+  </section>
+
+  <!-- ============ § 3 CHATBOT VS AGENT (concrete contrast) ============ -->
+  <section class="essay">
+    <div class="essay-inner">
+      <header class="section-head">
+        <span class="eyebrow">§ 03 · 拆完词之后</span>
+        <h2>Chatbot 和 Agent 的区别，就是「说」和「做」的区别</h2>
+        <p class="lede">
+          上面两节把噪音清完，下面这一节是 90 分钟里唯一需要你记的硬概念：
+          Chatbot 只会说，Agent 会做。区别就这一行字，但意味着两种完全不同的杠杆。
+        </p>
+      </header>
+
+      <div class="compare">
+        <div class="compare-cell">
+          <span class="item-eyebrow">CHATBOT · 你已经熟的</span>
+          <h3>会说话，不动手</h3>
+          <p>你问一句，它答一句。对话结束，所有动作还得你自己来。</p>
+          <ul>
+            <li>只能基于训练数据回答</li>
+            <li>不能调用任何工具</li>
+            <li>不记得上次说了什么</li>
+            <li>无法决定下一步</li>
+          </ul>
+        </div>
+        <div class="compare-cell is-agent">
+          <span class="item-eyebrow is-agent-eyebrow">AGENT · 你今天要装的</span>
+          <h3>会说话，更会动手</h3>
+          <p>你给一个目标，它分步骤、调工具、读资料、改文档、发邮件——把活干完才回来找你。</p>
+          <ul>
+            <li>能实时联网，查最新数据</li>
+            <li>能调 Gmail / Calendar / 数据库 / 浏览器</li>
+            <li>有项目级记忆，记得你的偏好</li>
+            <li>能自己判断下一步该干什么</li>
+          </ul>
+        </div>
+      </div>
+
+      <aside class="aside">
+        <span class="aside-label">大白话比喻</span>
+        <p>
+          <strong>ChatGPT 像菜谱</strong>——你问它，它告诉你怎么做，菜还得你自己炒。
+          <strong>Agent 像厨师</strong>——你只说"今天 4 个人，做家常菜"，它自己开冰箱、定菜单、切菜、下锅、摆盘，端上桌的时候你才出现。
+          就这一个差别，但商业价值差 10 倍。
+        </p>
+      </aside>
+    </div>
+  </section>
+
+  <!-- ============ § 4 HOW (LOOP) ============ -->
+  <section class="essay">
+    <div class="essay-inner wide">
+      <header class="section-head">
+        <span class="eyebrow">§ 04 · Agent 怎么动手</span>
+        <h2>四步循环：感知 → 规划 → 执行 → 反思</h2>
+        <p class="lede">
+          所有看起来很神奇的 Agent 行为，本质都是这个循环在转。
+          理解这四步，你不会再被"AI 太神奇了"骗——也能立刻判断一个任务该不该交给 Agent、什么时候它一定翻车。
+        </p>
+      </header>
+
+      <div class="loop-wrap">
+        <svg class="loop-svg" viewBox="0 0 280 280" xmlns="http://www.w3.org/2000/svg" aria-label="Agent 四步工作循环">
+          <defs>
+            <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+              <path d="M 0 0 L 10 5 L 0 10 z" fill="#2d5e44"/>
+            </marker>
+          </defs>
+          <!-- Outer dashed ring -->
+          <circle cx="140" cy="140" r="105" fill="none" stroke="#262626" stroke-width="1" stroke-dasharray="2 5"/>
+          <!-- Center -->
+          <circle cx="140" cy="140" r="32" fill="#161616" stroke="#2d5e44" stroke-width="1.5"/>
+          <text x="140" y="138" text-anchor="middle" font-family="Geist Mono, monospace" font-size="10" fill="#f2f2f2" font-weight="600">AGENT</text>
+          <text x="140" y="152" text-anchor="middle" font-family="Geist Mono, monospace" font-size="8" fill="#a3a3a3">LLM CORE</text>
+
+          <!-- Top: 感知 -->
+          <g transform="translate(140, 40)">
+            <circle r="28" fill="#0a0a0a" stroke="#2d5e44" stroke-width="1.5"/>
+            <text y="-3" text-anchor="middle" font-family="Geist, sans-serif" font-size="14" font-weight="600" fill="#f2f2f2">感知</text>
+            <text y="10" text-anchor="middle" font-family="Geist Mono, monospace" font-size="7" fill="#a3a3a3">PERCEIVE</text>
+          </g>
+          <!-- Right: 规划 -->
+          <g transform="translate(240, 140)">
+            <circle r="28" fill="#0a0a0a" stroke="#2d5e44" stroke-width="1.5"/>
+            <text y="-3" text-anchor="middle" font-family="Geist, sans-serif" font-size="14" font-weight="600" fill="#f2f2f2">规划</text>
+            <text y="10" text-anchor="middle" font-family="Geist Mono, monospace" font-size="7" fill="#a3a3a3">PLAN</text>
+          </g>
+          <!-- Bottom: 执行 -->
+          <g transform="translate(140, 240)">
+            <circle r="28" fill="#0a0a0a" stroke="#2d5e44" stroke-width="1.5"/>
+            <text y="-3" text-anchor="middle" font-family="Geist, sans-serif" font-size="14" font-weight="600" fill="#f2f2f2">执行</text>
+            <text y="10" text-anchor="middle" font-family="Geist Mono, monospace" font-size="7" fill="#a3a3a3">ACT</text>
+          </g>
+          <!-- Left: 反思 -->
+          <g transform="translate(40, 140)">
+            <circle r="28" fill="#0a0a0a" stroke="#2d5e44" stroke-width="1.5"/>
+            <text y="-3" text-anchor="middle" font-family="Geist, sans-serif" font-size="14" font-weight="600" fill="#f2f2f2">反思</text>
+            <text y="10" text-anchor="middle" font-family="Geist Mono, monospace" font-size="7" fill="#a3a3a3">REFLECT</text>
+          </g>
+
+          <!-- Arrows -->
+          <path d="M 168 60 Q 215 80 220 112" fill="none" stroke="#2d5e44" stroke-width="1" marker-end="url(#arr)" opacity="0.8"/>
+          <path d="M 220 168 Q 215 200 168 220" fill="none" stroke="#2d5e44" stroke-width="1" marker-end="url(#arr)" opacity="0.8"/>
+          <path d="M 112 220 Q 65 200 60 168" fill="none" stroke="#2d5e44" stroke-width="1" marker-end="url(#arr)" opacity="0.8"/>
+          <path d="M 60 112 Q 65 80 112 60" fill="none" stroke="#2d5e44" stroke-width="1" marker-end="url(#arr)" opacity="0.8"/>
+        </svg>
+
+        <ul class="loop-steps">
+          <li class="loop-step">
+            <span class="n">01</span>
+            <div>
+              <h4>感知<span class="en">PERCEIVE</span></h4>
+              <p>读取你的目标、相关的上下文、可用的工具清单。相当于一个新员工入职第一天，先搞清楚要做什么、有哪些资源。</p>
+            </div>
+          </li>
+          <li class="loop-step">
+            <span class="n">02</span>
+            <div>
+              <h4>规划<span class="en">PLAN</span></h4>
+              <p>把大目标拆成一系列小步骤，决定先做哪一步、用哪个工具。好的模型会先写一个 to-do list 再开始动手。</p>
+            </div>
+          </li>
+          <li class="loop-step">
+            <span class="n">03</span>
+            <div>
+              <h4>执行<span class="en">ACT</span></h4>
+              <p>调用工具：发邮件、查日历、读文档、跑 SQL、点网页按钮。这一步是 Chatbot 时代完全做不到的。</p>
+            </div>
+          </li>
+          <li class="loop-step">
+            <span class="n">04</span>
+            <div>
+              <h4>反思<span class="en">REFLECT</span></h4>
+              <p>看执行结果，判断够不够、对不对，决定是收工、重试，还是换个思路再来。这一步决定了 Agent 能不能自我纠错。</p>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ § 5 USE CASES ============ -->
+  <section class="essay">
+    <div class="essay-inner wide">
+      <header class="section-head">
+        <span class="eyebrow">§ 05 · 四类人的具体动作</span>
+        <h2>不讲"职业可以用 AI 做什么"，只讲今天就能跑通的事</h2>
+        <p class="lede">
+          下面这四类，是上次黑客松实际坐在场里的人。每一类只讲一条主线——
+          一个具体动作、一组具体工具、一个可以在第二天早上 8:00 检查的结果。
+          其他枝节自己回家折腾，听课不解决这个问题。
+        </p>
+      </header>
+
+      <!-- ───── AUDIENCE PROFILE CHART ───── -->
+      <div class="audience">
+        <div class="audience-head">
+          <span class="eyebrow">DALLAS · HACKATHON · 上一届现场画像 · N=32</span>
+          <h3>这是上次坐在你旁边的人</h3>
+          <p>四类职业 100% 覆盖了现场——今天讲的 Agent 案例就按这个比例展开。</p>
+        </div>
+
+        <div class="audience-body">
+          <div class="donut" aria-label="Hackathon Participant Profile Donut Chart">
+            <svg viewBox="0 0 200 200" role="img" aria-label="听众职业分布饼图">
+              <!-- Background ring -->
+              <circle cx="100" cy="100" r="80" fill="none" stroke="#161616" stroke-width="34"/>
+
+              <!-- Slice 1: AI & Data Science 46.9% — brand green -->
+              <!-- circumference = 2 * PI * 80 = 502.655 -->
+              <!-- length = 502.655 * 0.469 = 235.745 ; gap = 266.910 -->
+              <circle cx="100" cy="100" r="80" fill="none"
+                      stroke="#2d5e44" stroke-width="34"
+                      stroke-dasharray="235.745 266.910"
+                      stroke-dashoffset="0"
+                      transform="rotate(-90 100 100)"/>
+
+              <!-- Slice 2: Software Engineering 21.9% — light green -->
+              <!-- length = 502.655 * 0.219 = 110.082 ; gap = 392.573 -->
+              <circle cx="100" cy="100" r="80" fill="none"
+                      stroke="#5a8270" stroke-width="34"
+                      stroke-dasharray="110.082 392.573"
+                      stroke-dashoffset="-235.745"
+                      transform="rotate(-90 100 100)"/>
+
+              <!-- Slice 3: Operations & Business 15.6% — warm amber -->
+              <!-- length = 502.655 * 0.156 = 78.414 ; gap = 424.241 -->
+              <circle cx="100" cy="100" r="80" fill="none"
+                      stroke="#d4a657" stroke-width="34"
+                      stroke-dasharray="78.414 424.241"
+                      stroke-dashoffset="-345.827"
+                      transform="rotate(-90 100 100)"/>
+
+              <!-- Slice 4: Product & Design 15.6% — soft lavender -->
+              <circle cx="100" cy="100" r="80" fill="none"
+                      stroke="#c2a8ff" stroke-width="34"
+                      stroke-dasharray="78.414 424.241"
+                      stroke-dashoffset="-424.241"
+                      transform="rotate(-90 100 100)"/>
+            </svg>
+            <div class="donut-center">
+              <span class="n">32</span>
+              <span class="lbl">PEOPLE</span>
+            </div>
+          </div>
+
+          <ul class="legend">
+            <li>
+              <span class="swatch" style="background:#2d5e44"></span>
+              <span class="name">AI &amp; Data Science</span>
+              <span class="pct">46.9%</span>
+            </li>
+            <li>
+              <span class="swatch" style="background:#5a8270"></span>
+              <span class="name">Software Engineering</span>
+              <span class="pct">21.9%</span>
+            </li>
+            <li>
+              <span class="swatch" style="background:#d4a657"></span>
+              <span class="name">Operations &amp; Business</span>
+              <span class="pct">15.6%</span>
+            </li>
+            <li>
+              <span class="swatch" style="background:#c2a8ff"></span>
+              <span class="name">Product &amp; Design</span>
+              <span class="pct">15.6%</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <!-- ───── END AUDIENCE PROFILE ───── -->
+
+      <ul class="use-list">
+
+        <!-- ───── CASE 01 · AI & DATA SCIENCE ───── -->
+        <li class="use">
+          <div class="use-top">
+            <span class="use-label" style="color:#2d5e44">CASE · 01 · AI &amp; DATA SCIENCE · 46.9%</span>
+            <span class="use-gain">数据分析师 5 → 1 人</span>
+          </div>
+          <h3>你已经会用 AI，但你在"玩"，不在"卖"</h3>
+          <p style="color:var(--color-foreground);font-weight:500;margin-bottom:1rem;">
+            反共识：AI/数据人最容易陷入"工具崇拜"——研究新模型、调新 prompt、画新 demo。
+            <strong>这些都不产出钱。</strong>能产出钱的，是把 AI 嵌进探索 → 实验 → 生产的链路里，把人肉环节全部压掉。
+          </p>
+          <div class="terminal">
+            <div class="terminal-bar"><span class="terminal-title-tag">WORKFLOW</span>周一业务自动简报（生产级 ETL + LLM）</div>
+            <div class="terminal-body">
+              <div class="row"><span class="num">01</span><span class="step">TRIGGER</span><span class="mu">cron · 每周一 08:00（n8n / Airflow）</span></div>
+              <div class="row"><span class="num">02</span><span class="step">FETCH</span><span class="mu">Snowflake / BigQuery · 拉 7 项核心 KPI</span></div>
+              <div class="row"><span class="num">03</span><span class="step">DETECT</span><span class="mu">阈值告警 + 4 周同比 / 环比</span></div>
+              <div class="row"><span class="num">04</span><span class="step">ANALYZE</span><span class="mu">Claude · 写中文 insight + Plotly 出图</span></div>
+              <div class="row"><span class="num">05</span><span class="step">DELIVER</span><span class="mu">markdown → Slack #leadership / 邮件</span></div>
+              <div class="hr"></div>
+              <div class="row"><span class="ok">SETUP</span><span class="mu">1 次</span>　·　<span class="ok">ROI</span><span class="mu">每周省 4-6h · 临时需求 1 天 → 10 分钟</span></div>
+            </div>
+          </div>
+          <div class="use-meta">
+            <span class="chip">Claude Code</span>
+            <span class="chip">Snowflake / BigQuery</span>
+            <span class="chip">n8n / Airflow</span>
+            <span class="chip">LangGraph</span>
+            <span class="chip">Claude Agent SDK</span>
+          </div>
+        </li>
+
+        <!-- ───── CASE 02 · SOFTWARE ENGINEERING ───── -->
+        <li class="use">
+          <div class="use-top">
+            <span class="use-label" style="color:#5a8270">CASE · 02 · SOFTWARE ENGINEERING · 21.9%</span>
+            <span class="use-gain">一周 1 个 ticket → 一天 1 个</span>
+          </div>
+          <h3>这不是工具升级，是工种替换</h3>
+          <p style="color:var(--color-foreground);font-weight:500;margin-bottom:1rem;">
+            反共识：还在用 Copilot 补全的人，正被用 Claude Code 接管 ticket 的人收割。
+            <strong>「会写代码」不再是核心能力——「能拆任务给 Agent 跑」才是。</strong>
+          </p>
+          <div class="terminal">
+            <div class="terminal-bar"><span class="terminal-title-tag">WORKFLOW</span>Issue → PR 全自动（本周挑一个跑通）</div>
+            <div class="terminal-body">
+              <div class="row"><span class="num">01</span><span class="step">INTAKE</span><span class="mu">读 Linear / Jira issue + 评论上下文</span></div>
+              <div class="row"><span class="num">02</span><span class="step">PLAN</span><span class="mu">Claude Code · 列实现方案 + 影响面分析</span></div>
+              <div class="row"><span class="num">03</span><span class="step">CODE</span><span class="mu">在独立 worktree 写实现 + 单元测试</span></div>
+              <div class="row"><span class="num">04</span><span class="step">VERIFY</span><span class="mu">自跑 pytest / vitest · 直到全绿</span></div>
+              <div class="row"><span class="num">05</span><span class="step">PR</span><span class="mu">推 branch + 写 description + 自审 diff</span></div>
+              <div class="row"><span class="num">06</span><span class="step">REVIEW</span><span class="mu">你只看 spec 对不对 / diff 干不干净</span></div>
+              <div class="hr"></div>
+              <div class="row"><span class="ok">SETUP</span><span class="mu">1 次</span>　·　<span class="ok">ROI</span><span class="mu">3 周后角色从"敲键盘"→"审稿人 + 架构师"</span></div>
+            </div>
+          </div>
+          <div class="use-meta">
+            <span class="chip">Claude Code</span>
+            <span class="chip">Cursor</span>
+            <span class="chip">Devin</span>
+            <span class="chip">Aider</span>
+            <span class="chip">Linear / Jira</span>
+          </div>
+        </li>
+
+        <!-- ───── CASE 03 · OPERATIONS & BUSINESS ───── -->
+        <li class="use">
+          <div class="use-top">
+            <span class="use-label" style="color:#d4a657">CASE · 03 · OPERATIONS &amp; BUSINESS · 15.6%</span>
+            <span class="use-gain">每天省 1.5h · 邮箱焦虑消失</span>
+          </div>
+          <h3>邮件不是焦虑，是你没 SOP 化的活</h3>
+          <p style="color:var(--color-foreground);font-weight:500;margin-bottom:1rem;">
+            反共识：运营/业务的"杂"不是宿命——是你没把任何一件事 SOP 化。
+            <strong>50 封邮件如果不能 SOP 化，就必须付钱给 AI。</strong>每天逐封人肉处理，是在用最贵的资源（你的注意力）做最便宜的活。
+          </p>
+          <div class="terminal">
+            <div class="terminal-bar"><span class="terminal-title-tag">WORKFLOW</span>每日邮件 → 决策清单（含自动回复草稿）</div>
+            <div class="terminal-body">
+              <div class="row"><span class="num">01</span><span class="step">TRIGGER</span><span class="mu">每天 07:30 · n8n / Zapier</span></div>
+              <div class="row"><span class="num">02</span><span class="step">PULL</span><span class="mu">Gmail Connector · 过去 24h 未读邮件</span></div>
+              <div class="row"><span class="num">03</span><span class="step">CLASSIFY</span><span class="mu">Claude · 5 类（决策 / 回复 / 归档 / 订阅 / 垃圾）</span></div>
+              <div class="row"><span class="num">04</span><span class="step">DRAFT</span><span class="mu">起草标准回复 · 待你 1-click 发送</span></div>
+              <div class="row"><span class="num">05</span><span class="step">RANK</span><span class="mu">剩下"需决策"按 SLA + 客户重要度排序</span></div>
+              <div class="row"><span class="num">06</span><span class="step">PUSH</span><span class="mu">清单 → iOS Reminders + Slack DM</span></div>
+              <div class="hr"></div>
+              <div class="row"><span class="ok">SETUP</span><span class="mu">30 分钟</span>　·　<span class="ok">ROI</span><span class="mu">每天省 1.5h · 第 3 天起邮箱焦虑消失</span></div>
+            </div>
+          </div>
+          <div class="use-meta">
+            <span class="chip">Claude + Gmail</span>
+            <span class="chip">Apollo + Clay</span>
+            <span class="chip">n8n / Zapier</span>
+            <span class="chip">Custom GPTs</span>
+          </div>
+        </li>
+
+        <!-- ───── CASE 04 · PRODUCT & DESIGN ───── -->
+        <li class="use">
+          <div class="use-top">
+            <span class="use-label" style="color:#c2a8ff">CASE · 04 · PRODUCT &amp; DESIGN · 15.6%</span>
+            <span class="use-gain">Product loop 2 周 → 5 天</span>
+          </div>
+          <h3>PRD 半个月写不完，问题不是 PRD，是你</h3>
+          <p style="color:var(--color-foreground);font-weight:500;margin-bottom:1rem;">
+            反共识：产品和设计的瓶颈从来不是"没工具"。
+            <strong>是流程没改——访谈听完没时间整理、调研拖半个月、设计改三轮还不收敛。</strong>
+            Agent 不会替你做决策，但能把"等"的环节全部压掉。
+          </p>
+          <div class="terminal">
+            <div class="terminal-bar"><span class="terminal-title-tag">WORKFLOW</span>访谈 → PRD 一周收敛</div>
+            <div class="terminal-body">
+              <div class="row"><span class="num">01</span><span class="step">RECORD</span><span class="mu">用户访谈 · Granola / Fireflies 录音</span></div>
+              <div class="row"><span class="num">02</span><span class="step">EXTRACT</span><span class="mu">Claude · 转录 + 提取"3 句话核心痛点"</span></div>
+              <div class="row"><span class="num">03</span><span class="step">CLUSTER</span><span class="mu">跨 N 个访谈 · 主题聚类 + 频次排序</span></div>
+              <div class="row"><span class="num">04</span><span class="step">RESEARCH</span><span class="mu">Perplexity Deep Research · 1h 出竞品</span></div>
+              <div class="row"><span class="num">05</span><span class="step">PRD</span><span class="mu">Claude 写 PRD 初稿 · 你改 2 笔</span></div>
+              <div class="row"><span class="num">06</span><span class="step">DESIGN</span><span class="mu">v0 / Figma AI · 5 版布局 · 团队 30 分钟投票收敛</span></div>
+              <div class="hr"></div>
+              <div class="row"><span class="ok">SETUP</span><span class="mu">1 次定模板</span>　·　<span class="ok">ROI</span><span class="mu">一轮 product loop 从 2 周 → 5 天</span></div>
+            </div>
+          </div>
+          <div class="use-meta">
+            <span class="chip">Claude</span>
+            <span class="chip">Perplexity</span>
+            <span class="chip">Figma AI</span>
+            <span class="chip">v0</span>
+            <span class="chip">Granola / Fireflies</span>
+          </div>
+        </li>
+
+        <!-- ───── DIVIDER: by-job → by-scenario ───── -->
+        <li class="case-divider" style="list-style:none;">
+          <span class="eyebrow">—— 不分职业的高价值场景 ——</span>
+          <h3>上面 4 个按职业分。下面 5 个按场景分。</h3>
+          <p>
+            上半部分回答"你是谁、能用 Agent 干什么"。<br>
+            下半部分回答"哪些具体场景，谁来做都赚"——
+            <strong style="color:var(--color-foreground);">是 2026 年单人最容易跑出商业结果的 5 条线：量化、电商、自媒体、AI 生图视频、SEO/GEO。</strong>
+          </p>
+        </li>
+
+        <!-- ───── CASE 05 · 量化炒股 ───── -->
+        <li class="use">
+          <div class="use-top">
+            <span class="use-label" style="color:var(--color-foreground)">CASE · 05 · 量化炒股 / QUANT TRADING</span>
+            <span class="use-gain">盯盘 8h → 决策 15min</span>
+          </div>
+          <h3>散户失败 90% 不是策略问题，是执行问题</h3>
+          <p style="color:var(--color-foreground);font-weight:500;margin-bottom:1rem;">
+            反共识：你以为亏钱是因为找不到好策略——其实是你做不到每天盘前 9:00 准时把那 7 个数据指标看完。
+            <strong>Agent 的价值不是"帮你预测"，是把"盯盘 → 判断 → 风控"的人肉链路 SOP 化，让你的策略真正能被执行。</strong>
+          </p>
+          <div class="terminal">
+            <div class="terminal-bar"><span class="terminal-title-tag">WORKFLOW</span>盘前自动选股 + 风控（辅助决策版）</div>
+            <div class="terminal-body">
+              <div class="row"><span class="num">01</span><span class="step">TRIGGER</span><span class="mu">美东 08:30 · 盘前 1h</span></div>
+              <div class="row"><span class="num">02</span><span class="step">FETCH</span><span class="mu">Polygon / yfinance · 持仓 + 关注名单</span></div>
+              <div class="row"><span class="num">03</span><span class="step">EVENT</span><span class="mu">Benzinga API · 财报 / 利好 / 利空</span></div>
+              <div class="row"><span class="num">04</span><span class="step">SIGNAL</span><span class="mu">跑预设策略（双均线 / RSI / MACD / 自定义）</span></div>
+              <div class="row"><span class="num">05</span><span class="step">RISK</span><span class="mu">校验仓位 / 止损 / 相关性</span></div>
+              <div class="row"><span class="num">06</span><span class="step">OUTPUT</span><span class="mu">"今日候选 3 支 + 理由 + 建议仓位" → 手机推送</span></div>
+              <div class="hr"></div>
+              <div class="row"><span class="ok">SETUP</span><span class="mu">2 天</span>　·　<span class="ok">ROI</span><span class="mu">每天 15 分钟决策 · 不再被盘面情绪绑架</span></div>
+              <div class="row" style="margin-top:0.5rem;"><span class="mu">⚠ 本工作流只产出信号，不下单。投资决策与风险由你自己承担。</span></div>
+            </div>
+          </div>
+          <div class="use-meta">
+            <span class="chip">Polygon</span>
+            <span class="chip">yfinance</span>
+            <span class="chip">Backtrader</span>
+            <span class="chip">Claude</span>
+            <span class="chip">n8n</span>
+            <span class="chip">Benzinga API</span>
+          </div>
+        </li>
+
+        <!-- ───── CASE 06 · 电商运营 ───── -->
+        <li class="use">
+          <div class="use-top">
+            <span class="use-label" style="color:var(--color-foreground)">CASE · 06 · 电商运营 / E-COMMERCE OPS</span>
+            <span class="use-gain">月上新 5 → 50 SKU</span>
+          </div>
+          <h3>选品不是看数据，是把"数据 → 决策 → 上架"压成一条链</h3>
+          <p style="color:var(--color-foreground);font-weight:500;margin-bottom:1rem;">
+            反共识：一人一店做不大，瓶颈不是品，是"选品到上架"全靠人肉。
+            <strong>把这条链 SOP 化——同样的人手，能管 5 个 SKU 就能管 50 个。</strong>
+          </p>
+          <div class="terminal">
+            <div class="terminal-bar"><span class="terminal-title-tag">WORKFLOW</span>选品 → 上架（适用亚马逊 / Shopify / Temu）</div>
+            <div class="terminal-body">
+              <div class="row"><span class="num">01</span><span class="step">SCRAPE</span><span class="mu">Apify · 抓 BestSeller 榜 Top 100 + 评论</span></div>
+              <div class="row"><span class="num">02</span><span class="step">PARSE</span><span class="mu">提取价格 / 评分 / 评论数 / 上架时间</span></div>
+              <div class="row"><span class="num">03</span><span class="step">SENTIMENT</span><span class="mu">Claude · 评论挖"痛点 / 卖点 / 缺陷"</span></div>
+              <div class="row"><span class="num">04</span><span class="step">SCORE</span><span class="mu">打分（毛利潜力 × 差异化空间 × 货源难度）</span></div>
+              <div class="row"><span class="num">05</span><span class="step">SELECT</span><span class="mu">Top 5 候选 + ROI 估算 + 风险提示</span></div>
+              <div class="row"><span class="num">06</span><span class="step">LISTING</span><span class="mu">自动生成标题 / 描述 / 关键词 / A+ 内容 / 主图 brief</span></div>
+              <div class="row"><span class="num">07</span><span class="step">PUBLISH</span><span class="mu">Shopify API / 亚马逊 SP-API · 一键上架</span></div>
+              <div class="hr"></div>
+              <div class="row"><span class="ok">SETUP</span><span class="mu">1 周</span>　·　<span class="ok">ROI</span><span class="mu">选品 1 天 → 30 分钟 · 月上新 5 → 50</span></div>
+            </div>
+          </div>
+          <div class="use-meta">
+            <span class="chip">Helium 10</span>
+            <span class="chip">Apify</span>
+            <span class="chip">Claude</span>
+            <span class="chip">Shopify API</span>
+            <span class="chip">亚马逊 SP-API</span>
+          </div>
+        </li>
+
+        <!-- ───── CASE 07 · 自媒体运营 ───── -->
+        <li class="use">
+          <div class="use-top">
+            <span class="use-label" style="color:var(--color-foreground)">CASE · 07 · 自媒体运营 / CREATOR OPS</span>
+            <span class="use-gain">2 篇/周 → 8 篇/周</span>
+          </div>
+          <h3>不是写不出爆款，是没把"素材 → 选题 → 爆款"这条链固化</h3>
+          <p style="color:var(--color-foreground);font-weight:500;margin-bottom:1rem;">
+            反共识：99% 的自媒体卡在"灵感等不来"。
+            <strong>灵感不是等的——是流水线产物。</strong>把"爆款素材库 → 选题生成 → 写作 → 一稿多平台"流程化，产能从一周 2 篇变一周 8 篇，质量还更稳。
+          </p>
+          <div class="terminal">
+            <div class="terminal-bar"><span class="terminal-title-tag">WORKFLOW</span>选题工厂（小红书 / Twitter / YouTube / 公众号）</div>
+            <div class="terminal-body">
+              <div class="row"><span class="num">01</span><span class="step">INGEST</span><span class="mu">每天截图 10 条同行爆款 → Claude Project</span></div>
+              <div class="row"><span class="num">02</span><span class="step">DECONSTRUCT</span><span class="mu">Claude · 提取标题公式 / 钩子 / 情绪触发点</span></div>
+              <div class="row"><span class="num">03</span><span class="step">IDEATE</span><span class="mu">每周一 · 输出 7 个候选标题 + 内容大纲</span></div>
+              <div class="row"><span class="num">04</span><span class="step">DRAFT</span><span class="mu">Claude 写初稿 · 按你的人设语料微调</span></div>
+              <div class="row"><span class="num">05</span><span class="step">ADAPT</span><span class="mu">一稿多平台 · 自动改字数 / 语气 / 配图建议</span></div>
+              <div class="row"><span class="num">06</span><span class="step">SCHEDULE</span><span class="mu">Buffer / Hypefury · 自动排期 + 数据回流</span></div>
+              <div class="hr"></div>
+              <div class="row"><span class="ok">SETUP</span><span class="mu">2 周训练人设语料</span>　·　<span class="ok">ROI</span><span class="mu">产能 4× · 单 IP 月入从 5k → 30k 不靠加班</span></div>
+            </div>
+          </div>
+          <div class="use-meta">
+            <span class="chip">Claude</span>
+            <span class="chip">Perplexity</span>
+            <span class="chip">Buffer / Hypefury</span>
+            <span class="chip">CapCut</span>
+            <span class="chip">Notion</span>
+          </div>
+        </li>
+
+        <!-- ───── CASE 08 · AI 生图 / 视频 ───── -->
+        <li class="use">
+          <div class="use-top">
+            <span class="use-label" style="color:var(--color-foreground)">CASE · 08 · AI 生图 / 视频 / GENERATIVE MEDIA</span>
+            <span class="use-gain">单图 30min → 2min · 单视频 4h → 30min</span>
+          </div>
+          <h3>不是会 Midjourney 就能做出能用的素材</h3>
+          <p style="color:var(--color-foreground);font-weight:500;margin-bottom:1rem;">
+            反共识：90% 的 AI 创作者还在"试 prompt"——这是手工业。
+            <strong>能商业化的人都有一条"主题立项 → 风格化 prompt → 批量产 → 自动筛 → 后处理 → 入库"的固定流水线。</strong>
+            没有流水线，再贵的模型也只是玩具。
+          </p>
+          <div class="terminal">
+            <div class="terminal-bar"><span class="terminal-title-tag">WORKFLOW</span>商业素材批量生产（电商主图 / 短视频 / 营销素材）</div>
+            <div class="terminal-body">
+              <div class="row"><span class="num">01</span><span class="step">BRIEF</span><span class="mu">Claude · 写主题 brief（场景 / 风格 / 用途 / 约束）</span></div>
+              <div class="row"><span class="num">02</span><span class="step">PROMPT</span><span class="mu">按 MJ / Sora 语法批量生成 20 条变体</span></div>
+              <div class="row"><span class="num">03</span><span class="step">RENDER</span><span class="mu">MJ API / ComfyUI · 跑 100 张 / Runway 跑 20 段</span></div>
+              <div class="row"><span class="num">04</span><span class="step">SCORE</span><span class="mu">GPT-4V / CLIP · 按"商业可用度"打分</span></div>
+              <div class="row"><span class="num">05</span><span class="step">SELECT</span><span class="mu">留 top 5% · 自动剔除手指 / 文字错乱</span></div>
+              <div class="row"><span class="num">06</span><span class="step">POLISH</span><span class="mu">Photoshop AI / Topaz · 清晰度 / 去瑕疵</span></div>
+              <div class="row"><span class="num">07</span><span class="step">ARCHIVE</span><span class="mu">Notion / Airtable · 标签存档（风格 / 客户 / 用途）</span></div>
+              <div class="hr"></div>
+              <div class="row"><span class="ok">SETUP</span><span class="mu">1 周建标准</span>　·　<span class="ok">ROI</span><span class="mu">单图 30min → 2min · 一人产能 = 过去一个 3 人小组</span></div>
+            </div>
+          </div>
+          <div class="use-meta">
+            <span class="chip">Midjourney</span>
+            <span class="chip">Sora</span>
+            <span class="chip">ComfyUI</span>
+            <span class="chip">Runway</span>
+            <span class="chip">Topaz</span>
+            <span class="chip">GPT-4V</span>
+          </div>
+        </li>
+
+        <!-- ───── CASE 09 · SEO / GEO ───── -->
+        <li class="use">
+          <div class="use-top">
+            <span class="use-label" style="color:var(--color-foreground)">CASE · 09 · SEO / GEO · 全渠道搜索可见度</span>
+            <span class="use-gain">"AI 引用率"从不可见 → 每周可测</span>
+          </div>
+          <h3>不是 SEO 死了，是手工 SEO 死了</h3>
+          <p style="color:var(--color-foreground);font-weight:500;margin-bottom:1rem;">
+            反共识：2026 还在喊"SEO 已死"的人，说的其实是"我那一套老 SEO 过时了"。
+            真相是——<strong>Google 排名继续重要，ChatGPT / Perplexity / Claude / Gemini 推荐变得同样重要</strong>。
+            但人肉跑这两套已经不可能。GEO（Generative Engine Optimization）不是新概念，是你必须开始测量的新指标。
+            <strong>看不见的指标 = 你已经输的指标。</strong>
+          </p>
+          <div class="terminal">
+            <div class="terminal-bar"><span class="terminal-title-tag">WORKFLOW</span>全渠道搜索可见度（Google + AI 引擎）</div>
+            <div class="terminal-body">
+              <div class="row"><span class="num">01</span><span class="step">TRACK</span><span class="mu">每周拉关键词排名 · Ahrefs / SEMrush API</span></div>
+              <div class="row"><span class="num">02</span><span class="step">QUERY</span><span class="mu">向 ChatGPT / Perplexity / Claude / Gemini 跑 50 条预设查询</span></div>
+              <div class="row"><span class="num">03</span><span class="step">EXTRACT</span><span class="mu">解析回答 · 提取被引用域名 + 上下文 + 引用方式</span></div>
+              <div class="row"><span class="num">04</span><span class="step">GAP</span><span class="mu">对比竞品 · 列出"竞品被引用、你没被"的查询清单</span></div>
+              <div class="row"><span class="num">05</span><span class="step">AUDIT</span><span class="mu">分析被引用页 · Schema / 事实密度 / token 友好度</span></div>
+              <div class="row"><span class="num">06</span><span class="step">GENERATE</span><span class="mu">Claude 写 AI-friendly 版本 · 明确事实陈述 + 可引用数据点</span></div>
+              <div class="row"><span class="num">07</span><span class="step">PUBLISH</span><span class="mu">推 CMS（Webflow / Next.js / WordPress）+ Schema.org markup</span></div>
+              <div class="row"><span class="num">08</span><span class="step">LOOP</span><span class="mu">下周回到 01 · 看引用率变化 + 调策略</span></div>
+              <div class="hr"></div>
+              <div class="row"><span class="ok">SETUP</span><span class="mu">1 周配监测 + 1 周建内容模板</span>　·　<span class="ok">ROI</span><span class="mu">从"不知道 AI 推荐谁" → "每周一份引用报告"</span></div>
+              <div class="row" style="margin-top:0.5rem;"><span class="mu">💡 大多数公司还没开始测 GEO ——这意味着你抢占 AI 引用位的窗口期约 12-18 个月。</span></div>
+            </div>
+          </div>
+          <div class="use-meta">
+            <span class="chip">Profound</span>
+            <span class="chip">AthenaHQ</span>
+            <span class="chip">Ahrefs / SEMrush</span>
+            <span class="chip">Claude</span>
+            <span class="chip">Perplexity API</span>
+            <span class="chip">Schema.org</span>
+            <span class="chip">Screaming Frog</span>
+          </div>
+        </li>
+
+      </ul>
+    </div>
+  </section>
+
+  <!-- ============ § 6 MARKET OBSERVATION ============ -->
+  <section class="essay">
+    <div class="essay-inner">
+      <header class="section-head">
+        <span class="eyebrow">§ 06 · 市场观察</span>
+        <h2>五种 AI 生意，做的不是 AI 应用</h2>
+        <p class="lede">
+          AI 时代最赚钱的生意，常常不是 AI 应用本身——而是把"AI 焦虑"打包卖给没在用 AI 的人。
+          下面五种模式在 2024–2026 跑得最稳。理解它们的商业逻辑——
+          你可以选做卖家、不做买家、或者干脆绕开做出能直接卖钱的真应用。三种选择都成立。
+        </p>
+      </header>
+
+      <ul class="item-list">
+        <li class="item">
+          <span class="item-eyebrow">市场 · 01 · FOMO 内容</span>
+          <h3>「AI 风口论」内容创作者</h3>
+          <p>
+            主要客户是怕错过下一个互联网的人，靠 FOMO 这种稳定的心理动机驱动转化。
+            一个值得记住的观察：<strong style="color:var(--color-foreground);">发"AI 新风口"文章的人，几乎都不靠那个"风口"本身赚钱</strong>——他们的收入来自传播这种内容。如果一个机会需要靠爆款文章来传播，它大概率不是真机会——真机会一般都是被卖家闷声做、不让你知道。
+          </p>
+        </li>
+
+        <li class="item">
+          <span class="item-eyebrow">市场 · 02 · 焦虑安慰剂</span>
+          <h3>「1000 个 prompt 合集」批发商</h3>
+          <p>
+            卖的不是 prompt，是"我在用 AI"的安全感。但 prompt 是高度个性化的——
+            <strong style="color:var(--color-foreground);">别人针对别人工作流写的 prompt，在你这里有效率不到 5%</strong>。
+            这个市场长期存在，是因为购买行为本身就能短暂缓解"我没在用 AI"的焦虑。理解这一点，你就知道为什么"199 买 1000 个 prompt" 永远会有人买。
+          </p>
+        </li>
+
+        <li class="item">
+          <span class="item-eyebrow">市场 · 03 · 信息差套利</span>
+          <h3>「AI 教练 / AI 顾问」服务</h3>
+          <p>
+            过去 18 个月增长最快的服务品类——本质是 AI 素养差形成的信息差套利。
+            <strong style="color:var(--color-foreground);">如果一门业务必须靠"AI 不懂的人"才能存活，那它就是阶段性生意</strong>，会随着大众 AI 普及自然贬值。
+            做这门生意没问题，但要清楚：你在赚的是窗口期的钱，不是长期价值的钱。
+          </p>
+        </li>
+
+        <li class="item">
+          <span class="item-eyebrow">市场 · 04 · 零摩擦承诺</span>
+          <h3>「3 分钟上手」「一键搞定」的 AI 工具</h3>
+          <p>
+            "零摩擦"是高效的营销话术——但凡能跑生产的 Agent，必然有摩擦：配 connector、调 prompt、改输出格式。
+            <strong style="color:var(--color-foreground);">这些摩擦才是你的护城河。</strong>
+            如果一个工具号称"完全不用学就能用"，意味着你的同行也"完全不用学就在用"——你的优势就消失了。买这类工具，效用上限通常是"跟所有人一样"。
+          </p>
+        </li>
+
+        <li class="item">
+          <span class="item-eyebrow">市场 · 05 · 确定性溢价</span>
+          <h3>「AI 完整方法论」付费课</h3>
+          <p>
+            卖的是确定性，不是知识。在不确定的时代，确定性本身值钱。
+            但 AI 应用是高度非线性的——<strong style="color:var(--color-foreground);">同样的方法在不同场景结果完全不同</strong>。
+            真能 work 的方法论，几乎都是在自己业务里反复试出来的；别人的"完整方法论"，要么过时、要么过于抽象。
+          </p>
+        </li>
+      </ul>
+
+      <aside class="aside">
+        <span class="aside-label">商业逻辑收尾</span>
+        <p style="font-style: normal; font-family: var(--font-sans);">
+          这五种生意会长期存在——因为它们对应的购买动机（FOMO、想跳过学习、想要确定性）都是稳定的人类需求。
+          <strong>你能做的选择有三种：做卖家、不做买家、或者自己跑通做出能直接卖钱的真东西。</strong>
+          哪种都成立，看你想要什么——清楚自己在哪个位置，比选择本身更重要。
+        </p>
+      </aside>
+    </div>
+  </section>
+
+  <!-- ============ § 7 DEMO ============ -->
+  <section class="essay">
+    <div class="essay-inner wide">
+      <header class="section-head">
+        <span class="eyebrow">§ 07 · 今天就能跑</span>
+        <h2>三个 Agent，今天回家挑一个跑通</h2>
+        <p class="lede">
+          上面讲再多，没跑通一个 Agent 都等于没听。下面三个都是零代码、当天见效、可以在睡觉前装好的——
+          挑一个，做完，明早 8:00 你会看到第一份结果。
+        </p>
+      </header>
+
+      <article class="demo">
+        <div class="demo-head">
+          <span class="demo-num">DEMO · 01</span>
+          <span class="demo-time">配置 15min · 每天用 0min</span>
+        </div>
+        <h3>Gmail 邮件 → 今日 To-do</h3>
+        <p>
+          每天早上一杯咖啡的时间，让 Agent 替你把过去 24 小时的邮件读完，输出一份"今天必须办的事"。从此打开邮箱不再焦虑——你只看清单，不看原邮件。
+        </p>
+        <ol class="demo-steps">
+          <li>开通 Claude Pro，在设置里启用 <strong>Gmail Connector</strong></li>
+          <li>新建一个 Project，命名"<span class="mono">每日邮件助手</span>"</li>
+          <li>把 Prompt 模板粘进 Project Instructions（现场会发）</li>
+          <li>设一个手机日历闹钟，早上 8:00 提醒自己跑一次</li>
+          <li>跑一周后回来调 prompt——你越用它越懂你</li>
+        </ol>
+        <div class="terminal">
+          <div class="terminal-bar">claude · 每日邮件助手</div>
+          <div class="terminal-body">
+            <div class="row"><span class="label user">YOU</span>跑一下今天的邮件</div>
+            <div class="row"><span class="label bot">CLAUDE</span><span class="mu">读取过去 24h 邮件…</span></div>
+            <div class="row"><span class="label tool">GMAIL</span><span class="mu">已读取 47 封</span></div>
+            <div class="hr"></div>
+            <div class="row"><span class="ok">▌ 今日必办（按优先级）</span></div>
+            <div class="row">  · 回复 David — 合同条款问题 <span class="mu">（已等 18h）</span></div>
+            <div class="row">  · 确认周四 2pm TI 团队会议 <span class="mu">（待回复）</span></div>
+            <div class="row">  · 审批 Sarah 的 expense report <span class="mu">$842</span></div>
+            <div class="row"><span class="mu">▌ 已自动归档 38 封通知/订阅</span></div>
+            <div class="row"><span class="mu">▌ 已起草 6 封草稿，待你点发送</span></div>
+          </div>
+        </div>
+      </article>
+
+      <article class="demo">
+        <div class="demo-head">
+          <span class="demo-num">DEMO · 02</span>
+          <span class="demo-time">配置 5min · 每场会议省 30min</span>
+        </div>
+        <h3>会议纪要 → 行动项</h3>
+        <p>
+          开完会脑子一片混乱，谁负责什么、什么时候交，没人记得清。让 Agent 全程旁听，散会 30 秒出一份结构化纪要——决策、行动项、负责人、deadline，一目了然。
+        </p>
+        <ol class="demo-steps">
+          <li>装一个 <strong>Granola</strong> 或 <strong>Fireflies</strong>（Mac/Win/手机都有）</li>
+          <li>每次开会前点一下"录音"——之后什么都不用做</li>
+          <li>会议结束自动生成转录 + 摘要 + 行动项</li>
+          <li>把摘要丢进 Claude，让它写一封"会议跟进邮件"群发</li>
+          <li>把行动项导入你的 Todoist / Notion / Linear</li>
+        </ol>
+        <div class="terminal">
+          <div class="terminal-bar">granola · q2 产品评审</div>
+          <div class="terminal-body">
+            <div class="row"><span class="ok">▌ 关键决策</span></div>
+            <div class="row">  · Q2 不做新功能，all-in 性能优化</div>
+            <div class="row">  · 北美定价方案 B 通过</div>
+            <div class="hr"></div>
+            <div class="row"><span class="ok">▌ 行动项</span></div>
+            <div class="row">  · Mike · 出性能基线报告 <span class="mu">· 5/22</span></div>
+            <div class="row">  · Lisa · 同步销售团队新定价 <span class="mu">· 5/19</span></div>
+            <div class="row">  · Jack · 起草 Q2 OKR 草稿 <span class="mu">· 5/20</span></div>
+            <div class="hr"></div>
+            <div class="row"><span class="ok">▌ 未决问题</span></div>
+            <div class="row">  · 是否同步调整欧洲价格 <span class="mu">（下次议题）</span></div>
+            <div class="hr"></div>
+            <div class="row"><span class="ok">✓ 已自动起草跟进邮件，待发送</span></div>
+          </div>
+        </div>
+      </article>
+
+      <article class="demo">
+        <div class="demo-head">
+          <span class="demo-num">DEMO · 03</span>
+          <span class="demo-time">配置 2min · 每份报告省一天</span>
+        </div>
+        <h3>市场调研 → 一份完整报告</h3>
+        <p>
+          过去做一份"行业 + 区域"的调研，要自己 Google 一下午、读 20 篇文章、整理表格。现在一段 Prompt，Agent 自己上网搜、读、对比、汇总，30 分钟交一份 5000 字带引用的报告。
+        </p>
+        <ol class="demo-steps">
+          <li>打开 <strong>Perplexity Pro</strong>，选"Deep Research"模式</li>
+          <li>粘入 Prompt 模板（现场发，下方为输出预览）</li>
+          <li>等 15-30 分钟，Agent 自己跑 30+ 个网页 + 5+ 个数据源</li>
+          <li>导出为 Markdown 或 PDF</li>
+          <li>丢给 Claude 做"老板视角摘要"，3 段话讲完核心</li>
+        </ol>
+        <div class="terminal">
+          <div class="terminal-bar">perplexity · deep research</div>
+          <div class="terminal-body">
+            <div class="row"><span class="label user">YOU</span><span class="mu">达拉斯 EV 充电桩市场，过去 90 天趋势</span></div>
+            <div class="row"><span class="mu">▶ 正在调研…</span></div>
+            <div class="row">  🔍 已搜索 34 个网页</div>
+            <div class="row">  📄 已阅读 11 份报告</div>
+            <div class="row">  📊 已对比 7 家公司财报</div>
+            <div class="hr"></div>
+            <div class="row"><span class="ok">▌ 报告大纲</span></div>
+            <div class="row">  1. 市场规模与增长（含图表）</div>
+            <div class="row">  2. 5 大主要玩家与份额</div>
+            <div class="row">  3. 政策与补贴变化</div>
+            <div class="row">  4. 3 个机会窗口</div>
+            <div class="row">  5. 2 个风险信号</div>
+            <div class="hr"></div>
+            <div class="row"><span class="ok">✓ 5,243 字 · 47 处引用 · 已生成</span></div>
+          </div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- ============ § 8 90-DAY PATH ============ -->
+  <section class="essay">
+    <div class="essay-inner">
+      <header class="section-head">
+        <span class="eyebrow">§ 08 · 接下来 90 天</span>
+        <h2>不画饼版的 12 周</h2>
+        <p class="lede">
+          90 天路径不是"承诺你会变厉害"——是给你四个具体动作，每个都有一个明确的失败信号。
+          如果某一周的失败信号亮了，回到上一周，别往下走。
+        </p>
+      </header>
+
+      <ul class="timeline">
+        <li class="tl">
+          <span class="tl-week">WEEK 1 – 2 · 重塑反射</span>
+          <h3>任何问题，先问 AI 一遍再说</h3>
+          <p>
+            ChatGPT 或 Claude Pro 每天用满 30 分钟——不挑场景、不挑难度，
+            任何一个"想搜索/想写一段话/想理一下思路"的瞬间，第一反应是打开 AI。
+            <strong style="color:var(--color-foreground);">失败信号：</strong>第 2 周末你回头看，本周习惯性打开 Google 的次数还是大于打开 AI。
+            <strong>失败的话怎么办：</strong>把 Google 的快捷键改掉。
+          </p>
+        </li>
+        <li class="tl">
+          <span class="tl-week">WEEK 3 – 4 · SOP 化一件事</span>
+          <h3>挑你每周做 3 次以上的任务，做成 Project</h3>
+          <p>
+            写周报、回固定类型邮件、整理日报、做产品反馈分类——挑一个，做成 Claude Project / Custom GPT，配好 Instructions。
+            <strong style="color:var(--color-foreground);">失败信号：</strong>到第 4 周末，你还在每次都重新写 prompt。
+            <strong>失败的话怎么办：</strong>说明你选的任务太杂、不可 SOP 化——换一个更具体的。
+          </p>
+        </li>
+        <li class="tl">
+          <span class="tl-week">WEEK 5 – 8 · 跨工具</span>
+          <h3>打开 Connector，让 Agent 动手</h3>
+          <p>
+            Gmail / Calendar / Drive / Notion 的官方 connector 全开。
+            <strong style="color:var(--color-foreground);">这一刻你才从"AI 用户"升级成"Agent 用户"。</strong>
+            <strong style="color:var(--color-foreground);">失败信号：</strong>开了 connector，但日常工作流里没出现"让 Agent 替我处理"这一步。
+            <strong>失败的话怎么办：</strong>回到 Week 3-4，你的 SOP 还没固化下来。
+          </p>
+        </li>
+        <li class="tl">
+          <span class="tl-week">WEEK 9 – 12 · 设计系统</span>
+          <h3>把核心工作流写成可执行协议</h3>
+          <p>
+            选 2-3 个核心工作流，写成 SOP，让 Agent 跑——你只做高价值判断和最终审核。
+            <strong style="color:var(--color-foreground);">失败信号：</strong>到第 12 周，你每天还在做"敲键盘"的活，没腾出时间做系统设计。
+            <strong>失败的话怎么办：</strong>不是 Agent 不行——是你没把"做事"和"设计系统"切开。
+          </p>
+        </li>
+      </ul>
+
+      <p style="margin-top: 2rem; color: var(--color-muted-foreground); font-size: 0.9375rem;">
+        <strong style="color: var(--color-foreground); font-weight: 600;">90 天后你应该能回答这个问题：</strong>"过去一周，哪件具体的事是 Agent 替我做的？" ——
+        如果回答得出来、有截图、有产出物，路径走通了。如果回答不出来，说明这 90 天你只是"在用 AI"，没"装上 Agent"。
+      </p>
+    </div>
+  </section>
+
+  <!-- ============ CTA ============ -->
+  <section id="cta" class="essay">
+    <div class="essay-inner">
+      <header class="section-head" style="text-align:center;">
+        <span class="eyebrow" style="display:inline-block;">Real Agent Use Cases</span>
+        <h2 style="margin-top: 0.75rem;">听完讲座，最重要的事不会自动发生</h2>
+        <p class="lede" style="margin-left:auto;margin-right:auto;">
+          90 分钟，一份讲义。但讲义不等于动作。<br>
+          <strong style="color:var(--color-foreground);">「执行的价值永远被低估」</strong>——如果今天回家没跑通其中一个 Agent，明天也不会。
+          这不是激励，是观察事实。
+        </p>
+      </header>
+
+      <div class="subscribe">
+        <form class="subscribe-form" onsubmit="event.preventDefault(); window.open('https://realagentusecases.com', '_blank');">
+          <input type="email" placeholder="your@email.com" required>
+          <button class="btn" type="submit">Subscribe — free</button>
+        </form>
+        <p class="subscribe-note">
+          每周一个完整可复制的 Agent 案例——prompt、工具、步骤全公开。<br>
+          这个 Newsletter 不"鼓励"你，能不能跑通是你的事。
+        </p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site">
+  <div class="footer-inner">
+    © 2026 · Jack Qian
+    <span class="sep">·</span>
+    <a href="https://realagentusecases.com">realagentusecases.com</a>
+    <span class="sep">·</span>
+    Dallas, TX
+  </div>
+</footer>
+
+</body>
+</html>
