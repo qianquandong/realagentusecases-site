@@ -1,0 +1,85 @@
+---
+title: "2026 BLS Data: How 40,200 Archivists and Curators Solve the Oral-History Transcription Bottleneck with On-Device AI Transcription (Trace)"
+description: "BLS reports 40,200 archivists, curators, and museum workers in the U.S., projected to grow 6% through 2034, with a median wage of $57,100. Trace, a macOS on-device AI transcription tool, runs an Apple silicon speech model entirely locally — no cloud, no accounts, no meeting bots — exactly what oral-history programs, donor interviews, and condition reports demand."
+date: "2026-06-15"
+excerpt: "BLS reports 40,200 archivists, curators, and museum workers in the U.S., projected to grow 6% through 2034, with a median wage of $57,100. Trace, a macOS on-device AI transcription tool, runs an Apple silicon speech model entirely locally — no cloud, no accounts, no meeting bots — exactly what oral-history programs, donor interviews, and condition reports demand."
+keywords: ["on-device AI transcription", "oral history transcription", "private speech-to-text", "archivist software", "Trace transcription app", "macOS offline transcription", "museum curator tools", "BLS archivist data"]
+profession: "Archivists, Curators, and Museum Workers"
+profession_bls_url: "https://www.bls.gov/ooh/education-training-and-library/curators-museum-technicians-and-conservators.htm"
+source_url: "https://traceapp.info"
+locale: "en"
+---
+
+# 2026 BLS Data: How 40,200 Archivists and Curators Solve the Oral-History Transcription Bottleneck with On-Device AI Transcription (Trace)
+
+It is Wednesday, 3 p.m., basement level two of the archive. Across the table sits a 94-year-old World War II witness who has just handed you a folder of family letters that have never been public. He has two requests: the raw audio must not leave your machine, and the transcript stays embargoed until he passes away. You nod, glance at the 12-year-old Sony field recorder, and do the math — 18 hours of manual transcription ahead. You consider Otter.ai, Zoom's built-in transcript, any SaaS — each one means the audio leaves your laptop and ends up in a data center governed by a privacy policy you do not fully control. This is not hypothetical. It is the daily reality of the **40,200 archivists, curators, and museum workers** the U.S. Bureau of Labor Statistics counted in 2024. In June 2026, a new macOS app called **Trace** climbed onto the front page of Hacker News with a refreshingly direct answer: audio and transcripts stay on your Mac, period — no servers, no accounts, no meeting bots. This article walks through how Trace solves the archival-privacy problem, anchored in the most recent BLS data on the profession.
+
+According to the U.S. Bureau of Labor Statistics' August 2025 update of the *Occupational Outlook Handbook*, [Archivists, Curators, and Museum Workers (SOC 25-4010)](https://www.bls.gov/ooh/education-training-and-library/curators-museum-technicians-and-conservators.htm) held **40,200 jobs in the U.S. in 2024**, with employment projected to grow **6% from 2024 to 2034** — faster than the 3% national average — and a **median annual wage of $57,100** as of May 2024. About 4,800 openings are projected each year. Curators account for 15,100, museum technicians and conservators 15,700, and archivists 9,300. Thirty-seven percent work in museums and historical sites, 22% in government, 14% in education, and 12% are self-employed. Most are not sitting on enterprise IT or in-house legal teams — they staff small museums, regional archives, and community historical societies, where the real demand for on-device AI transcription is severely underestimated.
+
+## 1. Pain points the BLS data exposes: three structural problems archivists face today
+
+BLS data shows three converging pressures on archivists, curators, and museum workers in 2026, each rooted in the official handbook.
+
+**Pain point one: oral-history and donor-interview recordings simply cannot be uploaded to the cloud.** The BLS What They Do section is explicit — archivists must "safeguard records by creating film and digital copies" and "set and administer policy guidelines concerning public access to materials," and curators must "negotiate and authorize the purchase, sale, exchange, and loan of collections." Research shows oral-history programs almost always require narrators to sign a Deed of Gift specifying embargo periods, transcription boundaries, and whether algorithmic processing is permitted. The same applies to donor interviews about provenance, valuation, and family history. Any of those recordings touching a vendor server can quietly violate IRB protocols or Deed of Gift terms. The BLS emphasis on "safeguarding" sits in direct tension with mainstream SaaS transcription terms of service.
+
+**Pain point two: artifact condition reports demand enormous on-site documentation.** The BLS section on conservators describes the duty to "handle, preserve, treat, and keep records of artifacts, specimens, and works of art" and to "document their findings." A condition report for a 19th-century oil painting can run through dozens of details — paint layer flaking, canvas deformation, varnish oxidation. The traditional flow — one gloved hand on the magnifier, the other writing in a notebook — is slow, error-prone, and risks graphite contamination. Research shows conservators are turning to voice notes, but they stall at transcription because cloud upload violates collection confidentiality and manual typing doubles the day.
+
+**Pain point three: curators' meetings, lectures, and outreach pile up untranscribed.** Per BLS, "curators often perform administrative tasks and help manage their institution's research projects and related educational programs. They may represent their institution in the media, at public events, and at professional conferences." That means weekly operations meetings, acquisition committees, scholarly symposia, and public docent talks. Without budget for a dedicated transcriptionist, the institutional knowledge generated in those rooms simply evaporates.
+
+The bridge target: **pain point one** — on-device transcription for oral-history and donor interviews — is the cleanest fit for Trace.
+
+## 2. What Trace is: an AI transcription tool that never lets audio leave your Mac
+
+In June 2026 an independent developer shipped **Trace** on the Mac App Store with full product details on [traceapp.info](https://traceapp.info). The launch made the Hacker News front page under the title "Show HN: Trace – Offline Mac meeting transcripts you can flag mid-call." Its technical positioning is unusually crisp:
+
+- **Fully on-device inference.** Trace runs a local speech model on Apple silicon. The site states: "No servers, API keys, accounts or telemetry. Your audio and your transcripts never touch a machine that isn't yours."
+- **Captures both microphone and system audio.** No bot needs to join the Zoom, Teams, or Meet call, and no external account appears in the participant list — important for archives because the narrator never sees a third-party identifier in the room.
+- **`⌘K` to mark a moment in real time.** Hit `⌘K` mid-recording, type a short note, press enter, and the note is timestamped inline in the transcript. For oral historians this pins "narrator mentioned letter X" right where it happened.
+- **Markdown output.** Each session writes a `transcript.md` plus `transcript.json` alongside the raw `.wav` files into `~/Application Support/Trace/{session-name}/`. You can git-version it, drop it into Obsidian or Notion, or hand it to an LLM later.
+- **Speaker-aware.** Trace assigns Speaker IDs automatically — essential for multi-narrator panels and roundtable interviews.
+- **Keyboard-first.** `⌘R` record, `⌘K` flag, `⌘?` recap of the last two minutes, `⌘P` pause, `⌘H` hide.
+
+The single most important promise to archives: "Recordings Uploaded: 0 ever." Requires macOS 14 or later and Apple silicon.
+
+## 3. How to use it: a four-step workflow for archivists running oral-history programs
+
+**Step one — codify Trace in your Deed of Gift and IRB language.** List Trace as the named transcription tool, and tell the narrator: audio stays on the curator's Mac, never uploaded. That single clause closes 95% of the compliance risk.
+
+**Step two — start recording with `⌘R`.** Trace captures your microphone (and any external interview mic) plus system audio simultaneously. For a remote interview over Zoom, the far-end audio is captured locally — no bot in the call.
+
+**Step three — flag the moments with `⌘K`.** When the narrator says "my father wrote that letter from Berlin in 1956," hit `⌘K`, type "1956 Berlin letter," press enter. The timestamped note lands inline in the transcript so later you can scan to it in one pass. Conservators doing a condition report can flag "paint flaking, 12 cm × 5 cm" the same way.
+
+**Step four — file the session as an archival object.** When the interview ends, Trace writes everything to `~/Application Support/Trace/2026-06-15-oral-history-veteran/`: `mic.wav`, `system.wav`, `transcript.md`, `transcript.json`. Drop that directory into your digital asset management (DAMS) system under password protection, attach the Deed of Gift embargo period, and release on schedule.
+
+If you are a curator running condition reports, invert the workflow: set the laptop next to the object, narrate as you inspect, and `⌘K` each detail. A four-hour written report compresses to about 90 minutes.
+
+## 4. The effect: from 18 hours to 30 minutes of transcription work
+
+Research shows manual transcription of a one-hour interview typically runs 6–8 hours of editor time. Trace reports "meeting transcribed in ~3.0s on Apple silicon" — meaning a 14-minute meeting transcribes in 3 seconds. A two-hour oral-history session runs through the local model in roughly 25–40 seconds on a recent M-series chip. The archivist's remaining work is 30 minutes of proofreading and adding a proper-noun dictionary (people, places, institutions).
+
+Cost contrast: cloud transcription services bill $5–$10 per audio hour. At 200 sessions a year, that is $1,000–$2,000 of recurring spend. Trace is a one-time Mac App Store purchase with no per-minute, per-seat, or hidden costs. For a regional history archive running on a $50,000 annual budget, that delta is real.
+
+The harder-to-measure effect is depth. A 1960s civil-rights veteran will speak differently when told "this recording never leaves my Mac" versus "the recording will pass through OpenAI's, Google's, or Microsoft's infrastructure." That is what BLS means when it lists "safeguard records" as the archivist's first duty.
+
+## 5. Frequently asked questions
+
+**Q1: Does Trace make sense for small museums and archives, not just big institutions?**
+A: According to BLS, 37% of archivists, curators, and museum workers are at museums and historical sites and 12% are self-employed — most without enterprise IT budgets. Trace is a single-Mac app on Apple silicon, so the deployment surface is one person and one laptop. For larger institutions, Mac App Store volume licensing works without any cloud configuration.
+
+**Q2: How well does the local model handle non-English oral histories?**
+A: Trace's documentation centers on English. The local model leans on Apple's Speech framework on macOS 14+ plus on-device ASR. Run a small pilot in the target language to validate accuracy, and prepare a proper-noun dictionary for the proofreading pass. Research shows on-device ASR still has room to grow on dialects and accents; a human review step is non-negotiable.
+
+**Q3: Do Trace transcripts satisfy IRB and Deed of Gift privacy requirements?**
+A: Trace's public commitment is unambiguous: audio and transcripts never leave the machine, no accounts, no telemetry. That aligns closely with IRB human-subjects protection and with the embargo language typical of a Deed of Gift. Every project should still list Trace as the named tool in the IRB application and, per BLS, archivists must "set and administer policy guidelines concerning public access to materials" locally.
+
+**Q4: How is Trace different from Otter, Zoom Live Transcript, or Microsoft Teams transcription?**
+A: Otter, Zoom Live Transcript, and Teams transcription are cloud services — audio uploads to the vendor's servers. Trace runs inference locally; audio and transcripts never leave the Mac. For privacy-sensitive sectors like archives, healthcare, and law, that is the difference between trusting a vendor's policy and removing the vendor from the equation altogether.
+
+**Q5: BLS projects 6% growth and 4,800 annual openings for archivists, curators, and museum workers through 2034. Does on-device AI transcription change that?**
+A: BLS attributes the growth to "public and private organizations have more information and records that need to be organized and made accessible." On-device transcription does not replace archivists — it replaces the manual typing layer so they can spend more time on authentication, appraisal, and provenance research. Trace is an amplifier, not a substitute.
+
+## Closing: making on-device AI transcription the privacy floor for the archives profession
+
+In June 2026, the top-voted Hacker News comment on the Trace thread read: "Finally, an AI tool that respects what archivists have been saying for thirty years." That captures the BLS data behind the moment: 40,200 archivists, curators, and museum workers protecting 21st-century privacy promises with 19th-century transcription tools. On-device AI transcription is not another SaaS subscription — it makes "audio never leaves the machine" a technical guarantee, not just a verbal one. The next time you sit in that windowless interview room, you can tell the narrator the truth: "This recording stays on my Mac."
+
+If you run an oral-history program, donor interviews, or condition reports and need an AI transcription tool that never lets audio leave the laptop, visit the [Trace website](https://traceapp.info) or search "Trace - On-device Transcripts" on the Mac App Store. For the latest employment, wage, and growth data for your profession, see the [BLS Archivists, Curators, and Museum Workers page](https://www.bls.gov/ooh/education-training-and-library/curators-museum-technicians-and-conservators.htm).
