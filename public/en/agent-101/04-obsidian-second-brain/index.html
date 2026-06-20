@@ -1,0 +1,1610 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Obsidian as your second brain — a second brain is not a bookmark folder. Local markdown + backlinks + AI. By Real Agent Use Cases.">
+<title>Agent 101 · Episode 04 · Obsidian: Your Second Brain · Real Agent Use Cases</title>
+<link rel="canonical" href="https://realagentusecases.com/en/agent-101/04-obsidian-second-brain/">
+<link rel="alternate" hrefLang="zh" href="https://realagentusecases.com/agent-101/04-obsidian-second-brain/">
+<link rel="alternate" hrefLang="en" href="https://realagentusecases.com/en/agent-101/04-obsidian-second-brain/">
+
+<!-- Open Graph -->
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Real Agent Use Cases">
+<meta property="og:title" content="Agent 101 · Episode 04 · A second brain is not a bookmark folder">
+<meta property="og:description" content="Saving isn't owning. A second brain is a system that hands the past you back to the present you when you need it. Local markdown + backlinks + AI reading your whole vault — including the real plugins running in my own vault.">
+<meta property="og:url" content="https://realagentusecases.com/en/agent-101/04-obsidian-second-brain/">
+<meta property="og:locale" content="en_US">
+<meta property="og:locale:alternate" content="zh_CN">
+<meta property="og:image" content="https://realagentusecases.com/og/agent-101/opengraph-image">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:alt" content="Agent 101 · Episode 04 · A second brain is not a bookmark folder">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Agent 101 · Episode 04 · A second brain is not a bookmark folder">
+<meta name="twitter:description" content="Saving isn't owning. A second brain hands the past you back to the present you. Local markdown + backlinks + AI.">
+<meta name="twitter:image" content="https://realagentusecases.com/og/agent-101/opengraph-image">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@300..900&family=Geist+Mono:wght@300..700&family=Source+Serif+4:ital,wght@0,400..700;1,400..700&display=swap">
+<style>
+  /* ==========================================================
+     Tokens — mirrors realagentusecases.com
+     ========================================================== */
+  :root {
+    --color-background: #0a0a0a;
+    --color-foreground: #f2f2f2;
+    --color-muted: #161616;
+    --color-muted-foreground: #a3a3a3;
+    --color-border: #262626;
+    --color-brand: #2d5e44;
+    --color-brand-hover: #387554;
+    --color-brand-foreground: #fff;
+
+    --font-sans: "Geist", -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", "Hiragino Sans GB", sans-serif;
+    --font-serif: "Source Serif 4", "Songti SC", "STSong", Georgia, "Times New Roman", serif;
+    --font-mono: "Geist Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+
+    --tracking-tight: -0.025em;
+    --leading-snug: 1.375;
+    --leading-relaxed: 1.625;
+
+    --radius-md: 0.375rem;
+    --radius-lg: 0.5rem;
+    --radius-xl: 0.75rem;
+
+    --container-2xl: 42rem; /* 672 — body sections */
+    --container-3xl: 48rem; /* 768 — hero */
+    --container-6xl: 72rem; /* 1152 — nav */
+  }
+
+  /* ==========================================================
+     Reset & base
+     ========================================================== */
+  *, *::before, *::after { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    background: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    line-height: var(--leading-relaxed);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+  h1, h2, h3, h4 {
+    color: var(--color-foreground);
+    font-weight: 600;
+    letter-spacing: var(--tracking-tight);
+    line-height: var(--leading-snug);
+    margin: 0;
+    text-wrap: balance;
+  }
+  p { margin: 0 0 1rem; }
+  a {
+    color: var(--color-foreground);
+    text-decoration: none;
+    transition: color 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  a:hover { color: var(--color-brand); }
+  ::selection { background: var(--color-brand); color: white; }
+  img, svg { max-width: 100%; display: block; }
+
+  /* ==========================================================
+     Layout primitives
+     ========================================================== */
+  .mx-auto { margin-left: auto; margin-right: auto; }
+  .max-w-6xl { max-width: var(--container-6xl); }
+  .max-w-3xl { max-width: var(--container-3xl); }
+  .max-w-2xl { max-width: var(--container-2xl); }
+  .px-6 { padding-left: 1.5rem; padding-right: 1.5rem; }
+  main { min-height: 100vh; }
+
+  /* ==========================================================
+     Sticky nav (matches parent site)
+     ========================================================== */
+  nav.topnav {
+    position: sticky;
+    top: 0;
+    z-index: 40;
+    border-bottom: 1px solid var(--color-border);
+    background: rgba(10, 10, 10, 0.8);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+  }
+  @supports (backdrop-filter: blur(12px)) {
+    nav.topnav { background: rgba(10, 10, 10, 0.6); }
+  }
+  .nav-inner {
+    max-width: var(--container-6xl);
+    margin: 0 auto;
+    padding: 0 1.5rem;
+    height: 3.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .brand {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    letter-spacing: -0.01em;
+    color: var(--color-foreground);
+  }
+  @media (min-width: 640px) { .brand { font-size: 0.875rem; } }
+  .brand:hover { color: var(--color-brand); }
+  .nav-right {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+  }
+  @media (min-width: 640px) { .nav-right { gap: 1.5rem; } }
+  .nav-link {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--color-muted-foreground);
+    letter-spacing: -0.01em;
+    transition: color 0.15s;
+  }
+  @media (min-width: 640px) { .nav-link { font-size: 0.875rem; } }
+  .nav-link:hover { color: var(--color-brand); }
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--radius-md);
+    font-family: var(--font-sans);
+    font-weight: 500;
+    font-size: 0.875rem;
+    height: 2.25rem;
+    padding: 0 1rem;
+    background: var(--color-brand);
+    color: var(--color-brand-foreground);
+    transition: background-color 0.15s, transform 0.15s;
+    cursor: pointer;
+    border: none;
+  }
+  .btn:hover {
+    background: var(--color-brand-hover);
+    color: var(--color-brand-foreground);
+    transform: translateY(-1px);
+  }
+  .btn:active { transform: translateY(0); }
+  .btn.btn-lg { height: 3rem; padding: 0 1.5rem; font-size: 1rem; }
+
+  /* ==========================================================
+     Eyebrow (mono uppercase label)
+     ========================================================== */
+  .eyebrow {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--color-muted-foreground);
+    font-weight: 400;
+  }
+  .eyebrow-lg {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: var(--color-muted-foreground);
+  }
+
+  /* ==========================================================
+     Hero
+     ========================================================== */
+  .hero {
+    max-width: var(--container-3xl);
+    margin: 0 auto;
+    padding: 4rem 1.5rem 7rem;
+    text-align: center;
+  }
+  @media (min-width: 640px) {
+    .hero { padding: 6rem 1.5rem 9rem; }
+  }
+  .hero .eyebrow-lg { display: block; margin-bottom: 1.5rem; }
+  .hero h1 {
+    font-size: 2.25rem;
+    font-weight: 600;
+    letter-spacing: var(--tracking-tight);
+    line-height: 1.1;
+    text-wrap: balance;
+  }
+  @media (min-width: 640px) { .hero h1 { font-size: 3rem; } }
+  @media (min-width: 768px) { .hero h1 { font-size: 3.75rem; } }
+  .hero h1 .brand-word {
+    color: var(--color-brand);
+  }
+  .hero-sub {
+    margin: 1.25rem auto 0;
+    max-width: var(--container-2xl);
+    font-size: 1.125rem;
+    color: var(--color-muted-foreground);
+    line-height: var(--leading-relaxed);
+    text-wrap: balance;
+  }
+  @media (min-width: 640px) { .hero-sub { font-size: 1.25rem; } }
+
+  .hero-list {
+    margin: 1.75rem auto 0;
+    max-width: 30rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    text-align: left;
+    font-size: 0.9375rem;
+    color: var(--color-muted-foreground);
+  }
+  @media (min-width: 640px) { .hero-list { font-size: 0.9375rem; } }
+  .hero-list-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+  }
+  .dot {
+    width: 0.25rem;
+    height: 0.25rem;
+    border-radius: 9999px;
+    background: var(--color-brand);
+    flex-shrink: 0;
+    margin-top: 0.6em;
+  }
+  .hero-ctas {
+    margin-top: 2.5rem;
+    display: flex;
+    gap: 0.75rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .hero-foot {
+    margin-top: 2.5rem;
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: rgba(163, 163, 163, 0.7);
+  }
+
+  /* ==========================================================
+     Section base (essay-style)
+     ========================================================== */
+  section.essay {
+    border-top: 1px solid rgba(38, 38, 38, 0.4);
+  }
+  .essay-inner {
+    max-width: var(--container-2xl);
+    margin: 0 auto;
+    padding: 5rem 1.5rem;
+  }
+  @media (min-width: 640px) {
+    .essay-inner { padding: 6rem 1.5rem; }
+  }
+  .essay-inner.wide {
+    max-width: var(--container-3xl);
+  }
+  .section-head { margin-bottom: 2.5rem; }
+  .section-head .eyebrow { display: block; margin-bottom: 0.75rem; }
+  .section-head h2 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    letter-spacing: var(--tracking-tight);
+    line-height: var(--leading-snug);
+  }
+  @media (min-width: 640px) {
+    .section-head h2 { font-size: 1.875rem; }
+  }
+  .section-head .lede {
+    margin-top: 0.875rem;
+    font-size: 1.0625rem;
+    color: var(--color-muted-foreground);
+    line-height: var(--leading-relaxed);
+  }
+  .essay-body p {
+    color: var(--color-muted-foreground);
+    line-height: var(--leading-relaxed);
+    font-size: 1rem;
+  }
+  .essay-body strong { color: var(--color-foreground); font-weight: 600; }
+
+  /* ==========================================================
+     Item list (matches "Read the latest" article list)
+     ========================================================== */
+  .item-list {
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .item {
+    display: block;
+  }
+  .item .item-eyebrow {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--color-muted-foreground);
+  }
+  .item h3 {
+    margin-top: 0.5rem;
+    font-size: 1.25rem;
+    font-weight: 600;
+    letter-spacing: var(--tracking-tight);
+    line-height: var(--leading-snug);
+    color: var(--color-foreground);
+  }
+  @media (min-width: 640px) {
+    .item h3 { font-size: 1.375rem; }
+  }
+  .item p {
+    margin-top: 0.5rem;
+    color: var(--color-muted-foreground);
+    line-height: var(--leading-relaxed);
+  }
+
+  /* ==========================================================
+     Compare table (Chatbot vs Agent) — minimal two-col
+     ========================================================== */
+  .compare {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+  }
+  @media (min-width: 640px) {
+    .compare { grid-template-columns: 1fr 1fr; }
+  }
+  .compare-cell {
+    padding: 1.75rem;
+    background: var(--color-muted);
+  }
+  .compare-cell + .compare-cell {
+    border-top: 1px solid var(--color-border);
+  }
+  @media (min-width: 640px) {
+    .compare-cell + .compare-cell {
+      border-top: none;
+      border-left: 1px solid var(--color-border);
+    }
+  }
+  .compare-cell.is-agent { background: rgba(45, 94, 68, 0.08); }
+  .compare-cell .item-eyebrow { display: block; margin-bottom: 0.5rem; }
+  .compare-cell .is-agent-eyebrow { color: var(--color-brand); }
+  .compare-cell h3 {
+    font-size: 1.125rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+  }
+  .compare-cell > p {
+    color: var(--color-muted-foreground);
+    font-size: 0.9375rem;
+    margin-bottom: 1rem;
+  }
+  .compare-cell ul {
+    list-style: none;
+    padding: 0;
+    margin: 0.75rem 0 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  .compare-cell li {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.625rem;
+    font-size: 0.9375rem;
+    color: var(--color-muted-foreground);
+  }
+  .compare-cell li::before {
+    content: "×";
+    color: var(--color-muted-foreground);
+    font-family: var(--font-mono);
+    flex-shrink: 0;
+    margin-top: 0.05em;
+  }
+  .compare-cell.is-agent li::before {
+    content: "✓";
+    color: var(--color-brand);
+  }
+
+  /* ==========================================================
+     Pull-quote / aside (analogy block)
+     ========================================================== */
+  .aside {
+    margin-top: 2rem;
+    padding: 1.75rem;
+    border-left: 2px solid var(--color-brand);
+    background: var(--color-muted);
+    border-radius: 0 var(--radius-lg) var(--radius-lg) 0;
+  }
+  .aside .aside-label {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--color-brand);
+    display: block;
+    margin-bottom: 0.625rem;
+  }
+  .aside p {
+    margin: 0;
+    color: var(--color-foreground);
+    font-family: var(--font-serif);
+    font-size: 1.0625rem;
+    line-height: var(--leading-relaxed);
+    font-style: italic;
+  }
+  .aside p strong { font-style: normal; }
+
+  /* ==========================================================
+     Agent loop (SVG + steps)
+     ========================================================== */
+  .loop-wrap {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+    align-items: center;
+  }
+  @media (min-width: 760px) {
+    .loop-wrap { grid-template-columns: 280px 1fr; gap: 3rem; }
+  }
+  .loop-svg { width: 100%; max-width: 280px; margin: 0 auto; }
+  .loop-steps {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  .loop-step {
+    display: grid;
+    grid-template-columns: 2rem 1fr;
+    gap: 0.875rem;
+    align-items: start;
+  }
+  .loop-step .n {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--color-brand);
+    letter-spacing: 0.05em;
+    padding-top: 0.125rem;
+  }
+  .loop-step h4 {
+    font-size: 1.0625rem;
+    margin-bottom: 0.25rem;
+  }
+  .loop-step h4 .en {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--color-muted-foreground);
+    margin-left: 0.5rem;
+    font-weight: 400;
+    letter-spacing: 0.05em;
+  }
+  .loop-step p { margin: 0; color: var(--color-muted-foreground); font-size: 0.9375rem; }
+
+  /* ==========================================================
+     Use cases — vertical list with mono labels (no flashy cards)
+     ========================================================== */
+  .use-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+  .use {
+    padding: 2rem 0;
+    border-top: 1px solid var(--color-border);
+  }
+  .use:first-child { border-top: none; padding-top: 0; }
+  .use:last-child { padding-bottom: 0; }
+  .use-top {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 0.5rem;
+    flex-wrap: wrap;
+  }
+  .use-top .use-label {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--color-muted-foreground);
+  }
+  .use-top .use-gain {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--color-brand);
+    letter-spacing: 0.05em;
+  }
+  .use h3 {
+    font-size: 1.25rem;
+    margin-bottom: 0.625rem;
+  }
+  @media (min-width: 640px) { .use h3 { font-size: 1.375rem; } }
+  .use p { color: var(--color-muted-foreground); margin-bottom: 0.875rem; }
+  .use-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 0.875rem;
+  }
+  .chip {
+    display: inline-block;
+    padding: 0.25rem 0.625rem;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    color: var(--color-muted-foreground);
+    letter-spacing: 0.02em;
+  }
+
+  /* ==========================================================
+     Demo block — mono code-style terminal mock
+     ========================================================== */
+  .demo {
+    margin-top: 2.5rem;
+    padding-top: 2.5rem;
+    border-top: 1px solid var(--color-border);
+  }
+  .demo:first-of-type { border-top: none; padding-top: 0; margin-top: 0; }
+  .demo-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-bottom: 0.625rem;
+  }
+  .demo-num {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--color-brand);
+  }
+  .demo-time {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    color: var(--color-muted-foreground);
+    letter-spacing: 0.05em;
+  }
+  .demo h3 {
+    font-size: 1.375rem;
+    margin-bottom: 0.625rem;
+  }
+  .demo > p {
+    color: var(--color-muted-foreground);
+    margin-bottom: 1.25rem;
+  }
+  .demo-steps {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 1.5rem;
+    counter-reset: step;
+  }
+  .demo-steps li {
+    counter-increment: step;
+    padding: 0.625rem 0 0.625rem 2rem;
+    position: relative;
+    color: var(--color-muted-foreground);
+    font-size: 0.9375rem;
+    line-height: var(--leading-relaxed);
+    border-top: 1px dashed rgba(38, 38, 38, 0.6);
+  }
+  .demo-steps li:first-child { border-top: none; }
+  .demo-steps li::before {
+    content: counter(step, decimal-leading-zero);
+    position: absolute;
+    left: 0;
+    top: 0.625rem;
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    color: var(--color-brand);
+    letter-spacing: 0.05em;
+  }
+  .demo-steps strong { color: var(--color-foreground); font-weight: 600; }
+
+  .terminal {
+    background: var(--color-muted);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    font-family: var(--font-mono);
+    font-size: 0.8125rem;
+    line-height: 1.7;
+    color: var(--color-foreground);
+    overflow: hidden;
+  }
+  .terminal-bar {
+    padding: 0.625rem 0.875rem;
+    background: rgba(0, 0, 0, 0.3);
+    border-bottom: 1px solid var(--color-border);
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    color: var(--color-muted-foreground);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .terminal-body { padding: 1.125rem; }
+  .terminal-body .row { padding: 0.05rem 0; }
+  .terminal-body .mu { color: var(--color-muted-foreground); }
+  .terminal-body .ok { color: var(--color-brand); }
+  .terminal-body .label {
+    display: inline-block;
+    color: var(--color-muted-foreground);
+    margin-right: 0.5rem;
+  }
+  .terminal-body .label.user { color: #c2a8ff; }
+  .terminal-body .label.bot { color: var(--color-brand); }
+  .terminal-body .label.tool { color: #d4a657; }
+  .terminal-body .hr {
+    border-top: 1px dashed var(--color-border);
+    margin: 0.5rem 0;
+  }
+  /* Workflow terminal helpers */
+  .terminal-body .step {
+    display: inline-block;
+    min-width: 6.5rem;
+    color: var(--color-foreground);
+    font-weight: 500;
+  }
+  .terminal-body .num {
+    display: inline-block;
+    width: 1.75rem;
+    color: var(--color-brand);
+  }
+  .terminal-body .meta {
+    color: var(--color-brand);
+    font-weight: 500;
+  }
+  .terminal-title-tag {
+    display: inline-block;
+    padding: 1px 6px;
+    margin-right: 0.5rem;
+    background: var(--color-brand);
+    color: var(--color-brand-foreground);
+    border-radius: 3px;
+    font-size: 0.625rem;
+    letter-spacing: 0.1em;
+    font-weight: 600;
+  }
+
+  /* Case-list divider: visual separation between "by-job" and "by-scenario" cases */
+  .case-divider {
+    margin: 3rem 0;
+    padding: 2.25rem 1.5rem;
+    border-top: 1px solid var(--color-border);
+    border-bottom: 1px solid var(--color-border);
+    text-align: center;
+  }
+  .case-divider .eyebrow {
+    display: block;
+    margin-bottom: 0.75rem;
+    color: var(--color-brand);
+  }
+  .case-divider h3 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 0.625rem;
+    letter-spacing: var(--tracking-tight);
+  }
+  .case-divider p {
+    color: var(--color-muted-foreground);
+    max-width: 40rem;
+    margin: 0 auto;
+    font-size: 0.9375rem;
+    line-height: var(--leading-relaxed);
+  }
+
+  /* ==========================================================
+     Timeline — minimal vertical list with mono dates
+     ========================================================== */
+  .timeline {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+  .tl {
+    padding-left: 1.5rem;
+    border-left: 1px solid var(--color-border);
+    position: relative;
+  }
+  .tl::before {
+    content: "";
+    position: absolute;
+    left: -0.3125rem;
+    top: 0.4rem;
+    width: 0.5625rem;
+    height: 0.5625rem;
+    border-radius: 9999px;
+    background: var(--color-background);
+    border: 2px solid var(--color-brand);
+  }
+  .tl .tl-week {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--color-brand);
+    display: block;
+    margin-bottom: 0.375rem;
+  }
+  .tl h3 {
+    font-size: 1.125rem;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+  }
+  .tl p { margin: 0; color: var(--color-muted-foreground); }
+
+  /* ==========================================================
+     Subscribe / CTA
+     ========================================================== */
+  .subscribe {
+    margin: 2.5rem auto 0;
+    max-width: 28rem;
+  }
+  .subscribe-form {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  @media (min-width: 640px) {
+    .subscribe-form { flex-direction: row; }
+  }
+  .subscribe input[type="email"] {
+    flex: 1;
+    min-width: 0;
+    height: 3rem;
+    padding: 0 1rem;
+    border-radius: var(--radius-md);
+    background: var(--color-muted);
+    border: 1px solid rgba(163, 163, 163, 0.3);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    transition: border-color 0.15s;
+  }
+  .subscribe input[type="email"]::placeholder { color: var(--color-muted-foreground); }
+  .subscribe input[type="email"]:focus {
+    outline: none;
+    border-color: var(--color-brand);
+  }
+  .subscribe .btn { flex-shrink: 0; height: 3rem; padding: 0 1.5rem; font-size: 1rem; }
+  .subscribe-note {
+    margin-top: 0.75rem;
+    font-size: 0.75rem;
+    color: var(--color-muted-foreground);
+    text-align: center;
+  }
+
+  /* ==========================================================
+     Footer
+     ========================================================== */
+  footer.site {
+    border-top: 1px solid var(--color-border);
+    padding: 2.5rem 1.5rem;
+    margin-top: 4rem;
+  }
+  .footer-inner {
+    max-width: var(--container-2xl);
+    margin: 0 auto;
+    text-align: center;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--color-muted-foreground);
+    letter-spacing: 0.05em;
+  }
+  .footer-inner a { color: var(--color-muted-foreground); }
+  .footer-inner a:hover { color: var(--color-brand); }
+  .footer-inner .sep { color: var(--color-border); margin: 0 0.625rem; }
+
+  /* ==========================================================
+     Audience profile chart (donut + legend)
+     ========================================================== */
+  .audience {
+    margin-bottom: 4rem;
+    padding-bottom: 3rem;
+    border-bottom: 1px solid var(--color-border);
+  }
+  .audience-head { margin-bottom: 2rem; }
+  .audience-head .eyebrow { display: block; margin-bottom: 0.625rem; }
+  .audience-head h3 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    letter-spacing: var(--tracking-tight);
+  }
+  @media (min-width: 640px) { .audience-head h3 { font-size: 1.375rem; } }
+  .audience-head p { color: var(--color-muted-foreground); margin: 0; }
+
+  .audience-body {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    align-items: center;
+  }
+  @media (min-width: 720px) {
+    .audience-body { grid-template-columns: 260px 1fr; gap: 3rem; }
+  }
+
+  .donut {
+    width: 100%;
+    max-width: 240px;
+    margin: 0 auto;
+    aspect-ratio: 1;
+    position: relative;
+  }
+  .donut svg { width: 100%; height: 100%; display: block; }
+  .donut-center {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    pointer-events: none;
+  }
+  .donut-center .n {
+    font-family: var(--font-mono);
+    font-size: 1.875rem;
+    font-weight: 600;
+    color: var(--color-foreground);
+    line-height: 1;
+    letter-spacing: -0.02em;
+  }
+  .donut-center .lbl {
+    margin-top: 0.375rem;
+    font-family: var(--font-mono);
+    font-size: 0.625rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--color-muted-foreground);
+  }
+
+  .legend {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.875rem;
+  }
+  .legend li {
+    display: grid;
+    grid-template-columns: 0.625rem 1fr auto;
+    gap: 0.75rem;
+    align-items: center;
+    padding: 0.625rem 0;
+    border-top: 1px solid var(--color-border);
+  }
+  .legend li:first-child { border-top: none; padding-top: 0; }
+  .legend .swatch {
+    width: 0.625rem;
+    height: 0.625rem;
+    border-radius: 2px;
+  }
+  .legend .name {
+    color: var(--color-foreground);
+    font-size: 0.9375rem;
+    font-weight: 500;
+  }
+  .legend .pct {
+    font-family: var(--font-mono);
+    font-size: 0.9375rem;
+    color: var(--color-muted-foreground);
+    letter-spacing: 0.02em;
+    font-feature-settings: "tnum" 1;
+  }
+
+  /* Sub-bullets inside a use case */
+  .sub-list {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 0.875rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  .sub-list li {
+    display: grid;
+    grid-template-columns: 1.5rem 1fr;
+    gap: 0.5rem;
+    color: var(--color-muted-foreground);
+    font-size: 0.9375rem;
+    line-height: var(--leading-relaxed);
+  }
+  .sub-list li::before {
+    content: "→";
+    font-family: var(--font-mono);
+    color: var(--color-brand);
+    margin-top: 0.05em;
+  }
+  .sub-list strong { color: var(--color-foreground); font-weight: 600; }
+
+  /* ==========================================================
+     Utilities
+     ========================================================== */
+  .mono { font-family: var(--font-mono); }
+  .serif { font-family: var(--font-serif); }
+
+  /* ==========================================================
+     Episode tabs — sits between topnav and main on agent-101 pages
+     ========================================================== */
+  .ep-tabs {
+    position: sticky;
+    top: 3.5rem;
+    z-index: 39;
+    border-bottom: 1px solid var(--color-border);
+    background: var(--color-background);
+  }
+  .ep-tabs-inner {
+    max-width: var(--container-6xl);
+    margin: 0 auto;
+    padding: 0 1.5rem;
+    display: flex;
+    align-items: stretch;
+    gap: 1.25rem;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+  }
+  .ep-tabs-inner::-webkit-scrollbar { display: none; }
+  .ep-tabs-label {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--color-muted-foreground);
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    padding: 0.875rem 0;
+  }
+  .ep-tab {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    text-decoration: none;
+    white-space: nowrap;
+    padding: 0.875rem 0;
+    color: var(--color-muted-foreground);
+    transition: color 0.15s;
+    border-bottom: 2px solid transparent;
+    margin-bottom: -1px;
+  }
+  .ep-tab:hover { color: var(--color-foreground); text-decoration: none; }
+  .ep-tab.is-current {
+    color: var(--color-foreground);
+    border-bottom-color: var(--color-brand);
+  }
+  .ep-tab-num {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+    color: var(--color-brand);
+    font-weight: 600;
+  }
+  .ep-tab-title {
+    font-family: var(--font-sans);
+    font-size: 0.875rem;
+    font-weight: 500;
+  }
+  .ep-tab-lang {
+    font-family: var(--font-mono);
+    font-size: 0.625rem;
+    letter-spacing: 0.1em;
+    color: var(--color-muted-foreground);
+    margin-left: 0.375rem;
+    padding: 1px 5px;
+    border: 1px solid var(--color-border);
+    border-radius: 3px;
+  }
+  @media (max-width: 640px) {
+    .ep-tab-title { display: none; }
+    .ep-tabs-label { font-size: 0.6875rem; }
+    .ep-tabs-inner { gap: 1rem; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="topnav">
+  <div class="nav-inner">
+    <a href="/" class="brand">realagentusecases.com</a>
+    <div class="nav-right">
+      <a href="/en/news/" class="nav-link">News</a>
+      <a href="/agent-101/04-obsidian-second-brain/" class="nav-link">中</a>
+      <a class="btn" href="#cta">Subscribe</a>
+    </div>
+  </div>
+</nav>
+
+<nav class="ep-tabs" aria-label="Agent 101 episode navigation">
+  <div class="ep-tabs-inner">
+    <span class="ep-tabs-label">Agent 101 ·</span>
+    <a href="/en/agent-101/" class="ep-tab">
+      <span class="ep-tab-num">EP 01</span>
+      <span class="ep-tab-title">What is AI Agent</span>
+    </a>
+    <a href="/en/agent-101/02-multi-agent/" class="ep-tab">
+      <span class="ep-tab-num">EP 02</span>
+      <span class="ep-tab-title">Multi-agent &amp; Skills</span>
+    </a>
+    <a href="/en/agent-101/03-ai-tools-workflows/" class="ep-tab">
+      <span class="ep-tab-num">EP 03</span>
+      <span class="ep-tab-title">Tools &amp; Workflows</span>
+    </a>
+    <a href="/en/agent-101/04-obsidian-second-brain/" class="ep-tab is-current">
+      <span class="ep-tab-num">EP 04</span>
+      <span class="ep-tab-title">Obsidian Second Brain</span>
+    </a>
+    <a href="/en/agent-101/05-talk-to-ai/" class="ep-tab">
+      <span class="ep-tab-num">EP 05</span>
+      <span class="ep-tab-title">Talk to AI</span>
+    </a>
+    <a href="/en/agent-101/06-track-ai-trends/" class="ep-tab">
+      <span class="ep-tab-num">EP 06</span>
+      <span class="ep-tab-title">Track AI Trends</span>
+    </a>
+  </div>
+</nav>
+
+<main>
+
+  <!-- ============ HERO ============ -->
+  <section class="hero">
+    <span class="eyebrow-lg">EPISODE 04 · Obsidian second brain · 2026.05.17</span>
+    <h1>
+      A second brain<br>
+      is not a <span class="brand-word">bookmark folder</span>.
+    </h1>
+
+    <p class="hero-sub" style="margin-top: 1.5rem;">
+      This is a talk about Obsidian.<br>
+      More accurately — it's a talk about not mistaking "hoarding notes" for "having a second brain."
+    </p>
+
+    <ul class="hero-list">
+      <li class="hero-list-item"><span class="dot"></span><span>Saving ≠ owning — 50 notes you never reopen aren't a knowledge base, they're a digital landfill</span></li>
+      <li class="hero-list-item"><span class="dot"></span><span>A second brain = a system that hands "the past you" back when you need it</span></li>
+      <li class="hero-list-item"><span class="dot"></span><span>Local markdown + backlinks + AI reading your whole vault — with the real plugins from my own vault</span></li>
+    </ul>
+
+    <div class="hero-ctas">
+      <a class="btn btn-lg" href="#deconstruct">Start with the word →</a>
+    </div>
+
+    <div class="hero-foot">
+      AGENT 101 SERIES · EP 04 · NO-BULLSHIT EDITION
+    </div>
+  </section>
+
+  <!-- ============ § 1 knowledge base ≠ bookmark folder ============ -->
+  <section id="deconstruct" class="essay">
+    <div class="essay-inner">
+      <header class="section-head">
+        <span class="eyebrow">§ 01 · Start with the word</span>
+        <h2>"Knowledge base" and "bookmark folder" are two completely different things</h2>
+        <p class="lede">
+          How many "read later" articles have you saved? How many tips have you bookmarked? Now answer one question:
+          when did you last actually <em>reuse</em> something you saved three months ago? This is where most people are stuck —
+          mistaking "saved it" for "learned it."
+        </p>
+      </header>
+
+      <ul class="item-list">
+        <li class="item">
+          <span class="item-eyebrow">CONCEPT · 01 · SAVING</span>
+          <h3>Saving = hoarding, not owning</h3>
+          <p>The "collector's fallacy": you think dropping it in a folder means you've put the knowledge in your head. But the moment you save it, your brain relaxes — "I own it now" — and never looks again. Saving produces the <em>feeling</em> of learning, the same comfort the "1000-prompt bundle" from EP01 sells.</p>
+        </li>
+        <li class="item">
+          <span class="item-eyebrow">CONCEPT · 02 · NOTES</span>
+          <h3>A note = a byproduct of thinking, not a warehouse</h3>
+          <p>A good note isn't copying someone's words down — it's chewing them up, rewriting in your own words, wiring them to what you already know. A note's value isn't "what got stored," it's "what you were forced to think through to write it." Copying produces no thought; rewriting does.</p>
+        </li>
+        <li class="item">
+          <span class="item-eyebrow">CONCEPT · 03 · SECOND BRAIN</span>
+          <h3>A second brain = a thinking system that can be retrieved and recombined</h3>
+          <p>Its only test isn't "how much is stored," it's "can it, at the exact moment you need it, surface the relevant past and recombine it into new output." A second brain is the system that, while you write or decide, lets you follow a link back to a note from three years ago — not a folder that grows forever and can never be found.</p>
+        </li>
+      </ul>
+
+      <aside class="aside">
+        <span class="aside-label">In plain words</span>
+        <p>
+          You're not short on notes. <strong>You're short on a system that surfaces "the past you" accurately when you need it.</strong>
+          Today isn't about recording more — it's about getting what you recorded back into your output.
+        </p>
+      </aside>
+    </div>
+  </section>
+
+  <!-- ============ § 2 audit your note system ============ -->
+  <section class="essay">
+    <div class="essay-inner">
+      <header class="section-head">
+        <span class="eyebrow">§ 02 · Audit your note system</span>
+        <h2>"I started taking notes" is an empty phrase</h2>
+        <p class="lede">
+          It sounds like discipline, like progress. But it fails the three simplest checks.
+          If it fails, what you built isn't a second brain — it's a digital landfill that grows forever and never gets read back.
+        </p>
+      </header>
+
+      <ul class="item-list">
+        <li class="item">
+          <span class="item-eyebrow">SYSTEM TEST · 01</span>
+          <h3>When did you last actually reuse an old note?</h3>
+          <p>Not "I've taken a lot" — "while writing this, I went back to a note from three months ago and it genuinely helped." If you can't name a specific moment, your note base is intake-only — storing equals not storing.</p>
+        </li>
+        <li class="item">
+          <span class="item-eyebrow">SYSTEM TEST · 02</span>
+          <h3>Can you start from one idea and follow links to three related old notes?</h3>
+          <p>A second brain's value is in connection, not count. If your notes are isolated islands with no links, they're just harder-to-search documents. Only when you can walk from one to the related next does knowledge start compounding.</p>
+        </li>
+        <li class="item">
+          <span class="item-eyebrow">SYSTEM TEST · 03</span>
+          <h3>If you deleted the whole base, would your output get worse?</h3>
+          <p>The brutal one. If deleting it changes nothing, it never entered your production — it was just a warehouse for peace of mind. A note base that hurts to delete is a real second brain.</p>
+        </li>
+      </ul>
+
+      <aside class="aside">
+        <span class="aside-label">Rewrite: from "build a base" to "grow a loop"</span>
+        <p style="font-style: normal; font-family: var(--font-sans);">
+          <span style="color: var(--color-muted-foreground);">Original:</span><br>
+          <s style="color: var(--color-muted-foreground);">"I want to build the perfect personal knowledge base."</s><br><br>
+          <span style="color: var(--color-brand); font-family: var(--font-mono); font-size: 0.75rem; letter-spacing: 0.1em;">REWRITE ↓</span><br><br>
+          <strong>"Every night, 5 minutes: write one thing I actually learned today in my daily note, and link it to one old note. After a month, check back: if I've never reused a single one, the system isn't wired into my output yet — come back and fix it."</strong>
+        </p>
+      </aside>
+
+      <p style="margin-top: 2rem; color: var(--color-muted-foreground); font-size: 0.9375rem;">
+        The first has no finish line — "the perfect base" is a bottomless pit. The second has an action, an output, and a failure signal.
+        <strong style="color: var(--color-foreground); font-weight: 600;">A second brain isn't built — it's grown, one note a day.</strong>
+      </p>
+    </div>
+  </section>
+
+  <!-- ============ § 3 why Obsidian ============ -->
+  <section class="essay">
+    <div class="essay-inner">
+      <header class="section-head">
+        <span class="eyebrow">§ 03 · After the word</span>
+        <h2>Why Obsidian: local, plain text, backlinks</h2>
+        <p class="lede">
+          There are many note apps; only a few structures can hold a second brain. This is the only contrast you need:
+          cloud SaaS notes vs local Obsidian. The difference isn't features — it's whether this brain actually belongs to you.
+        </p>
+      </header>
+
+      <div class="compare">
+        <div class="compare-cell">
+          <span class="item-eyebrow">CLOUD SAAS NOTES · what you might use</span>
+          <h3>Convenient, but not yours</h3>
+          <p>Data on someone's server, in their proprietary format, on their terms.</p>
+          <ul>
+            <li>Notes live on someone's cloud; exports come out broken</li>
+            <li>Proprietary format lock-in, brutal to migrate</li>
+            <li>Links are mostly decoration, not real structure</li>
+            <li>Shutdown / price hike / redesign — you just take it</li>
+          </ul>
+        </div>
+        <div class="compare-cell is-agent">
+          <span class="item-eyebrow is-agent-eyebrow">LOCAL OBSIDIAN · what you're installing</span>
+          <h3>Plain, but yours forever</h3>
+          <p>A pile of local markdown files; plain text; links are structure; AI can read it directly.</p>
+          <ul>
+            <li>Local .md files — always openable, always portable</li>
+            <li>Plain text never goes obsolete, readable in 20 years</li>
+            <li>Backlinks are the skeleton — your web of thought</li>
+            <li>AI / scripts can read and write the whole vault directly</li>
+          </ul>
+        </div>
+      </div>
+
+      <aside class="aside">
+        <span class="aside-label">A plain analogy</span>
+        <p>
+          <strong>Cloud notes are like renting</strong> — convenient to live in, but you can't knock down a wall, and the landlord can raise rent or take it back; everything you accumulate is in their name.
+          <strong>Obsidian is like building your own house</strong> — more effort up front, but the foundation, the walls, every brick is yours, change anything you want, no one can take it. A second brain is where you'll live for life — don't build it on someone else's land.
+        </p>
+      </aside>
+    </div>
+  </section>
+
+  <!-- ============ § 4 method (loop) ============ -->
+  <section class="essay">
+    <div class="essay-inner wide">
+      <header class="section-head">
+        <span class="eyebrow">§ 04 · How a second brain turns</span>
+        <h2>Four steps: Capture → Connect → Distill → Express</h2>
+        <p class="lede">
+          A living second brain is these four steps turning. Most people only do the first (hoard) and stall at the second (never link),
+          so they never reach the fourth (output). Remember the four and you'll know exactly where your system breaks.
+        </p>
+      </header>
+
+      <div class="loop-wrap">
+        <svg class="loop-svg" viewBox="0 0 280 280" xmlns="http://www.w3.org/2000/svg" aria-label="The four-step second-brain loop">
+          <defs>
+            <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+              <path d="M 0 0 L 10 5 L 0 10 z" fill="#2d5e44"/>
+            </marker>
+          </defs>
+          <circle cx="140" cy="140" r="105" fill="none" stroke="#262626" stroke-width="1" stroke-dasharray="2 5"/>
+          <circle cx="140" cy="140" r="32" fill="#161616" stroke="#2d5e44" stroke-width="1.5"/>
+          <text x="140" y="138" text-anchor="middle" font-family="Geist Mono, monospace" font-size="8" fill="#f2f2f2" font-weight="600">SECOND</text>
+          <text x="140" y="152" text-anchor="middle" font-family="Geist Mono, monospace" font-size="8" fill="#a3a3a3">BRAIN</text>
+
+          <g transform="translate(140, 40)">
+            <circle r="28" fill="#0a0a0a" stroke="#2d5e44" stroke-width="1.5"/>
+            <text y="0" text-anchor="middle" font-family="Geist Mono, monospace" font-size="8" font-weight="600" fill="#f2f2f2">CAPTURE</text>
+          </g>
+          <g transform="translate(240, 140)">
+            <circle r="28" fill="#0a0a0a" stroke="#2d5e44" stroke-width="1.5"/>
+            <text y="0" text-anchor="middle" font-family="Geist Mono, monospace" font-size="8" font-weight="600" fill="#f2f2f2">CONNECT</text>
+          </g>
+          <g transform="translate(140, 240)">
+            <circle r="28" fill="#0a0a0a" stroke="#2d5e44" stroke-width="1.5"/>
+            <text y="0" text-anchor="middle" font-family="Geist Mono, monospace" font-size="8" font-weight="600" fill="#f2f2f2">DISTILL</text>
+          </g>
+          <g transform="translate(40, 140)">
+            <circle r="28" fill="#0a0a0a" stroke="#2d5e44" stroke-width="1.5"/>
+            <text y="0" text-anchor="middle" font-family="Geist Mono, monospace" font-size="8" font-weight="600" fill="#f2f2f2">EXPRESS</text>
+          </g>
+
+          <path d="M 168 60 Q 215 80 220 112" fill="none" stroke="#2d5e44" stroke-width="1" marker-end="url(#arr)" opacity="0.8"/>
+          <path d="M 220 168 Q 215 200 168 220" fill="none" stroke="#2d5e44" stroke-width="1" marker-end="url(#arr)" opacity="0.8"/>
+          <path d="M 112 220 Q 65 200 60 168" fill="none" stroke="#2d5e44" stroke-width="1" marker-end="url(#arr)" opacity="0.8"/>
+          <path d="M 60 112 Q 65 80 112 60" fill="none" stroke="#2d5e44" stroke-width="1" marker-end="url(#arr)" opacity="0.8"/>
+        </svg>
+
+        <ul class="loop-steps">
+          <li class="loop-step">
+            <span class="n">01</span>
+            <div>
+              <h4>Capture<span class="en">CAPTURE</span></h4>
+              <p>Record it with zero friction: jot in a daily note, one-click external material in via an importer. The only requirement is "fast enough that you won't skip it" — if capturing one thing takes five steps, you won't.</p>
+            </div>
+          </li>
+          <li class="loop-step">
+            <span class="n">02</span>
+            <div>
+              <h4>Connect<span class="en">CONNECT</span></h4>
+              <p>Link every new note to two old ones (backlinks <span class="mono">[[ ]]</span>). This is the step most people skip, and the root difference between a second brain and a folder — links turn islands into a web, and knowledge starts to compound.</p>
+            </div>
+          </li>
+          <li class="loop-step">
+            <span class="n">03</span>
+            <div>
+              <h4>Distill<span class="en">DISTILL</span></h4>
+              <p>Boil scattered excerpts into "atomic notes" — one note holds one idea, said clearly in your own words. Then a MOC (map of content) strings related atomic notes into a theme. Distilling is the step that turns information into your knowledge.</p>
+            </div>
+          </li>
+          <li class="loop-step">
+            <span class="n">04</span>
+            <div>
+              <h4>Express<span class="en">EXPRESS</span></h4>
+              <p>Recombine notes into output: an article, a PRD, a content angle. The whole point of a second brain cashes out here — if notes never become output, the first three steps were wasted. This step is also where AI adds the most.</p>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ § 5 plugins running in my vault ============ -->
+  <section class="essay">
+    <div class="essay-inner wide">
+      <header class="section-head">
+        <span class="eyebrow">§ 05 · The plugins running in my own vault</span>
+        <h2>More isn't better — each of these is wired into one workflow</h2>
+        <p class="lede">
+          Obsidian has thousands of plugins; installing a wall of them is the same disease as the "tool collector" (see EP03). Below are the few actually running in my own vault,
+          ordered by the four-step loop: importers handle capture, Git handles safety, Claudian handles express. Each gets one minimal workflow.
+        </p>
+      </header>
+
+      <ul class="use-list">
+
+        <!-- ───── 01 · capture (importers) ───── -->
+        <li class="use">
+          <div class="use-top">
+            <span class="use-label">CAPTURE · MATERIAL INTAKE · Douyin Capture + Xiaohongshu Importer</span>
+            <span class="use-gain">manual hauling → one-click intake</span>
+          </div>
+          <h3>Get the good content you scroll past into your brain, friction-free</h3>
+          <p style="color:var(--color-foreground);font-weight:500;margin-bottom:1rem;">
+            Contrarian take: the topic bottleneck isn't "no material," it's "saw it, didn't save it; saved it, now it's scattered everywhere."
+            <strong>One-click the good Douyin / Xiaohongshu content into your vault — no-watermark video and images, local Whisper transcription to Simplified Chinese, data stays on-device — and capture stops dropping the ball.</strong>
+          </p>
+          <div class="terminal">
+            <div class="terminal-bar"><span class="terminal-title-tag">WORKFLOW</span>scroll a gem → intake → feed topic pipeline</div>
+            <div class="terminal-body">
+              <div class="row"><span class="num">01</span><span class="step">PASTE</span><span class="mu">paste a Douyin / Xiaohongshu share link into Obsidian</span></div>
+              <div class="row"><span class="num">02</span><span class="step">IMPORT</span><span class="mu">no-watermark video / images + title / topic / tags / frontmatter</span></div>
+              <div class="row"><span class="num">03</span><span class="step">WHISPER</span><span class="mu">local Whisper → Simplified Chinese · data on-device</span></div>
+              <div class="row"><span class="num">04</span><span class="step">FEED</span><span class="mu">the note → feed Claude to mine angles / hooks</span></div>
+              <div class="hr"></div>
+              <div class="row"><span class="ok">SETUP</span><span class="mu">install + local Python backend (see README)</span>　·　<span class="ok">ROI</span><span class="mu">material stops scattering · capture is frictionless</span></div>
+            </div>
+          </div>
+          <div class="use-meta">
+            <span class="chip">Douyin Capture · lyxdream</span>
+            <span class="chip">Xiaohongshu Importer · bnchiang96</span>
+            <span class="chip">local Whisper</span>
+          </div>
+        </li>
+
+        <!-- ───── 02 · safety (Git) ───── -->
+        <li class="use">
+          <div class="use-top">
+            <span class="use-label">SAFETY · VERSIONING &amp; BACKUP · Obsidian Git</span>
+            <span class="use-gain">fear of deleting → revert anytime</span>
+          </div>
+          <h3>Your second brain can't live as a single copy</h3>
+          <p style="color:var(--color-foreground);font-weight:500;margin-bottom:1rem;">
+            Contrarian take: many people won't heavily edit their notes for fear of breaking them — so the brain stiffens.
+            <strong>Add Git auto-backup: every change has version history, any mistaken delete or botched edit reverts instantly. Only with a safety net will you dare to recombine, cut, and distill.</strong>
+          </p>
+          <div class="terminal">
+            <div class="terminal-bar"><span class="terminal-title-tag">WORKFLOW</span>auto-backup + version history</div>
+            <div class="terminal-body">
+              <div class="row"><span class="num">01</span><span class="step">AUTO</span><span class="mu">every N minutes · auto-commit all changes</span></div>
+              <div class="row"><span class="num">02</span><span class="step">PUSH</span><span class="mu">push to a private remote · an off-site copy</span></div>
+              <div class="row"><span class="num">03</span><span class="step">HISTORY</span><span class="mu">full version history per note · diff any version</span></div>
+              <div class="row"><span class="num">04</span><span class="step">REVERT</span><span class="mu">mistaken delete / botched edit · revert to any point</span></div>
+              <div class="hr"></div>
+              <div class="row"><span class="ok">SETUP</span><span class="mu">10 min to a private repo</span>　·　<span class="ok">ROI</span><span class="mu">dare to edit · never lose a note</span></div>
+            </div>
+          </div>
+          <div class="use-meta">
+            <span class="chip">Obsidian Git · Vinzent</span>
+            <span class="chip">private Git remote</span>
+          </div>
+        </li>
+
+        <!-- ───── 03 · express (Claudian) ───── -->
+        <li class="use">
+          <div class="use-top">
+            <span class="use-label">EXPRESS · AI COLLABORATOR · Claudian</span>
+            <span class="use-gain">dead note base → a thinking partner</span>
+          </div>
+          <h3>Let Claude treat your whole vault as its working directory</h3>
+          <p style="color:var(--color-foreground);font-weight:500;margin-bottom:1rem;">
+            Contrarian take: no matter how many notes, unrecombined they're dead. The truly valuable step of a second brain is AI reading your entire vault.
+            <strong>Claudian embeds Claude Code / Codex into the vault, making the vault its working directory — file reads and writes, search, bash, multi-step workflows. It synthesizes across dozens of old notes and writes a new note you couldn't have produced alone.</strong>
+          </p>
+          <div class="terminal">
+            <div class="terminal-bar"><span class="terminal-title-tag">WORKFLOW</span>synthesize across notes → new output</div>
+            <div class="terminal-body">
+              <div class="row"><span class="num">01</span><span class="step">ASK</span><span class="mu">"synthesize all my notes on Agents into an outline"</span></div>
+              <div class="row"><span class="num">02</span><span class="step">READ</span><span class="mu">Claudian · search + read relevant notes across the vault</span></div>
+              <div class="row"><span class="num">03</span><span class="step">SYNTH</span><span class="mu">synthesize across N notes · surface links you missed</span></div>
+              <div class="row"><span class="num">04</span><span class="step">WRITE</span><span class="mu">write a new note / article draft · back into the vault</span></div>
+              <div class="hr"></div>
+              <div class="row"><span class="ok">SETUP</span><span class="mu">install + connect Claude Code</span>　·　<span class="ok">ROI</span><span class="mu">vault goes from warehouse to thinking partner</span></div>
+            </div>
+          </div>
+          <div class="use-meta">
+            <span class="chip">Claudian · Yishen Tu</span>
+            <span class="chip">Claude Code</span>
+            <span class="chip">Codex</span>
+          </div>
+        </li>
+
+      </ul>
+
+      <aside class="aside">
+        <span class="aside-label">A closing reminder</span>
+        <p>
+          That's it. <strong>Four plugins wired into a workflow beat forty installed for looks.</strong>
+          Before adding one more, ask: which step does it fall on — capture, connect, distill, or express? No answer, don't install it.
+        </p>
+      </aside>
+    </div>
+  </section>
+
+  <!-- ============ § 7 run tonight ============ -->
+  <section class="essay">
+    <div class="essay-inner wide">
+      <header class="section-head">
+        <span class="eyebrow">§ 06 · Run it tonight</span>
+        <h2>Three steps — wire the second-brain loop tonight</h2>
+        <p class="lede">
+          Everything above is theory until the first note gets reused. The three below install in under half an hour and run tonight —
+          one each for capture, safety, express. Don't aim for a perfect base in one shot; first get the loop turning.
+        </p>
+      </header>
+
+      <div class="demo">
+        <div class="demo-head">
+          <span class="demo-num">DEMO · 01</span>
+          <span class="demo-time">10 min setup · 2 min daily use</span>
+        </div>
+        <h3>Install Obsidian + open a daily note, write one and link one tonight</h3>
+        <p>A second brain starts with one daily note. Install Obsidian tonight, open the daily note, write one thing you actually learned today, then use <span class="mono">[[ ]]</span> to link it to any existing note. Capture + connect, both done.</p>
+        <ul class="demo-steps">
+          <li>Download <strong>Obsidian</strong> (free), create a vault</li>
+          <li>Enable the core plugin <strong>Daily notes</strong>, set a template</li>
+          <li>Tonight, write one note: a specific thing you learned, in your own words</li>
+          <li>Use <span class="mono">[[</span> to link it to an old note (create one if none)</li>
+          <li>Do it 7 days straight — a second brain is grown, not built</li>
+        </ul>
+        <div class="terminal">
+          <div class="terminal-bar">obsidian · daily note · 2026-05-17</div>
+          <div class="terminal-body">
+            <div class="row"><span class="mu">## Learned today</span></div>
+            <div class="row">A second brain's value is in "connection," not "count" —</div>
+            <div class="row">isolated notes are just harder-to-search documents.</div>
+            <div class="hr"></div>
+            <div class="row"><span class="mu">Related:</span> <span class="ok">[[collector's fallacy]]</span> · <span class="ok">[[atomic notes]]</span></div>
+            <div class="row"><span class="ok">✓ Captured + linked · loop day 1</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="demo">
+        <div class="demo-head">
+          <span class="demo-num">DEMO · 02</span>
+          <span class="demo-time">10 min setup · then automatic</span>
+        </div>
+        <h3>Install Obsidian Git, give your brain a safety net</h3>
+        <p>Before you start heavily editing notes, set up auto-backup. With version history and an off-site copy, you'll dare to recombine, cut, and distill — without fear of breaking anything.</p>
+        <ul class="demo-steps">
+          <li>In community plugins, search <strong>Obsidian Git</strong> (by Vinzent), install and enable</li>
+          <li>Create a <strong>private</strong> Git remote (GitHub / self-hosted)</li>
+          <li>Set auto-commit interval (e.g. every 10 min) + auto-push</li>
+          <li>Deliberately edit a note, open history, confirm you can revert</li>
+          <li>Now edit freely — mistaken deletes are always recoverable</li>
+        </ul>
+        <div class="terminal">
+          <div class="terminal-bar">obsidian git · auto-backup</div>
+          <div class="terminal-body">
+            <div class="row"><span class="num">10:00</span><span class="mu">auto-commit · 3 files changed</span></div>
+            <div class="row"><span class="num">10:10</span><span class="mu">auto-commit + push · synced to remote</span></div>
+            <div class="row"><span class="mu">— deleted an important note by mistake —</span></div>
+            <div class="row"><span class="ok">▌ open history → revert to the 10:00 version</span></div>
+            <div class="row"><span class="ok">✓ note recovered · 30 seconds total</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="demo">
+        <div class="demo-head">
+          <span class="demo-num">DEMO · 03</span>
+          <span class="demo-time">20 min setup · instant payoff</span>
+        </div>
+        <h3>Install Claudian, let AI read your vault and answer a question</h3>
+        <p>This is the step where a second brain goes from "warehouse" to "partner." Install Claudian, let Claude treat your vault as its working directory, and ask it a question that requires synthesizing several notes — you'll see "the past you" surfaced for the first time.</p>
+        <ul class="demo-steps">
+          <li>Install <strong>Claudian</strong> (by Yishen Tu) from community plugins, connect Claude Code</li>
+          <li>Confirm its working directory points at your vault</li>
+          <li>Ask a cross-note question, e.g. "synthesize all my notes on X"</li>
+          <li>Watch it search + read + synthesize, then write a new note back into the vault</li>
+          <li>You only judge and cut — that's the "express" step</li>
+        </ul>
+        <div class="terminal">
+          <div class="terminal-bar">claudian · vault as working directory</div>
+          <div class="terminal-body">
+            <div class="row"><span class="label user">YOU</span>synthesize all my "second brain" notes into an outline</div>
+            <div class="row"><span class="label bot">CLAUDIAN</span><span class="mu">searching the vault…</span></div>
+            <div class="row"><span class="label tool">VAULT</span><span class="mu">read 12 relevant notes</span></div>
+            <div class="hr"></div>
+            <div class="row">▌ Synthesized · found 3 threads you hadn't linked</div>
+            <div class="row"><span class="mu">· collector's fallacy ↔ missing distillation (same root)</span></div>
+            <div class="row"><span class="ok">✓ new note "Second Brain Outline" written to vault</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ § 8 next 90 days ============ -->
+  <section class="essay">
+    <div class="essay-inner">
+      <header class="section-head">
+        <span class="eyebrow">§ 07 · The next 90 days</span>
+        <h2>From collector to second brain</h2>
+        <p class="lede">
+          This 90-day path doesn't promise a "perfect knowledge base." It gives four specific actions, each with an explicit failure signal.
+          If a week's signal lights up, go back to the previous week. Don't push forward.
+        </p>
+      </header>
+
+      <ul class="timeline">
+        <li class="tl">
+          <span class="tl-week">WEEK 1 – 2 · Build capture</span>
+          <h3>One daily note a day — make "recording" a reflex first</h3>
+          <p>Every night, 5 minutes: one thing you actually learned, in your own words. Don't worry about links yet, just record every day. <strong>Failure signal:</strong> half the days in week 2 are blank. <strong>What to do:</strong> drop the bar to one sentence — shorter is easier to sustain.</p>
+        </li>
+        <li class="tl">
+          <span class="tl-week">WEEK 3 – 4 · Start linking</span>
+          <h3>Every new note must link to two old ones</h3>
+          <p>From now on, every new note must use <span class="mono">[[ ]]</span> to link two existing notes. This is the watershed between a second brain and a folder. <strong>Failure signal:</strong> by end of week 4 your notes are still islands. <strong>What to do:</strong> notes too messy to connect — go back to atomic notes, one idea per note.</p>
+        </li>
+        <li class="tl">
+          <span class="tl-week">WEEK 5 – 8 · Automate capture + safety</span>
+          <h3>Install Git + an importer, make intake frictionless</h3>
+          <p>Install Obsidian Git for auto-backup; install an importer (e.g. Douyin Capture / Xiaohongshu Importer) to one-click external material in. <strong>Failure signal:</strong> installed, but material still scatters in bookmarks. <strong>What to do:</strong> go back to weeks 1&ndash;2 — the capture habit isn't set, and tools can't save a missing habit.</p>
+        </li>
+        <li class="tl">
+          <span class="tl-week">WEEK 9 – 12 · Wire AI, start expressing</span>
+          <h3>Install Claudian, let the vault synthesize and write for you</h3>
+          <p>Install Claudian, let Claude synthesize across notes in your vault and recombine them into real output (article / PRD / topic). <strong>Failure signal:</strong> by week 12 your notes have never become a single piece of output. <strong>What to do:</strong> the problem isn't the tool — you never wired "taking notes" and "producing from notes" into one loop.</p>
+        </li>
+      </ul>
+
+      <p style="margin-top: 2.5rem; color: var(--color-muted-foreground);">
+        <strong style="color:var(--color-foreground);">After 90 days you should be able to answer:</strong> "In the past week, which piece I wrote was synthesized by following links back to old notes?" —
+        if you can answer, with output to show, you actually have a second brain. If you can't, you spent 90 days hoarding more notes, not growing a brain.
+      </p>
+    </div>
+  </section>
+
+  <!-- ============ CTA ============ -->
+  <section id="cta" class="essay">
+    <div class="essay-inner">
+      <header class="section-head" style="text-align:center;">
+        <span class="eyebrow" style="display:inline-block;">Real Agent Use Cases</span>
+        <h2 style="margin-top: 0.75rem;">Hoarding a thousand notes is worth less than reusing one</h2>
+        <p class="lede" style="margin-left:auto;margin-right:auto;">
+          The "read later" you saved will mostly never be read. But a second brain wired into your output hands the past you back to the present you, again and again.<br>
+          <strong style="color:var(--color-foreground);">"Execution is always undervalued."</strong> If you don't write and link the first note tonight, you won't tomorrow either. That's not a pep talk. It's an observation.
+        </p>
+      </header>
+
+      <div class="subscribe">
+        <form class="subscribe-form" onsubmit="event.preventDefault(); window.open('https://realagentusecases.com', '_blank');">
+          <input type="email" placeholder="your@email.com" required>
+          <button class="btn" type="submit">Subscribe — free</button>
+        </form>
+        <p class="subscribe-note">
+          One complete, reproducible workflow every week — tools, steps, plugins all in the open.<br>
+          This newsletter doesn't "encourage" you. Whether you run it is on you.
+        </p>
+      </div>
+
+      <p style="text-align:center;margin-top:2.5rem;font-family:var(--font-mono);font-size:0.75rem;color:var(--color-muted-foreground);letter-spacing:0.05em;">
+        <a href="/en/agent-101/03-ai-tools-workflows/">← EP 03 · Tools &amp; Workflows</a>　·　EP 04 (you are here)　·　EP 05 (coming)
+      </p>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site">
+  <div class="footer-inner">
+    © 2026 · Jack Qian
+    <span class="sep">·</span>
+    <a href="https://realagentusecases.com">realagentusecases.com</a>
+    <span class="sep">·</span>
+    Dallas, TX
+  </div>
+</footer>
+
+</body>
+</html>

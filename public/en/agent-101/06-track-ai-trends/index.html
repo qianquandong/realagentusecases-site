@@ -1,0 +1,1642 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Tracking AI trends proactively — chasing headlines isn't understanding trends. Build a signal radar, beat FOMO. By Real Agent Use Cases.">
+<title>Agent 101 · Episode 06 · Track AI Trends · Real Agent Use Cases</title>
+<link rel="canonical" href="https://realagentusecases.com/en/agent-101/06-track-ai-trends/">
+<link rel="alternate" hrefLang="zh" href="https://realagentusecases.com/agent-101/06-track-ai-trends/">
+<link rel="alternate" hrefLang="en" href="https://realagentusecases.com/en/agent-101/06-track-ai-trends/">
+
+<!-- Open Graph -->
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Real Agent Use Cases">
+<meta property="og:title" content="Agent 101 · Episode 06 · Chasing headlines isn't understanding trends">
+<meta property="og:description" content="You're not short on information — you're short on a radar that keeps only signal. Stop drinking from the firehose: pick a few primary sources, a fixed cadence, let an agent brief you. A source map by signal tier.">
+<meta property="og:url" content="https://realagentusecases.com/en/agent-101/06-track-ai-trends/">
+<meta property="og:locale" content="en_US">
+<meta property="og:locale:alternate" content="zh_CN">
+<meta property="og:image" content="https://realagentusecases.com/og/agent-101/opengraph-image">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:alt" content="Agent 101 · Episode 06 · Chasing headlines is not understanding trends">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Agent 101 · Episode 06 · Chasing headlines isn't understanding trends">
+<meta name="twitter:description" content="You're not short on information — you're short on a radar that keeps only signal. Pick primary sources, a fixed cadence, let an agent brief you.">
+<meta name="twitter:image" content="https://realagentusecases.com/og/agent-101/opengraph-image">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@300..900&family=Geist+Mono:wght@300..700&family=Source+Serif+4:ital,wght@0,400..700;1,400..700&display=swap">
+<style>
+  /* ==========================================================
+     Tokens — mirrors realagentusecases.com
+     ========================================================== */
+  :root {
+    --color-background: #0a0a0a;
+    --color-foreground: #f2f2f2;
+    --color-muted: #161616;
+    --color-muted-foreground: #a3a3a3;
+    --color-border: #262626;
+    --color-brand: #2d5e44;
+    --color-brand-hover: #387554;
+    --color-brand-foreground: #fff;
+
+    --font-sans: "Geist", -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", "Hiragino Sans GB", sans-serif;
+    --font-serif: "Source Serif 4", "Songti SC", "STSong", Georgia, "Times New Roman", serif;
+    --font-mono: "Geist Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+
+    --tracking-tight: -0.025em;
+    --leading-snug: 1.375;
+    --leading-relaxed: 1.625;
+
+    --radius-md: 0.375rem;
+    --radius-lg: 0.5rem;
+    --radius-xl: 0.75rem;
+
+    --container-2xl: 42rem; /* 672 — body sections */
+    --container-3xl: 48rem; /* 768 — hero */
+    --container-6xl: 72rem; /* 1152 — nav */
+  }
+
+  /* ==========================================================
+     Reset & base
+     ========================================================== */
+  *, *::before, *::after { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    background: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    line-height: var(--leading-relaxed);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+  h1, h2, h3, h4 {
+    color: var(--color-foreground);
+    font-weight: 600;
+    letter-spacing: var(--tracking-tight);
+    line-height: var(--leading-snug);
+    margin: 0;
+    text-wrap: balance;
+  }
+  p { margin: 0 0 1rem; }
+  a {
+    color: var(--color-foreground);
+    text-decoration: none;
+    transition: color 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  a:hover { color: var(--color-brand); }
+  ::selection { background: var(--color-brand); color: white; }
+  img, svg { max-width: 100%; display: block; }
+
+  /* ==========================================================
+     Layout primitives
+     ========================================================== */
+  .mx-auto { margin-left: auto; margin-right: auto; }
+  .max-w-6xl { max-width: var(--container-6xl); }
+  .max-w-3xl { max-width: var(--container-3xl); }
+  .max-w-2xl { max-width: var(--container-2xl); }
+  .px-6 { padding-left: 1.5rem; padding-right: 1.5rem; }
+  main { min-height: 100vh; }
+
+  /* ==========================================================
+     Sticky nav (matches parent site)
+     ========================================================== */
+  nav.topnav {
+    position: sticky;
+    top: 0;
+    z-index: 40;
+    border-bottom: 1px solid var(--color-border);
+    background: rgba(10, 10, 10, 0.8);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+  }
+  @supports (backdrop-filter: blur(12px)) {
+    nav.topnav { background: rgba(10, 10, 10, 0.6); }
+  }
+  .nav-inner {
+    max-width: var(--container-6xl);
+    margin: 0 auto;
+    padding: 0 1.5rem;
+    height: 3.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .brand {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    letter-spacing: -0.01em;
+    color: var(--color-foreground);
+  }
+  @media (min-width: 640px) { .brand { font-size: 0.875rem; } }
+  .brand:hover { color: var(--color-brand); }
+  .nav-right {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+  }
+  @media (min-width: 640px) { .nav-right { gap: 1.5rem; } }
+  .nav-link {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--color-muted-foreground);
+    letter-spacing: -0.01em;
+    transition: color 0.15s;
+  }
+  @media (min-width: 640px) { .nav-link { font-size: 0.875rem; } }
+  .nav-link:hover { color: var(--color-brand); }
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--radius-md);
+    font-family: var(--font-sans);
+    font-weight: 500;
+    font-size: 0.875rem;
+    height: 2.25rem;
+    padding: 0 1rem;
+    background: var(--color-brand);
+    color: var(--color-brand-foreground);
+    transition: background-color 0.15s, transform 0.15s;
+    cursor: pointer;
+    border: none;
+  }
+  .btn:hover {
+    background: var(--color-brand-hover);
+    color: var(--color-brand-foreground);
+    transform: translateY(-1px);
+  }
+  .btn:active { transform: translateY(0); }
+  .btn.btn-lg { height: 3rem; padding: 0 1.5rem; font-size: 1rem; }
+
+  /* ==========================================================
+     Eyebrow (mono uppercase label)
+     ========================================================== */
+  .eyebrow {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--color-muted-foreground);
+    font-weight: 400;
+  }
+  .eyebrow-lg {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: var(--color-muted-foreground);
+  }
+
+  /* ==========================================================
+     Hero
+     ========================================================== */
+  .hero {
+    max-width: var(--container-3xl);
+    margin: 0 auto;
+    padding: 4rem 1.5rem 7rem;
+    text-align: center;
+  }
+  @media (min-width: 640px) {
+    .hero { padding: 6rem 1.5rem 9rem; }
+  }
+  .hero .eyebrow-lg { display: block; margin-bottom: 1.5rem; }
+  .hero h1 {
+    font-size: 2.25rem;
+    font-weight: 600;
+    letter-spacing: var(--tracking-tight);
+    line-height: 1.1;
+    text-wrap: balance;
+  }
+  @media (min-width: 640px) { .hero h1 { font-size: 3rem; } }
+  @media (min-width: 768px) { .hero h1 { font-size: 3.75rem; } }
+  .hero h1 .brand-word {
+    color: var(--color-brand);
+  }
+  .hero-sub {
+    margin: 1.25rem auto 0;
+    max-width: var(--container-2xl);
+    font-size: 1.125rem;
+    color: var(--color-muted-foreground);
+    line-height: var(--leading-relaxed);
+    text-wrap: balance;
+  }
+  @media (min-width: 640px) { .hero-sub { font-size: 1.25rem; } }
+
+  .hero-list {
+    margin: 1.75rem auto 0;
+    max-width: 30rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    text-align: left;
+    font-size: 0.9375rem;
+    color: var(--color-muted-foreground);
+  }
+  @media (min-width: 640px) { .hero-list { font-size: 0.9375rem; } }
+  .hero-list-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+  }
+  .dot {
+    width: 0.25rem;
+    height: 0.25rem;
+    border-radius: 9999px;
+    background: var(--color-brand);
+    flex-shrink: 0;
+    margin-top: 0.6em;
+  }
+  .hero-ctas {
+    margin-top: 2.5rem;
+    display: flex;
+    gap: 0.75rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .hero-foot {
+    margin-top: 2.5rem;
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: rgba(163, 163, 163, 0.7);
+  }
+
+  /* ==========================================================
+     Section base (essay-style)
+     ========================================================== */
+  section.essay {
+    border-top: 1px solid rgba(38, 38, 38, 0.4);
+  }
+  .essay-inner {
+    max-width: var(--container-2xl);
+    margin: 0 auto;
+    padding: 5rem 1.5rem;
+  }
+  @media (min-width: 640px) {
+    .essay-inner { padding: 6rem 1.5rem; }
+  }
+  .essay-inner.wide {
+    max-width: var(--container-3xl);
+  }
+  .section-head { margin-bottom: 2.5rem; }
+  .section-head .eyebrow { display: block; margin-bottom: 0.75rem; }
+  .section-head h2 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    letter-spacing: var(--tracking-tight);
+    line-height: var(--leading-snug);
+  }
+  @media (min-width: 640px) {
+    .section-head h2 { font-size: 1.875rem; }
+  }
+  .section-head .lede {
+    margin-top: 0.875rem;
+    font-size: 1.0625rem;
+    color: var(--color-muted-foreground);
+    line-height: var(--leading-relaxed);
+  }
+  .essay-body p {
+    color: var(--color-muted-foreground);
+    line-height: var(--leading-relaxed);
+    font-size: 1rem;
+  }
+  .essay-body strong { color: var(--color-foreground); font-weight: 600; }
+
+  /* ==========================================================
+     Item list (matches "Read the latest" article list)
+     ========================================================== */
+  .item-list {
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .item {
+    display: block;
+  }
+  .item .item-eyebrow {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--color-muted-foreground);
+  }
+  .item h3 {
+    margin-top: 0.5rem;
+    font-size: 1.25rem;
+    font-weight: 600;
+    letter-spacing: var(--tracking-tight);
+    line-height: var(--leading-snug);
+    color: var(--color-foreground);
+  }
+  @media (min-width: 640px) {
+    .item h3 { font-size: 1.375rem; }
+  }
+  .item p {
+    margin-top: 0.5rem;
+    color: var(--color-muted-foreground);
+    line-height: var(--leading-relaxed);
+  }
+
+  /* ==========================================================
+     Compare table (Chatbot vs Agent) — minimal two-col
+     ========================================================== */
+  .compare {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+  }
+  @media (min-width: 640px) {
+    .compare { grid-template-columns: 1fr 1fr; }
+  }
+  .compare-cell {
+    padding: 1.75rem;
+    background: var(--color-muted);
+  }
+  .compare-cell + .compare-cell {
+    border-top: 1px solid var(--color-border);
+  }
+  @media (min-width: 640px) {
+    .compare-cell + .compare-cell {
+      border-top: none;
+      border-left: 1px solid var(--color-border);
+    }
+  }
+  .compare-cell.is-agent { background: rgba(45, 94, 68, 0.08); }
+  .compare-cell .item-eyebrow { display: block; margin-bottom: 0.5rem; }
+  .compare-cell .is-agent-eyebrow { color: var(--color-brand); }
+  .compare-cell h3 {
+    font-size: 1.125rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+  }
+  .compare-cell > p {
+    color: var(--color-muted-foreground);
+    font-size: 0.9375rem;
+    margin-bottom: 1rem;
+  }
+  .compare-cell ul {
+    list-style: none;
+    padding: 0;
+    margin: 0.75rem 0 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  .compare-cell li {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.625rem;
+    font-size: 0.9375rem;
+    color: var(--color-muted-foreground);
+  }
+  .compare-cell li::before {
+    content: "×";
+    color: var(--color-muted-foreground);
+    font-family: var(--font-mono);
+    flex-shrink: 0;
+    margin-top: 0.05em;
+  }
+  .compare-cell.is-agent li::before {
+    content: "✓";
+    color: var(--color-brand);
+  }
+
+  /* ==========================================================
+     Pull-quote / aside (analogy block)
+     ========================================================== */
+  .aside {
+    margin-top: 2rem;
+    padding: 1.75rem;
+    border-left: 2px solid var(--color-brand);
+    background: var(--color-muted);
+    border-radius: 0 var(--radius-lg) var(--radius-lg) 0;
+  }
+  .aside .aside-label {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--color-brand);
+    display: block;
+    margin-bottom: 0.625rem;
+  }
+  .aside p {
+    margin: 0;
+    color: var(--color-foreground);
+    font-family: var(--font-serif);
+    font-size: 1.0625rem;
+    line-height: var(--leading-relaxed);
+    font-style: italic;
+  }
+  .aside p strong { font-style: normal; }
+
+  /* ==========================================================
+     Agent loop (SVG + steps)
+     ========================================================== */
+  .loop-wrap {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+    align-items: center;
+  }
+  @media (min-width: 760px) {
+    .loop-wrap { grid-template-columns: 280px 1fr; gap: 3rem; }
+  }
+  .loop-svg { width: 100%; max-width: 280px; margin: 0 auto; }
+  .loop-steps {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  .loop-step {
+    display: grid;
+    grid-template-columns: 2rem 1fr;
+    gap: 0.875rem;
+    align-items: start;
+  }
+  .loop-step .n {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--color-brand);
+    letter-spacing: 0.05em;
+    padding-top: 0.125rem;
+  }
+  .loop-step h4 {
+    font-size: 1.0625rem;
+    margin-bottom: 0.25rem;
+  }
+  .loop-step h4 .en {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--color-muted-foreground);
+    margin-left: 0.5rem;
+    font-weight: 400;
+    letter-spacing: 0.05em;
+  }
+  .loop-step p { margin: 0; color: var(--color-muted-foreground); font-size: 0.9375rem; }
+
+  /* ==========================================================
+     Use cases — vertical list with mono labels (no flashy cards)
+     ========================================================== */
+  .use-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+  .use {
+    padding: 2rem 0;
+    border-top: 1px solid var(--color-border);
+  }
+  .use:first-child { border-top: none; padding-top: 0; }
+  .use:last-child { padding-bottom: 0; }
+  .use-top {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 0.5rem;
+    flex-wrap: wrap;
+  }
+  .use-top .use-label {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--color-muted-foreground);
+  }
+  .use-top .use-gain {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--color-brand);
+    letter-spacing: 0.05em;
+  }
+  .use h3 {
+    font-size: 1.25rem;
+    margin-bottom: 0.625rem;
+  }
+  @media (min-width: 640px) { .use h3 { font-size: 1.375rem; } }
+  .use p { color: var(--color-muted-foreground); margin-bottom: 0.875rem; }
+  .use-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 0.875rem;
+  }
+  .chip {
+    display: inline-block;
+    padding: 0.25rem 0.625rem;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    color: var(--color-muted-foreground);
+    letter-spacing: 0.02em;
+  }
+
+  /* ==========================================================
+     Demo block — mono code-style terminal mock
+     ========================================================== */
+  .demo {
+    margin-top: 2.5rem;
+    padding-top: 2.5rem;
+    border-top: 1px solid var(--color-border);
+  }
+  .demo:first-of-type { border-top: none; padding-top: 0; margin-top: 0; }
+  .demo-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-bottom: 0.625rem;
+  }
+  .demo-num {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--color-brand);
+  }
+  .demo-time {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    color: var(--color-muted-foreground);
+    letter-spacing: 0.05em;
+  }
+  .demo h3 {
+    font-size: 1.375rem;
+    margin-bottom: 0.625rem;
+  }
+  .demo > p {
+    color: var(--color-muted-foreground);
+    margin-bottom: 1.25rem;
+  }
+  .demo-steps {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 1.5rem;
+    counter-reset: step;
+  }
+  .demo-steps li {
+    counter-increment: step;
+    padding: 0.625rem 0 0.625rem 2rem;
+    position: relative;
+    color: var(--color-muted-foreground);
+    font-size: 0.9375rem;
+    line-height: var(--leading-relaxed);
+    border-top: 1px dashed rgba(38, 38, 38, 0.6);
+  }
+  .demo-steps li:first-child { border-top: none; }
+  .demo-steps li::before {
+    content: counter(step, decimal-leading-zero);
+    position: absolute;
+    left: 0;
+    top: 0.625rem;
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    color: var(--color-brand);
+    letter-spacing: 0.05em;
+  }
+  .demo-steps strong { color: var(--color-foreground); font-weight: 600; }
+
+  .terminal {
+    background: var(--color-muted);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    font-family: var(--font-mono);
+    font-size: 0.8125rem;
+    line-height: 1.7;
+    color: var(--color-foreground);
+    overflow: hidden;
+  }
+  .terminal-bar {
+    padding: 0.625rem 0.875rem;
+    background: rgba(0, 0, 0, 0.3);
+    border-bottom: 1px solid var(--color-border);
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    color: var(--color-muted-foreground);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .terminal-body { padding: 1.125rem; }
+  .terminal-body .row { padding: 0.05rem 0; }
+  .terminal-body .mu { color: var(--color-muted-foreground); }
+  .terminal-body .ok { color: var(--color-brand); }
+  .terminal-body .label {
+    display: inline-block;
+    color: var(--color-muted-foreground);
+    margin-right: 0.5rem;
+  }
+  .terminal-body .label.user { color: #c2a8ff; }
+  .terminal-body .label.bot { color: var(--color-brand); }
+  .terminal-body .label.tool { color: #d4a657; }
+  .terminal-body .hr {
+    border-top: 1px dashed var(--color-border);
+    margin: 0.5rem 0;
+  }
+  /* Workflow terminal helpers */
+  .terminal-body .step {
+    display: inline-block;
+    min-width: 6.5rem;
+    color: var(--color-foreground);
+    font-weight: 500;
+  }
+  .terminal-body .num {
+    display: inline-block;
+    width: 1.75rem;
+    color: var(--color-brand);
+  }
+  .terminal-body .meta {
+    color: var(--color-brand);
+    font-weight: 500;
+  }
+  .terminal-title-tag {
+    display: inline-block;
+    padding: 1px 6px;
+    margin-right: 0.5rem;
+    background: var(--color-brand);
+    color: var(--color-brand-foreground);
+    border-radius: 3px;
+    font-size: 0.625rem;
+    letter-spacing: 0.1em;
+    font-weight: 600;
+  }
+
+  /* Case-list divider: visual separation between "by-job" and "by-scenario" cases */
+  .case-divider {
+    margin: 3rem 0;
+    padding: 2.25rem 1.5rem;
+    border-top: 1px solid var(--color-border);
+    border-bottom: 1px solid var(--color-border);
+    text-align: center;
+  }
+  .case-divider .eyebrow {
+    display: block;
+    margin-bottom: 0.75rem;
+    color: var(--color-brand);
+  }
+  .case-divider h3 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 0.625rem;
+    letter-spacing: var(--tracking-tight);
+  }
+  .case-divider p {
+    color: var(--color-muted-foreground);
+    max-width: 40rem;
+    margin: 0 auto;
+    font-size: 0.9375rem;
+    line-height: var(--leading-relaxed);
+  }
+
+  /* ==========================================================
+     Timeline — minimal vertical list with mono dates
+     ========================================================== */
+  .timeline {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+  .tl {
+    padding-left: 1.5rem;
+    border-left: 1px solid var(--color-border);
+    position: relative;
+  }
+  .tl::before {
+    content: "";
+    position: absolute;
+    left: -0.3125rem;
+    top: 0.4rem;
+    width: 0.5625rem;
+    height: 0.5625rem;
+    border-radius: 9999px;
+    background: var(--color-background);
+    border: 2px solid var(--color-brand);
+  }
+  .tl .tl-week {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--color-brand);
+    display: block;
+    margin-bottom: 0.375rem;
+  }
+  .tl h3 {
+    font-size: 1.125rem;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+  }
+  .tl p { margin: 0; color: var(--color-muted-foreground); }
+
+  /* ==========================================================
+     Subscribe / CTA
+     ========================================================== */
+  .subscribe {
+    margin: 2.5rem auto 0;
+    max-width: 28rem;
+  }
+  .subscribe-form {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  @media (min-width: 640px) {
+    .subscribe-form { flex-direction: row; }
+  }
+  .subscribe input[type="email"] {
+    flex: 1;
+    min-width: 0;
+    height: 3rem;
+    padding: 0 1rem;
+    border-radius: var(--radius-md);
+    background: var(--color-muted);
+    border: 1px solid rgba(163, 163, 163, 0.3);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    transition: border-color 0.15s;
+  }
+  .subscribe input[type="email"]::placeholder { color: var(--color-muted-foreground); }
+  .subscribe input[type="email"]:focus {
+    outline: none;
+    border-color: var(--color-brand);
+  }
+  .subscribe .btn { flex-shrink: 0; height: 3rem; padding: 0 1.5rem; font-size: 1rem; }
+  .subscribe-note {
+    margin-top: 0.75rem;
+    font-size: 0.75rem;
+    color: var(--color-muted-foreground);
+    text-align: center;
+  }
+
+  /* ==========================================================
+     Footer
+     ========================================================== */
+  footer.site {
+    border-top: 1px solid var(--color-border);
+    padding: 2.5rem 1.5rem;
+    margin-top: 4rem;
+  }
+  .footer-inner {
+    max-width: var(--container-2xl);
+    margin: 0 auto;
+    text-align: center;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--color-muted-foreground);
+    letter-spacing: 0.05em;
+  }
+  .footer-inner a { color: var(--color-muted-foreground); }
+  .footer-inner a:hover { color: var(--color-brand); }
+  .footer-inner .sep { color: var(--color-border); margin: 0 0.625rem; }
+
+  /* ==========================================================
+     Audience profile chart (donut + legend)
+     ========================================================== */
+  .audience {
+    margin-bottom: 4rem;
+    padding-bottom: 3rem;
+    border-bottom: 1px solid var(--color-border);
+  }
+  .audience-head { margin-bottom: 2rem; }
+  .audience-head .eyebrow { display: block; margin-bottom: 0.625rem; }
+  .audience-head h3 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    letter-spacing: var(--tracking-tight);
+  }
+  @media (min-width: 640px) { .audience-head h3 { font-size: 1.375rem; } }
+  .audience-head p { color: var(--color-muted-foreground); margin: 0; }
+
+  .audience-body {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    align-items: center;
+  }
+  @media (min-width: 720px) {
+    .audience-body { grid-template-columns: 260px 1fr; gap: 3rem; }
+  }
+
+  .donut {
+    width: 100%;
+    max-width: 240px;
+    margin: 0 auto;
+    aspect-ratio: 1;
+    position: relative;
+  }
+  .donut svg { width: 100%; height: 100%; display: block; }
+  .donut-center {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    pointer-events: none;
+  }
+  .donut-center .n {
+    font-family: var(--font-mono);
+    font-size: 1.875rem;
+    font-weight: 600;
+    color: var(--color-foreground);
+    line-height: 1;
+    letter-spacing: -0.02em;
+  }
+  .donut-center .lbl {
+    margin-top: 0.375rem;
+    font-family: var(--font-mono);
+    font-size: 0.625rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--color-muted-foreground);
+  }
+
+  .legend {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.875rem;
+  }
+  .legend li {
+    display: grid;
+    grid-template-columns: 0.625rem 1fr auto;
+    gap: 0.75rem;
+    align-items: center;
+    padding: 0.625rem 0;
+    border-top: 1px solid var(--color-border);
+  }
+  .legend li:first-child { border-top: none; padding-top: 0; }
+  .legend .swatch {
+    width: 0.625rem;
+    height: 0.625rem;
+    border-radius: 2px;
+  }
+  .legend .name {
+    color: var(--color-foreground);
+    font-size: 0.9375rem;
+    font-weight: 500;
+  }
+  .legend .pct {
+    font-family: var(--font-mono);
+    font-size: 0.9375rem;
+    color: var(--color-muted-foreground);
+    letter-spacing: 0.02em;
+    font-feature-settings: "tnum" 1;
+  }
+
+  /* Sub-bullets inside a use case */
+  .sub-list {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 0.875rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  .sub-list li {
+    display: grid;
+    grid-template-columns: 1.5rem 1fr;
+    gap: 0.5rem;
+    color: var(--color-muted-foreground);
+    font-size: 0.9375rem;
+    line-height: var(--leading-relaxed);
+  }
+  .sub-list li::before {
+    content: "→";
+    font-family: var(--font-mono);
+    color: var(--color-brand);
+    margin-top: 0.05em;
+  }
+  .sub-list strong { color: var(--color-foreground); font-weight: 600; }
+
+  /* ==========================================================
+     Utilities
+     ========================================================== */
+  .mono { font-family: var(--font-mono); }
+  .serif { font-family: var(--font-serif); }
+
+  /* ==========================================================
+     Episode tabs — sits between topnav and main on agent-101 pages
+     ========================================================== */
+  .ep-tabs {
+    position: sticky;
+    top: 3.5rem;
+    z-index: 39;
+    border-bottom: 1px solid var(--color-border);
+    background: var(--color-background);
+  }
+  .ep-tabs-inner {
+    max-width: var(--container-6xl);
+    margin: 0 auto;
+    padding: 0 1.5rem;
+    display: flex;
+    align-items: stretch;
+    gap: 1.25rem;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+  }
+  .ep-tabs-inner::-webkit-scrollbar { display: none; }
+  .ep-tabs-label {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--color-muted-foreground);
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    padding: 0.875rem 0;
+  }
+  .ep-tab {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    text-decoration: none;
+    white-space: nowrap;
+    padding: 0.875rem 0;
+    color: var(--color-muted-foreground);
+    transition: color 0.15s;
+    border-bottom: 2px solid transparent;
+    margin-bottom: -1px;
+  }
+  .ep-tab:hover { color: var(--color-foreground); text-decoration: none; }
+  .ep-tab.is-current {
+    color: var(--color-foreground);
+    border-bottom-color: var(--color-brand);
+  }
+  .ep-tab-num {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+    color: var(--color-brand);
+    font-weight: 600;
+  }
+  .ep-tab-title {
+    font-family: var(--font-sans);
+    font-size: 0.875rem;
+    font-weight: 500;
+  }
+  .ep-tab-lang {
+    font-family: var(--font-mono);
+    font-size: 0.625rem;
+    letter-spacing: 0.1em;
+    color: var(--color-muted-foreground);
+    margin-left: 0.375rem;
+    padding: 1px 5px;
+    border: 1px solid var(--color-border);
+    border-radius: 3px;
+  }
+  @media (max-width: 640px) {
+    .ep-tab-title { display: none; }
+    .ep-tabs-label { font-size: 0.6875rem; }
+    .ep-tabs-inner { gap: 1rem; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="topnav">
+  <div class="nav-inner">
+    <a href="/" class="brand">realagentusecases.com</a>
+    <div class="nav-right">
+      <a href="/en/news/" class="nav-link">News</a>
+      <a href="/agent-101/06-track-ai-trends/" class="nav-link">中</a>
+      <a class="btn" href="#cta">Subscribe</a>
+    </div>
+  </div>
+</nav>
+
+<nav class="ep-tabs" aria-label="Agent 101 episode navigation">
+  <div class="ep-tabs-inner">
+    <span class="ep-tabs-label">Agent 101 ·</span>
+    <a href="/en/agent-101/" class="ep-tab">
+      <span class="ep-tab-num">EP 01</span>
+      <span class="ep-tab-title">What is AI Agent</span>
+    </a>
+    <a href="/en/agent-101/02-multi-agent/" class="ep-tab">
+      <span class="ep-tab-num">EP 02</span>
+      <span class="ep-tab-title">Multi-agent &amp; Skills</span>
+    </a>
+    <a href="/en/agent-101/03-ai-tools-workflows/" class="ep-tab">
+      <span class="ep-tab-num">EP 03</span>
+      <span class="ep-tab-title">Tools &amp; Workflows</span>
+    </a>
+    <a href="/en/agent-101/04-obsidian-second-brain/" class="ep-tab">
+      <span class="ep-tab-num">EP 04</span>
+      <span class="ep-tab-title">Obsidian Second Brain</span>
+    </a>
+    <a href="/en/agent-101/05-talk-to-ai/" class="ep-tab">
+      <span class="ep-tab-num">EP 05</span>
+      <span class="ep-tab-title">Talk to AI</span>
+    </a>
+    <a href="/en/agent-101/06-track-ai-trends/" class="ep-tab is-current">
+      <span class="ep-tab-num">EP 06</span>
+      <span class="ep-tab-title">Track AI Trends</span>
+    </a>
+  </div>
+</nav>
+
+<main>
+
+  <!-- ============ HERO ============ -->
+  <section class="hero">
+    <span class="eyebrow-lg">EPISODE 06 · Track AI trends · 2026.05.17</span>
+    <h1>
+      Chasing <span class="brand-word">headlines</span><br>
+      isn't understanding <span class="brand-word">trends</span>.
+    </h1>
+
+    <p class="hero-sub" style="margin-top: 1.5rem;">
+      This is a talk about keeping up with AI.<br>
+      More accurately — it's a talk about not mistaking "scrolling more" for "understanding more."
+    </p>
+
+    <ul class="hero-list">
+      <li class="hero-list-item"><span class="dot"></span><span>You're not short on information — you're short on a radar that keeps only signal</span></li>
+      <li class="hero-list-item"><span class="dot"></span><span>"I read AI news every day" is an empty phrase — rewrite it into one weekly brief</span></li>
+      <li class="hero-list-item"><span class="dot"></span><span>A source map by signal tier — where the primary signal lives, where the noise lives</span></li>
+    </ul>
+
+    <div class="hero-ctas">
+      <a class="btn btn-lg" href="#deconstruct">Start with the word →</a>
+    </div>
+
+    <div class="hero-foot">
+      AGENT 101 SERIES · EP 06 · NO-BULLSHIT EDITION
+    </div>
+  </section>
+
+  <!-- ============ § 1 headlines ≠ trends ============ -->
+  <section id="deconstruct" class="essay">
+    <div class="essay-inner">
+      <header class="section-head">
+        <span class="eyebrow">§ 01 · Start with the word</span>
+        <h2>"Headlines," "information," and "trends" are three different things</h2>
+        <p class="lede">
+          Hundreds of AI headlines hit you daily. Answer one question: the last "bombshell" you scrolled past — did it actually change something you do?
+          This is where most people are stuck — mistaking "scrolled it" for "understood it," and "volume of information" for "judgment."
+        </p>
+      </header>
+
+      <ul class="item-list">
+        <li class="item">
+          <span class="item-eyebrow">CONCEPT · 01 · HEADLINES</span>
+          <h3>Chasing headlines = getting pulled by the feed</h3>
+          <p>Headlines are fed to you by an algorithm whose goal is to keep you scrolling, not to make you smarter. Headline-chasers get dragged by the feed — today's "disruption," tomorrow's "game-changer" — looking busy while donating watch time to a platform. The more you scroll, the more anxious you get, and your judgment hasn't moved.</p>
+        </li>
+        <li class="item">
+          <span class="item-eyebrow">CONCEPT · 02 · INFORMATION</span>
+          <h3>Information = raw material, mostly noise</h3>
+          <p>Every headline, every release, every hot take is raw material. But material isn't knowledge — 95% of it is noise: irrelevant to what you do, or overturned by tomorrow. Information has no value in itself; it gains value only after you filter it and combine it with your judgment.</p>
+        </li>
+        <li class="item">
+          <span class="item-eyebrow">CONCEPT · 03 · TRENDS</span>
+          <h3>Trends = a direction filtered from noise + your judgment</h3>
+          <p>The only use that loses information when deleted. A trend isn't "what just happened," it's "the direction that recurs and will affect what you do." It requires you to filter signal from a pile of noise, then judge against your own situation. People who understand trends read less, but everything they read is usable.</p>
+        </li>
+      </ul>
+
+      <aside class="aside">
+        <span class="aside-label">In plain words</span>
+        <p>
+          You're not short on information — there's enough to drown you. <strong>You're short on a radar that keeps only signal and holds the noise out.</strong>
+          Today isn't about scrolling more — it's about building a radar so you scroll less and understand more.
+        </p>
+      </aside>
+    </div>
+  </section>
+
+  <!-- ============ § 2 audit your intake ============ -->
+  <section class="essay">
+    <div class="essay-inner">
+      <header class="section-head">
+        <span class="eyebrow">§ 02 · Audit your intake</span>
+        <h2>"I read AI news every day" is an empty phrase</h2>
+        <p class="lede">
+          It sounds like diligence, like ambition. But it fails the three simplest checks.
+          If it fails, what you're doing isn't "keeping up with trends" — it's scrolling to relieve the anxiety of missing out, anxiety rising, judgment standing still.
+        </p>
+      </header>
+
+      <ul class="item-list">
+        <li class="item">
+          <span class="item-eyebrow">INTAKE TEST · 01</span>
+          <h3>Did what you scrolled actually change a decision?</h3>
+          <p>Not "I learned about this news," but "because of this, I changed a practice / a judgment." If you can't name one decision it changed, this scrolling is pure consumption — no different from scrolling short videos.</p>
+        </li>
+        <li class="item">
+          <span class="item-eyebrow">INTAKE TEST · 02</span>
+          <h3>Can you say on the spot whether a piece is "signal" or "noise"?</h3>
+          <p>Signal affects what you do; noise looks exciting but is irrelevant to you. If every piece makes your chest tighten yet you can't tell whether to care, you have no filter — you're paying with attention for all information indiscriminately.</p>
+        </li>
+        <li class="item">
+          <span class="item-eyebrow">INTAKE TEST · 03</span>
+          <h3>If you stopped scrolling for a week, would your judgment get worse?</h3>
+          <p>The brutal one. If pausing for a week leaves your decisions unaffected, you weren't scrolling trends — you were scrolling FOMO. Real signal, missed for a week, you'd genuinely feel behind; pure noise, dropping it only makes you clearer.</p>
+        </li>
+      </ul>
+
+      <aside class="aside">
+        <span class="aside-label">Rewrite: from "keep up with everything" to "build a radar"</span>
+        <p style="font-style: normal; font-family: var(--font-sans);">
+          <span style="color: var(--color-muted-foreground);">Original:</span><br>
+          <s style="color: var(--color-muted-foreground);">"I want to keep up with all AI news, miss nothing."</s><br><br>
+          <span style="color: var(--color-brand); font-family: var(--font-mono); font-size: 0.75rem; letter-spacing: 0.1em;">REWRITE ↓</span><br><br>
+          <strong>"Every Sunday, 30 minutes: an agent compiles the past 7 days of important developments in my 3 focus areas into one brief; I read only the brief, not the feed. After a month, check back: if nothing in the brief changed something I do, I picked the wrong areas — come back and adjust."</strong>
+        </p>
+      </aside>
+
+      <p style="margin-top: 2rem; color: var(--color-muted-foreground); font-size: 0.9375rem;">
+        The first is FOMO — endless to miss, impossible to catch. The second has a scope, a cadence, and a failure signal.
+        <strong style="color: var(--color-foreground); font-weight: 600;">Understanding trends isn't seeing more — it's missing the right things: deliberately drop 95% of the noise to see the 5% of signal.</strong>
+      </p>
+    </div>
+  </section>
+
+  <!-- ============ § 3 signal vs noise ============ -->
+  <section class="essay">
+    <div class="essay-inner">
+      <header class="section-head">
+        <span class="eyebrow">§ 03 · After the word</span>
+        <h2>"Pulled by the feed" and "scanning with a radar" are two completely different intakes</h2>
+        <p class="lede">
+          Two people both want to keep up with AI; a year later their judgment is a tier apart. The difference isn't who scrolled more —
+          it's whether their head runs "dragged by the feed" or "actively scanning with a radar." This is the only contrast you need.
+        </p>
+      </header>
+
+      <div class="compare">
+        <div class="compare-cell">
+          <span class="item-eyebrow">PULLED BY THE FEED · what you might be doing</span>
+          <h3>More scrolling, more panic</h3>
+          <p>Dragged by the algorithm and trending lists, wanting to see everything, hoarding a pile never read.</p>
+          <ul>
+            <li>Open and scroll, pushed along by the feed</li>
+            <li>Chase every field, go deep in none</li>
+            <li>Hoard "read later," never read</li>
+            <li>Anxiety keeps rising, judgment doesn't improve</li>
+          </ul>
+        </div>
+        <div class="compare-cell is-agent">
+          <span class="item-eyebrow is-agent-eyebrow">SCANNING WITH A RADAR · who you're becoming</span>
+          <h3>See less, understand more</h3>
+          <p>A few high-signal sources, only what's relevant to you, one brief instead of scrolling.</p>
+          <ul>
+            <li>Fixed 3 areas + a few primary sources</li>
+            <li>Ask one thing: "what does this change for me?"</li>
+            <li>One weekly brief replaces daily scrolling</li>
+            <li>Anxiety down, judgment updates steadily</li>
+          </ul>
+        </div>
+      </div>
+
+      <aside class="aside">
+        <span class="aside-label">A plain analogy</span>
+        <p>
+          <strong>Chasing headlines is like drinking from a firehose</strong> — staggering volume, you take in almost nothing, and choke in the process.
+          <strong>Building a radar is like installing an alarm that only rings when it matters</strong> — quiet most of the time, alerting you only on real signal.
+          You don't want to catch all the water — you want one clean glass when you're thirsty. Turn the hose off, and you'll actually drink.
+        </p>
+      </aside>
+    </div>
+  </section>
+
+  <!-- ============ § 4 how to build the radar (loop) ============ -->
+  <section class="essay">
+    <div class="essay-inner wide">
+      <header class="section-head">
+        <span class="eyebrow">§ 04 · How to build the radar</span>
+        <h2>Four steps: Sources → Cadence → Capture → Synthesize</h2>
+        <p class="lede">
+          A working trend radar is these four steps turning. Most people only do "look" (and passively at that) — no source selection, no cadence, no synthesis —
+          so they scroll forever and stay anxious. Remember the four and you'll know exactly where your information system breaks.
+        </p>
+      </header>
+
+      <div class="loop-wrap">
+        <svg class="loop-svg" viewBox="0 0 280 280" xmlns="http://www.w3.org/2000/svg" aria-label="The four-step trend-radar loop">
+          <defs>
+            <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+              <path d="M 0 0 L 10 5 L 0 10 z" fill="#2d5e44"/>
+            </marker>
+          </defs>
+          <circle cx="140" cy="140" r="105" fill="none" stroke="#262626" stroke-width="1" stroke-dasharray="2 5"/>
+          <circle cx="140" cy="140" r="32" fill="#161616" stroke="#2d5e44" stroke-width="1.5"/>
+          <text x="140" y="138" text-anchor="middle" font-family="Geist Mono, monospace" font-size="9" fill="#f2f2f2" font-weight="600">RADAR</text>
+          <text x="140" y="152" text-anchor="middle" font-family="Geist Mono, monospace" font-size="8" fill="#a3a3a3">LOOP</text>
+
+          <g transform="translate(140, 40)">
+            <circle r="28" fill="#0a0a0a" stroke="#2d5e44" stroke-width="1.5"/>
+            <text y="0" text-anchor="middle" font-family="Geist Mono, monospace" font-size="7.5" font-weight="600" fill="#f2f2f2">SOURCES</text>
+          </g>
+          <g transform="translate(240, 140)">
+            <circle r="28" fill="#0a0a0a" stroke="#2d5e44" stroke-width="1.5"/>
+            <text y="0" text-anchor="middle" font-family="Geist Mono, monospace" font-size="7.5" font-weight="600" fill="#f2f2f2">CADENCE</text>
+          </g>
+          <g transform="translate(140, 240)">
+            <circle r="28" fill="#0a0a0a" stroke="#2d5e44" stroke-width="1.5"/>
+            <text y="0" text-anchor="middle" font-family="Geist Mono, monospace" font-size="7.5" font-weight="600" fill="#f2f2f2">CAPTURE</text>
+          </g>
+          <g transform="translate(40, 140)">
+            <circle r="28" fill="#0a0a0a" stroke="#2d5e44" stroke-width="1.5"/>
+            <text y="0" text-anchor="middle" font-family="Geist Mono, monospace" font-size="6.5" font-weight="600" fill="#f2f2f2">SYNTHESIZE</text>
+          </g>
+
+          <path d="M 168 60 Q 215 80 220 112" fill="none" stroke="#2d5e44" stroke-width="1" marker-end="url(#arr)" opacity="0.8"/>
+          <path d="M 220 168 Q 215 200 168 220" fill="none" stroke="#2d5e44" stroke-width="1" marker-end="url(#arr)" opacity="0.8"/>
+          <path d="M 112 220 Q 65 200 60 168" fill="none" stroke="#2d5e44" stroke-width="1" marker-end="url(#arr)" opacity="0.8"/>
+          <path d="M 60 112 Q 65 80 112 60" fill="none" stroke="#2d5e44" stroke-width="1" marker-end="url(#arr)" opacity="0.8"/>
+        </svg>
+
+        <ul class="loop-steps">
+          <li class="loop-step">
+            <span class="n">01</span>
+            <div>
+              <h4>Sources<span class="en">SOURCES</span></h4>
+              <p>Pick a few high signal-to-noise sources, in three tiers: primary (lab blogs / release notes / papers), community (HN / GitHub Trending), people (a few researchers and builders who actually ship). Source quality sets the ceiling on your radar.</p>
+            </div>
+          </li>
+          <li class="loop-step">
+            <span class="n">02</span>
+            <div>
+              <h4>Cadence<span class="en">CADENCE</span></h4>
+              <p>Set a fixed frequency: once a week (or a daily brief), not constant scrolling. Cadence turns "passively pushed" into "actively fetched" — the key to quitting FOMO. Real signal doesn't vanish because you saw it a week late.</p>
+            </div>
+          </li>
+          <li class="loop-step">
+            <span class="n">03</span>
+            <div>
+              <h4>Capture<span class="en">CAPTURE</span></h4>
+              <p>Let the system fetch automatically; don't rely on "remembering to look." RSS, subscriptions, a scheduled agent — wire sources into a pipe that runs itself. A radar that depends on willpower decays; automated capture is what holds.</p>
+            </div>
+          </li>
+          <li class="loop-step">
+            <span class="n">04</span>
+            <div>
+              <h4>Synthesize<span class="en">SYNTHESIZE</span></h4>
+              <p>Have an agent compile the fetched raw material into one brief: dedupe, rank, flag "why it matters." You only read conclusions and judge. This step turns "a pile of information" into "a few signals" — and it's where a trend radar truly saves your time.</p>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ § 5 source map ============ -->
+  <section class="essay">
+    <div class="essay-inner wide">
+      <header class="section-head">
+        <span class="eyebrow">§ 05 · The source map</span>
+        <h2>Sorted by "signal tier," not by hype</h2>
+        <p class="lede">
+          Trending lists sort by "hottest" — useless for judging trends. This map sorts by "how close to primary" into four tiers:
+          higher is closer to the source, with less noise. The principle: go upstream when you can, don't only read second-hand takes.
+        </p>
+      </header>
+
+      <ul class="use-list">
+
+        <!-- ───── 01 · primary ───── -->
+        <li class="use">
+          <div class="use-top">
+            <span class="use-label">TIER · 01 · PRIMARY SIGNAL</span>
+            <span class="use-gain">second-hand take → the source</span>
+          </div>
+          <h3>Read the source when you can: see it before others paraphrase it</h3>
+          <p style="color:var(--color-foreground);font-weight:500;margin-bottom:1rem;">
+            Contrarian take: 99% of people read "an interpretation of an interpretation of the source," distorted at each layer.
+            <strong>Real signal is upstream — official lab blogs, release notes, technical reports, papers (arXiv). Read the source directly and you're a step earlier and a hand more accurate than second-hand readers.</strong>
+          </p>
+          <div class="terminal">
+            <div class="terminal-bar"><span class="terminal-title-tag">SOURCES</span>primary signal</div>
+            <div class="terminal-body">
+              <div class="row"><span class="step">LABS</span><span class="mu">official blogs / announcements from major AI labs</span></div>
+              <div class="row"><span class="step">RELEASE</span><span class="mu">product release notes / changelogs / docs</span></div>
+              <div class="row"><span class="step">PAPERS</span><span class="mu">arXiv (cs.AI / cs.CL) · abstract + conclusion is enough</span></div>
+              <div class="row"><span class="step">RAW DATA</span><span class="mu">official benchmarks / leaderboards · read numbers, not headlines</span></div>
+              <div class="hr"></div>
+              <div class="row"><span class="ok">PRINCIPLE</span><span class="mu">if you can read the source, don't read the paraphrase</span></div>
+            </div>
+          </div>
+          <div class="use-meta">
+            <span class="chip">lab blogs</span>
+            <span class="chip">release notes</span>
+            <span class="chip">arXiv</span>
+            <span class="chip">official docs</span>
+          </div>
+        </li>
+
+        <!-- ───── 02 · community ───── -->
+        <li class="use">
+          <div class="use-top">
+            <span class="use-label">TIER · 02 · COMMUNITY SIGNAL</span>
+            <span class="use-gain">influencer shouting → builders using</span>
+          </div>
+          <h3>Watch what builders use, not who's shouting</h3>
+          <p style="color:var(--color-foreground);font-weight:500;margin-bottom:1rem;">
+            Contrarian take: marketing accounts tell you "what's hot"; communities tell you "what people actually use."
+            <strong>Hacker News discussion, GitHub Trending stars, specific technical communities — these are where engineers vote with their feet. Whether a tool has real value: watch whether builders adopt it, far more reliable than watching the hype.</strong>
+          </p>
+          <div class="terminal">
+            <div class="terminal-bar"><span class="terminal-title-tag">SOURCES</span>community signal</div>
+            <div class="terminal-body">
+              <div class="row"><span class="step">HN</span><span class="mu">Hacker News · read the top skeptical comments, not just titles</span></div>
+              <div class="row"><span class="step">GITHUB</span><span class="mu">GitHub Trending · who's gaining stars · real issue feedback</span></div>
+              <div class="row"><span class="step">COMMUNITY</span><span class="mu">specific technical subreddits / Discords · real usage</span></div>
+              <div class="row"><span class="step">SIGNAL</span><span class="mu">"builders migrating to X" beats "X raised $100M"</span></div>
+              <div class="hr"></div>
+              <div class="row"><span class="ok">PRINCIPLE</span><span class="mu">watch votes by feet, not by mouth</span></div>
+            </div>
+          </div>
+          <div class="use-meta">
+            <span class="chip">Hacker News</span>
+            <span class="chip">GitHub Trending</span>
+            <span class="chip">technical communities</span>
+          </div>
+        </li>
+
+        <!-- ───── 03 · curators ───── -->
+        <li class="use">
+          <div class="use-top">
+            <span class="use-label">TIER · 03 · PEOPLE / CURATORS</span>
+            <span class="use-gain">follow influencers → follow builders</span>
+          </div>
+          <h3>Follow a few people who ship, not the loudest</h3>
+          <p style="color:var(--color-foreground);font-weight:500;margin-bottom:1rem;">
+            Contrarian take: volume and signal-to-noise are often inversely related. The ones posting "AI disrupts everything" daily are mostly selling anxiety.
+            <strong>Find a few high signal-to-noise people — those actually doing research or building products. They post less, but every post carries information. Following the doers lets them do your first layer of filtering.</strong>
+          </p>
+          <div class="terminal">
+            <div class="terminal-bar"><span class="terminal-title-tag">SOURCES</span>how to pick people</div>
+            <div class="terminal-body">
+              <div class="row"><span class="step">KEEP</span><span class="mu">people doing research / building · posts with detail and code</span></div>
+              <div class="row"><span class="step">KEEP</span><span class="mu">people who'll say "I'm not sure / this is overhyped"</span></div>
+              <div class="row"><span class="step">DROP</span><span class="mu">daily "mind-blowing / disruptive / learn now or lose"</span></div>
+              <div class="row"><span class="step">DROP</span><span class="mu">pure paraphrasers who never build, growing on FOMO</span></div>
+              <div class="hr"></div>
+              <div class="row"><span class="ok">PRINCIPLE</span><span class="mu">signal-to-noise &gt; follower count</span></div>
+            </div>
+          </div>
+          <div class="use-meta">
+            <span class="chip">researchers</span>
+            <span class="chip">builders</span>
+            <span class="chip">high signal-to-noise</span>
+          </div>
+        </li>
+
+        <!-- ───── 04 · mute ───── -->
+        <li class="use">
+          <div class="use-top">
+            <span class="use-label">TIER · 04 · NOISE ZONE · MUTE</span>
+            <span class="use-gain">passive intake → active blocking</span>
+          </div>
+          <h3>Actively muting this tier matters more than adding another</h3>
+          <p style="color:var(--color-foreground);font-weight:500;margin-bottom:1rem;">
+            Contrarian take: building a radar isn't only "add good sources," it's "actively delete bad ones."
+            <strong>Clickbait digests, FOMO accounts, second-hand takes, "AI trend mega-predictions" — these drain your attention without updating your judgment. Muting / unsubscribing them raises your signal-to-noise more than adding three new sources.</strong>
+          </p>
+          <div class="terminal">
+            <div class="terminal-bar"><span class="terminal-title-tag">MUTE</span>active block list</div>
+            <div class="terminal-body">
+              <div class="row"><span class="step">UNSUB</span><span class="mu">"50 AI tools a day" FOMO digests</span></div>
+              <div class="row"><span class="step">MUTE</span><span class="mu">accounts whose titles are always "insane / disruptive"</span></div>
+              <div class="row"><span class="step">SKIP</span><span class="mu">second- and third-hand interpretations of the source</span></div>
+              <div class="row"><span class="step">OFF</span><span class="mu">all "algorithmically recommended" AI feed notifications</span></div>
+              <div class="hr"></div>
+              <div class="row"><span class="ok">PRINCIPLE</span><span class="mu">deleting noise beats adding signal</span></div>
+            </div>
+          </div>
+          <div class="use-meta">
+            <span class="chip">unsub FOMO digests</span>
+            <span class="chip">kill notifications</span>
+            <span class="chip">skip second-hand takes</span>
+          </div>
+        </li>
+
+      </ul>
+
+      <aside class="aside">
+        <span class="aside-label">How to tell whether a piece is signal</span>
+        <p>
+          Whether a piece is worth stopping for, ask three questions: <strong>How close to primary is it? Will it change something I do? Will it still matter in three months?</strong>
+          Three "no"s — it's noise, swipe away. Anything that makes you answer "yes" to one is worth a slot in your brief.
+        </p>
+      </aside>
+    </div>
+  </section>
+
+  <!-- ============ § 6 run tonight ============ -->
+  <section class="essay">
+    <div class="essay-inner wide">
+      <header class="section-head">
+        <span class="eyebrow">§ 06 · Run it tonight</span>
+        <h2>Three steps — stand up your trend radar tonight</h2>
+        <p class="lede">
+          Understanding "build a radar" isn't enough; you need one actually running. The three below you can start tonight —
+          subtract first (delete noise), then automate (build a brief), then practice judgment (vet a claim). Don't aim for perfect; first get the radar turning.
+        </p>
+      </header>
+
+      <div class="demo">
+        <div class="demo-head">
+          <span class="demo-num">DEMO · 01</span>
+          <span class="demo-time">15 min · one-time</span>
+        </div>
+        <h3>Subtract first: set 3 areas + 3 primary sources, delete every FOMO source</h3>
+        <p>The first step of a radar isn't adding, it's deleting. Tonight, figure out the 3 areas you truly care about, pick 1 primary source for each, then unsubscribe / mute every FOMO digest and algorithmic feed. Once you subtract, your signal-to-noise doubles.</p>
+        <ul class="demo-steps">
+          <li>Write down the <strong>3 areas</strong> you actually care about (don't be greedy)</li>
+          <li>Pick <strong>1 primary source</strong> per area (official blog / docs / an arXiv category)</li>
+          <li>Unsubscribe from every "N items a day" FOMO digest</li>
+          <li>Turn off "AI recommended" feed notifications in social apps</li>
+          <li>Keep only these 3 sources — actively give up the rest</li>
+        </ul>
+        <div class="terminal">
+          <div class="terminal-bar">my trend radar · source list</div>
+          <div class="terminal-body">
+            <div class="row"><span class="ok">Area 1</span><span class="mu">Agents / tools → lab blogs + release notes</span></div>
+            <div class="row"><span class="ok">Area 2</span><span class="mu">my industry × AI → 1 high signal-to-noise person</span></div>
+            <div class="row"><span class="ok">Area 3</span><span class="mu">local models → GitHub Trending + HN</span></div>
+            <div class="hr"></div>
+            <div class="row"><span class="mu">— unsubscribed 6 FOMO digests, killed 3 notifications —</span></div>
+            <div class="row"><span class="ok">✓ noise halved · radar in place</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="demo">
+        <div class="demo-head">
+          <span class="demo-num">DEMO · 02</span>
+          <span class="demo-time">30 min setup · then automatic</span>
+        </div>
+        <h3>Build a weekly AI brief agent</h3>
+        <p>Swap "scrolling" for "reading a brief." Have an agent, at a fixed weekly time, fetch the important developments in your 3 areas, dedupe, rank, compile into one brief, and push it to you. You only read conclusions. (This is exactly what this site's daily news pipeline does.)</p>
+        <ul class="demo-steps">
+          <li>Use Perplexity / Claude + a scheduled task (or n8n)</li>
+          <li>Write a brief spec: 3 areas, only "changes a practice" developments, with sources</li>
+          <li>Set it to run Sunday morning, output markdown</li>
+          <li>Push the result to email / Slack / Notion</li>
+          <li>After reading, ask: which item this week is worth changing a practice for?</li>
+        </ul>
+        <div class="terminal">
+          <div class="terminal-bar">weekly-ai-brief · Sundays 08:00</div>
+          <div class="terminal-body">
+            <div class="row"><span class="num">01</span><span class="step">FETCH</span><span class="mu">pull primary sources for 3 areas (last 7 days)</span></div>
+            <div class="row"><span class="num">02</span><span class="step">FILTER</span><span class="mu">dedupe + drop the irrelevant · flag "why it matters"</span></div>
+            <div class="row"><span class="num">03</span><span class="step">RANK</span><span class="mu">order by "will it change what you do"</span></div>
+            <div class="row"><span class="num">04</span><span class="step">BRIEF</span><span class="mu">compile a 1-page brief + source links → email</span></div>
+            <div class="hr"></div>
+            <div class="row"><span class="ok">✓ 5 signals · primary sources attached · scrolling at zero</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="demo">
+        <div class="demo-head">
+          <span class="demo-num">DEMO · 03</span>
+          <span class="demo-time">per claim · 3 min</span>
+        </div>
+        <h3>Practice judgment: have AI "vet a claim" for you</h3>
+        <p>See a "bombshell"? Don't rush to believe or reshare. Build one habit: have AI take you back to the primary source, give the counter-case, and flag the exaggeration. Three minutes, and you can tell signal from marketing.</p>
+        <ul class="demo-steps">
+          <li>Paste the claim / headline to Claude or Perplexity</li>
+          <li>Have it find the primary source and check what it actually says</li>
+          <li>Have it give the "this is overstated / the opposing angle"</li>
+          <li>Ask "what does this actually mean for someone doing X"</li>
+          <li>Three questions answered, signal vs noise is obvious</li>
+        </ul>
+        <div class="terminal">
+          <div class="terminal-bar">claude · vet a claim</div>
+          <div class="terminal-body">
+            <div class="row"><span class="label user">YOU</span>"model X crushes everything" — take me back to the primary source</div>
+            <div class="row"><span class="label bot">CLAUDE</span><span class="mu">checking the original report…</span></div>
+            <div class="hr"></div>
+            <div class="row">▌ Primary source says: leads only on one narrow benchmark</div>
+            <div class="row"><span class="mu">· headline "crushes everything" = overstated</span></div>
+            <div class="row"><span class="mu">· actual impact on you (doing X): little for now</span></div>
+            <div class="row"><span class="ok">✓ verdict: marketing noise · swipe away</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ § 7 next 90 days ============ -->
+  <section class="essay">
+    <div class="essay-inner">
+      <header class="section-head">
+        <span class="eyebrow">§ 07 · The next 90 days</span>
+        <h2>From chasing headlines to understanding trends</h2>
+        <p class="lede">
+          This 90-day path doesn't promise you'll "miss nothing." It gives four specific actions, each with an explicit failure signal.
+          If a week's signal lights up, go back to the previous week. Don't push forward.
+        </p>
+      </header>
+
+      <ul class="timeline">
+        <li class="tl">
+          <span class="tl-week">WEEK 1 – 2 · Cut FOMO first</span>
+          <h3>Unsubscribe from every FOMO source, keep only 3 primary ones</h3>
+          <p>Subtract: unsubscribe from all "N items a day" digests, kill algorithmic notifications, keep 1 primary source for each of your 3 real areas. <strong>Failure signal:</strong> by end of week 2 you're back to scrolling the feed. <strong>What to do:</strong> revoke those apps' notification permissions outright — cut the entry point.</p>
+        </li>
+        <li class="tl">
+          <span class="tl-week">WEEK 3 – 4 · Set the cadence</span>
+          <h3>Fixed once a week, not constant scrolling</h3>
+          <p>Change "scroll anytime" to "check once at a fixed weekly time." Don't touch AI feeds otherwise. <strong>Failure signal:</strong> you still can't resist opening it several times a day. <strong>What to do:</strong> remind yourself "signal doesn't vanish if seen a week late" — real signal survives the wait.</p>
+        </li>
+        <li class="tl">
+          <span class="tl-week">WEEK 5 – 8 · Automate capture</span>
+          <h3>Build a weekly brief agent, let synthesis run itself</h3>
+          <p>Use an agent + scheduled task to auto-fetch developments in your 3 areas and compile a brief, pushed weekly. <strong>Failure signal:</strong> the brief exists but you still can't resist manual scrolling. <strong>What to do:</strong> go back to weeks 1&ndash;2 — the FOMO sources aren't fully cut, and tools can't save a habit.</p>
+        </li>
+        <li class="tl">
+          <span class="tl-week">WEEK 9 – 12 · Wire into judgment</span>
+          <h3>Ask of every signal: "what does this change for me?"</h3>
+          <p>Wire the brief into real decisions: for each signal, force yourself to answer "what practice does it ask me to change"; can't answer, swipe away. <strong>Failure signal:</strong> by week 12 your brief has never changed a decision. <strong>What to do:</strong> your areas are too far from what you do — go re-pick the 3.</p>
+        </li>
+      </ul>
+
+      <p style="margin-top: 2.5rem; color: var(--color-muted-foreground);">
+        <strong style="color:var(--color-foreground);">After 90 days you should be able to answer:</strong> "In the past month, which AI development actually made me change a specific practice?" —
+        if you can answer, pointing to the change, you've graduated from "chasing headlines" to "understanding trends." If you can't, you spent 90 days scrolling more news while your judgment stood still.
+      </p>
+    </div>
+  </section>
+
+  <!-- ============ CTA ============ -->
+  <section id="cta" class="essay">
+    <div class="essay-inner">
+      <header class="section-head" style="text-align:center;">
+        <span class="eyebrow" style="display:inline-block;">Real Agent Use Cases</span>
+        <h2 style="margin-top: 0.75rem;">A hundred headlines are worth less than one signal that changes a practice</h2>
+        <p class="lede" style="margin-left:auto;margin-right:auto;">
+          The headlines you scroll are forgotten by tomorrow. But a radar wired into your judgment catches the signal and blocks the noise when it matters.<br>
+          <strong style="color:var(--color-foreground);">"Execution is always undervalued."</strong> If you don't delete the FOMO sources and stand up a first radar tonight, tomorrow you're still dragged by the feed. That's not a pep talk. It's an observation.
+        </p>
+      </header>
+
+      <div class="subscribe">
+        <form class="subscribe-form" onsubmit="event.preventDefault(); window.open('https://realagentusecases.com', '_blank');">
+          <input type="email" placeholder="your@email.com" required>
+          <button class="btn" type="submit">Subscribe — free</button>
+        </form>
+        <p class="subscribe-note">
+          One complete, reproducible workflow every week — sources, cadence, brief all in the open.<br>
+          This newsletter doesn't "encourage" you. Whether you run it is on you.
+        </p>
+      </div>
+
+      <p style="text-align:center;margin-top:2.5rem;font-family:var(--font-mono);font-size:0.75rem;color:var(--color-muted-foreground);letter-spacing:0.05em;">
+        <a href="/en/agent-101/05-talk-to-ai/">← EP 05 · Talk to AI</a>　·　EP 06 (you are here)　·　Agent 101 · all 6 episodes complete
+      </p>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site">
+  <div class="footer-inner">
+    © 2026 · Jack Qian
+    <span class="sep">·</span>
+    <a href="https://realagentusecases.com">realagentusecases.com</a>
+    <span class="sep">·</span>
+    Dallas, TX
+  </div>
+</footer>
+
+</body>
+</html>

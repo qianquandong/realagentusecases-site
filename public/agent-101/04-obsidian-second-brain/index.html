@@ -1,0 +1,1614 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Obsidian 个人知识库：你的第二大脑 · 第二大脑不是收藏夹 · 本地 markdown + 双链 + AI · 由 Real Agent Use Cases 出品">
+<title>Agent 101 · 第 04 期 · Obsidian 个人知识库：你的第二大脑 · Real Agent Use Cases</title>
+<link rel="canonical" href="https://realagentusecases.com/agent-101/04-obsidian-second-brain/">
+<link rel="alternate" hrefLang="zh" href="https://realagentusecases.com/agent-101/04-obsidian-second-brain/">
+<link rel="alternate" hrefLang="en" href="https://realagentusecases.com/en/agent-101/04-obsidian-second-brain/">
+
+<!-- Open Graph -->
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Real Agent Use Cases">
+<meta property="og:title" content="Agent 101 · 第 04 期 · 第二大脑不是收藏夹">
+<meta property="og:description" content="收藏不是拥有。第二大脑是一套能在你需要时把过去的你调出来的系统。本地 markdown + 双链 + AI 直接读整个 vault——含我自己 vault 在跑的真实插件。">
+<meta property="og:url" content="https://realagentusecases.com/agent-101/04-obsidian-second-brain/">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:locale:alternate" content="en_US">
+<meta property="og:image" content="https://realagentusecases.com/og/agent-101/opengraph-image">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:alt" content="Agent 101 · Episode 04 · A second brain is not a bookmark folder">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Agent 101 · 第 04 期 · 第二大脑不是收藏夹">
+<meta name="twitter:description" content="收藏不是拥有。第二大脑是一套能在你需要时把过去的你调出来的系统。本地 markdown + 双链 + AI。">
+<meta name="twitter:image" content="https://realagentusecases.com/og/agent-101/opengraph-image">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@300..900&family=Geist+Mono:wght@300..700&family=Source+Serif+4:ital,wght@0,400..700;1,400..700&display=swap">
+<style>
+  /* ==========================================================
+     Tokens — mirrors realagentusecases.com
+     ========================================================== */
+  :root {
+    --color-background: #0a0a0a;
+    --color-foreground: #f2f2f2;
+    --color-muted: #161616;
+    --color-muted-foreground: #a3a3a3;
+    --color-border: #262626;
+    --color-brand: #2d5e44;
+    --color-brand-hover: #387554;
+    --color-brand-foreground: #fff;
+
+    --font-sans: "Geist", -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", "Hiragino Sans GB", sans-serif;
+    --font-serif: "Source Serif 4", "Songti SC", "STSong", Georgia, "Times New Roman", serif;
+    --font-mono: "Geist Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+
+    --tracking-tight: -0.025em;
+    --leading-snug: 1.375;
+    --leading-relaxed: 1.625;
+
+    --radius-md: 0.375rem;
+    --radius-lg: 0.5rem;
+    --radius-xl: 0.75rem;
+
+    --container-2xl: 42rem; /* 672 — body sections */
+    --container-3xl: 48rem; /* 768 — hero */
+    --container-6xl: 72rem; /* 1152 — nav */
+  }
+
+  /* ==========================================================
+     Reset & base
+     ========================================================== */
+  *, *::before, *::after { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    background: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    line-height: var(--leading-relaxed);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+  h1, h2, h3, h4 {
+    color: var(--color-foreground);
+    font-weight: 600;
+    letter-spacing: var(--tracking-tight);
+    line-height: var(--leading-snug);
+    margin: 0;
+    text-wrap: balance;
+  }
+  p { margin: 0 0 1rem; }
+  a {
+    color: var(--color-foreground);
+    text-decoration: none;
+    transition: color 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  a:hover { color: var(--color-brand); }
+  ::selection { background: var(--color-brand); color: white; }
+  img, svg { max-width: 100%; display: block; }
+
+  /* ==========================================================
+     Layout primitives
+     ========================================================== */
+  .mx-auto { margin-left: auto; margin-right: auto; }
+  .max-w-6xl { max-width: var(--container-6xl); }
+  .max-w-3xl { max-width: var(--container-3xl); }
+  .max-w-2xl { max-width: var(--container-2xl); }
+  .px-6 { padding-left: 1.5rem; padding-right: 1.5rem; }
+  main { min-height: 100vh; }
+
+  /* ==========================================================
+     Sticky nav (matches parent site)
+     ========================================================== */
+  nav.topnav {
+    position: sticky;
+    top: 0;
+    z-index: 40;
+    border-bottom: 1px solid var(--color-border);
+    background: rgba(10, 10, 10, 0.8);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+  }
+  @supports (backdrop-filter: blur(12px)) {
+    nav.topnav { background: rgba(10, 10, 10, 0.6); }
+  }
+  .nav-inner {
+    max-width: var(--container-6xl);
+    margin: 0 auto;
+    padding: 0 1.5rem;
+    height: 3.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .brand {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    letter-spacing: -0.01em;
+    color: var(--color-foreground);
+  }
+  @media (min-width: 640px) { .brand { font-size: 0.875rem; } }
+  .brand:hover { color: var(--color-brand); }
+  .nav-right {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+  }
+  @media (min-width: 640px) { .nav-right { gap: 1.5rem; } }
+  .nav-link {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--color-muted-foreground);
+    letter-spacing: -0.01em;
+    transition: color 0.15s;
+  }
+  @media (min-width: 640px) { .nav-link { font-size: 0.875rem; } }
+  .nav-link:hover { color: var(--color-brand); }
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--radius-md);
+    font-family: var(--font-sans);
+    font-weight: 500;
+    font-size: 0.875rem;
+    height: 2.25rem;
+    padding: 0 1rem;
+    background: var(--color-brand);
+    color: var(--color-brand-foreground);
+    transition: background-color 0.15s, transform 0.15s;
+    cursor: pointer;
+    border: none;
+  }
+  .btn:hover {
+    background: var(--color-brand-hover);
+    color: var(--color-brand-foreground);
+    transform: translateY(-1px);
+  }
+  .btn:active { transform: translateY(0); }
+  .btn.btn-lg { height: 3rem; padding: 0 1.5rem; font-size: 1rem; }
+
+  /* ==========================================================
+     Eyebrow (mono uppercase label)
+     ========================================================== */
+  .eyebrow {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--color-muted-foreground);
+    font-weight: 400;
+  }
+  .eyebrow-lg {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: var(--color-muted-foreground);
+  }
+
+  /* ==========================================================
+     Hero
+     ========================================================== */
+  .hero {
+    max-width: var(--container-3xl);
+    margin: 0 auto;
+    padding: 4rem 1.5rem 7rem;
+    text-align: center;
+  }
+  @media (min-width: 640px) {
+    .hero { padding: 6rem 1.5rem 9rem; }
+  }
+  .hero .eyebrow-lg { display: block; margin-bottom: 1.5rem; }
+  .hero h1 {
+    font-size: 2.25rem;
+    font-weight: 600;
+    letter-spacing: var(--tracking-tight);
+    line-height: 1.1;
+    text-wrap: balance;
+  }
+  @media (min-width: 640px) { .hero h1 { font-size: 3rem; } }
+  @media (min-width: 768px) { .hero h1 { font-size: 3.75rem; } }
+  .hero h1 .brand-word {
+    color: var(--color-brand);
+  }
+  .hero-sub {
+    margin: 1.25rem auto 0;
+    max-width: var(--container-2xl);
+    font-size: 1.125rem;
+    color: var(--color-muted-foreground);
+    line-height: var(--leading-relaxed);
+    text-wrap: balance;
+  }
+  @media (min-width: 640px) { .hero-sub { font-size: 1.25rem; } }
+
+  .hero-list {
+    margin: 1.75rem auto 0;
+    max-width: 30rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    text-align: left;
+    font-size: 0.9375rem;
+    color: var(--color-muted-foreground);
+  }
+  @media (min-width: 640px) { .hero-list { font-size: 0.9375rem; } }
+  .hero-list-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+  }
+  .dot {
+    width: 0.25rem;
+    height: 0.25rem;
+    border-radius: 9999px;
+    background: var(--color-brand);
+    flex-shrink: 0;
+    margin-top: 0.6em;
+  }
+  .hero-ctas {
+    margin-top: 2.5rem;
+    display: flex;
+    gap: 0.75rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .hero-foot {
+    margin-top: 2.5rem;
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: rgba(163, 163, 163, 0.7);
+  }
+
+  /* ==========================================================
+     Section base (essay-style)
+     ========================================================== */
+  section.essay {
+    border-top: 1px solid rgba(38, 38, 38, 0.4);
+  }
+  .essay-inner {
+    max-width: var(--container-2xl);
+    margin: 0 auto;
+    padding: 5rem 1.5rem;
+  }
+  @media (min-width: 640px) {
+    .essay-inner { padding: 6rem 1.5rem; }
+  }
+  .essay-inner.wide {
+    max-width: var(--container-3xl);
+  }
+  .section-head { margin-bottom: 2.5rem; }
+  .section-head .eyebrow { display: block; margin-bottom: 0.75rem; }
+  .section-head h2 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    letter-spacing: var(--tracking-tight);
+    line-height: var(--leading-snug);
+  }
+  @media (min-width: 640px) {
+    .section-head h2 { font-size: 1.875rem; }
+  }
+  .section-head .lede {
+    margin-top: 0.875rem;
+    font-size: 1.0625rem;
+    color: var(--color-muted-foreground);
+    line-height: var(--leading-relaxed);
+  }
+  .essay-body p {
+    color: var(--color-muted-foreground);
+    line-height: var(--leading-relaxed);
+    font-size: 1rem;
+  }
+  .essay-body strong { color: var(--color-foreground); font-weight: 600; }
+
+  /* ==========================================================
+     Item list (matches "Read the latest" article list)
+     ========================================================== */
+  .item-list {
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .item {
+    display: block;
+  }
+  .item .item-eyebrow {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--color-muted-foreground);
+  }
+  .item h3 {
+    margin-top: 0.5rem;
+    font-size: 1.25rem;
+    font-weight: 600;
+    letter-spacing: var(--tracking-tight);
+    line-height: var(--leading-snug);
+    color: var(--color-foreground);
+  }
+  @media (min-width: 640px) {
+    .item h3 { font-size: 1.375rem; }
+  }
+  .item p {
+    margin-top: 0.5rem;
+    color: var(--color-muted-foreground);
+    line-height: var(--leading-relaxed);
+  }
+
+  /* ==========================================================
+     Compare table (Chatbot vs Agent) — minimal two-col
+     ========================================================== */
+  .compare {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+  }
+  @media (min-width: 640px) {
+    .compare { grid-template-columns: 1fr 1fr; }
+  }
+  .compare-cell {
+    padding: 1.75rem;
+    background: var(--color-muted);
+  }
+  .compare-cell + .compare-cell {
+    border-top: 1px solid var(--color-border);
+  }
+  @media (min-width: 640px) {
+    .compare-cell + .compare-cell {
+      border-top: none;
+      border-left: 1px solid var(--color-border);
+    }
+  }
+  .compare-cell.is-agent { background: rgba(45, 94, 68, 0.08); }
+  .compare-cell .item-eyebrow { display: block; margin-bottom: 0.5rem; }
+  .compare-cell .is-agent-eyebrow { color: var(--color-brand); }
+  .compare-cell h3 {
+    font-size: 1.125rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+  }
+  .compare-cell > p {
+    color: var(--color-muted-foreground);
+    font-size: 0.9375rem;
+    margin-bottom: 1rem;
+  }
+  .compare-cell ul {
+    list-style: none;
+    padding: 0;
+    margin: 0.75rem 0 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  .compare-cell li {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.625rem;
+    font-size: 0.9375rem;
+    color: var(--color-muted-foreground);
+  }
+  .compare-cell li::before {
+    content: "×";
+    color: var(--color-muted-foreground);
+    font-family: var(--font-mono);
+    flex-shrink: 0;
+    margin-top: 0.05em;
+  }
+  .compare-cell.is-agent li::before {
+    content: "✓";
+    color: var(--color-brand);
+  }
+
+  /* ==========================================================
+     Pull-quote / aside (analogy block)
+     ========================================================== */
+  .aside {
+    margin-top: 2rem;
+    padding: 1.75rem;
+    border-left: 2px solid var(--color-brand);
+    background: var(--color-muted);
+    border-radius: 0 var(--radius-lg) var(--radius-lg) 0;
+  }
+  .aside .aside-label {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--color-brand);
+    display: block;
+    margin-bottom: 0.625rem;
+  }
+  .aside p {
+    margin: 0;
+    color: var(--color-foreground);
+    font-family: var(--font-serif);
+    font-size: 1.0625rem;
+    line-height: var(--leading-relaxed);
+    font-style: italic;
+  }
+  .aside p strong { font-style: normal; }
+
+  /* ==========================================================
+     Agent loop (SVG + steps)
+     ========================================================== */
+  .loop-wrap {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+    align-items: center;
+  }
+  @media (min-width: 760px) {
+    .loop-wrap { grid-template-columns: 280px 1fr; gap: 3rem; }
+  }
+  .loop-svg { width: 100%; max-width: 280px; margin: 0 auto; }
+  .loop-steps {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  .loop-step {
+    display: grid;
+    grid-template-columns: 2rem 1fr;
+    gap: 0.875rem;
+    align-items: start;
+  }
+  .loop-step .n {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--color-brand);
+    letter-spacing: 0.05em;
+    padding-top: 0.125rem;
+  }
+  .loop-step h4 {
+    font-size: 1.0625rem;
+    margin-bottom: 0.25rem;
+  }
+  .loop-step h4 .en {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--color-muted-foreground);
+    margin-left: 0.5rem;
+    font-weight: 400;
+    letter-spacing: 0.05em;
+  }
+  .loop-step p { margin: 0; color: var(--color-muted-foreground); font-size: 0.9375rem; }
+
+  /* ==========================================================
+     Use cases — vertical list with mono labels (no flashy cards)
+     ========================================================== */
+  .use-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+  .use {
+    padding: 2rem 0;
+    border-top: 1px solid var(--color-border);
+  }
+  .use:first-child { border-top: none; padding-top: 0; }
+  .use:last-child { padding-bottom: 0; }
+  .use-top {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 0.5rem;
+    flex-wrap: wrap;
+  }
+  .use-top .use-label {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--color-muted-foreground);
+  }
+  .use-top .use-gain {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--color-brand);
+    letter-spacing: 0.05em;
+  }
+  .use h3 {
+    font-size: 1.25rem;
+    margin-bottom: 0.625rem;
+  }
+  @media (min-width: 640px) { .use h3 { font-size: 1.375rem; } }
+  .use p { color: var(--color-muted-foreground); margin-bottom: 0.875rem; }
+  .use-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 0.875rem;
+  }
+  .chip {
+    display: inline-block;
+    padding: 0.25rem 0.625rem;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    color: var(--color-muted-foreground);
+    letter-spacing: 0.02em;
+  }
+
+  /* ==========================================================
+     Demo block — mono code-style terminal mock
+     ========================================================== */
+  .demo {
+    margin-top: 2.5rem;
+    padding-top: 2.5rem;
+    border-top: 1px solid var(--color-border);
+  }
+  .demo:first-of-type { border-top: none; padding-top: 0; margin-top: 0; }
+  .demo-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-bottom: 0.625rem;
+  }
+  .demo-num {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--color-brand);
+  }
+  .demo-time {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    color: var(--color-muted-foreground);
+    letter-spacing: 0.05em;
+  }
+  .demo h3 {
+    font-size: 1.375rem;
+    margin-bottom: 0.625rem;
+  }
+  .demo > p {
+    color: var(--color-muted-foreground);
+    margin-bottom: 1.25rem;
+  }
+  .demo-steps {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 1.5rem;
+    counter-reset: step;
+  }
+  .demo-steps li {
+    counter-increment: step;
+    padding: 0.625rem 0 0.625rem 2rem;
+    position: relative;
+    color: var(--color-muted-foreground);
+    font-size: 0.9375rem;
+    line-height: var(--leading-relaxed);
+    border-top: 1px dashed rgba(38, 38, 38, 0.6);
+  }
+  .demo-steps li:first-child { border-top: none; }
+  .demo-steps li::before {
+    content: counter(step, decimal-leading-zero);
+    position: absolute;
+    left: 0;
+    top: 0.625rem;
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    color: var(--color-brand);
+    letter-spacing: 0.05em;
+  }
+  .demo-steps strong { color: var(--color-foreground); font-weight: 600; }
+
+  .terminal {
+    background: var(--color-muted);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    font-family: var(--font-mono);
+    font-size: 0.8125rem;
+    line-height: 1.7;
+    color: var(--color-foreground);
+    overflow: hidden;
+  }
+  .terminal-bar {
+    padding: 0.625rem 0.875rem;
+    background: rgba(0, 0, 0, 0.3);
+    border-bottom: 1px solid var(--color-border);
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    color: var(--color-muted-foreground);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .terminal-body { padding: 1.125rem; }
+  .terminal-body .row { padding: 0.05rem 0; }
+  .terminal-body .mu { color: var(--color-muted-foreground); }
+  .terminal-body .ok { color: var(--color-brand); }
+  .terminal-body .label {
+    display: inline-block;
+    color: var(--color-muted-foreground);
+    margin-right: 0.5rem;
+  }
+  .terminal-body .label.user { color: #c2a8ff; }
+  .terminal-body .label.bot { color: var(--color-brand); }
+  .terminal-body .label.tool { color: #d4a657; }
+  .terminal-body .hr {
+    border-top: 1px dashed var(--color-border);
+    margin: 0.5rem 0;
+  }
+  /* Workflow terminal helpers */
+  .terminal-body .step {
+    display: inline-block;
+    min-width: 6.5rem;
+    color: var(--color-foreground);
+    font-weight: 500;
+  }
+  .terminal-body .num {
+    display: inline-block;
+    width: 1.75rem;
+    color: var(--color-brand);
+  }
+  .terminal-body .meta {
+    color: var(--color-brand);
+    font-weight: 500;
+  }
+  .terminal-title-tag {
+    display: inline-block;
+    padding: 1px 6px;
+    margin-right: 0.5rem;
+    background: var(--color-brand);
+    color: var(--color-brand-foreground);
+    border-radius: 3px;
+    font-size: 0.625rem;
+    letter-spacing: 0.1em;
+    font-weight: 600;
+  }
+
+  /* Case-list divider: visual separation between "by-job" and "by-scenario" cases */
+  .case-divider {
+    margin: 3rem 0;
+    padding: 2.25rem 1.5rem;
+    border-top: 1px solid var(--color-border);
+    border-bottom: 1px solid var(--color-border);
+    text-align: center;
+  }
+  .case-divider .eyebrow {
+    display: block;
+    margin-bottom: 0.75rem;
+    color: var(--color-brand);
+  }
+  .case-divider h3 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 0.625rem;
+    letter-spacing: var(--tracking-tight);
+  }
+  .case-divider p {
+    color: var(--color-muted-foreground);
+    max-width: 40rem;
+    margin: 0 auto;
+    font-size: 0.9375rem;
+    line-height: var(--leading-relaxed);
+  }
+
+  /* ==========================================================
+     Timeline — minimal vertical list with mono dates
+     ========================================================== */
+  .timeline {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+  .tl {
+    padding-left: 1.5rem;
+    border-left: 1px solid var(--color-border);
+    position: relative;
+  }
+  .tl::before {
+    content: "";
+    position: absolute;
+    left: -0.3125rem;
+    top: 0.4rem;
+    width: 0.5625rem;
+    height: 0.5625rem;
+    border-radius: 9999px;
+    background: var(--color-background);
+    border: 2px solid var(--color-brand);
+  }
+  .tl .tl-week {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--color-brand);
+    display: block;
+    margin-bottom: 0.375rem;
+  }
+  .tl h3 {
+    font-size: 1.125rem;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+  }
+  .tl p { margin: 0; color: var(--color-muted-foreground); }
+
+  /* ==========================================================
+     Subscribe / CTA
+     ========================================================== */
+  .subscribe {
+    margin: 2.5rem auto 0;
+    max-width: 28rem;
+  }
+  .subscribe-form {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  @media (min-width: 640px) {
+    .subscribe-form { flex-direction: row; }
+  }
+  .subscribe input[type="email"] {
+    flex: 1;
+    min-width: 0;
+    height: 3rem;
+    padding: 0 1rem;
+    border-radius: var(--radius-md);
+    background: var(--color-muted);
+    border: 1px solid rgba(163, 163, 163, 0.3);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    transition: border-color 0.15s;
+  }
+  .subscribe input[type="email"]::placeholder { color: var(--color-muted-foreground); }
+  .subscribe input[type="email"]:focus {
+    outline: none;
+    border-color: var(--color-brand);
+  }
+  .subscribe .btn { flex-shrink: 0; height: 3rem; padding: 0 1.5rem; font-size: 1rem; }
+  .subscribe-note {
+    margin-top: 0.75rem;
+    font-size: 0.75rem;
+    color: var(--color-muted-foreground);
+    text-align: center;
+  }
+
+  /* ==========================================================
+     Footer
+     ========================================================== */
+  footer.site {
+    border-top: 1px solid var(--color-border);
+    padding: 2.5rem 1.5rem;
+    margin-top: 4rem;
+  }
+  .footer-inner {
+    max-width: var(--container-2xl);
+    margin: 0 auto;
+    text-align: center;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--color-muted-foreground);
+    letter-spacing: 0.05em;
+  }
+  .footer-inner a { color: var(--color-muted-foreground); }
+  .footer-inner a:hover { color: var(--color-brand); }
+  .footer-inner .sep { color: var(--color-border); margin: 0 0.625rem; }
+
+  /* ==========================================================
+     Audience profile chart (donut + legend)
+     ========================================================== */
+  .audience {
+    margin-bottom: 4rem;
+    padding-bottom: 3rem;
+    border-bottom: 1px solid var(--color-border);
+  }
+  .audience-head { margin-bottom: 2rem; }
+  .audience-head .eyebrow { display: block; margin-bottom: 0.625rem; }
+  .audience-head h3 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    letter-spacing: var(--tracking-tight);
+  }
+  @media (min-width: 640px) { .audience-head h3 { font-size: 1.375rem; } }
+  .audience-head p { color: var(--color-muted-foreground); margin: 0; }
+
+  .audience-body {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    align-items: center;
+  }
+  @media (min-width: 720px) {
+    .audience-body { grid-template-columns: 260px 1fr; gap: 3rem; }
+  }
+
+  .donut {
+    width: 100%;
+    max-width: 240px;
+    margin: 0 auto;
+    aspect-ratio: 1;
+    position: relative;
+  }
+  .donut svg { width: 100%; height: 100%; display: block; }
+  .donut-center {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    pointer-events: none;
+  }
+  .donut-center .n {
+    font-family: var(--font-mono);
+    font-size: 1.875rem;
+    font-weight: 600;
+    color: var(--color-foreground);
+    line-height: 1;
+    letter-spacing: -0.02em;
+  }
+  .donut-center .lbl {
+    margin-top: 0.375rem;
+    font-family: var(--font-mono);
+    font-size: 0.625rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--color-muted-foreground);
+  }
+
+  .legend {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.875rem;
+  }
+  .legend li {
+    display: grid;
+    grid-template-columns: 0.625rem 1fr auto;
+    gap: 0.75rem;
+    align-items: center;
+    padding: 0.625rem 0;
+    border-top: 1px solid var(--color-border);
+  }
+  .legend li:first-child { border-top: none; padding-top: 0; }
+  .legend .swatch {
+    width: 0.625rem;
+    height: 0.625rem;
+    border-radius: 2px;
+  }
+  .legend .name {
+    color: var(--color-foreground);
+    font-size: 0.9375rem;
+    font-weight: 500;
+  }
+  .legend .pct {
+    font-family: var(--font-mono);
+    font-size: 0.9375rem;
+    color: var(--color-muted-foreground);
+    letter-spacing: 0.02em;
+    font-feature-settings: "tnum" 1;
+  }
+
+  /* Sub-bullets inside a use case */
+  .sub-list {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 0.875rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  .sub-list li {
+    display: grid;
+    grid-template-columns: 1.5rem 1fr;
+    gap: 0.5rem;
+    color: var(--color-muted-foreground);
+    font-size: 0.9375rem;
+    line-height: var(--leading-relaxed);
+  }
+  .sub-list li::before {
+    content: "→";
+    font-family: var(--font-mono);
+    color: var(--color-brand);
+    margin-top: 0.05em;
+  }
+  .sub-list strong { color: var(--color-foreground); font-weight: 600; }
+
+  /* ==========================================================
+     Utilities
+     ========================================================== */
+  .mono { font-family: var(--font-mono); }
+  .serif { font-family: var(--font-serif); }
+
+  /* ==========================================================
+     Episode tabs — sits between topnav and main on agent-101 pages
+     ========================================================== */
+  .ep-tabs {
+    position: sticky;
+    top: 3.5rem;
+    z-index: 39;
+    border-bottom: 1px solid var(--color-border);
+    background: var(--color-background);
+  }
+  .ep-tabs-inner {
+    max-width: var(--container-6xl);
+    margin: 0 auto;
+    padding: 0 1.5rem;
+    display: flex;
+    align-items: stretch;
+    gap: 1.25rem;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+  }
+  .ep-tabs-inner::-webkit-scrollbar { display: none; }
+  .ep-tabs-label {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--color-muted-foreground);
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    padding: 0.875rem 0;
+  }
+  .ep-tab {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    text-decoration: none;
+    white-space: nowrap;
+    padding: 0.875rem 0;
+    color: var(--color-muted-foreground);
+    transition: color 0.15s;
+    border-bottom: 2px solid transparent;
+    margin-bottom: -1px;
+  }
+  .ep-tab:hover { color: var(--color-foreground); text-decoration: none; }
+  .ep-tab.is-current {
+    color: var(--color-foreground);
+    border-bottom-color: var(--color-brand);
+  }
+  .ep-tab-num {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+    color: var(--color-brand);
+    font-weight: 600;
+  }
+  .ep-tab-title {
+    font-family: var(--font-sans);
+    font-size: 0.875rem;
+    font-weight: 500;
+  }
+  .ep-tab-lang {
+    font-family: var(--font-mono);
+    font-size: 0.625rem;
+    letter-spacing: 0.1em;
+    color: var(--color-muted-foreground);
+    margin-left: 0.375rem;
+    padding: 1px 5px;
+    border: 1px solid var(--color-border);
+    border-radius: 3px;
+  }
+  @media (max-width: 640px) {
+    .ep-tab-title { display: none; }
+    .ep-tabs-label { font-size: 0.6875rem; }
+    .ep-tabs-inner { gap: 1rem; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="topnav">
+  <div class="nav-inner">
+    <a href="/" class="brand">realagentusecases.com</a>
+    <div class="nav-right">
+      <a href="/zh/news/" class="nav-link">News</a>
+      <a href="/en/agent-101/04-obsidian-second-brain/" class="nav-link">EN</a>
+      <a class="btn" href="#cta">Subscribe</a>
+    </div>
+  </div>
+</nav>
+
+<nav class="ep-tabs" aria-label="Agent 101 episode navigation">
+  <div class="ep-tabs-inner">
+    <span class="ep-tabs-label">Agent 101 ·</span>
+    <a href="/agent-101/" class="ep-tab">
+      <span class="ep-tab-num">EP 01</span>
+      <span class="ep-tab-title">什么是 AI Agent</span>
+    </a>
+    <a href="/agent-101/02-multi-agent/" class="ep-tab">
+      <span class="ep-tab-num">EP 02</span>
+      <span class="ep-tab-title">Multi-agent &amp; Skills</span>
+    </a>
+    <a href="/agent-101/03-ai-tools-workflows/" class="ep-tab">
+      <span class="ep-tab-num">EP 03</span>
+      <span class="ep-tab-title">工具与工作流</span>
+    </a>
+    <a href="/agent-101/04-obsidian-second-brain/" class="ep-tab is-current">
+      <span class="ep-tab-num">EP 04</span>
+      <span class="ep-tab-title">Obsidian 第二大脑</span>
+    </a>
+    <a href="/agent-101/05-talk-to-ai/" class="ep-tab">
+      <span class="ep-tab-num">EP 05</span>
+      <span class="ep-tab-title">与 AI 高效沟通</span>
+    </a>
+    <a href="/agent-101/06-track-ai-trends/" class="ep-tab">
+      <span class="ep-tab-num">EP 06</span>
+      <span class="ep-tab-title">主动了解 AI 趋势</span>
+    </a>
+  </div>
+</nav>
+
+<main>
+
+  <!-- ============ HERO ============ -->
+  <section class="hero">
+    <span class="eyebrow-lg">EPISODE 04 · Obsidian second brain · 2026.05.17</span>
+    <h1>
+      第二大脑，<br>
+      不是<span class="brand-word">收藏夹</span>。
+    </h1>
+
+    <p class="hero-sub" style="margin-top: 1.5rem;">
+      这是一场关于 Obsidian 的讲座。<br>
+      但更准确地说——是教你别把"囤笔记"当成"有了第二大脑"。
+    </p>
+
+    <ul class="hero-list">
+      <li class="hero-list-item"><span class="dot"></span><span>收藏 ≠ 拥有 — 50 条囤着不用的笔记，不是知识库，是数字垃圾场</span></li>
+      <li class="hero-list-item"><span class="dot"></span><span>第二大脑 = 一套能在你需要时把"过去的你"调出来的系统</span></li>
+      <li class="hero-list-item"><span class="dot"></span><span>本地 markdown + 双链 + AI 直接读整个 vault — 含我自己 vault 在跑的真插件</span></li>
+    </ul>
+
+    <div class="hero-ctas">
+      <a class="btn btn-lg" href="#deconstruct">开始拆词 →</a>
+    </div>
+
+    <div class="hero-foot">
+      AGENT 101 SERIES · EP 04 · 不画饼版
+    </div>
+  </section>
+
+  <!-- ============ § 1 知识库 ≠ 收藏夹 ============ -->
+  <section id="deconstruct" class="essay">
+    <div class="essay-inner">
+      <header class="section-head">
+        <span class="eyebrow">§ 01 · 先拆词</span>
+        <h2>"知识库"和"收藏夹"，是两件完全不同的事</h2>
+        <p class="lede">
+          你存了多少篇"稍后读"？收藏了多少条干货？现在回答一个问题：
+          上一次你真的"用回"一条三个月前存的东西，是什么时候？多数人卡在这——把"存下来"当成了"学到了"。
+        </p>
+      </header>
+
+      <ul class="item-list">
+        <li class="item">
+          <span class="item-eyebrow">概念 · 01 · 收藏</span>
+          <h3>收藏 = 囤积，不是拥有</h3>
+          <p>"收藏者谬误"：你以为把它存进收藏夹，就等于把知识装进了脑子。其实存下来那一刻，大脑反而松了一口气——"我已经拥有它了"，于是再也不看。收藏带来的是"我在学习"的错觉，和 EP01 里"1000 个 prompt 大礼包"卖的是同一种安心。</p>
+        </li>
+        <li class="item">
+          <span class="item-eyebrow">概念 · 02 · 笔记</span>
+          <h3>笔记 = 思考的副产品，不是仓库</h3>
+          <p>好的笔记不是把别人的话抄下来，是把它嚼碎、用自己的话重写、接到你已知的东西上。记笔记的价值不在"存了什么"，在"为了写这条笔记，你被迫想清楚了什么"。抄录不产生思考，重写才产生。</p>
+        </li>
+        <li class="item">
+          <span class="item-eyebrow">概念 · 03 · 第二大脑</span>
+          <h3>第二大脑 = 能被检索和重组的思考系统</h3>
+          <p>它的唯一标准不是"存了多少"，是"能不能在你需要的那一刻，把相关的过去调出来、重组成新产出"。一个第二大脑，是你写文章、做决策时能顺着链接走回三年前那条笔记的系统——不是一个越堆越大、再也找不到的文件夹。</p>
+        </li>
+      </ul>
+
+      <aside class="aside">
+        <span class="aside-label">大白话收尾</span>
+        <p>
+          你不缺笔记。<strong>你缺的是一套能在你需要时，把"过去的你"准确调出来的系统。</strong>
+          今天这一讲，不教你记更多，教你怎么让记过的东西真的回到你的产出里。
+        </p>
+      </aside>
+    </div>
+  </section>
+
+  <!-- ============ § 2 审计你的笔记系统 ============ -->
+  <section class="essay">
+    <div class="essay-inner">
+      <header class="section-head">
+        <span class="eyebrow">§ 02 · 审计你的笔记系统</span>
+        <h2>"我开始记笔记了"是空转词</h2>
+        <p class="lede">
+          这句话听起来像自律，像进步。但它过不了三个最简单的检查。
+          过不了，说明你建的不是第二大脑，是一个会持续变大、却永远不被读回的数字垃圾场。
+        </p>
+      </header>
+
+      <ul class="item-list">
+        <li class="item">
+          <span class="item-eyebrow">系统测试 · 01</span>
+          <h3>上次你真的"用回"一条旧笔记，是什么时候？</h3>
+          <p>不是"我记了很多"，是"我写这篇东西时，翻回了三个月前那条笔记，它真的帮上了忙"。如果想不起一个具体时刻，你的笔记库就是只进不出——存了等于没存。</p>
+        </li>
+        <li class="item">
+          <span class="item-eyebrow">系统测试 · 02</span>
+          <h3>能不能从一个想法出发，顺着链接走到三条相关旧笔记？</h3>
+          <p>第二大脑的价值在"连接"，不在"数量"。如果你的笔记都是一条条孤岛，没有链接，那它就只是一堆更难搜的文档。能从一条走到相关的另一条，知识才开始复利。</p>
+        </li>
+        <li class="item">
+          <span class="item-eyebrow">系统测试 · 03</span>
+          <h3>删掉整个笔记库，你的产出会变差吗？</h3>
+          <p>最狠的一条。如果删了它你毫无感觉，说明它从没真正进入你的生产，只是个让你心安的仓库。能让你删除时肉疼的笔记库，才是真的第二大脑。</p>
+        </li>
+      </ul>
+
+      <aside class="aside">
+        <span class="aside-label">重写：从"建知识库"到"养一条回路"</span>
+        <p style="font-style: normal; font-family: var(--font-sans);">
+          <span style="color: var(--color-muted-foreground);">原句：</span><br>
+          <s style="color: var(--color-muted-foreground);">"我要建一个完美的个人知识库。"</s><br><br>
+          <span style="color: var(--color-brand); font-family: var(--font-mono); font-size: 0.75rem; letter-spacing: 0.1em;">REWRITE ↓</span><br><br>
+          <strong>"每天睡前 5 分钟，在 daily note 里写一条今天真正学到的东西，并把它链到一条旧笔记上。一个月后回看：如果我从没'用回'过任何一条，就是这套系统还没接进我的产出，回来调。"</strong>
+        </p>
+      </aside>
+
+      <p style="margin-top: 2rem; color: var(--color-muted-foreground); font-size: 0.9375rem;">
+        前一句永远没有终点——"完美的库"是个无底洞。后一句有动作、有产出、有失败信号。
+        <strong style="color: var(--color-foreground); font-weight: 600;">第二大脑不是建出来的，是每天一条、慢慢长出来的。</strong>
+      </p>
+    </div>
+  </section>
+
+  <!-- ============ § 3 为什么是 Obsidian ============ -->
+  <section class="essay">
+    <div class="essay-inner">
+      <header class="section-head">
+        <span class="eyebrow">§ 03 · 拆完词之后</span>
+        <h2>为什么是 Obsidian：本地、纯文本、双链</h2>
+        <p class="lede">
+          市面上的笔记软件很多，第二大脑却只有少数几种结构能撑得住。这一节是这一讲唯一的对照：
+          云端 SaaS 笔记 和 本地 Obsidian，差的不是功能，是"这套大脑到底归不归你"。
+        </p>
+      </header>
+
+      <div class="compare">
+        <div class="compare-cell">
+          <span class="item-eyebrow">云端 SaaS 笔记 · 你可能在用的</span>
+          <h3>方便，但不归你</h3>
+          <p>数据在别人服务器，格式是它的私有格式，平台说了算。</p>
+          <ul>
+            <li>笔记存在别人的云上，导出即残缺</li>
+            <li>私有格式锁定，搬家成本极高</li>
+            <li>链接多是装饰，不是真正的结构</li>
+            <li>平台关停 / 涨价 / 改版，你只能接受</li>
+          </ul>
+        </div>
+        <div class="compare-cell is-agent">
+          <span class="item-eyebrow is-agent-eyebrow">本地 Obsidian · 你今天要装的</span>
+          <h3>朴素，但永远是你的</h3>
+          <p>一堆本地 markdown 文件，纯文本，链接即结构，AI 能直接读。</p>
+          <ul>
+            <li>本地 .md 文件，永远打得开、带得走</li>
+            <li>纯文本永不过时，20 年后还能读</li>
+            <li>双链是骨架，构成你思考的关系网</li>
+            <li>AI / 脚本能直接读写整个 vault</li>
+          </ul>
+        </div>
+      </div>
+
+      <aside class="aside">
+        <span class="aside-label">大白话比喻</span>
+        <p>
+          <strong>云笔记像租房</strong>——住着方便，但墙不能砸、房东随时能涨租或收回，你攒的一切都在别人名下。
+          <strong>Obsidian 像自建房</strong>——盖起来费点劲，但地基、墙、每一块砖都是你的，想怎么改怎么改，没人能把它收走。
+          第二大脑是你要住一辈子的地方，别建在别人的地上。
+        </p>
+      </aside>
+    </div>
+  </section>
+
+  <!-- ============ § 4 方法 (loop) ============ -->
+  <section class="essay">
+    <div class="essay-inner wide">
+      <header class="section-head">
+        <span class="eyebrow">§ 04 · 第二大脑怎么转</span>
+        <h2>四步：捕获 → 链接 → 提炼 → 表达</h2>
+        <p class="lede">
+          一个活的第二大脑，是这四步在不停转。多数人只做了第一步（拼命存），卡在第二步（从不链接），
+          于是永远到不了第四步（产出）。记住这四步，你就知道自己的系统断在哪。
+        </p>
+      </header>
+
+      <div class="loop-wrap">
+        <svg class="loop-svg" viewBox="0 0 280 280" xmlns="http://www.w3.org/2000/svg" aria-label="第二大脑四步循环">
+          <defs>
+            <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+              <path d="M 0 0 L 10 5 L 0 10 z" fill="#2d5e44"/>
+            </marker>
+          </defs>
+          <circle cx="140" cy="140" r="105" fill="none" stroke="#262626" stroke-width="1" stroke-dasharray="2 5"/>
+          <circle cx="140" cy="140" r="32" fill="#161616" stroke="#2d5e44" stroke-width="1.5"/>
+          <text x="140" y="138" text-anchor="middle" font-family="Geist Mono, monospace" font-size="8" fill="#f2f2f2" font-weight="600">SECOND</text>
+          <text x="140" y="152" text-anchor="middle" font-family="Geist Mono, monospace" font-size="8" fill="#a3a3a3">BRAIN</text>
+
+          <g transform="translate(140, 40)">
+            <circle r="28" fill="#0a0a0a" stroke="#2d5e44" stroke-width="1.5"/>
+            <text y="-3" text-anchor="middle" font-family="Geist, sans-serif" font-size="14" font-weight="600" fill="#f2f2f2">捕获</text>
+            <text y="10" text-anchor="middle" font-family="Geist Mono, monospace" font-size="7" fill="#a3a3a3">CAPTURE</text>
+          </g>
+          <g transform="translate(240, 140)">
+            <circle r="28" fill="#0a0a0a" stroke="#2d5e44" stroke-width="1.5"/>
+            <text y="-3" text-anchor="middle" font-family="Geist, sans-serif" font-size="14" font-weight="600" fill="#f2f2f2">链接</text>
+            <text y="10" text-anchor="middle" font-family="Geist Mono, monospace" font-size="7" fill="#a3a3a3">CONNECT</text>
+          </g>
+          <g transform="translate(140, 240)">
+            <circle r="28" fill="#0a0a0a" stroke="#2d5e44" stroke-width="1.5"/>
+            <text y="-3" text-anchor="middle" font-family="Geist, sans-serif" font-size="14" font-weight="600" fill="#f2f2f2">提炼</text>
+            <text y="10" text-anchor="middle" font-family="Geist Mono, monospace" font-size="7" fill="#a3a3a3">DISTILL</text>
+          </g>
+          <g transform="translate(40, 140)">
+            <circle r="28" fill="#0a0a0a" stroke="#2d5e44" stroke-width="1.5"/>
+            <text y="-3" text-anchor="middle" font-family="Geist, sans-serif" font-size="14" font-weight="600" fill="#f2f2f2">表达</text>
+            <text y="10" text-anchor="middle" font-family="Geist Mono, monospace" font-size="7" fill="#a3a3a3">EXPRESS</text>
+          </g>
+
+          <path d="M 168 60 Q 215 80 220 112" fill="none" stroke="#2d5e44" stroke-width="1" marker-end="url(#arr)" opacity="0.8"/>
+          <path d="M 220 168 Q 215 200 168 220" fill="none" stroke="#2d5e44" stroke-width="1" marker-end="url(#arr)" opacity="0.8"/>
+          <path d="M 112 220 Q 65 200 60 168" fill="none" stroke="#2d5e44" stroke-width="1" marker-end="url(#arr)" opacity="0.8"/>
+          <path d="M 60 112 Q 65 80 112 60" fill="none" stroke="#2d5e44" stroke-width="1" marker-end="url(#arr)" opacity="0.8"/>
+        </svg>
+
+        <ul class="loop-steps">
+          <li class="loop-step">
+            <span class="n">01</span>
+            <div>
+              <h4>捕获<span class="en">CAPTURE</span></h4>
+              <p>无摩擦地记下来：daily note 随手写、用 importer 把外部素材一键入库。捕获的唯一要求是"快到你不会偷懒"——一旦记一条要五步，你就不会记。</p>
+            </div>
+          </li>
+          <li class="loop-step">
+            <span class="n">02</span>
+            <div>
+              <h4>链接<span class="en">CONNECT</span></h4>
+              <p>给每条新笔记接上两条旧笔记（双链 <span class="mono">[[ ]]</span>）。这是多数人缺的一步，也是第二大脑和文件夹的根本区别——链接让孤岛连成网，知识才开始复利。</p>
+            </div>
+          </li>
+          <li class="loop-step">
+            <span class="n">03</span>
+            <div>
+              <h4>提炼<span class="en">DISTILL</span></h4>
+              <p>把零散的摘录蒸馏成"原子笔记"——一条笔记只装一个用你自己的话说清的想法。再用 MOC（内容地图）把相关原子笔记串成一个主题。提炼是把信息变成你的知识的那一步。</p>
+            </div>
+          </li>
+          <li class="loop-step">
+            <span class="n">04</span>
+            <div>
+              <h4>表达<span class="en">EXPRESS</span></h4>
+              <p>把笔记重组成产出：一篇文章、一份 PRD、一条选题。第二大脑的全部意义在这一步兑现——如果笔记从不变成产出，前三步都白做。这一步，也是 AI 介入价值最大的地方。</p>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ § 5 我 vault 在跑的插件 ============ -->
+  <section class="essay">
+    <div class="essay-inner wide">
+      <header class="section-head">
+        <span class="eyebrow">§ 05 · 我自己 vault 在跑的插件</span>
+        <h2>不是装得越多越好——这几个，每个都接在一条工作流上</h2>
+        <p class="lede">
+          Obsidian 有几千个插件，装一墙和"工具收藏家"是一个病（见 EP03）。下面是我自己 vault 里真在跑的几个，
+          按四步循环排：importer 管捕获、Git 管安全、Claudian 管表达。每个都给一条最小工作流。
+        </p>
+      </header>
+
+      <ul class="use-list">
+
+        <!-- ───── 01 · 素材入库（捕获）───── -->
+        <li class="use">
+          <div class="use-top">
+            <span class="use-label">CAPTURE · 素材入库 · Douyin Capture + 小红书 Importer</span>
+            <span class="use-gain">手动搬运 → 一键入库</span>
+          </div>
+          <h3>把刷到的好内容，无摩擦倒进你的大脑</h3>
+          <p style="color:var(--color-foreground);font-weight:500;margin-bottom:1rem;">
+            反共识：选题的瓶颈不是"没素材"，是"看到了没存下来，存下来又散落各处"。
+            <strong>把抖音 / 小红书的好内容一键入库——无水印视频图文、本地 Whisper 转写成简体、数据全留本地——刷到即入库，捕获这一步就再也不掉链子。</strong>
+          </p>
+          <div class="terminal">
+            <div class="terminal-bar"><span class="terminal-title-tag">WORKFLOW</span>刷到好内容 → 入库 → 接选题流水线</div>
+            <div class="terminal-body">
+              <div class="row"><span class="num">01</span><span class="step">PASTE</span><span class="mu">把抖音 / 小红书分享链接贴进 Obsidian</span></div>
+              <div class="row"><span class="num">02</span><span class="step">IMPORT</span><span class="mu">无水印视频 / 图文 + 标题 / 话题 / 标签 / frontmatter</span></div>
+              <div class="row"><span class="num">03</span><span class="step">WHISPER</span><span class="mu">本地 Whisper 转写成简体 · 数据留本地</span></div>
+              <div class="row"><span class="num">04</span><span class="step">FEED</span><span class="mu">入库笔记 → 喂给 Claude 拆解选题 / 钩子</span></div>
+              <div class="hr"></div>
+              <div class="row"><span class="ok">SETUP</span><span class="mu">装插件 + 本地 Python 后端（见 README）</span>　·　<span class="ok">ROI</span><span class="mu">素材不再散落 · 捕获零摩擦</span></div>
+            </div>
+          </div>
+          <div class="use-meta">
+            <span class="chip">Douyin Capture · lyxdream</span>
+            <span class="chip">Xiaohongshu Importer · bnchiang96</span>
+            <span class="chip">本地 Whisper</span>
+          </div>
+        </li>
+
+        <!-- ───── 02 · Git（安全）───── -->
+        <li class="use">
+          <div class="use-top">
+            <span class="use-label">SAFETY · 版本与备份 · Obsidian Git</span>
+            <span class="use-gain">误删恐惧 → 随时可回滚</span>
+          </div>
+          <h3>你的第二大脑，不能只存一份</h3>
+          <p style="color:var(--color-foreground);font-weight:500;margin-bottom:1rem;">
+            反共识：很多人不敢大改笔记，是怕弄坏——结果大脑越来越僵。
+            <strong>装上 Git 自动备份，每次改动都有版本历史，误删 / 改砸随时回滚。有了安全网，你才敢放手重组、删减、提炼。</strong>
+          </p>
+          <div class="terminal">
+            <div class="terminal-bar"><span class="terminal-title-tag">WORKFLOW</span>自动备份 + 版本历史</div>
+            <div class="terminal-body">
+              <div class="row"><span class="num">01</span><span class="step">AUTO</span><span class="mu">每隔 N 分钟 · 自动 commit 全部改动</span></div>
+              <div class="row"><span class="num">02</span><span class="step">PUSH</span><span class="mu">推到私有远端 · 异地多一份</span></div>
+              <div class="row"><span class="num">03</span><span class="step">HISTORY</span><span class="mu">每条笔记有完整版本史 · 可逐版本对比</span></div>
+              <div class="row"><span class="num">04</span><span class="step">REVERT</span><span class="mu">误删 / 改砸 · 一键回到任意历史版本</span></div>
+              <div class="hr"></div>
+              <div class="row"><span class="ok">SETUP</span><span class="mu">10 分钟接私有仓库</span>　·　<span class="ok">ROI</span><span class="mu">敢放手改 · 永不丢笔记</span></div>
+            </div>
+          </div>
+          <div class="use-meta">
+            <span class="chip">Obsidian Git · Vinzent</span>
+            <span class="chip">私有 Git 远端</span>
+          </div>
+        </li>
+
+        <!-- ───── 03 · Claudian（表达）───── -->
+        <li class="use">
+          <div class="use-top">
+            <span class="use-label">EXPRESS · AI 协作者 · Claudian</span>
+            <span class="use-gain">死的笔记库 → 会思考的搭档</span>
+          </div>
+          <h3>让 Claude 把你的整个 vault 当工作目录</h3>
+          <p style="color:var(--color-foreground);font-weight:500;margin-bottom:1rem;">
+            反共识：笔记再多，不被重组就是死的。第二大脑真正值钱的一步，是 AI 直接读你整个 vault。
+            <strong>Claudian 把 Claude Code / Codex 嵌进 vault，vault 成为它的工作目录——读写文件、搜索、跑 bash、多步工作流。它能跨几十条旧笔记综合，写出一条你一个人想不出的新笔记。</strong>
+          </p>
+          <div class="terminal">
+            <div class="terminal-bar"><span class="terminal-title-tag">WORKFLOW</span>跨笔记综合 → 写成新产出</div>
+            <div class="terminal-body">
+              <div class="row"><span class="num">01</span><span class="step">ASK</span><span class="mu">"把我关于 Agent 的所有笔记综合成一篇大纲"</span></div>
+              <div class="row"><span class="num">02</span><span class="step">READ</span><span class="mu">Claudian · 搜索 + 读取整个 vault 相关笔记</span></div>
+              <div class="row"><span class="num">03</span><span class="step">SYNTH</span><span class="mu">跨 N 条笔记综合 · 找出你没注意的连接</span></div>
+              <div class="row"><span class="num">04</span><span class="step">WRITE</span><span class="mu">写成一条新笔记 / 文章草稿 · 落回 vault</span></div>
+              <div class="hr"></div>
+              <div class="row"><span class="ok">SETUP</span><span class="mu">装插件 + 接 Claude Code</span>　·　<span class="ok">ROI</span><span class="mu">vault 从仓库变成会思考的搭档</span></div>
+            </div>
+          </div>
+          <div class="use-meta">
+            <span class="chip">Claudian · Yishen Tu</span>
+            <span class="chip">Claude Code</span>
+            <span class="chip">Codex</span>
+          </div>
+        </li>
+
+      </ul>
+
+      <aside class="aside">
+        <span class="aside-label">收尾提醒</span>
+        <p>
+          就这几个。<strong>4 个接在工作流上的插件，胜过 40 个装着好看的。</strong>
+          每多装一个，先问一句：它落在捕获、链接、提炼、表达哪一步？答不上来，就别装。
+        </p>
+      </aside>
+    </div>
+  </section>
+
+  <!-- ============ § 7 今晚能跑 ============ -->
+  <section class="essay">
+    <div class="essay-inner wide">
+      <header class="section-head">
+        <span class="eyebrow">§ 06 · 今晚能跑</span>
+        <h2>三步——今晚把第二大脑的回路接通</h2>
+        <p class="lede">
+          上面全是理论，直到第一条笔记被"用回"。下面三步，半小时内装好，今晚就能跑一遍——
+          捕获、安全、表达各一个。别想着一步到位建完美的库，先让回路转起来。
+        </p>
+      </header>
+
+      <div class="demo">
+        <div class="demo-head">
+          <span class="demo-num">DEMO · 01</span>
+          <span class="demo-time">10 分钟装 · 每天 2 分钟用</span>
+        </div>
+        <h3>装 Obsidian + 开 daily note，今晚记一条、链一条</h3>
+        <p>第二大脑从一条 daily note 开始。今晚装好 Obsidian，打开每日笔记，写一条今天真学到的东西，再用 <span class="mono">[[ ]]</span> 把它链到任意一条已有笔记上。捕获 + 链接，两步都做了。</p>
+        <ul class="demo-steps">
+          <li>下载 <strong>Obsidian</strong>（免费），新建一个 vault</li>
+          <li>打开核心插件 <strong>Daily notes</strong>，设好模板</li>
+          <li>今晚写一条：今天学到的一个具体东西，用你自己的话</li>
+          <li>用 <span class="mono">[[</span> 把它链到一条旧笔记（没有就先建一条）</li>
+          <li>连做 7 天——第二大脑是长出来的，不是建出来的</li>
+        </ul>
+        <div class="terminal">
+          <div class="terminal-bar">obsidian · daily note · 2026-05-17</div>
+          <div class="terminal-body">
+            <div class="row"><span class="mu">## 今天学到</span></div>
+            <div class="row">第二大脑的价值在"链接"不在"数量"——</div>
+            <div class="row">孤立的笔记是更难搜的文档。</div>
+            <div class="hr"></div>
+            <div class="row"><span class="mu">相关：</span> <span class="ok">[[收藏者谬误]]</span> · <span class="ok">[[原子笔记]]</span></div>
+            <div class="row"><span class="ok">✓ 已捕获 + 已链接 · 回路接通第 1 天</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="demo">
+        <div class="demo-head">
+          <span class="demo-num">DEMO · 02</span>
+          <span class="demo-time">10 分钟装 · 之后自动跑</span>
+        </div>
+        <h3>装 Obsidian Git，给大脑加一张安全网</h3>
+        <p>在你开始大改笔记之前，先装好自动备份。有了版本历史和异地备份，你才敢放手重组、删减、提炼——不怕弄坏。</p>
+        <ul class="demo-steps">
+          <li>社区插件搜 <strong>Obsidian Git</strong>（作者 Vinzent），安装启用</li>
+          <li>建一个<strong>私有</strong> Git 远端仓库（GitHub / 自托管）</li>
+          <li>设置自动 commit 间隔（如每 10 分钟）+ 自动 push</li>
+          <li>故意改一条笔记，再打开历史，确认能回滚</li>
+          <li>从此放手改——误删随时找得回</li>
+        </ul>
+        <div class="terminal">
+          <div class="terminal-bar">obsidian git · 自动备份</div>
+          <div class="terminal-body">
+            <div class="row"><span class="num">10:00</span><span class="mu">auto-commit · 3 个文件改动</span></div>
+            <div class="row"><span class="num">10:10</span><span class="mu">auto-commit + push · 已同步远端</span></div>
+            <div class="row"><span class="mu">— 误删了一条重要笔记 —</span></div>
+            <div class="row"><span class="ok">▌ 打开历史 → 回滚到 10:00 版本</span></div>
+            <div class="row"><span class="ok">✓ 笔记找回 · 全程 30 秒</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="demo">
+        <div class="demo-head">
+          <span class="demo-num">DEMO · 03</span>
+          <span class="demo-time">20 分钟装 · 立刻见效</span>
+        </div>
+        <h3>装 Claudian，让 AI 读你的 vault 回答一个问题</h3>
+        <p>这是第二大脑从"仓库"变成"搭档"的一步。装上 Claudian，让 Claude 把你的 vault 当工作目录，问它一个需要综合多条笔记的问题——你会第一次看到"过去的你"被调出来。</p>
+        <ul class="demo-steps">
+          <li>社区插件装 <strong>Claudian</strong>（作者 Yishen Tu），接上 Claude Code</li>
+          <li>先确认它的工作目录指向你的 vault</li>
+          <li>问一个需要跨笔记的问题，比如"综合我所有关于 X 的笔记"</li>
+          <li>看它搜索 + 读取 + 综合，写成一条新笔记落回 vault</li>
+          <li>你只做判断和删减——这就是"表达"步</li>
+        </ul>
+        <div class="terminal">
+          <div class="terminal-bar">claudian · vault 作为工作目录</div>
+          <div class="terminal-body">
+            <div class="row"><span class="label user">你</span>综合我所有关于"第二大脑"的笔记，出一篇大纲</div>
+            <div class="row"><span class="label bot">CLAUDIAN</span><span class="mu">搜索 vault…</span></div>
+            <div class="row"><span class="label tool">VAULT</span><span class="mu">读取 12 条相关笔记</span></div>
+            <div class="hr"></div>
+            <div class="row">▌ 已综合 · 发现 3 条你没连起来的线</div>
+            <div class="row"><span class="mu">· 收藏者谬误 ↔ 提炼缺失（同一个根因）</span></div>
+            <div class="row"><span class="ok">✓ 新笔记《第二大脑大纲》已写回 vault</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ § 8 90 天 ============ -->
+  <section class="essay">
+    <div class="essay-inner">
+      <header class="section-head">
+        <span class="eyebrow">§ 07 · 接下来 90 天</span>
+        <h2>从收藏家到第二大脑</h2>
+        <p class="lede">
+          这条 90 天路径不承诺你"建成完美知识库"，它给你四个具体动作，每个都带一个明确的失败信号。
+          某一周的失败信号亮了，就回上一周，别往前冲。
+        </p>
+      </header>
+
+      <ul class="timeline">
+        <li class="tl">
+          <span class="tl-week">WEEK 1 – 2 · 养捕获习惯</span>
+          <h3>每天一条 daily note，先把"记"变成反射</h3>
+          <p>每天睡前 5 分钟，在 daily note 写一条今天真学到的东西，用你自己的话。先不求链接，只求每天都记。<strong>失败信号：</strong>第 2 周末你有一半天数空着。<strong>怎么办：</strong>把门槛降到一句话，记得越短越容易坚持。</p>
+        </li>
+        <li class="tl">
+          <span class="tl-week">WEEK 3 – 4 · 开始链接</span>
+          <h3>每条新笔记，强制接两条旧笔记</h3>
+          <p>从这两周起，每写一条新笔记，必须用 <span class="mono">[[ ]]</span> 链到两条已有笔记。这是第二大脑和文件夹的分水岭。<strong>失败信号：</strong>第 4 周末你的笔记还都是孤岛。<strong>怎么办：</strong>笔记太杂没法连，先回到原子笔记——一条只装一个想法。</p>
+        </li>
+        <li class="tl">
+          <span class="tl-week">WEEK 5 – 8 · 自动化捕获 + 安全</span>
+          <h3>装 Git + 一个 importer，让入库零摩擦</h3>
+          <p>装 Obsidian Git 开自动备份；装一个 importer（如 Douyin Capture / 小红书 Importer）把外部素材一键入库。<strong>失败信号：</strong>装了但素材还是散落在收藏夹里。<strong>怎么办：</strong>回到 1&ndash;2 周，捕获习惯没立住，工具救不了习惯。</p>
+        </li>
+        <li class="tl">
+          <span class="tl-week">WEEK 9 – 12 · 接 AI，开始表达</span>
+          <h3>装 Claudian，让 vault 替你综合、写作</h3>
+          <p>装 Claudian，让 Claude 在你的 vault 上跨笔记综合，把笔记重组成真正的产出（文章 / PRD / 选题）。<strong>失败信号：</strong>第 12 周你的笔记还从没变成过一篇产出。<strong>怎么办：</strong>问题不在工具，在你没把"记笔记"和"用笔记产出"接成一条回路。</p>
+        </li>
+      </ul>
+
+      <p style="margin-top: 2.5rem; color: var(--color-muted-foreground);">
+        <strong style="color:var(--color-foreground);">90 天后你应该能回答这个问题：</strong>"过去一周，我写的哪一篇东西，是顺着链接调出过去的笔记、综合出来的？"——
+        能答上来、有产出，你就真有了第二大脑。答不上来，你这 90 天只是又囤了一批笔记，没长出一个脑子。
+      </p>
+    </div>
+  </section>
+
+  <!-- ============ CTA ============ -->
+  <section id="cta" class="essay">
+    <div class="essay-inner">
+      <header class="section-head" style="text-align:center;">
+        <span class="eyebrow" style="display:inline-block;">Real Agent Use Cases</span>
+        <h2 style="margin-top: 0.75rem;">囤一千条笔记，不如用回一条</h2>
+        <p class="lede" style="margin-left:auto;margin-right:auto;">
+          你存的"稍后读"，多半永远不会读。但一套接进产出的第二大脑，会把过去的你，一次次还给现在的你。<br>
+          <strong style="color:var(--color-foreground);">「执行的价值永远被低估」</strong>——今晚不记下并链上第一条，明晚也不会。这不是激励，是观察事实。
+        </p>
+      </header>
+
+      <div class="subscribe">
+        <form class="subscribe-form" onsubmit="event.preventDefault(); window.open('https://realagentusecases.com', '_blank');">
+          <input type="email" placeholder="your@email.com" required>
+          <button class="btn" type="submit">Subscribe — free</button>
+        </form>
+        <p class="subscribe-note">
+          每周一条完整可复制的工作流——工具、步骤、插件全公开。<br>
+          这个 Newsletter 不"鼓励"你，能不能跑通是你的事。
+        </p>
+      </div>
+
+      <p style="text-align:center;margin-top:2.5rem;font-family:var(--font-mono);font-size:0.75rem;color:var(--color-muted-foreground);letter-spacing:0.05em;">
+        <a href="/agent-101/03-ai-tools-workflows/">← EP 03 · 工具与工作流</a>　·　EP 04（你在这里）　·　EP 05（写作中）
+      </p>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site">
+  <div class="footer-inner">
+    © 2026 · Jack Qian
+    <span class="sep">·</span>
+    <a href="https://realagentusecases.com">realagentusecases.com</a>
+    <span class="sep">·</span>
+    Dallas, TX
+  </div>
+</footer>
+
+</body>
+</html>

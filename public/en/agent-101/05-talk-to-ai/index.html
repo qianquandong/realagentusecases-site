@@ -1,0 +1,1632 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="How to talk to AI — a prompt isn't a magic spell, it's a spec. Context, decomposition, examples, verifiable output. By Real Agent Use Cases.">
+<title>Agent 101 · Episode 05 · How to Talk to AI · Real Agent Use Cases</title>
+<link rel="canonical" href="https://realagentusecases.com/en/agent-101/05-talk-to-ai/">
+<link rel="alternate" hrefLang="zh" href="https://realagentusecases.com/agent-101/05-talk-to-ai/">
+<link rel="alternate" hrefLang="en" href="https://realagentusecases.com/en/agent-101/05-talk-to-ai/">
+
+<!-- Open Graph -->
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Real Agent Use Cases">
+<meta property="og:title" content="Agent 101 · Episode 05 · A prompt isn't a spell, it's a spec">
+<meta property="og:description" content="There's no magic spell. Talking to AI well means writing a spec: give context, decompose, show examples, demand verifiable output. A pattern map by task + 3 templates to save tonight.">
+<meta property="og:url" content="https://realagentusecases.com/en/agent-101/05-talk-to-ai/">
+<meta property="og:locale" content="en_US">
+<meta property="og:locale:alternate" content="zh_CN">
+<meta property="og:image" content="https://realagentusecases.com/og/agent-101/opengraph-image">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:alt" content="Agent 101 · Episode 05 · A prompt isn't a magic spell, it's a spec">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Agent 101 · Episode 05 · A prompt isn't a spell, it's a spec">
+<meta name="twitter:description" content="There's no magic spell. Talking to AI well means writing a spec: context, decomposition, examples, verifiable output.">
+<meta name="twitter:image" content="https://realagentusecases.com/og/agent-101/opengraph-image">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@300..900&family=Geist+Mono:wght@300..700&family=Source+Serif+4:ital,wght@0,400..700;1,400..700&display=swap">
+<style>
+  /* ==========================================================
+     Tokens — mirrors realagentusecases.com
+     ========================================================== */
+  :root {
+    --color-background: #0a0a0a;
+    --color-foreground: #f2f2f2;
+    --color-muted: #161616;
+    --color-muted-foreground: #a3a3a3;
+    --color-border: #262626;
+    --color-brand: #2d5e44;
+    --color-brand-hover: #387554;
+    --color-brand-foreground: #fff;
+
+    --font-sans: "Geist", -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", "Hiragino Sans GB", sans-serif;
+    --font-serif: "Source Serif 4", "Songti SC", "STSong", Georgia, "Times New Roman", serif;
+    --font-mono: "Geist Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+
+    --tracking-tight: -0.025em;
+    --leading-snug: 1.375;
+    --leading-relaxed: 1.625;
+
+    --radius-md: 0.375rem;
+    --radius-lg: 0.5rem;
+    --radius-xl: 0.75rem;
+
+    --container-2xl: 42rem; /* 672 — body sections */
+    --container-3xl: 48rem; /* 768 — hero */
+    --container-6xl: 72rem; /* 1152 — nav */
+  }
+
+  /* ==========================================================
+     Reset & base
+     ========================================================== */
+  *, *::before, *::after { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    background: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    line-height: var(--leading-relaxed);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+  h1, h2, h3, h4 {
+    color: var(--color-foreground);
+    font-weight: 600;
+    letter-spacing: var(--tracking-tight);
+    line-height: var(--leading-snug);
+    margin: 0;
+    text-wrap: balance;
+  }
+  p { margin: 0 0 1rem; }
+  a {
+    color: var(--color-foreground);
+    text-decoration: none;
+    transition: color 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  a:hover { color: var(--color-brand); }
+  ::selection { background: var(--color-brand); color: white; }
+  img, svg { max-width: 100%; display: block; }
+
+  /* ==========================================================
+     Layout primitives
+     ========================================================== */
+  .mx-auto { margin-left: auto; margin-right: auto; }
+  .max-w-6xl { max-width: var(--container-6xl); }
+  .max-w-3xl { max-width: var(--container-3xl); }
+  .max-w-2xl { max-width: var(--container-2xl); }
+  .px-6 { padding-left: 1.5rem; padding-right: 1.5rem; }
+  main { min-height: 100vh; }
+
+  /* ==========================================================
+     Sticky nav (matches parent site)
+     ========================================================== */
+  nav.topnav {
+    position: sticky;
+    top: 0;
+    z-index: 40;
+    border-bottom: 1px solid var(--color-border);
+    background: rgba(10, 10, 10, 0.8);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+  }
+  @supports (backdrop-filter: blur(12px)) {
+    nav.topnav { background: rgba(10, 10, 10, 0.6); }
+  }
+  .nav-inner {
+    max-width: var(--container-6xl);
+    margin: 0 auto;
+    padding: 0 1.5rem;
+    height: 3.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .brand {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    letter-spacing: -0.01em;
+    color: var(--color-foreground);
+  }
+  @media (min-width: 640px) { .brand { font-size: 0.875rem; } }
+  .brand:hover { color: var(--color-brand); }
+  .nav-right {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+  }
+  @media (min-width: 640px) { .nav-right { gap: 1.5rem; } }
+  .nav-link {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--color-muted-foreground);
+    letter-spacing: -0.01em;
+    transition: color 0.15s;
+  }
+  @media (min-width: 640px) { .nav-link { font-size: 0.875rem; } }
+  .nav-link:hover { color: var(--color-brand); }
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--radius-md);
+    font-family: var(--font-sans);
+    font-weight: 500;
+    font-size: 0.875rem;
+    height: 2.25rem;
+    padding: 0 1rem;
+    background: var(--color-brand);
+    color: var(--color-brand-foreground);
+    transition: background-color 0.15s, transform 0.15s;
+    cursor: pointer;
+    border: none;
+  }
+  .btn:hover {
+    background: var(--color-brand-hover);
+    color: var(--color-brand-foreground);
+    transform: translateY(-1px);
+  }
+  .btn:active { transform: translateY(0); }
+  .btn.btn-lg { height: 3rem; padding: 0 1.5rem; font-size: 1rem; }
+
+  /* ==========================================================
+     Eyebrow (mono uppercase label)
+     ========================================================== */
+  .eyebrow {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--color-muted-foreground);
+    font-weight: 400;
+  }
+  .eyebrow-lg {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: var(--color-muted-foreground);
+  }
+
+  /* ==========================================================
+     Hero
+     ========================================================== */
+  .hero {
+    max-width: var(--container-3xl);
+    margin: 0 auto;
+    padding: 4rem 1.5rem 7rem;
+    text-align: center;
+  }
+  @media (min-width: 640px) {
+    .hero { padding: 6rem 1.5rem 9rem; }
+  }
+  .hero .eyebrow-lg { display: block; margin-bottom: 1.5rem; }
+  .hero h1 {
+    font-size: 2.25rem;
+    font-weight: 600;
+    letter-spacing: var(--tracking-tight);
+    line-height: 1.1;
+    text-wrap: balance;
+  }
+  @media (min-width: 640px) { .hero h1 { font-size: 3rem; } }
+  @media (min-width: 768px) { .hero h1 { font-size: 3.75rem; } }
+  .hero h1 .brand-word {
+    color: var(--color-brand);
+  }
+  .hero-sub {
+    margin: 1.25rem auto 0;
+    max-width: var(--container-2xl);
+    font-size: 1.125rem;
+    color: var(--color-muted-foreground);
+    line-height: var(--leading-relaxed);
+    text-wrap: balance;
+  }
+  @media (min-width: 640px) { .hero-sub { font-size: 1.25rem; } }
+
+  .hero-list {
+    margin: 1.75rem auto 0;
+    max-width: 30rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    text-align: left;
+    font-size: 0.9375rem;
+    color: var(--color-muted-foreground);
+  }
+  @media (min-width: 640px) { .hero-list { font-size: 0.9375rem; } }
+  .hero-list-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+  }
+  .dot {
+    width: 0.25rem;
+    height: 0.25rem;
+    border-radius: 9999px;
+    background: var(--color-brand);
+    flex-shrink: 0;
+    margin-top: 0.6em;
+  }
+  .hero-ctas {
+    margin-top: 2.5rem;
+    display: flex;
+    gap: 0.75rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .hero-foot {
+    margin-top: 2.5rem;
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: rgba(163, 163, 163, 0.7);
+  }
+
+  /* ==========================================================
+     Section base (essay-style)
+     ========================================================== */
+  section.essay {
+    border-top: 1px solid rgba(38, 38, 38, 0.4);
+  }
+  .essay-inner {
+    max-width: var(--container-2xl);
+    margin: 0 auto;
+    padding: 5rem 1.5rem;
+  }
+  @media (min-width: 640px) {
+    .essay-inner { padding: 6rem 1.5rem; }
+  }
+  .essay-inner.wide {
+    max-width: var(--container-3xl);
+  }
+  .section-head { margin-bottom: 2.5rem; }
+  .section-head .eyebrow { display: block; margin-bottom: 0.75rem; }
+  .section-head h2 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    letter-spacing: var(--tracking-tight);
+    line-height: var(--leading-snug);
+  }
+  @media (min-width: 640px) {
+    .section-head h2 { font-size: 1.875rem; }
+  }
+  .section-head .lede {
+    margin-top: 0.875rem;
+    font-size: 1.0625rem;
+    color: var(--color-muted-foreground);
+    line-height: var(--leading-relaxed);
+  }
+  .essay-body p {
+    color: var(--color-muted-foreground);
+    line-height: var(--leading-relaxed);
+    font-size: 1rem;
+  }
+  .essay-body strong { color: var(--color-foreground); font-weight: 600; }
+
+  /* ==========================================================
+     Item list (matches "Read the latest" article list)
+     ========================================================== */
+  .item-list {
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .item {
+    display: block;
+  }
+  .item .item-eyebrow {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--color-muted-foreground);
+  }
+  .item h3 {
+    margin-top: 0.5rem;
+    font-size: 1.25rem;
+    font-weight: 600;
+    letter-spacing: var(--tracking-tight);
+    line-height: var(--leading-snug);
+    color: var(--color-foreground);
+  }
+  @media (min-width: 640px) {
+    .item h3 { font-size: 1.375rem; }
+  }
+  .item p {
+    margin-top: 0.5rem;
+    color: var(--color-muted-foreground);
+    line-height: var(--leading-relaxed);
+  }
+
+  /* ==========================================================
+     Compare table (Chatbot vs Agent) — minimal two-col
+     ========================================================== */
+  .compare {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+  }
+  @media (min-width: 640px) {
+    .compare { grid-template-columns: 1fr 1fr; }
+  }
+  .compare-cell {
+    padding: 1.75rem;
+    background: var(--color-muted);
+  }
+  .compare-cell + .compare-cell {
+    border-top: 1px solid var(--color-border);
+  }
+  @media (min-width: 640px) {
+    .compare-cell + .compare-cell {
+      border-top: none;
+      border-left: 1px solid var(--color-border);
+    }
+  }
+  .compare-cell.is-agent { background: rgba(45, 94, 68, 0.08); }
+  .compare-cell .item-eyebrow { display: block; margin-bottom: 0.5rem; }
+  .compare-cell .is-agent-eyebrow { color: var(--color-brand); }
+  .compare-cell h3 {
+    font-size: 1.125rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+  }
+  .compare-cell > p {
+    color: var(--color-muted-foreground);
+    font-size: 0.9375rem;
+    margin-bottom: 1rem;
+  }
+  .compare-cell ul {
+    list-style: none;
+    padding: 0;
+    margin: 0.75rem 0 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  .compare-cell li {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.625rem;
+    font-size: 0.9375rem;
+    color: var(--color-muted-foreground);
+  }
+  .compare-cell li::before {
+    content: "×";
+    color: var(--color-muted-foreground);
+    font-family: var(--font-mono);
+    flex-shrink: 0;
+    margin-top: 0.05em;
+  }
+  .compare-cell.is-agent li::before {
+    content: "✓";
+    color: var(--color-brand);
+  }
+
+  /* ==========================================================
+     Pull-quote / aside (analogy block)
+     ========================================================== */
+  .aside {
+    margin-top: 2rem;
+    padding: 1.75rem;
+    border-left: 2px solid var(--color-brand);
+    background: var(--color-muted);
+    border-radius: 0 var(--radius-lg) var(--radius-lg) 0;
+  }
+  .aside .aside-label {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--color-brand);
+    display: block;
+    margin-bottom: 0.625rem;
+  }
+  .aside p {
+    margin: 0;
+    color: var(--color-foreground);
+    font-family: var(--font-serif);
+    font-size: 1.0625rem;
+    line-height: var(--leading-relaxed);
+    font-style: italic;
+  }
+  .aside p strong { font-style: normal; }
+
+  /* ==========================================================
+     Agent loop (SVG + steps)
+     ========================================================== */
+  .loop-wrap {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+    align-items: center;
+  }
+  @media (min-width: 760px) {
+    .loop-wrap { grid-template-columns: 280px 1fr; gap: 3rem; }
+  }
+  .loop-svg { width: 100%; max-width: 280px; margin: 0 auto; }
+  .loop-steps {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  .loop-step {
+    display: grid;
+    grid-template-columns: 2rem 1fr;
+    gap: 0.875rem;
+    align-items: start;
+  }
+  .loop-step .n {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--color-brand);
+    letter-spacing: 0.05em;
+    padding-top: 0.125rem;
+  }
+  .loop-step h4 {
+    font-size: 1.0625rem;
+    margin-bottom: 0.25rem;
+  }
+  .loop-step h4 .en {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--color-muted-foreground);
+    margin-left: 0.5rem;
+    font-weight: 400;
+    letter-spacing: 0.05em;
+  }
+  .loop-step p { margin: 0; color: var(--color-muted-foreground); font-size: 0.9375rem; }
+
+  /* ==========================================================
+     Use cases — vertical list with mono labels (no flashy cards)
+     ========================================================== */
+  .use-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+  .use {
+    padding: 2rem 0;
+    border-top: 1px solid var(--color-border);
+  }
+  .use:first-child { border-top: none; padding-top: 0; }
+  .use:last-child { padding-bottom: 0; }
+  .use-top {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 0.5rem;
+    flex-wrap: wrap;
+  }
+  .use-top .use-label {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--color-muted-foreground);
+  }
+  .use-top .use-gain {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--color-brand);
+    letter-spacing: 0.05em;
+  }
+  .use h3 {
+    font-size: 1.25rem;
+    margin-bottom: 0.625rem;
+  }
+  @media (min-width: 640px) { .use h3 { font-size: 1.375rem; } }
+  .use p { color: var(--color-muted-foreground); margin-bottom: 0.875rem; }
+  .use-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 0.875rem;
+  }
+  .chip {
+    display: inline-block;
+    padding: 0.25rem 0.625rem;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    color: var(--color-muted-foreground);
+    letter-spacing: 0.02em;
+  }
+
+  /* ==========================================================
+     Demo block — mono code-style terminal mock
+     ========================================================== */
+  .demo {
+    margin-top: 2.5rem;
+    padding-top: 2.5rem;
+    border-top: 1px solid var(--color-border);
+  }
+  .demo:first-of-type { border-top: none; padding-top: 0; margin-top: 0; }
+  .demo-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-bottom: 0.625rem;
+  }
+  .demo-num {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--color-brand);
+  }
+  .demo-time {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    color: var(--color-muted-foreground);
+    letter-spacing: 0.05em;
+  }
+  .demo h3 {
+    font-size: 1.375rem;
+    margin-bottom: 0.625rem;
+  }
+  .demo > p {
+    color: var(--color-muted-foreground);
+    margin-bottom: 1.25rem;
+  }
+  .demo-steps {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 1.5rem;
+    counter-reset: step;
+  }
+  .demo-steps li {
+    counter-increment: step;
+    padding: 0.625rem 0 0.625rem 2rem;
+    position: relative;
+    color: var(--color-muted-foreground);
+    font-size: 0.9375rem;
+    line-height: var(--leading-relaxed);
+    border-top: 1px dashed rgba(38, 38, 38, 0.6);
+  }
+  .demo-steps li:first-child { border-top: none; }
+  .demo-steps li::before {
+    content: counter(step, decimal-leading-zero);
+    position: absolute;
+    left: 0;
+    top: 0.625rem;
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    color: var(--color-brand);
+    letter-spacing: 0.05em;
+  }
+  .demo-steps strong { color: var(--color-foreground); font-weight: 600; }
+
+  .terminal {
+    background: var(--color-muted);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    font-family: var(--font-mono);
+    font-size: 0.8125rem;
+    line-height: 1.7;
+    color: var(--color-foreground);
+    overflow: hidden;
+  }
+  .terminal-bar {
+    padding: 0.625rem 0.875rem;
+    background: rgba(0, 0, 0, 0.3);
+    border-bottom: 1px solid var(--color-border);
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    color: var(--color-muted-foreground);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .terminal-body { padding: 1.125rem; }
+  .terminal-body .row { padding: 0.05rem 0; }
+  .terminal-body .mu { color: var(--color-muted-foreground); }
+  .terminal-body .ok { color: var(--color-brand); }
+  .terminal-body .label {
+    display: inline-block;
+    color: var(--color-muted-foreground);
+    margin-right: 0.5rem;
+  }
+  .terminal-body .label.user { color: #c2a8ff; }
+  .terminal-body .label.bot { color: var(--color-brand); }
+  .terminal-body .label.tool { color: #d4a657; }
+  .terminal-body .hr {
+    border-top: 1px dashed var(--color-border);
+    margin: 0.5rem 0;
+  }
+  /* Workflow terminal helpers */
+  .terminal-body .step {
+    display: inline-block;
+    min-width: 6.5rem;
+    color: var(--color-foreground);
+    font-weight: 500;
+  }
+  .terminal-body .num {
+    display: inline-block;
+    width: 1.75rem;
+    color: var(--color-brand);
+  }
+  .terminal-body .meta {
+    color: var(--color-brand);
+    font-weight: 500;
+  }
+  .terminal-title-tag {
+    display: inline-block;
+    padding: 1px 6px;
+    margin-right: 0.5rem;
+    background: var(--color-brand);
+    color: var(--color-brand-foreground);
+    border-radius: 3px;
+    font-size: 0.625rem;
+    letter-spacing: 0.1em;
+    font-weight: 600;
+  }
+
+  /* Case-list divider: visual separation between "by-job" and "by-scenario" cases */
+  .case-divider {
+    margin: 3rem 0;
+    padding: 2.25rem 1.5rem;
+    border-top: 1px solid var(--color-border);
+    border-bottom: 1px solid var(--color-border);
+    text-align: center;
+  }
+  .case-divider .eyebrow {
+    display: block;
+    margin-bottom: 0.75rem;
+    color: var(--color-brand);
+  }
+  .case-divider h3 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 0.625rem;
+    letter-spacing: var(--tracking-tight);
+  }
+  .case-divider p {
+    color: var(--color-muted-foreground);
+    max-width: 40rem;
+    margin: 0 auto;
+    font-size: 0.9375rem;
+    line-height: var(--leading-relaxed);
+  }
+
+  /* ==========================================================
+     Timeline — minimal vertical list with mono dates
+     ========================================================== */
+  .timeline {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+  .tl {
+    padding-left: 1.5rem;
+    border-left: 1px solid var(--color-border);
+    position: relative;
+  }
+  .tl::before {
+    content: "";
+    position: absolute;
+    left: -0.3125rem;
+    top: 0.4rem;
+    width: 0.5625rem;
+    height: 0.5625rem;
+    border-radius: 9999px;
+    background: var(--color-background);
+    border: 2px solid var(--color-brand);
+  }
+  .tl .tl-week {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--color-brand);
+    display: block;
+    margin-bottom: 0.375rem;
+  }
+  .tl h3 {
+    font-size: 1.125rem;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+  }
+  .tl p { margin: 0; color: var(--color-muted-foreground); }
+
+  /* ==========================================================
+     Subscribe / CTA
+     ========================================================== */
+  .subscribe {
+    margin: 2.5rem auto 0;
+    max-width: 28rem;
+  }
+  .subscribe-form {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  @media (min-width: 640px) {
+    .subscribe-form { flex-direction: row; }
+  }
+  .subscribe input[type="email"] {
+    flex: 1;
+    min-width: 0;
+    height: 3rem;
+    padding: 0 1rem;
+    border-radius: var(--radius-md);
+    background: var(--color-muted);
+    border: 1px solid rgba(163, 163, 163, 0.3);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    transition: border-color 0.15s;
+  }
+  .subscribe input[type="email"]::placeholder { color: var(--color-muted-foreground); }
+  .subscribe input[type="email"]:focus {
+    outline: none;
+    border-color: var(--color-brand);
+  }
+  .subscribe .btn { flex-shrink: 0; height: 3rem; padding: 0 1.5rem; font-size: 1rem; }
+  .subscribe-note {
+    margin-top: 0.75rem;
+    font-size: 0.75rem;
+    color: var(--color-muted-foreground);
+    text-align: center;
+  }
+
+  /* ==========================================================
+     Footer
+     ========================================================== */
+  footer.site {
+    border-top: 1px solid var(--color-border);
+    padding: 2.5rem 1.5rem;
+    margin-top: 4rem;
+  }
+  .footer-inner {
+    max-width: var(--container-2xl);
+    margin: 0 auto;
+    text-align: center;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--color-muted-foreground);
+    letter-spacing: 0.05em;
+  }
+  .footer-inner a { color: var(--color-muted-foreground); }
+  .footer-inner a:hover { color: var(--color-brand); }
+  .footer-inner .sep { color: var(--color-border); margin: 0 0.625rem; }
+
+  /* ==========================================================
+     Audience profile chart (donut + legend)
+     ========================================================== */
+  .audience {
+    margin-bottom: 4rem;
+    padding-bottom: 3rem;
+    border-bottom: 1px solid var(--color-border);
+  }
+  .audience-head { margin-bottom: 2rem; }
+  .audience-head .eyebrow { display: block; margin-bottom: 0.625rem; }
+  .audience-head h3 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    letter-spacing: var(--tracking-tight);
+  }
+  @media (min-width: 640px) { .audience-head h3 { font-size: 1.375rem; } }
+  .audience-head p { color: var(--color-muted-foreground); margin: 0; }
+
+  .audience-body {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    align-items: center;
+  }
+  @media (min-width: 720px) {
+    .audience-body { grid-template-columns: 260px 1fr; gap: 3rem; }
+  }
+
+  .donut {
+    width: 100%;
+    max-width: 240px;
+    margin: 0 auto;
+    aspect-ratio: 1;
+    position: relative;
+  }
+  .donut svg { width: 100%; height: 100%; display: block; }
+  .donut-center {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    pointer-events: none;
+  }
+  .donut-center .n {
+    font-family: var(--font-mono);
+    font-size: 1.875rem;
+    font-weight: 600;
+    color: var(--color-foreground);
+    line-height: 1;
+    letter-spacing: -0.02em;
+  }
+  .donut-center .lbl {
+    margin-top: 0.375rem;
+    font-family: var(--font-mono);
+    font-size: 0.625rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--color-muted-foreground);
+  }
+
+  .legend {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.875rem;
+  }
+  .legend li {
+    display: grid;
+    grid-template-columns: 0.625rem 1fr auto;
+    gap: 0.75rem;
+    align-items: center;
+    padding: 0.625rem 0;
+    border-top: 1px solid var(--color-border);
+  }
+  .legend li:first-child { border-top: none; padding-top: 0; }
+  .legend .swatch {
+    width: 0.625rem;
+    height: 0.625rem;
+    border-radius: 2px;
+  }
+  .legend .name {
+    color: var(--color-foreground);
+    font-size: 0.9375rem;
+    font-weight: 500;
+  }
+  .legend .pct {
+    font-family: var(--font-mono);
+    font-size: 0.9375rem;
+    color: var(--color-muted-foreground);
+    letter-spacing: 0.02em;
+    font-feature-settings: "tnum" 1;
+  }
+
+  /* Sub-bullets inside a use case */
+  .sub-list {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 0.875rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  .sub-list li {
+    display: grid;
+    grid-template-columns: 1.5rem 1fr;
+    gap: 0.5rem;
+    color: var(--color-muted-foreground);
+    font-size: 0.9375rem;
+    line-height: var(--leading-relaxed);
+  }
+  .sub-list li::before {
+    content: "→";
+    font-family: var(--font-mono);
+    color: var(--color-brand);
+    margin-top: 0.05em;
+  }
+  .sub-list strong { color: var(--color-foreground); font-weight: 600; }
+
+  /* ==========================================================
+     Utilities
+     ========================================================== */
+  .mono { font-family: var(--font-mono); }
+  .serif { font-family: var(--font-serif); }
+
+  /* ==========================================================
+     Episode tabs — sits between topnav and main on agent-101 pages
+     ========================================================== */
+  .ep-tabs {
+    position: sticky;
+    top: 3.5rem;
+    z-index: 39;
+    border-bottom: 1px solid var(--color-border);
+    background: var(--color-background);
+  }
+  .ep-tabs-inner {
+    max-width: var(--container-6xl);
+    margin: 0 auto;
+    padding: 0 1.5rem;
+    display: flex;
+    align-items: stretch;
+    gap: 1.25rem;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+  }
+  .ep-tabs-inner::-webkit-scrollbar { display: none; }
+  .ep-tabs-label {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--color-muted-foreground);
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    padding: 0.875rem 0;
+  }
+  .ep-tab {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    text-decoration: none;
+    white-space: nowrap;
+    padding: 0.875rem 0;
+    color: var(--color-muted-foreground);
+    transition: color 0.15s;
+    border-bottom: 2px solid transparent;
+    margin-bottom: -1px;
+  }
+  .ep-tab:hover { color: var(--color-foreground); text-decoration: none; }
+  .ep-tab.is-current {
+    color: var(--color-foreground);
+    border-bottom-color: var(--color-brand);
+  }
+  .ep-tab-num {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+    color: var(--color-brand);
+    font-weight: 600;
+  }
+  .ep-tab-title {
+    font-family: var(--font-sans);
+    font-size: 0.875rem;
+    font-weight: 500;
+  }
+  .ep-tab-lang {
+    font-family: var(--font-mono);
+    font-size: 0.625rem;
+    letter-spacing: 0.1em;
+    color: var(--color-muted-foreground);
+    margin-left: 0.375rem;
+    padding: 1px 5px;
+    border: 1px solid var(--color-border);
+    border-radius: 3px;
+  }
+  @media (max-width: 640px) {
+    .ep-tab-title { display: none; }
+    .ep-tabs-label { font-size: 0.6875rem; }
+    .ep-tabs-inner { gap: 1rem; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="topnav">
+  <div class="nav-inner">
+    <a href="/" class="brand">realagentusecases.com</a>
+    <div class="nav-right">
+      <a href="/en/news/" class="nav-link">News</a>
+      <a href="/agent-101/05-talk-to-ai/" class="nav-link">中</a>
+      <a class="btn" href="#cta">Subscribe</a>
+    </div>
+  </div>
+</nav>
+
+<nav class="ep-tabs" aria-label="Agent 101 episode navigation">
+  <div class="ep-tabs-inner">
+    <span class="ep-tabs-label">Agent 101 ·</span>
+    <a href="/en/agent-101/" class="ep-tab">
+      <span class="ep-tab-num">EP 01</span>
+      <span class="ep-tab-title">What is AI Agent</span>
+    </a>
+    <a href="/en/agent-101/02-multi-agent/" class="ep-tab">
+      <span class="ep-tab-num">EP 02</span>
+      <span class="ep-tab-title">Multi-agent &amp; Skills</span>
+    </a>
+    <a href="/en/agent-101/03-ai-tools-workflows/" class="ep-tab">
+      <span class="ep-tab-num">EP 03</span>
+      <span class="ep-tab-title">Tools &amp; Workflows</span>
+    </a>
+    <a href="/en/agent-101/04-obsidian-second-brain/" class="ep-tab">
+      <span class="ep-tab-num">EP 04</span>
+      <span class="ep-tab-title">Obsidian Second Brain</span>
+    </a>
+    <a href="/en/agent-101/05-talk-to-ai/" class="ep-tab is-current">
+      <span class="ep-tab-num">EP 05</span>
+      <span class="ep-tab-title">Talk to AI</span>
+    </a>
+    <a href="/en/agent-101/06-track-ai-trends/" class="ep-tab">
+      <span class="ep-tab-num">EP 06</span>
+      <span class="ep-tab-title">Track AI Trends</span>
+    </a>
+  </div>
+</nav>
+
+<main>
+
+  <!-- ============ HERO ============ -->
+  <section class="hero">
+    <span class="eyebrow-lg">EPISODE 05 · How to talk to AI · 2026.05.17</span>
+    <h1>
+      A prompt isn't a <span class="brand-word">spell</span>.<br>
+      It's a <span class="brand-word">spec</span>.
+    </h1>
+
+    <p class="hero-sub" style="margin-top: 1.5rem;">
+      This is a talk about how to talk to AI.<br>
+      More accurately — it's a talk about giving up the search for the "magic words."
+    </p>
+
+    <ul class="hero-list">
+      <li class="hero-list-item"><span class="dot"></span><span>There are no magic words — communicating well means writing a spec a machine can execute</span></li>
+      <li class="hero-list-item"><span class="dot"></span><span>"Write me a XX" is an empty phrase — rewrite it into a request with context and an acceptance test</span></li>
+      <li class="hero-list-item"><span class="dot"></span><span>A pattern map by task — rewriting, brainstorming, analysis, and code all need a different ask</span></li>
+    </ul>
+
+    <div class="hero-ctas">
+      <a class="btn btn-lg" href="#deconstruct">Start with the word →</a>
+    </div>
+
+    <div class="hero-foot">
+      AGENT 101 SERIES · EP 05 · NO-BULLSHIT EDITION
+    </div>
+  </section>
+
+  <!-- ============ § 1 prompt ≠ spell ============ -->
+  <section id="deconstruct" class="essay">
+    <div class="essay-inner">
+      <header class="section-head">
+        <span class="eyebrow">§ 01 · Start with the word</span>
+        <h2>"Prompt" also means three different things in three mouths</h2>
+        <p class="lede">
+          Like "Agent" in EP01, the word "prompt" is overloaded. Some treat it as a spell, some as a product —
+          only one use loses information when you delete it: a spec you write for a machine so it can do the work.
+        </p>
+      </header>
+
+      <ul class="item-list">
+        <li class="item">
+          <span class="item-eyebrow">USE · 01 · THE SPELL HUNTERS</span>
+          <h3>Prompt = a magic incantation</h3>
+          <p>"Is there one line that makes AI insanely powerful?" — this use imagines the prompt as a magic password, some hidden switch. There isn't one. The same "spell" produces wildly different results in different contexts. Spell hunters are always looking for the next line, never figuring out what they actually want.</p>
+        </li>
+        <li class="item">
+          <span class="item-eyebrow">USE · 02 · THE BUNDLE SELLERS</span>
+          <h3>Prompt = a product</h3>
+          <p>"1000 high-efficiency prompts for $99" — the placebo from EP01. Prompts are deeply personal; <strong>a prompt written for someone else's workflow runs at under 5% efficiency in yours.</strong> Treating prompts as a wholesalable commodity is exactly the sign the seller doesn't know what a prompt is.</p>
+        </li>
+        <li class="item">
+          <span class="item-eyebrow">USE · 03 · THE PEOPLE ACTUALLY USING IT</span>
+          <h3>Prompt = a spec</h3>
+          <p>The only use that loses information when deleted. It means: you write out what to do, what context, what constraints, what format, and how "done right" is judged, then hand it to the machine. It's the same thing an engineer does writing a requirements doc — people who can write a spec don't need spells.</p>
+        </li>
+      </ul>
+
+      <aside class="aside">
+        <span class="aside-label">In plain words</span>
+        <p>
+          Today we only cover the third: <strong>a prompt is a spec, not a spell.</strong>
+          How well you communicate with AI doesn't depend on how many "magic lines" you've memorized — it depends on whether you can turn the fuzzy demand in your head into a checklist a machine can execute.
+        </p>
+      </aside>
+    </div>
+  </section>
+
+  <!-- ============ § 2 audit your request ============ -->
+  <section class="essay">
+    <div class="essay-inner">
+      <header class="section-head">
+        <span class="eyebrow">§ 02 · Audit your request</span>
+        <h2>"Write me a XX" is an empty phrase</h2>
+        <p class="lede">
+          Most of what you say to AI is this kind: write me some copy, analyze this for me, polish this.
+          It sounds like a task, but it fails the three simplest checks. If it fails, all AI can return is a mediocre average.
+        </p>
+      </header>
+
+      <ul class="item-list">
+        <li class="item">
+          <span class="item-eyebrow">REQUEST TEST · 01</span>
+          <h3>Is the context you gave enough to get it right?</h3>
+          <p>"Write me an email" — to whom? What relationship? To achieve what? AI can't read the background in your head. Mediocre output usually isn't it being dumb — it's you treating it like a fortune teller and giving it half a sentence. <strong>The information in your context sets the ceiling on the output.</strong></p>
+        </li>
+        <li class="item">
+          <span class="item-eyebrow">REQUEST TEST · 02</span>
+          <h3>Can you say what "done right" even looks like?</h3>
+          <p>"Polish this" — polished into what? More formal? Shorter? More persuasive? If you don't have an acceptance standard yourself, AI can only guess at an "average good." <strong>A request with no acceptance criteria always returns a safe-but-mediocre answer.</strong></p>
+        </li>
+        <li class="item">
+          <span class="item-eyebrow">REQUEST TEST · 03</span>
+          <h3>When you're unhappy, can you say exactly what's wrong?</h3>
+          <p>The critical one. Disliking v1 is normal — but can you point out "too wordy / wrong tone / missed X" so it fixes precisely? If all you can say is "redo it," that's not AI failing, it's you not having thought the request through. The core skill of talking to AI is <strong>the ability to give precise feedback.</strong></p>
+        </li>
+      </ul>
+
+      <aside class="aside">
+        <span class="aside-label">Rewrite: from empty request to a spec</span>
+        <p style="font-style: normal; font-family: var(--font-sans);">
+          <span style="color: var(--color-muted-foreground);">Original:</span><br>
+          <s style="color: var(--color-muted-foreground);">"Write an email to nudge the client."</s><br><br>
+          <span style="color: var(--color-brand); font-family: var(--font-mono); font-size: 0.75rem; letter-spacing: 0.1em;">REWRITE ↓</span><br><br>
+          <strong>"Role: you're my sales assistant. Context: client David said last week he'd sign the contract; 5 days of silence. Goal: nudge for progress without sounding like debt collection. Constraints: under 100 words, professional and warm, offer a low-friction next step. Format: give the email body directly."</strong>
+        </p>
+      </aside>
+
+      <p style="margin-top: 2rem; color: var(--color-muted-foreground); font-size: 0.9375rem;">
+        See the difference? The first makes AI guess; the second lets AI execute — role, context, goal, constraints, format.
+        <strong style="color: var(--color-foreground); font-weight: 600;">A good prompt isn't longer — it's more like a spec something can be built from.</strong>
+      </p>
+    </div>
+  </section>
+
+  <!-- ============ § 3 spell vs spec ============ -->
+  <section class="essay">
+    <div class="essay-inner">
+      <header class="section-head">
+        <span class="eyebrow">§ 03 · After the word</span>
+        <h2>"Hunting spells" and "writing specs" are two completely different ways to communicate</h2>
+        <p class="lede">
+          On the same model, two people get output a tier apart. The difference isn't which magic line they used —
+          it's whether their head runs "gamble on a spell" or "write a clear spec." This is the only contrast you need.
+        </p>
+      </header>
+
+      <div class="compare">
+        <div class="compare-cell">
+          <span class="item-eyebrow">SPELL HUNTER · what you might be doing</span>
+          <h3>Gambling, on magic lines</h3>
+          <p>Copies "universal prompts" everywhere, swaps a new one when it fails, never asks what they want.</p>
+          <ul>
+            <li>Hoards piles of "god-tier prompt" templates</li>
+            <li>Throws one line over, expects a miracle</li>
+            <li>When unhappy, says "redo it / wrong"</li>
+            <li>Output quality is luck — good some days, not others</li>
+          </ul>
+        </div>
+        <div class="compare-cell is-agent">
+          <span class="item-eyebrow is-agent-eyebrow">SPEC WRITER · who you're becoming</span>
+          <h3>Specifying, with a spec</h3>
+          <p>Writes role + context + goal + constraints + format, then iterates with precise feedback.</p>
+          <ul>
+            <li>Decides "what's right" before speaking</li>
+            <li>Gives enough context so AI can aim</li>
+            <li>When unhappy, points to "where, and why"</li>
+            <li>Output is stable, controllable, acceptance-testable</li>
+          </ul>
+        </div>
+      </div>
+
+      <aside class="aside">
+        <span class="aside-label">A plain analogy</span>
+        <p>
+          <strong>Hunting spells is like making a wish</strong> — say a line to the lamp, close your eyes, open them, see what luck gave you.
+          <strong>Writing a spec is like delegating to a colleague</strong> — a sharp new hire does it more accurately the clearer you brief them (what you want, what you give, what counts as good).
+          AI is that smart-but-non-telepathic new hire. The whole craft of communication is whether you can delegate.
+        </p>
+      </aside>
+    </div>
+  </section>
+
+  <!-- ============ § 4 what a spec looks like (loop) ============ -->
+  <section class="essay">
+    <div class="essay-inner wide">
+      <header class="section-head">
+        <span class="eyebrow">§ 04 · How to write a spec</span>
+        <h2>Four steps: Context → Decompose → Examples → Verifiable output</h2>
+        <p class="lede">
+          Every prompt that "nails it first try" is these four steps turning. It's not about writing long — it's about writing all four.
+          Miss context and it drifts; miss acceptance criteria and it's mediocre. Remember the four and you'll know why a prompt doesn't work.
+        </p>
+      </header>
+
+      <div class="loop-wrap">
+        <svg class="loop-svg" viewBox="0 0 280 280" xmlns="http://www.w3.org/2000/svg" aria-label="The four-step spec loop">
+          <defs>
+            <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+              <path d="M 0 0 L 10 5 L 0 10 z" fill="#2d5e44"/>
+            </marker>
+          </defs>
+          <circle cx="140" cy="140" r="105" fill="none" stroke="#262626" stroke-width="1" stroke-dasharray="2 5"/>
+          <circle cx="140" cy="140" r="32" fill="#161616" stroke="#2d5e44" stroke-width="1.5"/>
+          <text x="140" y="138" text-anchor="middle" font-family="Geist Mono, monospace" font-size="9" fill="#f2f2f2" font-weight="600">SPEC</text>
+          <text x="140" y="152" text-anchor="middle" font-family="Geist Mono, monospace" font-size="8" fill="#a3a3a3">PROMPT</text>
+
+          <g transform="translate(140, 40)">
+            <circle r="28" fill="#0a0a0a" stroke="#2d5e44" stroke-width="1.5"/>
+            <text y="0" text-anchor="middle" font-family="Geist Mono, monospace" font-size="7.5" font-weight="600" fill="#f2f2f2">CONTEXT</text>
+          </g>
+          <g transform="translate(240, 140)">
+            <circle r="28" fill="#0a0a0a" stroke="#2d5e44" stroke-width="1.5"/>
+            <text y="0" text-anchor="middle" font-family="Geist Mono, monospace" font-size="6.5" font-weight="600" fill="#f2f2f2">DECOMPOSE</text>
+          </g>
+          <g transform="translate(140, 240)">
+            <circle r="28" fill="#0a0a0a" stroke="#2d5e44" stroke-width="1.5"/>
+            <text y="0" text-anchor="middle" font-family="Geist Mono, monospace" font-size="7.5" font-weight="600" fill="#f2f2f2">EXAMPLES</text>
+          </g>
+          <g transform="translate(40, 140)">
+            <circle r="28" fill="#0a0a0a" stroke="#2d5e44" stroke-width="1.5"/>
+            <text y="0" text-anchor="middle" font-family="Geist Mono, monospace" font-size="8" font-weight="600" fill="#f2f2f2">VERIFY</text>
+          </g>
+
+          <path d="M 168 60 Q 215 80 220 112" fill="none" stroke="#2d5e44" stroke-width="1" marker-end="url(#arr)" opacity="0.8"/>
+          <path d="M 220 168 Q 215 200 168 220" fill="none" stroke="#2d5e44" stroke-width="1" marker-end="url(#arr)" opacity="0.8"/>
+          <path d="M 112 220 Q 65 200 60 168" fill="none" stroke="#2d5e44" stroke-width="1" marker-end="url(#arr)" opacity="0.8"/>
+          <path d="M 60 112 Q 65 80 112 60" fill="none" stroke="#2d5e44" stroke-width="1" marker-end="url(#arr)" opacity="0.8"/>
+        </svg>
+
+        <ul class="loop-steps">
+          <li class="loop-step">
+            <span class="n">01</span>
+            <div>
+              <h4>Context<span class="en">CONTEXT</span></h4>
+              <p>Tell it: who you are, who it plays, the background, the goal. AI doesn't read minds; the information you give directly sets the ceiling on its output. Most mediocre answers come from giving the task but not the context.</p>
+            </div>
+          </li>
+          <li class="loop-step">
+            <span class="n">02</span>
+            <div>
+              <h4>Decompose<span class="en">DECOMPOSE</span></h4>
+              <p>Don't throw a complex task over in one line. Break it into steps, or have it "think before doing" (outline first, you confirm, then it writes). One-shot big tasks drift most; broken apart, each step is controllable.</p>
+            </div>
+          </li>
+          <li class="loop-step">
+            <span class="n">03</span>
+            <div>
+              <h4>Examples<span class="en">EXAMPLES</span></h4>
+              <p>One good example beats a hundred adjectives. Want a tone or format? Give it one or two samples (few-shot). "Write like this" is far more precise than "write professionally" — examples are the cheapest way to align with AI.</p>
+            </div>
+          </li>
+          <li class="loop-step">
+            <span class="n">04</span>
+            <div>
+              <h4>Verify<span class="en">VERIFY</span></h4>
+              <p>Ask for an output whose correctness you can check, and give the acceptance criteria. Then look, give precise feedback, iterate. Treat it like debugging: v1 is a draft; your precise feedback is what forces it into shape.</p>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ § 5 patterns by task ============ -->
+  <section class="essay">
+    <div class="essay-inner wide">
+      <header class="section-head">
+        <span class="eyebrow">§ 05 · Patterns by task</span>
+        <h2>Different jobs need a different ask</h2>
+        <p class="lede">
+          The "universal prompt" is an illusion. Rewriting, brainstorming, analysis, building — the best ask for each is completely different.
+          Each below gets one minimal pattern + one contrast. Remember the pattern, swap the content anytime.
+        </p>
+      </header>
+
+      <ul class="use-list">
+
+        <!-- ───── 01 · rewrite ───── -->
+        <li class="use">
+          <div class="use-top">
+            <span class="use-label">PATTERN · 01 · REWRITE / POLISH</span>
+            <span class="use-gain">"redo it" → nailed in one</span>
+          </div>
+          <h3>Rewriting: give a "target tone" + an example, not "polish this"</h3>
+          <p style="color:var(--color-foreground);font-weight:500;margin-bottom:1rem;">
+            Contrarian take: rewriting fails most, because "good" is too subjective.
+            <strong>Don't say "polish," say which direction — shorter / more formal / more persuasive — and give one sample you approve of as an anchor. Direction + example is how AI knows where to go.</strong>
+          </p>
+          <div class="terminal">
+            <div class="terminal-bar"><span class="terminal-title-tag">PATTERN</span>rewrite pattern</div>
+            <div class="terminal-body">
+              <div class="row"><span class="num">①</span><span class="step">SOURCE</span><span class="mu">[paste the text to rewrite]</span></div>
+              <div class="row"><span class="num">②</span><span class="step">DIRECTION</span><span class="mu">tighter / more formal / more casual · be specific</span></div>
+              <div class="row"><span class="num">③</span><span class="step">ANCHOR</span><span class="mu">"match the tone of: [a sample you like]"</span></div>
+              <div class="row"><span class="num">④</span><span class="step">LIMITS</span><span class="mu">word count / keep these points / avoid these</span></div>
+              <div class="hr"></div>
+              <div class="row"><span class="ok">FEEDBACK</span><span class="mu">"sentence 2 too stiff, keep the rest" — point precisely</span></div>
+            </div>
+          </div>
+          <div class="use-meta">
+            <span class="chip">direction, not "polish"</span>
+            <span class="chip">one anchor example</span>
+            <span class="chip">precise feedback</span>
+          </div>
+        </li>
+
+        <!-- ───── 02 · brainstorm ───── -->
+        <li class="use">
+          <div class="use-top">
+            <span class="use-label">PATTERN · 02 · BRAINSTORM</span>
+            <span class="use-gain">5 mediocre → 1 usable</span>
+          </div>
+          <h3>Diverging: ask for "quantity + dimensions + permission to be wild," not "any suggestions"</h3>
+          <p style="color:var(--color-foreground);font-weight:500;margin-bottom:1rem;">
+            Contrarian take: ask "any suggestions" and you get the safest average.
+            <strong>For diverging, reverse it: ask for 20 at once, across different dimensions, allow extreme and absurd. Get breadth first, then have it self-rank the 3 worth digging into.</strong>
+          </p>
+          <div class="terminal">
+            <div class="terminal-bar"><span class="terminal-title-tag">PATTERN</span>brainstorm pattern</div>
+            <div class="terminal-body">
+              <div class="row"><span class="num">①</span><span class="step">QUANTITY</span><span class="mu">"give me 20, not just 3"</span></div>
+              <div class="row"><span class="num">②</span><span class="step">AXES</span><span class="mu">"a few each from cost / audience / channel / contrarian"</span></div>
+              <div class="row"><span class="num">③</span><span class="step">UNLEASH</span><span class="mu">"allow extreme and seemingly absurd ideas"</span></div>
+              <div class="row"><span class="num">④</span><span class="step">CONVERGE</span><span class="mu">"now self-rank, pick the 3 worth digging, with reasons"</span></div>
+              <div class="hr"></div>
+              <div class="row"><span class="ok">KEY</span><span class="mu">broad first, narrow later · don't let it pre-judge</span></div>
+            </div>
+          </div>
+          <div class="use-meta">
+            <span class="chip">quantity first</span>
+            <span class="chip">specify axes</span>
+            <span class="chip">converge after</span>
+          </div>
+        </li>
+
+        <!-- ───── 03 · analyze ───── -->
+        <li class="use">
+          <div class="use-top">
+            <span class="use-label">PATTERN · 03 · ANALYZE / JUDGE</span>
+            <span class="use-gain">agreeing → actually helping</span>
+          </div>
+          <h3>Analysis: make it "think before answering" + give the counter-case, don't let it agree with you</h3>
+          <p style="color:var(--color-foreground);font-weight:500;margin-bottom:1rem;">
+            Contrarian take: AI defaults to agreeing with you — ask "is this okay?" and it mostly says yes.
+            <strong>For analysis, force independent thinking: reasoning first then conclusion, a mandatory counter-case, explicit flags on what it's unsure of. You want a second brain, not an echo chamber.</strong>
+          </p>
+          <div class="terminal">
+            <div class="terminal-bar"><span class="terminal-title-tag">PATTERN</span>analysis pattern</div>
+            <div class="terminal-body">
+              <div class="row"><span class="num">①</span><span class="step">THINK</span><span class="mu">"reason step by step first, then conclude"</span></div>
+              <div class="row"><span class="num">②</span><span class="step">COUNTER</span><span class="mu">"give the strongest opposing case + its basis"</span></div>
+              <div class="row"><span class="num">③</span><span class="step">UNSURE</span><span class="mu">"flag clearly what you're unsure of / lack data on"</span></div>
+              <div class="row"><span class="num">④</span><span class="step">NO YES-MAN</span><span class="mu">"don't accommodate me just because I lean a way"</span></div>
+              <div class="hr"></div>
+              <div class="row"><span class="ok">KEY</span><span class="mu">treat it as a sparring partner · not a fan club</span></div>
+            </div>
+          </div>
+          <div class="use-meta">
+            <span class="chip">reason then conclude</span>
+            <span class="chip">force a counter-case</span>
+            <span class="chip">flag uncertainty</span>
+          </div>
+        </li>
+
+        <!-- ───── 04 · build / code ───── -->
+        <li class="use">
+          <div class="use-top">
+            <span class="use-label">PATTERN · 04 · BUILD / CODE</span>
+            <span class="use-gain">runs but wrong → verifiable</span>
+          </div>
+          <h3>Building: give "verifiable success criteria," not just "write a script"</h3>
+          <p style="color:var(--color-foreground);font-weight:500;margin-bottom:1rem;">
+            Contrarian take: for code/execution tasks, "looks right" is the trap.
+            <strong>The key is a machine-checkable success criterion — input/output examples, tests to pass, edge cases. Have it propose an approach for you to confirm, then write, then self-test. Verifiable means trustable.</strong>
+          </p>
+          <div class="terminal">
+            <div class="terminal-bar"><span class="terminal-title-tag">PATTERN</span>build pattern</div>
+            <div class="terminal-body">
+              <div class="row"><span class="num">①</span><span class="step">GOAL</span><span class="mu">"input is X, expected output is Y" (give examples)</span></div>
+              <div class="row"><span class="num">②</span><span class="step">PLAN FIRST</span><span class="mu">"explain approach + trade-offs, I confirm, then write"</span></div>
+              <div class="row"><span class="num">③</span><span class="step">VERIFY</span><span class="mu">"include tests / run it to prove it's correct"</span></div>
+              <div class="row"><span class="num">④</span><span class="step">EDGES</span><span class="mu">"handle nulls / errors / extreme inputs"</span></div>
+              <div class="hr"></div>
+              <div class="row"><span class="ok">KEY</span><span class="mu">code with no acceptance test · equals not written</span></div>
+            </div>
+          </div>
+          <div class="use-meta">
+            <span class="chip">give I/O examples</span>
+            <span class="chip">plan before code</span>
+            <span class="chip">demand self-test</span>
+          </div>
+        </li>
+
+      </ul>
+    </div>
+  </section>
+
+  <!-- ============ § 6 run tonight ============ -->
+  <section class="essay">
+    <div class="essay-inner wide">
+      <header class="section-head">
+        <span class="eyebrow">§ 06 · Run it tonight</span>
+        <h2>Three templates — save them tonight, use them tomorrow</h2>
+        <p class="lede">
+          Understanding "write a spec" isn't enough; you need a few of your own templates within reach. The three below you can save tonight —
+          not someone's "god-tier prompt," but spec skeletons tailored to your work. Save them, and the first use tomorrow is easier.
+        </p>
+      </header>
+
+      <div class="demo">
+        <div class="demo-head">
+          <span class="demo-num">DEMO · 01</span>
+          <span class="demo-time">5 min to save · 10 min saved each time</span>
+        </div>
+        <h3>Build a "spec skeleton" and fit every request to it</h3>
+        <p>Turn "role + context + goal + constraints + format" into a fill-in template and save it to notes or a snippet tool. From now on, any serious request, fill in the five blanks and a spec is done.</p>
+        <ul class="demo-steps">
+          <li>Save the skeleton below to notes / a Raycast snippet</li>
+          <li>For every serious request, fill in the 5 blanks</li>
+          <li>Can't fill "goal / acceptance"? You haven't thought it through</li>
+          <li>Once it's habit, the skeleton becomes your default ask</li>
+          <li>This one habit beats 1000 copied prompts</li>
+        </ul>
+        <div class="terminal">
+          <div class="terminal-bar">spec skeleton · universal template</div>
+          <div class="terminal-body">
+            <div class="row"><span class="ok">Role:</span><span class="mu">you are ___ (put it in the right lens)</span></div>
+            <div class="row"><span class="ok">Context:</span><span class="mu">___ (what it can't know but must, to get it right)</span></div>
+            <div class="row"><span class="ok">Goal:</span><span class="mu">___ (what to achieve, one line)</span></div>
+            <div class="row"><span class="ok">Constraints:</span><span class="mu">___ (length / tone / what to avoid)</span></div>
+            <div class="row"><span class="ok">Format:</span><span class="mu">___ (how it should deliver)</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="demo">
+        <div class="demo-head">
+          <span class="demo-num">DEMO · 02</span>
+          <span class="demo-time">10 min setup · reused over and over</span>
+        </div>
+        <h3>Put your most frequent job into a Project's instructions</h3>
+        <p>You don't have to paste a spec every time. Write the "role + context + style + acceptance" of a frequent job once into Claude Project instructions; afterward just give the raw material — the spec is resident.</p>
+        <ul class="demo-steps">
+          <li>Pick one type of comms you do 3+ times a week (e.g. client replies)</li>
+          <li>Create a Project, write the fixed spec into Instructions</li>
+          <li>Add 1&ndash;2 finished pieces you approve of as anchors</li>
+          <li>Afterward, give only this round's material — it knows your standard</li>
+          <li>Unhappy? Go add one more spec line — instructions sharpen with use</li>
+        </ul>
+        <div class="terminal">
+          <div class="terminal-bar">claude project · client-reply assistant · instructions</div>
+          <div class="terminal-body">
+            <div class="row"><span class="ok">ROLE</span><span class="mu">senior customer success manager</span></div>
+            <div class="row"><span class="ok">TONE</span><span class="mu">professional, warm, neither servile nor cold (see anchors)</span></div>
+            <div class="row"><span class="ok">ALWAYS</span><span class="mu">empathize first → give a fix → low-friction next step</span></div>
+            <div class="row"><span class="ok">NEVER</span><span class="mu">boilerplate openers, over-apologizing, over 150 words</span></div>
+            <div class="hr"></div>
+            <div class="row"><span class="ok">✓ spec is resident · just give material from now</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="demo">
+        <div class="demo-head">
+          <span class="demo-num">DEMO · 03</span>
+          <span class="demo-time">each chat · 2 min</span>
+        </div>
+        <h3>Learn to "debug a prompt": let AI question you into clarity</h3>
+        <p>The most counterintuitive and useful move: when you haven't fully figured out what you want, don't force a spec — have AI question you first. It asks, you answer, and a few rounds in, the spec gets forced clear together.</p>
+        <ul class="demo-steps">
+          <li>Open with: "before you start, ask me the 5 most important questions"</li>
+          <li>Answer its questions seriously — that's the context you were missing</li>
+          <li>Have it organize your answers into a complete spec</li>
+          <li>Confirm the spec, then let it produce for real</li>
+          <li>This "ask first, do later" is especially valuable for complex tasks</li>
+        </ul>
+        <div class="terminal">
+          <div class="terminal-bar">claude · have it question you first</div>
+          <div class="terminal-body">
+            <div class="row"><span class="label user">YOU</span>help me write launch copy. Before starting, ask me 5 key questions.</div>
+            <div class="row"><span class="label bot">CLAUDE</span><span class="mu">Sure — before I write I need to know:</span></div>
+            <div class="row"><span class="mu">1. Who's it for? Existing users or new?</span></div>
+            <div class="row"><span class="mu">2. The one thing you most want remembered?</span></div>
+            <div class="row"><span class="mu">3. Where's it posted? Length and tone limits?</span></div>
+            <div class="hr"></div>
+            <div class="row"><span class="ok">▌ You answer → it builds a spec → then it writes</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ § 7 next 90 days ============ -->
+  <section class="essay">
+    <div class="essay-inner">
+      <header class="section-head">
+        <span class="eyebrow">§ 07 · The next 90 days</span>
+        <h2>From memorizing spells to writing specs</h2>
+        <p class="lede">
+          This 90-day path doesn't promise how many magic lines you'll memorize. It gives four specific actions, each with an explicit failure signal.
+          If a week's signal lights up, go back to the previous week. Don't push forward.
+        </p>
+      </header>
+
+      <ul class="timeline">
+        <li class="tl">
+          <span class="tl-week">WEEK 1 – 2 · Quit the one-liner</span>
+          <h3>Every serious request gets "context + goal" added</h3>
+          <p>For two weeks, force yourself: no slightly-important request goes out as one line — add at least background and "what counts as right." <strong>Failure signal:</strong> you still reflexively throw one line over. <strong>What to do:</strong> stick the §06 spec skeleton next to your input box and fill it in.</p>
+        </li>
+        <li class="tl">
+          <span class="tl-week">WEEK 3 – 4 · Practice precise feedback</span>
+          <h3>When unhappy, force yourself to say "where, and why"</h3>
+          <p>Drill the feedback after a disliked v1: no "redo it," you must point to the specific sentence, why, and what you want. <strong>Failure signal:</strong> you're still dismissing with "wrong / rewrite." <strong>What to do:</strong> stop first, work out your acceptance criteria, then speak.</p>
+        </li>
+        <li class="tl">
+          <span class="tl-week">WEEK 5 – 8 · Make frequent specs resident</span>
+          <h3>Write 2&ndash;3 frequent jobs into Project instructions</h3>
+          <p>Pick 2&ndash;3 frequent comms, write the spec into Claude Projects / custom instructions, resident with your standard and anchors. <strong>Failure signal:</strong> you're still writing the spec from scratch each time. <strong>What to do:</strong> the job isn't stable enough yet — make the single most repetitive one resident first.</p>
+        </li>
+        <li class="tl">
+          <span class="tl-week">WEEK 9 – 12 · Learn to be questioned</span>
+          <h3>For complex tasks, let AI question you into clarity first</h3>
+          <p>For a complex task you haven't figured out, switch to "ask first, do later": it questions, you answer, it builds a spec, then executes. <strong>Failure signal:</strong> you still force a long prompt before thinking it through. <strong>What to do:</strong> accept that "not figured out" is itself information — hand the clarifying to the conversation.</p>
+        </li>
+      </ul>
+
+      <p style="margin-top: 2.5rem; color: var(--color-muted-foreground);">
+        <strong style="color:var(--color-foreground);">After 90 days you should be able to answer:</strong> "Last time AI gave me a mediocre answer, could I immediately say which part of my spec was underwritten?" —
+        if you can, you've graduated from "memorizing spells" to "writing specs." If you can't, you spent 90 days copying more templates, not learning the real skill of communication.
+      </p>
+    </div>
+  </section>
+
+  <!-- ============ CTA ============ -->
+  <section id="cta" class="essay">
+    <div class="essay-inner">
+      <header class="section-head" style="text-align:center;">
+        <span class="eyebrow" style="display:inline-block;">Real Agent Use Cases</span>
+        <h2 style="margin-top: 0.75rem;">No magic spell — only a clearly written spec</h2>
+        <p class="lede" style="margin-left:auto;margin-right:auto;">
+          The "god-tier prompt" you copied fails the moment the context changes. But "the ability to state requirements clearly" stays with you for life, on any model.<br>
+          <strong style="color:var(--color-foreground);">"Execution is always undervalued."</strong> If you don't save your first spec template tonight, tomorrow you'll still throw one line over. That's not a pep talk. It's an observation.
+        </p>
+      </header>
+
+      <div class="subscribe">
+        <form class="subscribe-form" onsubmit="event.preventDefault(); window.open('https://realagentusecases.com', '_blank');">
+          <input type="email" placeholder="your@email.com" required>
+          <button class="btn" type="submit">Subscribe — free</button>
+        </form>
+        <p class="subscribe-note">
+          One complete, reproducible workflow every week — spec, steps, feedback all in the open.<br>
+          This newsletter doesn't "encourage" you. Whether you run it is on you.
+        </p>
+      </div>
+
+      <p style="text-align:center;margin-top:2.5rem;font-family:var(--font-mono);font-size:0.75rem;color:var(--color-muted-foreground);letter-spacing:0.05em;">
+        <a href="/en/agent-101/04-obsidian-second-brain/">← EP 04 · Obsidian Second Brain</a>　·　EP 05 (you are here)　·　EP 06 (coming)
+      </p>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site">
+  <div class="footer-inner">
+    © 2026 · Jack Qian
+    <span class="sep">·</span>
+    <a href="https://realagentusecases.com">realagentusecases.com</a>
+    <span class="sep">·</span>
+    Dallas, TX
+  </div>
+</footer>
+
+</body>
+</html>

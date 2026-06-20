@@ -1,0 +1,1636 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="如何与 AI 高效沟通 · prompt 不是咒语，是规格说明 · 拆解 + 上下文 + 可验证产出 · 由 Real Agent Use Cases 出品">
+<title>Agent 101 · 第 05 期 · 如何与 AI 高效沟通 · Real Agent Use Cases</title>
+<link rel="canonical" href="https://realagentusecases.com/agent-101/05-talk-to-ai/">
+<link rel="alternate" hrefLang="zh" href="https://realagentusecases.com/agent-101/05-talk-to-ai/">
+<link rel="alternate" hrefLang="en" href="https://realagentusecases.com/en/agent-101/05-talk-to-ai/">
+
+<!-- Open Graph -->
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Real Agent Use Cases">
+<meta property="og:title" content="Agent 101 · 第 05 期 · prompt 不是咒语，是规格说明">
+<meta property="og:description" content="没有神奇咒语。会与 AI 沟通，是会写规格：给上下文、拆任务、给例子、要可验证的产出。一份按任务分的提问范式 + 3 个今晚能存的模板。">
+<meta property="og:url" content="https://realagentusecases.com/agent-101/05-talk-to-ai/">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:locale:alternate" content="en_US">
+<meta property="og:image" content="https://realagentusecases.com/og/agent-101/opengraph-image">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:alt" content="Agent 101 · Episode 05 · A prompt isn't a magic spell, it's a spec">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Agent 101 · 第 05 期 · prompt 不是咒语，是规格说明">
+<meta name="twitter:description" content="没有神奇咒语。会与 AI 沟通，是会写规格：给上下文、拆任务、给例子、要可验证的产出。">
+<meta name="twitter:image" content="https://realagentusecases.com/og/agent-101/opengraph-image">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@300..900&family=Geist+Mono:wght@300..700&family=Source+Serif+4:ital,wght@0,400..700;1,400..700&display=swap">
+<style>
+  /* ==========================================================
+     Tokens — mirrors realagentusecases.com
+     ========================================================== */
+  :root {
+    --color-background: #0a0a0a;
+    --color-foreground: #f2f2f2;
+    --color-muted: #161616;
+    --color-muted-foreground: #a3a3a3;
+    --color-border: #262626;
+    --color-brand: #2d5e44;
+    --color-brand-hover: #387554;
+    --color-brand-foreground: #fff;
+
+    --font-sans: "Geist", -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", "Hiragino Sans GB", sans-serif;
+    --font-serif: "Source Serif 4", "Songti SC", "STSong", Georgia, "Times New Roman", serif;
+    --font-mono: "Geist Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+
+    --tracking-tight: -0.025em;
+    --leading-snug: 1.375;
+    --leading-relaxed: 1.625;
+
+    --radius-md: 0.375rem;
+    --radius-lg: 0.5rem;
+    --radius-xl: 0.75rem;
+
+    --container-2xl: 42rem; /* 672 — body sections */
+    --container-3xl: 48rem; /* 768 — hero */
+    --container-6xl: 72rem; /* 1152 — nav */
+  }
+
+  /* ==========================================================
+     Reset & base
+     ========================================================== */
+  *, *::before, *::after { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    background: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    line-height: var(--leading-relaxed);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+  h1, h2, h3, h4 {
+    color: var(--color-foreground);
+    font-weight: 600;
+    letter-spacing: var(--tracking-tight);
+    line-height: var(--leading-snug);
+    margin: 0;
+    text-wrap: balance;
+  }
+  p { margin: 0 0 1rem; }
+  a {
+    color: var(--color-foreground);
+    text-decoration: none;
+    transition: color 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  a:hover { color: var(--color-brand); }
+  ::selection { background: var(--color-brand); color: white; }
+  img, svg { max-width: 100%; display: block; }
+
+  /* ==========================================================
+     Layout primitives
+     ========================================================== */
+  .mx-auto { margin-left: auto; margin-right: auto; }
+  .max-w-6xl { max-width: var(--container-6xl); }
+  .max-w-3xl { max-width: var(--container-3xl); }
+  .max-w-2xl { max-width: var(--container-2xl); }
+  .px-6 { padding-left: 1.5rem; padding-right: 1.5rem; }
+  main { min-height: 100vh; }
+
+  /* ==========================================================
+     Sticky nav (matches parent site)
+     ========================================================== */
+  nav.topnav {
+    position: sticky;
+    top: 0;
+    z-index: 40;
+    border-bottom: 1px solid var(--color-border);
+    background: rgba(10, 10, 10, 0.8);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+  }
+  @supports (backdrop-filter: blur(12px)) {
+    nav.topnav { background: rgba(10, 10, 10, 0.6); }
+  }
+  .nav-inner {
+    max-width: var(--container-6xl);
+    margin: 0 auto;
+    padding: 0 1.5rem;
+    height: 3.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .brand {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    letter-spacing: -0.01em;
+    color: var(--color-foreground);
+  }
+  @media (min-width: 640px) { .brand { font-size: 0.875rem; } }
+  .brand:hover { color: var(--color-brand); }
+  .nav-right {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+  }
+  @media (min-width: 640px) { .nav-right { gap: 1.5rem; } }
+  .nav-link {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--color-muted-foreground);
+    letter-spacing: -0.01em;
+    transition: color 0.15s;
+  }
+  @media (min-width: 640px) { .nav-link { font-size: 0.875rem; } }
+  .nav-link:hover { color: var(--color-brand); }
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--radius-md);
+    font-family: var(--font-sans);
+    font-weight: 500;
+    font-size: 0.875rem;
+    height: 2.25rem;
+    padding: 0 1rem;
+    background: var(--color-brand);
+    color: var(--color-brand-foreground);
+    transition: background-color 0.15s, transform 0.15s;
+    cursor: pointer;
+    border: none;
+  }
+  .btn:hover {
+    background: var(--color-brand-hover);
+    color: var(--color-brand-foreground);
+    transform: translateY(-1px);
+  }
+  .btn:active { transform: translateY(0); }
+  .btn.btn-lg { height: 3rem; padding: 0 1.5rem; font-size: 1rem; }
+
+  /* ==========================================================
+     Eyebrow (mono uppercase label)
+     ========================================================== */
+  .eyebrow {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--color-muted-foreground);
+    font-weight: 400;
+  }
+  .eyebrow-lg {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: var(--color-muted-foreground);
+  }
+
+  /* ==========================================================
+     Hero
+     ========================================================== */
+  .hero {
+    max-width: var(--container-3xl);
+    margin: 0 auto;
+    padding: 4rem 1.5rem 7rem;
+    text-align: center;
+  }
+  @media (min-width: 640px) {
+    .hero { padding: 6rem 1.5rem 9rem; }
+  }
+  .hero .eyebrow-lg { display: block; margin-bottom: 1.5rem; }
+  .hero h1 {
+    font-size: 2.25rem;
+    font-weight: 600;
+    letter-spacing: var(--tracking-tight);
+    line-height: 1.1;
+    text-wrap: balance;
+  }
+  @media (min-width: 640px) { .hero h1 { font-size: 3rem; } }
+  @media (min-width: 768px) { .hero h1 { font-size: 3.75rem; } }
+  .hero h1 .brand-word {
+    color: var(--color-brand);
+  }
+  .hero-sub {
+    margin: 1.25rem auto 0;
+    max-width: var(--container-2xl);
+    font-size: 1.125rem;
+    color: var(--color-muted-foreground);
+    line-height: var(--leading-relaxed);
+    text-wrap: balance;
+  }
+  @media (min-width: 640px) { .hero-sub { font-size: 1.25rem; } }
+
+  .hero-list {
+    margin: 1.75rem auto 0;
+    max-width: 30rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    text-align: left;
+    font-size: 0.9375rem;
+    color: var(--color-muted-foreground);
+  }
+  @media (min-width: 640px) { .hero-list { font-size: 0.9375rem; } }
+  .hero-list-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+  }
+  .dot {
+    width: 0.25rem;
+    height: 0.25rem;
+    border-radius: 9999px;
+    background: var(--color-brand);
+    flex-shrink: 0;
+    margin-top: 0.6em;
+  }
+  .hero-ctas {
+    margin-top: 2.5rem;
+    display: flex;
+    gap: 0.75rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .hero-foot {
+    margin-top: 2.5rem;
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: rgba(163, 163, 163, 0.7);
+  }
+
+  /* ==========================================================
+     Section base (essay-style)
+     ========================================================== */
+  section.essay {
+    border-top: 1px solid rgba(38, 38, 38, 0.4);
+  }
+  .essay-inner {
+    max-width: var(--container-2xl);
+    margin: 0 auto;
+    padding: 5rem 1.5rem;
+  }
+  @media (min-width: 640px) {
+    .essay-inner { padding: 6rem 1.5rem; }
+  }
+  .essay-inner.wide {
+    max-width: var(--container-3xl);
+  }
+  .section-head { margin-bottom: 2.5rem; }
+  .section-head .eyebrow { display: block; margin-bottom: 0.75rem; }
+  .section-head h2 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    letter-spacing: var(--tracking-tight);
+    line-height: var(--leading-snug);
+  }
+  @media (min-width: 640px) {
+    .section-head h2 { font-size: 1.875rem; }
+  }
+  .section-head .lede {
+    margin-top: 0.875rem;
+    font-size: 1.0625rem;
+    color: var(--color-muted-foreground);
+    line-height: var(--leading-relaxed);
+  }
+  .essay-body p {
+    color: var(--color-muted-foreground);
+    line-height: var(--leading-relaxed);
+    font-size: 1rem;
+  }
+  .essay-body strong { color: var(--color-foreground); font-weight: 600; }
+
+  /* ==========================================================
+     Item list (matches "Read the latest" article list)
+     ========================================================== */
+  .item-list {
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .item {
+    display: block;
+  }
+  .item .item-eyebrow {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--color-muted-foreground);
+  }
+  .item h3 {
+    margin-top: 0.5rem;
+    font-size: 1.25rem;
+    font-weight: 600;
+    letter-spacing: var(--tracking-tight);
+    line-height: var(--leading-snug);
+    color: var(--color-foreground);
+  }
+  @media (min-width: 640px) {
+    .item h3 { font-size: 1.375rem; }
+  }
+  .item p {
+    margin-top: 0.5rem;
+    color: var(--color-muted-foreground);
+    line-height: var(--leading-relaxed);
+  }
+
+  /* ==========================================================
+     Compare table (Chatbot vs Agent) — minimal two-col
+     ========================================================== */
+  .compare {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+  }
+  @media (min-width: 640px) {
+    .compare { grid-template-columns: 1fr 1fr; }
+  }
+  .compare-cell {
+    padding: 1.75rem;
+    background: var(--color-muted);
+  }
+  .compare-cell + .compare-cell {
+    border-top: 1px solid var(--color-border);
+  }
+  @media (min-width: 640px) {
+    .compare-cell + .compare-cell {
+      border-top: none;
+      border-left: 1px solid var(--color-border);
+    }
+  }
+  .compare-cell.is-agent { background: rgba(45, 94, 68, 0.08); }
+  .compare-cell .item-eyebrow { display: block; margin-bottom: 0.5rem; }
+  .compare-cell .is-agent-eyebrow { color: var(--color-brand); }
+  .compare-cell h3 {
+    font-size: 1.125rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+  }
+  .compare-cell > p {
+    color: var(--color-muted-foreground);
+    font-size: 0.9375rem;
+    margin-bottom: 1rem;
+  }
+  .compare-cell ul {
+    list-style: none;
+    padding: 0;
+    margin: 0.75rem 0 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  .compare-cell li {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.625rem;
+    font-size: 0.9375rem;
+    color: var(--color-muted-foreground);
+  }
+  .compare-cell li::before {
+    content: "×";
+    color: var(--color-muted-foreground);
+    font-family: var(--font-mono);
+    flex-shrink: 0;
+    margin-top: 0.05em;
+  }
+  .compare-cell.is-agent li::before {
+    content: "✓";
+    color: var(--color-brand);
+  }
+
+  /* ==========================================================
+     Pull-quote / aside (analogy block)
+     ========================================================== */
+  .aside {
+    margin-top: 2rem;
+    padding: 1.75rem;
+    border-left: 2px solid var(--color-brand);
+    background: var(--color-muted);
+    border-radius: 0 var(--radius-lg) var(--radius-lg) 0;
+  }
+  .aside .aside-label {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--color-brand);
+    display: block;
+    margin-bottom: 0.625rem;
+  }
+  .aside p {
+    margin: 0;
+    color: var(--color-foreground);
+    font-family: var(--font-serif);
+    font-size: 1.0625rem;
+    line-height: var(--leading-relaxed);
+    font-style: italic;
+  }
+  .aside p strong { font-style: normal; }
+
+  /* ==========================================================
+     Agent loop (SVG + steps)
+     ========================================================== */
+  .loop-wrap {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+    align-items: center;
+  }
+  @media (min-width: 760px) {
+    .loop-wrap { grid-template-columns: 280px 1fr; gap: 3rem; }
+  }
+  .loop-svg { width: 100%; max-width: 280px; margin: 0 auto; }
+  .loop-steps {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  .loop-step {
+    display: grid;
+    grid-template-columns: 2rem 1fr;
+    gap: 0.875rem;
+    align-items: start;
+  }
+  .loop-step .n {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--color-brand);
+    letter-spacing: 0.05em;
+    padding-top: 0.125rem;
+  }
+  .loop-step h4 {
+    font-size: 1.0625rem;
+    margin-bottom: 0.25rem;
+  }
+  .loop-step h4 .en {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--color-muted-foreground);
+    margin-left: 0.5rem;
+    font-weight: 400;
+    letter-spacing: 0.05em;
+  }
+  .loop-step p { margin: 0; color: var(--color-muted-foreground); font-size: 0.9375rem; }
+
+  /* ==========================================================
+     Use cases — vertical list with mono labels (no flashy cards)
+     ========================================================== */
+  .use-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+  .use {
+    padding: 2rem 0;
+    border-top: 1px solid var(--color-border);
+  }
+  .use:first-child { border-top: none; padding-top: 0; }
+  .use:last-child { padding-bottom: 0; }
+  .use-top {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 0.5rem;
+    flex-wrap: wrap;
+  }
+  .use-top .use-label {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--color-muted-foreground);
+  }
+  .use-top .use-gain {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--color-brand);
+    letter-spacing: 0.05em;
+  }
+  .use h3 {
+    font-size: 1.25rem;
+    margin-bottom: 0.625rem;
+  }
+  @media (min-width: 640px) { .use h3 { font-size: 1.375rem; } }
+  .use p { color: var(--color-muted-foreground); margin-bottom: 0.875rem; }
+  .use-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 0.875rem;
+  }
+  .chip {
+    display: inline-block;
+    padding: 0.25rem 0.625rem;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    color: var(--color-muted-foreground);
+    letter-spacing: 0.02em;
+  }
+
+  /* ==========================================================
+     Demo block — mono code-style terminal mock
+     ========================================================== */
+  .demo {
+    margin-top: 2.5rem;
+    padding-top: 2.5rem;
+    border-top: 1px solid var(--color-border);
+  }
+  .demo:first-of-type { border-top: none; padding-top: 0; margin-top: 0; }
+  .demo-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-bottom: 0.625rem;
+  }
+  .demo-num {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--color-brand);
+  }
+  .demo-time {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    color: var(--color-muted-foreground);
+    letter-spacing: 0.05em;
+  }
+  .demo h3 {
+    font-size: 1.375rem;
+    margin-bottom: 0.625rem;
+  }
+  .demo > p {
+    color: var(--color-muted-foreground);
+    margin-bottom: 1.25rem;
+  }
+  .demo-steps {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 1.5rem;
+    counter-reset: step;
+  }
+  .demo-steps li {
+    counter-increment: step;
+    padding: 0.625rem 0 0.625rem 2rem;
+    position: relative;
+    color: var(--color-muted-foreground);
+    font-size: 0.9375rem;
+    line-height: var(--leading-relaxed);
+    border-top: 1px dashed rgba(38, 38, 38, 0.6);
+  }
+  .demo-steps li:first-child { border-top: none; }
+  .demo-steps li::before {
+    content: counter(step, decimal-leading-zero);
+    position: absolute;
+    left: 0;
+    top: 0.625rem;
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    color: var(--color-brand);
+    letter-spacing: 0.05em;
+  }
+  .demo-steps strong { color: var(--color-foreground); font-weight: 600; }
+
+  .terminal {
+    background: var(--color-muted);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    font-family: var(--font-mono);
+    font-size: 0.8125rem;
+    line-height: 1.7;
+    color: var(--color-foreground);
+    overflow: hidden;
+  }
+  .terminal-bar {
+    padding: 0.625rem 0.875rem;
+    background: rgba(0, 0, 0, 0.3);
+    border-bottom: 1px solid var(--color-border);
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    color: var(--color-muted-foreground);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .terminal-body { padding: 1.125rem; }
+  .terminal-body .row { padding: 0.05rem 0; }
+  .terminal-body .mu { color: var(--color-muted-foreground); }
+  .terminal-body .ok { color: var(--color-brand); }
+  .terminal-body .label {
+    display: inline-block;
+    color: var(--color-muted-foreground);
+    margin-right: 0.5rem;
+  }
+  .terminal-body .label.user { color: #c2a8ff; }
+  .terminal-body .label.bot { color: var(--color-brand); }
+  .terminal-body .label.tool { color: #d4a657; }
+  .terminal-body .hr {
+    border-top: 1px dashed var(--color-border);
+    margin: 0.5rem 0;
+  }
+  /* Workflow terminal helpers */
+  .terminal-body .step {
+    display: inline-block;
+    min-width: 6.5rem;
+    color: var(--color-foreground);
+    font-weight: 500;
+  }
+  .terminal-body .num {
+    display: inline-block;
+    width: 1.75rem;
+    color: var(--color-brand);
+  }
+  .terminal-body .meta {
+    color: var(--color-brand);
+    font-weight: 500;
+  }
+  .terminal-title-tag {
+    display: inline-block;
+    padding: 1px 6px;
+    margin-right: 0.5rem;
+    background: var(--color-brand);
+    color: var(--color-brand-foreground);
+    border-radius: 3px;
+    font-size: 0.625rem;
+    letter-spacing: 0.1em;
+    font-weight: 600;
+  }
+
+  /* Case-list divider: visual separation between "by-job" and "by-scenario" cases */
+  .case-divider {
+    margin: 3rem 0;
+    padding: 2.25rem 1.5rem;
+    border-top: 1px solid var(--color-border);
+    border-bottom: 1px solid var(--color-border);
+    text-align: center;
+  }
+  .case-divider .eyebrow {
+    display: block;
+    margin-bottom: 0.75rem;
+    color: var(--color-brand);
+  }
+  .case-divider h3 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 0.625rem;
+    letter-spacing: var(--tracking-tight);
+  }
+  .case-divider p {
+    color: var(--color-muted-foreground);
+    max-width: 40rem;
+    margin: 0 auto;
+    font-size: 0.9375rem;
+    line-height: var(--leading-relaxed);
+  }
+
+  /* ==========================================================
+     Timeline — minimal vertical list with mono dates
+     ========================================================== */
+  .timeline {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+  .tl {
+    padding-left: 1.5rem;
+    border-left: 1px solid var(--color-border);
+    position: relative;
+  }
+  .tl::before {
+    content: "";
+    position: absolute;
+    left: -0.3125rem;
+    top: 0.4rem;
+    width: 0.5625rem;
+    height: 0.5625rem;
+    border-radius: 9999px;
+    background: var(--color-background);
+    border: 2px solid var(--color-brand);
+  }
+  .tl .tl-week {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--color-brand);
+    display: block;
+    margin-bottom: 0.375rem;
+  }
+  .tl h3 {
+    font-size: 1.125rem;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+  }
+  .tl p { margin: 0; color: var(--color-muted-foreground); }
+
+  /* ==========================================================
+     Subscribe / CTA
+     ========================================================== */
+  .subscribe {
+    margin: 2.5rem auto 0;
+    max-width: 28rem;
+  }
+  .subscribe-form {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  @media (min-width: 640px) {
+    .subscribe-form { flex-direction: row; }
+  }
+  .subscribe input[type="email"] {
+    flex: 1;
+    min-width: 0;
+    height: 3rem;
+    padding: 0 1rem;
+    border-radius: var(--radius-md);
+    background: var(--color-muted);
+    border: 1px solid rgba(163, 163, 163, 0.3);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    transition: border-color 0.15s;
+  }
+  .subscribe input[type="email"]::placeholder { color: var(--color-muted-foreground); }
+  .subscribe input[type="email"]:focus {
+    outline: none;
+    border-color: var(--color-brand);
+  }
+  .subscribe .btn { flex-shrink: 0; height: 3rem; padding: 0 1.5rem; font-size: 1rem; }
+  .subscribe-note {
+    margin-top: 0.75rem;
+    font-size: 0.75rem;
+    color: var(--color-muted-foreground);
+    text-align: center;
+  }
+
+  /* ==========================================================
+     Footer
+     ========================================================== */
+  footer.site {
+    border-top: 1px solid var(--color-border);
+    padding: 2.5rem 1.5rem;
+    margin-top: 4rem;
+  }
+  .footer-inner {
+    max-width: var(--container-2xl);
+    margin: 0 auto;
+    text-align: center;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--color-muted-foreground);
+    letter-spacing: 0.05em;
+  }
+  .footer-inner a { color: var(--color-muted-foreground); }
+  .footer-inner a:hover { color: var(--color-brand); }
+  .footer-inner .sep { color: var(--color-border); margin: 0 0.625rem; }
+
+  /* ==========================================================
+     Audience profile chart (donut + legend)
+     ========================================================== */
+  .audience {
+    margin-bottom: 4rem;
+    padding-bottom: 3rem;
+    border-bottom: 1px solid var(--color-border);
+  }
+  .audience-head { margin-bottom: 2rem; }
+  .audience-head .eyebrow { display: block; margin-bottom: 0.625rem; }
+  .audience-head h3 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    letter-spacing: var(--tracking-tight);
+  }
+  @media (min-width: 640px) { .audience-head h3 { font-size: 1.375rem; } }
+  .audience-head p { color: var(--color-muted-foreground); margin: 0; }
+
+  .audience-body {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    align-items: center;
+  }
+  @media (min-width: 720px) {
+    .audience-body { grid-template-columns: 260px 1fr; gap: 3rem; }
+  }
+
+  .donut {
+    width: 100%;
+    max-width: 240px;
+    margin: 0 auto;
+    aspect-ratio: 1;
+    position: relative;
+  }
+  .donut svg { width: 100%; height: 100%; display: block; }
+  .donut-center {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    pointer-events: none;
+  }
+  .donut-center .n {
+    font-family: var(--font-mono);
+    font-size: 1.875rem;
+    font-weight: 600;
+    color: var(--color-foreground);
+    line-height: 1;
+    letter-spacing: -0.02em;
+  }
+  .donut-center .lbl {
+    margin-top: 0.375rem;
+    font-family: var(--font-mono);
+    font-size: 0.625rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--color-muted-foreground);
+  }
+
+  .legend {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.875rem;
+  }
+  .legend li {
+    display: grid;
+    grid-template-columns: 0.625rem 1fr auto;
+    gap: 0.75rem;
+    align-items: center;
+    padding: 0.625rem 0;
+    border-top: 1px solid var(--color-border);
+  }
+  .legend li:first-child { border-top: none; padding-top: 0; }
+  .legend .swatch {
+    width: 0.625rem;
+    height: 0.625rem;
+    border-radius: 2px;
+  }
+  .legend .name {
+    color: var(--color-foreground);
+    font-size: 0.9375rem;
+    font-weight: 500;
+  }
+  .legend .pct {
+    font-family: var(--font-mono);
+    font-size: 0.9375rem;
+    color: var(--color-muted-foreground);
+    letter-spacing: 0.02em;
+    font-feature-settings: "tnum" 1;
+  }
+
+  /* Sub-bullets inside a use case */
+  .sub-list {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 0.875rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  .sub-list li {
+    display: grid;
+    grid-template-columns: 1.5rem 1fr;
+    gap: 0.5rem;
+    color: var(--color-muted-foreground);
+    font-size: 0.9375rem;
+    line-height: var(--leading-relaxed);
+  }
+  .sub-list li::before {
+    content: "→";
+    font-family: var(--font-mono);
+    color: var(--color-brand);
+    margin-top: 0.05em;
+  }
+  .sub-list strong { color: var(--color-foreground); font-weight: 600; }
+
+  /* ==========================================================
+     Utilities
+     ========================================================== */
+  .mono { font-family: var(--font-mono); }
+  .serif { font-family: var(--font-serif); }
+
+  /* ==========================================================
+     Episode tabs — sits between topnav and main on agent-101 pages
+     ========================================================== */
+  .ep-tabs {
+    position: sticky;
+    top: 3.5rem;
+    z-index: 39;
+    border-bottom: 1px solid var(--color-border);
+    background: var(--color-background);
+  }
+  .ep-tabs-inner {
+    max-width: var(--container-6xl);
+    margin: 0 auto;
+    padding: 0 1.5rem;
+    display: flex;
+    align-items: stretch;
+    gap: 1.25rem;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+  }
+  .ep-tabs-inner::-webkit-scrollbar { display: none; }
+  .ep-tabs-label {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--color-muted-foreground);
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    padding: 0.875rem 0;
+  }
+  .ep-tab {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    text-decoration: none;
+    white-space: nowrap;
+    padding: 0.875rem 0;
+    color: var(--color-muted-foreground);
+    transition: color 0.15s;
+    border-bottom: 2px solid transparent;
+    margin-bottom: -1px;
+  }
+  .ep-tab:hover { color: var(--color-foreground); text-decoration: none; }
+  .ep-tab.is-current {
+    color: var(--color-foreground);
+    border-bottom-color: var(--color-brand);
+  }
+  .ep-tab-num {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+    color: var(--color-brand);
+    font-weight: 600;
+  }
+  .ep-tab-title {
+    font-family: var(--font-sans);
+    font-size: 0.875rem;
+    font-weight: 500;
+  }
+  .ep-tab-lang {
+    font-family: var(--font-mono);
+    font-size: 0.625rem;
+    letter-spacing: 0.1em;
+    color: var(--color-muted-foreground);
+    margin-left: 0.375rem;
+    padding: 1px 5px;
+    border: 1px solid var(--color-border);
+    border-radius: 3px;
+  }
+  @media (max-width: 640px) {
+    .ep-tab-title { display: none; }
+    .ep-tabs-label { font-size: 0.6875rem; }
+    .ep-tabs-inner { gap: 1rem; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="topnav">
+  <div class="nav-inner">
+    <a href="/" class="brand">realagentusecases.com</a>
+    <div class="nav-right">
+      <a href="/zh/news/" class="nav-link">News</a>
+      <a href="/en/agent-101/05-talk-to-ai/" class="nav-link">EN</a>
+      <a class="btn" href="#cta">Subscribe</a>
+    </div>
+  </div>
+</nav>
+
+<nav class="ep-tabs" aria-label="Agent 101 episode navigation">
+  <div class="ep-tabs-inner">
+    <span class="ep-tabs-label">Agent 101 ·</span>
+    <a href="/agent-101/" class="ep-tab">
+      <span class="ep-tab-num">EP 01</span>
+      <span class="ep-tab-title">什么是 AI Agent</span>
+    </a>
+    <a href="/agent-101/02-multi-agent/" class="ep-tab">
+      <span class="ep-tab-num">EP 02</span>
+      <span class="ep-tab-title">Multi-agent &amp; Skills</span>
+    </a>
+    <a href="/agent-101/03-ai-tools-workflows/" class="ep-tab">
+      <span class="ep-tab-num">EP 03</span>
+      <span class="ep-tab-title">工具与工作流</span>
+    </a>
+    <a href="/agent-101/04-obsidian-second-brain/" class="ep-tab">
+      <span class="ep-tab-num">EP 04</span>
+      <span class="ep-tab-title">Obsidian 第二大脑</span>
+    </a>
+    <a href="/agent-101/05-talk-to-ai/" class="ep-tab is-current">
+      <span class="ep-tab-num">EP 05</span>
+      <span class="ep-tab-title">与 AI 高效沟通</span>
+    </a>
+    <a href="/agent-101/06-track-ai-trends/" class="ep-tab">
+      <span class="ep-tab-num">EP 06</span>
+      <span class="ep-tab-title">主动了解 AI 趋势</span>
+    </a>
+  </div>
+</nav>
+
+<main>
+
+  <!-- ============ HERO ============ -->
+  <section class="hero">
+    <span class="eyebrow-lg">EPISODE 05 · How to talk to AI · 2026.05.17</span>
+    <h1>
+      prompt 不是<span class="brand-word">咒语</span>，<br>
+      是<span class="brand-word">规格说明</span>。
+    </h1>
+
+    <p class="hero-sub" style="margin-top: 1.5rem;">
+      这是一场关于"怎么跟 AI 说话"的讲座。<br>
+      但更准确地说——是教你别再找那句"神奇咒语"。
+    </p>
+
+    <ul class="hero-list">
+      <li class="hero-list-item"><span class="dot"></span><span>没有神奇咒语 — 会沟通，是会写一份机器能照着执行的规格</span></li>
+      <li class="hero-list-item"><span class="dot"></span><span>"帮我写个 XX"是空转词 — 重写成给了上下文、能验收的请求</span></li>
+      <li class="hero-list-item"><span class="dot"></span><span>一份按任务分的提问范式 — 改写、头脑风暴、分析、写代码各不一样</span></li>
+    </ul>
+
+    <div class="hero-ctas">
+      <a class="btn btn-lg" href="#deconstruct">开始拆词 →</a>
+    </div>
+
+    <div class="hero-foot">
+      AGENT 101 SERIES · EP 05 · 不画饼版
+    </div>
+  </section>
+
+  <!-- ============ § 1 prompt ≠ 咒语 ============ -->
+  <section id="deconstruct" class="essay">
+    <div class="essay-inner">
+      <header class="section-head">
+        <span class="eyebrow">§ 01 · 先拆词</span>
+        <h2>"prompt"在三种人嘴里，也不是同一件事</h2>
+        <p class="lede">
+          和 EP01 拆"Agent"一样，"prompt"这个词也被用滥了。有人当它是咒语，有人当它是商品，
+          只有一种用法去掉会丢信息：它是一份你写给机器、让它能照着干活的规格说明。
+        </p>
+      </header>
+
+      <ul class="item-list">
+        <li class="item">
+          <span class="item-eyebrow">用法 · 01 · 找咒语的人</span>
+          <h3>prompt = 一句神奇咒语</h3>
+          <p>"有没有一句话能让 AI 变得超强？"——这种用法把 prompt 想象成魔法口令，以为存在某个隐藏开关。其实没有。同样一句"咒语"，在不同上下文里产出天差地别。追咒语的人，永远在找下一句，从不去想清楚自己到底要什么。</p>
+        </li>
+        <li class="item">
+          <span class="item-eyebrow">用法 · 02 · 卖大礼包的人</span>
+          <h3>prompt = 一件商品</h3>
+          <p>"1000 个高效 prompt 只要 99"——这是 EP01 讲过的安慰剂。prompt 高度个人化，<strong>为别人的工作流写的 prompt，在你这里效率不到 5%。</strong>这种用法把 prompt 当成可以批发的标准件，恰恰说明卖家不懂 prompt 是什么。</p>
+        </li>
+        <li class="item">
+          <span class="item-eyebrow">用法 · 03 · 真正在用的人</span>
+          <h3>prompt = 一份规格说明</h3>
+          <p>这是唯一去掉会丢信息的用法。它指的是：你把"要做什么、给什么上下文、什么约束、要什么格式、怎么算对"写清楚，交给机器执行。这跟工程师写一份需求文档是同一件事——会写规格的人，不需要咒语。</p>
+        </li>
+      </ul>
+
+      <aside class="aside">
+        <span class="aside-label">大白话收尾</span>
+        <p>
+          今天只讲第三种：<strong>prompt 是规格，不是咒语。</strong>
+          你和 AI 沟通的水平，不取决于你记了多少"神句"，取决于你能不能把自己脑子里那个模糊的要求，写成一份机器能照着干的清单。
+        </p>
+      </aside>
+    </div>
+  </section>
+
+  <!-- ============ § 2 审计你的请求 ============ -->
+  <section class="essay">
+    <div class="essay-inner">
+      <header class="section-head">
+        <span class="eyebrow">§ 02 · 审计你的请求</span>
+        <h2>"帮我写个 XX"是空转词</h2>
+        <p class="lede">
+          你对 AI 说的大部分话，都是这一类：帮我写个文案、帮我分析一下、帮我润色润色。
+          它听起来像个任务，但过不了三个最简单的检查。过不了，AI 给的就只能是平庸的中间值。
+        </p>
+      </header>
+
+      <ul class="item-list">
+        <li class="item">
+          <span class="item-eyebrow">请求测试 · 01</span>
+          <h3>你给它的上下文，够它做对这件事吗？</h3>
+          <p>"帮我写封邮件"——给谁？什么关系？想达成什么？AI 不知道你脑子里的背景。它产出平庸，多半不是它笨，是你把它当算命的，只给了半句话。<strong>上下文的信息量，决定产出的上限。</strong></p>
+        </li>
+        <li class="item">
+          <span class="item-eyebrow">请求测试 · 02</span>
+          <h3>你说得清"什么样算做对了"吗？</h3>
+          <p>"帮我润色"——润成什么样算好？更正式？更短？更有说服力？如果你自己都没有验收标准，AI 只能猜一个"平均的好"。<strong>没有验收标准的请求，拿回的永远是安全但平庸的答案。</strong></p>
+        </li>
+        <li class="item">
+          <span class="item-eyebrow">请求测试 · 03</span>
+          <h3>不满意时，你能说清"哪里不对"吗？</h3>
+          <p>这是最关键的一条。第一版不满意很正常——但你能不能指出"太啰嗦/语气不对/漏了 X"，让它精准改？如果你只会说"再改改"，那不是 AI 不行，是你没把要求想清楚。与 AI 沟通的核心技能，是<strong>给精准反馈的能力</strong>。</p>
+        </li>
+      </ul>
+
+      <aside class="aside">
+        <span class="aside-label">重写：从空转请求到一份规格</span>
+        <p style="font-style: normal; font-family: var(--font-sans);">
+          <span style="color: var(--color-muted-foreground);">原句：</span><br>
+          <s style="color: var(--color-muted-foreground);">"帮我写封邮件催一下客户。"</s><br><br>
+          <span style="color: var(--color-brand); font-family: var(--font-mono); font-size: 0.75rem; letter-spacing: 0.1em;">REWRITE ↓</span><br><br>
+          <strong>"角色：你是我的销售助理。背景：客户 David 上周说要签合同，已 5 天没回。目标：催进展但不显得催债。约束：100 字内、口吻专业友好、给他一个低门槛的下一步。格式：直接给邮件正文。"</strong>
+        </p>
+      </aside>
+
+      <p style="margin-top: 2rem; color: var(--color-muted-foreground); font-size: 0.9375rem;">
+        看出区别了吗？前一句让 AI 猜，后一句让 AI 执行——有角色、有背景、有目标、有约束、有格式。
+        <strong style="color: var(--color-foreground); font-weight: 600;">好 prompt 不是更长，是更像一份能被照着干的规格。</strong>
+      </p>
+    </div>
+  </section>
+
+  <!-- ============ § 3 聊天 vs 规格 ============ -->
+  <section class="essay">
+    <div class="essay-inner">
+      <header class="section-head">
+        <span class="eyebrow">§ 03 · 拆完词之后</span>
+        <h2>"找咒语"和"写规格"，是两种完全不同的沟通</h2>
+        <p class="lede">
+          同样用着同一个模型，两种人拿到的产出差一个档次。区别不在用了哪句神句，
+          在脑子里装的是"碰运气找咒语"还是"写清楚一份规格"。这一节是这一讲唯一的对照。
+        </p>
+      </header>
+
+      <div class="compare">
+        <div class="compare-cell">
+          <span class="item-eyebrow">找咒语的人 · 你可能正在做的</span>
+          <h3>碰运气，靠神句</h3>
+          <p>到处抄"万能 prompt"，不行就再换一句，从不想自己要什么。</p>
+          <ul>
+            <li>收藏一堆"神级 prompt"模板</li>
+            <li>一句话甩过去，期待奇迹</li>
+            <li>不满意就说"再改改 / 不对"</li>
+            <li>产出质量全凭运气，时好时坏</li>
+          </ul>
+        </div>
+        <div class="compare-cell is-agent">
+          <span class="item-eyebrow is-agent-eyebrow">写规格的人 · 你今天要变成的</span>
+          <h3>给清楚，靠规格</h3>
+          <p>把要求写成角色+背景+目标+约束+格式，再迭代式地给精准反馈。</p>
+          <ul>
+            <li>先想清楚"什么算对"再开口</li>
+            <li>给足上下文，让 AI 有的放矢</li>
+            <li>不满意能指出"哪里、为什么"</li>
+            <li>产出稳定可控，可被验收</li>
+          </ul>
+        </div>
+      </div>
+
+      <aside class="aside">
+        <span class="aside-label">大白话比喻</span>
+        <p>
+          <strong>找咒语像许愿</strong>——对着神灯说句话，闭眼期待，开眼看运气。
+          <strong>写规格像给同事派活</strong>——一个靠谱的新同事，你交代得越清楚（要什么、给什么、怎么算好），他干得越准。
+          AI 就是那个聪明但不读心的新同事。沟通的全部功夫，在于你会不会派活。
+        </p>
+      </aside>
+    </div>
+  </section>
+
+  <!-- ============ § 4 一份规格长什么样 (loop) ============ -->
+  <section class="essay">
+    <div class="essay-inner wide">
+      <header class="section-head">
+        <span class="eyebrow">§ 04 · 一份规格怎么写</span>
+        <h2>四步：上下文 → 拆解 → 给例子 → 要可验证产出</h2>
+        <p class="lede">
+          所有"一次就到位"的 prompt，背后都是这四步在转。不是要你写很长，是要你写全这四样。
+          缺上下文就跑偏，缺验收标准就平庸——记住这四步，你就知道一个 prompt 为什么不好用。
+        </p>
+      </header>
+
+      <div class="loop-wrap">
+        <svg class="loop-svg" viewBox="0 0 280 280" xmlns="http://www.w3.org/2000/svg" aria-label="写规格四步循环">
+          <defs>
+            <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+              <path d="M 0 0 L 10 5 L 0 10 z" fill="#2d5e44"/>
+            </marker>
+          </defs>
+          <circle cx="140" cy="140" r="105" fill="none" stroke="#262626" stroke-width="1" stroke-dasharray="2 5"/>
+          <circle cx="140" cy="140" r="32" fill="#161616" stroke="#2d5e44" stroke-width="1.5"/>
+          <text x="140" y="138" text-anchor="middle" font-family="Geist Mono, monospace" font-size="9" fill="#f2f2f2" font-weight="600">SPEC</text>
+          <text x="140" y="152" text-anchor="middle" font-family="Geist Mono, monospace" font-size="8" fill="#a3a3a3">PROMPT</text>
+
+          <g transform="translate(140, 40)">
+            <circle r="28" fill="#0a0a0a" stroke="#2d5e44" stroke-width="1.5"/>
+            <text y="-3" text-anchor="middle" font-family="Geist, sans-serif" font-size="13" font-weight="600" fill="#f2f2f2">上下文</text>
+            <text y="11" text-anchor="middle" font-family="Geist Mono, monospace" font-size="6.5" fill="#a3a3a3">CONTEXT</text>
+          </g>
+          <g transform="translate(240, 140)">
+            <circle r="28" fill="#0a0a0a" stroke="#2d5e44" stroke-width="1.5"/>
+            <text y="-3" text-anchor="middle" font-family="Geist, sans-serif" font-size="14" font-weight="600" fill="#f2f2f2">拆解</text>
+            <text y="11" text-anchor="middle" font-family="Geist Mono, monospace" font-size="6.5" fill="#a3a3a3">DECOMPOSE</text>
+          </g>
+          <g transform="translate(140, 240)">
+            <circle r="28" fill="#0a0a0a" stroke="#2d5e44" stroke-width="1.5"/>
+            <text y="-3" text-anchor="middle" font-family="Geist, sans-serif" font-size="14" font-weight="600" fill="#f2f2f2">给例子</text>
+            <text y="11" text-anchor="middle" font-family="Geist Mono, monospace" font-size="6.5" fill="#a3a3a3">EXAMPLES</text>
+          </g>
+          <g transform="translate(40, 140)">
+            <circle r="28" fill="#0a0a0a" stroke="#2d5e44" stroke-width="1.5"/>
+            <text y="-3" text-anchor="middle" font-family="Geist, sans-serif" font-size="14" font-weight="600" fill="#f2f2f2">验收</text>
+            <text y="11" text-anchor="middle" font-family="Geist Mono, monospace" font-size="6.5" fill="#a3a3a3">VERIFY</text>
+          </g>
+
+          <path d="M 168 60 Q 215 80 220 112" fill="none" stroke="#2d5e44" stroke-width="1" marker-end="url(#arr)" opacity="0.8"/>
+          <path d="M 220 168 Q 215 200 168 220" fill="none" stroke="#2d5e44" stroke-width="1" marker-end="url(#arr)" opacity="0.8"/>
+          <path d="M 112 220 Q 65 200 60 168" fill="none" stroke="#2d5e44" stroke-width="1" marker-end="url(#arr)" opacity="0.8"/>
+          <path d="M 60 112 Q 65 80 112 60" fill="none" stroke="#2d5e44" stroke-width="1" marker-end="url(#arr)" opacity="0.8"/>
+        </svg>
+
+        <ul class="loop-steps">
+          <li class="loop-step">
+            <span class="n">01</span>
+            <div>
+              <h4>上下文<span class="en">CONTEXT</span></h4>
+              <p>告诉它：你是谁、它扮演谁、背景是什么、目标是什么。AI 不读心，你给的背景信息量，直接决定它产出的上限。多数平庸答案，是因为你只给了任务、没给上下文。</p>
+            </div>
+          </li>
+          <li class="loop-step">
+            <span class="n">02</span>
+            <div>
+              <h4>拆解<span class="en">DECOMPOSE</span></h4>
+              <p>复杂任务别一句话甩过去。拆成几步、或让它"先想再做"（先列大纲/思路，你确认后再写）。一步到位的大任务，最容易跑偏；拆开后每步都可控。</p>
+            </div>
+          </li>
+          <li class="loop-step">
+            <span class="n">03</span>
+            <div>
+              <h4>给例子<span class="en">EXAMPLES</span></h4>
+              <p>一个好例子胜过一百句形容。想要什么语气、什么格式，给它一两个样例（few-shot）。"照着这个写"比"写得专业点"精准得多——例子是你和 AI 之间最省事的对齐方式。</p>
+            </div>
+          </li>
+          <li class="loop-step">
+            <span class="n">04</span>
+            <div>
+              <h4>验收<span class="en">VERIFY</span></h4>
+              <p>要一个你能验证对错的产出，并给出验收标准。然后看结果、给精准反馈、再迭代。把它当"调试"：第一版是草稿，你的精准反馈才是把它逼到位的关键。</p>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ § 5 按任务分的提问范式 ============ -->
+  <section class="essay">
+    <div class="essay-inner wide">
+      <header class="section-head">
+        <span class="eyebrow">§ 05 · 提问范式</span>
+        <h2>不同的活，要用不同的问法</h2>
+        <p class="lede">
+          "通用万能 prompt"是个幻觉。改写、头脑风暴、分析、写代码——这四类活的最优问法完全不同。
+          下面每一类给一条最小范式 + 一个对照，记住范式，具体内容随时替换。
+        </p>
+      </header>
+
+      <ul class="use-list">
+
+        <!-- ───── 01 · 改写润色 ───── -->
+        <li class="use">
+          <div class="use-top">
+            <span class="use-label">范式 · 01 · 改写 / 润色 · REWRITE</span>
+            <span class="use-gain">"再改改" → 一次到位</span>
+          </div>
+          <h3>改写类：给"目标语气"+一个例子，别给"润色一下"</h3>
+          <p style="color:var(--color-foreground);font-weight:500;margin-bottom:1rem;">
+            反共识：改写最容易翻车，因为"好"太主观。
+            <strong>别说"润色"，说清"往哪个方向改"——更短/更正式/更有说服力——并给一个你认可的样例当锚。方向 + 例子，AI 才知道往哪走。</strong>
+          </p>
+          <div class="terminal">
+            <div class="terminal-bar"><span class="terminal-title-tag">PATTERN</span>改写范式</div>
+            <div class="terminal-body">
+              <div class="row"><span class="num">①</span><span class="step">原文</span><span class="mu">[贴上你要改的文字]</span></div>
+              <div class="row"><span class="num">②</span><span class="step">方向</span><span class="mu">更简洁 / 更专业 / 更口语 · 选具体的</span></div>
+              <div class="row"><span class="num">③</span><span class="step">锚例</span><span class="mu">"语气照这段：[一个你认可的样例]"</span></div>
+              <div class="row"><span class="num">④</span><span class="step">约束</span><span class="mu">字数 / 保留要点 / 不要的东西</span></div>
+              <div class="hr"></div>
+              <div class="row"><span class="ok">反馈</span><span class="mu">"第 2 句太硬，其余保留" — 指哪打哪</span></div>
+            </div>
+          </div>
+          <div class="use-meta">
+            <span class="chip">给方向不给"润色"</span>
+            <span class="chip">一个锚例</span>
+            <span class="chip">精准反馈</span>
+          </div>
+        </li>
+
+        <!-- ───── 02 · 头脑风暴 ───── -->
+        <li class="use">
+          <div class="use-top">
+            <span class="use-label">范式 · 02 · 头脑风暴 · BRAINSTORM</span>
+            <span class="use-gain">平庸 5 条 → 可用 1 条</span>
+          </div>
+          <h3>发散类：要"数量+维度+敢出格"，别要"给点建议"</h3>
+          <p style="color:var(--color-foreground);font-weight:500;margin-bottom:1rem;">
+            反共识：直接问"给点建议"，拿回的永远是最安全的平均值。
+            <strong>发散时反过来用：要它一次给 20 个、从不同维度、允许极端和离谱。先要广度，再让它自评筛出最值得深挖的 3 个。</strong>
+          </p>
+          <div class="terminal">
+            <div class="terminal-bar"><span class="terminal-title-tag">PATTERN</span>头脑风暴范式</div>
+            <div class="terminal-body">
+              <div class="row"><span class="num">①</span><span class="step">数量</span><span class="mu">"给我 20 个，不要只给 3 个"</span></div>
+              <div class="row"><span class="num">②</span><span class="step">维度</span><span class="mu">"从成本/人群/渠道/反常识 4 个角度各出几个"</span></div>
+              <div class="row"><span class="num">③</span><span class="step">放开</span><span class="mu">"允许极端和看似离谱的想法"</span></div>
+              <div class="row"><span class="num">④</span><span class="step">收敛</span><span class="mu">"再自评，挑 3 个最值得深挖的，说理由"</span></div>
+              <div class="hr"></div>
+              <div class="row"><span class="ok">要点</span><span class="mu">先广后窄 · 别让它一上来就替你判断</span></div>
+            </div>
+          </div>
+          <div class="use-meta">
+            <span class="chip">先要数量</span>
+            <span class="chip">指定维度</span>
+            <span class="chip">后让它收敛</span>
+          </div>
+        </li>
+
+        <!-- ───── 03 · 分析判断 ───── -->
+        <li class="use">
+          <div class="use-top">
+            <span class="use-label">范式 · 03 · 分析 / 判断 · ANALYZE</span>
+            <span class="use-gain">附和你 → 真帮你想</span>
+          </div>
+          <h3>分析类：让它"先想再答"+给出反方，别让它附和你</h3>
+          <p style="color:var(--color-foreground);font-weight:500;margin-bottom:1rem;">
+            反共识：AI 默认会顺着你说，你问"这样行不行"它多半说"行"。
+            <strong>分析时要逼它独立思考：先列推理过程再给结论、必须给出反方观点、明确指出它不确定的地方。你要的是第二个大脑，不是回音壁。</strong>
+          </p>
+          <div class="terminal">
+            <div class="terminal-bar"><span class="terminal-title-tag">PATTERN</span>分析范式</div>
+            <div class="terminal-body">
+              <div class="row"><span class="num">①</span><span class="step">先想</span><span class="mu">"先一步步推理，再给结论"</span></div>
+              <div class="row"><span class="num">②</span><span class="step">反方</span><span class="mu">"给出最强的反对意见 + 它的依据"</span></div>
+              <div class="row"><span class="num">③</span><span class="step">不确定</span><span class="mu">"明确标出你不确定 / 缺数据的地方"</span></div>
+              <div class="row"><span class="num">④</span><span class="step">别附和</span><span class="mu">"不要因为我倾向某个答案就迁就我"</span></div>
+              <div class="hr"></div>
+              <div class="row"><span class="ok">要点</span><span class="mu">把它当对手盘 · 而不是夸夸群</span></div>
+            </div>
+          </div>
+          <div class="use-meta">
+            <span class="chip">先推理后结论</span>
+            <span class="chip">强制反方</span>
+            <span class="chip">标注不确定</span>
+          </div>
+        </li>
+
+        <!-- ───── 04 · 写代码 / 执行 ───── -->
+        <li class="use">
+          <div class="use-top">
+            <span class="use-label">范式 · 04 · 写代码 / 执行 · BUILD</span>
+            <span class="use-gain">能跑但是错 → 可验证</span>
+          </div>
+          <h3>执行类：给"可验证的成功标准"，别只说"写个脚本"</h3>
+          <p style="color:var(--color-foreground);font-weight:500;margin-bottom:1rem;">
+            反共识：代码/执行类任务，"看起来对"最坑。
+            <strong>关键是给一个机器能验证的成功标准——输入输出例子、要通过的测试、边界情况。让它先说方案你确认、再写、再自测。可验证，才能信任。</strong>
+          </p>
+          <div class="terminal">
+            <div class="terminal-bar"><span class="terminal-title-tag">PATTERN</span>执行范式</div>
+            <div class="terminal-body">
+              <div class="row"><span class="num">①</span><span class="step">目标</span><span class="mu">"输入是 X，期望输出是 Y"（给例子）</span></div>
+              <div class="row"><span class="num">②</span><span class="step">先方案</span><span class="mu">"先讲思路和取舍，我确认后再写"</span></div>
+              <div class="row"><span class="num">③</span><span class="step">验证</span><span class="mu">"附上测试 / 自己跑一遍证明对"</span></div>
+              <div class="row"><span class="num">④</span><span class="step">边界</span><span class="mu">"处理空值 / 异常 / 极端输入"</span></div>
+              <div class="hr"></div>
+              <div class="row"><span class="ok">要点</span><span class="mu">没有验收标准的代码 · 等于没写</span></div>
+            </div>
+          </div>
+          <div class="use-meta">
+            <span class="chip">给输入输出例子</span>
+            <span class="chip">先方案后实现</span>
+            <span class="chip">要求自测</span>
+          </div>
+        </li>
+
+      </ul>
+    </div>
+  </section>
+
+  <!-- ============ § 6 今晚能跑 ============ -->
+  <section class="essay">
+    <div class="essay-inner wide">
+      <header class="section-head">
+        <span class="eyebrow">§ 06 · 今晚能跑</span>
+        <h2>三个模板——今晚存进去，明天就在用</h2>
+        <p class="lede">
+          光懂"写规格"没用，得有几个你自己的模板随手就能调。下面三个今晚就能存——
+          不是别人的"神级 prompt"，是按你的活定制的规格骨架。存好，明天第一次用就省事。
+        </p>
+      </header>
+
+      <div class="demo">
+        <div class="demo-head">
+          <span class="demo-num">DEMO · 01</span>
+          <span class="demo-time">5 分钟存 · 每次省 10 分钟</span>
+        </div>
+        <h3>建一个"规格骨架"，所有请求都套它</h3>
+        <p>把"角色 + 背景 + 目标 + 约束 + 格式"做成一个填空模板，存进记事本或快捷指令。以后任何认真的请求，照着填，5 个空填完，一份规格就成了。</p>
+        <ul class="demo-steps">
+          <li>把下面的骨架存进备忘录 / Raycast 片段</li>
+          <li>每次认真的请求，照着填 5 个空</li>
+          <li>填不出"目标/验收"，说明你自己还没想清</li>
+          <li>用顺了，骨架会内化成你的默认问法</li>
+          <li>这一个习惯，顶 1000 条抄来的 prompt</li>
+        </ul>
+        <div class="terminal">
+          <div class="terminal-bar">规格骨架 · 通用模板</div>
+          <div class="terminal-body">
+            <div class="row"><span class="ok">角色：</span><span class="mu">你是 ___（让它进入对的视角）</span></div>
+            <div class="row"><span class="ok">背景：</span><span class="mu">___（它不知道、但做对这事必须知道的）</span></div>
+            <div class="row"><span class="ok">目标：</span><span class="mu">___（要达成什么，一句话）</span></div>
+            <div class="row"><span class="ok">约束：</span><span class="mu">___（字数 / 口吻 / 不要什么）</span></div>
+            <div class="row"><span class="ok">格式：</span><span class="mu">___（要它怎么交付）</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="demo">
+        <div class="demo-head">
+          <span class="demo-num">DEMO · 02</span>
+          <span class="demo-time">10 分钟搭 · 反复复用</span>
+        </div>
+        <h3>把你最常做的活，写进一个 Project 指令</h3>
+        <p>你不必每次都贴规格。把一类高频活的"角色+背景+风格+验收标准"一次写进 Claude Project 指令，以后只给本次原料，规格已经常驻。这是规格的"固化"。</p>
+        <ul class="demo-steps">
+          <li>挑一类你每周做 3+ 次的沟通（如写客户回复）</li>
+          <li>新建 Project，把固定的规格写进 Instructions</li>
+          <li>放 1&ndash;2 个你认可的成品当"锚例"</li>
+          <li>以后只丢本次原料，它已知道你的标准</li>
+          <li>不满意就回去补一条规格——指令越用越准</li>
+        </ul>
+        <div class="terminal">
+          <div class="terminal-bar">claude project · 客户回复助手 · instructions</div>
+          <div class="terminal-body">
+            <div class="row"><span class="ok">角色</span><span class="mu">资深客户成功经理</span></div>
+            <div class="row"><span class="ok">口吻</span><span class="mu">专业、温暖、不卑不亢（见锚例）</span></div>
+            <div class="row"><span class="ok">必做</span><span class="mu">先共情 → 给方案 → 给低门槛下一步</span></div>
+            <div class="row"><span class="ok">不要</span><span class="mu">套话开头、过度道歉、超过 150 字</span></div>
+            <div class="hr"></div>
+            <div class="row"><span class="ok">✓ 规格已常驻 · 以后只给原料</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="demo">
+        <div class="demo-head">
+          <span class="demo-num">DEMO · 03</span>
+          <span class="demo-time">每次对话 · 2 分钟</span>
+        </div>
+        <h3>学会"调试 prompt"：让 AI 帮你把要求问清楚</h3>
+        <p>最反直觉、也最有用的一招：当你自己都没完全想清要什么，别硬写规格——让 AI 先反问你。它问、你答，几轮下来，规格就被你们一起逼清楚了。</p>
+        <ul class="demo-steps">
+          <li>开口先说："在动手前，先问我 5 个最关键的问题"</li>
+          <li>认真回答它的反问——这些就是你缺的上下文</li>
+          <li>让它把你的回答整理成一份完整规格</li>
+          <li>确认规格无误，再让它正式产出</li>
+          <li>这套"先问后做"，对复杂任务尤其值钱</li>
+        </ul>
+        <div class="terminal">
+          <div class="terminal-bar">claude · 让它先反问</div>
+          <div class="terminal-body">
+            <div class="row"><span class="label user">你</span>帮我写产品发布文案。动手前先问我 5 个关键问题。</div>
+            <div class="row"><span class="label bot">CLAUDE</span><span class="mu">好，在写之前我需要知道：</span></div>
+            <div class="row"><span class="mu">1. 面向谁？老用户还是新用户？</span></div>
+            <div class="row"><span class="mu">2. 这次最想让人记住的一个点？</span></div>
+            <div class="row"><span class="mu">3. 发在哪？长度和口吻限制？</span></div>
+            <div class="hr"></div>
+            <div class="row"><span class="ok">▌ 你答完 → 它整理成规格 → 再开写</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ § 7 90 天 ============ -->
+  <section class="essay">
+    <div class="essay-inner">
+      <header class="section-head">
+        <span class="eyebrow">§ 07 · 接下来 90 天</span>
+        <h2>从背咒语到会写规格</h2>
+        <p class="lede">
+          这条 90 天路径不承诺你背下多少神句，它给你四个具体动作，每个都带一个明确的失败信号。
+          某一周的失败信号亮了，就回上一周，别往前冲。
+        </p>
+      </header>
+
+      <ul class="timeline">
+        <li class="tl">
+          <span class="tl-week">WEEK 1 – 2 · 戒掉甩一句话</span>
+          <h3>每个认真请求，都补上"上下文 + 目标"</h3>
+          <p>这两周强制自己：任何稍微重要的请求，都不许只甩一句话，至少补上背景和"什么算对"。<strong>失败信号：</strong>你还是习惯性地一句话丢过去。<strong>怎么办：</strong>把 §06 的规格骨架贴在输入框旁边，照着填。</p>
+        </li>
+        <li class="tl">
+          <span class="tl-week">WEEK 3 – 4 · 练精准反馈</span>
+          <h3>不满意时，逼自己说清"哪里、为什么"</h3>
+          <p>这两周专练第一版不满意后的反馈：不许说"再改改"，必须指出具体哪句、为什么、想要什么。<strong>失败信号：</strong>你还在用"不对/重写"打发。<strong>怎么办：</strong>先停下来，自己想清验收标准，再开口。</p>
+        </li>
+        <li class="tl">
+          <span class="tl-week">WEEK 5 – 8 · 固化高频规格</span>
+          <h3>把 2&ndash;3 类常做的活写成 Project 指令</h3>
+          <p>挑 2&ndash;3 类高频沟通，把规格写进 Claude Project / 自定义指令，常驻你的标准和锚例。<strong>失败信号：</strong>你每次还在从零写规格。<strong>怎么办：</strong>这类活还不够稳定，先选最重复的一类固化。</p>
+        </li>
+        <li class="tl">
+          <span class="tl-week">WEEK 9 – 12 · 学会让它反问</span>
+          <h3>复杂任务，先让 AI 帮你把要求问清楚</h3>
+          <p>遇到自己都没想清的复杂任务，改用"先问后做"：让它反问、你答、它整理成规格再执行。<strong>失败信号：</strong>你还是想清楚之前就硬写一长串。<strong>怎么办：</strong>承认"没想清"本身就是信息，把澄清这一步交给对话。</p>
+        </li>
+      </ul>
+
+      <p style="margin-top: 2.5rem; color: var(--color-muted-foreground);">
+        <strong style="color:var(--color-foreground);">90 天后你应该能回答这个问题：</strong>"上一次 AI 给我平庸答案，我能不能立刻说清是我哪份规格没写到位？"——
+        能答上来，你就从"背咒语"毕业成"会写规格"了。答不上来，你这 90 天只是又抄了一堆模板，没练成沟通这门真本事。
+      </p>
+    </div>
+  </section>
+
+  <!-- ============ CTA ============ -->
+  <section id="cta" class="essay">
+    <div class="essay-inner">
+      <header class="section-head" style="text-align:center;">
+        <span class="eyebrow" style="display:inline-block;">Real Agent Use Cases</span>
+        <h2 style="margin-top: 0.75rem;">没有神奇咒语，只有写清楚的规格</h2>
+        <p class="lede" style="margin-left:auto;margin-right:auto;">
+          你抄的"神级 prompt"，换个场景就失灵。但"会把要求写清楚"这个能力，跟你一辈子、对任何模型都管用。<br>
+          <strong style="color:var(--color-foreground);">「执行的价值永远被低估」</strong>——今晚不存下第一个规格模板，明天还是甩一句话。这不是激励，是观察事实。
+        </p>
+      </header>
+
+      <div class="subscribe">
+        <form class="subscribe-form" onsubmit="event.preventDefault(); window.open('https://realagentusecases.com', '_blank');">
+          <input type="email" placeholder="your@email.com" required>
+          <button class="btn" type="submit">Subscribe — free</button>
+        </form>
+        <p class="subscribe-note">
+          每周一条完整可复制的工作流——规格、步骤、反馈全公开。<br>
+          这个 Newsletter 不"鼓励"你，能不能跑通是你的事。
+        </p>
+      </div>
+
+      <p style="text-align:center;margin-top:2.5rem;font-family:var(--font-mono);font-size:0.75rem;color:var(--color-muted-foreground);letter-spacing:0.05em;">
+        <a href="/agent-101/04-obsidian-second-brain/">← EP 04 · Obsidian 第二大脑</a>　·　EP 05（你在这里）　·　EP 06（写作中）
+      </p>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site">
+  <div class="footer-inner">
+    © 2026 · Jack Qian
+    <span class="sep">·</span>
+    <a href="https://realagentusecases.com">realagentusecases.com</a>
+    <span class="sep">·</span>
+    Dallas, TX
+  </div>
+</footer>
+
+</body>
+</html>

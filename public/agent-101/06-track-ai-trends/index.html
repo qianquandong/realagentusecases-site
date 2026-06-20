@@ -1,0 +1,1646 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="主动了解 AI 趋势 · 追热点不等于懂趋势 · 搭一套信号雷达，反 FOMO · 由 Real Agent Use Cases 出品">
+<title>Agent 101 · 第 06 期 · 主动了解 AI 趋势 · Real Agent Use Cases</title>
+<link rel="canonical" href="https://realagentusecases.com/agent-101/06-track-ai-trends/">
+<link rel="alternate" hrefLang="zh" href="https://realagentusecases.com/agent-101/06-track-ai-trends/">
+<link rel="alternate" hrefLang="en" href="https://realagentusecases.com/en/agent-101/06-track-ai-trends/">
+
+<!-- Open Graph -->
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Real Agent Use Cases">
+<meta property="og:title" content="Agent 101 · 第 06 期 · 追热点不等于懂趋势">
+<meta property="og:description" content="你不缺信息，缺的是一套只留信号的雷达。别在消防水管下喝水——选少数一手信源、固定节奏、让 agent 汇成简报。一张按信号层级分的信源地图。">
+<meta property="og:url" content="https://realagentusecases.com/agent-101/06-track-ai-trends/">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:locale:alternate" content="en_US">
+<meta property="og:image" content="https://realagentusecases.com/og/agent-101/opengraph-image">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:alt" content="Agent 101 · Episode 06 · Chasing headlines is not understanding trends">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Agent 101 · 第 06 期 · 追热点不等于懂趋势">
+<meta name="twitter:description" content="你不缺信息，缺的是一套只留信号的雷达。选少数一手信源、固定节奏、让 agent 汇成简报。">
+<meta name="twitter:image" content="https://realagentusecases.com/og/agent-101/opengraph-image">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@300..900&family=Geist+Mono:wght@300..700&family=Source+Serif+4:ital,wght@0,400..700;1,400..700&display=swap">
+<style>
+  /* ==========================================================
+     Tokens — mirrors realagentusecases.com
+     ========================================================== */
+  :root {
+    --color-background: #0a0a0a;
+    --color-foreground: #f2f2f2;
+    --color-muted: #161616;
+    --color-muted-foreground: #a3a3a3;
+    --color-border: #262626;
+    --color-brand: #2d5e44;
+    --color-brand-hover: #387554;
+    --color-brand-foreground: #fff;
+
+    --font-sans: "Geist", -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", "Hiragino Sans GB", sans-serif;
+    --font-serif: "Source Serif 4", "Songti SC", "STSong", Georgia, "Times New Roman", serif;
+    --font-mono: "Geist Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+
+    --tracking-tight: -0.025em;
+    --leading-snug: 1.375;
+    --leading-relaxed: 1.625;
+
+    --radius-md: 0.375rem;
+    --radius-lg: 0.5rem;
+    --radius-xl: 0.75rem;
+
+    --container-2xl: 42rem; /* 672 — body sections */
+    --container-3xl: 48rem; /* 768 — hero */
+    --container-6xl: 72rem; /* 1152 — nav */
+  }
+
+  /* ==========================================================
+     Reset & base
+     ========================================================== */
+  *, *::before, *::after { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    background: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    line-height: var(--leading-relaxed);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+  h1, h2, h3, h4 {
+    color: var(--color-foreground);
+    font-weight: 600;
+    letter-spacing: var(--tracking-tight);
+    line-height: var(--leading-snug);
+    margin: 0;
+    text-wrap: balance;
+  }
+  p { margin: 0 0 1rem; }
+  a {
+    color: var(--color-foreground);
+    text-decoration: none;
+    transition: color 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  a:hover { color: var(--color-brand); }
+  ::selection { background: var(--color-brand); color: white; }
+  img, svg { max-width: 100%; display: block; }
+
+  /* ==========================================================
+     Layout primitives
+     ========================================================== */
+  .mx-auto { margin-left: auto; margin-right: auto; }
+  .max-w-6xl { max-width: var(--container-6xl); }
+  .max-w-3xl { max-width: var(--container-3xl); }
+  .max-w-2xl { max-width: var(--container-2xl); }
+  .px-6 { padding-left: 1.5rem; padding-right: 1.5rem; }
+  main { min-height: 100vh; }
+
+  /* ==========================================================
+     Sticky nav (matches parent site)
+     ========================================================== */
+  nav.topnav {
+    position: sticky;
+    top: 0;
+    z-index: 40;
+    border-bottom: 1px solid var(--color-border);
+    background: rgba(10, 10, 10, 0.8);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+  }
+  @supports (backdrop-filter: blur(12px)) {
+    nav.topnav { background: rgba(10, 10, 10, 0.6); }
+  }
+  .nav-inner {
+    max-width: var(--container-6xl);
+    margin: 0 auto;
+    padding: 0 1.5rem;
+    height: 3.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .brand {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    letter-spacing: -0.01em;
+    color: var(--color-foreground);
+  }
+  @media (min-width: 640px) { .brand { font-size: 0.875rem; } }
+  .brand:hover { color: var(--color-brand); }
+  .nav-right {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+  }
+  @media (min-width: 640px) { .nav-right { gap: 1.5rem; } }
+  .nav-link {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--color-muted-foreground);
+    letter-spacing: -0.01em;
+    transition: color 0.15s;
+  }
+  @media (min-width: 640px) { .nav-link { font-size: 0.875rem; } }
+  .nav-link:hover { color: var(--color-brand); }
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--radius-md);
+    font-family: var(--font-sans);
+    font-weight: 500;
+    font-size: 0.875rem;
+    height: 2.25rem;
+    padding: 0 1rem;
+    background: var(--color-brand);
+    color: var(--color-brand-foreground);
+    transition: background-color 0.15s, transform 0.15s;
+    cursor: pointer;
+    border: none;
+  }
+  .btn:hover {
+    background: var(--color-brand-hover);
+    color: var(--color-brand-foreground);
+    transform: translateY(-1px);
+  }
+  .btn:active { transform: translateY(0); }
+  .btn.btn-lg { height: 3rem; padding: 0 1.5rem; font-size: 1rem; }
+
+  /* ==========================================================
+     Eyebrow (mono uppercase label)
+     ========================================================== */
+  .eyebrow {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--color-muted-foreground);
+    font-weight: 400;
+  }
+  .eyebrow-lg {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: var(--color-muted-foreground);
+  }
+
+  /* ==========================================================
+     Hero
+     ========================================================== */
+  .hero {
+    max-width: var(--container-3xl);
+    margin: 0 auto;
+    padding: 4rem 1.5rem 7rem;
+    text-align: center;
+  }
+  @media (min-width: 640px) {
+    .hero { padding: 6rem 1.5rem 9rem; }
+  }
+  .hero .eyebrow-lg { display: block; margin-bottom: 1.5rem; }
+  .hero h1 {
+    font-size: 2.25rem;
+    font-weight: 600;
+    letter-spacing: var(--tracking-tight);
+    line-height: 1.1;
+    text-wrap: balance;
+  }
+  @media (min-width: 640px) { .hero h1 { font-size: 3rem; } }
+  @media (min-width: 768px) { .hero h1 { font-size: 3.75rem; } }
+  .hero h1 .brand-word {
+    color: var(--color-brand);
+  }
+  .hero-sub {
+    margin: 1.25rem auto 0;
+    max-width: var(--container-2xl);
+    font-size: 1.125rem;
+    color: var(--color-muted-foreground);
+    line-height: var(--leading-relaxed);
+    text-wrap: balance;
+  }
+  @media (min-width: 640px) { .hero-sub { font-size: 1.25rem; } }
+
+  .hero-list {
+    margin: 1.75rem auto 0;
+    max-width: 30rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    text-align: left;
+    font-size: 0.9375rem;
+    color: var(--color-muted-foreground);
+  }
+  @media (min-width: 640px) { .hero-list { font-size: 0.9375rem; } }
+  .hero-list-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+  }
+  .dot {
+    width: 0.25rem;
+    height: 0.25rem;
+    border-radius: 9999px;
+    background: var(--color-brand);
+    flex-shrink: 0;
+    margin-top: 0.6em;
+  }
+  .hero-ctas {
+    margin-top: 2.5rem;
+    display: flex;
+    gap: 0.75rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .hero-foot {
+    margin-top: 2.5rem;
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: rgba(163, 163, 163, 0.7);
+  }
+
+  /* ==========================================================
+     Section base (essay-style)
+     ========================================================== */
+  section.essay {
+    border-top: 1px solid rgba(38, 38, 38, 0.4);
+  }
+  .essay-inner {
+    max-width: var(--container-2xl);
+    margin: 0 auto;
+    padding: 5rem 1.5rem;
+  }
+  @media (min-width: 640px) {
+    .essay-inner { padding: 6rem 1.5rem; }
+  }
+  .essay-inner.wide {
+    max-width: var(--container-3xl);
+  }
+  .section-head { margin-bottom: 2.5rem; }
+  .section-head .eyebrow { display: block; margin-bottom: 0.75rem; }
+  .section-head h2 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    letter-spacing: var(--tracking-tight);
+    line-height: var(--leading-snug);
+  }
+  @media (min-width: 640px) {
+    .section-head h2 { font-size: 1.875rem; }
+  }
+  .section-head .lede {
+    margin-top: 0.875rem;
+    font-size: 1.0625rem;
+    color: var(--color-muted-foreground);
+    line-height: var(--leading-relaxed);
+  }
+  .essay-body p {
+    color: var(--color-muted-foreground);
+    line-height: var(--leading-relaxed);
+    font-size: 1rem;
+  }
+  .essay-body strong { color: var(--color-foreground); font-weight: 600; }
+
+  /* ==========================================================
+     Item list (matches "Read the latest" article list)
+     ========================================================== */
+  .item-list {
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .item {
+    display: block;
+  }
+  .item .item-eyebrow {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--color-muted-foreground);
+  }
+  .item h3 {
+    margin-top: 0.5rem;
+    font-size: 1.25rem;
+    font-weight: 600;
+    letter-spacing: var(--tracking-tight);
+    line-height: var(--leading-snug);
+    color: var(--color-foreground);
+  }
+  @media (min-width: 640px) {
+    .item h3 { font-size: 1.375rem; }
+  }
+  .item p {
+    margin-top: 0.5rem;
+    color: var(--color-muted-foreground);
+    line-height: var(--leading-relaxed);
+  }
+
+  /* ==========================================================
+     Compare table (Chatbot vs Agent) — minimal two-col
+     ========================================================== */
+  .compare {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+  }
+  @media (min-width: 640px) {
+    .compare { grid-template-columns: 1fr 1fr; }
+  }
+  .compare-cell {
+    padding: 1.75rem;
+    background: var(--color-muted);
+  }
+  .compare-cell + .compare-cell {
+    border-top: 1px solid var(--color-border);
+  }
+  @media (min-width: 640px) {
+    .compare-cell + .compare-cell {
+      border-top: none;
+      border-left: 1px solid var(--color-border);
+    }
+  }
+  .compare-cell.is-agent { background: rgba(45, 94, 68, 0.08); }
+  .compare-cell .item-eyebrow { display: block; margin-bottom: 0.5rem; }
+  .compare-cell .is-agent-eyebrow { color: var(--color-brand); }
+  .compare-cell h3 {
+    font-size: 1.125rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+  }
+  .compare-cell > p {
+    color: var(--color-muted-foreground);
+    font-size: 0.9375rem;
+    margin-bottom: 1rem;
+  }
+  .compare-cell ul {
+    list-style: none;
+    padding: 0;
+    margin: 0.75rem 0 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  .compare-cell li {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.625rem;
+    font-size: 0.9375rem;
+    color: var(--color-muted-foreground);
+  }
+  .compare-cell li::before {
+    content: "×";
+    color: var(--color-muted-foreground);
+    font-family: var(--font-mono);
+    flex-shrink: 0;
+    margin-top: 0.05em;
+  }
+  .compare-cell.is-agent li::before {
+    content: "✓";
+    color: var(--color-brand);
+  }
+
+  /* ==========================================================
+     Pull-quote / aside (analogy block)
+     ========================================================== */
+  .aside {
+    margin-top: 2rem;
+    padding: 1.75rem;
+    border-left: 2px solid var(--color-brand);
+    background: var(--color-muted);
+    border-radius: 0 var(--radius-lg) var(--radius-lg) 0;
+  }
+  .aside .aside-label {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--color-brand);
+    display: block;
+    margin-bottom: 0.625rem;
+  }
+  .aside p {
+    margin: 0;
+    color: var(--color-foreground);
+    font-family: var(--font-serif);
+    font-size: 1.0625rem;
+    line-height: var(--leading-relaxed);
+    font-style: italic;
+  }
+  .aside p strong { font-style: normal; }
+
+  /* ==========================================================
+     Agent loop (SVG + steps)
+     ========================================================== */
+  .loop-wrap {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+    align-items: center;
+  }
+  @media (min-width: 760px) {
+    .loop-wrap { grid-template-columns: 280px 1fr; gap: 3rem; }
+  }
+  .loop-svg { width: 100%; max-width: 280px; margin: 0 auto; }
+  .loop-steps {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  .loop-step {
+    display: grid;
+    grid-template-columns: 2rem 1fr;
+    gap: 0.875rem;
+    align-items: start;
+  }
+  .loop-step .n {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--color-brand);
+    letter-spacing: 0.05em;
+    padding-top: 0.125rem;
+  }
+  .loop-step h4 {
+    font-size: 1.0625rem;
+    margin-bottom: 0.25rem;
+  }
+  .loop-step h4 .en {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--color-muted-foreground);
+    margin-left: 0.5rem;
+    font-weight: 400;
+    letter-spacing: 0.05em;
+  }
+  .loop-step p { margin: 0; color: var(--color-muted-foreground); font-size: 0.9375rem; }
+
+  /* ==========================================================
+     Use cases — vertical list with mono labels (no flashy cards)
+     ========================================================== */
+  .use-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+  .use {
+    padding: 2rem 0;
+    border-top: 1px solid var(--color-border);
+  }
+  .use:first-child { border-top: none; padding-top: 0; }
+  .use:last-child { padding-bottom: 0; }
+  .use-top {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 0.5rem;
+    flex-wrap: wrap;
+  }
+  .use-top .use-label {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--color-muted-foreground);
+  }
+  .use-top .use-gain {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--color-brand);
+    letter-spacing: 0.05em;
+  }
+  .use h3 {
+    font-size: 1.25rem;
+    margin-bottom: 0.625rem;
+  }
+  @media (min-width: 640px) { .use h3 { font-size: 1.375rem; } }
+  .use p { color: var(--color-muted-foreground); margin-bottom: 0.875rem; }
+  .use-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 0.875rem;
+  }
+  .chip {
+    display: inline-block;
+    padding: 0.25rem 0.625rem;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    color: var(--color-muted-foreground);
+    letter-spacing: 0.02em;
+  }
+
+  /* ==========================================================
+     Demo block — mono code-style terminal mock
+     ========================================================== */
+  .demo {
+    margin-top: 2.5rem;
+    padding-top: 2.5rem;
+    border-top: 1px solid var(--color-border);
+  }
+  .demo:first-of-type { border-top: none; padding-top: 0; margin-top: 0; }
+  .demo-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-bottom: 0.625rem;
+  }
+  .demo-num {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--color-brand);
+  }
+  .demo-time {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    color: var(--color-muted-foreground);
+    letter-spacing: 0.05em;
+  }
+  .demo h3 {
+    font-size: 1.375rem;
+    margin-bottom: 0.625rem;
+  }
+  .demo > p {
+    color: var(--color-muted-foreground);
+    margin-bottom: 1.25rem;
+  }
+  .demo-steps {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 1.5rem;
+    counter-reset: step;
+  }
+  .demo-steps li {
+    counter-increment: step;
+    padding: 0.625rem 0 0.625rem 2rem;
+    position: relative;
+    color: var(--color-muted-foreground);
+    font-size: 0.9375rem;
+    line-height: var(--leading-relaxed);
+    border-top: 1px dashed rgba(38, 38, 38, 0.6);
+  }
+  .demo-steps li:first-child { border-top: none; }
+  .demo-steps li::before {
+    content: counter(step, decimal-leading-zero);
+    position: absolute;
+    left: 0;
+    top: 0.625rem;
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    color: var(--color-brand);
+    letter-spacing: 0.05em;
+  }
+  .demo-steps strong { color: var(--color-foreground); font-weight: 600; }
+
+  .terminal {
+    background: var(--color-muted);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    font-family: var(--font-mono);
+    font-size: 0.8125rem;
+    line-height: 1.7;
+    color: var(--color-foreground);
+    overflow: hidden;
+  }
+  .terminal-bar {
+    padding: 0.625rem 0.875rem;
+    background: rgba(0, 0, 0, 0.3);
+    border-bottom: 1px solid var(--color-border);
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    color: var(--color-muted-foreground);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .terminal-body { padding: 1.125rem; }
+  .terminal-body .row { padding: 0.05rem 0; }
+  .terminal-body .mu { color: var(--color-muted-foreground); }
+  .terminal-body .ok { color: var(--color-brand); }
+  .terminal-body .label {
+    display: inline-block;
+    color: var(--color-muted-foreground);
+    margin-right: 0.5rem;
+  }
+  .terminal-body .label.user { color: #c2a8ff; }
+  .terminal-body .label.bot { color: var(--color-brand); }
+  .terminal-body .label.tool { color: #d4a657; }
+  .terminal-body .hr {
+    border-top: 1px dashed var(--color-border);
+    margin: 0.5rem 0;
+  }
+  /* Workflow terminal helpers */
+  .terminal-body .step {
+    display: inline-block;
+    min-width: 6.5rem;
+    color: var(--color-foreground);
+    font-weight: 500;
+  }
+  .terminal-body .num {
+    display: inline-block;
+    width: 1.75rem;
+    color: var(--color-brand);
+  }
+  .terminal-body .meta {
+    color: var(--color-brand);
+    font-weight: 500;
+  }
+  .terminal-title-tag {
+    display: inline-block;
+    padding: 1px 6px;
+    margin-right: 0.5rem;
+    background: var(--color-brand);
+    color: var(--color-brand-foreground);
+    border-radius: 3px;
+    font-size: 0.625rem;
+    letter-spacing: 0.1em;
+    font-weight: 600;
+  }
+
+  /* Case-list divider: visual separation between "by-job" and "by-scenario" cases */
+  .case-divider {
+    margin: 3rem 0;
+    padding: 2.25rem 1.5rem;
+    border-top: 1px solid var(--color-border);
+    border-bottom: 1px solid var(--color-border);
+    text-align: center;
+  }
+  .case-divider .eyebrow {
+    display: block;
+    margin-bottom: 0.75rem;
+    color: var(--color-brand);
+  }
+  .case-divider h3 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 0.625rem;
+    letter-spacing: var(--tracking-tight);
+  }
+  .case-divider p {
+    color: var(--color-muted-foreground);
+    max-width: 40rem;
+    margin: 0 auto;
+    font-size: 0.9375rem;
+    line-height: var(--leading-relaxed);
+  }
+
+  /* ==========================================================
+     Timeline — minimal vertical list with mono dates
+     ========================================================== */
+  .timeline {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+  .tl {
+    padding-left: 1.5rem;
+    border-left: 1px solid var(--color-border);
+    position: relative;
+  }
+  .tl::before {
+    content: "";
+    position: absolute;
+    left: -0.3125rem;
+    top: 0.4rem;
+    width: 0.5625rem;
+    height: 0.5625rem;
+    border-radius: 9999px;
+    background: var(--color-background);
+    border: 2px solid var(--color-brand);
+  }
+  .tl .tl-week {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--color-brand);
+    display: block;
+    margin-bottom: 0.375rem;
+  }
+  .tl h3 {
+    font-size: 1.125rem;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+  }
+  .tl p { margin: 0; color: var(--color-muted-foreground); }
+
+  /* ==========================================================
+     Subscribe / CTA
+     ========================================================== */
+  .subscribe {
+    margin: 2.5rem auto 0;
+    max-width: 28rem;
+  }
+  .subscribe-form {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  @media (min-width: 640px) {
+    .subscribe-form { flex-direction: row; }
+  }
+  .subscribe input[type="email"] {
+    flex: 1;
+    min-width: 0;
+    height: 3rem;
+    padding: 0 1rem;
+    border-radius: var(--radius-md);
+    background: var(--color-muted);
+    border: 1px solid rgba(163, 163, 163, 0.3);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    transition: border-color 0.15s;
+  }
+  .subscribe input[type="email"]::placeholder { color: var(--color-muted-foreground); }
+  .subscribe input[type="email"]:focus {
+    outline: none;
+    border-color: var(--color-brand);
+  }
+  .subscribe .btn { flex-shrink: 0; height: 3rem; padding: 0 1.5rem; font-size: 1rem; }
+  .subscribe-note {
+    margin-top: 0.75rem;
+    font-size: 0.75rem;
+    color: var(--color-muted-foreground);
+    text-align: center;
+  }
+
+  /* ==========================================================
+     Footer
+     ========================================================== */
+  footer.site {
+    border-top: 1px solid var(--color-border);
+    padding: 2.5rem 1.5rem;
+    margin-top: 4rem;
+  }
+  .footer-inner {
+    max-width: var(--container-2xl);
+    margin: 0 auto;
+    text-align: center;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--color-muted-foreground);
+    letter-spacing: 0.05em;
+  }
+  .footer-inner a { color: var(--color-muted-foreground); }
+  .footer-inner a:hover { color: var(--color-brand); }
+  .footer-inner .sep { color: var(--color-border); margin: 0 0.625rem; }
+
+  /* ==========================================================
+     Audience profile chart (donut + legend)
+     ========================================================== */
+  .audience {
+    margin-bottom: 4rem;
+    padding-bottom: 3rem;
+    border-bottom: 1px solid var(--color-border);
+  }
+  .audience-head { margin-bottom: 2rem; }
+  .audience-head .eyebrow { display: block; margin-bottom: 0.625rem; }
+  .audience-head h3 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    letter-spacing: var(--tracking-tight);
+  }
+  @media (min-width: 640px) { .audience-head h3 { font-size: 1.375rem; } }
+  .audience-head p { color: var(--color-muted-foreground); margin: 0; }
+
+  .audience-body {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    align-items: center;
+  }
+  @media (min-width: 720px) {
+    .audience-body { grid-template-columns: 260px 1fr; gap: 3rem; }
+  }
+
+  .donut {
+    width: 100%;
+    max-width: 240px;
+    margin: 0 auto;
+    aspect-ratio: 1;
+    position: relative;
+  }
+  .donut svg { width: 100%; height: 100%; display: block; }
+  .donut-center {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    pointer-events: none;
+  }
+  .donut-center .n {
+    font-family: var(--font-mono);
+    font-size: 1.875rem;
+    font-weight: 600;
+    color: var(--color-foreground);
+    line-height: 1;
+    letter-spacing: -0.02em;
+  }
+  .donut-center .lbl {
+    margin-top: 0.375rem;
+    font-family: var(--font-mono);
+    font-size: 0.625rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--color-muted-foreground);
+  }
+
+  .legend {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.875rem;
+  }
+  .legend li {
+    display: grid;
+    grid-template-columns: 0.625rem 1fr auto;
+    gap: 0.75rem;
+    align-items: center;
+    padding: 0.625rem 0;
+    border-top: 1px solid var(--color-border);
+  }
+  .legend li:first-child { border-top: none; padding-top: 0; }
+  .legend .swatch {
+    width: 0.625rem;
+    height: 0.625rem;
+    border-radius: 2px;
+  }
+  .legend .name {
+    color: var(--color-foreground);
+    font-size: 0.9375rem;
+    font-weight: 500;
+  }
+  .legend .pct {
+    font-family: var(--font-mono);
+    font-size: 0.9375rem;
+    color: var(--color-muted-foreground);
+    letter-spacing: 0.02em;
+    font-feature-settings: "tnum" 1;
+  }
+
+  /* Sub-bullets inside a use case */
+  .sub-list {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 0.875rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  .sub-list li {
+    display: grid;
+    grid-template-columns: 1.5rem 1fr;
+    gap: 0.5rem;
+    color: var(--color-muted-foreground);
+    font-size: 0.9375rem;
+    line-height: var(--leading-relaxed);
+  }
+  .sub-list li::before {
+    content: "→";
+    font-family: var(--font-mono);
+    color: var(--color-brand);
+    margin-top: 0.05em;
+  }
+  .sub-list strong { color: var(--color-foreground); font-weight: 600; }
+
+  /* ==========================================================
+     Utilities
+     ========================================================== */
+  .mono { font-family: var(--font-mono); }
+  .serif { font-family: var(--font-serif); }
+
+  /* ==========================================================
+     Episode tabs — sits between topnav and main on agent-101 pages
+     ========================================================== */
+  .ep-tabs {
+    position: sticky;
+    top: 3.5rem;
+    z-index: 39;
+    border-bottom: 1px solid var(--color-border);
+    background: var(--color-background);
+  }
+  .ep-tabs-inner {
+    max-width: var(--container-6xl);
+    margin: 0 auto;
+    padding: 0 1.5rem;
+    display: flex;
+    align-items: stretch;
+    gap: 1.25rem;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+  }
+  .ep-tabs-inner::-webkit-scrollbar { display: none; }
+  .ep-tabs-label {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--color-muted-foreground);
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    padding: 0.875rem 0;
+  }
+  .ep-tab {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    text-decoration: none;
+    white-space: nowrap;
+    padding: 0.875rem 0;
+    color: var(--color-muted-foreground);
+    transition: color 0.15s;
+    border-bottom: 2px solid transparent;
+    margin-bottom: -1px;
+  }
+  .ep-tab:hover { color: var(--color-foreground); text-decoration: none; }
+  .ep-tab.is-current {
+    color: var(--color-foreground);
+    border-bottom-color: var(--color-brand);
+  }
+  .ep-tab-num {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+    color: var(--color-brand);
+    font-weight: 600;
+  }
+  .ep-tab-title {
+    font-family: var(--font-sans);
+    font-size: 0.875rem;
+    font-weight: 500;
+  }
+  .ep-tab-lang {
+    font-family: var(--font-mono);
+    font-size: 0.625rem;
+    letter-spacing: 0.1em;
+    color: var(--color-muted-foreground);
+    margin-left: 0.375rem;
+    padding: 1px 5px;
+    border: 1px solid var(--color-border);
+    border-radius: 3px;
+  }
+  @media (max-width: 640px) {
+    .ep-tab-title { display: none; }
+    .ep-tabs-label { font-size: 0.6875rem; }
+    .ep-tabs-inner { gap: 1rem; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="topnav">
+  <div class="nav-inner">
+    <a href="/" class="brand">realagentusecases.com</a>
+    <div class="nav-right">
+      <a href="/zh/news/" class="nav-link">News</a>
+      <a href="/en/agent-101/06-track-ai-trends/" class="nav-link">EN</a>
+      <a class="btn" href="#cta">Subscribe</a>
+    </div>
+  </div>
+</nav>
+
+<nav class="ep-tabs" aria-label="Agent 101 episode navigation">
+  <div class="ep-tabs-inner">
+    <span class="ep-tabs-label">Agent 101 ·</span>
+    <a href="/agent-101/" class="ep-tab">
+      <span class="ep-tab-num">EP 01</span>
+      <span class="ep-tab-title">什么是 AI Agent</span>
+    </a>
+    <a href="/agent-101/02-multi-agent/" class="ep-tab">
+      <span class="ep-tab-num">EP 02</span>
+      <span class="ep-tab-title">Multi-agent &amp; Skills</span>
+    </a>
+    <a href="/agent-101/03-ai-tools-workflows/" class="ep-tab">
+      <span class="ep-tab-num">EP 03</span>
+      <span class="ep-tab-title">工具与工作流</span>
+    </a>
+    <a href="/agent-101/04-obsidian-second-brain/" class="ep-tab">
+      <span class="ep-tab-num">EP 04</span>
+      <span class="ep-tab-title">Obsidian 第二大脑</span>
+    </a>
+    <a href="/agent-101/05-talk-to-ai/" class="ep-tab">
+      <span class="ep-tab-num">EP 05</span>
+      <span class="ep-tab-title">与 AI 高效沟通</span>
+    </a>
+    <a href="/agent-101/06-track-ai-trends/" class="ep-tab is-current">
+      <span class="ep-tab-num">EP 06</span>
+      <span class="ep-tab-title">主动了解 AI 趋势</span>
+    </a>
+  </div>
+</nav>
+
+<main>
+
+  <!-- ============ HERO ============ -->
+  <section class="hero">
+    <span class="eyebrow-lg">EPISODE 06 · Track AI trends · 2026.05.17</span>
+    <h1>
+      追<span class="brand-word">热点</span>，<br>
+      不等于懂<span class="brand-word">趋势</span>。
+    </h1>
+
+    <p class="hero-sub" style="margin-top: 1.5rem;">
+      这是一场关于"怎么跟上 AI"的讲座。<br>
+      但更准确地说——是教你别把"刷得多"当成"懂得多"。
+    </p>
+
+    <ul class="hero-list">
+      <li class="hero-list-item"><span class="dot"></span><span>你不缺信息 — 缺的是一套只留信号、过滤噪音的雷达</span></li>
+      <li class="hero-list-item"><span class="dot"></span><span>"我每天刷 AI 新闻"是空转词 — 重写成一份每周汇总的简报</span></li>
+      <li class="hero-list-item"><span class="dot"></span><span>一张按信号层级分的信源地图 — 一手在哪、噪音在哪</span></li>
+    </ul>
+
+    <div class="hero-ctas">
+      <a class="btn btn-lg" href="#deconstruct">开始拆词 →</a>
+    </div>
+
+    <div class="hero-foot">
+      AGENT 101 SERIES · EP 06 · 不画饼版
+    </div>
+  </section>
+
+  <!-- ============ § 1 追热点 ≠ 懂趋势 ============ -->
+  <section id="deconstruct" class="essay">
+    <div class="essay-inner">
+      <header class="section-head">
+        <span class="eyebrow">§ 01 · 先拆词</span>
+        <h2>"热点""信息""趋势"，是三件不同的事</h2>
+        <p class="lede">
+          每天有几百条 AI 新闻砸向你。回答一个问题：上一次你刷到的某条"重磅"，真的改变了你做的事吗？
+          多数人卡在这——把"刷到了"当成"懂了"，把"信息量"当成"判断力"。
+        </p>
+      </header>
+
+      <ul class="item-list">
+        <li class="item">
+          <span class="item-eyebrow">概念 · 01 · 热点</span>
+          <h3>追热点 = 被推送牵着走</h3>
+          <p>热点是算法喂给你的，目的是让你多停留，不是让你更聪明。追热点的人被信息流牵着，今天这个"颠覆"，明天那个"炸裂"，看起来很努力，其实只是在替平台贡献停留时长。刷得越多，越焦虑，判断却没变。</p>
+        </li>
+        <li class="item">
+          <span class="item-eyebrow">概念 · 02 · 信息</span>
+          <h3>信息 = 原始素材，大部分是噪音</h3>
+          <p>每条新闻、每个 release、每篇解读都是原始素材。但素材不等于知识——其中 95% 是噪音：和你做的事无关、或明天就被推翻。信息本身没有价值，被你筛选、和你的判断结合之后才有。</p>
+        </li>
+        <li class="item">
+          <span class="item-eyebrow">概念 · 03 · 趋势</span>
+          <h3>趋势 = 从噪音里筛出的方向 + 你的判断</h3>
+          <p>这是唯一去掉会丢信息的用法。趋势不是"最新发生了什么"，是"反复出现、并且会影响你做的事的那个方向"。它需要你从一堆噪音里筛信号，再结合你的处境做判断。懂趋势的人读得少，但每一条都用得上。</p>
+        </li>
+      </ul>
+
+      <aside class="aside">
+        <span class="aside-label">大白话收尾</span>
+        <p>
+          你不缺信息，信息多到淹死你。<strong>你缺的是一套只留信号、把噪音挡在外面的雷达。</strong>
+          今天这一讲，不教你刷得更多，教你怎么搭一套雷达，让你刷得更少、却懂得更多。
+        </p>
+      </aside>
+    </div>
+  </section>
+
+  <!-- ============ § 2 审计你的信息摄入 ============ -->
+  <section class="essay">
+    <div class="essay-inner">
+      <header class="section-head">
+        <span class="eyebrow">§ 02 · 审计你的信息摄入</span>
+        <h2>"我每天刷 AI 新闻"是空转词</h2>
+        <p class="lede">
+          这句话听起来像勤奋、像上进。但它过不了三个最简单的检查。
+          过不了，说明你做的不是"跟上趋势"，是用刷屏缓解"怕错过"的焦虑——越刷越焦虑，判断却原地踏步。
+        </p>
+      </header>
+
+      <ul class="item-list">
+        <li class="item">
+          <span class="item-eyebrow">摄入测试 · 01</span>
+          <h3>你刷的这些，上次真的改变了你的一个决定吗？</h3>
+          <p>不是"我知道了这个新闻"，是"因为这条信息，我改了某个做法 / 某个判断"。如果想不起一个具体的决定被它改变，那这些刷屏对你就是纯消费——和刷短视频没本质区别。</p>
+        </li>
+        <li class="item">
+          <span class="item-eyebrow">摄入测试 · 02</span>
+          <h3>你能不能当场说清一条信息是"信号"还是"噪音"？</h3>
+          <p>信号是会影响你做的事的，噪音是看着热闹但和你无关的。如果每条都让你心头一紧、却分不清该不该管，说明你没有过滤器——你在用注意力给所有信息无差别买单。</p>
+        </li>
+        <li class="item">
+          <span class="item-eyebrow">摄入测试 · 03</span>
+          <h3>一周不刷，你的判断会变差吗？</h3>
+          <p>最狠的一条。如果停刷一周，你做事的判断毫无影响，说明你刷的根本不是趋势，是 FOMO。真正的信号，错过一周你会真切地感到落后；纯噪音，停掉只会让你更清醒。</p>
+        </li>
+      </ul>
+
+      <aside class="aside">
+        <span class="aside-label">重写：从"跟上一切"到"搭一套雷达"</span>
+        <p style="font-style: normal; font-family: var(--font-sans);">
+          <span style="color: var(--color-muted-foreground);">原句：</span><br>
+          <s style="color: var(--color-muted-foreground);">"我要跟上所有 AI 动态，一条都不能漏。"</s><br><br>
+          <span style="color: var(--color-brand); font-family: var(--font-mono); font-size: 0.75rem; letter-spacing: 0.1em;">REWRITE ↓</span><br><br>
+          <strong>"每周日 30 分钟，让一个 agent 把过去 7 天我关注的 3 个领域的重要进展汇成一份简报，我只读简报、不刷信息流。一个月后回看：如果简报里没有一条改变过我做的事，就是我关注的领域选错了，回来调。"</strong>
+        </p>
+      </aside>
+
+      <p style="margin-top: 2rem; color: var(--color-muted-foreground); font-size: 0.9375rem;">
+        前一句是 FOMO，永远漏得完、追不上。后一句有范围、有节奏、有失败信号。
+        <strong style="color: var(--color-foreground); font-weight: 600;">懂趋势不是看得多，是漏得对——主动放弃 95% 的噪音，才看得见那 5% 的信号。</strong>
+      </p>
+    </div>
+  </section>
+
+  <!-- ============ § 3 信号 vs 噪音 ============ -->
+  <section class="essay">
+    <div class="essay-inner">
+      <header class="section-head">
+        <span class="eyebrow">§ 03 · 拆完词之后</span>
+        <h2>"被推送牵着"和"用雷达扫描"，是两种完全不同的摄入</h2>
+        <p class="lede">
+          同样想跟上 AI，两种人一年后的判断力差一个档次。区别不在谁刷得多，
+          在脑子里装的是"被信息流牵着走"还是"用一套雷达主动扫描"。这一节是这一讲唯一的对照。
+        </p>
+      </header>
+
+      <div class="compare">
+        <div class="compare-cell">
+          <span class="item-eyebrow">被推送牵着 · 你可能正在做的</span>
+          <h3>越刷越多，越多越慌</h3>
+          <p>被算法和热搜牵着走，什么都想看，收藏一堆永远不读。</p>
+          <ul>
+            <li>打开就刷，被信息流推着走</li>
+            <li>什么领域都想跟，结果哪个都不深</li>
+            <li>收藏一堆"稍后读"，永远不读</li>
+            <li>焦虑持续上升，判断毫无长进</li>
+          </ul>
+        </div>
+        <div class="compare-cell is-agent">
+          <span class="item-eyebrow is-agent-eyebrow">用雷达扫描 · 你今天要变成的</span>
+          <h3>看得更少，懂得更多</h3>
+          <p>固定少数高信号源，只看与你的事相关的，一份简报代替刷屏。</p>
+          <ul>
+            <li>固定 3 个领域 + 少数一手信源</li>
+            <li>只问一句："这影响我做的什么"</li>
+            <li>一份每周简报，代替每天刷屏</li>
+            <li>焦虑下降，判断稳步更新</li>
+          </ul>
+        </div>
+      </div>
+
+      <aside class="aside">
+        <span class="aside-label">大白话比喻</span>
+        <p>
+          <strong>追热点像站在消防水管下喝水</strong>——水量惊人，你却几乎喝不进，还呛得难受。
+          <strong>搭雷达像装一个只在重要时才响的警报器</strong>——平时安静，真有信号才提醒你。
+          你要的不是接住所有水，是在口渴时有一杯干净的水。主动关掉水管，才喝得到。
+        </p>
+      </aside>
+    </div>
+  </section>
+
+  <!-- ============ § 4 雷达怎么搭 (loop) ============ -->
+  <section class="essay">
+    <div class="essay-inner wide">
+      <header class="section-head">
+        <span class="eyebrow">§ 04 · 雷达怎么搭</span>
+        <h2>四步：信源 → 节奏 → 捕获 → 综合</h2>
+        <p class="lede">
+          一套能用的趋势雷达，是这四步在转。多数人只做了"看"（还是被动地看），没选信源、没定节奏、没有综合，
+          于是永远在刷、永远焦虑。记住这四步，你就知道自己的信息系统断在哪。
+        </p>
+      </header>
+
+      <div class="loop-wrap">
+        <svg class="loop-svg" viewBox="0 0 280 280" xmlns="http://www.w3.org/2000/svg" aria-label="趋势雷达四步循环">
+          <defs>
+            <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+              <path d="M 0 0 L 10 5 L 0 10 z" fill="#2d5e44"/>
+            </marker>
+          </defs>
+          <circle cx="140" cy="140" r="105" fill="none" stroke="#262626" stroke-width="1" stroke-dasharray="2 5"/>
+          <circle cx="140" cy="140" r="32" fill="#161616" stroke="#2d5e44" stroke-width="1.5"/>
+          <text x="140" y="138" text-anchor="middle" font-family="Geist Mono, monospace" font-size="9" fill="#f2f2f2" font-weight="600">RADAR</text>
+          <text x="140" y="152" text-anchor="middle" font-family="Geist Mono, monospace" font-size="8" fill="#a3a3a3">LOOP</text>
+
+          <g transform="translate(140, 40)">
+            <circle r="28" fill="#0a0a0a" stroke="#2d5e44" stroke-width="1.5"/>
+            <text y="-3" text-anchor="middle" font-family="Geist, sans-serif" font-size="14" font-weight="600" fill="#f2f2f2">信源</text>
+            <text y="11" text-anchor="middle" font-family="Geist Mono, monospace" font-size="6.5" fill="#a3a3a3">SOURCES</text>
+          </g>
+          <g transform="translate(240, 140)">
+            <circle r="28" fill="#0a0a0a" stroke="#2d5e44" stroke-width="1.5"/>
+            <text y="-3" text-anchor="middle" font-family="Geist, sans-serif" font-size="14" font-weight="600" fill="#f2f2f2">节奏</text>
+            <text y="11" text-anchor="middle" font-family="Geist Mono, monospace" font-size="6.5" fill="#a3a3a3">CADENCE</text>
+          </g>
+          <g transform="translate(140, 240)">
+            <circle r="28" fill="#0a0a0a" stroke="#2d5e44" stroke-width="1.5"/>
+            <text y="-3" text-anchor="middle" font-family="Geist, sans-serif" font-size="14" font-weight="600" fill="#f2f2f2">捕获</text>
+            <text y="11" text-anchor="middle" font-family="Geist Mono, monospace" font-size="6.5" fill="#a3a3a3">CAPTURE</text>
+          </g>
+          <g transform="translate(40, 140)">
+            <circle r="28" fill="#0a0a0a" stroke="#2d5e44" stroke-width="1.5"/>
+            <text y="-3" text-anchor="middle" font-family="Geist, sans-serif" font-size="13" font-weight="600" fill="#f2f2f2">综合</text>
+            <text y="11" text-anchor="middle" font-family="Geist Mono, monospace" font-size="6" fill="#a3a3a3">SYNTHESIZE</text>
+          </g>
+
+          <path d="M 168 60 Q 215 80 220 112" fill="none" stroke="#2d5e44" stroke-width="1" marker-end="url(#arr)" opacity="0.8"/>
+          <path d="M 220 168 Q 215 200 168 220" fill="none" stroke="#2d5e44" stroke-width="1" marker-end="url(#arr)" opacity="0.8"/>
+          <path d="M 112 220 Q 65 200 60 168" fill="none" stroke="#2d5e44" stroke-width="1" marker-end="url(#arr)" opacity="0.8"/>
+          <path d="M 60 112 Q 65 80 112 60" fill="none" stroke="#2d5e44" stroke-width="1" marker-end="url(#arr)" opacity="0.8"/>
+        </svg>
+
+        <ul class="loop-steps">
+          <li class="loop-step">
+            <span class="n">01</span>
+            <div>
+              <h4>信源<span class="en">SOURCES</span></h4>
+              <p>选少数高信噪比的源，分三层：一手（实验室博客 / release notes / 论文）、社区（HN / GitHub Trending）、人（少数做事的研究者和构建者）。源的质量，决定你雷达的上限。</p>
+            </div>
+          </li>
+          <li class="loop-step">
+            <span class="n">02</span>
+            <div>
+              <h4>节奏<span class="en">CADENCE</span></h4>
+              <p>定一个固定频率：每周一次（或每日一份简报），而不是随时刷。节奏把"被动被推送"变成"主动去取"——这一步是戒掉 FOMO 的关键。真信号不会因为你晚一周看就消失。</p>
+            </div>
+          </li>
+          <li class="loop-step">
+            <span class="n">03</span>
+            <div>
+              <h4>捕获<span class="en">CAPTURE</span></h4>
+              <p>让系统自动抓取，别靠"记得去看"。RSS、订阅、agent 定时抓——把信源接成一条会自己跑的管道。靠意志力去刷的雷达，迟早荒废；自动捕获的才稳。</p>
+            </div>
+          </li>
+          <li class="loop-step">
+            <span class="n">04</span>
+            <div>
+              <h4>综合<span class="en">SYNTHESIZE</span></h4>
+              <p>让 agent 把抓来的原始信息汇成一份简报：去重、排序、标出"为什么重要"。你只读结论、做判断。这一步把"一堆信息"变成"少数信号"，也是趋势雷达真正省你时间的地方。</p>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ § 5 信源地图 ============ -->
+  <section class="essay">
+    <div class="essay-inner wide">
+      <header class="section-head">
+        <span class="eyebrow">§ 05 · 信源地图</span>
+        <h2>按"信号层级"分，不按热度排</h2>
+        <p class="lede">
+          热搜榜按"最热"排——对你判断趋势毫无用处。下面这张图按"信号离一手有多近"分四层：
+          越靠上越接近源头、越少噪音。原则是：尽量往上游走，别只读二手解读。
+        </p>
+      </header>
+
+      <ul class="use-list">
+
+        <!-- ───── 01 · 一手信号 ───── -->
+        <li class="use">
+          <div class="use-top">
+            <span class="use-label">层级 · 01 · 一手信号 · PRIMARY</span>
+            <span class="use-gain">二手解读 → 源头</span>
+          </div>
+          <h3>尽量读源头：别人转述前，你先看到</h3>
+          <p style="color:var(--color-foreground);font-weight:500;margin-bottom:1rem;">
+            反共识：99% 的人读的是"对源头的解读的解读"，层层失真。
+            <strong>真信号在上游——实验室官方博客、release notes、技术报告、论文（arXiv）。直接读源头，你比读二手号的人早一步、准一手。</strong>
+          </p>
+          <div class="terminal">
+            <div class="terminal-bar"><span class="terminal-title-tag">SOURCES</span>一手信号源</div>
+            <div class="terminal-body">
+              <div class="row"><span class="step">实验室</span><span class="mu">主要 AI 实验室的官方博客 / 公告</span></div>
+              <div class="row"><span class="step">RELEASE</span><span class="mu">产品 release notes / changelog / 文档</span></div>
+              <div class="row"><span class="step">论文</span><span class="mu">arXiv（cs.AI / cs.CL）· 看摘要 + 结论即可</span></div>
+              <div class="row"><span class="step">原始数据</span><span class="mu">官方 benchmark / 评测榜 · 看数字不看标题</span></div>
+              <div class="hr"></div>
+              <div class="row"><span class="ok">原则</span><span class="mu">能读源头，就不读转述</span></div>
+            </div>
+          </div>
+          <div class="use-meta">
+            <span class="chip">实验室博客</span>
+            <span class="chip">release notes</span>
+            <span class="chip">arXiv</span>
+            <span class="chip">官方文档</span>
+          </div>
+        </li>
+
+        <!-- ───── 02 · 社区信号 ───── -->
+        <li class="use">
+          <div class="use-top">
+            <span class="use-label">层级 · 02 · 社区信号 · COMMUNITY</span>
+            <span class="use-gain">大V喊话 → 工程师在用</span>
+          </div>
+          <h3>看构建者在用什么，而不是看谁在喊</h3>
+          <p style="color:var(--color-foreground);font-weight:500;margin-bottom:1rem;">
+            反共识：营销号告诉你"什么火"，社区告诉你"什么真有人用"。
+            <strong>Hacker News 的讨论、GitHub Trending 的涨星、特定技术社区——这些是工程师用脚投票的地方。一个工具有没有真价值，看构建者在不在用，比看宣发靠谱得多。</strong>
+          </p>
+          <div class="terminal">
+            <div class="terminal-bar"><span class="terminal-title-tag">SOURCES</span>社区信号源</div>
+            <div class="terminal-body">
+              <div class="row"><span class="step">HN</span><span class="mu">Hacker News · 看高赞评论里的质疑，不只看标题</span></div>
+              <div class="row"><span class="step">GITHUB</span><span class="mu">GitHub Trending · 谁在涨星 · 看 issue 真实反馈</span></div>
+              <div class="row"><span class="step">社区</span><span class="mu">特定技术 subreddit / Discord · 真实用感</span></div>
+              <div class="row"><span class="step">信号</span><span class="mu">"构建者在迁移到 X" 比 "X 融了一个亿" 重要</span></div>
+              <div class="hr"></div>
+              <div class="row"><span class="ok">原则</span><span class="mu">看用脚投票，不看用嘴宣传</span></div>
+            </div>
+          </div>
+          <div class="use-meta">
+            <span class="chip">Hacker News</span>
+            <span class="chip">GitHub Trending</span>
+            <span class="chip">技术社区</span>
+          </div>
+        </li>
+
+        <!-- ───── 03 · 人（策展者）───── -->
+        <li class="use">
+          <div class="use-top">
+            <span class="use-label">层级 · 03 · 人 / 策展者 · CURATORS</span>
+            <span class="use-gain">关注大V → 关注做事的人</span>
+          </div>
+          <h3>follow 少数做事的人，不是声量最大的人</h3>
+          <p style="color:var(--color-foreground);font-weight:500;margin-bottom:1rem;">
+            反共识：声量和信噪比常常成反比。天天发"AI 颠覆一切"的，多半在卖焦虑。
+            <strong>找少数高信噪比的人——真在做研究、真在构建产品的人。他们发得少，但每条都有信息量。关注做事的人，让他们替你做第一层过滤。</strong>
+          </p>
+          <div class="terminal">
+            <div class="terminal-bar"><span class="terminal-title-tag">SOURCES</span>怎么挑人</div>
+            <div class="terminal-body">
+              <div class="row"><span class="step">挑</span><span class="mu">真在做研究 / 构建的人 · 发东西带细节和代码</span></div>
+              <div class="row"><span class="step">挑</span><span class="mu">会说"我不确定 / 这个被高估了"的人</span></div>
+              <div class="row"><span class="step">删</span><span class="mu">天天"炸裂 / 颠覆 / 再不学就晚了"的</span></div>
+              <div class="row"><span class="step">删</span><span class="mu">只转述、从不动手、靠 FOMO 涨粉的</span></div>
+              <div class="hr"></div>
+              <div class="row"><span class="ok">原则</span><span class="mu">信噪比 &gt; 粉丝量</span></div>
+            </div>
+          </div>
+          <div class="use-meta">
+            <span class="chip">研究者</span>
+            <span class="chip">构建者</span>
+            <span class="chip">高信噪比</span>
+          </div>
+        </li>
+
+        <!-- ───── 04 · 噪音区 ───── -->
+        <li class="use">
+          <div class="use-top">
+            <span class="use-label">层级 · 04 · 噪音区 · MUTE</span>
+            <span class="use-gain">被动接收 → 主动屏蔽</span>
+          </div>
+          <h3>主动屏蔽这一层，比多关注一层更重要</h3>
+          <p style="color:var(--color-foreground);font-weight:500;margin-bottom:1rem;">
+            反共识：搭雷达不只是"加好的源"，更是"主动删掉坏的源"。
+            <strong>标题党周报、FOMO 号、二手解读、"AI 趋势大预测"——这些消耗你的注意力却不更新你的判断。把它们静音 / 退订，比再加三个信源更能提升你的信噪比。</strong>
+          </p>
+          <div class="terminal">
+            <div class="terminal-bar"><span class="terminal-title-tag">MUTE</span>主动屏蔽清单</div>
+            <div class="terminal-body">
+              <div class="row"><span class="step">退订</span><span class="mu">"每日 50 条 AI 神器" 类 FOMO 周报</span></div>
+              <div class="row"><span class="step">静音</span><span class="mu">标题永远"炸裂 / 颠覆"的账号</span></div>
+              <div class="row"><span class="step">跳过</span><span class="mu">对源头的二手、三手解读</span></div>
+              <div class="row"><span class="step">关掉</span><span class="mu">所有"算法推荐"的 AI 信息流推送</span></div>
+              <div class="hr"></div>
+              <div class="row"><span class="ok">原则</span><span class="mu">删噪音，比加信号更提升信噪比</span></div>
+            </div>
+          </div>
+          <div class="use-meta">
+            <span class="chip">退订 FOMO 周报</span>
+            <span class="chip">关推送</span>
+            <span class="chip">跳过二手解读</span>
+          </div>
+        </li>
+
+      </ul>
+
+      <aside class="aside">
+        <span class="aside-label">怎么判断一条信息是不是信号</span>
+        <p>
+          一条信息值不值得你停下来，问三个问题：<strong>它离一手有多近？它会不会改变我做的事？三个月后它还重要吗？</strong>
+          三个都"否"，就是噪音，划走。能让你对其中一个答"是"的，才值得进你的简报。
+        </p>
+      </aside>
+    </div>
+  </section>
+
+  <!-- ============ § 6 今晚能跑 ============ -->
+  <section class="essay">
+    <div class="essay-inner wide">
+      <header class="section-head">
+        <span class="eyebrow">§ 06 · 今晚能跑</span>
+        <h2>三步——今晚把你的趋势雷达搭起来</h2>
+        <p class="lede">
+          光懂"搭雷达"没用，得真有一套在跑。下面三步，今晚就能动手——
+          先做减法（删噪音），再做自动化（建简报），最后练判断（评估一条声明）。别想着一次完美，先让雷达转起来。
+        </p>
+      </header>
+
+      <div class="demo">
+        <div class="demo-head">
+          <span class="demo-num">DEMO · 01</span>
+          <span class="demo-time">15 分钟 · 一次性</span>
+        </div>
+        <h3>先做减法：定 3 个领域 + 3 个一手信源，删掉所有 FOMO 源</h3>
+        <p>搭雷达的第一步不是加，是删。今晚先想清你真正关心的 3 个领域，给每个挑 1 个一手信源，然后退订 / 静音所有 FOMO 周报和算法推送。减法做完，信噪比立刻翻倍。</p>
+        <ul class="demo-steps">
+          <li>写下你真正关心的 <strong>3 个领域</strong>（别贪多）</li>
+          <li>每个领域挑 <strong>1 个一手信源</strong>（官方博客 / 文档 / arXiv 分类）</li>
+          <li>退订所有"每日 N 条"的 FOMO 周报</li>
+          <li>关掉社交 App 里的"AI 推荐"信息流推送</li>
+          <li>只留下这 3 个源——其余的，主动放弃</li>
+        </ul>
+        <div class="terminal">
+          <div class="terminal-bar">我的趋势雷达 · 信源清单</div>
+          <div class="terminal-body">
+            <div class="row"><span class="ok">领域 1</span><span class="mu">Agent / 工具 → 实验室博客 + release notes</span></div>
+            <div class="row"><span class="ok">领域 2</span><span class="mu">我的行业 × AI → 1 个高信噪比的人</span></div>
+            <div class="row"><span class="ok">领域 3</span><span class="mu">本地模型 → GitHub Trending + HN</span></div>
+            <div class="hr"></div>
+            <div class="row"><span class="mu">— 已退订 6 个 FOMO 周报，关掉 3 个推送 —</span></div>
+            <div class="row"><span class="ok">✓ 噪音减半 · 雷达就位</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="demo">
+        <div class="demo-head">
+          <span class="demo-num">DEMO · 02</span>
+          <span class="demo-time">30 分钟搭 · 之后自动跑</span>
+        </div>
+        <h3>建一个每周 AI 简报 agent</h3>
+        <p>把"刷"换成"读简报"。让一个 agent 每周固定时间，把你 3 个领域的重要进展抓来、去重、排序、汇成一份简报，推给你。你只读结论。（这正是本站每日新闻 pipeline 在做的事。）</p>
+        <ul class="demo-steps">
+          <li>用 Perplexity / Claude + 一个定时任务（或 n8n）</li>
+          <li>写一份简报规格：3 个领域、只要"改变做法"的进展、附来源</li>
+          <li>设每周日早上跑一次，输出 markdown</li>
+          <li>结果推到邮箱 / Slack / Notion</li>
+          <li>读完问自己：这周哪条值得我改一个做法？</li>
+        </ul>
+        <div class="terminal">
+          <div class="terminal-bar">weekly-ai-brief · 每周日 08:00</div>
+          <div class="terminal-body">
+            <div class="row"><span class="num">01</span><span class="step">FETCH</span><span class="mu">抓取 3 个领域的一手信源（过去 7 天）</span></div>
+            <div class="row"><span class="num">02</span><span class="step">FILTER</span><span class="mu">去重 + 滤掉与你无关的 · 标"为什么重要"</span></div>
+            <div class="row"><span class="num">03</span><span class="step">RANK</span><span class="mu">按"会不会改变你做的事"排序</span></div>
+            <div class="row"><span class="num">04</span><span class="step">BRIEF</span><span class="mu">汇成 1 页简报 + 来源链接 → 推邮箱</span></div>
+            <div class="hr"></div>
+            <div class="row"><span class="ok">✓ 5 条信号 · 已附一手来源 · 刷屏归零</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="demo">
+        <div class="demo-head">
+          <span class="demo-num">DEMO · 03</span>
+          <span class="demo-time">每条声明 · 3 分钟</span>
+        </div>
+        <h3>练判断：让 AI 帮你"验一条声明"</h3>
+        <p>看到一条"重磅",别急着信也别急着转。养成一个动作：让 AI 帮你回到一手来源、给出反方、标出夸大的地方。三分钟，你就能分清这是信号还是营销。</p>
+        <ul class="demo-steps">
+          <li>把那条声明 / 标题贴给 Claude 或 Perplexity</li>
+          <li>让它找一手来源，核对原文到底说了什么</li>
+          <li>让它给出"这条被夸大 / 反对的角度"</li>
+          <li>问它"这对做 X 的人实际意味着什么"</li>
+          <li>三个问题答完，信号还是噪音，一目了然</li>
+        </ul>
+        <div class="terminal">
+          <div class="terminal-bar">claude · 验一条声明</div>
+          <div class="terminal-body">
+            <div class="row"><span class="label user">你</span>"某模型吊打一切" — 帮我回到一手来源核对</div>
+            <div class="row"><span class="label bot">CLAUDE</span><span class="mu">查原始报告中…</span></div>
+            <div class="hr"></div>
+            <div class="row">▌ 一手来源说：只在某一类窄基准上领先</div>
+            <div class="row"><span class="mu">· 标题"吊打一切"= 夸大</span></div>
+            <div class="row"><span class="mu">· 对你（做 X）实际影响：暂时不大</span></div>
+            <div class="row"><span class="ok">✓ 判定：营销噪音 · 划走</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ § 7 90 天 ============ -->
+  <section class="essay">
+    <div class="essay-inner">
+      <header class="section-head">
+        <span class="eyebrow">§ 07 · 接下来 90 天</span>
+        <h2>从追热点到懂趋势</h2>
+        <p class="lede">
+          这条 90 天路径不承诺你"什么都不漏",它给你四个具体动作，每个都带一个明确的失败信号。
+          某一周的失败信号亮了，就回上一周，别往前冲。
+        </p>
+      </header>
+
+      <ul class="timeline">
+        <li class="tl">
+          <span class="tl-week">WEEK 1 – 2 · 先断 FOMO</span>
+          <h3>退订所有 FOMO 源，只留 3 个一手信源</h3>
+          <p>做减法：退订所有"每日 N 条"周报、关掉算法推送，给你真关心的 3 个领域各留 1 个一手信源。<strong>失败信号：</strong>第 2 周末你又忍不住去刷信息流。<strong>怎么办：</strong>把那些 App 的推送权限直接关掉，断掉入口。</p>
+        </li>
+        <li class="tl">
+          <span class="tl-week">WEEK 3 – 4 · 立住节奏</span>
+          <h3>固定每周一次，而不是随时刷</h3>
+          <p>把"随时刷"改成"每周固定时间看一次"。其余时间不碰 AI 信息流。<strong>失败信号：</strong>你还是每天忍不住点开好几次。<strong>怎么办：</strong>给自己一个"信号不会因为晚一周看就消失"的提醒——真信号经得起等。</p>
+        </li>
+        <li class="tl">
+          <span class="tl-week">WEEK 5 – 8 · 自动化捕获</span>
+          <h3>建一个每周简报 agent，让综合自己跑</h3>
+          <p>用 agent + 定时任务，把 3 个领域的进展自动抓取、综合成简报，每周推给你。<strong>失败信号：</strong>简报建了，但你还是忍不住手动刷。<strong>怎么办：</strong>回到 1&ndash;2 周，FOMO 源没断干净，工具救不了习惯。</p>
+        </li>
+        <li class="tl">
+          <span class="tl-week">WEEK 9 – 12 · 接进判断</span>
+          <h3>每条信号都问"这改变我做的什么"</h3>
+          <p>把简报接进你的实际决策：每读一条信号，强制自己回答"它要我改一个什么做法"，答不出就划走。<strong>失败信号：</strong>第 12 周你的简报从没改变过一个决定。<strong>怎么办：</strong>说明你关注的领域离你做的事太远，回去重选 3 个领域。</p>
+        </li>
+      </ul>
+
+      <p style="margin-top: 2.5rem; color: var(--color-muted-foreground);">
+        <strong style="color:var(--color-foreground);">90 天后你应该能回答这个问题：</strong>"过去一个月，有哪一条 AI 进展，真的让我改了一个具体做法？"——
+        能答上来、指得出那个改变，你就从"追热点"毕业成"懂趋势"了。答不上来，你这 90 天只是又刷了一堆新闻，judgment 原地没动。
+      </p>
+    </div>
+  </section>
+
+  <!-- ============ CTA ============ -->
+  <section id="cta" class="essay">
+    <div class="essay-inner">
+      <header class="section-head" style="text-align:center;">
+        <span class="eyebrow" style="display:inline-block;">Real Agent Use Cases</span>
+        <h2 style="margin-top: 0.75rem;">刷一百条热点，不如一条改变你做法的信号</h2>
+        <p class="lede" style="margin-left:auto;margin-right:auto;">
+          你刷的热点，明天就忘。但一套接进判断的雷达，会在重要时刻替你拦下信号、挡住噪音。<br>
+          <strong style="color:var(--color-foreground);">「执行的价值永远被低估」</strong>——今晚不删掉 FOMO 源、搭起第一版雷达，明天还是被信息流牵着走。这不是激励，是观察事实。
+        </p>
+      </header>
+
+      <div class="subscribe">
+        <form class="subscribe-form" onsubmit="event.preventDefault(); window.open('https://realagentusecases.com', '_blank');">
+          <input type="email" placeholder="your@email.com" required>
+          <button class="btn" type="submit">Subscribe — free</button>
+        </form>
+        <p class="subscribe-note">
+          每周一条完整可复制的工作流——信源、节奏、简报全公开。<br>
+          这个 Newsletter 不"鼓励"你，能不能跑通是你的事。
+        </p>
+      </div>
+
+      <p style="text-align:center;margin-top:2.5rem;font-family:var(--font-mono);font-size:0.75rem;color:var(--color-muted-foreground);letter-spacing:0.05em;">
+        <a href="/agent-101/05-talk-to-ai/">← EP 05 · 与 AI 高效沟通</a>　·　EP 06（你在这里）　·　Agent 101 · 全 6 期完
+      </p>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site">
+  <div class="footer-inner">
+    © 2026 · Jack Qian
+    <span class="sep">·</span>
+    <a href="https://realagentusecases.com">realagentusecases.com</a>
+    <span class="sep">·</span>
+    Dallas, TX
+  </div>
+</footer>
+
+</body>
+</html>

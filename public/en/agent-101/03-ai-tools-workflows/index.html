@@ -1,0 +1,1672 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="AI productivity tools and workflows — tools aren't productivity, workflows are. By Real Agent Use Cases.">
+<title>Agent 101 · Episode 03 · AI Tools &amp; Workflows · Real Agent Use Cases</title>
+<link rel="canonical" href="https://realagentusecases.com/en/agent-101/03-ai-tools-workflows/">
+<link rel="alternate" hrefLang="zh" href="https://realagentusecases.com/agent-101/03-ai-tools-workflows/">
+<link rel="alternate" hrefLang="en" href="https://realagentusecases.com/en/agent-101/03-ai-tools-workflows/">
+
+<!-- Open Graph -->
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Real Agent Use Cases">
+<meta property="og:title" content="Agent 101 · Episode 03 · Tools aren't productivity. Workflows are.">
+<meta property="og:description" content="Stop being a tool collector. Wire your tools into one pipeline that runs itself — that's the leverage. A tool map organized by job-to-be-done, and 3 workflows you can run tonight.">
+<meta property="og:url" content="https://realagentusecases.com/en/agent-101/03-ai-tools-workflows/">
+<meta property="og:locale" content="en_US">
+<meta property="og:locale:alternate" content="zh_CN">
+<meta property="og:image" content="https://realagentusecases.com/og/agent-101/opengraph-image">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:alt" content="Agent 101 · Episode 03 · Tools aren't productivity, workflows are">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Agent 101 · Episode 03 · Tools aren't productivity. Workflows are.">
+<meta name="twitter:description" content="Stop being a tool collector. Wire your tools into one pipeline that runs itself — that's the leverage.">
+<meta name="twitter:image" content="https://realagentusecases.com/og/agent-101/opengraph-image">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@300..900&family=Geist+Mono:wght@300..700&family=Source+Serif+4:ital,wght@0,400..700;1,400..700&display=swap">
+<style>
+  /* ==========================================================
+     Tokens — mirrors realagentusecases.com
+     ========================================================== */
+  :root {
+    --color-background: #0a0a0a;
+    --color-foreground: #f2f2f2;
+    --color-muted: #161616;
+    --color-muted-foreground: #a3a3a3;
+    --color-border: #262626;
+    --color-brand: #2d5e44;
+    --color-brand-hover: #387554;
+    --color-brand-foreground: #fff;
+
+    --font-sans: "Geist", -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", "Hiragino Sans GB", sans-serif;
+    --font-serif: "Source Serif 4", "Songti SC", "STSong", Georgia, "Times New Roman", serif;
+    --font-mono: "Geist Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+
+    --tracking-tight: -0.025em;
+    --leading-snug: 1.375;
+    --leading-relaxed: 1.625;
+
+    --radius-md: 0.375rem;
+    --radius-lg: 0.5rem;
+    --radius-xl: 0.75rem;
+
+    --container-2xl: 42rem; /* 672 — body sections */
+    --container-3xl: 48rem; /* 768 — hero */
+    --container-6xl: 72rem; /* 1152 — nav */
+  }
+
+  /* ==========================================================
+     Reset & base
+     ========================================================== */
+  *, *::before, *::after { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    background: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    line-height: var(--leading-relaxed);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+  h1, h2, h3, h4 {
+    color: var(--color-foreground);
+    font-weight: 600;
+    letter-spacing: var(--tracking-tight);
+    line-height: var(--leading-snug);
+    margin: 0;
+    text-wrap: balance;
+  }
+  p { margin: 0 0 1rem; }
+  a {
+    color: var(--color-foreground);
+    text-decoration: none;
+    transition: color 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  a:hover { color: var(--color-brand); }
+  ::selection { background: var(--color-brand); color: white; }
+  img, svg { max-width: 100%; display: block; }
+
+  /* ==========================================================
+     Layout primitives
+     ========================================================== */
+  .mx-auto { margin-left: auto; margin-right: auto; }
+  .max-w-6xl { max-width: var(--container-6xl); }
+  .max-w-3xl { max-width: var(--container-3xl); }
+  .max-w-2xl { max-width: var(--container-2xl); }
+  .px-6 { padding-left: 1.5rem; padding-right: 1.5rem; }
+  main { min-height: 100vh; }
+
+  /* ==========================================================
+     Sticky nav (matches parent site)
+     ========================================================== */
+  nav.topnav {
+    position: sticky;
+    top: 0;
+    z-index: 40;
+    border-bottom: 1px solid var(--color-border);
+    background: rgba(10, 10, 10, 0.8);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+  }
+  @supports (backdrop-filter: blur(12px)) {
+    nav.topnav { background: rgba(10, 10, 10, 0.6); }
+  }
+  .nav-inner {
+    max-width: var(--container-6xl);
+    margin: 0 auto;
+    padding: 0 1.5rem;
+    height: 3.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .brand {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    letter-spacing: -0.01em;
+    color: var(--color-foreground);
+  }
+  @media (min-width: 640px) { .brand { font-size: 0.875rem; } }
+  .brand:hover { color: var(--color-brand); }
+  .nav-right {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+  }
+  @media (min-width: 640px) { .nav-right { gap: 1.5rem; } }
+  .nav-link {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--color-muted-foreground);
+    letter-spacing: -0.01em;
+    transition: color 0.15s;
+  }
+  @media (min-width: 640px) { .nav-link { font-size: 0.875rem; } }
+  .nav-link:hover { color: var(--color-brand); }
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--radius-md);
+    font-family: var(--font-sans);
+    font-weight: 500;
+    font-size: 0.875rem;
+    height: 2.25rem;
+    padding: 0 1rem;
+    background: var(--color-brand);
+    color: var(--color-brand-foreground);
+    transition: background-color 0.15s, transform 0.15s;
+    cursor: pointer;
+    border: none;
+  }
+  .btn:hover {
+    background: var(--color-brand-hover);
+    color: var(--color-brand-foreground);
+    transform: translateY(-1px);
+  }
+  .btn:active { transform: translateY(0); }
+  .btn.btn-lg { height: 3rem; padding: 0 1.5rem; font-size: 1rem; }
+
+  /* ==========================================================
+     Eyebrow (mono uppercase label)
+     ========================================================== */
+  .eyebrow {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--color-muted-foreground);
+    font-weight: 400;
+  }
+  .eyebrow-lg {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: var(--color-muted-foreground);
+  }
+
+  /* ==========================================================
+     Hero
+     ========================================================== */
+  .hero {
+    max-width: var(--container-3xl);
+    margin: 0 auto;
+    padding: 4rem 1.5rem 7rem;
+    text-align: center;
+  }
+  @media (min-width: 640px) {
+    .hero { padding: 6rem 1.5rem 9rem; }
+  }
+  .hero .eyebrow-lg { display: block; margin-bottom: 1.5rem; }
+  .hero h1 {
+    font-size: 2.25rem;
+    font-weight: 600;
+    letter-spacing: var(--tracking-tight);
+    line-height: 1.1;
+    text-wrap: balance;
+  }
+  @media (min-width: 640px) { .hero h1 { font-size: 3rem; } }
+  @media (min-width: 768px) { .hero h1 { font-size: 3.75rem; } }
+  .hero h1 .brand-word {
+    color: var(--color-brand);
+  }
+  .hero-sub {
+    margin: 1.25rem auto 0;
+    max-width: var(--container-2xl);
+    font-size: 1.125rem;
+    color: var(--color-muted-foreground);
+    line-height: var(--leading-relaxed);
+    text-wrap: balance;
+  }
+  @media (min-width: 640px) { .hero-sub { font-size: 1.25rem; } }
+
+  .hero-list {
+    margin: 1.75rem auto 0;
+    max-width: 30rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    text-align: left;
+    font-size: 0.9375rem;
+    color: var(--color-muted-foreground);
+  }
+  @media (min-width: 640px) { .hero-list { font-size: 0.9375rem; } }
+  .hero-list-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+  }
+  .dot {
+    width: 0.25rem;
+    height: 0.25rem;
+    border-radius: 9999px;
+    background: var(--color-brand);
+    flex-shrink: 0;
+    margin-top: 0.6em;
+  }
+  .hero-ctas {
+    margin-top: 2.5rem;
+    display: flex;
+    gap: 0.75rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .hero-foot {
+    margin-top: 2.5rem;
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: rgba(163, 163, 163, 0.7);
+  }
+
+  /* ==========================================================
+     Section base (essay-style)
+     ========================================================== */
+  section.essay {
+    border-top: 1px solid rgba(38, 38, 38, 0.4);
+  }
+  .essay-inner {
+    max-width: var(--container-2xl);
+    margin: 0 auto;
+    padding: 5rem 1.5rem;
+  }
+  @media (min-width: 640px) {
+    .essay-inner { padding: 6rem 1.5rem; }
+  }
+  .essay-inner.wide {
+    max-width: var(--container-3xl);
+  }
+  .section-head { margin-bottom: 2.5rem; }
+  .section-head .eyebrow { display: block; margin-bottom: 0.75rem; }
+  .section-head h2 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    letter-spacing: var(--tracking-tight);
+    line-height: var(--leading-snug);
+  }
+  @media (min-width: 640px) {
+    .section-head h2 { font-size: 1.875rem; }
+  }
+  .section-head .lede {
+    margin-top: 0.875rem;
+    font-size: 1.0625rem;
+    color: var(--color-muted-foreground);
+    line-height: var(--leading-relaxed);
+  }
+  .essay-body p {
+    color: var(--color-muted-foreground);
+    line-height: var(--leading-relaxed);
+    font-size: 1rem;
+  }
+  .essay-body strong { color: var(--color-foreground); font-weight: 600; }
+
+  /* ==========================================================
+     Item list (matches "Read the latest" article list)
+     ========================================================== */
+  .item-list {
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .item {
+    display: block;
+  }
+  .item .item-eyebrow {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--color-muted-foreground);
+  }
+  .item h3 {
+    margin-top: 0.5rem;
+    font-size: 1.25rem;
+    font-weight: 600;
+    letter-spacing: var(--tracking-tight);
+    line-height: var(--leading-snug);
+    color: var(--color-foreground);
+  }
+  @media (min-width: 640px) {
+    .item h3 { font-size: 1.375rem; }
+  }
+  .item p {
+    margin-top: 0.5rem;
+    color: var(--color-muted-foreground);
+    line-height: var(--leading-relaxed);
+  }
+
+  /* ==========================================================
+     Compare table (Chatbot vs Agent) — minimal two-col
+     ========================================================== */
+  .compare {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+  }
+  @media (min-width: 640px) {
+    .compare { grid-template-columns: 1fr 1fr; }
+  }
+  .compare-cell {
+    padding: 1.75rem;
+    background: var(--color-muted);
+  }
+  .compare-cell + .compare-cell {
+    border-top: 1px solid var(--color-border);
+  }
+  @media (min-width: 640px) {
+    .compare-cell + .compare-cell {
+      border-top: none;
+      border-left: 1px solid var(--color-border);
+    }
+  }
+  .compare-cell.is-agent { background: rgba(45, 94, 68, 0.08); }
+  .compare-cell .item-eyebrow { display: block; margin-bottom: 0.5rem; }
+  .compare-cell .is-agent-eyebrow { color: var(--color-brand); }
+  .compare-cell h3 {
+    font-size: 1.125rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+  }
+  .compare-cell > p {
+    color: var(--color-muted-foreground);
+    font-size: 0.9375rem;
+    margin-bottom: 1rem;
+  }
+  .compare-cell ul {
+    list-style: none;
+    padding: 0;
+    margin: 0.75rem 0 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  .compare-cell li {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.625rem;
+    font-size: 0.9375rem;
+    color: var(--color-muted-foreground);
+  }
+  .compare-cell li::before {
+    content: "×";
+    color: var(--color-muted-foreground);
+    font-family: var(--font-mono);
+    flex-shrink: 0;
+    margin-top: 0.05em;
+  }
+  .compare-cell.is-agent li::before {
+    content: "✓";
+    color: var(--color-brand);
+  }
+
+  /* ==========================================================
+     Pull-quote / aside (analogy block)
+     ========================================================== */
+  .aside {
+    margin-top: 2rem;
+    padding: 1.75rem;
+    border-left: 2px solid var(--color-brand);
+    background: var(--color-muted);
+    border-radius: 0 var(--radius-lg) var(--radius-lg) 0;
+  }
+  .aside .aside-label {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--color-brand);
+    display: block;
+    margin-bottom: 0.625rem;
+  }
+  .aside p {
+    margin: 0;
+    color: var(--color-foreground);
+    font-family: var(--font-serif);
+    font-size: 1.0625rem;
+    line-height: var(--leading-relaxed);
+    font-style: italic;
+  }
+  .aside p strong { font-style: normal; }
+
+  /* ==========================================================
+     Agent loop (SVG + steps)
+     ========================================================== */
+  .loop-wrap {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+    align-items: center;
+  }
+  @media (min-width: 760px) {
+    .loop-wrap { grid-template-columns: 280px 1fr; gap: 3rem; }
+  }
+  .loop-svg { width: 100%; max-width: 280px; margin: 0 auto; }
+  .loop-steps {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  .loop-step {
+    display: grid;
+    grid-template-columns: 2rem 1fr;
+    gap: 0.875rem;
+    align-items: start;
+  }
+  .loop-step .n {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--color-brand);
+    letter-spacing: 0.05em;
+    padding-top: 0.125rem;
+  }
+  .loop-step h4 {
+    font-size: 1.0625rem;
+    margin-bottom: 0.25rem;
+  }
+  .loop-step h4 .en {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--color-muted-foreground);
+    margin-left: 0.5rem;
+    font-weight: 400;
+    letter-spacing: 0.05em;
+  }
+  .loop-step p { margin: 0; color: var(--color-muted-foreground); font-size: 0.9375rem; }
+
+  /* ==========================================================
+     Use cases — vertical list with mono labels (no flashy cards)
+     ========================================================== */
+  .use-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+  .use {
+    padding: 2rem 0;
+    border-top: 1px solid var(--color-border);
+  }
+  .use:first-child { border-top: none; padding-top: 0; }
+  .use:last-child { padding-bottom: 0; }
+  .use-top {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 0.5rem;
+    flex-wrap: wrap;
+  }
+  .use-top .use-label {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--color-muted-foreground);
+  }
+  .use-top .use-gain {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--color-brand);
+    letter-spacing: 0.05em;
+  }
+  .use h3 {
+    font-size: 1.25rem;
+    margin-bottom: 0.625rem;
+  }
+  @media (min-width: 640px) { .use h3 { font-size: 1.375rem; } }
+  .use p { color: var(--color-muted-foreground); margin-bottom: 0.875rem; }
+  .use-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 0.875rem;
+  }
+  .chip {
+    display: inline-block;
+    padding: 0.25rem 0.625rem;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    color: var(--color-muted-foreground);
+    letter-spacing: 0.02em;
+  }
+
+  /* ==========================================================
+     Demo block — mono code-style terminal mock
+     ========================================================== */
+  .demo {
+    margin-top: 2.5rem;
+    padding-top: 2.5rem;
+    border-top: 1px solid var(--color-border);
+  }
+  .demo:first-of-type { border-top: none; padding-top: 0; margin-top: 0; }
+  .demo-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-bottom: 0.625rem;
+  }
+  .demo-num {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--color-brand);
+  }
+  .demo-time {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    color: var(--color-muted-foreground);
+    letter-spacing: 0.05em;
+  }
+  .demo h3 {
+    font-size: 1.375rem;
+    margin-bottom: 0.625rem;
+  }
+  .demo > p {
+    color: var(--color-muted-foreground);
+    margin-bottom: 1.25rem;
+  }
+  .demo-steps {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 1.5rem;
+    counter-reset: step;
+  }
+  .demo-steps li {
+    counter-increment: step;
+    padding: 0.625rem 0 0.625rem 2rem;
+    position: relative;
+    color: var(--color-muted-foreground);
+    font-size: 0.9375rem;
+    line-height: var(--leading-relaxed);
+    border-top: 1px dashed rgba(38, 38, 38, 0.6);
+  }
+  .demo-steps li:first-child { border-top: none; }
+  .demo-steps li::before {
+    content: counter(step, decimal-leading-zero);
+    position: absolute;
+    left: 0;
+    top: 0.625rem;
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    color: var(--color-brand);
+    letter-spacing: 0.05em;
+  }
+  .demo-steps strong { color: var(--color-foreground); font-weight: 600; }
+
+  .terminal {
+    background: var(--color-muted);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    font-family: var(--font-mono);
+    font-size: 0.8125rem;
+    line-height: 1.7;
+    color: var(--color-foreground);
+    overflow: hidden;
+  }
+  .terminal-bar {
+    padding: 0.625rem 0.875rem;
+    background: rgba(0, 0, 0, 0.3);
+    border-bottom: 1px solid var(--color-border);
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    color: var(--color-muted-foreground);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .terminal-body { padding: 1.125rem; }
+  .terminal-body .row { padding: 0.05rem 0; }
+  .terminal-body .mu { color: var(--color-muted-foreground); }
+  .terminal-body .ok { color: var(--color-brand); }
+  .terminal-body .label {
+    display: inline-block;
+    color: var(--color-muted-foreground);
+    margin-right: 0.5rem;
+  }
+  .terminal-body .label.user { color: #c2a8ff; }
+  .terminal-body .label.bot { color: var(--color-brand); }
+  .terminal-body .label.tool { color: #d4a657; }
+  .terminal-body .hr {
+    border-top: 1px dashed var(--color-border);
+    margin: 0.5rem 0;
+  }
+  /* Workflow terminal helpers */
+  .terminal-body .step {
+    display: inline-block;
+    min-width: 6.5rem;
+    color: var(--color-foreground);
+    font-weight: 500;
+  }
+  .terminal-body .num {
+    display: inline-block;
+    width: 1.75rem;
+    color: var(--color-brand);
+  }
+  .terminal-body .meta {
+    color: var(--color-brand);
+    font-weight: 500;
+  }
+  .terminal-title-tag {
+    display: inline-block;
+    padding: 1px 6px;
+    margin-right: 0.5rem;
+    background: var(--color-brand);
+    color: var(--color-brand-foreground);
+    border-radius: 3px;
+    font-size: 0.625rem;
+    letter-spacing: 0.1em;
+    font-weight: 600;
+  }
+
+  /* Case-list divider: visual separation between "by-job" and "by-scenario" cases */
+  .case-divider {
+    margin: 3rem 0;
+    padding: 2.25rem 1.5rem;
+    border-top: 1px solid var(--color-border);
+    border-bottom: 1px solid var(--color-border);
+    text-align: center;
+  }
+  .case-divider .eyebrow {
+    display: block;
+    margin-bottom: 0.75rem;
+    color: var(--color-brand);
+  }
+  .case-divider h3 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 0.625rem;
+    letter-spacing: var(--tracking-tight);
+  }
+  .case-divider p {
+    color: var(--color-muted-foreground);
+    max-width: 40rem;
+    margin: 0 auto;
+    font-size: 0.9375rem;
+    line-height: var(--leading-relaxed);
+  }
+
+  /* ==========================================================
+     Timeline — minimal vertical list with mono dates
+     ========================================================== */
+  .timeline {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+  .tl {
+    padding-left: 1.5rem;
+    border-left: 1px solid var(--color-border);
+    position: relative;
+  }
+  .tl::before {
+    content: "";
+    position: absolute;
+    left: -0.3125rem;
+    top: 0.4rem;
+    width: 0.5625rem;
+    height: 0.5625rem;
+    border-radius: 9999px;
+    background: var(--color-background);
+    border: 2px solid var(--color-brand);
+  }
+  .tl .tl-week {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--color-brand);
+    display: block;
+    margin-bottom: 0.375rem;
+  }
+  .tl h3 {
+    font-size: 1.125rem;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+  }
+  .tl p { margin: 0; color: var(--color-muted-foreground); }
+
+  /* ==========================================================
+     Subscribe / CTA
+     ========================================================== */
+  .subscribe {
+    margin: 2.5rem auto 0;
+    max-width: 28rem;
+  }
+  .subscribe-form {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  @media (min-width: 640px) {
+    .subscribe-form { flex-direction: row; }
+  }
+  .subscribe input[type="email"] {
+    flex: 1;
+    min-width: 0;
+    height: 3rem;
+    padding: 0 1rem;
+    border-radius: var(--radius-md);
+    background: var(--color-muted);
+    border: 1px solid rgba(163, 163, 163, 0.3);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    transition: border-color 0.15s;
+  }
+  .subscribe input[type="email"]::placeholder { color: var(--color-muted-foreground); }
+  .subscribe input[type="email"]:focus {
+    outline: none;
+    border-color: var(--color-brand);
+  }
+  .subscribe .btn { flex-shrink: 0; height: 3rem; padding: 0 1.5rem; font-size: 1rem; }
+  .subscribe-note {
+    margin-top: 0.75rem;
+    font-size: 0.75rem;
+    color: var(--color-muted-foreground);
+    text-align: center;
+  }
+
+  /* ==========================================================
+     Footer
+     ========================================================== */
+  footer.site {
+    border-top: 1px solid var(--color-border);
+    padding: 2.5rem 1.5rem;
+    margin-top: 4rem;
+  }
+  .footer-inner {
+    max-width: var(--container-2xl);
+    margin: 0 auto;
+    text-align: center;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--color-muted-foreground);
+    letter-spacing: 0.05em;
+  }
+  .footer-inner a { color: var(--color-muted-foreground); }
+  .footer-inner a:hover { color: var(--color-brand); }
+  .footer-inner .sep { color: var(--color-border); margin: 0 0.625rem; }
+
+  /* ==========================================================
+     Audience profile chart (donut + legend)
+     ========================================================== */
+  .audience {
+    margin-bottom: 4rem;
+    padding-bottom: 3rem;
+    border-bottom: 1px solid var(--color-border);
+  }
+  .audience-head { margin-bottom: 2rem; }
+  .audience-head .eyebrow { display: block; margin-bottom: 0.625rem; }
+  .audience-head h3 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    letter-spacing: var(--tracking-tight);
+  }
+  @media (min-width: 640px) { .audience-head h3 { font-size: 1.375rem; } }
+  .audience-head p { color: var(--color-muted-foreground); margin: 0; }
+
+  .audience-body {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    align-items: center;
+  }
+  @media (min-width: 720px) {
+    .audience-body { grid-template-columns: 260px 1fr; gap: 3rem; }
+  }
+
+  .donut {
+    width: 100%;
+    max-width: 240px;
+    margin: 0 auto;
+    aspect-ratio: 1;
+    position: relative;
+  }
+  .donut svg { width: 100%; height: 100%; display: block; }
+  .donut-center {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    pointer-events: none;
+  }
+  .donut-center .n {
+    font-family: var(--font-mono);
+    font-size: 1.875rem;
+    font-weight: 600;
+    color: var(--color-foreground);
+    line-height: 1;
+    letter-spacing: -0.02em;
+  }
+  .donut-center .lbl {
+    margin-top: 0.375rem;
+    font-family: var(--font-mono);
+    font-size: 0.625rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--color-muted-foreground);
+  }
+
+  .legend {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.875rem;
+  }
+  .legend li {
+    display: grid;
+    grid-template-columns: 0.625rem 1fr auto;
+    gap: 0.75rem;
+    align-items: center;
+    padding: 0.625rem 0;
+    border-top: 1px solid var(--color-border);
+  }
+  .legend li:first-child { border-top: none; padding-top: 0; }
+  .legend .swatch {
+    width: 0.625rem;
+    height: 0.625rem;
+    border-radius: 2px;
+  }
+  .legend .name {
+    color: var(--color-foreground);
+    font-size: 0.9375rem;
+    font-weight: 500;
+  }
+  .legend .pct {
+    font-family: var(--font-mono);
+    font-size: 0.9375rem;
+    color: var(--color-muted-foreground);
+    letter-spacing: 0.02em;
+    font-feature-settings: "tnum" 1;
+  }
+
+  /* Sub-bullets inside a use case */
+  .sub-list {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 0.875rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  .sub-list li {
+    display: grid;
+    grid-template-columns: 1.5rem 1fr;
+    gap: 0.5rem;
+    color: var(--color-muted-foreground);
+    font-size: 0.9375rem;
+    line-height: var(--leading-relaxed);
+  }
+  .sub-list li::before {
+    content: "→";
+    font-family: var(--font-mono);
+    color: var(--color-brand);
+    margin-top: 0.05em;
+  }
+  .sub-list strong { color: var(--color-foreground); font-weight: 600; }
+
+  /* ==========================================================
+     Utilities
+     ========================================================== */
+  .mono { font-family: var(--font-mono); }
+  .serif { font-family: var(--font-serif); }
+
+  /* ==========================================================
+     Episode tabs — sits between topnav and main on agent-101 pages
+     ========================================================== */
+  .ep-tabs {
+    position: sticky;
+    top: 3.5rem;
+    z-index: 39;
+    border-bottom: 1px solid var(--color-border);
+    background: var(--color-background);
+  }
+  .ep-tabs-inner {
+    max-width: var(--container-6xl);
+    margin: 0 auto;
+    padding: 0 1.5rem;
+    display: flex;
+    align-items: stretch;
+    gap: 1.25rem;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+  }
+  .ep-tabs-inner::-webkit-scrollbar { display: none; }
+  .ep-tabs-label {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--color-muted-foreground);
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    padding: 0.875rem 0;
+  }
+  .ep-tab {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    text-decoration: none;
+    white-space: nowrap;
+    padding: 0.875rem 0;
+    color: var(--color-muted-foreground);
+    transition: color 0.15s;
+    border-bottom: 2px solid transparent;
+    margin-bottom: -1px;
+  }
+  .ep-tab:hover { color: var(--color-foreground); text-decoration: none; }
+  .ep-tab.is-current {
+    color: var(--color-foreground);
+    border-bottom-color: var(--color-brand);
+  }
+  .ep-tab-num {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+    color: var(--color-brand);
+    font-weight: 600;
+  }
+  .ep-tab-title {
+    font-family: var(--font-sans);
+    font-size: 0.875rem;
+    font-weight: 500;
+  }
+  .ep-tab-lang {
+    font-family: var(--font-mono);
+    font-size: 0.625rem;
+    letter-spacing: 0.1em;
+    color: var(--color-muted-foreground);
+    margin-left: 0.375rem;
+    padding: 1px 5px;
+    border: 1px solid var(--color-border);
+    border-radius: 3px;
+  }
+  @media (max-width: 640px) {
+    .ep-tab-title { display: none; }
+    .ep-tabs-label { font-size: 0.6875rem; }
+    .ep-tabs-inner { gap: 1rem; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="topnav">
+  <div class="nav-inner">
+    <a href="/" class="brand">realagentusecases.com</a>
+    <div class="nav-right">
+      <a href="/en/news/" class="nav-link">News</a>
+      <a href="/agent-101/03-ai-tools-workflows/" class="nav-link">中</a>
+      <a class="btn" href="#cta">Subscribe</a>
+    </div>
+  </div>
+</nav>
+
+<nav class="ep-tabs" aria-label="Agent 101 episode navigation">
+  <div class="ep-tabs-inner">
+    <span class="ep-tabs-label">Agent 101 ·</span>
+    <a href="/en/agent-101/" class="ep-tab">
+      <span class="ep-tab-num">EP 01</span>
+      <span class="ep-tab-title">What is AI Agent</span>
+    </a>
+    <a href="/en/agent-101/02-multi-agent/" class="ep-tab">
+      <span class="ep-tab-num">EP 02</span>
+      <span class="ep-tab-title">Multi-agent &amp; Skills</span>
+    </a>
+    <a href="/en/agent-101/03-ai-tools-workflows/" class="ep-tab is-current">
+      <span class="ep-tab-num">EP 03</span>
+      <span class="ep-tab-title">Tools &amp; Workflows</span>
+    </a>
+    <a href="/en/agent-101/04-obsidian-second-brain/" class="ep-tab">
+      <span class="ep-tab-num">EP 04</span>
+      <span class="ep-tab-title">Obsidian Second Brain</span>
+    </a>
+    <a href="/en/agent-101/05-talk-to-ai/" class="ep-tab">
+      <span class="ep-tab-num">EP 05</span>
+      <span class="ep-tab-title">Talk to AI</span>
+    </a>
+    <a href="/en/agent-101/06-track-ai-trends/" class="ep-tab">
+      <span class="ep-tab-num">EP 06</span>
+      <span class="ep-tab-title">Track AI Trends</span>
+    </a>
+  </div>
+</nav>
+
+<main>
+
+  <!-- ============ HERO ============ -->
+  <section class="hero">
+    <span class="eyebrow-lg">EPISODE 03 · AI tools &amp; workflows · 2026.05.17</span>
+    <h1>
+      Tools aren't productivity.<br>
+      <span class="brand-word">Workflows</span> are.
+    </h1>
+
+    <p class="hero-sub" style="margin-top: 1.5rem;">
+      This is a talk about AI tools.<br>
+      More accurately — it's a talk about not being a "tool collector."
+    </p>
+
+    <ul class="hero-list">
+      <li class="hero-list-item"><span class="dot"></span><span>"Tool" and "workflow" are two different things — a wall of knives doesn't make you a cook</span></li>
+      <li class="hero-list-item"><span class="dot"></span><span>"I found another killer app" is an empty phrase — rewrite it into a pipeline that runs itself</span></li>
+      <li class="hero-list-item"><span class="dot"></span><span>A tool map organized by job-to-be-done — not by hype, no promises</span></li>
+    </ul>
+
+    <div class="hero-ctas">
+      <a class="btn btn-lg" href="#deconstruct">Start sorting →</a>
+    </div>
+
+    <div class="hero-foot">
+      AGENT 101 SERIES · EP 03 · NO-BULLSHIT EDITION
+    </div>
+  </section>
+
+  <!-- ============ § 1 tool ≠ workflow ============ -->
+  <section id="deconstruct" class="essay">
+    <div class="essay-inner">
+      <header class="section-head">
+        <span class="eyebrow">§ 01 · Sort it first</span>
+        <h2>"Tool" and "workflow" aren't even on the same level</h2>
+        <p class="lede">
+          How many AI apps are on your phone? How many subscriptions are you paying for? Now answer one question:
+          last week, which one actually <em>finished</em> a task for you? This is where most people are stuck —
+          mistaking "owning a tool" for "having a capability."
+        </p>
+      </header>
+
+      <ul class="item-list">
+        <li class="item">
+          <span class="item-eyebrow">CONCEPT · 01 · TOOL</span>
+          <h3>A tool = a single-point capability</h3>
+          <p>Claude writes, Perplexity searches, Midjourney paints — each is a knife that does one thing. But a knife doesn't cook dinner. A tool is the <em>raw material</em> of capability, not capability itself. Swapping in a sharper knife won't make the meal appear on its own.</p>
+        </li>
+        <li class="item">
+          <span class="item-eyebrow">CONCEPT · 02 · WORKFLOW</span>
+          <h3>A workflow = capabilities wired into a chain that runs itself</h3>
+          <p>Trigger → a few steps → one output → review a week later. That's where the leverage is. The same Claude, dropped into "every day at 8:00, read email → classify → draft replies → push to phone," stops being "a tool that chats" and becomes "a process that works for you daily."</p>
+        </li>
+        <li class="item">
+          <span class="item-eyebrow">CONCEPT · 03 · COLLECTING</span>
+          <h3>Collecting = thinking "installed" equals "able"</h3>
+          <p>This is most people's real state: 50 tools bookmarked, each tried once, none in their actual daily work. Collecting produces the <em>feeling</em> of "I'm using AI" — the same thing the "1000-prompt bundle" from EP01 sells: anxiety relief, not results.</p>
+        </li>
+      </ul>
+
+      <aside class="aside">
+        <span class="aside-label">In plain words</span>
+        <p>
+          You're not short on tools. <strong>You're short on wiring the two or three tools you already have into one pipeline that runs itself every day.</strong>
+          Today we don't compare tools — we only cover how to wire tools into a flow.
+        </p>
+      </aside>
+    </div>
+  </section>
+
+  <!-- ============ § 2 audit your stack ============ -->
+  <section class="essay">
+    <div class="essay-inner">
+      <header class="section-head">
+        <span class="eyebrow">§ 02 · Audit your stack</span>
+        <h2>"I found another killer app" is an empty phrase</h2>
+        <p class="lede">
+          This sentence shows up ten thousand times a day — on X, in newsletters, in every "AI tools weekly." It sounds like progress,
+          but it fails the three simplest checks. If it fails, you're not getting stronger. You're chasing novelty.
+        </p>
+      </header>
+
+      <ul class="item-list">
+        <li class="item">
+          <span class="item-eyebrow">TOOL TEST · 01</span>
+          <h3>When did it last actually finish a task for you?</h3>
+          <p>Not "I tried it and it was impressive" — "it finished a task that would've taken me an hour." If you can't name a specific moment and a specific output, it's still a demo to you, not a tool.</p>
+        </li>
+        <li class="item">
+          <span class="item-eyebrow">TOOL TEST · 02</span>
+          <h3>Can you name its exact position in one of your workflows?</h3>
+          <p>"It's the transcription step — step 3 — in my weekly-report pipeline." Say that, and it has a position. A tool with no position is floating, and you'll forget it. A tool's value isn't how strong it is — it's where it's wired in.</p>
+        </li>
+        <li class="item">
+          <span class="item-eyebrow">TOOL TEST · 03</span>
+          <h3>If you uninstalled it, would your output get worse?</h3>
+          <p>The brutal one. If removing it changes nothing, it never entered your production. The subscription you pay buys the comfort of "I'm using AI," not output. A tool that hurts to uninstall is a real tool.</p>
+        </li>
+      </ul>
+
+      <aside class="aside">
+        <span class="aside-label">Rewrite: from "find a killer app" to "wire one flow"</span>
+        <p style="font-style: normal; font-family: var(--font-sans);">
+          <span style="color: var(--color-muted-foreground);">Original:</span><br>
+          <s style="color: var(--color-muted-foreground);">"I want to find the best AI tool."</s><br><br>
+          <span style="color: var(--color-brand); font-family: var(--font-mono); font-size: 0.75rem; letter-spacing: 0.1em;">REWRITE ↓</span><br><br>
+          <strong>"This month I'll wire exactly one pipeline: every Wednesday afternoon, a Claude Project turns 'writing my weekly report' into a run — read this week's data sources plus my scattered notes, output a draft. After one month, check back: if I'm still writing it from scratch, the flow is wrong — come back and tune it."</strong>
+        </p>
+      </aside>
+
+      <p style="margin-top: 2rem; color: var(--color-muted-foreground); font-size: 0.9375rem;">
+        See the difference? The first has no finish line — there's always a "better one" next week. The second has a finish line, an output, and a failure signal.
+        <strong style="color: var(--color-foreground); font-weight: 600;">Every tool we cover today matters only when it's "wired into a flow." If it can't be, skip it.</strong>
+      </p>
+    </div>
+  </section>
+
+  <!-- ============ § 3 collector vs builder ============ -->
+  <section class="essay">
+    <div class="essay-inner">
+      <header class="section-head">
+        <span class="eyebrow">§ 03 · After sorting</span>
+        <h2>Tool collector vs workflow builder — two completely different people</h2>
+        <p class="lede">
+          Two people pay for the same pile of AI subscriptions; a year later the gap between them is an order of magnitude.
+          The difference isn't which tool they used — it's whether their head runs "tool thinking" or "workflow thinking." This is the only contrast you need to remember.
+        </p>
+      </header>
+
+      <div class="compare">
+        <div class="compare-cell">
+          <span class="item-eyebrow">TOOL COLLECTOR · most people around you</span>
+          <h3>Chases tools, not output</h3>
+          <p>Tries a new tool every week, bookmarks full, workflows empty.</p>
+          <ul>
+            <li>Chases "this week's strongest AI tool"</li>
+            <li>Installs a pile, each used exactly once</li>
+            <li>Loves specs, reviews, and beta waitlists</li>
+            <li>Output a year later is unchanged</li>
+          </ul>
+        </div>
+        <div class="compare-cell is-agent">
+          <span class="item-eyebrow is-agent-eyebrow">WORKFLOW BUILDER · who you're becoming</span>
+          <h3>Chases output, not tools</h3>
+          <p>Wires one pipeline a month, but each runs on real work.</p>
+          <ul>
+            <li>Builds only 2&ndash;3 new workflows a quarter</li>
+            <li>Each one wired into a real daily task</li>
+            <li>Asks one thing: "which step did it remove?"</li>
+            <li>Output is verifiable, shippable on a screen</li>
+          </ul>
+        </div>
+      </div>
+
+      <aside class="aside">
+        <span class="aside-label">A plain analogy</span>
+        <p>
+          <strong>A tool is like a kitchen knife</strong> — a whole wall of expensive knives won't make you a chef.
+          <strong>A workflow is like a dish you can reproduce every day</strong> — fixed ingredients, fixed steps, fixed heat, a stable result.
+          Collecting tools is browsing a cookware store. Building workflows is actually turning on the stove. What's missing isn't gear — it's a dish you cook every day.
+        </p>
+      </aside>
+    </div>
+  </section>
+
+  <!-- ============ § 4 what a workflow looks like (loop) ============ -->
+  <section class="essay">
+    <div class="essay-inner wide">
+      <header class="section-head">
+        <span class="eyebrow">§ 04 · What a workflow looks like</span>
+        <h2>Four steps: Trigger → Steps → Output → Review</h2>
+        <p class="lede">
+          Every workflow that "runs itself" is just these four steps turning. Remember them and you can tell at a glance whether a task should be a workflow —
+          and why it's failing: usually a missing Trigger (step 1) or a missing Review (step 4).
+        </p>
+      </header>
+
+      <div class="loop-wrap">
+        <svg class="loop-svg" viewBox="0 0 280 280" xmlns="http://www.w3.org/2000/svg" aria-label="The four-step workflow loop">
+          <defs>
+            <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+              <path d="M 0 0 L 10 5 L 0 10 z" fill="#2d5e44"/>
+            </marker>
+          </defs>
+          <circle cx="140" cy="140" r="105" fill="none" stroke="#262626" stroke-width="1" stroke-dasharray="2 5"/>
+          <circle cx="140" cy="140" r="32" fill="#161616" stroke="#2d5e44" stroke-width="1.5"/>
+          <text x="140" y="138" text-anchor="middle" font-family="Geist Mono, monospace" font-size="9" fill="#f2f2f2" font-weight="600">WORKFLOW</text>
+          <text x="140" y="152" text-anchor="middle" font-family="Geist Mono, monospace" font-size="8" fill="#a3a3a3">LOOP</text>
+
+          <g transform="translate(140, 40)">
+            <circle r="28" fill="#0a0a0a" stroke="#2d5e44" stroke-width="1.5"/>
+            <text y="0" text-anchor="middle" font-family="Geist Mono, monospace" font-size="8" font-weight="600" fill="#f2f2f2">TRIGGER</text>
+          </g>
+          <g transform="translate(240, 140)">
+            <circle r="28" fill="#0a0a0a" stroke="#2d5e44" stroke-width="1.5"/>
+            <text y="0" text-anchor="middle" font-family="Geist Mono, monospace" font-size="8" font-weight="600" fill="#f2f2f2">STEPS</text>
+          </g>
+          <g transform="translate(140, 240)">
+            <circle r="28" fill="#0a0a0a" stroke="#2d5e44" stroke-width="1.5"/>
+            <text y="0" text-anchor="middle" font-family="Geist Mono, monospace" font-size="8" font-weight="600" fill="#f2f2f2">OUTPUT</text>
+          </g>
+          <g transform="translate(40, 140)">
+            <circle r="28" fill="#0a0a0a" stroke="#2d5e44" stroke-width="1.5"/>
+            <text y="0" text-anchor="middle" font-family="Geist Mono, monospace" font-size="8" font-weight="600" fill="#f2f2f2">REVIEW</text>
+          </g>
+
+          <path d="M 168 60 Q 215 80 220 112" fill="none" stroke="#2d5e44" stroke-width="1" marker-end="url(#arr)" opacity="0.8"/>
+          <path d="M 220 168 Q 215 200 168 220" fill="none" stroke="#2d5e44" stroke-width="1" marker-end="url(#arr)" opacity="0.8"/>
+          <path d="M 112 220 Q 65 200 60 168" fill="none" stroke="#2d5e44" stroke-width="1" marker-end="url(#arr)" opacity="0.8"/>
+          <path d="M 60 112 Q 65 80 112 60" fill="none" stroke="#2d5e44" stroke-width="1" marker-end="url(#arr)" opacity="0.8"/>
+        </svg>
+
+        <ul class="loop-steps">
+          <li class="loop-step">
+            <span class="n">01</span>
+            <div>
+              <h4>Trigger<span class="en">TRIGGER</span></h4>
+              <p>A fixed starting point: every day at 8:00, every Monday, a new email arriving, a form being submitted. A "workflow" with no trigger isn't a workflow — it's "I use it when I remember to," which dies eventually.</p>
+            </div>
+          </li>
+          <li class="loop-step">
+            <span class="n">02</span>
+            <div>
+              <h4>Steps<span class="en">STEPS</span></h4>
+              <p>Break the task into a few repeatable steps, each assigned a tool. The more specific the better — "read → classify → draft" beats "handle this for me" a hundred times over.</p>
+            </div>
+          </li>
+          <li class="loop-step">
+            <span class="n">03</span>
+            <div>
+              <h4>Output<span class="en">OUTPUT</span></h4>
+              <p>Something you can put on a screen and hand off: a draft, a list, a ready-to-send email. The output must be concrete and verifiable — never "it feels more efficient."</p>
+            </div>
+          </li>
+          <li class="loop-step">
+            <span class="n">04</span>
+            <div>
+              <h4>Review<span class="en">REVIEW</span></h4>
+              <p>A week later, look at the failure signal: still doing it by hand? Output nobody uses? Some step is wrong — go back and tune. A workflow with no review quietly decays into yet another "installed but unused" tool.</p>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ § 5 tool map ============ -->
+  <section class="essay">
+    <div class="essay-inner wide">
+      <header class="section-head">
+        <span class="eyebrow">§ 05 · The tool map</span>
+        <h2>Sorted by job-to-be-done, not by hype</h2>
+        <p class="lede">
+          Every tool ranking out there sorts by "newest and hottest" — useless to you. This map sorts by "the job you need done" into five categories.
+          Each names a few tools that hold up, plus one minimal runnable workflow. Tools change, jobs don't; remember the job, and any tool is swappable.
+        </p>
+      </header>
+
+      <ul class="use-list">
+
+        <!-- ───── 01 · think & write ───── -->
+        <li class="use">
+          <div class="use-top">
+            <span class="use-label">CATEGORY · 01 · THINK &amp; WRITE</span>
+            <span class="use-gain">blank page → a first draft</span>
+          </div>
+          <h3>Scratch paper for your brain: think the unclear things clear</h3>
+          <p style="color:var(--color-foreground);font-weight:500;margin-bottom:1rem;">
+            Contrarian take: this layer isn't short on tools — it's short on treating it as a "thinking partner," not an "answer machine."
+            <strong>The real use isn't "write this for me," it's "help me question the fuzzy thing until it's clear" — you judge, it expands.</strong>
+          </p>
+          <div class="terminal">
+            <div class="terminal-bar"><span class="terminal-title-tag">WORKFLOW</span>scattered thoughts → one piece</div>
+            <div class="terminal-body">
+              <div class="row"><span class="num">01</span><span class="step">DUMP</span><span class="mu">pour every scattered point into a Claude Project</span></div>
+              <div class="row"><span class="num">02</span><span class="step">CLARIFY</span><span class="mu">have it ask you the 5 sharpest questions · you answer</span></div>
+              <div class="row"><span class="num">03</span><span class="step">DRAFT</span><span class="mu">from the Q&amp;A · produce a structured first draft</span></div>
+              <div class="row"><span class="num">04</span><span class="step">CUT</span><span class="mu">you only subtract · trim to what you actually mean</span></div>
+              <div class="hr"></div>
+              <div class="row"><span class="ok">SETUP</span><span class="mu">10 min to build the Project</span>　·　<span class="ok">ROI</span><span class="mu">blank-page anxiety gone · a piece 2h → 40min</span></div>
+            </div>
+          </div>
+          <div class="use-meta">
+            <span class="chip">Claude</span>
+            <span class="chip">ChatGPT</span>
+            <span class="chip">NotebookLM</span>
+            <span class="chip">Claude Projects</span>
+          </div>
+        </li>
+
+        <!-- ───── 02 · search & research ───── -->
+        <li class="use">
+          <div class="use-top">
+            <span class="use-label">CATEGORY · 02 · SEARCH &amp; RESEARCH</span>
+            <span class="use-gain">an afternoon → 30 minutes</span>
+          </div>
+          <h3>Cited research, not "ask one, get one"</h3>
+          <p style="color:var(--color-foreground);font-weight:500;margin-bottom:1rem;">
+            Contrarian take: using Perplexity as "a smarter search box" wastes it.
+            <strong>Its value is "deep research" mode — give it a question, it runs 30 pages itself, reads, compares, outputs a cited report. Your job is to ask the right question, not to search keywords.</strong>
+          </p>
+          <div class="terminal">
+            <div class="terminal-bar"><span class="terminal-title-tag">WORKFLOW</span>one question → one cited report</div>
+            <div class="terminal-body">
+              <div class="row"><span class="num">01</span><span class="step">FRAME</span><span class="mu">turn a fuzzy question into a bounded research brief</span></div>
+              <div class="row"><span class="num">02</span><span class="step">DEEP</span><span class="mu">Perplexity Deep Research · runs 30+ pages</span></div>
+              <div class="row"><span class="num">03</span><span class="step">VERIFY</span><span class="mu">pick 3 key claims · open the citations, check sources</span></div>
+              <div class="row"><span class="num">04</span><span class="step">BRIEF</span><span class="mu">drop into Claude · 3 paragraphs for the boss</span></div>
+              <div class="hr"></div>
+              <div class="row"><span class="ok">SETUP</span><span class="mu">2 min</span>　·　<span class="ok">ROI</span><span class="mu">one research task: an afternoon → 30min</span></div>
+            </div>
+          </div>
+          <div class="use-meta">
+            <span class="chip">Perplexity</span>
+            <span class="chip">Claude + web</span>
+            <span class="chip">NotebookLM</span>
+          </div>
+        </li>
+
+        <!-- ───── 03 · orchestrate ───── -->
+        <li class="use">
+          <div class="use-top">
+            <span class="use-label">CATEGORY · 03 · ORCHESTRATE</span>
+            <span class="use-gain">run by hand → runs itself</span>
+          </div>
+          <h3>The real leverage layer: wire tools into a self-running line</h3>
+          <p style="color:var(--color-foreground);font-weight:500;margin-bottom:1rem;">
+            Contrarian take: 90% of people only swap things in the "model layer" and never touch this one — yet all the leverage is here.
+            <strong>The orchestration layer welds "trigger + a few tools + one output" into a line. Once it's built, the workflow actually "runs itself."</strong>
+          </p>
+          <div class="terminal">
+            <div class="terminal-bar"><span class="terminal-title-tag">WORKFLOW</span>form in → auto-process → push to channel</div>
+            <div class="terminal-body">
+              <div class="row"><span class="num">01</span><span class="step">TRIGGER</span><span class="mu">n8n / Zapier · listen for new form / new email</span></div>
+              <div class="row"><span class="num">02</span><span class="step">PROCESS</span><span class="mu">call Claude · classify / summarize / draft</span></div>
+              <div class="row"><span class="num">03</span><span class="step">ROUTE</span><span class="mu">branch on result · write DB / create task / notify</span></div>
+              <div class="row"><span class="num">04</span><span class="step">PUSH</span><span class="mu">result to Slack / Teams / email</span></div>
+              <div class="hr"></div>
+              <div class="row"><span class="ok">SETUP</span><span class="mu">half a day for the first one</span>　·　<span class="ok">ROI</span><span class="mu">from "I remember to run it" → "it runs itself"</span></div>
+            </div>
+          </div>
+          <div class="use-meta">
+            <span class="chip">n8n</span>
+            <span class="chip">Zapier</span>
+            <span class="chip">Make</span>
+            <span class="chip">Claude Code</span>
+          </div>
+        </li>
+
+        <!-- ───── 04 · the launcher ───── -->
+        <li class="use">
+          <div class="use-top">
+            <span class="use-label">CATEGORY · 04 · THE LAUNCHER</span>
+            <span class="use-gain">three tab-switches → one hotkey</span>
+          </div>
+          <h3>Put AI within arm's reach</h3>
+          <p style="color:var(--color-foreground);font-weight:500;margin-bottom:1rem;">
+            Contrarian take: when a tool doesn't stick, it's often not the tool — it's that "opening it" is too much friction.
+            <strong>Bind your common AI actions to one hotkey / one desktop entry, and friction drops from "open browser, log in, paste" to "one key." Whether a tool sticks comes down to exactly that friction.</strong>
+          </p>
+          <div class="terminal">
+            <div class="terminal-bar"><span class="terminal-title-tag">WORKFLOW</span>select any text → one-key action</div>
+            <div class="terminal-body">
+              <div class="row"><span class="num">01</span><span class="step">SELECT</span><span class="mu">highlight text in any app</span></div>
+              <div class="row"><span class="num">02</span><span class="step">HOTKEY</span><span class="mu">Raycast / quick-action · one keystroke</span></div>
+              <div class="row"><span class="num">03</span><span class="step">ACT</span><span class="mu">rewrite / translate / summarize / reply · preset</span></div>
+              <div class="row"><span class="num">04</span><span class="step">PASTE</span><span class="mu">result drops back in · never leave the window</span></div>
+              <div class="hr"></div>
+              <div class="row"><span class="ok">SETUP</span><span class="mu">15 min to wire the hotkey</span>　·　<span class="ok">ROI</span><span class="mu">saves countless tab-switches a day</span></div>
+            </div>
+          </div>
+          <div class="use-meta">
+            <span class="chip">Raycast</span>
+            <span class="chip">Claude Desktop</span>
+            <span class="chip">Connectors</span>
+          </div>
+        </li>
+
+        <!-- ───── 05 · capture ───── -->
+        <li class="use">
+          <div class="use-top">
+            <span class="use-label">CATEGORY · 05 · CAPTURE</span>
+            <span class="use-gain">forgotten by EOD → notes in 30s</span>
+          </div>
+          <h3>Stop using your brain to record meetings — use it to decide</h3>
+          <p style="color:var(--color-foreground);font-weight:500;margin-bottom:1rem;">
+            Contrarian take: taking meeting notes spends your most expensive resource (attention) on the cheapest work.
+            <strong>Let a tool listen the whole time; 30 seconds after the meeting it produces structured notes — decisions, action items, owners, deadlines. You just think in the room.</strong>
+          </p>
+          <div class="terminal">
+            <div class="terminal-bar"><span class="terminal-title-tag">WORKFLOW</span>meeting → notes → action items</div>
+            <div class="terminal-body">
+              <div class="row"><span class="num">01</span><span class="step">RECORD</span><span class="mu">Granola / Fireflies · hit record before</span></div>
+              <div class="row"><span class="num">02</span><span class="step">SUMMARY</span><span class="mu">auto transcript + summary + action items</span></div>
+              <div class="row"><span class="num">03</span><span class="step">FOLLOW</span><span class="mu">drop into Claude · write the follow-up email</span></div>
+              <div class="row"><span class="num">04</span><span class="step">TRACK</span><span class="mu">push action items to Todoist / Notion / Linear</span></div>
+              <div class="hr"></div>
+              <div class="row"><span class="ok">SETUP</span><span class="mu">5 min, once</span>　·　<span class="ok">ROI</span><span class="mu">30 min saved per meeting</span></div>
+            </div>
+          </div>
+          <div class="use-meta">
+            <span class="chip">Granola</span>
+            <span class="chip">Fireflies</span>
+            <span class="chip">Claude</span>
+            <span class="chip">Notion / Linear</span>
+          </div>
+        </li>
+
+      </ul>
+    </div>
+  </section>
+
+  <!-- ============ § 6 run tonight ============ -->
+  <section class="essay">
+    <div class="essay-inner wide">
+      <header class="section-head">
+        <span class="eyebrow">§ 06 · Run it tonight</span>
+        <h2>Three workflows — pick one, run it end-to-end tonight</h2>
+        <p class="lede">
+          Everything above is theory until one flow actually runs. The three below are zero-code, same-day effect, installable before you sleep —
+          pick one, finish it, and by 8 AM tomorrow you'll see the first output. Don't do all three. Do one. Finish it.
+        </p>
+      </header>
+
+      <div class="demo">
+        <div class="demo-head">
+          <span class="demo-num">DEMO · 01</span>
+          <span class="demo-time">15 min setup · 0 min daily use</span>
+        </div>
+        <h3>Wire "read email daily" into a pipeline</h3>
+        <p>In the time it takes to drink a coffee, let a workflow read the last 24 hours of email and output "what you have to do today." Opening the inbox stops being anxious — you read the list, not the emails.</p>
+        <ul class="demo-steps">
+          <li>Get Claude Pro, enable the <strong>Gmail Connector</strong> in settings</li>
+          <li>Create a Project, name it "Daily Email Assistant"</li>
+          <li>Paste the prompt template into Project Instructions (handed out live)</li>
+          <li>Set an 8 AM phone alarm to remind you to run it</li>
+          <li>After a week, come back and tune the prompt — the more you use it, the better it knows you</li>
+        </ul>
+        <div class="terminal">
+          <div class="terminal-bar">claude · daily email assistant</div>
+          <div class="terminal-body">
+            <div class="row"><span class="label user">YOU</span>run today's email</div>
+            <div class="row"><span class="label bot">CLAUDE</span><span class="mu">reading the last 24h…</span></div>
+            <div class="row"><span class="label tool">GMAIL</span><span class="mu">read 47 messages</span></div>
+            <div class="hr"></div>
+            <div class="row">▌ Must do today (by priority)</div>
+            <div class="row"><span class="mu">· Reply to David — contract terms (waiting 18h)</span></div>
+            <div class="row"><span class="mu">· Confirm Thursday 2pm TI team meeting (needs reply)</span></div>
+            <div class="row"><span class="mu">· Approve Sarah's expense report $842</span></div>
+            <div class="row"><span class="ok">▌ Auto-archived 38 notifications / subscriptions</span></div>
+            <div class="row"><span class="ok">▌ Drafted 6 replies, ready for you to send</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="demo">
+        <div class="demo-head">
+          <span class="demo-num">DEMO · 02</span>
+          <span class="demo-time">20 min setup · 1h saved each time</span>
+        </div>
+        <h3>Turn "repeat writing" into a Project</h3>
+        <p>Weekly reports, standard replies, product updates — anything you write 3+ times a week with a similar structure, make it a Claude Project, and put your voice and template into the instructions. Never start from scratch again.</p>
+        <ul class="demo-steps">
+          <li>Pick one writing task you do 3+ times a week with a stable structure</li>
+          <li>Create a Project; put the <strong>fixed structure + samples of your voice</strong> into the instructions</li>
+          <li>Drop in your last few finished pieces as a "style corpus"</li>
+          <li>From now on, give it only this round's raw material and let it draft</li>
+          <li>You only subtract and review — no more writing from zero</li>
+        </ul>
+        <div class="terminal">
+          <div class="terminal-bar">claude project · weekly report</div>
+          <div class="terminal-body">
+            <div class="row"><span class="label user">YOU</span>raw material: 3 project updates + 2 risks</div>
+            <div class="row"><span class="label bot">CLAUDE</span><span class="mu">organizing in your report template…</span></div>
+            <div class="hr"></div>
+            <div class="row">▌ This week (already in your voice)</div>
+            <div class="row"><span class="mu">· Project A: shipped performance baseline report</span></div>
+            <div class="row"><span class="mu">· Project B: North America pricing approved</span></div>
+            <div class="row">▌ Risks &amp; decisions needed</div>
+            <div class="row"><span class="mu">· Adjust Europe pricing in parallel? (your call)</span></div>
+            <div class="row"><span class="ok">✓ Draft ready · edit 2 things and send</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="demo">
+        <div class="demo-head">
+          <span class="demo-num">DEMO · 03</span>
+          <span class="demo-time">half-day setup · then runs itself</span>
+        </div>
+        <h3>Weld two tools together with n8n / Zapier</h3>
+        <p>This is the step where you graduate from "AI user" to "workflow builder": make one tool's output automatically become another tool's input. E.g. new form in → Claude classifies → push to Slack. Build it once, it runs forever.</p>
+        <ul class="demo-steps">
+          <li>Sign up for <strong>n8n</strong> (self-hostable) or Zapier</li>
+          <li>Pick a trigger: new form / new email / schedule</li>
+          <li>Add a Claude node in the middle: classify / summarize / draft</li>
+          <li>Add an exit: write to Notion / create a task / send to Slack</li>
+          <li>Run it for a week, see which step needs tuning — that's "Review"</li>
+        </ul>
+        <div class="terminal">
+          <div class="terminal-bar">n8n · auto form-handling flow</div>
+          <div class="terminal-body">
+            <div class="row"><span class="num">01</span><span class="step">TRIGGER</span><span class="mu">new customer form submitted</span></div>
+            <div class="row"><span class="num">02</span><span class="step">CLAUDE</span><span class="mu">infer intent + urgency · draft a reply</span></div>
+            <div class="row"><span class="num">03</span><span class="step">ROUTE</span><span class="mu">high priority → create Linear task and @me</span></div>
+            <div class="row"><span class="num">04</span><span class="step">SLACK</span><span class="mu">push to #inbound · attach the draft</span></div>
+            <div class="hr"></div>
+            <div class="row"><span class="ok">✓ Handled automatically · no need for you to be there</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ § 7 next 90 days ============ -->
+  <section class="essay">
+    <div class="essay-inner">
+      <header class="section-head">
+        <span class="eyebrow">§ 07 · The next 90 days</span>
+        <h2>From tool collector to workflow builder</h2>
+        <p class="lede">
+          This 90-day path doesn't promise you'll "use every tool." It gives you four specific actions, each with an explicit failure signal.
+          If a week's failure signal lights up, go back to the previous week. Don't keep moving forward.
+        </p>
+      </header>
+
+      <ul class="timeline">
+        <li class="tl">
+          <span class="tl-week">WEEK 1 – 2 · Stop collecting</span>
+          <h3>Uninstall half — keep only the two or three you actually use</h3>
+          <p>Clean the bookmarks: cancel / delete every AI tool you haven't truly used in the last three months, keep 2&ndash;3. <strong>Failure signal:</strong> by the end of week 2 you've installed something new again. <strong>What to do:</strong> kill every "AI tools weekly" notification — cut the source.</p>
+        </li>
+        <li class="tl">
+          <span class="tl-week">WEEK 3 – 4 · Wire the first flow</span>
+          <h3>Pick a task you do 3+ times a week and wire it into a workflow</h3>
+          <p>Use the four steps from §04 (Trigger→Steps→Output→Review) to turn a high-frequency task into a Claude Project or a pipeline. <strong>Failure signal:</strong> by end of week 4 you're still writing the prompt from scratch every time. <strong>What to do:</strong> the task is too messy to SOP — pick a more specific one.</p>
+        </li>
+        <li class="tl">
+          <span class="tl-week">WEEK 5 – 8 · Connect the tools</span>
+          <h3>Turn on connectors, wire the first automation</h3>
+          <p>Enable the official Gmail / Calendar / Drive / Notion connectors, then weld one simplest automation with n8n / Zapier. <strong>This is the moment you graduate from "AI user" to "workflow builder."</strong> <strong>Failure signal:</strong> connectors are on, but "let it run itself" never shows up in your daily work. <strong>What to do:</strong> go back to weeks 3&ndash;4 — your workflow didn't lock in.</p>
+        </li>
+        <li class="tl">
+          <span class="tl-week">WEEK 9 – 12 · Maintain the system</span>
+          <h3>Hold 2&ndash;3 workflows steady; you only do judgment</h3>
+          <p>Train 2&ndash;3 core workflows to "run themselves daily"; you only do high-value judgment and final review. <strong>Failure signal:</strong> by week 12 you're still doing manual work all day with no flow running on its own. <strong>What to do:</strong> the problem isn't the tool — it's that you never separated "doing the work" from "building the system."</p>
+        </li>
+      </ul>
+
+      <p style="margin-top: 2.5rem; color: var(--color-muted-foreground);">
+        <strong style="color:var(--color-foreground);">After 90 days you should be able to answer:</strong> "In the past week, which workflow ran end-to-end on its own, where I only looked at the result?" —
+        if you can answer, with screenshots of the output, the path worked. If you can't, you spent 90 days "swapping tools," not "building a flow."
+      </p>
+    </div>
+  </section>
+
+  <!-- ============ CTA ============ -->
+  <section id="cta" class="essay">
+    <div class="essay-inner">
+      <header class="section-head" style="text-align:center;">
+        <span class="eyebrow" style="display:inline-block;">Real Agent Use Cases</span>
+        <h2 style="margin-top: 0.75rem;">Tools go out of date. Workflows don't.</h2>
+        <p class="lede" style="margin-left:auto;margin-right:auto;">
+          Half the tools you bookmarked will be gone next year. But the workflows you build keep running — just swap the tool.<br>
+          <strong style="color:var(--color-foreground);">"Execution is always undervalued."</strong> If you don't wire one flow tonight, you won't tomorrow either. That's not a pep talk. It's an observation.
+        </p>
+      </header>
+
+      <div class="subscribe">
+        <form class="subscribe-form" onsubmit="event.preventDefault(); window.open('https://realagentusecases.com', '_blank');">
+          <input type="email" placeholder="your@email.com" required>
+          <button class="btn" type="submit">Subscribe — free</button>
+        </form>
+        <p class="subscribe-note">
+          One complete, reproducible workflow every week — trigger, tools, every step in the open.<br>
+          This newsletter doesn't "encourage" you. Whether you run it is on you.
+        </p>
+      </div>
+
+      <p style="text-align:center;margin-top:2.5rem;font-family:var(--font-mono);font-size:0.75rem;color:var(--color-muted-foreground);letter-spacing:0.05em;">
+        <a href="/en/agent-101/02-multi-agent/">← EP 02 · Multi-agent &amp; Skills</a>　·　EP 03 (you are here)　·　EP 04 (coming)
+      </p>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site">
+  <div class="footer-inner">
+    © 2026 · Jack Qian
+    <span class="sep">·</span>
+    <a href="https://realagentusecases.com">realagentusecases.com</a>
+    <span class="sep">·</span>
+    Dallas, TX
+  </div>
+</footer>
+
+</body>
+</html>
