@@ -23,3 +23,4 @@ Real Agent Use Cases documents real, verified AI agent builds — not demos or h
 - [AI Agent Use Cases: How Working Professionals Actually Use AI](https://realagentusecases.com/en/news/2026-05-14-ai-agent-use-cases/): Overview of real agent use cases by job function
 - [Claude System Prompt for Email Triage](https://realagentusecases.com/en/news/2026-05-14-claude-system-prompt-email-triage/): The full system prompt behind a real Gmail triage agent
 - [Claude vs Zapier for Gmail Automation](https://realagentusecases.com/en/news/2026-05-14-claude-vs-zapier-gmail-automation/): Head-to-head comparison grounded in a real 4-stack test
+- [AI Agent for Email Management: What Actually Helps](https://realagentusecases.com/en/news/2026-07-07-ai-agent-email-management/): The honest line between an email AI feature and a real agent, and where an email agent saves time

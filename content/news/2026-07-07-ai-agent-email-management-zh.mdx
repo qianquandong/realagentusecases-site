@@ -1,0 +1,61 @@
+---
+title: "邮件管理 AI Agent：功能还是智能体？"
+date: "2026-07-07"
+excerpt: "Gmail 的 AI 能总结邮件、起草回复，但那是功能，不是 agent。本文讲清两者的区别，以及邮件 agent 真正能帮你省时间的地方。"
+---
+
+一个真正的邮件管理 AI agent 做的不只是「总结这封邮件」。它有触发器，会按时读你的收件箱，然后交给你一份几秒就能核对完的优先级待办清单。Gmail 内置的 AI 是「你点它才动」的功能；真正的 agent 多了那个让它不用你也能自己跑起来的触发器和固定任务。
+
+这个区别就是全部要点。你试过的大多数「邮件 AI」，其实是嵌在收件箱里的辅助功能——有用，但要等你开口。Agent 不等你。下面讲清两者的分界，以及邮件 agent 到底在哪里真正省时间。
+
+## 功能 vs. agent：先分清你手上是哪个
+
+两样东西被当成同一个产品在卖。它们不是。
+
+- **辅助功能**住在你的邮件客户端里，你点一下它才动。[Gmail 里的 Gemini](https://workspace.google.com/products/gmail/ai/) 是最典型的例子：长邮件顶部的「总结这封邮件」按钮，以及把草稿要点变成正文的「帮我写」。Google 把两者都记录为[按需的总结与起草](https://support.google.com/mail/answer/16561387)。确实好用，但每一步都得你来驱动。
+- **Agent**靠触发器运行，产出一份固定结果。[Claude 的 Gmail connector](https://support.claude.com/en/articles/10166901-use-google-workspace-connectors) 能用自然语言搜索、阅读你的邮件并起草回复——但只在你批准后，而且按 Anthropic 官方文档，它**不会发送**:每封邮件都得由你亲手发出。(TechCrunch 在 2025 年 4 月报道了 [Claude 可以读取 Gmail](https://techcrunch.com/2025/04/15/anthropics-claude-now-read-your-gmail/)。)Anthropic 还说明它不会用 connector 数据训练模型。
+
+不管是 connector 还是 Gemini 按钮,单独都不是 agent。Agent 是你**围绕**「读取+起草」能力搭起来的东西:一个触发器(某个早晨、一封新邮件)、一条固定指令(分诊、摘要、写初稿),以及一份你一眼就能核对的产出。
+
+## 为什么邮件是 agent 的教科书级场景
+
+邮件是这个模式最先见效的地方,原因很朴素:量太大了。麦肯锡全球研究院的 [*The Social Economy*](https://www.mckinsey.com/industries/technology-media-and-telecommunications/our-insights/the-social-economy) 报告估计,知识工作者约有 **28% 的工作时间**花在读写邮件上——五天里超过一整天。
+
+它还通过了我们判断[真实场景 vs. Demo](/zh/news/2026-05-14-ai-agent-use-cases/) 的每一条:任务每天重复、输入杂乱但有界(永远是邮件)、产出几秒可核对(待办清单对不对一眼看得出)、有天然触发器(每天早上)。这种组合很少见,而邮件四条全中。
+
+## 邮件 agent 真正擅长什么
+
+- **早晨分诊。**读最近 24 小时的邮件,分成今天必办 / 本周跟进 / 仅供参考 / 跳过,再返回一份带原邮件链接的 P0/P1/P2 清单。这正是我们在跑并完整公开的那个——[Claude 邮件分诊系统提示词](/zh/news/2026-05-14-claude-system-prompt-email-triage/)就是原样的 prompt,[Issue #001](/zh/posts/2026-05-13-gmail-ai-agent/) 是完整搭建过程:约 20 分钟配置、Claude Pro 每月 $20、零代码。
+- **回复初稿。**对少数真正需要回的邮件,agent 起草一版交你修改——它不发送。你从空白框到 80% 只需一遍。
+- **摘要与监控。**让它盯住某一个标签——收据、某个项目别名、一个客服邮箱——只在真正有变化时给你一条摘要,代替那个你总想着要看的标签页。
+
+## 哪些要留给人做
+
+把边界说老实,否则 agent 会悄悄消耗你的信任:
+
+- **未经审阅就发送。**Claude connector [不自动发送](https://support.claude.com/en/articles/10166901-use-google-workspace-connectors)的好处,是一段瞎编的回复永远出不了你的账户。保持这样——起草,然后你来发。
+- **判断类决策。**一封裁员邮件、一场敏感谈判、一封法律回复——agent 能总结上下文,但决定权在你。
+- **自动删除。**分诊只该建议「跳过 / 归档」,而不是替你动手。一份被误归档的合同就是一个糟糕的下午。
+
+## 怎么搭一个
+
+别从 X 上的某条帖子开始。从唯一一个被完整记录的搭建开始:读 [Issue #001](/zh/posts/2026-05-13-gmail-ai-agent/),看选型决策、逐日翻车日志和那笔账。要比较在哪跑,[Claude vs Zapier vs n8n](/zh/news/2026-05-14-claude-vs-zapier-gmail-automation/) 把同一个任务在四套栈上各跑了一遍。完全是新手?从 [Agent 101](/zh/agent-101/) 开始。
+
+## FAQ
+
+**Gmail 里的 Gemini 算 AI agent 吗?**
+单独不算。Gemini 的「总结这封邮件」和「帮我写」是你按需触发的辅助功能,见 [Google 官方文档](https://workspace.google.com/products/gmail/ai/)。只有当你把它们包进一个不用你点就会跑的触发器和固定任务里,它们才成为 agent 的一部分。
+
+**AI agent 能替我自动发邮件吗?**
+Claude 的 Gmail connector 刻意不发送——它起草,你来发,见 [Anthropic connector 文档](https://support.claude.com/en/articles/10166901-use-google-workspace-connectors)。这是特性不是缺陷:它让一封错误草稿永远出不了你的账户。想完全自动发送,就得另接工具,风险也归你。
+
+**搭邮件 agent 需要写代码吗?**
+不需要。[Issue #001](/zh/posts/2026-05-13-gmail-ai-agent/) 里的分诊 agent 完全跑在 Claude.ai(Pro 套餐)加 Gmail Connector 上——没有 API key,没有脚本。配置约 20 分钟,每月 $20。
+
+**我的邮件数据会被拿去训练模型吗?**
+Anthropic 说明它不会用 Gmail、Drive 或 Calendar connector 数据训练模型,见其 [Google Workspace connectors 页面](https://support.claude.com/en/articles/10166901-use-google-workspace-connectors)。政策会变,用哪个工具都请核对它当前的条款。
+
+**邮件到底占多少时间?**
+麦肯锡全球研究院的 [*The Social Economy*](https://www.mckinsey.com/industries/technology-media-and-telecommunications/our-insights/the-social-economy) 估计,普通知识工作者约 28% 的一周时间花在读写邮件上——这正是「收件箱分诊」值得最先自动化的最大理由。
+
+每周一个真实的 AI agent,直接送到你的邮箱。免费,不推销。

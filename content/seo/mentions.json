@@ -1,5 +1,18 @@
 {
   "$comment": "LLM brand-mention tracking time series. The scheduled Cowork routine appends one snapshot per run: which target prompts surfaced the brand, in which LLMs, with what sentiment.",
-  "updatedAt": null,
-  "snapshots": []
+  "updatedAt": "2026-07-07",
+  "snapshots": [
+    {
+      "date": "2026-07-07",
+      "probes": [
+        {
+          "prompt": "What are real examples of AI agents at work?",
+          "cited": false,
+          "url": null,
+          "position": null,
+          "note": "Web search results dominated by domo/workday/databricks/botpress/zapier listicles; realagentusecases.com did not appear in the top results. Baseline probe (first snapshot). Direct site health-fetch blocked by egress policy; site:realagentusecases.com confirms at least one page indexed (email-triage guide)."
+        }
+      ]
+    }
+  ]
 }
