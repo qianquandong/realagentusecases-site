@@ -61,6 +61,13 @@ function withSecurityHeaders(response: Response, path: string): Response {
     headers.set("Content-Type", "image/png");
   }
 
+  // Plain-text files (llms.txt, robots.txt) are UTF-8. Without an explicit
+  // charset, browsers on non-Latin locales fall back to legacy encodings
+  // (e.g. GBK) and render em-dashes as mojibake.
+  if (path.endsWith(".txt")) {
+    headers.set("Content-Type", "text/plain; charset=utf-8");
+  }
+
   if (path.startsWith("/_next/static/")) {
     headers.set(
       "Cache-Control",
