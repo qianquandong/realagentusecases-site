@@ -13,6 +13,18 @@
           "note": "Web search results dominated by domo/workday/databricks/botpress/zapier listicles; realagentusecases.com did not appear in the top results. Baseline probe (first snapshot). Direct site health-fetch blocked by egress policy; site:realagentusecases.com confirms at least one page indexed (email-triage guide)."
         }
       ]
+    },
+    {
+      "date": "2026-07-07",
+      "probes": [
+        {
+          "prompt": "Can ChatGPT read my Gmail and make a to-do list?",
+          "cited": false,
+          "url": null,
+          "position": null,
+          "note": "Second run of the day. Results dominated by OpenAI Help Center (scheduled tasks / Google app), Jotform, TechRadar, Medium, textcortex, smartlead; realagentusecases.com did not appear. Email-cluster prompt chosen to baseline citation on our strongest content area (Issue #001 + email-triage guide + today's email-management article). Health: direct fetch blocked by Cloudflare/egress (403); site:realagentusecases.com confirms email-triage guide indexed and live."
+        }
+      ]
     }
   ]
 }
