@@ -44,7 +44,7 @@
   },
   "cadence": {
     "keywordResearch": "weekly",
-    "publish": "weekly",
+    "publish": "daily",
     "postsPerRun": 1
   },
   "audit": {

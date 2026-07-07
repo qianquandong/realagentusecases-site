@@ -28,5 +28,5 @@ These encode the site's "expert filter". A violation is a bug, not a style choic
 3. **Length limits** (enforced by `audit.mjs`, thresholds in `seo.config.json`): title ≤60 chars EN / ≤36 ZH; excerpt 110–160 chars EN / 50–100 ZH. Frontmatter keys: `title`, `date`, `excerpt`.
 4. **Internal links:** every article body has ≥2 links to other pages on this site, and at least one existing page must link TO the new article (no orphans).
 5. **Bilingual pairs:** never publish an EN article without its ZH pair (or vice versa) — hreflang asserts both exist.
-6. **Cadence cap:** max 2 new articles per week. Never bulk-generate. Automation of publishing stays OFF until the re-enable criteria in `docs/WORKFLOW.md` §8 are met.
+6. **Cadence cap:** max 1 new article pair per day, published ONLY by the scheduled job `daily-seo-geo-realagentusecases` after all gates pass. Research comes first: gather 3+ real, linkable sources before writing; if the day's topic can't be honestly supported, SKIP the day and say so. Manual bulk generation stays banned. Circuit-breakers in `docs/WORKFLOW.md` §8.
 7. **Pre-commit gate:** `node scripts/seo/audit.mjs` clean + `pnpm build` green. New evergreen pages get added to `public/llms.txt`. Used keywords get marked `used` in the feed.

@@ -1,0 +1,65 @@
+name: Auto-merge content from Claude branches
+
+# The cloud content engine (docs/CLOUD-ROUTINE.md) is forced by its harness to
+# push to claude/* branches instead of main. This workflow closes the loop:
+# content-only changes merge to main automatically (which triggers the
+# Cloudflare deploy); anything touching code/config opens a PR for human
+# review instead. The path allowlist below is the enforcement layer — keep it
+# in sync with the whitelist in CLAUDE.md rule 7 / CLOUD-ROUTINE.md.
+
+on:
+  push:
+    branches: ["claude/**"]
+
+concurrency:
+  group: auto-merge-main
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  auto-merge:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - name: Gate — changed paths must all be content
+        id: gate
+        run: |
+          git fetch origin "${GITHUB_REF_NAME}"
+          CHANGED=$(git diff --name-only "origin/main...${GITHUB_SHA}")
+          echo "Changed files:"; echo "$CHANGED"
+          if [ -z "$CHANGED" ]; then
+            echo "verdict=empty" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          BAD=$(echo "$CHANGED" | grep -Ev '^(content/news/|content/seo/|public/llms\.txt$)' || true)
+          if [ -z "$BAD" ]; then
+            echo "verdict=clean" >> "$GITHUB_OUTPUT"
+          else
+            echo "verdict=dirty" >> "$GITHUB_OUTPUT"
+            echo "Paths outside the content allowlist:"; echo "$BAD"
+          fi
+
+      - name: Merge to main (triggers Cloudflare deploy)
+        if: steps.gate.outputs.verdict == 'clean'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git merge --no-ff "${GITHUB_SHA}" -m "auto-merge: ${GITHUB_REF_NAME} (content-only, gate passed)"
+          git push origin main
+          git push origin --delete "${GITHUB_REF_NAME}" || true
+
+      - name: Open PR for human review (non-content changes)
+        if: steps.gate.outputs.verdict == 'dirty'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh pr create --base main --head "${GITHUB_REF_NAME}" \
+            --title "Review needed: ${GITHUB_REF_NAME}" \
+            --body "This automated branch touched paths outside the content allowlist (content/news, content/seo, public/llms.txt). Human review required before it can reach main." || true

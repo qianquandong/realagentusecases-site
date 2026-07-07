@@ -33,7 +33,7 @@ content/posts/<日期>-<slug>-en.mdx 和 -zh.mdx。
 2. Claude 写完 + 闸门全绿 → 你花 5 分钟只检查两件事：**嘉宾的事实说对了没有**、**有没有嘉宾要求删的信息**。
 3. 说「发布」→ Claude 提交推送（Cloudflare 自动部署），并在 GSC 请求收录该 URL。
 
-## 3. 流水线 B：集群文章（每周五，可选）
+## 3. 流水线 B：集群文章（已自动化——每日任务 `daily-seo-geo-realagentusecases` 代跑，闸门内置，找不到真实素材的当天自动跳过。以下为手动执行时的流程）
 
 1. 提示词：
 
@@ -90,10 +90,12 @@ grep -riE "research shows|data shows|studies show" content/ # 命中即失败，
 今天执行流水线 <A/B/C>：<具体任务>
 ```
 
-## 8. 什么时候才允许恢复发布自动化
+## 8. 发布自动化守则与熔断（2026-07-06 起开启）
 
-全部满足才开（对应 .planning 计划的 Stage B）：
-1. 连续 4 周人审流程跑满且闸门 0 违规
-2. GSC 显示 ≥5 个词进前 20
-3. mentions.json 出现 ≥1 次稳定的 LLM 引用
-4. 自动化仍保留全部 §5 闸门，且每天 ≤1 篇、发布前仍有人过目 diff
+每日任务自动写作+发布的前提（每一条写死在任务 prompt 里）：
+1. 题目只来自 keywords.json / prompts.json（status=new）；周日不写文，改为补充词库（ideation）
+2. 动笔前先做真实来源调研（≥3 个可链接来源）；素材不足 → 当天跳过并汇报，绝不硬编
+3. 全部 §5 闸门自检：长度、≥2 内链、en/zh 成对、无 "Research shows" 无来源句
+4. 每天 ≤1 组；只允许提交 content/news、content/seo、public/llms.txt 及规则文档；绝不碰 content/posts（访谈只能人写）
+
+**熔断（出现任一立即停用任务再排查）**：GSC 出现 manual action 或收录量骤降；连续 2 篇被发现无来源陈述；Cloudflare 构建连续失败。
