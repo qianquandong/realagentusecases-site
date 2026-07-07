@@ -1,0 +1,25 @@
+# Real Agent Use Cases
+
+> Weekly interviews with working professionals about the AI agents they actually run at work. Every issue publishes the full setup — prompts, tools, integrations — free. Hosted by Jack Qian. English + Chinese (zh-CN available by swapping /en/ for /zh/ in any URL).
+
+Real Agent Use Cases documents real, verified AI agent builds — not demos or hype. Each interview covers what the agent does, the complete setup, how long it has been running, and what went wrong along the way.
+
+## Core pages
+
+- [Home](https://realagentusecases.com/en/): What the series is and how to subscribe
+- [News & guides](https://realagentusecases.com/en/news/): All published interviews and guides, newest first
+
+## Interviews
+
+- [Issue #001: The Gmail → to-do AI agent](https://realagentusecases.com/en/posts/2026-05-13-gmail-ai-agent/): Jack's own daily-driver email triage agent — full prompt, Apps Script trigger, and what broke
+
+## Agent 101 (intro series)
+
+- [Episode 01: What "agent" actually means](https://realagentusecases.com/en/agent-101/): 90-minute primer — what an AI agent is, what it isn't, 9 real workflows
+- [Episode 02: Multi-agent & Skills](https://realagentusecases.com/en/agent-101/02-multi-agent/): Single-agent ceilings, Skills, and 4 multi-agent collaboration patterns
+
+## Guides
+
+- [AI Agent Use Cases: How Working Professionals Actually Use AI](https://realagentusecases.com/en/news/2026-05-14-ai-agent-use-cases/): Overview of real agent use cases by job function
+- [Claude System Prompt for Email Triage](https://realagentusecases.com/en/news/2026-05-14-claude-system-prompt-email-triage/): The full system prompt behind a real Gmail triage agent
+- [Claude vs Zapier for Gmail Automation](https://realagentusecases.com/en/news/2026-05-14-claude-vs-zapier-gmail-automation/): Head-to-head comparison grounded in a real 4-stack test

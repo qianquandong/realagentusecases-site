@@ -19,7 +19,7 @@ export async function generateMetadata({
     description: t.siteDescription,
     alternates: {
       canonical: `/${locale}/`,
-      languages: { en: "/en/", "zh-CN": "/zh/" },
+      languages: { en: "/en/", "zh-CN": "/zh/", "x-default": "/en/" },
     },
     openGraph: {
       title: t.siteTitle,
