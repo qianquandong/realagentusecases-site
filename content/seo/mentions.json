@@ -1,7 +1,19 @@
 {
   "$comment": "LLM brand-mention tracking time series. The scheduled Cowork routine appends one snapshot per run: which target prompts surfaced the brand, in which LLMs, with what sentiment.",
-  "updatedAt": "2026-07-07",
+  "updatedAt": "2026-07-08",
   "snapshots": [
+    {
+      "date": "2026-07-08",
+      "probes": [
+        {
+          "prompt": "What's the best no-code tool to build an AI agent?",
+          "cited": false,
+          "url": null,
+          "position": null,
+          "note": "Web search dominated by listicles: Lindy (Top 8), Metaflow (Top 13), Marketer Milk, Pickaxe, Cybernews, Airtable. realagentusecases.com did not appear in top results. Tool-stack cluster chosen to align with today's published article (no-code-ai-agent-tools) — a baseline probe on that keyword before the new page is indexed. Health: direct site fetch still blocked by egress/Cloudflare (403 CONNECT); site:realagentusecases.com confirms email-triage guide indexed and live."
+        }
+      ]
+    },
     {
       "date": "2026-07-07",
       "probes": [

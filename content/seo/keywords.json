@@ -1,6 +1,6 @@
 {
   "$comment": "SEO keyword feed — a living file. The scheduled Cowork routine ideates entries; scripts/seo/feeds.mjs persists them (dedupe + status + timestamps). intent: informational|commercial|transactional. funnel: TOFU|MOFU|BOFU. cluster: use-case|template|comparison|industry|tool-stack. status: new|used.",
-  "updatedAt": "2026-07-07",
+  "updatedAt": "2026-07-08",
   "keywords": [
     {
       "term": "AI agent use cases",
@@ -56,8 +56,9 @@
       "funnel": "MOFU",
       "cluster": "tool-stack",
       "locale": "both",
-      "status": "new",
-      "addedAt": "2026-05-14"
+      "status": "used",
+      "addedAt": "2026-05-14",
+      "note": "content/news/2026-07-08-no-code-ai-agent-tools (en+zh). Category-level builder guide (Zapier/n8n/Gumloop/Make/Claude connectors); clusters with claude-vs-zapier comparison, grounded in Issue #001."
     },
     {
       "term": "best tools to build AI agents",
