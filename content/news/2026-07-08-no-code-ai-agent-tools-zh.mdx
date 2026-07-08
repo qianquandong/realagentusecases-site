@@ -1,0 +1,58 @@
+---
+title: "无代码 AI Agent 工具怎么选（2026）"
+excerpt: "Zapier、n8n、Gumloop，还是 Claude 的 connector？一份不吹的无代码 AI agent 工具选型指南，基于一个真实的 Gmail 搭建，讲清各自的取舍。"
+date: "2026-07-08"
+---
+
+最好的无代码 AI agent 工具，是能干成你这件事的最简单那个。对个人 agent 来说，往往根本不是什么平台——而是 [Claude 的 Gmail connector](https://support.claude.com/en/articles/10166901-use-google-workspace-connectors) 加上一个每天的习惯。等你需要定时、共享或连很多应用时，再去找 [Zapier](https://zapier.com/agents)、[n8n](https://n8n.io/pricing/) 或 [Gumloop](https://www.gumloop.com/)。
+
+每一篇「最佳无代码 AI agent 搭建工具」都在排同样那十几个工具，却从不告诉你到底该挑哪个。这篇从我们真在跑的一个 agent 出发往外推，让你买下能解决问题的最小工具，而不是最强的那个。
+
+## 先看任务，再看工具
+
+无代码 AI agent 工具，就是一个可视化搭建器，让你不写代码就能把触发器、AI 步骤和动作接起来。陷阱在于先选工具。反过来做：先说清任务，再挑覆盖它的最小工具。
+
+我们的样例是一个 Gmail agent：每天早上读最近 24 小时的邮件，返回一份优先级待办清单。同一个 agent 我们用四种方式搭过，记录在 [Claude vs Zapier vs n8n](/zh/news/2026-05-14-claude-vs-zapier-gmail-automation/) 里；完整搭建过程在 [Issue #001](/zh/posts/2026-05-13-gmail-ai-agent/)。这个真实测试是下面所有建议的地基。
+
+## 决定工具的三个问题
+
+- **它需要不用你也能跑吗？**要的话，你需要一个带调度器的平台。如果手动「现在跑一次」就够，你也许根本不需要搭建器。
+- **还有别人要维护它吗？**队友要改你的流程，就指向一个可视化、可共享的工具；私人的个人 agent 不用。
+- **它要连几个应用？**只连一个（就 Gmail）是 connector 的活；连十几个是平台的活。
+
+答完这三个，选择范围立刻收窄。
+
+## 值得知道的几个无代码工具
+
+**Claude connectors——单应用个人 agent。**[Claude 的 Google Workspace connectors](https://support.claude.com/en/articles/10166901-use-google-workspace-connectors) 能用自然语言搜索、阅读你的 Gmail、日历和云盘并起草回复——在你批准后进行，而且按 Anthropic 官方文档它**不会发送**。没有搭建器要学：授权 connector，把任务说清楚即可。代价是它靠手动触发，不是定时。对一个你本来每天都会打开的个人 agent 来说这没问题——[Issue #001](/zh/posts/2026-05-13-gmail-ai-agent/) 就这么跑，每月约 $20，零代码。
+
+**Zapier——可共享、多应用的流程。**Zapier 连接 [9,000+ 应用](https://zapier.com/apps)，是本列表里最广的目录，它的 [Zapier Agents](https://zapier.com/agents) 在此之上加了 AI 步骤。它最容易交给非技术队友。取舍是量大时的成本，以及某次运行出问题时的黑箱感。
+
+**n8n——控制力与低成本。**n8n 的自托管社区版[免费且执行次数无上限](https://n8n.io/pricing/)，托管云版约每月 $20 起、含 2,500 次执行。它是最灵活、最可迁移的选择，可视化节点不够用时还能落到自定义逻辑。代价是自托管又多一个要照看的东西。
+
+**Gumloop——新手第一个 agent。**[Gumloop](https://www.gumloop.com/) 是一个 AI 优先的可视化自动化搭建器——像 Zapier 的画布，但从一开始就围绕 AI 步骤设计——自带模型额度，让你不接自己的 API key 就能试想法。适合快速上线第一个 agent。
+
+**Make.com** 与 Zapier 相近：可视化、基于场景的搭建器，分支能力强，采用[自己的按操作计费](https://www.make.com/en/pricing)。如果觉得 Zapier 的模式受限，值得一看。
+
+## 别买多了
+
+最常见的错误是先搭那个最强的版本。从能干成活的最简单一套开始，先确认这个 agent 值不值得留，再把它迁到调度器或自托管平台。正如我们在[栈对比](/zh/news/2026-05-14-claude-vs-zapier-gmail-automation/)里说的：先搭 n8n 版，是好 agent 在第二周就夭折的方式。要是你还在判断某个任务算不算真正的 agent 活，[功能 vs. agent 的分界](/zh/news/2026-07-07-ai-agent-email-management/)和 [Agent 101](/zh/agent-101/) 是起点。
+
+## FAQ
+
+**最好的无代码 AI agent 工具是哪个？**
+没有唯一的最好——取决于任务。私人的单应用个人 agent，[Claude 的 connector](https://support.claude.com/en/articles/10166901-use-google-workspace-connectors) 根本不需要搭建器。要定时、可共享、多应用的流程，[Zapier](https://zapier.com/agents)、[n8n](https://n8n.io/pricing/)、[Gumloop](https://www.gumloop.com/) 是最强的通用选择。
+
+**完全不写代码能搭 AI agent 吗？**
+能。[Issue #001](/zh/posts/2026-05-13-gmail-ai-agent/) 里的 Gmail 分诊 agent 完全跑在 Claude.ai 加 Gmail connector 上——没有 API key、没有脚本，约 20 分钟搭好。Zapier、Gumloop 这类可视化搭建器也是无代码，只是多了些活动部件。
+
+**最便宜的无代码方案是哪个？**
+只要你愿意自己运维，n8n 的[自托管社区版免费](https://n8n.io/pricing/)、执行次数无上限。在完全托管的工具里，最便宜的路往往是干脆不用平台，直接在一个你已经付费的工具里用 connector，比如 Claude Pro。
+
+**哪些无代码工具能定时跑？**
+Zapier、n8n、Make 都支持定时触发。Claude 的 Gmail connector 不行——你叫它才跑。如果无人值守的运行很重要，就挑一个带调度器的平台，见[四栈对比](/zh/news/2026-05-14-claude-vs-zapier-gmail-automation/)。
+
+**该挑最强的工具吗？**
+不该。挑能干成活的最小工具，先证明这个 agent 值得留，再在确实需要定时、共享或规模时才升级。过度搭建是放弃一个 agent 最快的方式。
+
+每周一个真实的 AI agent，直接送到你的邮箱。免费，不推销。

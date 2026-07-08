@@ -1,6 +1,6 @@
 {
   "$comment": "GEO prompt feed — the questions working professionals ask ChatGPT / Perplexity / Gemini. The scheduled Cowork routine ideates entries; scripts/seo/feeds.mjs persists them. cluster: use-case|template|comparison|industry|tool-stack. status: new|covered (covered = a published article targets it). Phase 7 tracks whether the brand is cited for each.",
-  "updatedAt": "2026-05-15",
+  "updatedAt": "2026-07-08",
   "prompts": [
     {
       "prompt": "What are real examples of AI agents at work?",
@@ -64,8 +64,9 @@
       "prompt": "What's the best no-code tool to build an AI agent?",
       "cluster": "tool-stack",
       "locale": "en",
-      "status": "new",
-      "addedAt": "2026-05-14"
+      "status": "covered",
+      "addedAt": "2026-05-14",
+      "note": "Covered by content/news/2026-07-08-no-code-ai-agent-tools. GEO-probed 2026-07-08: not cited (Lindy/Metaflow/Airtable listicles dominate)."
     },
     {
       "prompt": "What AI agents should a recruiter use?",
