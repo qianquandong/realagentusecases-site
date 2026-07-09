@@ -1,0 +1,60 @@
+---
+title: "Gmail AI Agent: 3 Ways to Build One in 2026"
+date: "2026-07-09"
+excerpt: "Three ways to build a Gmail AI agent — Claude's connector, a no-code platform, or the API — with the honest limits of each, grounded in a real daily build."
+---
+
+A Gmail AI agent reads your inbox and takes or drafts actions on it. There are three ways to build one: Claude's Gmail connector for a no-code personal assistant, a no-code platform like Zapier or n8n for scheduled multi-app workflows, or the Gmail API for full-control custom agents. Pick the smallest that fits.
+
+Search "Gmail AI agent" and you get a dozen tutorials that all skip the one question that matters: which of the three routes is right for *your* job. This guide walks all three, names what each can and can't do, and anchors the advice in an agent we actually run every morning — [Issue #001](/en/posts/2026-05-13-gmail-ai-agent/).
+
+## What a "Gmail AI agent" actually is
+
+An agent is more than a summarizer. A real Gmail AI agent *senses* your inbox (pulls recent mail), *decides* what matters (sorts, prioritizes, drafts), and *acts* (labels, drafts, or replies) — not just paraphrases a thread. If you're unsure whether your task even needs an agent versus a built-in email feature, start with our [feature-vs-agent breakdown](/en/news/2026-07-07-ai-agent-email-management/).
+
+The three routes below differ mainly on two axes: **can it run without you**, and **how much can it do on its own**.
+
+## Route 1 — Claude's Gmail connector (no code, personal)
+
+The fastest path is no build at all. [Claude's Google Workspace connector](https://support.claude.com/en/articles/10166901-use-google-workspace-connectors) lets Claude search and read your Gmail in plain language, pull details across threads, and draft replies into your account — with your approval. Per Anthropic's connector docs it drafts but does not send on its own, and it runs inside a chat you start rather than on a trigger.
+
+That "manual trigger" limit sounds like a dealbreaker until you realize a personal triage agent is something you *want* to open each morning. [Issue #001](/en/posts/2026-05-13-gmail-ai-agent/) runs exactly this way: Claude.ai Pro plus the Gmail connector plus one system prompt, ~20 minutes to set up, about $20/month, zero code, and it returns a prioritized P0/P1/P2 to-do list in under a minute. If you want the exact prompt, we published it as the [Claude email-triage system prompt](/en/news/2026-05-14-claude-system-prompt-email-triage/).
+
+**Pick this when:** it's just your inbox, you're happy to trigger it yourself, and you don't want to babysit a platform.
+
+## Route 2 — A no-code platform (scheduled, multi-app)
+
+When the agent must run while you're asleep, or touch more than Gmail, move to a visual builder. [Zapier Agents](https://zapier.com/agents) sits on Zapier's [9,000+ app catalog](https://zapier.com/apps) and is the easiest to hand to a non-technical teammate. [n8n](https://n8n.io/pricing/) offers a self-hosted Community Edition that's free with unlimited executions if you'd rather own the stack. Both support scheduled triggers, so the agent can read your inbox at 7am unattended — the thing the connector can't do.
+
+We built the same Gmail agent four ways and compared them head-to-head in [Claude vs Zapier vs n8n](/en/news/2026-05-14-claude-vs-zapier-gmail-automation/); the full menu of no-code builders and how to choose between them lives in [No-Code AI Agent Tools](/en/news/2026-07-08-no-code-ai-agent-tools/).
+
+**Pick this when:** you need unattended runs, multiple apps, or a workflow a colleague can edit.
+
+## Route 3 — The Gmail API (full control, code)
+
+For a fully custom or autonomous agent, go direct to the [Gmail API](https://developers.google.com/workspace/gmail/api/auth/scopes). Your agent authenticates with [OAuth 2.0](https://developers.google.com/identity/protocols/oauth2) using scoped permissions — Google splits Gmail scopes into non-sensitive, sensitive, and restricted tiers, and read/modify access to mail is a restricted scope that requires extra verification, so budget for that. From there you wire the model to functions that search, label, draft, and (with confirmation) send. A worked code-first walkthrough is [Arcade's Gmail agent guide](https://www.arcade.dev/blog/how-to-build-an-ai-agent-for-gmail-a-complete-guide-for-2025/).
+
+**Pick this when:** you need behavior no platform exposes, full control over data flow, or you're shipping this to other users.
+
+## Which route to pick
+
+Start at Route 1 and only move down when a hard requirement forces you. A private morning-triage agent almost never needs more than the connector; adding a platform or the API first is the fastest way to over-build and abandon it. Prove the agent earns its place, *then* upgrade. New to the whole idea? [Agent 101](/en/agent-101/) is the 90-minute primer.
+
+## FAQ
+
+**What is a Gmail AI agent?**
+It's an AI system that reads your Gmail and takes or drafts actions on it — sorting, prioritizing, labeling, or drafting replies — rather than just summarizing a single thread. A real example is the daily triage agent in [Issue #001](/en/posts/2026-05-13-gmail-ai-agent/), which turns your inbox into a prioritized to-do list.
+
+**Can I build a Gmail AI agent without code?**
+Yes. [Claude's Gmail connector](https://support.claude.com/en/articles/10166901-use-google-workspace-connectors) needs no code and no API key — you authorize it and describe the job. No-code platforms like [Zapier](https://zapier.com/agents) and [n8n](https://n8n.io/pricing/) are also code-free and add scheduling and multi-app reach.
+
+**Can a Gmail AI agent send emails automatically?**
+It depends on the route. Claude's connector drafts replies but, per Anthropic's docs, does not send them on its own. Platform and Gmail-API builds *can* send, but the safe pattern is to keep a human confirmation step before anything leaves your outbox.
+
+**Can Claude's Gmail connector run on a schedule?**
+No — it runs inside a conversation you start, so it can't fire on its own when new mail lands. If you need unattended runs, use a platform with a scheduler like [Zapier or n8n](/en/news/2026-07-08-no-code-ai-agent-tools/), or build against the Gmail API.
+
+**How much does a Gmail AI agent cost?**
+The connector route runs on an existing Claude Pro plan (~$20/month in [Issue #001](/en/posts/2026-05-13-gmail-ai-agent/)) with no extra tools. [n8n's self-hosted edition is free](https://n8n.io/pricing/) if you run it yourself; hosted platforms add their own per-run pricing on top of model costs.
+
+One real AI agent a week, straight to your inbox. Free, no upsell.

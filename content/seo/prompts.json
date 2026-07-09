@@ -1,6 +1,6 @@
 {
   "$comment": "GEO prompt feed — the questions working professionals ask ChatGPT / Perplexity / Gemini. The scheduled Cowork routine ideates entries; scripts/seo/feeds.mjs persists them. cluster: use-case|template|comparison|industry|tool-stack. status: new|covered (covered = a published article targets it). Phase 7 tracks whether the brand is cited for each.",
-  "updatedAt": "2026-07-08",
+  "updatedAt": "2026-07-09",
   "prompts": [
     {
       "prompt": "What are real examples of AI agents at work?",
@@ -29,8 +29,9 @@
       "prompt": "How do I build an AI agent for my Gmail?",
       "cluster": "use-case",
       "locale": "en",
-      "status": "new",
-      "addedAt": "2026-05-14"
+      "status": "covered",
+      "addedAt": "2026-05-14",
+      "note": "Covered by content/news/2026-07-09-gmail-ai-agent. GEO-probed 2026-07-09: not cited (arcade.dev, gyld.ai, drew.tech, substack listicles dominate)."
     },
     {
       "prompt": "Can ChatGPT read my Gmail and make a to-do list?",
