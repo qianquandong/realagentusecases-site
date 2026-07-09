@@ -1,6 +1,6 @@
 {
   "$comment": "SEO keyword feed — a living file. The scheduled Cowork routine ideates entries; scripts/seo/feeds.mjs persists them (dedupe + status + timestamps). intent: informational|commercial|transactional. funnel: TOFU|MOFU|BOFU. cluster: use-case|template|comparison|industry|tool-stack. status: new|used.",
-  "updatedAt": "2026-07-08",
+  "updatedAt": "2026-07-09",
   "keywords": [
     {
       "term": "AI agent use cases",
@@ -75,9 +75,9 @@
       "funnel": "MOFU",
       "cluster": "use-case",
       "locale": "both",
-      "status": "new",
+      "status": "used",
       "addedAt": "2026-05-14",
-      "note": "Issue #001 is the real build behind this — strong support."
+      "note": "content/news/2026-07-09-gmail-ai-agent (en+zh). Build-route guide (Claude connector / no-code platform / Gmail API), grounded in Issue #001; clusters with email-management, email-triage, claude-vs-zapier, no-code-ai-agent-tools."
     },
     {
       "term": "AI agent for email management",

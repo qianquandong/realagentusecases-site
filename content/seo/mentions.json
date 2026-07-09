@@ -1,7 +1,19 @@
 {
   "$comment": "LLM brand-mention tracking time series. The scheduled Cowork routine appends one snapshot per run: which target prompts surfaced the brand, in which LLMs, with what sentiment.",
-  "updatedAt": "2026-07-08",
+  "updatedAt": "2026-07-09",
   "snapshots": [
+    {
+      "date": "2026-07-09",
+      "probes": [
+        {
+          "prompt": "How do I build an AI agent for my Gmail?",
+          "cited": false,
+          "url": null,
+          "position": null,
+          "note": "Web search dominated by build tutorials: arcade.dev (Complete Guide 2025), gyld.ai (No Code, Under 5 Minutes), drew.tech, aimaker.substack, manus.im, DEV Community, Medium/LangChain. realagentusecases.com did not appear in top results. Least-recently-probed on-topic prompt; baselines citation on the 'Gmail AI agent' keyword the day its build-route article ships (pre-index). Health: direct site fetch + curl still blocked by egress proxy (403 CONNECT) — sandbox limitation, not a site outage; site:realagentusecases.com confirms email-triage guide indexed and live."
+        }
+      ]
+    },
     {
       "date": "2026-07-08",
       "probes": [

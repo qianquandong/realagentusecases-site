@@ -1,0 +1,60 @@
+---
+title: "Gmail AI Agent：三种搭建方式"
+date: "2026-07-09"
+excerpt: "三种方式搭建 Gmail AI agent：Claude 连接器、无代码平台、或 Gmail API，逐一说明各自能做什么、不能做什么，基于一个每天在跑的真实 agent。"
+---
+
+Gmail AI agent 会读你的收件箱，并在其上执行或起草操作。搭建它有三条路：用 Claude 的 Gmail 连接器做一个无代码个人助理，用 Zapier、n8n 这类无代码平台做定时的多应用工作流，或者直接调 Gmail API 做完全可控的自定义 agent。选能满足需求的最小那个。
+
+搜索"Gmail AI agent"会跳出一堆教程，却都绕过了唯一重要的问题：三条路里，哪条适合*你的*任务。这篇把三条路都走一遍，说清各自能做什么、不能做什么，并把建议锚定在一个我们每天早上真在跑的 agent 上——[Issue #001](/zh/posts/2026-05-13-gmail-ai-agent/)。
+
+## "Gmail AI agent"到底是什么
+
+agent 不只是摘要器。真正的 Gmail AI agent 会*感知*你的收件箱（拉取近期邮件）、*决策*什么重要（分类、排序、起草）、并*执行*（打标签、起草、回复）——而不只是复述一封邮件。如果你还拿不准自己的任务到底需要 agent 还是内置的邮件功能，先看我们的[功能 vs agent 拆解](/zh/news/2026-07-07-ai-agent-email-management/)。
+
+下面三条路主要在两个维度上不同：**能不能不靠你自己跑**，以及**它能自主做多少事**。
+
+## 路线一 —— Claude 的 Gmail 连接器（无代码，个人）
+
+最快的路是根本不用搭。[Claude 的 Google Workspace 连接器](https://support.claude.com/en/articles/10166901-use-google-workspace-connectors)能让 Claude 用自然语言搜索和阅读你的 Gmail、跨邮件抽取信息、并把回复草稿写进你的账户——在你确认之下。按 Anthropic 的连接器文档，它只起草、不自动发送，而且只在你发起的对话里工作，不会被触发器自动唤起。
+
+这个"手动触发"的限制听起来像硬伤，直到你意识到：个人晨间 triage agent 本就是你*愿意*每天打开的东西。[Issue #001](/zh/posts/2026-05-13-gmail-ai-agent/)正是这么跑的：Claude.ai Pro + Gmail 连接器 + 一段 system prompt，约 20 分钟搭好，每月约 20 美元，零代码，一分钟内返回一份 P0/P1/P2 优先级待办清单。想要那段原文 prompt，我们发过[Claude 邮件 triage system prompt](/zh/news/2026-05-14-claude-system-prompt-email-triage/)。
+
+**什么时候选它：** 只涉及你自己的收件箱、你乐意自己触发、也不想伺候一个平台。
+
+## 路线二 —— 无代码平台（定时、多应用）
+
+当 agent 必须在你睡觉时跑、或需要碰不止 Gmail 一个应用，就换成可视化搭建器。[Zapier Agents](https://zapier.com/agents) 建在 Zapier 的 [9,000+ 应用目录](https://zapier.com/apps)之上，最容易交给非技术同事。[n8n](https://n8n.io/pricing/) 提供自托管的社区版，自己跑的话免费且执行次数不限。两者都支持定时触发，所以 agent 能在早上 7 点无人值守地读你的收件箱——这恰是连接器做不到的。
+
+我们把同一个 Gmail agent 用四种方式搭了一遍并做了正面对比，见 [Claude vs Zapier vs n8n](/zh/news/2026-05-14-claude-vs-zapier-gmail-automation/)；无代码搭建器的完整清单和怎么在它们之间选，见 [无代码 AI Agent 工具](/zh/news/2026-07-08-no-code-ai-agent-tools/)。
+
+**什么时候选它：** 需要无人值守运行、多应用、或一个同事也能改的工作流。
+
+## 路线三 —— Gmail API（完全可控，写代码）
+
+要做完全自定义或自主的 agent，就直连 [Gmail API](https://developers.google.com/workspace/gmail/api/auth/scopes)。你的 agent 用 [OAuth 2.0](https://developers.google.com/identity/protocols/oauth2) 以受限权限认证——Google 把 Gmail 的 scope 分为非敏感、敏感、受限三档，对邮件的读取/修改属于受限 scope，需要额外的审核验证，这点要预留成本。之后你把模型接到搜索、打标签、起草、（经确认后）发送这些函数上。一份从代码入手的完整演示见 [Arcade 的 Gmail agent 指南](https://www.arcade.dev/blog/how-to-build-an-ai-agent-for-gmail-a-complete-guide-for-2025/)。
+
+**什么时候选它：** 需要任何平台都没暴露的行为、对数据流的完全掌控、或你要把它交付给其他用户。
+
+## 该选哪条路
+
+从路线一起步，只有当某个硬性需求逼你时才往下走。一个私人的晨间 triage agent 几乎从不需要比连接器更多的东西；一上来就加平台或 API，是过度搭建、然后弃用的最快方式。先证明这个 agent 值得留下，*再*升级。完全是新手？[Agent 101](/zh/agent-101/) 是 90 分钟的入门。
+
+## FAQ
+
+**Gmail AI agent 是什么？**
+它是一个会读你 Gmail、并在其上执行或起草操作的 AI 系统——分类、排序、打标签、起草回复——而不只是给单封邮件做摘要。一个真实例子是 [Issue #001](/zh/posts/2026-05-13-gmail-ai-agent/) 里的每日 triage agent，它把收件箱变成一份优先级待办清单。
+
+**能不写代码搭 Gmail AI agent 吗？**
+能。[Claude 的 Gmail 连接器](https://support.claude.com/en/articles/10166901-use-google-workspace-connectors)不用代码、也不用 API key——授权后描述任务即可。[Zapier](https://zapier.com/agents) 和 [n8n](https://n8n.io/pricing/) 这类无代码平台同样零代码，还多了定时和多应用能力。
+
+**Gmail AI agent 能自动发邮件吗？**
+看走哪条路。Claude 的连接器只起草回复，按 Anthropic 文档不会自动发送。平台和 Gmail API 的搭法*可以*发送，但稳妥的做法是在任何邮件离开发件箱前保留一个人工确认步骤。
+
+**Claude 的 Gmail 连接器能定时跑吗？**
+不能——它只在你发起的对话里工作，新邮件到达时不会自己触发。需要无人值守运行，就用带调度的平台如 [Zapier 或 n8n](/zh/news/2026-07-08-no-code-ai-agent-tools/)，或者基于 Gmail API 自己搭。
+
+**Gmail AI agent 要花多少钱？**
+连接器这条路跑在已有的 Claude Pro 上（[Issue #001](/zh/posts/2026-05-13-gmail-ai-agent/) 里约每月 20 美元），不用额外工具。[n8n 自托管版自己跑是免费的](https://n8n.io/pricing/)；托管平台会在模型成本之上再加自己的按次计费。
+
+每周一个真实 AI agent，直接发到你的邮箱。免费，不做二次推销。
