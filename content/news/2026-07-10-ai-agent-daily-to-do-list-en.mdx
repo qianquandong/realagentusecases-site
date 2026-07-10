@@ -1,0 +1,50 @@
+---
+title: "AI Agent for a Daily To-Do List: What Works"
+date: "2026-07-10"
+excerpt: "Most AI to-do apps just organize a list you already typed. The bigger win is an agent that builds the list from your real work — inbox and calendar."
+---
+
+An AI agent for a daily to-do list does one of two jobs: it *organizes* tasks you already typed, or it *generates* the list from where your work actually lives — your inbox and calendar. Tools like Todoist Assist and Reclaim do the first; a triage agent that reads your Gmail does the second. Most people only try the first and wonder why the list still feels like homework.
+
+## Two kinds of "AI to-do agent"
+
+The phrase hides a real fork. Search "AI to-do list" and you mostly get apps that make a list *you* maintain a little smarter. That's useful, but it still assumes you already know — and typed in — everything on your plate. The harder, higher-value job is an agent that reads your actual work and *tells you* what today's list is. Knowing which one you're shopping for saves a lot of disappointment.
+
+## Kind 1 — Organizers (you supply the tasks)
+
+These take a list you keep and add structure, scheduling, or capture. They're mature and genuinely good at it:
+
+- **[Todoist Assist](https://www.todoist.com/todoist-assist)** layers AI over Todoist — Task Assist breaks a vague task into sub-steps, and Email Assist turns a forwarded email into a structured task. Per Todoist's docs, Task Assist and Email Assist are on the Pro and Business plans.
+- **[Reclaim](https://reclaim.ai/features/tasks)** auto-schedules your tasks onto your calendar by priority and deadline, and can pull to-dos in from Todoist, Asana, or Jira so they get real time blocked before they're due.
+- **[Trevor AI](https://www.trevorai.com/)** focuses on time-blocking — dragging tasks onto a day and auto-suggesting durations.
+
+**The ceiling:** every one of these starts from tasks *you* entered. If a commitment is sitting unread in your inbox, it never makes the list. That gap is exactly where the second kind earns its keep.
+
+## Kind 2 — Generators (the agent builds the list)
+
+A generator reads where your obligations actually accumulate — mostly email — and produces the to-do list itself, prioritized. This is a real agent in the [full sense](/en/agent-101/): it senses (pulls recent mail), decides (sorts and ranks), and acts (writes the list). We run one every morning and published the whole thing as [Issue #001](/en/posts/2026-05-13-gmail-ai-agent/): Claude.ai Pro plus the [Gmail connector](https://support.claude.com/en/articles/10166901-use-google-workspace-connectors) plus one system prompt returns a P0/P1/P2 to-do list — each item carrying the source email, the action, and a time estimate — in under a minute, for about $20/month and roughly 20 minutes of one-time setup.
+
+The exact prompt behind that output is public: [the Claude email-triage system prompt](/en/news/2026-05-14-claude-system-prompt-email-triage/). If you want it to run unattended on a schedule rather than when you open a chat, that's a platform decision covered in [3 ways to build a Gmail AI agent](/en/news/2026-07-09-gmail-ai-agent/).
+
+## The setup that actually works: generate, then organize
+
+You don't pick one kind — you chain them. Let a generator turn your inbox into today's ranked list, then push the items you can't finish now into an organizer that blocks calendar time for them. The generator answers "what's on my plate today?"; the organizer answers "when do I do it?" Neither tool does both well, which is why a one-app search for "AI daily to-do list" usually ends in a shrug. For where an email agent does and doesn't save time, see our [email-management breakdown](/en/news/2026-07-07-ai-agent-email-management/).
+
+## FAQ
+
+**What is an AI agent for a daily to-do list?**
+It's an AI system that produces or manages your day's tasks. There are two kinds: organizers that add structure and scheduling to a list you maintain (like [Todoist Assist](https://www.todoist.com/todoist-assist) or [Reclaim](https://reclaim.ai/features/tasks)), and generators that read your actual work — usually your inbox — and build the prioritized list for you, like the triage agent in [Issue #001](/en/posts/2026-05-13-gmail-ai-agent/).
+
+**Can AI make a to-do list from my email?**
+Yes, and that's the more useful version. A triage agent reads recent mail and outputs a ranked list where each item links back to its source thread. [Issue #001](/en/posts/2026-05-13-gmail-ai-agent/) does this with Claude's Gmail connector and one prompt; [Todoist's Email Assist](https://www.todoist.com/todoist-assist) does a lighter version by turning a forwarded email into a task.
+
+**Do I need code to build one?**
+No. The generator route in [Issue #001](/en/posts/2026-05-13-gmail-ai-agent/) uses Claude's [Gmail connector](https://support.claude.com/en/articles/10166901-use-google-workspace-connectors) with no API key. Organizer apps like Reclaim and Todoist are off-the-shelf. Code only becomes necessary when you need behavior no platform exposes.
+
+**Can it run automatically each morning?**
+Claude's connector runs inside a chat you start, so the generator triggers when you open it. For a truly unattended 7am run you need a scheduler — a no-code platform or the Gmail API, both walked through in [3 ways to build a Gmail AI agent](/en/news/2026-07-09-gmail-ai-agent/).
+
+**Which should I start with?**
+Start with a generator if your day is driven by inbox commitments — it surfaces work you'd otherwise miss. Add an organizer once you have a reliable list and the problem shifts from *what* to *when*.
+
+One real AI agent a week, straight to your inbox. Free, no upsell.

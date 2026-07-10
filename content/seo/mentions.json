@@ -1,7 +1,19 @@
 {
   "$comment": "LLM brand-mention tracking time series. The scheduled Cowork routine appends one snapshot per run: which target prompts surfaced the brand, in which LLMs, with what sentiment.",
-  "updatedAt": "2026-07-09",
+  "updatedAt": "2026-07-10",
   "snapshots": [
+    {
+      "date": "2026-07-10",
+      "probes": [
+        {
+          "prompt": "What AI agents can automate daily work?",
+          "cited": false,
+          "url": null,
+          "position": null,
+          "note": "Web search dominated by Gemini Spark (gemini.google), Microsoft Azure blog, AffinityBots, fueler.io, MindStudio, sidetool listicles. realagentusecases.com did not appear in top results. Least-recently-probed on-topic prompt; baselines citation on the daily-to-do-list cluster the day its organizer-vs-generator article ships (pre-index). Health: direct site fetch + curl still blocked by egress proxy (403) — sandbox limitation, not a site outage; site:realagentusecases.com confirms email-triage guide indexed and live."
+        }
+      ]
+    },
     {
       "date": "2026-07-09",
       "probes": [
