@@ -1,6 +1,6 @@
 {
   "$comment": "SEO keyword feed — a living file. The scheduled Cowork routine ideates entries; scripts/seo/feeds.mjs persists them (dedupe + status + timestamps). intent: informational|commercial|transactional. funnel: TOFU|MOFU|BOFU. cluster: use-case|template|comparison|industry|tool-stack. status: new|used.",
-  "updatedAt": "2026-07-09",
+  "updatedAt": "2026-07-10",
   "keywords": [
     {
       "term": "AI agent use cases",
@@ -95,8 +95,9 @@
       "funnel": "MOFU",
       "cluster": "use-case",
       "locale": "both",
-      "status": "new",
-      "addedAt": "2026-05-14"
+      "status": "used",
+      "addedAt": "2026-05-14",
+      "note": "content/news/2026-07-10-ai-agent-daily-to-do-list (en+zh). Organizer-vs-generator framing (Todoist Assist/Reclaim/Trevor vs a Gmail triage agent), grounded in Issue #001; clusters with email-management, gmail-ai-agent, email-triage."
     },
     {
       "term": "AI agent for meeting prep",

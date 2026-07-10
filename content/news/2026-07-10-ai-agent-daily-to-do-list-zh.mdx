@@ -1,0 +1,50 @@
+---
+title: "每日待办清单的 AI agent：怎样才有用"
+date: "2026-07-10"
+excerpt: "多数 AI 待办应用只是帮你整理一份你已经敲进去的清单。更大的价值，是一个能从你真实的工作（收件箱和日历）里生成清单的 agent。"
+---
+
+一个做每日待办清单的 AI agent，其实在做两件事之一：*整理*你已经敲进去的任务，或者从你工作真正所在的地方——你的收件箱和日历——*生成*这份清单。Todoist Assist、Reclaim 这类工具做前者；一个读你 Gmail 的 triage agent 做后者。多数人只试了前者，然后纳闷为什么清单还是像作业。
+
+## 两种"AI 待办 agent"
+
+这个说法藏着一个真实的分岔。搜"AI 待办清单"，跳出来的大多是把一份*你*来维护的清单变聪明一点的应用。这有用，但它仍然假设你已经知道、并且敲进去了自己盘子里的所有事。更难、也更值钱的活，是一个读你真实工作、然后*告诉你*今天清单是什么的 agent。搞清你要买的是哪一种，能省掉很多失望。
+
+## 第一种 —— 整理器（任务你来提供）
+
+它们拿走你维护的清单，加上结构、排期或采集能力。这些功能已经成熟，也确实做得好：
+
+- **[Todoist Assist](https://www.todoist.com/todoist-assist)** 在 Todoist 上叠了一层 AI——Task Assist 把一个模糊任务拆成子步骤，Email Assist 把转发的邮件变成结构化任务。按 Todoist 文档，Task Assist 和 Email Assist 在 Pro 与 Business 套餐上。
+- **[Reclaim](https://reclaim.ai/features/tasks)** 按优先级和截止日期把任务自动排进你的日历，还能从 Todoist、Asana、Jira 拉入待办，在到期前给它们真正留出时间块。
+- **[Trevor AI](https://www.trevorai.com/)** 专注时间块——把任务拖到某天，并自动建议时长。
+
+**天花板：** 每一个都是从*你*录入的任务出发。如果一项承诺正躺在你没读的收件箱里，它永远进不了清单。这道缺口，恰恰是第二种 agent 值钱的地方。
+
+## 第二种 —— 生成器（agent 来建清单）
+
+生成器读你的义务真正积累的地方——多半是邮件——然后自己生成这份带优先级的待办。这才是[完整意义上](/zh/agent-101/)的 agent：它感知（拉取近期邮件）、决策（分类和排序）、执行（写出清单）。我们每天早上都在跑一个，并把整套东西发成了 [Issue #001](/zh/posts/2026-05-13-gmail-ai-agent/)：Claude.ai Pro + [Gmail 连接器](https://support.claude.com/en/articles/10166901-use-google-workspace-connectors) + 一段 system prompt，一分钟内返回一份 P0/P1/P2 待办清单——每条都带上来源邮件、动作和时间估计——每月约 20 美元，一次性搭建约 20 分钟。
+
+那段输出背后的原文 prompt 是公开的：[Claude 邮件 triage system prompt](/zh/news/2026-05-14-claude-system-prompt-email-triage/)。如果你想让它定时无人值守地跑，而不是打开对话才跑，那是个平台选择，见[搭 Gmail AI agent 的三种方式](/zh/news/2026-07-09-gmail-ai-agent/)。
+
+## 真正好用的搭法：先生成，再整理
+
+你不用二选一——把它们串起来。让生成器把收件箱变成今天的排序清单，再把你现在做不完的条目推进一个整理器，让它替这些事在日历上留出时间块。生成器回答"我今天盘子里有什么？"；整理器回答"我什么时候做？"两类工具都做不好对方的活，这也是为什么用一个 App 搜"AI 每日待办清单"通常以耸肩收场。想知道邮件 agent 在哪些地方省时、哪些地方不省，见我们的[邮件管理拆解](/zh/news/2026-07-07-ai-agent-email-management/)。
+
+## FAQ
+
+**做每日待办清单的 AI agent 是什么？**
+它是一个产出或管理你当天任务的 AI 系统。分两种：给你维护的清单加结构和排期的整理器（如 [Todoist Assist](https://www.todoist.com/todoist-assist) 或 [Reclaim](https://reclaim.ai/features/tasks)），以及读你真实工作、多半是收件箱、替你建好优先级清单的生成器，比如 [Issue #001](/zh/posts/2026-05-13-gmail-ai-agent/) 里的 triage agent。
+
+**AI 能从我的邮件生成待办清单吗？**
+能，而且这是更有用的那种。triage agent 读近期邮件，输出一份排序清单，每条都链回它的来源邮件。[Issue #001](/zh/posts/2026-05-13-gmail-ai-agent/) 用 Claude 的 Gmail 连接器加一段 prompt 做到这点；[Todoist 的 Email Assist](https://www.todoist.com/todoist-assist) 则做了个更轻的版本，把转发的邮件变成任务。
+
+**搭一个需要写代码吗？**
+不需要。[Issue #001](/zh/posts/2026-05-13-gmail-ai-agent/) 的生成器路线用 Claude 的 [Gmail 连接器](https://support.claude.com/en/articles/10166901-use-google-workspace-connectors)，不用 API key。Reclaim、Todoist 这类整理器是开箱即用的。只有当你需要平台没暴露的行为时，才必须写代码。
+
+**它能每天早上自动跑吗？**
+Claude 的连接器在你发起的对话里工作，所以生成器是你打开它时触发。要真正无人值守地早上 7 点跑，你需要一个调度器——无代码平台或 Gmail API，两者都在[搭 Gmail AI agent 的三种方式](/zh/news/2026-07-09-gmail-ai-agent/)里走过一遍。
+
+**我该从哪种开始？**
+如果你的一天是被收件箱里的承诺推着走，就从生成器开始——它会浮出你本来会漏掉的活。等你有了一份可靠的清单、问题从*做什么*变成*什么时候做*，再加一个整理器。
+
+每周一个真实 AI agent，直接发到你的邮箱。免费，不做二次推销。
