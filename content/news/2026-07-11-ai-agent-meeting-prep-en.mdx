@@ -1,0 +1,50 @@
+---
+title: "AI Agent for Meeting Prep: Before, Not During"
+date: "2026-07-11"
+excerpt: "A meeting-prep agent works before the call — researching attendees and pulling context into a brief — not during it like a note-taker. Three ways to run one."
+---
+
+An AI agent for meeting prep works *before* the meeting: it scans your calendar, researches the external attendees and their company, pulls the relevant email and file history, and hands you a one-page brief. That's a different job from a note-taker like Otter or Fireflies, which records and summarizes *during and after* the call.
+
+## Prep agent vs note-taker — different jobs
+
+The market lumps these together, and the confusion costs you. Most "AI meeting assistant" tools — the long lists in [Reclaim's roundup](https://reclaim.ai/blog/ai-meeting-assistants) — are note-takers: they join the call, transcribe it, and email a summary afterward. Genuinely useful, but they do nothing for the ten minutes before, when you're skimming an email thread trying to remember who this person is and what you promised them last quarter.
+
+A prep agent runs on the other side of the meeting. It answers "what do I need to know walking in?" instead of "what did we just say?" This is a real agent in the [full sense](/en/agent-101/): it senses (reads your calendar and inbox), decides (picks what's relevant to *this* attendee), and acts (writes the brief). There are three honest ways to get one.
+
+## Route 1 — DIY with Claude connectors
+
+If you already pay for Claude, you can assemble a prep agent from parts you have. Claude's [Google Workspace connectors](https://support.claude.com/en/articles/10166901-use-google-workspace-connectors) let it read your Gmail, Google Calendar, and Drive; the dedicated [Google Calendar connector](https://claude.com/connectors/google-calendar) can also check availability and manage invites. Ask it to look at tomorrow's calendar, find your last email thread with each external attendee, and summarize where things stand — and you get a brief with no code and no new subscription.
+
+This is the same setup we run for inbox triage in [Issue #001](/en/posts/2026-05-13-gmail-ai-agent/): Claude.ai Pro plus a connector plus one prompt, about $20/month and roughly 20 minutes of one-time setup. The tradeoff is the same too — Claude's connectors run inside a chat *you* start, so the brief appears when you ask, not automatically at 7am. For an unattended, scheduled version you need a platform or the API, both walked through in [3 ways to build a Gmail AI agent](/en/news/2026-07-09-gmail-ai-agent/).
+
+## Route 2 — Native in the suite you already pay for
+
+If your calendar and mail live in Google Workspace, Gemini is built into them. Google's own framing is that Gemini helps teams "shift focus from organizing meetings to preparing for the actual conversation" ([Google Workspace blog](https://workspace.google.com/blog/ai-and-machine-learning/google-workspace-with-gemini-helps-you-move-work-forward-in-meetings)). In the [Gemini app](https://support.google.com/gemini/answer/15305236) you can ask it to pull from your Docs and Drive to draft an agenda and surface action items before a meeting. It's the lowest-effort option because there's nothing to connect — but it prepares from *your* files, not deep external research on the attendee.
+
+## Route 3 — Dedicated prep agents (mostly sales)
+
+For customer-facing calls, purpose-built agents go further. [Chili Piper's Meeting Prep](https://www.chilipiper.com/products/features/meeting-prep) pulls from your CRM, the web, and enrichment tools, then drops a brief into the rep's calendar or a Slack message. [Similarweb's AI Meeting Prep Agent](https://support.similarweb.com/hc/en-us/articles/27189629819165-Using-AI-Meeting-Prep-Agent) consolidates research into one smart brief before the call. These are strongest when the prep is prospect research and a CRM is the source of truth — and priced for sales teams, not individuals.
+
+## Which route to pick
+
+Start with Route 1 if you already have Claude and your prep is mostly "remind me what we last said" — it reuses the exact connector approach behind our [email-management](/en/news/2026-07-07-ai-agent-email-management/) and [daily to-do](/en/news/2026-07-10-ai-agent-daily-to-do-list/) work. Reach for Route 3 only when prospect research and CRM data are the real job. Whatever you pick, keep a human in the loop: an AI brief can sound confident and still be wrong on a name, a number, or a date, so glance at the source before you walk in.
+
+## FAQ
+
+**What is an AI agent for meeting prep?**
+It's an AI system that prepares you *before* a meeting — scanning your calendar, researching attendees, and pulling relevant email and files into a brief. It's distinct from a note-taker like Otter or Fireflies, which transcribes and summarizes during and after the call.
+
+**How is a prep agent different from a note-taker?**
+Timing and job. A note-taker works *during and after* the meeting (transcript, summary, action items). A prep agent works *before* it, answering "what do I need to know walking in?" The [meeting assistants](https://reclaim.ai/blog/ai-meeting-assistants) most people install are note-takers.
+
+**Can I build a meeting-prep agent without code?**
+Yes. Claude's [Google Workspace connectors](https://support.claude.com/en/articles/10166901-use-google-workspace-connectors) let it read your Calendar, Gmail, and Drive with no API key — the same no-code setup behind [Issue #001](/en/posts/2026-05-13-gmail-ai-agent/). Google Workspace users can do a lighter version natively with Gemini.
+
+**Will it prepare briefs automatically each morning?**
+Claude's connector runs inside a chat you start, so the brief appears when you ask. For a truly unattended morning run you need a scheduler — a no-code platform or an API — the same options covered in [3 ways to build a Gmail AI agent](/en/news/2026-07-09-gmail-ai-agent/).
+
+**Which tool is best for sales calls?**
+Dedicated agents like [Chili Piper](https://www.chilipiper.com/products/features/meeting-prep) or [Similarweb](https://support.similarweb.com/hc/en-us/articles/27189629819165-Using-AI-Meeting-Prep-Agent) shine when prep means prospect research pulled from a CRM. For internal or one-off meetings, a DIY Claude brief is usually enough.
+
+One real AI agent a week, straight to your inbox. Free, no upsell.

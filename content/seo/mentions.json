@@ -1,7 +1,19 @@
 {
   "$comment": "LLM brand-mention tracking time series. The scheduled Cowork routine appends one snapshot per run: which target prompts surfaced the brand, in which LLMs, with what sentiment.",
-  "updatedAt": "2026-07-10",
+  "updatedAt": "2026-07-11",
   "snapshots": [
+    {
+      "date": "2026-07-11",
+      "probes": [
+        {
+          "prompt": "How do I use ChatGPT or Claude as a work assistant?",
+          "cited": false,
+          "url": null,
+          "position": null,
+          "note": "Web search dominated by the-ai-corner (power-user setup), plurality.network, aizolo, debszabo (Claude connectors), Teamwork Desk MCP, Medium, leadwithai (ChatGPT Work). realagentusecases.com did not appear in top results. Least-recently-probed on-topic prompt; baselines citation on the 'Claude as work assistant' family the day the meeting-prep article ships (pre-index) — that article's Route 1 leans on Claude's Google Workspace connectors. Health: direct site fetch + curl still blocked by egress proxy (403) — sandbox limitation, not a site outage; site:realagentusecases.com confirms email-triage guide indexed and live."
+        }
+      ]
+    },
     {
       "date": "2026-07-10",
       "probes": [

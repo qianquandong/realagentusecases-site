@@ -1,6 +1,6 @@
 {
   "$comment": "SEO keyword feed — a living file. The scheduled Cowork routine ideates entries; scripts/seo/feeds.mjs persists them (dedupe + status + timestamps). intent: informational|commercial|transactional. funnel: TOFU|MOFU|BOFU. cluster: use-case|template|comparison|industry|tool-stack. status: new|used.",
-  "updatedAt": "2026-07-10",
+  "updatedAt": "2026-07-11",
   "keywords": [
     {
       "term": "AI agent use cases",
@@ -105,8 +105,9 @@
       "funnel": "MOFU",
       "cluster": "use-case",
       "locale": "both",
-      "status": "new",
-      "addedAt": "2026-05-14"
+      "status": "used",
+      "addedAt": "2026-05-14",
+      "note": "content/news/2026-07-11-ai-agent-meeting-prep (en+zh). Prep-agent-vs-note-taker framing with three build routes (Claude connectors grounded in Issue #001 / native Gemini / dedicated sales agents like Chili Piper, Similarweb); clusters with daily-to-do-list, email-management, gmail-ai-agent."
     },
     {
       "term": "Claude system prompt for email triage",

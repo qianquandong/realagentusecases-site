@@ -1,0 +1,50 @@
+---
+title: "会议准备的 AI agent：会前，而非会中"
+date: "2026-07-11"
+excerpt: "会议准备的 agent 在会前工作：调研与会者、把邮件与文件背景整理成一页简报，而不是像记录工具那样在会中做。三条真实路线带你跑起来。"
+---
+
+一个做会议准备的 AI agent，在会议*之前*工作：它扫一遍你的日历，调研外部与会者和他们的公司，拉出相关的邮件和文件背景，然后递给你一页简报。这和 Otter、Fireflies 这类记录工具是两回事——后者是在通话*进行中和结束后*录音并做总结。
+
+## 准备型 agent vs 记录型工具 —— 两种活
+
+市场把它们混为一谈，而这份混淆要你埋单。多数"AI 会议助手"工具——[Reclaim 那份长清单](https://reclaim.ai/blog/ai-meeting-assistants)里列的——是记录型：加入通话、转写、事后邮件发总结。确实有用，但对会前那十分钟毫无帮助——那会儿你正翻着一封邮件，努力想起这人是谁、上个季度你答应了他什么。
+
+准备型 agent 在会议的另一头工作。它回答"我走进去之前得知道什么？"，而不是"我们刚才说了什么？"这才是[完整意义上](/zh/agent-101/)的 agent：它感知（读你的日历和收件箱）、决策（挑出对*这位*与会者相关的东西）、执行（写出简报）。有三条老实的路线可以拿到它。
+
+## 路线一 —— 用 Claude 连接器自己搭
+
+如果你已经在为 Claude 付费，你可以用手头现成的零件拼一个准备型 agent。Claude 的 [Google Workspace 连接器](https://support.claude.com/en/articles/10166901-use-google-workspace-connectors)让它能读你的 Gmail、Google 日历和 Drive；专门的 [Google 日历连接器](https://claude.com/connectors/google-calendar)还能查空闲时间、管理邀请。让它看看明天的日历，找出你和每位外部与会者的最近一封邮件往来，总结一下进展到哪儿了——你就拿到了一份简报，不用写代码，也不用新订阅。
+
+这和我们在 [Issue #001](/zh/posts/2026-05-13-gmail-ai-agent/) 里跑收件箱 triage 的搭法一模一样：Claude.ai Pro + 一个连接器 + 一段 prompt，每月约 20 美元，一次性搭建约 20 分钟。代价也一样——Claude 的连接器在*你*发起的对话里工作，所以简报是你问的时候出现，而不是早上 7 点自动出现。要无人值守、定时跑，你需要一个平台或 API，两者都在[搭 Gmail AI agent 的三种方式](/zh/news/2026-07-09-gmail-ai-agent/)里走过一遍。
+
+## 路线二 —— 你已经在付费的套件里原生就有
+
+如果你的日历和邮件在 Google Workspace 里，Gemini 就内建在其中。Google 自己的说法是，Gemini 帮团队"把注意力从组织会议转移到真正为对话做准备"（[Google Workspace 博客](https://workspace.google.com/blog/ai-and-machine-learning/google-workspace-with-gemini-helps-you-move-work-forward-in-meetings)）。在 [Gemini 应用](https://support.google.com/gemini/answer/15305236)里，你可以让它从你的 Docs 和 Drive 里拉资料，在会前草拟议程、列出行动项。它是最省事的选项，因为没什么要连接的——但它是从*你的*文件里做准备，而不是对与会者做深度外部调研。
+
+## 路线三 —— 专门的准备型 agent（多为销售）
+
+对客户面对面的通话，专门打造的 agent 走得更远。[Chili Piper 的 Meeting Prep](https://www.chilipiper.com/products/features/meeting-prep) 从你的 CRM、网络和数据增强工具里拉信息，然后把简报丢进销售的日历或一条 Slack 消息里。[Similarweb 的 AI Meeting Prep Agent](https://support.similarweb.com/hc/en-us/articles/27189629819165-Using-AI-Meeting-Prep-Agent) 把调研整合成一份智能简报。它们在准备工作就是潜客调研、且 CRM 是事实来源时最强——定价也是给销售团队的，不是给个人的。
+
+## 该选哪条
+
+如果你已经有 Claude、而你的准备多半是"提醒我上次我们说了什么"，就从路线一开始——它复用的正是我们[邮件管理](/zh/news/2026-07-07-ai-agent-email-management/)和[每日待办](/zh/news/2026-07-10-ai-agent-daily-to-do-list/)背后那套连接器的搭法。只有当潜客调研和 CRM 数据才是真正的活时，才去用路线三。无论选哪条，都要留一个人在环里：AI 简报可能说得很自信却在名字、数字或日期上出错，走进去之前扫一眼来源。
+
+## FAQ
+
+**做会议准备的 AI agent 是什么？**
+它是一个在会议*之前*为你做准备的 AI 系统——扫日历、调研与会者、把相关邮件和文件整理成一份简报。它区别于 Otter、Fireflies 这类记录工具——后者在通话进行中和结束后转写并总结。
+
+**准备型 agent 和记录型工具有什么不同？**
+时机和活儿不同。记录型工具在会议*进行中和结束后*工作（转写、总结、行动项）。准备型 agent 在会*前*工作，回答"我走进去之前得知道什么？"多数人装的[会议助手](https://reclaim.ai/blog/ai-meeting-assistants)都是记录型。
+
+**不写代码能搭一个会议准备 agent 吗？**
+能。Claude 的 [Google Workspace 连接器](https://support.claude.com/en/articles/10166901-use-google-workspace-connectors)让它不用 API key 就能读你的日历、Gmail 和 Drive——正是 [Issue #001](/zh/posts/2026-05-13-gmail-ai-agent/) 背后那套无代码搭法。Google Workspace 用户可以用 Gemini 原生做一个更轻的版本。
+
+**它会每天早上自动准备简报吗？**
+Claude 的连接器在你发起的对话里工作，所以简报是你问的时候出现。要真正无人值守地早上跑，你需要一个调度器——无代码平台或 API——就是[搭 Gmail AI agent 的三种方式](/zh/news/2026-07-09-gmail-ai-agent/)里讲的那些选项。
+
+**销售通话用哪个工具最好？**
+[Chili Piper](https://www.chilipiper.com/products/features/meeting-prep) 或 [Similarweb](https://support.similarweb.com/hc/en-us/articles/27189629819165-Using-AI-Meeting-Prep-Agent) 这类专门 agent，在准备就是从 CRM 拉潜客调研时最出色。对内部或一次性会议，一份自己搭的 Claude 简报通常就够了。
+
+每周一个真实 AI agent，直接发到你的邮箱。免费，不做二次推销。
