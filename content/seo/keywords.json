@@ -1,6 +1,6 @@
 {
   "$comment": "SEO keyword feed — a living file. The scheduled Cowork routine ideates entries; scripts/seo/feeds.mjs persists them (dedupe + status + timestamps). intent: informational|commercial|transactional. funnel: TOFU|MOFU|BOFU. cluster: use-case|template|comparison|industry|tool-stack. status: new|used.",
-  "updatedAt": "2026-07-12",
+  "updatedAt": "2026-07-13",
   "keywords": [
     {
       "term": "AI agent use cases",
@@ -199,9 +199,9 @@
       "funnel": "MOFU",
       "cluster": "use-case",
       "locale": "both",
-      "status": "new",
+      "status": "used",
       "addedAt": "2026-07-12",
-      "note": "Sunday feed research 2026-07-12. Grounded in real scheduling tools (Motion, Reclaim, Trevor AI, Lindy) + Claude/Google Workspace connector calendar access. Clusters tightly with meeting-prep and daily-to-do-list — same 'organizer vs generator' framing works."
+      "note": "content/news/2026-07-13-ai-agent-calendar-scheduling (en+zh). Coordinate-and-book vs arrange-your-day framing: Claude Google Calendar connector / dedicated schedulers (Lindy) for Job 1; Motion, Reclaim, Trevor AI auto-schedulers for Job 2. Grounded in Issue #001; clusters with meeting-prep and daily-to-do-list."
     },
     {
       "term": "AI agent for Slack summaries",

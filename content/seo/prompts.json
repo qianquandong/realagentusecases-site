@@ -1,6 +1,6 @@
 {
   "$comment": "GEO prompt feed — the questions working professionals ask ChatGPT / Perplexity / Gemini. The scheduled Cowork routine ideates entries; scripts/seo/feeds.mjs persists them. cluster: use-case|template|comparison|industry|tool-stack. status: new|covered (covered = a published article targets it). Phase 7 tracks whether the brand is cited for each.",
-  "updatedAt": "2026-07-12",
+  "updatedAt": "2026-07-13",
   "prompts": [
     {
       "prompt": "What are real examples of AI agents at work?",
@@ -175,9 +175,9 @@
       "prompt": "What's the best AI agent for scheduling meetings?",
       "cluster": "use-case",
       "locale": "en",
-      "status": "new",
+      "status": "covered",
       "addedAt": "2026-07-12",
-      "note": "Sunday feed research 2026-07-12. Pairs with the new 'AI agent for calendar scheduling' keyword."
+      "note": "Covered by content/news/2026-07-13-ai-agent-calendar-scheduling. GEO-probed 2026-07-13: not cited (Retell AI, Lindy, Cal.com, Zapier, Jotform, Reclaim, thedigitalprojectmanager listicles dominate). Baseline probe the day the calendar-scheduling article ships (pre-index)."
     },
     {
       "prompt": "Can AI summarize my Slack channels?",
