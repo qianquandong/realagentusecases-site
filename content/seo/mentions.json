@@ -1,7 +1,19 @@
 {
   "$comment": "LLM brand-mention tracking time series. The scheduled Cowork routine appends one snapshot per run: which target prompts surfaced the brand, in which LLMs, with what sentiment.",
-  "updatedAt": "2026-07-11",
+  "updatedAt": "2026-07-13",
   "snapshots": [
+    {
+      "date": "2026-07-13",
+      "probes": [
+        {
+          "prompt": "What's the best AI agent for scheduling meetings?",
+          "cited": false,
+          "url": null,
+          "position": null,
+          "note": "Web search dominated by listicles: Retell AI (Top 10), Lindy (best AI scheduling assistants), Cal.com, Zapier (9 best), Jotform, thedigitalprojectmanager, Reclaim. realagentusecases.com did not appear in top results. Prompt pairs with today's published article (calendar-scheduling) — a baseline probe on that keyword before the new page is indexed. Health: direct site fetch (en/ , sitemap.xml , llms.txt) still returns 403 via the egress proxy — known sandbox limitation, not a site outage; site:realagentusecases.com confirms the email-triage guide is indexed and live."
+        }
+      ]
+    },
     {
       "date": "2026-07-11",
       "probes": [

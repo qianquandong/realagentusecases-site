@@ -1,0 +1,52 @@
+---
+title: "日历排程的 AI agent：两件不同的事"
+date: "2026-07-13"
+excerpt: "日历排程的 AI agent 其实分两种活：一种帮你和别人约会议、定时间，另一种自动安排你自己的任务和专注时间。本文讲清两者的区别。"
+---
+
+一个做日历排程的 AI agent，干的是两件事里的一件。一件是*协调*——在多个人之间找出大家都空的时间，把会议约上。另一件是*安排*——把你自己的任务自动排进日程，并守住你的专注时间。这两件活各有各的强者，搞清楚你真正要哪一件，能省下买错工具的钱。
+
+## 一个词里藏着两件活
+
+"帮我排日历"听起来是一件事，但工具沿着这条线干净地分成两半。一半回答*"我们什么时候能一起开会？"*——在别人的日历之间协调出一个时间，把邀请发出去。另一半回答*"我自己的活什么时候干？"*——把你的任务和会议排成一个现实可行的一天。约会议的 agent 保护不了深度工作时间；排时间块的 agent 也不会帮你和客户谈一个时段。按活儿来选。
+
+这是我们反复撞见的同一条分界：待办清单的[整理型 vs 生成型](/zh/news/2026-07-10-ai-agent-daily-to-do-list/)，会议的[准备型 vs 记录型](/zh/news/2026-07-11-ai-agent-meeting-prep/)。日历也有它自己的版本。
+
+## 活儿一 —— 协调并约上一个会
+
+这是经典的"AI 排程助手"：你想和某人通个话，agent 找出双方都空的时间，把它放进两个人的日历。如果你已经在为 Claude 付费，不用新工具就能做。Claude 的 [Google 日历连接器](https://claude.com/connectors/google-calendar)能在你和与会者之间查空闲时间、找出最合适的时段，然后在对话里创建邀请——包括一个 Google Meet 链接。这和我们在 [Issue #001](/zh/posts/2026-05-13-gmail-ai-agent/) 里跑收件箱的搭法是同一套连接器：每月约 20 美元，不用写代码。
+
+老实的限制也是同一个。Claude 的 [Google Workspace 连接器](https://support.claude.com/en/articles/10166901-use-google-workspace-connectors)在*你*发起的对话里工作——没有事件触发器，所以 agent 只在你开口的那一刻碰你的日历，而不是有人来约时间时自动处理。要做常开的协调——一个别人能来预约的链接，或一个盯着收件箱等"能聊聊吗？"的 agent——[Lindy 那份 2026 清单](https://www.lindy.ai/blog/ai-scheduling-assistant)里那些专门的排程助手，才是为这种无人值守的活打造的。
+
+## 活儿二 —— 安排你自己的一天
+
+第二件活从头到尾不涉及别人的日历。你有一堆任务和一墙已有的会议，想把它们合理地塞进这一周。这类是自动排程器，而且很成熟：
+
+- **[Motion](https://www.usemotion.com/help/time-management/auto-scheduling)** 把你的任务清单变成一份活的日程——它扫日历找空档，尊重截止日期和优先级，并随着你这一天的变化自动重排，让计划始终是最新的，不用你手动拖来拖去。
+- **[Reclaim](https://reclaim.ai/features/focus-time)** 把专注时间守成高优先级的时间块，并通过 [Smart Meetings](https://reclaim.ai/features/smart-meetings)，在有会议被约到某个低优先级的习惯或任务上时，自动把它重新排到别处。
+- **[Trevor AI](https://www.trevorai.com/)** 主打时间块——你把任务拖到某一天，它根据你的历史建议一个时长，并把这个时间块实时同步回 Google 或 Microsoft 日历。
+
+这些工具都不会替你和外部客户谈时间。那是活儿一的地盘，让一个排时间块的工具去干那个，正是人们会挫败的地方。
+
+## 该选哪个 —— 以及它们怎么串起来
+
+如果你的痛点是*"我要来回发二十分钟邮件才能约到一个时段"*，那是活儿一——一次性约会用 Claude 连接器起步，公开预约链接用专门的排程助手。如果你的痛点是*"我日历满满当当，但重要的事一件没干成"*，那是活儿二——一个把工作时间划出来并守住的自动排程器。很多人两个都用：协调型把会约进日历，安排型把这一天的其余部分围着它排。无论选哪个，都把它当成任何一个真正的 [AI agent](/zh/agent-101/) 对待——在信任它之前扫一眼它排了什么，因为一个自信的 agent 照样可能把会约到你本想留着的那个时间块上。至于日历 agent 约完会之后、会前该干什么，把这篇和[会议准备的 AI agent](/zh/news/2026-07-11-ai-agent-meeting-prep/) 搭配着看。
+
+## FAQ
+
+**日历排程的 AI agent 是什么？**
+它是一个用两种方式之一管理你日历的 AI 系统：在多个人之间*协调*一个会议时间并约上，或把你自己的任务和会议*安排*成现实可行的一天。Claude 的 [Google 日历连接器](https://claude.com/connectors/google-calendar)做前者；[Motion](https://www.usemotion.com/help/time-management/auto-scheduling)、[Reclaim](https://reclaim.ai/features/focus-time) 这类自动排程器做后者。
+
+**Claude 能在我的 Google 日历上约会议吗？**
+能。[Google 日历连接器](https://claude.com/connectors/google-calendar)让 Claude 在你和与会者之间查空闲时间，然后创建、更新或删除事件、加上 Meet 链接——都在对话里完成。要注意：[连接器](https://support.claude.com/en/articles/10166901-use-google-workspace-connectors)只在你发起的对话里工作，所以没有自动触发。
+
+**约会议的 agent 和排时间块的 agent 有什么不同？**
+约会议的 agent 和*别人*协调，找出并占下一个会议时段。排时间块的 agent——[Motion](https://www.usemotion.com/help/time-management/auto-scheduling)、[Reclaim](https://reclaim.ai/features/focus-time)、[Trevor AI](https://www.trevorai.com/)——围着你已有的会议安排*你自己的*任务，并保护专注时间。它们解决的是相反的问题。
+
+**不写代码能搭一个吗？**
+能。Claude 的连接器不用写代码，和 [Issue #001](/zh/posts/2026-05-13-gmail-ai-agent/) 是同一套搭法。Motion、Reclaim 这类自动排程器是现成的应用。只有当你需要无人值守、被触发、且没有平台提供的行为时，才需要写代码——门槛和[搭 Gmail AI agent 的三种方式](/zh/news/2026-07-09-gmail-ai-agent/)里讲的一样。
+
+**它能不用我开口就自动排吗？**
+Motion、Reclaim 这类自动排程器在后台持续运行。Claude 的连接器不行——它只在你打开对话开口时才动作。要无人值守地协调，你需要一个专门的排程助手，或一套调度器加 API 的搭法。
+
+每周一个真实 AI agent，直接发到你的邮箱。免费，不做二次推销。
