@@ -1,6 +1,6 @@
 {
   "$comment": "SEO keyword feed — a living file. The scheduled Cowork routine ideates entries; scripts/seo/feeds.mjs persists them (dedupe + status + timestamps). intent: informational|commercial|transactional. funnel: TOFU|MOFU|BOFU. cluster: use-case|template|comparison|industry|tool-stack. status: new|used.",
-  "updatedAt": "2026-07-13",
+  "updatedAt": "2026-07-14",
   "keywords": [
     {
       "term": "AI agent use cases",
@@ -209,9 +209,9 @@
       "funnel": "MOFU",
       "cluster": "use-case",
       "locale": "both",
-      "status": "new",
+      "status": "used",
       "addedAt": "2026-07-12",
-      "note": "Sunday feed research 2026-07-12. Grounded in Slack native channel/thread summaries + Slackbot agent (2026 update), plus Dust/Junior third-party agents. Clusters with email-management (both are 'triage the firehose' use cases)."
+      "note": "content/news/2026-07-14-ai-agent-slack-summaries (en+zh). Catch-up-vs-act framing: Slack's built-in AI summaries/Recaps (read-only, folded into paid plans in 2025) vs an agent that acts on the summary via no-code automation (Zapier) or a dedicated Slack agent (Read AI). Grounded in Issue #001; clusters with email-management (both 'triage the firehose')."
     },
     {
       "term": "Google Workspace MCP server",
