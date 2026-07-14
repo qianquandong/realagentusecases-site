@@ -1,0 +1,51 @@
+---
+title: "AI Agent for Slack Summaries: Catch Up vs. Act"
+date: "2026-07-14"
+excerpt: "Slack's built-in AI summarizes what you missed; an AI agent decides what to do about it. Here's the split between catching up and acting on the firehose."
+---
+
+An AI agent for Slack summaries does one of two jobs. Slack's own AI *catches you up* — it recaps a channel, thread, or your unread messages so you don't scroll. A separate agent *acts on it* — routing what matters, drafting a reply, or filing action items into a tracker. Catching up isn't acting.
+
+## Two jobs hiding in "summarize my Slack"
+
+The word "summarize" makes it sound like one feature. But the moment you ask *what happens after the summary*, it splits. One job ends when you've read the recap — you're caught up, and that's the whole point. The other job starts there: someone, or something, has to decide the summary means *reply to the client, flag the outage, log the decision.* Slack's built-in AI is very good at the first job. The second is where an agent earns its name. It's the same split we hit with [email management](/en/news/2026-07-07-ai-agent-email-management/) — a feature *shows* you the pile; an agent *does something* about it.
+
+## Job 1 — Catch up (Slack's built-in AI)
+
+This is now baked into Slack. Per Slack's [guide to AI features](https://slack.com/help/articles/25076892548883-Guide-to-AI-features-in-Slack), you can summarize a channel, a thread, or a direct message — choosing just your unread messages, the last seven days, or a custom range. **Recaps** go a step further: an automated morning summary of the unread channels you keep an eye on but don't post in, so you skim one digest instead of opening ten channels.
+
+The pricing story changed in 2025. Slack [retired the standalone Slack AI add-on and folded AI into its paid plans](https://slack.com/blog/news/june-2025-pricing-and-packaging-announcement): conversation and thread summaries come with any paid plan, while the daily Recaps tier is [reserved for Business+ and Enterprise+](https://slack.com/help/articles/39264531104275-Updates-to-feature-availability-and-pricing-for-Slack-plans). If your workspace is already on a paid plan, you may have summaries switched on and not know it.
+
+The honest limit: this is a read tool. It tells you what happened; it doesn't touch anything. That's the same boundary we hit with Claude's Google Workspace connectors in [Issue #001](/en/posts/2026-05-13-gmail-ai-agent/) — great at reading, deliberately hands-off on acting.
+
+## Job 2 — Act on the summary (an agent)
+
+When you want the summary to *lead somewhere*, you've left native-Slack territory. Two honest routes:
+
+- **No-code automation.** Tools like [Zapier's Slack-summary workflows](https://zapier.com/blog/summarize-slack-threads/) trigger on a new message or a schedule, run an AI step to summarize, and post the result somewhere — a DM, another channel, a doc. The summary becomes an *event* that fires an action, which native Slack summaries never do.
+- **A dedicated Slack agent.** Third-party agents such as [Read AI](https://www.read.ai/slack) sit inside Slack and push summaries and action items across channels and meetings. These go past recap into "here's what you now owe people."
+
+None of these replace the built-in recap — they consume it. A common shape: let Slack AI catch you up, then let an agent turn the two lines that actually matter into a task, a draft, or a ping to the right person. Treat it like any real [AI agent](/en/agent-101/): read what it decided before you trust the send, because a confident summarizer can still misread who owns the action.
+
+## Which do you actually need?
+
+If your pain is *"I spent an hour scrolling #general to see what I missed,"* that's Job 1 — turn on Slack's summaries and Recaps; you may already pay for them. If your pain is *"things get decided in Slack and then dropped,"* that's Job 2 — you need an agent that moves the outcome into wherever work actually gets tracked. Most teams need Job 1 first, and only reach for Job 2 once the firehose is understood but still unactioned. For the inbox version of the same catch-up-then-act pattern, see [3 ways to build a Gmail AI agent](/en/news/2026-07-09-gmail-ai-agent/).
+
+## FAQ
+
+**Can AI summarize my Slack channels?**
+Yes — it's built into Slack's paid plans. Slack's [AI features](https://slack.com/help/articles/25076892548883-Guide-to-AI-features-in-Slack) can summarize a channel, thread, or DM (unread, last seven days, or a custom range), and **Recaps** deliver an automated daily digest of channels you follow. Slack [folded these into paid plans in 2025](https://slack.com/blog/news/june-2025-pricing-and-packaging-announcement) instead of selling a separate add-on.
+
+**Is Slack AI free?**
+No, but it's no longer a separate purchase. After Slack's [2025 pricing change](https://slack.com/help/articles/39264531104275-Updates-to-feature-availability-and-pricing-for-Slack-plans), summaries come with paid plans (Pro and up), and daily Recaps are included on Business+ and Enterprise+. There is no Slack AI on the free plan.
+
+**What's the difference between a Slack summary and a Slack agent?**
+A summary *reads* — it tells you what a channel or thread said. An agent *acts* — it routes the summary, drafts a reply, or files an action item into a tracker. Native Slack AI does the first; a [no-code automation](https://zapier.com/blog/summarize-slack-threads/) or a dedicated agent does the second.
+
+**Can I make Slack summaries trigger an action automatically?**
+Not with native Slack AI — it's you-initiated and read-only. For automatic behavior you route Slack messages through an automation like [Zapier](https://zapier.com/blog/summarize-slack-threads/) or a [no-code agent platform](/en/news/2026-07-08-no-code-ai-agent-tools/) that can summarize and then post, file, or notify on a trigger.
+
+**Do I need code to build one?**
+No. Slack's summaries are a toggle; the "act on it" layer can be built with no-code tools, the same way as the [Gmail triage agent](/en/posts/2026-05-13-gmail-ai-agent/) in Issue #001. Code only enters when you need triggered behavior no platform exposes.
+
+One real AI agent a week, straight to your inbox. Free, no upsell.

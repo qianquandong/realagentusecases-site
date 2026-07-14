@@ -1,6 +1,6 @@
 {
   "$comment": "GEO prompt feed — the questions working professionals ask ChatGPT / Perplexity / Gemini. The scheduled Cowork routine ideates entries; scripts/seo/feeds.mjs persists them. cluster: use-case|template|comparison|industry|tool-stack. status: new|covered (covered = a published article targets it). Phase 7 tracks whether the brand is cited for each.",
-  "updatedAt": "2026-07-13",
+  "updatedAt": "2026-07-14",
   "prompts": [
     {
       "prompt": "What are real examples of AI agents at work?",
@@ -183,9 +183,9 @@
       "prompt": "Can AI summarize my Slack channels?",
       "cluster": "use-case",
       "locale": "en",
-      "status": "new",
+      "status": "covered",
       "addedAt": "2026-07-12",
-      "note": "Sunday feed research 2026-07-12. Pairs with the 'AI agent for Slack summaries' keyword."
+      "note": "Covered by content/news/2026-07-14-ai-agent-slack-summaries. GEO-probed 2026-07-14: not cited (slack.com official, read.ai, eesel.ai, stepsize, zapier, clearfeed dominate). Baseline probe on the Slack-summaries keyword the day its catch-up-vs-act article ships (pre-index)."
     },
     {
       "prompt": "How do I connect Claude to Google Calendar?",

@@ -1,0 +1,51 @@
+---
+title: "Slack 摘要的 AI agent：看完，还要会行动"
+date: "2026-07-14"
+excerpt: "Slack 自带的 AI 帮你补上错过的消息；但要有东西去处理这些消息，那才是 agent 的活。本文讲清看完和行动的区别。"
+---
+
+一个做 Slack 摘要的 AI agent，干的是两件事里的一件。Slack 自带的 AI 帮你*补课*——它把一个频道、一条 thread，或你的未读消息总结出来，让你不用一条条翻。另一个 agent 则*去行动*——把要紧的转派出去、起草回复，或把待办记进任务系统。看完，不等于行动。
+
+## "帮我总结 Slack"里藏着两件活
+
+"总结"这个词让它听起来像一个功能。但只要你问一句*总结之后呢*，它就分开了。一件活在你读完摘要那一刻就结束了——你补上了课，这就是全部意义。另一件活恰恰从这里开始：得有人、或有东西，判断这份摘要意味着*该回客户、该上报故障、该记下这个决定。* Slack 自带的 AI 很擅长第一件活。第二件,才是 agent 配得上"agent"这个名字的地方。这和我们在[邮件管理](/zh/news/2026-07-07-ai-agent-email-management/)里撞见的是同一条分界——功能*让你看见*那一堆东西；agent *对它做点什么*。
+
+## 活儿一 —— 补课（Slack 自带的 AI）
+
+这现在已经内建进 Slack 了。按 Slack 的 [AI 功能指南](https://slack.com/help/articles/25076892548883-Guide-to-AI-features-in-Slack)，你可以总结一个频道、一条 thread 或一条私信——可以只选未读、最近七天，或自定义时间段。**Recaps（每日回顾）**再进一步：把你关注但不发言的那些未读频道，自动汇成一份早间摘要，你只要扫一份简报，而不是挨个打开十个频道。
+
+价格这块在 2025 年变了。Slack [取消了单独的 Slack AI 附加包，把 AI 并进了付费套餐](https://slack.com/blog/news/june-2025-pricing-and-packaging-announcement)：对话和 thread 摘要随任意付费套餐提供，而每日 Recaps 这一档[只在 Business+ 和 Enterprise+ 里](https://slack.com/help/articles/39264531104275-Updates-to-feature-availability-and-pricing-for-Slack-plans)。如果你的工作区已经是付费套餐，你可能早就开着摘要功能却不知道。
+
+老实的限制：这是个只读工具。它告诉你发生了什么，但什么都不碰。这和我们在 [Issue #001](/zh/posts/2026-05-13-gmail-ai-agent/) 里用 Claude 的 Google Workspace 连接器时撞到的是同一条边界——擅长读，对"动手"这件事刻意保持不插手。
+
+## 活儿二 —— 对摘要采取行动（一个 agent）
+
+当你想让摘要*通向某个结果*，你就离开了 Slack 原生的地盘。两条老实的路子：
+
+- **无代码自动化。** 像 [Zapier 的 Slack 摘要工作流](https://zapier.com/blog/summarize-slack-threads/)那样，在有新消息或按计划时触发，跑一个 AI 步骤做总结，再把结果发到某处——一条私信、另一个频道、一份文档。摘要变成了一个能*触发行动*的*事件*，而这正是原生 Slack 摘要永远不会做的。
+- **专门的 Slack agent。** 像 [Read AI](https://www.read.ai/slack) 这类第三方 agent 驻在 Slack 里，把摘要和行动项在频道与会议之间推送出去。它们越过"回顾"，走到了"这是你现在欠别人的东西"。
+
+这些都不是要替换掉自带的回顾——它们是在*消费*它。一个常见的搭法：让 Slack AI 帮你补课，再让一个 agent 把真正要紧的那两行，变成一条任务、一份草稿，或对准某个人的一次提醒。把它当成任何一个真正的 [AI agent](/zh/agent-101/) 对待：在信任它发出去之前，先读一眼它做的判断，因为一个自信的总结器照样可能看错这件事该归谁。
+
+## 你到底需要哪个？
+
+如果你的痛点是*"我花了一小时翻 #general 才知道自己错过了什么"*，那是活儿一——把 Slack 的摘要和 Recaps 打开，你可能本来就在为它付费。如果你的痛点是*"事情在 Slack 里定了，然后就没了下文"*，那是活儿二——你需要一个把结果搬进真正记录工作的地方的 agent。多数团队先需要活儿一，只有当消息洪流看懂了却仍然没人跟进时，才会伸手去要活儿二。收件箱版本的同一套"先补课、再行动"模式，见[搭 Gmail AI agent 的三种方式](/zh/news/2026-07-09-gmail-ai-agent/)。
+
+## FAQ
+
+**AI 能总结我的 Slack 频道吗？**
+能——这已经内建在 Slack 的付费套餐里。Slack 的 [AI 功能](https://slack.com/help/articles/25076892548883-Guide-to-AI-features-in-Slack)可以总结一个频道、thread 或私信（未读、最近七天或自定义时间段），**Recaps** 还会为你关注的频道发一份自动的每日简报。Slack 在 [2025 年把这些并进了付费套餐](https://slack.com/blog/news/june-2025-pricing-and-packaging-announcement)，不再单卖附加包。
+
+**Slack AI 免费吗？**
+不免费，但也不再是单独购买。经过 Slack 的 [2025 年价格调整](https://slack.com/help/articles/39264531104275-Updates-to-feature-availability-and-pricing-for-Slack-plans)，摘要随付费套餐（Pro 及以上）提供，每日 Recaps 包含在 Business+ 和 Enterprise+ 里。免费套餐上没有 Slack AI。
+
+**Slack 摘要和 Slack agent 有什么不同？**
+摘要*读*——它告诉你一个频道或 thread 说了什么。agent *动*——它把摘要转派出去、起草回复，或把行动项记进任务系统。原生 Slack AI 做前者；一个[无代码自动化](https://zapier.com/blog/summarize-slack-threads/)或一个专门的 agent 做后者。
+
+**我能让 Slack 摘要自动触发一个动作吗？**
+用原生 Slack AI 不行——它由你发起、且只读。要自动化，你得把 Slack 消息接进像 [Zapier](https://zapier.com/blog/summarize-slack-threads/) 这样的自动化，或一个能先总结、再按触发去发布/归档/通知的[无代码 agent 平台](/zh/news/2026-07-08-no-code-ai-agent-tools/)。
+
+**不写代码能搭一个吗？**
+能。Slack 的摘要就是个开关；"对它行动"这一层可以用无代码工具搭，和 Issue #001 里的 [Gmail 分拣 agent](/zh/posts/2026-05-13-gmail-ai-agent/) 一样。只有当你需要没有平台提供的、被触发的行为时，才要写代码。
+
+每周一个真实 AI agent，直接发到你的邮箱。免费，不做二次推销。

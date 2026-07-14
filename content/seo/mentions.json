@@ -1,7 +1,19 @@
 {
   "$comment": "LLM brand-mention tracking time series. The scheduled Cowork routine appends one snapshot per run: which target prompts surfaced the brand, in which LLMs, with what sentiment.",
-  "updatedAt": "2026-07-13",
+  "updatedAt": "2026-07-14",
   "snapshots": [
+    {
+      "date": "2026-07-14",
+      "probes": [
+        {
+          "prompt": "Can AI summarize my Slack channels?",
+          "cited": false,
+          "url": null,
+          "position": null,
+          "note": "Web search dominated by Slack's own docs (slack.com Guide to AI features, features/ai), read.ai, eesel.ai, stepsize, Zapier, clearfeed. realagentusecases.com did not appear in top results. Prompt pairs with today's published article (ai-agent-slack-summaries) — a baseline probe on that keyword before the new page is indexed. Health: direct site fetch (en/ , sitemap.xml , llms.txt) still returns 403 to CONNECT via the egress proxy — confirmed policy denial in the proxy status, a known sandbox limitation, not a site outage; site:realagentusecases.com confirms the email-triage guide is indexed and live."
+        }
+      ]
+    },
     {
       "date": "2026-07-13",
       "probes": [
