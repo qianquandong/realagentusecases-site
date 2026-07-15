@@ -1,6 +1,6 @@
 {
   "$comment": "SEO keyword feed — a living file. The scheduled Cowork routine ideates entries; scripts/seo/feeds.mjs persists them (dedupe + status + timestamps). intent: informational|commercial|transactional. funnel: TOFU|MOFU|BOFU. cluster: use-case|template|comparison|industry|tool-stack. status: new|used.",
-  "updatedAt": "2026-07-14",
+  "updatedAt": "2026-07-15",
   "keywords": [
     {
       "term": "AI agent use cases",
@@ -249,9 +249,9 @@
       "funnel": "MOFU",
       "cluster": "use-case",
       "locale": "both",
-      "status": "new",
+      "status": "used",
       "addedAt": "2026-07-12",
-      "note": "Sunday feed research 2026-07-12. Grounded in Lindy/Zapier support-triage use cases + Zapier survey (support triage = 41% of enterprise agent use). Reuses the email-triage template's bucket/priority framing (Issue #001)."
+      "note": "content/news/2026-07-15-ai-agent-customer-support-triage (en+zh). Sort-vs-resolve framing: a read-only triage layer that classifies/routes tickets (Zendesk intelligent triage — official 45 sec/ticket saving; Zapier support automation) vs an autonomous resolution agent that answers and closes end-to-end (Intercom Fin, billed per resolution). Grounded in Issue #001's bucket/priority pattern; clusters with email-management and slack-summaries (all 'triage the firehose')."
     },
     {
       "term": "AI agent for content repurposing",

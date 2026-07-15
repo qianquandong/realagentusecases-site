@@ -1,0 +1,48 @@
+---
+title: "AI Agent for Customer Support Triage: Sort vs. Resolve"
+date: "2026-07-15"
+excerpt: "Helpdesk triage sorts and routes a ticket read-only; a resolution agent answers and closes it. Here's the split, and why most teams should start with sorting."
+---
+
+An AI agent for customer support triage does one of two jobs. One *sorts the queue* — reading each ticket, tagging its intent and sentiment, and routing it to the right person, without touching the reply. The other *resolves the ticket* — answering and closing it end-to-end, no human in the loop. Sorting isn't resolving, and the risk is different.
+
+## Two jobs hiding in "triage my support tickets"
+
+"Triage" sounds like one task, but the moment you ask *what the agent is allowed to do with a ticket*, it splits. One version stops at the handoff: it decides *this is a billing question, it's angry, send it to the payments team* — and a human still writes the answer. The other version writes the answer itself and marks the ticket solved. The first is a routing layer; the second is a frontline rep. It's the same catch-up-vs-act split we hit with [email management](/en/news/2026-07-07-ai-agent-email-management/) and [Slack summaries](/en/news/2026-07-14-ai-agent-slack-summaries/) — a tool that *organizes the pile* is a different animal from one that *acts on it*.
+
+## Job 1 — Sort the queue (read-only triage)
+
+This is the low-risk, high-return half, and it's where most teams should start. The agent reads every inbound ticket and classifies it — topic, language, sentiment, urgency — then routes and prioritizes. It never sends a customer-facing word, so a misread costs you a mis-routed ticket, not a wrong answer to a real person. Three honest routes:
+
+- **Native helpdesk AI.** [Zendesk's intelligent triage](https://support.zendesk.com/hc/en-us/articles/4964463770650-About-intelligent-triage) classifies incoming tickets by topic, sentiment, and language, then routes them to the right team. Per Zendesk's own docs, its AI features [save an average of 45 seconds per ticket](https://support.zendesk.com/hc/en-us/articles/4964463770650-About-intelligent-triage) versus sorting by hand — the classification sits on Suite and Support Professional plans, with the Copilot add-on required to use it in workflows.
+- **No-code automation.** [Zapier's support automation](https://zapier.com/automation/support-automation) reads each new ticket, auto-assigns by priority, topic, or customer tier, and posts formatted alerts into the right Slack channel — including [SLA-nearing alerts](https://zapier.com/automations/customer-service-success/customer-support-operations/sla-management/send-sla-nearing-ticket-alert-to-on-call-team-channel) so nothing quietly breaches. You keep your existing helpdesk and bolt triage on top.
+- **Repurpose a triage prompt you already have.** The bucket-and-priority pattern behind our [Gmail triage agent](/en/posts/2026-05-13-gmail-ai-agent/) in Issue #001 — sort into must-handle / follow-up / FYI / skip, tag P0/P1/P2 — maps almost one-to-one onto a support inbox. If your "helpdesk" is really a shared Gmail alias, that build is the cheaper starting point.
+
+## Job 2 — Resolve the ticket (an autonomous agent)
+
+When you want the agent to actually *answer* the customer, you've crossed from routing into resolution — and the stakes change, because now a wrong output reaches a real person. [Intercom's Fin](https://www.intercom.com/help/en/articles/8205718-fin-ai-agent-outcomes) is the clearest example: it reads the question, pulls from your knowledge base, and either answers, takes an action, or hands off to a human. Intercom counts a "resolution" only when the customer confirms the answer helped or leaves without asking for more, and it [bills per resolution](https://www.intercom.com/fin) rather than per seat — you pay for outcomes, not access.
+
+The honest caveat: a resolution agent is only as good as the knowledge you feed it. Intercom states plainly that your real resolution rate [depends on knowledge quality, setup, and use case](https://www.intercom.com/help/en/articles/8205718-fin-ai-agent-outcomes) — the marketing ceiling is not the number you'll hit on day one. Point one at a thin or outdated help center and it will confidently answer wrong, which is far more expensive than a mis-routed ticket. That's why sorting comes first.
+
+## Which do you actually need?
+
+If your pain is *"tickets pile up in one queue and the right person sees them too late,"* that's Job 1 — a read-only triage layer, and you may already own it inside Zendesk or a Zapier plan. If your pain is *"we answer the same 20 questions all day,"* that's Job 2 — a resolution agent sitting on a genuinely good knowledge base, with a human still owning refunds, escalations, and anything sensitive. Most teams need Job 1 first: understand and route the firehose before you let anything answer it unattended. New to the whole idea? Start at [Agent 101](/en/agent-101/), or see the [no-code AI agent tools](/en/news/2026-07-08-no-code-ai-agent-tools/) that can build the sorting layer.
+
+## FAQ
+
+**Can an AI agent triage my support tickets?**
+Yes, and it's the safest place to start. A triage agent reads each ticket and classifies it by topic, sentiment, and urgency, then routes it — [Zendesk's intelligent triage](https://support.zendesk.com/hc/en-us/articles/4964463770650-About-intelligent-triage) does this natively, and [Zapier](https://zapier.com/automation/support-automation) can bolt it onto an existing helpdesk. It never writes to the customer, so a misread costs a mis-route, not a wrong answer.
+
+**What's the difference between ticket triage and ticket resolution?**
+Triage *sorts* — it tags and routes a ticket to the right person, read-only. Resolution *answers* — an agent like [Intercom's Fin](https://www.intercom.com/help/en/articles/8205718-fin-ai-agent-outcomes) replies to the customer and closes the ticket end-to-end. Triage risk is a mis-route; resolution risk is a wrong answer reaching a real person, so most teams sort before they resolve.
+
+**How accurate is AI ticket triage?**
+Accuracy depends on your setup and category clarity. The honest, sourced number to anchor on is Zendesk's own: intelligent triage [saves an average of 45 seconds per ticket](https://support.zendesk.com/hc/en-us/articles/4964463770650-About-intelligent-triage) versus manual sorting. Treat any headline "auto-resolution" percentage as a ceiling, not a promise — resolution rates swing hard on knowledge quality.
+
+**Do I need code to build a support triage agent?**
+No. Native tools (Zendesk) are toggles; no-code platforms ([Zapier](https://zapier.com/automation/support-automation)) are drag-and-drop. If your support inbox is a shared Gmail alias, you can even reuse the no-code [Gmail triage build](/en/posts/2026-05-13-gmail-ai-agent/) from Issue #001 — about 20 minutes of setup, no scripts.
+
+**Should a support agent auto-reply to customers?**
+Only once triage is solid and your knowledge base is genuinely good — and even then, keep refunds, escalations, and anything sensitive on a human. A resolution agent's wrong answer reaches a customer directly, which is why the [read-only sorting layer](/en/news/2026-07-07-ai-agent-email-management/) is the right first step.
+
+One real AI agent a week, straight to your inbox. Free, no upsell.

@@ -1,6 +1,6 @@
 {
   "$comment": "GEO prompt feed — the questions working professionals ask ChatGPT / Perplexity / Gemini. The scheduled Cowork routine ideates entries; scripts/seo/feeds.mjs persists them. cluster: use-case|template|comparison|industry|tool-stack. status: new|covered (covered = a published article targets it). Phase 7 tracks whether the brand is cited for each.",
-  "updatedAt": "2026-07-14",
+  "updatedAt": "2026-07-15",
   "prompts": [
     {
       "prompt": "What are real examples of AI agents at work?",
@@ -46,7 +46,8 @@
       "cluster": "use-case",
       "locale": "en",
       "status": "new",
-      "addedAt": "2026-05-14"
+      "addedAt": "2026-05-14",
+      "note": "GEO-probed 2026-07-15: not cited. Web search dominated by Forbes, Gmelius, mailtrap, newmail.ai, sequenzy, usecarly, smartlead, Missive listicles; realagentusecases.com did not appear. Least-recently-probed on-topic prompt, pulled the day the customer-support-triage article ships (both are 'triage the firehose' use-cases)."
     },
     {
       "prompt": "How do I write a Claude prompt to triage my inbox?",
