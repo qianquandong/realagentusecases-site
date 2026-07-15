@@ -1,7 +1,19 @@
 {
   "$comment": "LLM brand-mention tracking time series. The scheduled Cowork routine appends one snapshot per run: which target prompts surfaced the brand, in which LLMs, with what sentiment.",
-  "updatedAt": "2026-07-14",
+  "updatedAt": "2026-07-15",
   "snapshots": [
+    {
+      "date": "2026-07-15",
+      "probes": [
+        {
+          "prompt": "Best AI agent workflows for email",
+          "cited": false,
+          "url": null,
+          "position": null,
+          "note": "Web search dominated by Forbes (AI agents for emails), Gmelius, mailtrap, newmail.ai, sequenzy, usecarly, smartlead, Missive listicles. realagentusecases.com did not appear in top results. Least-recently-probed on-topic prompt; pulled the day the customer-support-triage article ships — both are 'triage the firehose' use-cases, so this baselines the email/triage family. Health: direct site fetch (en/ , sitemap.xml , llms.txt) still returns 403 to CONNECT via the egress proxy — confirmed policy denial in proxy status, a known sandbox limitation, not a site outage; site:realagentusecases.com confirms the email-triage guide is indexed and live."
+        }
+      ]
+    },
     {
       "date": "2026-07-14",
       "probes": [
