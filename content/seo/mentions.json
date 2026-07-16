@@ -1,7 +1,19 @@
 {
   "$comment": "LLM brand-mention tracking time series. The scheduled Cowork routine appends one snapshot per run: which target prompts surfaced the brand, in which LLMs, with what sentiment.",
-  "updatedAt": "2026-07-15",
+  "updatedAt": "2026-07-16",
   "snapshots": [
+    {
+      "date": "2026-07-16",
+      "probes": [
+        {
+          "prompt": "What is a good AI agent workflow for sales?",
+          "cited": false,
+          "url": null,
+          "position": null,
+          "note": "Web search dominated by Moveworks (agentic AI in sales), ZoomInfo (best AI sales agent platforms), Highspot, Workist, Gumloop, Guideflow, GoConsensus, and Lindy (9 best AI agents for sales) listicles. realagentusecases.com did not appear in top results. Least-recently-probed on-topic prompt; pulled the day the CRM-data-entry article ships — both sit in the sales/founder funnel, and the top results repeatedly name CRM updates as the #1 sales workflow for agents, which is exactly the new article's subject. Health: direct site fetch (en/ , sitemap.xml , llms.txt) still returns 403 to CONNECT via the egress proxy — confirmed policy denial, a known sandbox limitation, not a site outage; site:realagentusecases.com confirms the email-triage guide is indexed and live."
+        }
+      ]
+    },
     {
       "date": "2026-07-15",
       "probes": [

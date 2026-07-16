@@ -1,6 +1,6 @@
 {
   "$comment": "SEO keyword feed — a living file. The scheduled Cowork routine ideates entries; scripts/seo/feeds.mjs persists them (dedupe + status + timestamps). intent: informational|commercial|transactional. funnel: TOFU|MOFU|BOFU. cluster: use-case|template|comparison|industry|tool-stack. status: new|used.",
-  "updatedAt": "2026-07-15",
+  "updatedAt": "2026-07-16",
   "keywords": [
     {
       "term": "AI agent use cases",
@@ -229,9 +229,9 @@
       "funnel": "MOFU",
       "cluster": "use-case",
       "locale": "both",
-      "status": "new",
+      "status": "used",
       "addedAt": "2026-07-12",
-      "note": "Sunday feed research 2026-07-12. Grounded in Lindy CRM-update use case + Zapier's 2026 agentic-AI adoption survey (data management is the #1 enterprise agent use case). Clusters with founders/recruiters industry pages."
+      "note": "content/news/2026-07-16-ai-agent-crm-data-entry (en+zh). Capture-vs-maintain framing: an auto-logging layer that records emails/calls/meetings onto records (Salesforce Einstein Activity Capture, HubSpot Breeze, Lindy) vs a data-steward that fills and enriches the structured fields forecasting reads from (HubSpot Breeze Data Agent, Zapier CRM data management). Grounded in Issue #001's bucket/priority pattern; clusters with meeting-prep (woven the CRM-log link into its Route 3) and the founders/recruiters/lead-qualification sales family."
     },
     {
       "term": "AI agent for lead qualification",
