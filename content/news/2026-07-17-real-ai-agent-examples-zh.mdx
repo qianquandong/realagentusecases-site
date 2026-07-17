@@ -1,0 +1,50 @@
+---
+title: "真实 AI agent 案例：头条级 vs 桌面级"
+date: "2026-07-17"
+excerpt: "有名的 AI agent 案例都跑在你没有的团队上。这里把它们拆成两类：你复制不了的头条级部署，和你这周就能自己搭的桌面级 agent。"
+---
+
+真实的 AI agent 案例分两类。头条级部署——Klarna 的客服助手、摩根大通的 LLM Suite——靠专职团队和定制基础设施跑起来，你复制不了。桌面级案例——收件箱分拣、会前准备——一个人一个下午就能搭好。从第二类开始。
+
+## 为什么「真实 AI agent 案例」会误导你
+
+搜这个词，出来的全是企业案例：一家银行、一家金融科技、一家电信，每个都挂着一个头条数字。它们是真的，但当模板毫无用处——因为让它们跑起来的东西（平台团队、定制集成、预算），恰恰是职场人没有的。[用例指南](/zh/news/2026-05-14-ai-agent-use-cases/)用一套测试讲了这个道理；这篇则点名真实案例，并按「你能不能复现」来分。
+
+## 头条级案例（真实，但你复制不了）
+
+这些是上榜单的部署。看它们，是为了理解 agent 在规模上能做什么——不是当搭建蓝图。
+
+- **Klarna 的客服助手。** 上线首月，Klarna 由 OpenAI 驱动的助手处理了 230 万次对话——约占其客服会话的三分之二，官方称相当于 700 名全职客服的工作量——把每次处理时间从 11 分钟压到 2 分钟以内（[Klarna 新闻稿](https://www.klarna.com/international/press/klarna-ai-assistant-handles-two-thirds-of-customer-service-chats-in-its-first-month/)、[OpenAI](https://openai.com/index/klarna/)）。但比头条更重要的是后续：2025 年 5 月，CEO Sebastian Siemiatkowski 对 [Bloomberg](https://www.bloomberg.com/news/articles/2025-05-08/klarna-turns-from-ai-to-real-person-customer-service) 说公司「走得太远了」，开始为纠纷和复杂案例[重新招聘人工客服](https://www.customerexperiencedive.com/news/klarna-reinvests-human-talent-customer-service-AI-chatbot/747586/)。agent 仍处理日常量，人回来接高风险的长尾。真正成立的案例不是「换掉整个团队」，而是过度纠偏后落到的那个混合方案。
+- **摩根大通的 LLM Suite。** 该行先把一个内部生成式 AI 助手推给约 14 万名员工（[CIO Dive](https://www.ciodive.com/news/JPMorgan-Chase-LLM-Suite-generative-ai-employee-tool/726772/)），如今把它描述成一个[获奖平台](https://www.jpmorganchase.com/about/technology/blog/llmsuite-ab-award)，并正向多步 agentic 任务扩展。这是内部工具案例——防火墙后一个受治理的助手，不是你能装上的机器人。
+
+注意两者的共同点：有团队负责 agent，输入是有边界的，昂贵的决定仍由人拍板。这不是 agent 工作方式的例外——正是头条略过的那条通则。
+
+## 桌面级案例（真实，而且你能自己跑）
+
+这些正是本站要记录的案例——一个人、一件有边界的任务、一眼能核对的结果。
+
+- **收件箱分拣。** agent 读完一夜堆积的邮件，按 P0/P1/P2 排好。我们 [Issue #001 的 Gmail agent](/zh/posts/2026-05-13-gmail-ai-agent/) 做的就是这个：20 分钟、每月约 20 美元、无代码，每天早上输出一份排好序的待办。这和[客服分拣 agent](/zh/news/2026-07-15-ai-agent-customer-support-triage/) 是同一个「只分拣、不解决」的思路——Klarna 部署的桌面版表亲。
+- **会议与通话准备。** 通话前，agent 把上一条邮件线、CRM 备注、未完成事项汇成一页简报。路线见 [AI agent 会前准备](/zh/news/2026-07-11-ai-agent-meeting-prep/)。
+- **CRM 录入。** agent 把邮件和通话记到对应记录上，让销售不用手打。安全写入的分界见 [CRM 录入：捕获 vs 维护](/zh/news/2026-07-16-ai-agent-crm-data-entry/)。
+
+这些每一个都通过和企业案例相同的测试——重复的任务、有边界的输入、可核对的输出、明确的触发器——只是少了那个平台团队。新手？从 [Agent 101](/zh/agent-101/) 开始，再挑一个[无代码工具](/zh/news/2026-07-08-no-code-ai-agent-tools/)搭第一个。
+
+## 两者之下的同一个形状
+
+把规模剥掉，头条级和桌面级案例是同一个形状：一件狭窄、重复的活；乱但有边界的输入；一个把「错了要花钱」的决定攥在手里的人。Klarna 的弧线反过来证明了这点——「完全自主」那版是 demo，能长久跑的案例是他们退回去的那个有人监督的混合版。复制形状，别复制规模。
+
+## FAQ
+
+**有哪些真实在用的 AI agent 案例？**
+企业级：Klarna 客服助手首月处理 230 万次对话（[Klarna](https://www.klarna.com/international/press/klarna-ai-assistant-handles-two-thirds-of-customer-service-chats-in-its-first-month/)），摩根大通把 AI 助手推给约 14 万名员工（[CIO Dive](https://www.ciodive.com/news/JPMorgan-Chase-LLM-Suite-generative-ai-employee-tool/726772/)）。桌面级：一个替你写早间待办的 [Gmail 分拣 agent](/zh/posts/2026-05-13-gmail-ai-agent/)。同一形状，预算不同。
+
+**哪些 AI agent 案例我能自己搭？**
+桌面级那些：收件箱分拣、会前准备、CRM 录入、摘要推送。每个都是有边界的任务，输出几秒就能核对，多数无需代码。从 [Issue #001 的 Gmail 搭建](/zh/posts/2026-05-13-gmail-ai-agent/)和[无代码工具指南](/zh/news/2026-07-08-no-code-ai-agent-tools/)开始。
+
+**Klarna 真的用 AI 换掉了 700 名客服吗？**
+它称助手首月的工作量相当于 700 名客服（[OpenAI](https://openai.com/index/klarna/)）。但到 2025 年 5 月，CEO 说公司「走得太远」，开始为复杂案例[重新招人](https://www.bloomberg.com/news/articles/2025-05-08/klarna-turns-from-ai-to-real-person-customer-service)。留下来的案例是混合方案，不是彻底替换。
+
+**为什么那些大厂 AI agent 案例对我没用？**
+因为案例是结果，不是方法——平台团队、定制集成和预算做完了文章略过的活。复制的是那个*模式*（狭窄任务、有边界输入、风险决定留给人），不是规模。
+
+每周一个真实 AI agent，直接发到你邮箱。免费，不推销。

@@ -1,0 +1,50 @@
+---
+title: "Real AI Agent Examples: Headline vs. Desk-Level"
+date: "2026-07-17"
+excerpt: "The famous AI agent examples run on teams you don't have. Here's the split — headline deployments you can't copy, and desk-level agents you can run this week."
+---
+
+Real AI agent examples fall into two groups. Headline deployments — Klarna's support assistant, JPMorgan's LLM Suite — run on dedicated teams and custom infrastructure you can't copy. Desk-level examples — an inbox triage or meeting-prep agent — a single professional can stand up in an afternoon. Start with the second.
+
+## Why "real AI agent examples" mislead you
+
+Search the phrase and you get enterprise case studies: a bank, a fintech, a telco, each with a headline number attached. They're real. They're also useless as a template, because the thing that made them work — a platform team, custom integrations, a budget — is exactly what a working professional doesn't have. The [use-cases guide](/en/news/2026-05-14-ai-agent-use-cases/) makes the same point with a test; this piece names the actual examples and sorts them by whether *you* can reproduce them.
+
+## Headline examples (real, but you can't copy them)
+
+These are the deployments that make the listicles. Study them for what agents can do at scale — not as a build plan.
+
+- **Klarna's customer support assistant.** In its first month, Klarna's OpenAI-powered assistant handled 2.3 million conversations — about two-thirds of its support chats and, the company said, the work of 700 full-time agents — resolving errands in under 2 minutes versus 11 previously ([Klarna press release](https://www.klarna.com/international/press/klarna-ai-assistant-handles-two-thirds-of-customer-service-chats-in-its-first-month/), [OpenAI](https://openai.com/index/klarna/)). The honest sequel matters more than the headline: in May 2025, CEO Sebastian Siemiatkowski told [Bloomberg](https://www.bloomberg.com/news/articles/2025-05-08/klarna-turns-from-ai-to-real-person-customer-service) the company went "too far" and began [rehiring human agents](https://www.customerexperiencedive.com/news/klarna-reinvests-human-talent-customer-service-AI-chatbot/747586/) for disputes and complex cases. The agent still handles routine volume; humans came back for the high-stakes tail. The winning example wasn't "replace the team" — it was the hybrid they landed on after over-correcting.
+- **JPMorgan's LLM Suite.** The bank began rolling out an internal generative-AI assistant to roughly 140,000 employees ([CIO Dive](https://www.ciodive.com/news/JPMorgan-Chase-LLM-Suite-generative-ai-employee-tool/726772/)) and now describes an [award-winning platform](https://www.jpmorganchase.com/about/technology/blog/llmsuite-ab-award) that it's extending toward agentic, multi-step tasks. It's an internal-tooling example — a governed assistant behind the firewall, not a bot you can install.
+
+Notice what both share: a team owns the agent, the input is scoped, and a human still owns the expensive decisions. That's not the exception to how agents work — it's the rule the headlines skip.
+
+## Desk-level examples (real, and you can run them)
+
+These are the examples this site exists to document — one professional, a bounded task, a result you can check at a glance.
+
+- **Inbox triage.** An agent reads what piled up overnight and sorts it P0/P1/P2. Our [Gmail agent in Issue #001](/en/posts/2026-05-13-gmail-ai-agent/) does exactly this: a 20-minute, ~$20/month, no-code build that outputs a ranked to-do list every morning. It's the same "sort, don't resolve" instinct as a [customer-support triage agent](/en/news/2026-07-15-ai-agent-customer-support-triage/) — the desk-sized cousin of Klarna's deployment.
+- **Meeting and call prep.** Before a call, an agent pulls the last thread, CRM notes, and open items into a one-page brief. See the routes in [AI agent for meeting prep](/en/news/2026-07-11-ai-agent-meeting-prep/).
+- **CRM capture.** An agent logs emails and calls onto the right record so reps stop typing. The safe-write split is covered in [CRM data entry: capture vs. maintain](/en/news/2026-07-16-ai-agent-crm-data-entry/).
+
+Every one of these passes the same test the enterprise examples do — repetitive task, bounded input, checkable output, a clear trigger — minus the platform team. New to this? Start at [Agent 101](/en/agent-101/), then pick a [no-code tool](/en/news/2026-07-08-no-code-ai-agent-tools/) to build the first one.
+
+## The pattern under both
+
+Strip the scale away and the headline and desk-level examples are the same shape: a narrow, repetitive job; input that's messy but bounded; a human who keeps the decisions that cost money if they're wrong. Klarna's arc proves it in reverse — the "fully autonomous" version was the demo, and the durable example was the supervised, hybrid one they walked back to. Copy the shape, not the scale.
+
+## FAQ
+
+**What are real examples of AI agents being used?**
+At enterprise scale: Klarna's support assistant handled 2.3 million chats in a month ([Klarna](https://www.klarna.com/international/press/klarna-ai-assistant-handles-two-thirds-of-customer-service-chats-in-its-first-month/)), and JPMorgan rolled an AI assistant out to ~140,000 staff ([CIO Dive](https://www.ciodive.com/news/JPMorgan-Chase-LLM-Suite-generative-ai-employee-tool/726772/)). At desk scale: a [Gmail triage agent](/en/posts/2026-05-13-gmail-ai-agent/) that writes your morning to-do list. Same shape, different budget.
+
+**Which AI agent examples can I actually build myself?**
+The desk-level ones: inbox triage, meeting prep, CRM capture, digests. Each is a bounded task with output you can verify in seconds, and most need no code. Start with [Issue #001's Gmail build](/en/posts/2026-05-13-gmail-ai-agent/) and the [no-code tools guide](/en/news/2026-07-08-no-code-ai-agent-tools/).
+
+**Did Klarna really replace 700 agents with AI?**
+It said the assistant did the equivalent work of 700 agents in month one ([OpenAI](https://openai.com/index/klarna/)). But by May 2025 the CEO said the company went "too far" and [began rehiring humans](https://www.bloomberg.com/news/articles/2025-05-08/klarna-turns-from-ai-to-real-person-customer-service) for complex cases. The lasting example is a hybrid, not a full replacement.
+
+**Why don't the big AI agent case studies work for me?**
+Because the case study is the outcome, not the method — a platform team, custom integrations, and a budget did the work the article skips. Copy the *pattern* (narrow task, bounded input, human on the risky calls), not the scale.
+
+One real AI agent a week, straight to your inbox. Free, no upsell.
