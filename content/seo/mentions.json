@@ -1,7 +1,19 @@
 {
   "$comment": "LLM brand-mention tracking time series. The scheduled Cowork routine appends one snapshot per run: which target prompts surfaced the brand, in which LLMs, with what sentiment.",
-  "updatedAt": "2026-07-16",
+  "updatedAt": "2026-07-17",
   "snapshots": [
+    {
+      "date": "2026-07-17",
+      "probes": [
+        {
+          "prompt": "What are real AI agent use cases?",
+          "cited": false,
+          "url": null,
+          "position": null,
+          "note": "Web search dominated by Medium (Annie Cushing '50 real-world use cases'), Oracle, Domo, IBM, Triple Whale, V7 Labs, liqteq, aimultiple, Moveworks listicles. realagentusecases.com did not appear in top results. Never-probed prompt closest to today's keyword ('real AI agent examples'); baseline probe the day the headline-vs-desk-level examples article ships (pre-index). Health: direct site fetch (en/ , sitemap.xml , llms.txt) still returns 403 to CONNECT via the egress proxy — confirmed policy denial in proxy status (recentRelayFailures: connect_rejected on realagentusecases.com:443), a known sandbox limitation, not a site outage. Live verification of the deploy could not be performed from this environment today; prior daily runs (07-14/15/16) merged and published without deploy failures."
+        }
+      ]
+    },
     {
       "date": "2026-07-16",
       "probes": [

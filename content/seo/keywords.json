@@ -18,9 +18,9 @@
       "funnel": "TOFU",
       "cluster": "use-case",
       "locale": "both",
-      "status": "new",
+      "status": "used",
       "addedAt": "2026-05-14",
-      "note": "Matches the brand name almost exactly — high relevance."
+      "note": "Used 2026-07-17 → content/news/2026-07-17-real-ai-agent-examples. Angle: headline (Klarna/JPMorgan, uncopyable) vs desk-level (reproducible) examples; complements the use-cases guide."
     },
     {
       "term": "AI agents for work",
