@@ -1,0 +1,50 @@
+---
+title: "线索资格 AI Agent：打分还是对话"
+date: "2026-07-18"
+excerpt: "一类线索资格 agent 负责打分并把线索分给销售；另一类直接与线索对话。本文讲清两者的区别，以及销售团队该从哪一步开始。"
+---
+
+做线索资格（lead qualification）的 AI agent 只做两件事之一。一是*打分与分单*——研究每一条进来的线索，给匹配度和意向度排名，把热门的交给销售，但从不与线索对话；二是*对话*——它给线索发消息、跟进，直到出现真实意向才交给人。打分是后台的筛子，对话则是以你的名义直接面对客户。
+
+## "帮我筛线索"背后藏着两个活儿
+
+"线索资格"听起来是一件事，但只要问一句*agent 会不会跟线索对话*，它就分成两半。一种全程沉默：读表单、丰富记录、打个分，把排好序的线索放到销售桌上。另一种则主动开口——问预算和时间线、催一催沉默的潜客——然后才轮到人接手。前者是研究分析师，后者是 SDR（销售开发代表）。这和我们在[客服工单分诊](/zh/news/2026-07-15-ai-agent-customer-support-triage/)里遇到的"只读 vs 动手"是同一个分野：*给队列排序*的工具，和*替你回复*的工具，是两种不同的动物。我们在 Issue #001 的 [Gmail 分诊 agent](/zh/posts/2026-05-13-gmail-ai-agent/) 背后那套"分桶排优先级"的纪律，本质是一回事——匹配度分和紧急度分，无非是把 P0/P1/P2 从收件箱搬到了销售管线上。
+
+## 活儿一 —— 打分与分单（沉默的筛子）
+
+这是安全的那一半，也是多数团队该起步的地方，因为一个分打错只让销售多花五分钟，而不是烧掉一个潜客。agent 按明确标准评估每条线索并分单——不发任何外呼消息。三条真实路径：
+
+- **无代码 BANT 打分。** [Zapier 搭建线索资格系统的指南](https://zapier.com/blog/build-lead-qualification-system/)把每条进来的表单过一遍 AI 步骤，按 BANT（预算、决策权、需求、时间线）给匹配度和意向度打分，再把匹配度分、紧急度分和 agent 的推理写进 CRM 自定义字段，然后用线索路由按规则把线索分给对应销售——让人在联系之前就看到线索*为什么*是这个分。
+- **先丰富再排名。** [Lindy 的线索资格课程](https://www.lindy.ai/academy-lessons/lead-qualification)拿到原始线索行后，用公开资料丰富每一条（职位、公司规模、行业），按你的自定义标准打分，再就值得跟进的那些提醒团队——这和[会前准备 agent](/zh/news/2026-07-11-ai-agent-meeting-prep/) 在通话前"先查后判"是同一个动作。
+- **CRM 原生研究。** [微软给 Dynamics 365 的 Sales Qualification Agent](https://learn.microsoft.com/en-us/dynamics365/sales/sales-qualification-agent) 有一个*仅研究*模式，会拉取每条线索所在公司的背景资料，在线索列表上把它们标为热、温、冷——但把外呼邮件留给销售复核后再发。
+
+一个真实具名的例子：[JBGoodwin REALTORS 用 Zapier](https://zapier.com/blog/jbgoodwin-realtors-automates-recruiting-with-zapier/) 解析进来的申请、记录到 HubSpot，让 AI by Zapier 逐条丰富（核对得州房地产委员会执照和 LinkedIn 履历），再由招聘人员跟进——该公司称招聘量提升了 37%、手工工作量减少了 20–25%。它是招聘管线而非销售管线，但正是同一套"打分与分单"的形状，用在了进来的人身上。
+
+## 活儿二 —— 对话与资格判定（会开口的 agent）
+
+当你想让 agent 去*和线索对话*——问资格问题、跟进一条沉默的回复、约上通话——你就从分析师跨到了 SDR，风险随之改变，因为现在 agent 是以你公司的口吻在跟潜客说话。[微软的 Sales Qualification Agent](https://learn.microsoft.com/en-us/dynamics365/sales/sales-qualification-agent) 还有第二个*研究并对话*模式，会自主外呼、跟进，直到线索表现出购买意向才交给销售——为那些多到人力工作不过来的团队而设。
+
+诚实的提醒：会对话的 agent 是在用不完美的判断跟一个真实的潜在客户说话，而一句跑偏或说错的跟进，是沉默的筛子永远不会承担的代价。Zapier 自己的建议是：让 agent 把外呼在 Gmail 或 Outlook 里*起草*出来，而不是自动发送，尤其在早期，好让人先看过线索和 AI 的逻辑，再让任何消息发出去。让 agent 从草稿模式起步，只在"发错也不心疼"的线索类型上，才把它升到自主。
+
+## 你到底需要哪一个？
+
+如果你的痛点是*"好线索堵在队列里，销售却在追死线索"*，那是活儿一——打分与分单，第一条消息仍由人来发。如果你的痛点是*"跟进不够快，线索都凉了"*，那是活儿二——会对话的 agent，最好先用草稿模式，等你信得过再放开。多数团队先需要活儿一：先给管线排序，再让任何东西去和潜客说话。往下走，一条合格的线索会流入 [CRM 记录层](/zh/news/2026-07-16-ai-agent-crm-data-entry/)，再在通话前接上一份[会前准备简报](/zh/news/2026-07-11-ai-agent-meeting-prep/)。刚入门？从 [Agent 101](/zh/agent-101/) 开始，或看看能搭出打分层的[无代码 AI agent 工具](/zh/news/2026-07-08-no-code-ai-agent-tools/)。
+
+## FAQ
+
+**AI agent 能帮我筛线索吗？**
+能，而且打分是最安全的起点。[Zapier 的线索资格搭建](https://zapier.com/blog/build-lead-qualification-system/)把每条进来的线索过一遍 AI 步骤，按 BANT 打分并分给销售；[Lindy](https://www.lindy.ai/academy-lessons/lead-qualification)先丰富再排名，然后提醒团队——两者都在不与潜客对话的情况下把管线筛一遍。
+
+**给线索打分和与线索对话有什么区别？**
+打分是沉默的：agent 研究、排名、分单，第一条消息由人来发。对话是主动的：agent 直接与线索交谈。[微软的 Sales Qualification Agent](https://learn.microsoft.com/en-us/dynamics365/sales/sales-qualification-agent) 用它的"仅研究"和"研究并对话"两种模式，画的正是这条线。
+
+**线索资格 agent 用什么标准？**
+多数用你自己定义的明确框架。[Zapier 的系统](https://zapier.com/blog/build-lead-qualification-system/)按 BANT——预算、决策权、需求、时间线——打分，把匹配度分、紧急度分和推理写进 CRM，让销售看到线索为什么是这个名次。这和我们 [Gmail 分诊 agent](/zh/posts/2026-05-13-gmail-ai-agent/) 的 P0/P1/P2 是同一个思路，只是搬到了管线上。
+
+**该让 AI agent 自动给潜客发邮件吗？**
+一开始不要。[Zapier 建议](https://zapier.com/blog/build-lead-qualification-system/)让 agent 起草外呼供人复核，而不是自动发送，尤其在早期测试阶段，好在一句说错或跑偏的消息触达真实潜客之前拦下它。只在"发错也不心疼"的地方，才升级到自主。
+
+**搭一个线索资格 agent 需要写代码吗？**
+不需要。[Zapier](https://zapier.com/blog/build-lead-qualification-system/) 和 [Lindy](https://www.lindy.ai/academy-lessons/lead-qualification) 这类无代码平台用拖拽就能搭出打分与分单层，而 [Dynamics 365](https://learn.microsoft.com/en-us/dynamics365/sales/sales-qualification-agent) 这类原生 CRM agent 在工具里配置即可。取舍见[无代码 AI agent 工具指南](/zh/news/2026-07-08-no-code-ai-agent-tools/)。
+
+每周一个真实的 AI agent，直接发到你的邮箱。免费，无推销。

@@ -1,7 +1,19 @@
 {
   "$comment": "LLM brand-mention tracking time series. The scheduled Cowork routine appends one snapshot per run: which target prompts surfaced the brand, in which LLMs, with what sentiment.",
-  "updatedAt": "2026-07-17",
+  "updatedAt": "2026-07-18",
   "snapshots": [
+    {
+      "date": "2026-07-18",
+      "probes": [
+        {
+          "prompt": "What AI agent should a sales team use for lead qualification?",
+          "cited": false,
+          "url": null,
+          "position": null,
+          "note": "Web search dominated by Lyzr (AI agents for lead qualification), Microsoft Learn (Dynamics 365 Sales Qualification Agent), petegabi, signatech, qontak, RelevanceAI (BANT marketplace), mygreatlearning, salescloser listicles. realagentusecases.com did not appear in top results. Prompt pairs with today's published article (ai-agent-for-lead-qualification) — a baseline probe on that keyword before the new page is indexed. Health: direct site fetch (en/ , sitemap.xml , llms.txt) still returns 403 to CONNECT via the egress proxy — confirmed policy denial, a known sandbox limitation, not a site outage; site:realagentusecases.com confirms the email-triage guide is indexed and live."
+        }
+      ]
+    },
     {
       "date": "2026-07-17",
       "probes": [

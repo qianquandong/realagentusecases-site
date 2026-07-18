@@ -1,6 +1,6 @@
 {
   "$comment": "SEO keyword feed — a living file. The scheduled Cowork routine ideates entries; scripts/seo/feeds.mjs persists them (dedupe + status + timestamps). intent: informational|commercial|transactional. funnel: TOFU|MOFU|BOFU. cluster: use-case|template|comparison|industry|tool-stack. status: new|used.",
-  "updatedAt": "2026-07-16",
+  "updatedAt": "2026-07-18",
   "keywords": [
     {
       "term": "AI agent use cases",
@@ -239,9 +239,9 @@
       "funnel": "MOFU",
       "cluster": "use-case",
       "locale": "both",
-      "status": "new",
+      "status": "used",
       "addedAt": "2026-07-12",
-      "note": "Sunday feed research 2026-07-12. Grounded in Lindy real-time lead-scoring use case + Zapier JBGoodwin Realtors build. Clusters with founders and realtors industry angles."
+      "note": "content/news/2026-07-18-ai-agent-for-lead-qualification (en+zh). Score-vs-engage framing: a silent scoring/routing layer that ranks inbound leads and hands hot ones to a rep (Zapier BANT lead-qualification build, Lindy enrich-and-rank, Dynamics 365 Sales Qualification Agent research-only mode; real named build = JBGoodwin REALTORS via Zapier, 37% recruiting lift / 20-25% less manual work) vs an agent that engages the lead directly (Dynamics 365 research-and-engage mode). Grounded in Issue #001's P0/P1/P2 pattern = fit/urgency scoring; clusters with crm-data-entry (wove upstream link into its 'Which do you need' section), customer-support-triage (sort-vs-resolve parallel), meeting-prep."
     },
     {
       "term": "AI agent for customer support triage",

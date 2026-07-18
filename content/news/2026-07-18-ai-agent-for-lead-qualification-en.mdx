@@ -1,0 +1,50 @@
+---
+title: "AI Agent for Lead Qualification: Score vs. Engage"
+date: "2026-07-18"
+excerpt: "One lead-qualification agent scores and routes inbound leads to a rep; another engages them directly. Here's the split, and where a sales team should start."
+---
+
+An AI agent for lead qualification does one of two jobs. One *scores and routes* — it researches each inbound lead, ranks fit and intent, and hands the hot ones to a rep, but never talks to the lead. The other *engages* — it messages the lead, follows up, and only hands off once real intent shows. Scoring is a back-office filter; engaging speaks to your prospect in your name.
+
+## Two jobs hiding in "qualify my leads"
+
+"Lead qualification" sounds like one task, but it splits the moment you ask *does the agent talk to the lead?* One version stays silent: it reads the form fill, enriches the record, assigns a score, and drops the ranked lead on a rep's desk. The other version opens a conversation — asking budget and timeline questions, nudging a quiet prospect — before any human steps in. The first is a research analyst; the second is an SDR. It's the same read-only-vs-act split we hit with [customer support triage](/en/news/2026-07-15-ai-agent-customer-support-triage/): a tool that *sorts the queue* is a different animal from one that *answers on your behalf*. The bucket-and-priority discipline behind our [Gmail triage agent](/en/posts/2026-05-13-gmail-ai-agent/) in Issue #001 is the same instinct — a fit score and an urgency score are just P0/P1/P2 applied to a pipeline instead of an inbox.
+
+## Job 1 — Score and route (the silent filter)
+
+This is the safe half, and where most teams should start, because a wrong score costs a rep five minutes, not a burned prospect. The agent evaluates each lead against explicit criteria and routes it — no outbound message. Three real routes:
+
+- **No-code BANT scoring.** [Zapier's guide to building a lead-qualification system](https://zapier.com/blog/build-lead-qualification-system/) runs each inbound form through an AI step that scores fit and intent against BANT (Budget, Authority, Need, Timeline), writes the fit score, urgency score, and the agent's reasoning to custom CRM fields, then uses a lead router to distribute leads to reps by rule — so a human sees *why* a lead scored the way it did before reaching out.
+- **Enrich-then-rank.** [Lindy's lead-qualification lesson](https://www.lindy.ai/academy-lessons/lead-qualification) takes raw lead rows, enriches each with public research (job title, company size, industry), scores them against your custom criteria, and alerts your team on the ones worth a call — the same enrich-before-you-judge move a [meeting-prep agent](/en/news/2026-07-11-ai-agent-meeting-prep/) makes before a call.
+- **Native CRM research.** [Microsoft's Sales Qualification Agent for Dynamics 365](https://learn.microsoft.com/en-us/dynamics365/sales/sales-qualification-agent) runs in a *research-only* mode that pulls background on each lead's company and tags them hot, warm, or cold on the leads grid — but leaves the outreach email for the seller to review and send.
+
+A real named build of this pattern: [JBGoodwin REALTORS uses Zapier](https://zapier.com/blog/jbgoodwin-realtors-automates-recruiting-with-zapier/) to parse inbound applications, log them to HubSpot, and let AI by Zapier enrich each one (checking Texas Real Estate Commission licensing and LinkedIn history) before a recruiter follows up — the company reports a 37% increase in recruiting and a 20–25% cut in manual workload. It's a recruiting pipeline rather than a sales one, but it's the same score-and-route shape applied to inbound people.
+
+## Job 2 — Engage and qualify (the agent that talks back)
+
+When you want the agent to *converse* with the lead — ask qualifying questions, follow up on a quiet reply, book the call — you've crossed from analyst to SDR, and the stakes change, because now the agent speaks to a prospect in your company's voice. [Microsoft's Sales Qualification Agent](https://learn.microsoft.com/en-us/dynamics365/sales/sales-qualification-agent) has a second, *research-and-engage* mode that autonomously reaches out, follows up, and only hands a lead to a seller once it demonstrates purchase intent — built for teams drowning in volume they can't personally work.
+
+The honest caveat: an engaging agent is talking to a real potential customer with imperfect judgment, and a tone-deaf or wrong follow-up is a cost the silent filter never carries. Zapier's own guidance is to have the agent *draft* outreach in Gmail or Outlook rather than send it automatically, especially early on, so a human reviews the lead and the AI's logic before any message goes out. Start the agent in draft mode; promote it to autonomous only on the lead types where a misfire is cheap.
+
+## Which do you actually need?
+
+If your pain is *"good leads sit in a queue while reps chase dead ones,"* that's Job 1 — score and route, with a human still sending the first message. If your pain is *"we can't follow up fast enough and leads go cold,"* that's Job 2 — an engaging agent, ideally in draft mode until you trust it. Most teams need Job 1 first: rank the pipeline before you let anything speak to a prospect. From there, a qualified lead flows into the [CRM capture layer](/en/news/2026-07-16-ai-agent-crm-data-entry/) and then a [meeting-prep brief](/en/news/2026-07-11-ai-agent-meeting-prep/) before the call. New to the idea? Start at [Agent 101](/en/agent-101/), or see the [no-code AI agent tools](/en/news/2026-07-08-no-code-ai-agent-tools/) that can build the scoring layer.
+
+## FAQ
+
+**Can an AI agent qualify my leads?**
+Yes, and scoring is the safest place to start. [Zapier's lead-qualification build](https://zapier.com/blog/build-lead-qualification-system/) runs each inbound lead through an AI step that scores it on BANT and routes it to a rep, and [Lindy](https://www.lindy.ai/academy-lessons/lead-qualification) enriches and ranks leads before alerting your team — both filter the pipeline without messaging the prospect.
+
+**What's the difference between scoring a lead and engaging it?**
+Scoring is silent: the agent researches, ranks, and routes, and a human sends the first message. Engaging is active: the agent converses with the lead directly. [Microsoft's Sales Qualification Agent](https://learn.microsoft.com/en-us/dynamics365/sales/sales-qualification-agent) draws this exact line with its research-only versus research-and-engage modes.
+
+**What criteria do lead-qualification agents use?**
+Most use an explicit framework you define. [Zapier's system](https://zapier.com/blog/build-lead-qualification-system/) scores against BANT — Budget, Authority, Need, Timeline — and writes a fit score, an urgency score, and the reasoning to your CRM so a rep sees why a lead ranked where it did. It's the same P0/P1/P2 idea as our [Gmail triage agent](/en/posts/2026-05-13-gmail-ai-agent/), applied to a pipeline.
+
+**Should I let an AI agent email prospects automatically?**
+Not at first. [Zapier recommends](https://zapier.com/blog/build-lead-qualification-system/) having the agent draft outreach for a human to review rather than send it automatically, especially during early testing, so you catch a wrong or tone-deaf message before it reaches a real prospect. Promote to autonomous only where a misfire is cheap.
+
+**Do I need code to build a lead-qualification agent?**
+No. No-code platforms like [Zapier](https://zapier.com/blog/build-lead-qualification-system/) and [Lindy](https://www.lindy.ai/academy-lessons/lead-qualification) build the scoring-and-routing layer with drag-and-drop, and native CRM agents like [Dynamics 365's](https://learn.microsoft.com/en-us/dynamics365/sales/sales-qualification-agent) are configured inside the tool. See the [no-code AI agent tools guide](/en/news/2026-07-08-no-code-ai-agent-tools/) for the trade-offs.
+
+One real AI agent a week, straight to your inbox. Free, no upsell.
