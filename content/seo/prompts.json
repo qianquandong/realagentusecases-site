@@ -1,6 +1,6 @@
 {
   "$comment": "GEO prompt feed — the questions working professionals ask ChatGPT / Perplexity / Gemini. The scheduled Cowork routine ideates entries; scripts/seo/feeds.mjs persists them. cluster: use-case|template|comparison|industry|tool-stack. status: new|covered (covered = a published article targets it). Phase 7 tracks whether the brand is cited for each.",
-  "updatedAt": "2026-07-15",
+  "updatedAt": "2026-07-18",
   "prompts": [
     {
       "prompt": "What are real examples of AI agents at work?",
@@ -200,9 +200,9 @@
       "prompt": "What AI agent should a sales team use for lead qualification?",
       "cluster": "use-case",
       "locale": "en",
-      "status": "new",
+      "status": "covered",
       "addedAt": "2026-07-12",
-      "note": "Sunday feed research 2026-07-12. Pairs with the 'AI agent for lead qualification' keyword; sales/founder funnel."
+      "note": "Covered by content/news/2026-07-18-ai-agent-for-lead-qualification. GEO-probed 2026-07-18: not cited (Lyzr, Microsoft Dynamics 365, petegabi, signatech, qontak, RelevanceAI listicles dominate). Baseline probe on the lead-qualification keyword the day its score-vs-engage article ships (pre-index)."
     }
   ]
 }
