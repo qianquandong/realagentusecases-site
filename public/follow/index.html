@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="36 个值得关注的 AI 学习博主和账号，按平台分类：YouTube、X、B站、Newsletter、播客 · 由 Real Agent Use Cases 整理">
+<title>AI 学习关注清单 · 36 个值得关注的博主 · Real Agent Use Cases</title>
+<link rel="canonical" href="https://realagentusecases.com/follow/">
+<meta name="robots" content="index, follow">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Real Agent Use Cases">
+<meta property="og:title" content="AI 学习关注清单 · 36 个值得关注的博主">
+<meta property="og:description" content="按平台分好类：YouTube 7 个、X 国外 15 个 + 中国 6 个、B站与中文平台 4 个、Newsletter 与播客 4 个。一次关注完，让算法替你养成学习习惯。">
+<meta property="og:url" content="https://realagentusecases.com/follow/">
+<meta property="og:locale" content="zh_CN">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@300..900&family=Geist+Mono:wght@300..700&display=swap">
+<style>
+  :root {
+    --bg: #0a0a0a; --fg: #f2f2f2; --muted: #161616; --muted-fg: #a3a3a3;
+    --border: #262626; --brand: #2d5e44; --brand-hover: #387554;
+    --sans: "Geist", -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", sans-serif;
+    --mono: "Geist Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  }
+  *, *::before, *::after { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--bg); color: var(--fg);
+    font-family: var(--sans); line-height: 1.625;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: var(--fg); text-decoration: none; transition: color .15s; }
+  a:hover { color: var(--brand-hover); }
+  ::selection { background: var(--brand); color: #fff; }
+
+  nav.topnav {
+    position: sticky; top: 0; z-index: 40;
+    border-bottom: 1px solid var(--border);
+    background: rgba(10,10,10,.7); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+  }
+  .nav-inner {
+    max-width: 72rem; margin: 0 auto; padding: 0 1.5rem; height: 3.5rem;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .brand-link { font-family: var(--mono); font-size: .8125rem; }
+  .nav-right { display: flex; gap: 1.25rem; align-items: center; }
+  .nav-link { font-family: var(--mono); font-size: .8125rem; color: var(--muted-fg); }
+  .btn {
+    display: inline-flex; align-items: center; border-radius: .375rem;
+    font-weight: 500; font-size: .875rem; height: 2.25rem; padding: 0 1rem;
+    background: var(--brand); color: #fff;
+  }
+  .btn:hover { background: var(--brand-hover); color: #fff; }
+
+  .hero { max-width: 48rem; margin: 0 auto; padding: 4rem 1.5rem 3.5rem; text-align: center; }
+  .eyebrow-lg {
+    font-family: var(--mono); font-size: .75rem; text-transform: uppercase;
+    letter-spacing: .2em; color: var(--muted-fg); display: block; margin-bottom: 1.25rem;
+  }
+  h1 { font-size: 2.25rem; font-weight: 600; letter-spacing: -.025em; line-height: 1.15; margin: 0; text-wrap: balance; }
+  @media (min-width: 640px) { h1 { font-size: 2.75rem; } }
+  h1 em { color: var(--brand-hover); font-style: normal; }
+  .hero p { color: var(--muted-fg); max-width: 36rem; margin: 1.25rem auto 0; font-size: 1.0625rem; }
+
+  section { border-top: 1px solid rgba(38,38,38,.5); }
+  .inner { max-width: 48rem; margin: 0 auto; padding: 3.5rem 1.5rem; }
+  .sec-eyebrow {
+    font-family: var(--mono); font-size: .6875rem; text-transform: uppercase;
+    letter-spacing: .18em; color: var(--brand-hover); display: block; margin-bottom: .5rem;
+  }
+  h2 { font-size: 1.5rem; font-weight: 600; letter-spacing: -.02em; margin: 0 0 .5rem; }
+  .sec-note { color: var(--muted-fg); margin: 0 0 1.75rem; font-size: .9375rem; }
+
+  ul.follow { list-style: none; padding: 0; margin: 0; }
+  ul.follow li {
+    display: grid; grid-template-columns: 11.5rem 1fr; gap: .25rem 1.25rem;
+    padding: .875rem 0; border-top: 1px dashed rgba(38,38,38,.7); align-items: baseline;
+  }
+  ul.follow li:first-child { border-top: none; padding-top: 0; }
+  @media (max-width: 560px) { ul.follow li { grid-template-columns: 1fr; padding: .75rem 0; } }
+  .who b { font-weight: 600; }
+  .who .handle { font-family: var(--mono); font-size: .75rem; color: var(--brand-hover); display: block; }
+  .why { color: var(--muted-fg); font-size: .9375rem; }
+
+  .tips { background: var(--muted); border-left: 2px solid var(--brand); border-radius: 0 .5rem .5rem 0; padding: 1.5rem 1.75rem; }
+  .tips ol { margin: 0; padding-left: 1.25rem; color: var(--muted-fg); }
+  .tips li { margin: .5rem 0; }
+  .tips strong { color: var(--fg); }
+
+  footer { border-top: 1px solid var(--border); padding: 2.5rem 1.5rem; text-align: center;
+    font-family: var(--mono); font-size: .75rem; color: var(--muted-fg); }
+  footer a { color: var(--muted-fg); }
+  footer a:hover { color: var(--brand-hover); }
+</style>
+</head>
+<body>
+
+<nav class="topnav">
+  <div class="nav-inner">
+    <a class="brand-link" href="/">realagentusecases.com</a>
+    <div class="nav-right">
+      <a class="nav-link" href="/agent-101/03-ai-tools-workflows/">工作流</a>
+      <a class="nav-link" href="https://github.com/qianquandong/real-agent-workflows" rel="noopener" target="_blank">GitHub</a>
+      <a class="btn" href="https://realagentusecases.com">Subscribe</a>
+    </div>
+  </div>
+</nav>
+
+<div class="hero">
+  <span class="eyebrow-lg">Follow list · 持续更新</span>
+  <h1>AI 学习关注清单：<em>36 个</em>值得关注的博主</h1>
+  <p>不用到处找「AI 怎么学」。把这份清单一次关注完、每家点几个赞，你刷手机这个已有的习惯，就自动变成刷学习内容。这是环境设计，不是意志力。</p>
+</div>
+
+<section>
+  <div class="inner">
+    <span class="sec-eyebrow">01 · YouTube · 7 个</span>
+    <h2>视频主战场</h2>
+    <p class="sec-note">从职场用法到底层原理，由浅到深排列。</p>
+    <ul class="follow">
+      <li><span class="who"><b>Jeff Su</b><span class="handle">youtube.com/@JeffSu</span></span><span class="why">职场 AI 工作流，打工人视角第一人</span></li>
+      <li><span class="who"><b>Tina Huang</b><span class="handle">youtube.com/@TinaHuang1</span></span><span class="why">AI 学习路径和技术入门讲得最清楚</span></li>
+      <li><span class="who"><b>Matt Wolfe</b><span class="handle">youtube.com/@mreflow</span></span><span class="why">AI 工具和新闻周报，当选题雷达</span></li>
+      <li><span class="who"><b>AI Explained</b><span class="handle">youtube.com/@aiexplained-official</span></span><span class="why">模型发布的深度解读，比新闻号深一层</span></li>
+      <li><span class="who"><b>Andrej Karpathy</b><span class="handle">youtube.com/@AndrejKarpathy</span></span><span class="why">从零手搓 LLM，最硬核的免费课</span></li>
+      <li><span class="who"><b>3Blue1Brown</b><span class="handle">youtube.com/@3blue1brown</span></span><span class="why">神经网络可视化原理，讲概念的比喻宝库</span></li>
+      <li><span class="who"><b>NetworkChuck</b><span class="handle">youtube.com/@NetworkChuck</span></span><span class="why">本地 LLM 动手向，把技术讲得好玩的范本</span></li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <div class="inner">
+    <span class="sec-eyebrow">02 · X · 国外 15 个</span>
+    <h2>大佬看方向，实战派看用法</h2>
+    <p class="sec-note">前八个看行业往哪走，后七个看今天怎么用。</p>
+    <ul class="follow">
+      <li><span class="who"><b>Andrej Karpathy</b><span class="handle">@karpathy</span></span><span class="why">大格局判断 + 手搓代码，信息密度第一</span></li>
+      <li><span class="who"><b>Sam Altman</b><span class="handle">@sama</span></span><span class="why">OpenAI CEO，风向本人</span></li>
+      <li><span class="who"><b>Greg Brockman</b><span class="handle">@gdb</span></span><span class="why">OpenAI 联创，发布日的第一现场</span></li>
+      <li><span class="who"><b>Demis Hassabis</b><span class="handle">@demishassabis</span></span><span class="why">DeepMind CEO，科学向 AI 进展</span></li>
+      <li><span class="who"><b>Yann LeCun</b><span class="handle">@ylecun</span></span><span class="why">Meta 首席科学家，看他和谁吵就知道领域在争什么</span></li>
+      <li><span class="who"><b>Andrew Ng</b><span class="handle">@AndrewYNg</span></span><span class="why">AI 教育第一人，「普通人怎么学」判断最稳</span></li>
+      <li><span class="who"><b>François Chollet</b><span class="handle">@fchollet</span></span><span class="why">Keras 之父，对 LLM 边界最清醒的反方</span></li>
+      <li><span class="who"><b>Jim Fan</b><span class="handle">@DrJimFan</span></span><span class="why">NVIDIA 具身智能，把论文讲成人话</span></li>
+      <li><span class="who"><b>Ethan Mollick</b><span class="handle">@emollick</span></span><span class="why">打工人用 AI 的研究视角，选题富矿</span></li>
+      <li><span class="who"><b>Simon Willison</b><span class="handle">@simonw</span></span><span class="why">每个新模型都真测，实战笔记第一人</span></li>
+      <li><span class="who"><b>swyx</b><span class="handle">@swyx</span></span><span class="why">AI engineer 圈风向标</span></li>
+      <li><span class="who"><b>McKay Wrigley</b><span class="handle">@mckaywrigley</span></span><span class="why">AI coding 布道，演示方式值得学</span></li>
+      <li><span class="who"><b>Pieter Levels</b><span class="handle">@levelsio</span></span><span class="why">一个人 + AI 做产品的活标本</span></li>
+      <li><span class="who"><b>Alex Albert</b><span class="handle">@alexalbert__</span></span><span class="why">Anthropic 内部人，Claude 新玩法首发</span></li>
+      <li><span class="who"><b>Logan Kilpatrick</b><span class="handle">@OfficialLoganK</span></span><span class="why">Google AI 产品负责人，Gemini 侧动态</span></li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <div class="inner">
+    <span class="sec-eyebrow">03 · X · 中国 6 个</span>
+    <h2>中文信息中转站</h2>
+    <p class="sec-note">英文圈的动态，这几位基本当天就有中文版。</p>
+    <ul class="follow">
+      <li><span class="who"><b>宝玉</b><span class="handle">@dotey</span></span><span class="why">中文圈最勤的 AI 解读翻译</span></li>
+      <li><span class="who"><b>歸藏</b><span class="handle">@op7418</span></span><span class="why">AI 工具新玩法中文首发</span></li>
+      <li><span class="who"><b>向阳乔木</b><span class="handle">@vista8</span></span><span class="why">AI 工具和方法论分享，中文圈活跃节点</span></li>
+      <li><span class="who"><b>Orange AI</b><span class="handle">@oran_ge</span></span><span class="why">AI 产品视角，什么能做成产品嗅觉好</span></li>
+      <li><span class="who"><b>小互</b><span class="handle">@imxiaohu</span></span><span class="why">AI 资讯最勤账号之一，新工具当天有演示</span></li>
+      <li><span class="who"><b>dontbesilent</b><span class="handle">@dontbesilent</span></span><span class="why">商业模式和内容创业的思考——AI 之外补的那门商业课</span></li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <div class="inner">
+    <span class="sec-eyebrow">04 · B站与中文平台 · 4 个</span>
+    <h2>中文深度内容</h2>
+    <ul class="follow">
+      <li><span class="who"><b>跟李沐学AI</b><span class="handle">B站</span></span><span class="why">论文精读和大模型课，中文最硬核</span></li>
+      <li><span class="who"><b>秋芝2046</b><span class="handle">B站 · 小红书</span></span><span class="why">AI 工具实操教程，小红书 AI 内容的活样本</span></li>
+      <li><span class="who"><b>数字生命卡兹克</b><span class="handle">公众号</span></span><span class="why">AI 教程 + 测评长文，中文深度写作标杆</span></li>
+      <li><span class="who"><b>量子位</b><span class="handle">公众号</span></span><span class="why">中文 AI 资讯，当新闻源不当老师</span></li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <div class="inner">
+    <span class="sec-eyebrow">05 · Newsletter 与播客 · 4 个</span>
+    <h2>不用刷，送上门</h2>
+    <ul class="follow">
+      <li><span class="who"><b>The Rundown AI</b><span class="handle">newsletter</span></span><span class="why">每天 5 分钟 AI 新闻，进你邮箱</span></li>
+      <li><span class="who"><b>Ben's Bites</b><span class="handle">newsletter</span></span><span class="why">AI 产品和创业向日报</span></li>
+      <li><span class="who"><b>Latent Space</b><span class="handle">podcast</span></span><span class="why">AI 工程师圈深度访谈</span></li>
+      <li><span class="who"><b>Lex Fridman</b><span class="handle">podcast</span></span><span class="why">AI 大佬长访谈，开车健身时听</span></li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <div class="inner">
+    <span class="sec-eyebrow">怎么用这份清单</span>
+    <h2>关注只要五分钟，剩下交给算法</h2>
+    <div class="tips" style="margin-top:1.5rem;">
+      <ol>
+        <li><strong>今天一次性关注完，每家连点 3 个赞。</strong>算法两三天就喂熟，之后「刷手机」自动等于「刷学习内容」。</li>
+        <li><strong>Newsletter 不用建新习惯。</strong>它们进邮箱，让你的邮箱 triage 工作流自动归进 FYI 桶。</li>
+        <li><strong>刷到好内容，链接粘进收集箱。</strong>晚上自动转文字进知识库——收藏不等于学过，入库才算数。</li>
+      </ol>
+    </div>
+    <p style="color:var(--muted-fg); font-size:.875rem; margin-top:1.5rem;">
+      第 2、3 条说的工作流都开源在 <a href="https://github.com/qianquandong/real-agent-workflows" rel="noopener" target="_blank" style="color:var(--brand-hover); text-decoration:underline; text-underline-offset:3px;">real-agent-workflows</a>，完整背景见<a href="/agent-101/03-ai-tools-workflows/" style="color:var(--brand-hover); text-decoration:underline; text-underline-offset:3px;">我真实在跑的 22 条 AI 工作流</a>。清单按活跃度定期复核，博主近况以其主页为准。
+    </p>
+  </div>
+</section>
+
+<footer>
+  © 2026 · Jack Qian · <a href="https://realagentusecases.com">realagentusecases.com</a> · Dallas, TX
+</footer>
+
+</body>
+</html>
