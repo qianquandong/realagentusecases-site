@@ -1,6 +1,6 @@
 {
   "$comment": "SEO keyword feed — a living file. The scheduled Cowork routine ideates entries; scripts/seo/feeds.mjs persists them (dedupe + status + timestamps). intent: informational|commercial|transactional. funnel: TOFU|MOFU|BOFU. cluster: use-case|template|comparison|industry|tool-stack. status: new|used.",
-  "updatedAt": "2026-07-18",
+  "updatedAt": "2026-07-19",
   "keywords": [
     {
       "term": "AI agent use cases",
@@ -262,6 +262,76 @@
       "status": "new",
       "addedAt": "2026-07-12",
       "note": "Sunday feed research 2026-07-12. Grounded in Lindy content-repurposing use case (blog -> LinkedIn/newsletter/short video). Clusters with founders; solo-operator angle fits the site's audience."
+    },
+    {
+      "term": "AI agent for invoice processing",
+      "intent": "informational",
+      "funnel": "MOFU",
+      "cluster": "use-case",
+      "locale": "both",
+      "status": "new",
+      "addedAt": "2026-07-19",
+      "note": "Sunday feed research 2026-07-19. Grounded in Ramp Bill Pay (autonomous AP), Peakflo, and Stampli 2026 AP-automation writeups (touchless invoice processing vs RPA). Capture-and-code vs approve-and-pay angle; clusters with crm-data-entry (both back-office data stewardship) and the financial-analysts industry keyword."
+    },
+    {
+      "term": "AI agent for expense management",
+      "intent": "informational",
+      "funnel": "MOFU",
+      "cluster": "use-case",
+      "locale": "both",
+      "status": "new",
+      "addedAt": "2026-07-19",
+      "note": "Sunday feed research 2026-07-19. Grounded in ExpenseAnywhere agentic expense-management guide and Ramp T&E; pairs with invoice-processing (unified T&E+AP theme). Clusters with financial-analysts and founders (solo-operator back office)."
+    },
+    {
+      "term": "AI agent for resume screening",
+      "intent": "informational",
+      "funnel": "MOFU",
+      "cluster": "use-case",
+      "locale": "both",
+      "status": "new",
+      "addedAt": "2026-07-19",
+      "note": "Sunday feed research 2026-07-19. Grounded in AIHR, SeekOut, HeroHunt, Recruiterflow 2026 recruiting-agent guides (sourcing/screening/scheduling agents, human-in-loop caveats). Downstream concrete use-case under the existing 'AI agents for recruiters' industry keyword; sort-vs-decide framing mirrors our triage articles."
+    },
+    {
+      "term": "Zapier agents vs Zaps",
+      "intent": "commercial",
+      "funnel": "MOFU",
+      "cluster": "comparison",
+      "locale": "both",
+      "status": "new",
+      "addedAt": "2026-07-19",
+      "note": "Sunday feed research 2026-07-19. Grounded in Zapier's own 'Zapier Agents' guide + AI Orchestration launch (plan/reason/adapt agents vs fixed-rule Zaps, plain-English orchestration). Clusters with claude-vs-zapier and no-code-ai-agent-tools; rules-vs-reasoning angle."
+    },
+    {
+      "term": "AI agent guardrails for business",
+      "intent": "informational",
+      "funnel": "MOFU",
+      "cluster": "tool-stack",
+      "locale": "both",
+      "status": "new",
+      "addedAt": "2026-07-19",
+      "note": "Sunday feed research 2026-07-19. Grounded in Zapier's Feb-2026 AI guardrails/governance update (PII scan across 30+ types, prompt-injection detection, block/route/escalate) and the 2026 governance theme in Google Cloud's agent-trends report. Cross-cutting 'deploy safely' angle that clusters with every use-case article; timely as agents gain write access."
+    },
+    {
+      "term": "AI agent for social media content",
+      "intent": "informational",
+      "funnel": "MOFU",
+      "cluster": "use-case",
+      "locale": "both",
+      "status": "new",
+      "addedAt": "2026-07-19",
+      "note": "Sunday feed research 2026-07-19. Grounded in Lindy content-repurposing template (blog -> LinkedIn/newsletter/short video). Extends the existing content-repurposing keyword to the distribution step; clusters with founders (solo operator wearing the marketing hat)."
+    },
+    {
+      "term": "what is MCP for AI agents",
+      "intent": "informational",
+      "funnel": "TOFU",
+      "cluster": "tool-stack",
+      "locale": "both",
+      "status": "new",
+      "addedAt": "2026-07-19",
+      "note": "Sunday feed research 2026-07-19. Grounded in Anthropic's Model Context Protocol and the 'native MCP + A2A as production primitives' framing in Google Cloud / Shakudo 2026 agent-framework roundups. Explainer that underpins the existing google-workspace-mcp-server keyword and Issue #001's connector plumbing; clusters with no-code-ai-agent-tools."
     }
   ]
 }
