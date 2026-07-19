@@ -1,7 +1,19 @@
 {
   "$comment": "LLM brand-mention tracking time series. The scheduled Cowork routine appends one snapshot per run: which target prompts surfaced the brand, in which LLMs, with what sentiment.",
-  "updatedAt": "2026-07-18",
+  "updatedAt": "2026-07-19",
   "snapshots": [
+    {
+      "date": "2026-07-19",
+      "probes": [
+        {
+          "prompt": "What AI agents should a recruiter use?",
+          "cited": false,
+          "url": null,
+          "position": null,
+          "note": "Sunday run (feed-replenishment day, no article). Web search dominated by AIHR (Top 9 AI agents for recruiting), MindStudio, Eightfold, SeekOut, HeroHunt, HeyMilo, Curately, Phenom, Craze, Recruiterflow listicles. realagentusecases.com did not appear in top results. Never-probed prompt on the recruiters industry cluster (entirely unwritten) — baselines citation before any recruiter-facing article ships; a new 'AI agent for resume screening' keyword was added to the feed this run as the concrete downstream use-case. Health: direct site fetch (sitemap.xml) still returns 403 via the egress proxy — confirmed policy denial, a known sandbox limitation, not a site outage; site:realagentusecases.com confirms the email-triage guide is indexed and live."
+        }
+      ]
+    },
     {
       "date": "2026-07-18",
       "probes": [
