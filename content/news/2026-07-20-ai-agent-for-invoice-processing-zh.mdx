@@ -1,0 +1,47 @@
+---
+title: "发票处理 AI Agent：起草还是付款"
+date: "2026-07-20"
+excerpt: "一类发票 agent 负责起草——抓取、编码、与采购单匹配，交给人审批；另一类自己审批并付款。本文讲清两者的分野，以及该从哪一步开始。"
+---
+
+发票处理的 AI agent 只做两件事之一。一是*起草这张账*——读发票、抽取并给每一行做 GL 编码、与采购单匹配，好让人来审批；二是*审批并付款*——自己完成审批路由、把钱打出去。起草省的是键盘敲击，付款动的是真金白银，而这个差别决定了你该交出多少自主权。
+
+## "帮我处理发票"背后藏着两个活儿
+
+"发票处理"听起来是一件杂事，但只要问一句*agent 被允许对钱做什么*，它就分成两半。一种只读发票、把一切准备好——抽取好的字段、GL 编码、采购单匹配、建议的审批人——然后停下，等人点"通过"。另一种则自己走完审批路由、把款打出去。前者是填单据的文员，后者是签支票的出纳。这和我们在[客服工单分诊](/zh/news/2026-07-15-ai-agent-customer-support-triage/)里遇到的"只读 vs 动手"是同一个分野，也是我们为 [CRM 数据录入](/zh/news/2026-07-16-ai-agent-crm-data-entry/)划下的那条线——*准备*一条记录，和*提交*一个不可逆的动作，是两种不同的风险。我们在 Issue #001 的 [Gmail 分诊 agent](/zh/posts/2026-05-13-gmail-ai-agent/) 背后那套"分桶定优先级"的纪律，本质是同一个直觉：先想清楚哪个动作可以安全自动化，再去自动化它。
+
+## 活儿一 —— 起草这张账（抓取、编码、匹配）
+
+这是安全的那一半，也是多数财务团队该起步的地方。agent 摄入发票，抽出表头和明细数据，套上正确的 GL 编码，与采购单核对，然后把一份做好的草稿交给人审批。没有一分钱在人点头之前离开公司。两条真实路径：
+
+- **AP 平台里的 AI 编码 + 匹配。** [Stampli 的 Billy the Bot](https://www.stampli.com/billy-the-bot-stamplis-ai-copilot) 会逐行给发票编码——套用它从你会计历史里学到的 GL 科目、部门和自定义维度，校验供应商、标记重复、把发票关联到正确的采购单。关键在于，Stampli 把 Billy 的产出定位为[财务团队可复核、可覆盖的建议](https://www.stampli.com/blog/inside-stampli/meet-billy-stamplis-accounts-payable-ai/)——责任仍在人这边。[Ramp Bill Pay](https://ramp.com/accounts-payable) 的自动编码 agent 做同样的活儿，按你的历史模式把明细映射到 GL 编码；Ramp 称它用 OCR 抓取供应商、日期、金额和明细，并在发送前跑[两路与三路采购单匹配](https://ramp.com/blog/accounts-payable/ai-invoice-processing)。
+- **匹配本身就是那道控制。** "起草"之所以安全，靠的是[三路匹配](https://www.netsuite.com/portal/resource/articles/accounting/three-way-matching.shtml)：agent 在审批前把供应商发票与采购单、收货单三方核对，确认你确实下了单、收了货、认了价。这是一步"读取并比对"——它能在不碰你银行账户的前提下，抓出多收费、重复、以及未到货却开票的情况。
+
+## 活儿二 —— 审批并付款（钱在动）
+
+当你想让 agent 去*走审批路由、把款打出去*，你就从文员跨到了出纳，风险随之改变，因为一笔打错的款远比一个填错的 CRM 字段更难追回。[Ramp 的 Bill Pay](https://support.ramp.com/hc/en-us/articles/47024360747027-AP-Agents-available-in-Ramp-Bill-Pay) 描述了一套由多个 AI agent 驱动的 AP 流程，分别负责编码、审批摘要、欺诈检测和卡支付——审批 agent 会汇总供应商历史和采购单匹配，让审批人拿到完整上下文。
+
+诚实的提醒：*付款*那一步的完全自主，正是错误变昂贵的地方，所以护栏比自动化更重要。Ramp 自己给的答案，是一个在付款前就[标记可疑动作的欺诈防护 agent](https://support.ramp.com/hc/en-us/articles/47024360747027-AP-Agents-available-in-Ramp-Bill-Pay)——比如供应商银行信息的意外变更。对新供应商、变更的银行账户、以及超过阈值的金额，都保留一道人工审批；只让 agent 自动放行那些低风险、完全匹配、周期性的发票。这就是为什么起草要排在前面：先把"抽取加匹配"那一层做到可信，再让任何东西去碰钱。
+
+## 你到底需要哪一个？
+
+如果你的痛点是*"AP 被埋在手工录入和编码里，审批在某人邮箱里躺一周"*，那是活儿一——一个负责抓取、编码、匹配的起草 agent，最后仍由人点"通过"。如果你的痛点是*"就算发票编好码，放款仍是一条缓慢的手工链"*，那是活儿二——自主审批与付款，由欺诈检查和阈值把关。多数团队应当"挣得"活儿二：先跑起草 agent，直到它的编码和匹配稳定可靠，再为你信任的那一小块低风险发票自动化付款。刚入门？从 [Agent 101](/zh/agent-101/) 开始，或看看能把捕获步骤接进你会计系统的[无代码 AI agent 工具](/zh/news/2026-07-08-no-code-ai-agent-tools/)。
+
+## FAQ
+
+**AI agent 能自动处理发票吗？**
+能，分两步。安全的一步是起草：[Stampli 的 Billy](https://www.stampli.com/billy-the-bot-stamplis-ai-copilot) 和 [Ramp Bill Pay](https://ramp.com/accounts-payable) 抓取发票、套 GL 编码、与采购单匹配，交给人审批。而完全自动化*付款*是另一个更高风险的决定，需要用欺诈检查和审批阈值来把关。
+
+**什么是三路匹配，为什么重要？**
+[三路匹配](https://www.netsuite.com/portal/resource/articles/accounting/three-way-matching.shtml)会在付款前把供应商发票与采购单、收货单三方核对，确认每张账你都下了单、收了货、认了价——这正是让 agent 能安全起草发票的原因，因为它在任何钱动之前就抓出多收费和重复。
+
+**该让 AI agent 不经审批就付款吗？**
+只对你信任的那一小块——来自已知供应商、完全匹配、金额在设定线以下的周期性发票。新供应商、变更的银行账户、大额款项都留人审批。[Ramp 的欺诈防护 agent](https://support.ramp.com/hc/en-us/articles/47024360747027-AP-Agents-available-in-Ramp-Bill-Pay) 会在付款前标记可疑的供应商银行信息变更，正是为此。
+
+**这和 CRM 数据录入 agent 有什么不同？**
+结构是一样的——一个低风险的捕获层，对上一个更高风险的提交层。我们的 [CRM 数据录入指南](/zh/news/2026-07-16-ai-agent-crm-data-entry/)划的是同一条线：记录发生了什么，与改写你预测所读的字段。发票处理只是把后半段的风险抬高了，因为被提交的那个动作是一笔付款。
+
+**搭一个发票处理 agent 需要写代码吗？**
+不需要。[Stampli](https://www.stampli.com/billy-the-bot-stamplis-ai-copilot) 和 [Ramp Bill Pay](https://ramp.com/accounts-payable) 这类 AP 平台，把编码、匹配、审批的 agent 当成可配置的功能来提供，而不是脚本。先从起草层开始，在你真实的发票上确认编码准确，再逐步放宽 agent 被允许支付的范围。
+
+每周一个真实的 AI agent，直接发到你的邮箱。免费，无推销。

@@ -1,7 +1,19 @@
 {
   "$comment": "LLM brand-mention tracking time series. The scheduled Cowork routine appends one snapshot per run: which target prompts surfaced the brand, in which LLMs, with what sentiment.",
-  "updatedAt": "2026-07-19",
+  "updatedAt": "2026-07-20",
   "snapshots": [
+    {
+      "date": "2026-07-20",
+      "probes": [
+        {
+          "prompt": "What AI agent can process invoices automatically?",
+          "cited": false,
+          "url": null,
+          "position": null,
+          "note": "Web search dominated by akira.ai, domo (invoicing AI agents glossary), beam.ai (invoice-processing agent template), glideapps, relevanceai, SS&C Blue Prism (Invoice Data Agent), zamp listicles/product pages. realagentusecases.com did not appear in top results. Prompt pairs with today's published article (ai-agent-for-invoice-processing) — a baseline probe on that keyword before the new page is indexed. Health: direct site fetch (sitemap.xml) still returns 403 via the egress proxy — confirmed policy denial, a known sandbox limitation, not a site outage (proxy status shows recentRelayFailures: []); site:realagentusecases.com confirms the email-triage guide is indexed and live."
+        }
+      ]
+    },
     {
       "date": "2026-07-19",
       "probes": [

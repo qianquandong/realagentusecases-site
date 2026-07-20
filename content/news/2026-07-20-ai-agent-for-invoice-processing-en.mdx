@@ -1,0 +1,47 @@
+---
+title: "AI Agent for Invoice Processing: Draft vs. Pay"
+date: "2026-07-20"
+excerpt: "One invoice agent drafts the entry — capturing, coding, and PO-matching for a human to approve; another approves and pays on its own. Here's the split."
+---
+
+An AI agent for invoice processing does one of two jobs. One *drafts the bill* — reading the invoice, extracting and GL-coding each line, and matching it to the purchase order so a person can approve. The other *approves and pays* — routing the invoice and releasing the payment on its own. Drafting saves keystrokes; paying moves money, and that difference decides how much autonomy you hand over.
+
+## Two jobs hiding in "automate my invoices"
+
+"Invoice processing" sounds like one chore, but the moment you ask *what the agent is allowed to do with the money*, it splits. One version reads the invoice and prepares everything — extracted fields, GL codes, a PO match, a suggested approver — then stops and waits for a human to click approve. The other version routes the approval and pushes the payment itself. The first is a clerk who fills in the paperwork; the second is a treasurer who signs the check. It's the same read-only-vs-act split we hit with [customer support triage](/en/news/2026-07-15-ai-agent-customer-support-triage/), and the field-editing line we drew for [CRM data entry](/en/news/2026-07-16-ai-agent-crm-data-entry/) — *preparing* a record is a different risk from *committing* an irreversible action. The bucket-and-priority discipline behind our [Gmail triage agent](/en/posts/2026-05-13-gmail-ai-agent/) in Issue #001 is the same instinct: decide which action is safe to automate before you automate it.
+
+## Job 1 — Draft the bill (capture, code, match)
+
+This is the safe half, and where most finance teams should start. The agent ingests the invoice, pulls the header and line-item data, applies the right GL codes, checks it against the purchase order, and surfaces a finished draft for a human to approve. Nothing leaves the building without a person. Two real routes:
+
+- **AI coding + matching inside an AP platform.** [Stampli's Billy the Bot](https://www.stampli.com/billy-the-bot-stamplis-ai-copilot) codes invoices line by line — applying GL accounts, departments, and custom dimensions learned from your accounting history, validating vendors, flagging duplicates, and linking invoices to the right POs. Crucially, Stampli frames Billy's output as [suggestions the finance team reviews and can override](https://www.stampli.com/blog/inside-stampli/meet-billy-stamplis-accounts-payable-ai/) — the human stays accountable. [Ramp Bill Pay's](https://ramp.com/accounts-payable) auto-coding agent does the same job, mapping line items to GL codes from your historical patterns; Ramp says it uses OCR to capture vendor, date, amount, and line items, and runs [two-way and three-way PO matching](https://ramp.com/blog/accounts-payable/ai-invoice-processing) before anything is sent.
+- **The matching itself is the control.** The reason "draft" is safe is [three-way matching](https://www.netsuite.com/portal/resource/articles/accounting/three-way-matching.shtml): the agent cross-checks the vendor invoice against the purchase order and the goods-receipt note before approval, confirming you actually ordered, received, and agreed the price. That's a read-and-compare step — it catches overcharges, duplicates, and invoices for undelivered goods without touching your bank.
+
+## Job 2 — Approve and pay (money moves)
+
+When you want the agent to *route the approval and release the payment*, you've crossed from clerk to treasurer, and the stakes change, because a wrong payment is far harder to claw back than a wrong CRM field. [Ramp's Bill Pay](https://support.ramp.com/hc/en-us/articles/47024360747027-AP-Agents-available-in-Ramp-Bill-Pay) describes an AP flow driven by several AI agents that handle coding, approval summaries, fraud detection, and card-based payment — the approval agent summarizes vendor history and PO matching so an approver has full context.
+
+The honest caveat: full autonomy on the *pay* step is where a mistake becomes expensive, so the guardrails matter more than the automation. Ramp's own answer is a [fraud-prevention agent](https://support.ramp.com/hc/en-us/articles/47024360747027-AP-Agents-available-in-Ramp-Bill-Pay) that flags suspicious activity — like an unexpected change to a vendor's banking details — *before* a payment goes out. Keep a human approval on new vendors, changed bank details, and anything above a threshold; let the agent auto-release only the low-risk, fully-matched, recurring invoices. That's why drafting comes first: get the extract-and-match layer trustworthy before you let anything touch the money.
+
+## Which do you actually need?
+
+If your pain is *"AP is buried in manual data entry and coding, and approvals sit in someone's inbox for a week,"* that's Job 1 — a drafting agent that captures, codes, and matches, with a human still clicking approve. If your pain is *"even after the invoice is coded, releasing payment is a slow manual chain,"* that's Job 2 — autonomous approval and payment, gated by fraud checks and thresholds. Most teams should earn Job 2: run the drafting agent until its coding and matching are reliable, then automate payment for the narrow, low-risk slice you trust. New to the idea? Start at [Agent 101](/en/agent-101/), or see the [no-code AI agent tools](/en/news/2026-07-08-no-code-ai-agent-tools/) that can wire the capture step to your accounting system.
+
+## FAQ
+
+**Can an AI agent process invoices automatically?**
+Yes, in two stages. The safe stage is drafting: [Stampli's Billy](https://www.stampli.com/billy-the-bot-stamplis-ai-copilot) and [Ramp Bill Pay](https://ramp.com/accounts-payable) capture the invoice, apply GL codes, and match it to the purchase order for a human to approve. Fully automating the *payment* is a separate, higher-risk decision you gate with fraud checks and approval thresholds.
+
+**What is three-way matching, and why does it matter?**
+[Three-way matching](https://www.netsuite.com/portal/resource/articles/accounting/three-way-matching.shtml) cross-checks the vendor invoice against the purchase order and the goods-receipt note before payment. It confirms you ordered, received, and agreed the price on every bill — which is what lets an agent draft an invoice safely, because it catches overcharges and duplicates before any money moves.
+
+**Should I let an AI agent pay invoices without approval?**
+Only for the narrow slice you trust — recurring, fully-matched invoices from known vendors under a set amount. Keep a human on new vendors, changed bank details, and large sums. [Ramp's fraud-prevention agent](https://support.ramp.com/hc/en-us/articles/47024360747027-AP-Agents-available-in-Ramp-Bill-Pay) flags suspicious vendor-banking changes before payment for exactly this reason.
+
+**How is this different from a CRM data-entry agent?**
+The structure is identical — a low-risk capture layer versus a higher-risk committing layer. Our [CRM data-entry guide](/en/news/2026-07-16-ai-agent-crm-data-entry/) draws the same line between logging what happened and rewriting the fields your forecast reads. Invoice processing just raises the stakes on the second half, because the committed action is a payment.
+
+**Do I need code to build an invoice-processing agent?**
+No. AP platforms like [Stampli](https://www.stampli.com/billy-the-bot-stamplis-ai-copilot) and [Ramp Bill Pay](https://ramp.com/accounts-payable) ship the coding, matching, and approval agents as configurable features, not scripts. Start with the drafting layer, confirm the coding is accurate on your real invoices, and only then widen what the agent is allowed to pay.
+
+One real AI agent a week, straight to your inbox. Free, no upsell.
