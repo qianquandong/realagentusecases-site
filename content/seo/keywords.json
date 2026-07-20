@@ -1,6 +1,6 @@
 {
   "$comment": "SEO keyword feed — a living file. The scheduled Cowork routine ideates entries; scripts/seo/feeds.mjs persists them (dedupe + status + timestamps). intent: informational|commercial|transactional. funnel: TOFU|MOFU|BOFU. cluster: use-case|template|comparison|industry|tool-stack. status: new|used.",
-  "updatedAt": "2026-07-19",
+  "updatedAt": "2026-07-20",
   "keywords": [
     {
       "term": "AI agent use cases",
@@ -269,9 +269,9 @@
       "funnel": "MOFU",
       "cluster": "use-case",
       "locale": "both",
-      "status": "new",
+      "status": "used",
       "addedAt": "2026-07-19",
-      "note": "Sunday feed research 2026-07-19. Grounded in Ramp Bill Pay (autonomous AP), Peakflo, and Stampli 2026 AP-automation writeups (touchless invoice processing vs RPA). Capture-and-code vs approve-and-pay angle; clusters with crm-data-entry (both back-office data stewardship) and the financial-analysts industry keyword."
+      "note": "content/news/2026-07-20-ai-agent-for-invoice-processing (en+zh). Draft-vs-pay framing: a drafting agent that captures/GL-codes/PO-matches an invoice for a human to approve (Stampli Billy the Bot — output framed as reviewable suggestions; Ramp Bill Pay auto-coding agent + OCR + two/three-way match; NetSuite three-way-match definition as the control) vs an autonomous approve-and-pay flow (Ramp Bill Pay's four-agent flow incl. a fraud-prevention agent flagging vendor-bank changes pre-payment). Grounded in Issue #001's safe-write discipline; clusters with crm-data-entry (wove downstream link into its 'Which do you need' section — capture-vs-commit parallel), customer-support-triage (read-vs-act), financial-analysts."
     },
     {
       "term": "AI agent for expense management",
