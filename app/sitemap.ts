@@ -1,8 +1,16 @@
+import fs from "node:fs";
+import path from "node:path";
 import type { MetadataRoute } from "next";
 import { getAllContent, contentHref } from "@/lib/content";
 import { SITE_CONFIG } from "@/lib/config";
 
 export const dynamic = "force-static";
+
+// Standalone HTML pages under public/ (agent-101, follow, dallas, …) are
+// invisible to the Next router, so glob them in here. Bump this date when
+// their content meaningfully changes — CI file mtimes are clone time, so
+// they can't be used as lastModified.
+const STATIC_PAGES_LASTMOD = new Date("2026-07-19");
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl =
@@ -40,6 +48,20 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         priority: 0.8,
       });
     }
+  }
+
+  const publicDir = path.join(process.cwd(), "public");
+  const entries = fs.readdirSync(publicDir, { recursive: true }) as string[];
+  for (const entry of entries) {
+    if (path.basename(entry) !== "index.html") continue;
+    const rel = path.dirname(entry).split(path.sep).join("/");
+    if (rel === ".") continue;
+    urls.push({
+      url: `${baseUrl}/${rel}/`,
+      lastModified: STATIC_PAGES_LASTMOD,
+      changeFrequency: "monthly",
+      priority: 0.7,
+    });
   }
 
   return urls;
