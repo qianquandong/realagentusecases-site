@@ -1,0 +1,47 @@
+---
+title: "费用报销 AI Agent：提交还是审批"
+date: "2026-07-21"
+excerpt: "一类费用 agent 负责扫描并归类收据、对照政策核查，交给人提交；另一类自己审批并报销。本文讲清两者的分野，以及该从哪一步开始。"
+---
+
+费用报销的 AI agent 只做两件事之一。一是*准备这张报销单*——扫描收据、抽出商户、日期、金额，按政策归类，把任何异常标出来交给人提交;二是*自己审批并报销*。准备省的是手工录入，报销动的是真金白银，而这个差别决定了你该交出多少自主权。
+
+## "帮我搞定报销"背后藏着两个活儿
+
+"费用报销"听起来是一件杂事，但只要问一句*agent 被允许对钱做什么*，它就分成两半——这和我们昨天为[发票处理](/zh/news/2026-07-20-ai-agent-for-invoice-processing/)、更早为[客服工单分诊](/zh/news/2026-07-15-ai-agent-customer-support-triage/)划下的"只读 vs 动手"是同一条线。一种只读收据、把报销单建好——抽取好的字段、一个类别、一道政策核查、把异常标出来——然后停下，等人提交、等审批人点头。另一种则自己走完审批路由、把报销款打出去。前者是填单的记账员，后者是签字放行的经理。我们在 Issue #001 的 [Gmail 分诊 agent](/zh/posts/2026-05-13-gmail-ai-agent/) 背后那套"分桶定优先级"的纪律，本质是同一个直觉：先想清楚哪个动作可以安全自动化，再去自动化它。
+
+## 活儿一 —— 准备报销单（扫描、归类、核查）
+
+这是安全的那一半，也是多数团队该起步的地方。agent 抓取收据，抽出结构化数据，按你的政策归类，然后交出一份做好的草稿——没有一分钱在人点头之前被报销。两条真实路径：
+
+- **在费用平台里捕获并自动归类。** [Expensify 的 SmartScan](https://use.expensify.com/receipt-scanning-app) 从任何收据上读出商户、日期、金额——Expensify 称支持 150+ 种货币——再把它与卡交易匹配、按你的政策自动归类。它的 [Concierge AI agent](https://use.expensify.com/blog/expensify-concierge-expense-tracking-ai-agent) 会在信息不清时介入，在费用被提交*之前*追问补充，而不是之后。[Brex](https://www.brex.com/journal/accelerate-expense-management-with-ai) 把同样的起草层描述为一个助手：帮员工取收据、起草费用备注、回答政策问题。
+- **政策核查本身就是那道控制。** "准备"之所以安全，靠的是 agent 的活儿是"读取并比对"：把每一行对照单笔限额、类别规则和预算上限核验，然后把违规标出来交给人，而不是直接拦下或付款。[Ramp](https://ramp.com/blog/ai-expense-management) 把它的 AI 定位为在编码环节就执行政策——自动给多数费用编码，并把重复订阅和超政策支出浮出来——而决定权仍在人手里处理那些例外。
+
+## 活儿二 —— 审批并报销（钱在动）
+
+当你想让 agent 去*走审批路由、把报销款打出去*，你就从记账员跨到了审批人，风险随之改变，因为一笔打错的报销远比一个填错的类别更难追回。[Brex](https://www.brex.com/journal/accelerate-expense-management-with-ai) 描述了一个复核 agent：自动通过低风险费用、把例外上报；再加一个审计 agent，按风险等级给潜在违规排序——这套路数是*自动清掉显而易见的、上报存疑的*，而不是*全部通过*。
+
+诚实的提醒：*报销*那一步的完全自主，正是错误变昂贵的地方，所以审计层比自动化更重要。这正是欺诈与审计工具的用武之地：[AppZen](https://www.appzen.com/ai-for-expense-audit) 称它的 AI 会读取收据内容、与政策和商户数据交叉核对，并审计 100% 的费用而非抽样——而且它会[把每份报销单与历史数据比对，在报销前抓出重复收据](https://www.appzen.com/blog/duplicate-receipts)。对超政策的申报、异常金额、以及审计 agent 标出的任何东西，都保留一道人工;只让 agent 自动通过那些干净、合规、收据匹配、你信任的那一小块。这就是为什么准备要排在前面：先把"扫描加归类"那一层做到可信，再让任何东西去放款。
+
+## 你到底需要哪一个？
+
+如果你的痛点是*"人人都讨厌填报销单，收据堆着对不上账"*，那是活儿一——一个负责扫描、归类、政策核查的准备 agent，最后仍由人提交和审批。如果你的痛点是*"就算是干净、明显合规的费用，也在审批队列里躺一周"*，那是活儿二——自主审批与报销，由审计 agent 和政策阈值把关。多数团队应当"挣得"活儿二：先跑准备 agent，直到它在你真实的收据上归类和政策核查都稳定可靠，再为那一小块低风险费用自动化审批。这和我们为[发票处理](/zh/news/2026-07-20-ai-agent-for-invoice-processing/)走过的路一模一样——先起草，后付款。刚入门？从 [Agent 101](/zh/agent-101/) 开始，或看看能把捕获步骤接进你会计系统的[无代码 AI agent 工具](/zh/news/2026-07-08-no-code-ai-agent-tools/)。
+
+## FAQ
+
+**AI agent 能自动搞定我的报销单吗？**
+能，分两步。安全的一步是准备：[Expensify 的 SmartScan 和 Concierge](https://use.expensify.com/blog/expensify-concierge-expense-tracking-ai-agent) 抓取收据、按政策归类、把不清楚的地方标出来交给你提交。而完全自动化*审批与报销*是另一个更高风险的决定，需要用审计层和政策阈值来把关。
+
+**AI agent 怎么对照政策核查费用？**
+它读取每一笔费用，与你的规则比对——单笔限额、类别约束、预算上限——然后把违规标出来，而不是默默付掉。[Ramp](https://ramp.com/blog/ai-expense-management) 在编码环节就执行政策，[AppZen](https://www.appzen.com/ai-for-expense-audit) 则对照政策和商户数据审计 100% 的费用，而非只抽查几笔。
+
+**该让 AI agent 不经人工就审批报销吗？**
+只对你信任的那一小块——干净、合规、收据匹配、金额在设定线以下的费用。超政策的申报、异常金额、重复项都留人审批。[AppZen](https://www.appzen.com/blog/duplicate-receipts) 会把每份报销单与历史数据比对，在报销前抓出重复收据，这正是你不想跳过的那道检查。
+
+**这和发票处理 agent 有什么不同？**
+结构是一样的——一个低风险的捕获层，对上一个更高风险的提交层。我们的[发票处理指南](/zh/news/2026-07-20-ai-agent-for-invoice-processing/)划的是同一条线：*起草*账单，与*付款*。费用报销是同一分野的员工侧版本：准备报销单是安全的，放行报销款才是那个要"挣得"的决定。
+
+**搭一个费用报销 agent 需要写代码吗？**
+不需要。[Expensify](https://use.expensify.com/ai-expense-management)、[Brex](https://www.brex.com/journal/accelerate-expense-management-with-ai)、[Ramp](https://ramp.com/blog/ai-expense-management) 这类平台，把扫描、归类、审计的 agent 当成可配置的功能来提供，而不是脚本。先从准备层开始，在你真实的收据上确认归类准确，再逐步放宽 agent 被允许审批的范围。
+
+每周一个真实的 AI agent，直接发到你的邮箱。免费，无推销。
