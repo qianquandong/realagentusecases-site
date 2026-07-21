@@ -1,0 +1,47 @@
+---
+title: "AI Agent for Expense Management: Submit vs. Approve"
+date: "2026-07-21"
+excerpt: "One expense agent scans and codes the receipt, checking it against policy for a person to submit; another auto-approves and reimburses. Here's the split."
+---
+
+An AI agent for expense management does one of two jobs. One *prepares the report* — scanning the receipt, pulling merchant, date, and amount, categorizing it against policy, and flagging anything odd for a person to submit. The other *approves and reimburses* on its own. Preparing saves data entry; reimbursing moves money, and that gap decides how much autonomy you hand over.
+
+## Two jobs hiding in "automate my expenses"
+
+"Expense management" sounds like one chore, but the moment you ask *what the agent is allowed to do with the money*, it splits — the same read-only-vs-act line we drew for [invoice processing](/en/news/2026-07-20-ai-agent-for-invoice-processing/) yesterday and for [customer support triage](/en/news/2026-07-15-ai-agent-customer-support-triage/) before that. One version reads the receipt and builds the report — extracted fields, a category, a policy check, a flag on anything unusual — then stops and waits for a person to submit and an approver to approve. The other version routes the approval and releases the reimbursement itself. The first is a bookkeeper filling in the form; the second is the manager signing off on it. The bucket-and-priority discipline behind our [Gmail triage agent](/en/posts/2026-05-13-gmail-ai-agent/) in Issue #001 is the same instinct: decide which action is safe to automate before you automate it.
+
+## Job 1 — Prepare the report (scan, categorize, check)
+
+This is the safe half, and where most teams should start. The agent captures the receipt, pulls the structured data, categorizes it against your policy, and surfaces a finished draft — nothing gets reimbursed without a person. Two real routes:
+
+- **Capture and auto-categorize inside an expense platform.** [Expensify's SmartScan](https://use.expensify.com/receipt-scanning-app) reads the merchant, date, and amount off any receipt — Expensify says it handles 150+ currencies — then matches it to the card transaction and categorizes it by your policy automatically. Its [Concierge AI agent](https://use.expensify.com/blog/expensify-concierge-expense-tracking-ai-agent) steps in when something is unclear, asking follow-up questions before the expense is submitted rather than after. [Brex](https://www.brex.com/journal/accelerate-expense-management-with-ai) describes the same drafting layer as an assistant that fetches receipts, drafts expense memos, and answers policy questions for the employee.
+- **The policy check is the control.** The reason "prepare" is safe is that the agent's job is read-and-compare: validate each line against per-transaction limits, category rules, and budget caps, then flag violations for a human instead of blocking or paying. [Ramp](https://ramp.com/blog/ai-expense-management) frames its AI as enforcing policy at the point of coding — auto-coding the majority of expenses and surfacing duplicate subscriptions and out-of-policy spend — while a person still owns the decision on the exceptions.
+
+## Job 2 — Approve and reimburse (money moves)
+
+When you want the agent to *route the approval and release the reimbursement*, you've crossed from bookkeeper to approver, and the stakes change, because a wrong reimbursement is harder to claw back than a wrong category. [Brex](https://www.brex.com/journal/accelerate-expense-management-with-ai) describes a review agent that auto-approves low-risk expenses and escalates exceptions, plus an audit agent that sorts potential policy violations by risk level — the pattern is *auto-clear the obvious, escalate the doubtful*, not *approve everything*.
+
+The honest caveat: full autonomy on the *reimburse* step is where a mistake becomes expensive, so the audit layer matters more than the automation. This is what fraud-and-audit tooling is for: [AppZen](https://www.appzen.com/ai-for-expense-audit) says its AI reads receipt content, cross-references it against policy and merchant data, and audits 100% of expenses rather than a sample — and it [cross-checks every report against historical data to catch duplicate receipts before reimbursement](https://www.appzen.com/blog/duplicate-receipts). Keep a human on out-of-policy claims, unusual amounts, and anything the audit agent flags; let the agent auto-approve only the clean, in-policy, receipt-matched slice you trust. That's why preparing comes first: get the scan-and-categorize layer trustworthy before you let anything release money.
+
+## Which do you actually need?
+
+If your pain is *"everyone hates filling in expense reports and receipts pile up unreconciled,"* that's Job 1 — a preparing agent that scans, categorizes, and policy-checks, with a person still submitting and approving. If your pain is *"even clean, obvious expenses sit in an approval queue for a week,"* that's Job 2 — auto-approval and reimbursement, gated by an audit agent and policy thresholds. Most teams should earn Job 2: run the preparing agent until its categorization and policy checks are reliable on your real receipts, then automate approval for the narrow, low-risk slice. It's the exact progression we walked through for [invoice processing](/en/news/2026-07-20-ai-agent-for-invoice-processing/) — draft first, pay later. New to the idea? Start at [Agent 101](/en/agent-101/), or see the [no-code AI agent tools](/en/news/2026-07-08-no-code-ai-agent-tools/) that can wire the capture step to your accounting system.
+
+## FAQ
+
+**Can an AI agent automate my expense reports?**
+Yes, in two stages. The safe stage is preparing: [Expensify's SmartScan and Concierge](https://use.expensify.com/blog/expensify-concierge-expense-tracking-ai-agent) capture the receipt, categorize it by policy, and flag anything unclear for you to submit. Fully automating the *approval and reimbursement* is a separate, higher-risk decision you gate with an audit layer and policy thresholds.
+
+**How does an AI agent check expenses against policy?**
+It reads each expense and compares it to your rules — per-transaction limits, category constraints, and budget caps — then flags violations instead of silently paying. [Ramp](https://ramp.com/blog/ai-expense-management) enforces policy at the coding step, and [AppZen](https://www.appzen.com/ai-for-expense-audit) audits 100% of expenses against policy and merchant data rather than sampling a few.
+
+**Should I let an AI agent approve reimbursements without a human?**
+Only for the narrow slice you trust — clean, in-policy, receipt-matched expenses under a set amount. Keep a human on out-of-policy claims, unusual amounts, and duplicates. [AppZen](https://www.appzen.com/blog/duplicate-receipts) cross-checks every report against historical data to catch duplicate receipts before reimbursement, which is exactly the check you don't want to skip.
+
+**How is this different from an invoice-processing agent?**
+The structure is identical — a low-risk capture layer versus a higher-risk committing layer. Our [invoice-processing guide](/en/news/2026-07-20-ai-agent-for-invoice-processing/) draws the same line between *drafting* the bill and *paying* it. Expense management is the employee-facing version of the same split: preparing the report is safe, releasing the reimbursement is the decision to earn.
+
+**Do I need code to build an expense agent?**
+No. Platforms like [Expensify](https://use.expensify.com/ai-expense-management), [Brex](https://www.brex.com/journal/accelerate-expense-management-with-ai), and [Ramp](https://ramp.com/blog/ai-expense-management) ship the scanning, categorizing, and audit agents as configurable features, not scripts. Start with the preparing layer, confirm the categorization is accurate on your real receipts, and only then widen what the agent is allowed to approve.
+
+One real AI agent a week, straight to your inbox. Free, no upsell.

@@ -279,9 +279,9 @@
       "funnel": "MOFU",
       "cluster": "use-case",
       "locale": "both",
-      "status": "new",
+      "status": "used",
       "addedAt": "2026-07-19",
-      "note": "Sunday feed research 2026-07-19. Grounded in ExpenseAnywhere agentic expense-management guide and Ramp T&E; pairs with invoice-processing (unified T&E+AP theme). Clusters with financial-analysts and founders (solo-operator back office)."
+      "note": "Used 2026-07-21 → content/news/2026-07-21-ai-agent-for-expense-management-{en,zh}.mdx (title 'AI Agent for Expense Management: Submit vs. Approve'). Submit-vs-approve framing mirrors invoice-processing draft-vs-pay. Sources: Expensify SmartScan/Concierge, Brex journal, Ramp AI expense guide, AppZen expense audit."
     },
     {
       "term": "AI agent for resume screening",
