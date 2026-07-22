@@ -1,0 +1,49 @@
+---
+title: "简历筛选 AI Agent：初筛还是定夺"
+date: "2026-07-22"
+excerpt: "一类简历筛选 agent 按你的标准给候选人排序、筛出短名单交招聘官复核；另一类直接自动拒掉。本文讲清两者的分野，以及为什么拒绝那一步要留人。"
+---
+
+简历筛选的 AI agent 只做两件事之一。一是*初筛*——读完每一份申请，按你的标准给候选人排序，把一份带理由的短名单交给招聘官。二是*定夺*——不经人看就把其余的人自动拒掉。初筛省下的是大把分拣时间，定夺则是偏见和法律风险所在，而这个差别就是全部的决定。
+
+## "帮我筛简历"背后藏着两个活儿
+
+"简历筛选"听起来是一件杂事，但只要问一句*agent 是否被允许自己拒掉一个候选人*，它就分成两半。一种只读取并排序：把每份申请对照岗位硬性要求解析、给匹配度打分、连同理由浮出一份短名单——然后由招聘官决定谁进入下一轮。另一种则直接对这个排序动手，在任何人看到之前把人筛掉。前者是帮你堆好一摞排好序简历的研究助理，后者是在做录用取舍。这和我们为[客服工单分诊](/zh/news/2026-07-15-ai-agent-customer-support-triage/)、[线索资格评定](/zh/news/2026-07-18-ai-agent-for-lead-qualification/)划下的"分拣 vs 动手"是同一条线——按标准给进来的*人*排序，和给进来的线索排序是同一个形状，只是 agent 一旦能说"不"，代价高得多。我们在 Issue #001 的 [Gmail 分诊 agent](/zh/posts/2026-05-13-gmail-ai-agent/) 背后那套"分桶定优先级"的纪律，本质是同一个直觉：先想清楚哪个动作可以安全自动化，再去自动化它。
+
+## 活儿一 —— 初筛并排序（短名单）
+
+这是安全的那一半，也是每个团队都该起步的地方，因为一个排错序的候选人，代价只是招聘官几分钟的复核，而不是一个被错拒的申请人。agent 把每份简历对照明确要求评估，产出一份人来据以工作的排序短名单。两条真实路径：
+
+- **在你已经在用的平台里放一个招聘 agent。** [LinkedIn 的 Hiring Assistant](https://business.linkedin.com/hire/recruiter)——该公司的首个 AI agent——会制定寻源策略、浮出候选人、协助筛选。据 [HR Dive 报道](https://www.hrdive.com/news/linkedin-ai-agent-hiring-assistant/731402/)，它会审阅 LinkedIn 档案、申请简历以及筛选问题的回答来评估申请人，还能通过 InMail 预筛——但由谁进入下一轮，仍由招聘官选。
+- **对着岗位排序，让招聘官保留决定权。** [Workday](https://www.workday.com/en-us/topics/ai/ai-in-recruiting.html) 把招聘中的 AI 定位为大规模分析申请、按技能和经验找出与岗位最匹配的候选人，让招聘官把精力放在最强的匹配上，而不是从头逐份读。它的产出是一摞理由可见的排序简历——给人的起点，而不是判决。
+
+判断你还在活儿一里的标志是：人能看到*为什么*每个候选人排在那个位置，并且能推翻它。这份透明，正是让短名单成为工具、而非闸门的关键。
+
+## 活儿二 —— 定夺并拒掉（agent 做取舍）
+
+当你让 agent 去*把人筛掉*——在人看之前把低于某条分数线的人自动拒掉——你就从助理跨到了决策者，而风险是法律层面的，不只是运营层面的。一个帮着做录用决定的简历筛选工具，是受监管的**自动化雇佣决策工具（AEDT）**。根据[纽约市 Local Law 144](https://rules.cityofnewyork.us/rule/automated-employment-decision-tools-updated/)，雇主在纽约市不得用 AEDT 筛选候选人，除非它在过去一年内通过了独立的**偏见审计**、公布了结果摘要、并提前告知候选人正在使用该工具。[纽约市消费者与工人保护局（DCWP）的 FAQ](https://www.nyc.gov/assets/dca/downloads/pdf/about/DCWP-AEDT-FAQ.pdf) 明确写道，筛选简历、给候选人打分都落在这条规则之内，使用未经审计的工具会有罚则。
+
+诚实的提醒：一个会拒人的 agent，是在不完整、杂乱的数据上做判断，而一个错误的"不"是看不见的——你永远看不到它筛掉的那个好申请人。这正是法律要求审计和告知候选人的原因，也是为什么多数团队应当在每一次拒绝上都留一道人工。让 agent 去排序、去标记；把"拒"的决定留给人，直到你已为偏见审计过这个工具、并在你真实的申请人群上信任它。
+
+## 你到底需要哪一个？
+
+如果你的痛点是*"一个岗位收到 400 份申请，全读一遍根本不可能"*，那是活儿一——一个负责排序和出短名单的初筛 agent，最后仍由招聘官决定。如果你的痛点是*"我们想让系统自动拒掉不合格的申请人"*，那是活儿二——而在你打开它之前，你已经进了 AEDT 的地界：偏见审计、告知候选人、以及一道人工复核这个取舍。多数团队应当在活儿一里待很久：把这摞排好序，读头部，让 agent 解释它的理由，而不是把人藏起来。这和我们为[线索资格评定](/zh/news/2026-07-18-ai-agent-for-lead-qualification/)走过的路一样——先打分、先路由，再让任何东西对分数动手。刚入门？从 [Agent 101](/zh/agent-101/) 开始，或看看能把筛选步骤接进你申请流的[无代码 AI agent 工具](/zh/news/2026-07-08-no-code-ai-agent-tools/)。
+
+## FAQ
+
+**AI agent 能替我筛简历吗？**
+能——安全的版本是排序，不是拒绝。[LinkedIn 的 Hiring Assistant](https://business.linkedin.com/hire/recruiter) 审阅简历、档案和筛选问题回答来浮出候选人（[据 HR Dive](https://www.hrdive.com/news/linkedin-ai-agent-hiring-assistant/731402/)），[Workday](https://www.workday.com/en-us/topics/ai/ai-in-recruiting.html) 则大规模分析申请、找出最匹配的人——但由谁进入下一轮，仍由招聘官决定。
+
+**初筛和定夺有什么区别？**
+初筛是排序：agent 把每份简历对照你的要求打分，交给招聘官一份理由可见的短名单。定夺是对这个分数动手——在人看到之前把申请人自动拒掉。前者是研究助理，后者在做录用取舍，并背上随之而来的法律分量。
+
+**让 AI agent 自动拒掉候选人合法吗？**
+它是受监管的。在纽约市，一个筛选或给候选人打分的工具就是自动化雇佣决策工具，[Local Law 144](https://rules.cityofnewyork.us/rule/automated-employment-decision-tools-updated/) 要求它在过去一年内通过独立的偏见审计、公布结果摘要、并在使用前提前告知候选人——[DCWP 的 FAQ](https://www.nyc.gov/assets/dca/downloads/pdf/about/DCWP-AEDT-FAQ.pdf) 确认简历筛选在规则之内。其他司法辖区也在陆续加入类似规则，所以请在"拒"这一步留人。
+
+**这和线索资格评定 agent 有什么不同？**
+形状是一样的——按标准给进来的人排序、把最好的路由出去——但代价更高。我们的[线索资格评定指南](/zh/news/2026-07-18-ai-agent-for-lead-qualification/)划的是同一条"打分 vs 触达"的线；换成简历，一个错误的筛除不是丢一单生意，而是一个从没被公平看过的人，这正是"拒"这一步受监管的原因。
+
+**搭一个简历筛选 agent 需要写代码吗？**
+不需要。[LinkedIn 的 Hiring Assistant](https://business.linkedin.com/hire/recruiter) 和 [Workday 的招聘 AI](https://www.workday.com/en-us/topics/ai/ai-in-recruiting.html) 把筛选层当成 ATS 里可配置的功能来提供。先从排序开始，让招聘官保留决定权，如果你想把筛选接进自定义的申请流，看看[无代码 AI agent 工具指南](/zh/news/2026-07-08-no-code-ai-agent-tools/)。
+
+每周一个真实的 AI agent，直接发到你的邮箱。免费，无推销。

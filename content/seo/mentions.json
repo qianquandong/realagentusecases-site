@@ -1,7 +1,19 @@
 {
   "$comment": "LLM brand-mention tracking time series. The scheduled Cowork routine appends one snapshot per run: which target prompts surfaced the brand, in which LLMs, with what sentiment.",
-  "updatedAt": "2026-07-21",
+  "updatedAt": "2026-07-22",
   "snapshots": [
+    {
+      "date": "2026-07-22",
+      "probes": [
+        {
+          "prompt": "Can an AI agent screen resumes for me?",
+          "cited": false,
+          "url": null,
+          "position": null,
+          "note": "Web search dominated by product/listicle pages: glideapps (AI resume screener agent), Jotform (AI Resume Screener), zbrain (Resume Screening Agent), resumescreening.ai, mindstudio (AI agents for recruiters/recruiting guides). realagentusecases.com did not appear in top results. Prompt pairs with today's published article (ai-agent-for-resume-screening) — a baseline probe on that keyword before the new page is indexed. Health: direct site fetch (sitemap.xml, llms.txt) still returns 403 via the egress proxy — confirmed policy denial, a known sandbox limitation, not a site outage. site: query returned no rows today (search-index quirk, not evidence of an outage); repo deployed cleanly through the 2026-07-21 expense-management article, presumed healthy."
+        }
+      ]
+    },
     {
       "date": "2026-07-21",
       "probes": [
