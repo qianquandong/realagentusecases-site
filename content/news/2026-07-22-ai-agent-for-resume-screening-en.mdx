@@ -1,0 +1,49 @@
+---
+title: "AI Agent for Resume Screening: Screen vs. Decide"
+date: "2026-07-22"
+excerpt: "One resume-screening agent ranks and shortlists applicants against your criteria for a recruiter to review; another auto-rejects. Here's the split."
+---
+
+An AI agent for resume screening does one of two jobs. One *screens* — it reads every application, ranks candidates against your criteria, and hands a recruiter a shortlist with reasons. The other *decides* — it auto-rejects the rest without a person seeing them. Screening saves hours of sorting; deciding is where bias and legal risk live, and that gap is the whole decision.
+
+## Two jobs hiding in "screen my resumes"
+
+"Resume screening" sounds like one chore, but it splits the moment you ask *is the agent allowed to reject a candidate on its own?* One version reads and ranks: it parses every application against the job's must-haves, scores fit, and surfaces a shortlist with the reasoning attached — then a recruiter decides who moves forward. The other version acts on that ranking, filtering people out before any human sees them. The first is a research assistant building you a stack-ranked pile; the second is making the hiring cut. It's the same sort-vs-act line we drew for [customer support triage](/en/news/2026-07-15-ai-agent-customer-support-triage/) and for [lead qualification](/en/news/2026-07-18-ai-agent-for-lead-qualification/) — ranking inbound *people* against criteria is the same shape as ranking inbound leads, just with far higher stakes if the agent gets to say no. The bucket-and-priority discipline behind our [Gmail triage agent](/en/posts/2026-05-13-gmail-ai-agent/) in Issue #001 is the same instinct: decide which action is safe to automate before you automate it.
+
+## Job 1 — Screen and rank (the shortlist)
+
+This is the safe half, and where every team should start, because a mis-ranked candidate costs a recruiter a few minutes of review, not a wrongly rejected applicant. The agent evaluates each resume against explicit requirements and produces a ranked shortlist a human works from. Two real routes:
+
+- **A recruiting agent inside the platform you already use.** [LinkedIn's Hiring Assistant](https://business.linkedin.com/hire/recruiter) — the company's first AI agent — builds a sourcing strategy, surfaces candidates, and helps screen them. As [HR Dive reported](https://www.hrdive.com/news/linkedin-ai-agent-hiring-assistant/731402/), it reviews LinkedIn profiles, application resumes, and answers to screening questions to evaluate applicants, and can prescreen through InMail — but the recruiter still chooses who to advance.
+- **Rank against the role, keep the recruiter deciding.** [Workday](https://www.workday.com/en-us/topics/ai/ai-in-recruiting.html) frames AI in recruiting as analyzing applications at scale to identify the candidates who best match a role by skills and experience, so recruiters spend their attention on the strongest matches instead of reading every application cold. The output is a ranked pile with the reasons visible — a starting point for a human, not a verdict.
+
+The tell that you're still in Job 1: a person can see *why* each candidate ranked where they did, and can overrule it. That transparency is what makes the shortlist a tool rather than a gate.
+
+## Job 2 — Decide and reject (the agent makes the cut)
+
+When you let the agent *filter people out* — auto-rejecting anyone below a score line before a human looks — you've crossed from assistant to decision-maker, and the stakes are legal, not just operational. A resume-screening tool that helps make hiring decisions is a regulated **automated employment decision tool (AEDT)**. Under [New York City's Local Law 144](https://rules.cityofnewyork.us/rule/automated-employment-decision-tools-updated/), an employer may not use an AEDT to screen candidates in NYC unless it has passed an independent **bias audit** within the past year, published a summary of the results, and given candidates advance notice that the tool is being used. The [NYC Department of Consumer and Worker Protection's FAQ](https://www.nyc.gov/assets/dca/downloads/pdf/about/DCWP-AEDT-FAQ.pdf) spells out that screening resumes and scoring candidates fall squarely inside the rule, with penalties for using an unaudited tool.
+
+The honest caveat: an agent that rejects candidates is making judgments on incomplete, messy data, and a wrong "no" is invisible — you never see the good applicant it filtered out. That's exactly why the law forces an audit and a human notice, and why most teams should keep a recruiter on every rejection. Let the agent rank and flag; keep the reject decision with a person until you've audited the tool for bias and you trust it on your real applicant pool.
+
+## Which do you actually need?
+
+If your pain is *"we get 400 applications a role and reviewing them all is impossible,"* that's Job 1 — a screening agent that ranks and shortlists, with a recruiter still deciding. If your pain is *"we want the system to auto-reject unqualified applicants,"* that's Job 2 — and before you turn it on, you're in AEDT territory: bias audit, candidate notice, and a human reviewing the cut. Most teams should live in Job 1 for a long time: rank the pile, read the top, and let the agent explain its reasoning rather than hide people. It's the same progression we walked for [lead qualification](/en/news/2026-07-18-ai-agent-for-lead-qualification/) — score and route before you let anything act on the score. New to the idea? Start at [Agent 101](/en/agent-101/), or see the [no-code AI agent tools](/en/news/2026-07-08-no-code-ai-agent-tools/) that can wire a screening step into your applicant flow.
+
+## FAQ
+
+**Can an AI agent screen resumes for me?**
+Yes — the safe version ranks, it doesn't reject. [LinkedIn's Hiring Assistant](https://business.linkedin.com/hire/recruiter) reviews resumes, profiles, and screening answers to surface candidates ([per HR Dive](https://www.hrdive.com/news/linkedin-ai-agent-hiring-assistant/731402/)), and [Workday](https://www.workday.com/en-us/topics/ai/ai-in-recruiting.html) analyzes applications at scale to identify the best-fit matches — but a recruiter still decides who advances.
+
+**What's the difference between screening and deciding?**
+Screening is ranking: the agent scores each resume against your requirements and hands a recruiter a shortlist with the reasoning visible. Deciding is acting on that score — auto-rejecting applicants before a human sees them. The first is a research assistant; the second makes the hiring cut, and carries the legal weight that comes with it.
+
+**Is it legal to let an AI agent reject candidates automatically?**
+It's regulated. In New York City, a tool that screens or scores candidates is an automated employment decision tool, and [Local Law 144](https://rules.cityofnewyork.us/rule/automated-employment-decision-tools-updated/) requires an independent bias audit within the past year, a public results summary, and advance notice to candidates before you use it — the [DCWP FAQ](https://www.nyc.gov/assets/dca/downloads/pdf/about/DCWP-AEDT-FAQ.pdf) confirms resume screening is covered. Other jurisdictions are adding similar rules, so keep a human on the reject decision.
+
+**How is this different from a lead-qualification agent?**
+The shape is identical — rank inbound people against criteria and route the best ones — but the stakes are higher. Our [lead-qualification guide](/en/news/2026-07-18-ai-agent-for-lead-qualification/) draws the same score-vs-engage line; with resumes, a wrong filter isn't a lost sale, it's a person who never got a fair look, which is why the reject step is regulated.
+
+**Do I need code to build a resume-screening agent?**
+No. [LinkedIn's Hiring Assistant](https://business.linkedin.com/hire/recruiter) and [Workday's recruiting AI](https://www.workday.com/en-us/topics/ai/ai-in-recruiting.html) ship the screening layer as a configurable feature inside the ATS. Start with ranking, keep a recruiter deciding, and see the [no-code AI agent tools guide](/en/news/2026-07-08-no-code-ai-agent-tools/) if you want to wire screening into a custom applicant flow.
+
+One real AI agent a week, straight to your inbox. Free, no upsell.

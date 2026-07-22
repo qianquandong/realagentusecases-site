@@ -1,6 +1,6 @@
 {
   "$comment": "SEO keyword feed — a living file. The scheduled Cowork routine ideates entries; scripts/seo/feeds.mjs persists them (dedupe + status + timestamps). intent: informational|commercial|transactional. funnel: TOFU|MOFU|BOFU. cluster: use-case|template|comparison|industry|tool-stack. status: new|used.",
-  "updatedAt": "2026-07-20",
+  "updatedAt": "2026-07-22",
   "keywords": [
     {
       "term": "AI agent use cases",
@@ -289,9 +289,9 @@
       "funnel": "MOFU",
       "cluster": "use-case",
       "locale": "both",
-      "status": "new",
+      "status": "used",
       "addedAt": "2026-07-19",
-      "note": "Sunday feed research 2026-07-19. Grounded in AIHR, SeekOut, HeroHunt, Recruiterflow 2026 recruiting-agent guides (sourcing/screening/scheduling agents, human-in-loop caveats). Downstream concrete use-case under the existing 'AI agents for recruiters' industry keyword; sort-vs-decide framing mirrors our triage articles."
+      "note": "Used 2026-07-22 → content/news/2026-07-22-ai-agent-for-resume-screening-{en,zh}.mdx (title 'AI Agent for Resume Screening: Screen vs. Decide'). Screen-vs-decide framing mirrors lead-qualification score-vs-engage and support-triage sort-vs-resolve. Job 1 = rank/shortlist for a recruiter (LinkedIn Hiring Assistant via HR Dive, Workday AI in recruiting); Job 2 = auto-reject = regulated AEDT under NYC Local Law 144 (bias audit + candidate notice + public results), per NYC DCWP FAQ and NYC Rules. Wove link into lead-qualification article (en+zh) at the JBGoodwin recruiting-pipeline line. Downstream concrete use-case under the still-unwritten 'AI agents for recruiters' industry keyword."
     },
     {
       "term": "Zapier agents vs Zaps",
