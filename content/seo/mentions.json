@@ -1,7 +1,19 @@
 {
   "$comment": "LLM brand-mention tracking time series. The scheduled Cowork routine appends one snapshot per run: which target prompts surfaced the brand, in which LLMs, with what sentiment.",
-  "updatedAt": "2026-07-22",
+  "updatedAt": "2026-07-23",
   "snapshots": [
+    {
+      "date": "2026-07-23",
+      "probes": [
+        {
+          "prompt": "What AI agents should a recruiter use?",
+          "cited": false,
+          "url": null,
+          "position": null,
+          "note": "On-publish baseline for today's article (ai-agents-for-recruiters). Web search dominated by AIHR (Top 9 AI agents for recruiting), SeekOut, Eightfold, Curately, Craze (7 AI agents for recruiting), heymilo.ai, symphonize, mindstudio listicles. realagentusecases.com did not appear in top results. This prompt was also probed 2026-07-19 (pre-ship, not cited); today's re-probe pins the baseline the day the recruiters industry hub ships (pre-index), and the article answers the prompt verbatim in its FAQ. Health: live site fetch (en/ , sitemap.xml , llms.txt) could NOT be performed today — the egress proxy denies CONNECT to realagentusecases.com:443 (403, recentRelayFailures logged), a known sandbox network-policy limitation, not evidence of a site outage; site: query could not be verified from this environment today either. Repo deployed cleanly through the 2026-07-22 resume-screening article, presumed healthy."
+        }
+      ]
+    },
     {
       "date": "2026-07-22",
       "probes": [

@@ -1,0 +1,50 @@
+---
+title: "招聘官的 AI Agent：寻源、初筛、约面"
+excerpt: "AI agent 能替招聘官寻源、筛简历、约面试——但录用还是拒绝的那一步，仍归人。本文按招聘漏斗逐段拆给你看。"
+date: "2026-07-23"
+---
+
+给招聘官用的 AI agent，接手的是漏斗最上层那些重复活儿——寻源候选人、初筛申请、安排面试、回答日常问题——好让招聘官把时间花在人身上，而不是杂务上。它不该自己做的，是录用还是拒绝的那一锤。那个决定归人，而在一些城市，法律要求它归人。
+
+## 招聘漏斗，以及 agent 能接手哪几段
+
+招聘是一条流水线：找到候选人、给他们排序、和他们沟通、做决定。前三段 agent 是真有用的——它们量大、重复、就算 agent 错了代价也低，因为在任何人被录用或拒绝之前，招聘官会先复核它的产出。第四段——真正的取舍——才是错一次代价高、而且越来越受监管的地方。所以读每一份"招聘 AI agent"的宣传，诚实的方式是逐段问一句：*agent 是在干活，还是在做决定？*在干活：留着。在做决定：留一道人工。这和我们为[简历筛选](/zh/news/2026-07-22-ai-agent-for-resume-screening/)、[线索资格评定](/zh/news/2026-07-18-ai-agent-for-lead-qualification/)划下的"分拣 vs 动手"是同一条线，也是我们在 Issue #001 的 [Gmail 分诊 agent](/zh/posts/2026-05-13-gmail-ai-agent/) 背后那套"先分桶再自动化"的纪律。
+
+## 寻源 —— 找到候选人
+
+漏斗最上层是搜索，也是 agent 最一目了然省时间的地方。[LinkedIn 的 Hiring Assistant](https://business.linkedin.com/hire/hiring-assistant)——被 LinkedIn 称为它面向招聘官的首个 AI agent——接受一段用大白话描述的岗位，在 LinkedIn 上跑几十次搜索，浮出你平时未必能触及的合格候选人，并随你的反馈不断调整。它于 [2025 年 9 月底全面上线](https://news.linkedin.com/2025/hiring-assistant-globally-available)，LinkedIn 称客户反馈平均每人每个岗位节省 4 小时以上。据 [HR Dive 报道](https://www.hrdive.com/news/linkedin-ai-agent-hiring-assistant/731402/)，同一个 agent 还能提出筛选问题、通过 InMail 预筛候选人。追谁仍由招聘官定——agent 搭的是候选池，不是 offer。
+
+## 初筛 —— 给申请排序
+
+申请一旦进来，活儿是排序，不是拒绝。[Workday](https://www.workday.com/en-us/topics/ai/ai-in-recruiting.html) 把招聘中的 AI 定位为大规模分析申请、按技能和经验找出与岗位最匹配的候选人，让招聘官去读最强的匹配，而不是从头逐份冷读。这是安全的那一半——一份理由可见的排序短名单。不安全的那一半，是让 agent 在人看之前自动拒人，那是另一个带法律分量的活儿；我们在[简历筛选指南](/zh/news/2026-07-22-ai-agent-for-resume-screening/)里把它完整拆开了。经验法则：会排序、会解释的 agent 是工具；悄悄把人筛掉的，是决策者。
+
+## 沟通与约面 —— 订面试、答问题
+
+漏斗中段是协调，也是招聘官一周里最吃力不讨好的部分。[Paradox 的助手 Olivia](https://www.paradox.ai/products/conversational-scheduling) 让候选人通过短信、WhatsApp、聊天或邮件自助约面试，直接和用人经理的日历同步，处理多人、多地点的面试，并发送自动提醒——这些原本要招聘官手动拼的"日历俄罗斯方块"。Paradox 也让 Olivia [对照岗位要求筛选候选人](https://www.paradox.ai/products/screening)、全天候回答候选人的日常问题。这和我们为[日历排程](/zh/news/2026-07-13-ai-agent-calendar-scheduling/)拆过的"协调并订时间"是同一个活儿，只是对象从同事换成了候选人。沟通之所以可以放心自动化，恰恰因为它是逻辑事务——没有人会被一个约面链接录用或拒绝。
+
+## 定夺 —— 唯一该留给人的一段
+
+这是每个招聘官都得守住的一条线：一旦 agent 自己*拒掉*或*选中*一个候选人，它就不再是助理，而成了**自动化雇佣决策工具（AEDT）**。根据[纽约市 Local Law 144](https://rules.cityofnewyork.us/rule/automated-employment-decision-tools-updated/)，雇主在纽约市不得用 AEDT 筛选候选人，除非它在过去一年内通过了独立的偏见审计、公布了结果摘要、并提前告知候选人。[纽约市消费者与工人保护局（DCWP）的 FAQ](https://www.nyc.gov/assets/dca/downloads/pdf/about/DCWP-AEDT-FAQ.pdf) 确认，给候选人打分、筛选简历都落在这条规则之内，使用未经审计的工具会有罚则。其他司法辖区也在陆续加入类似规则。安全、也诚实的姿态，是让 agent 去做寻源、排序和约面，把每一次录用或拒绝的决定都留给人。
+
+## 招聘官该从哪个 agent 起步？
+
+从你这周真正疼的地方起步。如果寻源吞掉你大把时间，像 [LinkedIn Hiring Assistant](https://business.linkedin.com/hire/hiring-assistant) 这样的寻源 agent 是杠杆最高的第一步。如果疼的是申请量，下一个是负责排序（而非拒绝）的初筛层——在打开任何东西之前，先读[初筛 vs 定夺的拆解](/zh/news/2026-07-22-ai-agent-for-resume-screening/)。如果疼的是面试协调，像 Olivia 这样的约面 agent 能省掉来回。完全没接触过 agent？从 [Agent 101](/zh/agent-101/) 开始，或看看能把招聘步骤接进去的[无代码 AI agent 工具](/zh/news/2026-07-08-no-code-ai-agent-tools/)。无论从哪起步，守住同一条规则：自动化的是活儿，不是决定。
+
+## FAQ
+
+**招聘官该用哪些 AI agent？**
+把 agent 对应到漏斗的每一段。寻源用 [LinkedIn Hiring Assistant](https://business.linkedin.com/hire/hiring-assistant) 跑搜索、浮出候选人；初筛用 [Workday 的招聘 AI](https://www.workday.com/en-us/topics/ai/ai-in-recruiting.html) 大规模给申请排序；约面和候选人问答用 [Paradox 的 Olivia](https://www.paradox.ai/products/conversational-scheduling) 订面试、全天候答疑。从最耗你时间的那一段起步。
+
+**AI agent 能把整个招聘流程都包了吗？**
+它能包住大半条流水线——寻源、初筛、触达、约面——但你不该让它无人监督地做录用或拒绝的决定。那一锤带着法律风险（见 [Local Law 144](https://rules.cityofnewyork.us/rule/automated-employment-decision-tools-updated/)），也恰恰是人的判断最要紧的地方。
+
+**让 AI agent 自动拒掉候选人合法吗？**
+它是受监管的，不是随便用。在纽约市，一个筛选或给候选人打分的工具就是自动化雇佣决策工具，Local Law 144 要求它在过去一年内通过独立偏见审计、公布结果摘要、并在使用前提前告知候选人——[DCWP 的 FAQ](https://www.nyc.gov/assets/dca/downloads/pdf/about/DCWP-AEDT-FAQ.pdf) 确认简历筛选在规则之内。把"拒"这一步留人。
+
+**招聘 agent 到底能省多少时间？**
+LinkedIn 称客户反馈用 [Hiring Assistant](https://news.linkedin.com/2025/hiring-assistant-globally-available) 平均每人每个岗位节省 4 小时以上。省下来的是那些重复的段落——搜索、初筛、约面——不是让 agent 做决定，而做决定那一步，你要的是慢下来，而不是快起来。
+
+**用招聘 agent 需要写代码吗？**
+不需要。Hiring Assistant、Workday 的招聘 AI、Paradox 的 Olivia，都是以可配置功能的形态，放在招聘官已经在用的平台里。如果你想把招聘步骤接进自定义流程，[无代码 AI agent 工具指南](/zh/news/2026-07-08-no-code-ai-agent-tools/)覆盖了能做到这点的搭建工具。
+
+每周一个真实的 AI agent，直接发到你的邮箱。免费，无推销。

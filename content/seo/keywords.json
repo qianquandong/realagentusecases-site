@@ -1,6 +1,6 @@
 {
   "$comment": "SEO keyword feed — a living file. The scheduled Cowork routine ideates entries; scripts/seo/feeds.mjs persists them (dedupe + status + timestamps). intent: informational|commercial|transactional. funnel: TOFU|MOFU|BOFU. cluster: use-case|template|comparison|industry|tool-stack. status: new|used.",
-  "updatedAt": "2026-07-22",
+  "updatedAt": "2026-07-23",
   "keywords": [
     {
       "term": "AI agent use cases",
@@ -162,8 +162,9 @@
       "funnel": "TOFU",
       "cluster": "industry",
       "locale": "both",
-      "status": "new",
-      "addedAt": "2026-05-14"
+      "status": "used",
+      "addedAt": "2026-05-14",
+      "note": "Used 2026-07-23 → content/news/2026-07-23-ai-agents-for-recruiters-{en,zh}.mdx (title 'AI Agents for Recruiters: Source, Screen, Schedule'). Industry hub that maps the recruiter funnel to agents: source (LinkedIn Hiring Assistant — first AI agent for recruiters, 4+ hrs/user/role saved per LinkedIn, GA late Sep 2025, HR Dive), screen/rank (Workday AI in recruiting), engage/schedule (Paradox Olivia — self-schedule via SMS/WhatsApp, screening, candidate Q&A), decide (stays human; NYC Local Law 144 AEDT bias audit + notice, DCWP FAQ). Same 'automate the work, not the decision' frame as resume-screening (screen-vs-decide) and lead-qualification (score-vs-engage). Wove an upward link into resume-screening (en+zh) 'Which do you actually need?' section. This is the parent hub the resume-screening keyword flagged as still-unwritten."
     },
     {
       "term": "AI agents for realtors",

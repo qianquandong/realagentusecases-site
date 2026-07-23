@@ -1,6 +1,6 @@
 {
   "$comment": "GEO prompt feed — the questions working professionals ask ChatGPT / Perplexity / Gemini. The scheduled Cowork routine ideates entries; scripts/seo/feeds.mjs persists them. cluster: use-case|template|comparison|industry|tool-stack. status: new|covered (covered = a published article targets it). Phase 7 tracks whether the brand is cited for each.",
-  "updatedAt": "2026-07-22",
+  "updatedAt": "2026-07-23",
   "prompts": [
     {
       "prompt": "What are real examples of AI agents at work?",
@@ -75,8 +75,9 @@
       "prompt": "What AI agents should a recruiter use?",
       "cluster": "industry",
       "locale": "en",
-      "status": "new",
-      "addedAt": "2026-05-14"
+      "status": "covered",
+      "addedAt": "2026-05-14",
+      "note": "Covered by content/news/2026-07-23-ai-agents-for-recruiters. GEO-probed 2026-07-23 (on-publish baseline) and 2026-07-19 (pre-ship): not cited either time — results dominated by AIHR, SeekOut, Eightfold, Curately, Craze, heymilo, mindstudio listicles. The article answers this prompt verbatim in its FAQ; re-probe post-index to track lift."
     },
     {
       "prompt": "有哪些职场人真正在用的 AI agent？",
