@@ -1,7 +1,19 @@
 {
   "$comment": "LLM brand-mention tracking time series. The scheduled Cowork routine appends one snapshot per run: which target prompts surfaced the brand, in which LLMs, with what sentiment.",
-  "updatedAt": "2026-07-23",
+  "updatedAt": "2026-07-24",
   "snapshots": [
+    {
+      "date": "2026-07-24",
+      "probes": [
+        {
+          "prompt": "What AI agents can help founders?",
+          "cited": false,
+          "url": null,
+          "position": null,
+          "note": "Never-probed prompt in the industry/founders cluster, pulled the day the content-repurposing article ships — content repurposing is the solo-operator/founder marketing hat, so this baselines the founders family. Web search dominated by MindStudio (10 AI agents every startup founder should build), Tars, Beam AI, Routine (5 AI agents every startup founder should use in 2026), Gaper, PrometAI, Remote OpenClaw, Dan Cumberland Labs listicles. realagentusecases.com did not appear in top results. Health: direct site fetch (en/ , sitemap.xml , llms.txt) still returns 403 CONNECT via the egress proxy — confirmed policy denial, a known sandbox limitation, not a site outage; site:realagentusecases.com returned no rows again today (US search-index quirk for this small domain, seen every run), not evidence of an outage. Repo deployed cleanly through the 2026-07-23 recruiters article, presumed healthy."
+        }
+      ]
+    },
     {
       "date": "2026-07-23",
       "probes": [
