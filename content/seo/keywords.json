@@ -1,6 +1,6 @@
 {
   "$comment": "SEO keyword feed — a living file. The scheduled Cowork routine ideates entries; scripts/seo/feeds.mjs persists them (dedupe + status + timestamps). intent: informational|commercial|transactional. funnel: TOFU|MOFU|BOFU. cluster: use-case|template|comparison|industry|tool-stack. status: new|used.",
-  "updatedAt": "2026-07-23",
+  "updatedAt": "2026-07-24",
   "keywords": [
     {
       "term": "AI agent use cases",
@@ -260,9 +260,9 @@
       "funnel": "MOFU",
       "cluster": "use-case",
       "locale": "both",
-      "status": "new",
+      "status": "used",
       "addedAt": "2026-07-12",
-      "note": "Sunday feed research 2026-07-12. Grounded in Lindy content-repurposing use case (blog -> LinkedIn/newsletter/short video). Clusters with founders; solo-operator angle fits the site's audience."
+      "note": "Used 2026-07-24 → content/news/2026-07-24-ai-agent-for-content-repurposing-{en,zh}.mdx (title 'AI Agent for Content Repurposing: Draft vs. Publish'). Draft-vs-publish framing mirrors the site's two-jobs pattern (invoice draft-vs-pay, expense submit-vs-approve, resume screen-vs-decide): Job 1 = adapt one asset into platform drafts a human reviews (Lindy content-repurposing agent template; n8n blog-to-LinkedIn workflow #3500 writing 'in your tone of voice'); Job 2 = autonomous publish/schedule where Buffer's AI Assistant deliberately keeps a human ('posts are not automatically generated... unless you open the Assistant') vs a Zapier end-to-end auto-post flow. Grounded in Issue #001's capture-don't-commit discipline. Wove a downstream desk-level 'content repurposing' bullet into real-ai-agent-examples (en+zh). Sibling keyword 'AI agent for social media content' (distribution step) still new."
     },
     {
       "term": "AI agent for invoice processing",
