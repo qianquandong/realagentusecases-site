@@ -73,7 +73,11 @@ function withSecurityHeaders(response: Response, path: string): Response {
       "Cache-Control",
       "public, max-age=31536000, immutable",
     );
-  } else if (path === "/robots.txt" || path === "/sitemap.xml") {
+  } else if (
+    path === "/robots.txt" ||
+    path === "/sitemap.xml" ||
+    path === "/feed.xml"
+  ) {
     headers.set("Cache-Control", "public, max-age=3600");
   } else if (path === "/favicon.ico" || path.endsWith("/opengraph-image")) {
     headers.set("Cache-Control", "public, max-age=86400");
@@ -86,10 +90,48 @@ function withSecurityHeaders(response: Response, path: string): Response {
   });
 }
 
+// The 22 auto-generated article pairs removed in the 2026-07-06 content
+// cleanup (commit 7605312). Google still recrawls the dead URLs; 410 (vs the
+// implicit 404) tells crawlers the removal is permanent so they drop out of
+// the index faster. Matches any sub-path too (old relative-link artifacts
+// like .../pu-sh-shell-agent/pu.sh).
+const GONE_NEWS_SLUGS = new Set([
+  "2026-05-19-forest-and-conservation-workers-ai-patrol",
+  "2026-05-20-training-and-development-specialists-chrome-prompt-api",
+  "2026-05-21-agricultural-workers-lightweight-ai-coding-agent",
+  "2026-05-21-probation-officers-ai-author-detection",
+  "2026-05-22-compensation-benefits-specialists-pypi-supply-chain-attack",
+  "2026-05-22-film-video-editors-chrome-prompt-api",
+  "2026-05-23-chefs-and-head-cooks-pu-sh-kitchen-ai-agent",
+  "2026-05-24-mining-geological-engineers-mobile-agent-gui",
+  "2026-05-25-diesel-service-technicians-pu-sh-ecu-diagnostics",
+  "2026-05-26-network-systems-administrators-pu-sh-shell-agent",
+  "2026-05-27-electrical-electronics-installers-adversarial-ai-prompting",
+  "2026-05-28-medical-records-specialists-self-healing-rpa",
+  "2026-05-29-logging-workers-ai-async-rewake-safety",
+  "2026-05-30-home-health-personal-care-aides-on-device-ai-agent",
+  "2026-05-31-financial-examiners-mistral-agentic-harness",
+  "2026-06-01-graphic-designers-local-llm-cpu-inference",
+  "2026-06-02-coaches-and-scouts-ai-coaching-assistant-guidelines",
+  "2026-06-14-operations-research-analysts-paca-ai-scrumban",
+  "2026-06-15-archivists-museum-workers-on-device-ai-transcription",
+  "2026-06-16-customer-service-representatives-fin-ai-agent",
+  "2026-06-17-network-computer-systems-administrators-opencode-self-hosted-ai-agent",
+  "2026-06-19-construction-managers-ai-inspection-agent",
+]);
+
 export default {
   async fetch(request: Request, env: Env): Promise<Response> {
     const url = new URL(request.url);
     const path = url.pathname;
+
+    const newsMatch = path.match(/^\/(?:en|zh)\/news\/([^/]+)/);
+    if (newsMatch && GONE_NEWS_SLUGS.has(newsMatch[1])) {
+      return new Response("410 Gone — this article was permanently removed.", {
+        status: 410,
+        headers: { "Content-Type": "text/plain; charset=utf-8" },
+      });
+    }
 
     if (path === "/subscribe" || path === "/subscribe/") {
       const locale = resolveLocale(request);

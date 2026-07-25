@@ -37,6 +37,7 @@ export async function generateMetadata({
     title: post.frontmatter.title,
     description: post.frontmatter.excerpt,
     alternates: {
+      types: { "application/rss+xml": "/feed.xml" },
       canonical: path,
       languages: {
         en: `/en/news/${slug}/`,

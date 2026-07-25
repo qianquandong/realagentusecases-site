@@ -18,6 +18,7 @@ export async function generateMetadata({
     title: t.heading,
     description: t.intro,
     alternates: {
+      types: { "application/rss+xml": "/feed.xml" },
       canonical: `/${locale}/news/`,
       languages: { en: "/en/news/", "zh-CN": "/zh/news/" },
     },

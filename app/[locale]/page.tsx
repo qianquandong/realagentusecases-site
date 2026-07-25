@@ -18,6 +18,7 @@ export async function generateMetadata({
     title: { absolute: t.siteTitle },
     description: t.siteDescription,
     alternates: {
+      types: { "application/rss+xml": "/feed.xml" },
       canonical: `/${locale}/`,
       languages: { en: "/en/", "zh-CN": "/zh/", "x-default": "/en/" },
     },
