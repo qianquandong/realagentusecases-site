@@ -1,7 +1,19 @@
 {
   "$comment": "LLM brand-mention tracking time series. The scheduled Cowork routine appends one snapshot per run: which target prompts surfaced the brand, in which LLMs, with what sentiment.",
-  "updatedAt": "2026-07-24",
+  "updatedAt": "2026-07-25",
   "snapshots": [
+    {
+      "date": "2026-07-25",
+      "probes": [
+        {
+          "prompt": "What are real AI agent use cases?",
+          "cited": false,
+          "url": null,
+          "position": null,
+          "note": "Brand-defining, never-probed prompt (the site name is literally its thesis) — baselines whether we are cited for the core query. Web search dominated by IBM (think/topics/ai-agent-use-cases), Oracle (23 real-world use cases), Lindy (Top 24), Triple Whale, kimi.com, aimultiple, Medium listicles; realagentusecases.com did not appear in top results. Health: direct fetch of en/ , sitemap.xml , llms.txt all return 403 CONNECT via the egress proxy — confirmed policy denial, the known sandbox limitation seen every run, not a site outage; site:realagentusecases.com again returned no rows (the WebSearch tool ignored the site: operator, returning unrelated real-estate results — same US search-index quirk noted on prior runs, not evidence of an outage). Repo pipeline healthy: daily auto-merges landed cleanly through the 2026-07-24 content-repurposing article. Jack: confirm indexing/impressions in GSC."
+        }
+      ]
+    },
     {
       "date": "2026-07-24",
       "probes": [
