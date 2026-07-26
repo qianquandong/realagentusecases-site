@@ -1,7 +1,19 @@
 {
   "$comment": "LLM brand-mention tracking time series. The scheduled Cowork routine appends one snapshot per run: which target prompts surfaced the brand, in which LLMs, with what sentiment.",
-  "updatedAt": "2026-07-25",
+  "updatedAt": "2026-07-26",
   "snapshots": [
+    {
+      "date": "2026-07-26",
+      "probes": [
+        {
+          "prompt": "What is MCP and why do AI agents use it?",
+          "cited": false,
+          "url": null,
+          "position": null,
+          "note": "Sunday run (feed-replenishment day, no article). Never-probed tool-stack prompt, pulled as the baseline for the new 'what is MCP for AI agents' / 'AI agent vs chatbot' explainer family added to the feed this week. Web search dominated by IBM (Model Context Protocol topic), Google Cloud (What is MCP guide), Cloudflare, a16z (Deep Dive into MCP), Auth0 (MCP vs A2A), Merge (AI agent vs MCP), MindStudio, Medium listicles; realagentusecases.com did not appear in top results. Health: direct fetch of sitemap.xml returned HTTP 403 via the egress proxy — the known CONNECT policy denial seen every run, a sandbox limitation, not a site outage. Repo pipeline healthy: daily auto-merges landed cleanly through the 2026-07-25 social-media-content article (last commit on main: RSS-feed/meta-title SEO fix)."
+        }
+      ]
+    },
     {
       "date": "2026-07-25",
       "probes": [

@@ -1,6 +1,6 @@
 {
   "$comment": "SEO keyword feed — a living file. The scheduled Cowork routine ideates entries; scripts/seo/feeds.mjs persists them (dedupe + status + timestamps). intent: informational|commercial|transactional. funnel: TOFU|MOFU|BOFU. cluster: use-case|template|comparison|industry|tool-stack. status: new|used.",
-  "updatedAt": "2026-07-25",
+  "updatedAt": "2026-07-26",
   "keywords": [
     {
       "term": "AI agent use cases",
@@ -333,6 +333,86 @@
       "status": "new",
       "addedAt": "2026-07-19",
       "note": "Sunday feed research 2026-07-19. Grounded in Anthropic's Model Context Protocol and the 'native MCP + A2A as production primitives' framing in Google Cloud / Shakudo 2026 agent-framework roundups. Explainer that underpins the existing google-workspace-mcp-server keyword and Issue #001's connector plumbing; clusters with no-code-ai-agent-tools."
+    },
+    {
+      "term": "AI SDR agent for cold outreach",
+      "intent": "commercial",
+      "funnel": "MOFU",
+      "cluster": "use-case",
+      "locale": "both",
+      "status": "new",
+      "addedAt": "2026-07-26",
+      "note": "Sunday feed research 2026-07-26. Grounded in the 2026 AI-SDR reality check: the market split into fully autonomous senders (11x, Artisan/Ava, AiSDR) vs augmentation platforms that research + draft for a human rep (Clay data layer, Lindy custom agents), with reporting (Amplemarket, Salesmotion, tooldirectory.ai) that autonomous SDRs have NOT replaced human reps at scale. Perfect draft-vs-send / augment-vs-autonomous two-jobs angle mirroring lead-qualification (score-vs-engage). Clusters with lead-qualification, crm-data-entry, founders."
+    },
+    {
+      "term": "AI agent for meeting notes",
+      "intent": "informational",
+      "funnel": "MOFU",
+      "cluster": "use-case",
+      "locale": "both",
+      "status": "new",
+      "addedAt": "2026-07-26",
+      "note": "Sunday feed research 2026-07-26. Transcribe-and-summarize vs act-on-action-items framing: note-takers (Otter, Fireflies, Fathom, Granola) capture the meeting read-only vs an agent that turns action items into CRM updates / tasks / follow-up drafts. Clusters tightly with meeting-prep (before) and slack-summaries (catch-up-vs-act) and crm-data-entry (the follow-through). Grounded in Issue #001's capture-don't-commit discipline."
+    },
+    {
+      "term": "AI agent for competitive analysis",
+      "intent": "informational",
+      "funnel": "MOFU",
+      "cluster": "use-case",
+      "locale": "both",
+      "status": "new",
+      "addedAt": "2026-07-26",
+      "note": "Sunday feed research 2026-07-26. Grounded in named tools: Crayon (broad signal capture), Klue (deal battlecards), Kompyte (autonomous competitor tracking), NoimosAI (lean-team signals). Monitor-signals vs write-the-battlecard two-jobs angle. Clusters with the new consultants + market-research keywords and content-repurposing (research-to-asset)."
+    },
+    {
+      "term": "AI agent for market research",
+      "intent": "informational",
+      "funnel": "MOFU",
+      "cluster": "use-case",
+      "locale": "both",
+      "status": "new",
+      "addedAt": "2026-07-26",
+      "note": "Sunday feed research 2026-07-26. Grounded in AlphaSense (premium financial/market research), agensi market-research skills, NoimosAI market-research agents. Gather-and-synthesize vs decide framing; market sizing / personas / trend mapping. Clusters with competitive-analysis, consultants, financial-analysts, founders."
+    },
+    {
+      "term": "AI agents for consultants",
+      "intent": "informational",
+      "funnel": "TOFU",
+      "cluster": "industry",
+      "locale": "both",
+      "status": "new",
+      "addedAt": "2026-07-26",
+      "note": "Sunday feed research 2026-07-26. Industry hub answering the already-live GEO prompt 'What AI agents can help consultants?'. Maps the consultant workflow (market research, competitive analysis, financial evaluation, knowledge retrieval, client reporting) to agents — Ema, AlphaSense, Crayon/Klue. Parent hub for the new market-research + competitive-analysis use-case keywords; same 'automate the work, not the judgment' frame as recruiters."
+    },
+    {
+      "term": "AI agents for accountants",
+      "intent": "informational",
+      "funnel": "TOFU",
+      "cluster": "industry",
+      "locale": "both",
+      "status": "new",
+      "addedAt": "2026-07-26",
+      "note": "Sunday feed research 2026-07-26. Industry hub for the finance-ops family that already has three use-case articles but no parent: invoice-processing (draft-vs-pay), expense-management (submit-vs-approve), plus bookkeeping. Ties to financial-analysts keyword. Sources: Ramp/Stampli (AP), Expensify/Brex (expense), NetSuite three-way-match control. Same automate-the-work-not-the-approval frame."
+    },
+    {
+      "term": "AI agents for marketers",
+      "intent": "informational",
+      "funnel": "TOFU",
+      "cluster": "industry",
+      "locale": "both",
+      "status": "new",
+      "addedAt": "2026-07-26",
+      "note": "Sunday feed research 2026-07-26. Industry hub for the marketing use-case family already shipped: content-repurposing (draft-vs-publish) and social-media-content (assist-vs-autopilot), plus the new competitive-analysis keyword. Solo-operator/founder marketing hat. Sources: Buffer AI Assistant, Lindy content-repurposing, Crayon."
+    },
+    {
+      "term": "AI agent vs chatbot",
+      "intent": "informational",
+      "funnel": "TOFU",
+      "cluster": "comparison",
+      "locale": "both",
+      "status": "new",
+      "addedAt": "2026-07-26",
+      "note": "Sunday feed research 2026-07-26. TOFU explainer distinguishing a reactive chatbot (answers, one turn) from an agent (plans, uses tools, takes multi-step action) — the confusion behind most 'do I need an agent?' questions. Grounded in IBM, Google Cloud, Merge (ai-agent-vs-mcp / agent-vs-chatbot) definitions. Clusters with what-is-mcp-for-ai-agents and guardrails; feeds the whole use-case library by clarifying the category."
     }
   ]
 }
