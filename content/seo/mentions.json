@@ -1,7 +1,19 @@
 {
   "$comment": "LLM brand-mention tracking time series. The scheduled Cowork routine appends one snapshot per run: which target prompts surfaced the brand, in which LLMs, with what sentiment.",
-  "updatedAt": "2026-07-26",
+  "updatedAt": "2026-07-27",
   "snapshots": [
+    {
+      "date": "2026-07-27",
+      "probes": [
+        {
+          "prompt": "What AI agents help with competitive analysis?",
+          "cited": false,
+          "url": null,
+          "position": null,
+          "note": "On-topic never-probed prompt, pulled the day the AI-agents-for-marketers industry hub ships (competitive analysis is the research stage of that hub). Web search dominated by agent.ai (Competitor Analysis agent), datagrid, domo (competitor-research-ai-agents glossary), parallel.ai, growthahoy, noimosai listicles; named tools surfaced include Beam, Lyzr, Browse AI, Relevance AI, Crayon. realagentusecases.com did not appear in top results. Health: direct fetch of en/ , sitemap.xml , llms.txt all returned HTTP 403 via the egress proxy — the known CONNECT policy denial seen on every run, a sandbox limitation, not a site outage (HubSpot.com also 403'd the proxy, confirming it's a proxy-side block, not a target outage). Repo pipeline healthy: git log shows daily auto-merges landing cleanly through the 2026-07-26 Sunday feed-replenishment commit; today's marketers hub is the parent over content-repurposing (07-24) and social-media-content (07-25)."
+        }
+      ]
+    },
     {
       "date": "2026-07-26",
       "probes": [
