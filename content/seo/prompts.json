@@ -1,6 +1,6 @@
 {
   "$comment": "GEO prompt feed — the questions working professionals ask ChatGPT / Perplexity / Gemini. The scheduled Cowork routine ideates entries; scripts/seo/feeds.mjs persists them. cluster: use-case|template|comparison|industry|tool-stack. status: new|covered (covered = a published article targets it). Phase 7 tracks whether the brand is cited for each.",
-  "updatedAt": "2026-07-26",
+  "updatedAt": "2026-07-28",
   "prompts": [
     {
       "prompt": "What are real examples of AI agents at work?",
@@ -273,9 +273,9 @@
       "prompt": "What AI agents can help accountants?",
       "cluster": "industry",
       "locale": "en",
-      "status": "new",
+      "status": "covered",
       "addedAt": "2026-07-26",
-      "note": "Sunday feed research 2026-07-26. Pairs with the new 'AI agents for accountants' industry hub over the invoice/expense/bookkeeping family."
+      "note": "Covered by content/news/2026-07-28-ai-agents-for-accountants. GEO-probed 2026-07-28 (on-publish baseline): not cited — web search dominated by Corporate Finance Institute, OpenAI (Basis case study), aimultiple (Top 15), Future Firm, Trullion, Thomson Reuters, FloQast. realagentusecases.com did not appear. The article answers this prompt verbatim in its FAQ; re-probe post-index to track lift."
     },
     {
       "prompt": "What's the difference between an AI agent and a chatbot?",

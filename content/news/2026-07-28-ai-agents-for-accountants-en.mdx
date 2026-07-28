@@ -1,0 +1,46 @@
+---
+title: "AI Agents for Accountants: Record, Reconcile, Report"
+date: "2026-07-28"
+excerpt: "AI agents help accountants capture invoices, reconcile the close, and draft tax returns — but the sign-off stays human. A stage-by-stage map to automate."
+---
+
+AI agents help accountants across separable jobs: capturing invoices and expenses, reconciling accounts through the close, and drafting returns and reports. Named tools — Ramp, Expensify, FloQast, Thomson Reuters — automate the preparation. What none of them should own alone is the sign-off. The professional review and the filing decision stay human.
+
+## The accounting workflow, and which parts an agent can take
+
+Accounting is a cycle: record the transactions, reconcile them into trustworthy numbers, and report those numbers to owners, auditors, or the tax authority. An AI agent is genuinely useful for the repetitive, checkable middle of each stage — extract the invoice, categorize the expense, tie out the account, draft the return — because an accountant reviews the output before anything is booked or filed. The part to keep human is the one that carries professional liability: the *sign-off*, where a person attests the numbers are right. So the honest way to read any "AI agent for accounting" pitch is to ask, at each stage, *does the agent do the work, or make the call?* It's the same automate-the-work-not-the-decision line we drew for [invoice processing](/en/news/2026-07-20-ai-agent-for-invoice-processing/), [expense management](/en/news/2026-07-21-ai-agent-for-expense-management/), and — before any of them — for [inbox triage in Issue #001](/en/posts/2026-05-13-gmail-ai-agent/).
+
+## Record — capture the transaction, don't approve the payment
+
+The bottom of the cycle is data capture, and it's where OCR-plus-agent tools remove the most keystrokes. On the payables side, a drafting agent reads an invoice, GL-codes it, and matches it to the purchase order for a human to approve — the full draft-vs-pay split we mapped in [AI agent for invoice processing](/en/news/2026-07-20-ai-agent-for-invoice-processing/), where [Stampli's Billy the Bot](https://www.stampli.com/) frames its output as reviewable suggestions and [Ramp Bill Pay](https://ramp.com/bill-pay) auto-codes and matches before a person releases the payment. On the expense side, the same discipline holds: [Expensify's SmartScan](https://www.expensify.com/) reads a receipt and pre-fills the report, but a person still submits it — the submit-vs-approve line from our [expense-management](/en/news/2026-07-21-ai-agent-for-expense-management/) breakdown. Capture is safe to automate because every entry is checkable against a document.
+
+## Reconcile — tie out the accounts, keep the approval human
+
+The month-end close is where agents now do their most ambitious accounting work — and where the vendors themselves insist on a human at each step. [FloQast's AI Agents](https://www.floqast.com/ai-agents) automate reconciliations, close workflows, and journal-entry prep, and FloQast is explicit that the work is "fully auditable, human-approved every step" — the agent handles consolidating upstream data, preparing accruals, and three-way matching, while an accountant approves. Its [AI Agent Builder](https://www.floqast.com/press-releases/floqast-unveils-ai-agent-builder-and-expanded-ai-capabilities-to-redefine-the-future-of-accounting), announced in September 2025, lets teams build no-code agents that encode their own controls rather than a black box. The reason for the human gate is the same one that makes three-way matching a control in the first place: a reconciliation that ties out on the surface can still hide a misclassification only a preparer would catch.
+
+## Report — draft the return and the statements, sign them yourself
+
+Reporting is the stage with the sharpest line, because a filed return or a signed statement is the thing a professional is liable for. [Thomson Reuters' agentic AI](https://tax.thomsonreuters.com/en/tax-accounting/agentic-ai) for tax and accounting is built around exactly that boundary: its Ready to Review workflow uses agents to process source documents and prior-year returns, extract and categorize the data, and generate a 1040 that is — in the product's own name — *ready for review*, not ready to file. Thomson Reuters describes the design as keeping humans in the loop for validation and decision-making ([November 2025 launch](https://www.thomsonreuters.com/en/press-releases/2025/november/thomson-reuters-launches-agentic-ai-solutions-to-transform-tax-audit-and-accounting-workflows)). Firm-wide platforms like [Basis](https://openai.com/index/basis/), which OpenAI profiles as autonomous accounting agents, push further into preparation — but the attestation, the professional judgment, and the signature stay with the accountant.
+
+## Which agent should an accountant start with?
+
+Start where your cycle actually stalls. If invoices and receipts pile up, begin at the record layer — the [invoice-processing](/en/news/2026-07-20-ai-agent-for-invoice-processing/) and [expense-management](/en/news/2026-07-21-ai-agent-for-expense-management/) walkthroughs show the capture-vs-approve setup end to end. If the close is the bottleneck, a purpose-built platform like [FloQast](https://www.floqast.com/ai-agents) automates the reconciliation prep while keeping your approval gate. New to agents entirely? Begin at [Agent 101](/en/agent-101/), or see the [no-code AI agent tools](/en/news/2026-07-08-no-code-ai-agent-tools/) you can wire an accounting step into. Whatever you start with, hold the same line: automate the work, own the sign-off.
+
+## FAQ
+
+**What AI agents can help accountants?**
+Match the agent to the stage. For payables, a drafting agent like [Ramp Bill Pay](https://ramp.com/bill-pay) or [Stampli](https://www.stampli.com/) captures and GL-codes invoices for approval; for expenses, [Expensify SmartScan](https://www.expensify.com/) reads receipts and pre-fills reports; for the close, [FloQast's AI Agents](https://www.floqast.com/ai-agents) automate reconciliations and journal-entry prep, human-approved every step; for tax, [Thomson Reuters](https://tax.thomsonreuters.com/en/tax-accounting/agentic-ai) drafts returns that are ready for professional review. Start with the stage that costs you the most time.
+
+**Can an AI agent do my accounting on its own?**
+It can do most of the preparation — extracting invoices, tying out accounts, drafting returns — but the sign-off should stay human. That's not just caution: [FloQast](https://www.floqast.com/ai-agents) markets its agents as "human-approved every step," and [Thomson Reuters](https://tax.thomsonreuters.com/en/tax-accounting/agentic-ai) names its flagship workflow *Ready to Review*, not ready to file. The attestation carries professional liability, which is exactly where a person belongs.
+
+**Are AI accounting agents auditable?**
+The serious ones are built to be. [FloQast's AI Agents](https://www.floqast.com/ai-agents) are described as fully auditable with a human approval at each step, and its [no-code AI Agent Builder](https://www.floqast.com/press-releases/floqast-unveils-ai-agent-builder-and-expanded-ai-capabilities-to-redefine-the-future-of-accounting) lets teams encode their own controls rather than trust a black box. If a tool can't show you why it made an entry, treat that as a reason not to book it unreviewed.
+
+**Do I need code to use accounting agents?**
+No. [FloQast](https://www.floqast.com/ai-agents), [Ramp](https://ramp.com/bill-pay), [Expensify](https://www.expensify.com/), and [Thomson Reuters](https://tax.thomsonreuters.com/en/tax-accounting/agentic-ai) ship the AI inside software accounting teams already use. If you want to wire a bookkeeping step into a custom flow, the [no-code AI agent tools guide](/en/news/2026-07-08-no-code-ai-agent-tools/) covers the builders that can do it.
+
+**Where should a small firm or solo bookkeeper begin?**
+With the one task that eats the most hours. For most that's data entry — start with the [invoice-processing](/en/news/2026-07-20-ai-agent-for-invoice-processing/) and [expense-management](/en/news/2026-07-21-ai-agent-for-expense-management/) walkthroughs, which show the capture-don't-commit setup on a single desk, then layer the close and reporting on top as you scale.
+
+One real AI agent a week, straight to your inbox. Free, no upsell.

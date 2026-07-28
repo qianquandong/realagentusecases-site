@@ -1,7 +1,19 @@
 {
   "$comment": "LLM brand-mention tracking time series. The scheduled Cowork routine appends one snapshot per run: which target prompts surfaced the brand, in which LLMs, with what sentiment.",
-  "updatedAt": "2026-07-27",
+  "updatedAt": "2026-07-28",
   "snapshots": [
+    {
+      "date": "2026-07-28",
+      "probes": [
+        {
+          "prompt": "What AI agents can help accountants?",
+          "cited": false,
+          "url": null,
+          "position": null,
+          "note": "On-publish baseline for today's article (ai-agents-for-accountants). Web search dominated by Corporate Finance Institute (AI agents for accounting guide), OpenAI (Basis case study — autonomous accounting agents), aimultiple (Top 15 Accounting AI Agents), Future Firm, Trullion, Thomson Reuters (agentic AI for tax/accounting), FloQast (auditable AI agents, talent-gap press release); named tools surfaced include Basis, Docyt (GARY), FloQast. realagentusecases.com did not appear in top results. The article answers this prompt verbatim in its FAQ; re-probe post-index to track lift. Health: direct fetch of sitemap.xml, floqast.com/ai-agents, and tax.thomsonreuters.com all returned HTTP 403 via the egress proxy — the known CONNECT/bot-protection policy denial seen on every run (both vendor pages were confirmed live and indexed via WebSearch), a sandbox limitation, not a site outage. Repo pipeline healthy: git log shows daily auto-merges landing cleanly through the 2026-07-27 AI-agents-for-marketers hub; today's accountants hub is the parent over invoice-processing (07-20) and expense-management (07-21)."
+        }
+      ]
+    },
     {
       "date": "2026-07-27",
       "probes": [
