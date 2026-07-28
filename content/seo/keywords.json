@@ -1,6 +1,6 @@
 {
   "$comment": "SEO keyword feed — a living file. The scheduled Cowork routine ideates entries; scripts/seo/feeds.mjs persists them (dedupe + status + timestamps). intent: informational|commercial|transactional. funnel: TOFU|MOFU|BOFU. cluster: use-case|template|comparison|industry|tool-stack. status: new|used.",
-  "updatedAt": "2026-07-27",
+  "updatedAt": "2026-07-28",
   "keywords": [
     {
       "term": "AI agent use cases",
@@ -390,9 +390,9 @@
       "funnel": "TOFU",
       "cluster": "industry",
       "locale": "both",
-      "status": "new",
+      "status": "used",
       "addedAt": "2026-07-26",
-      "note": "Sunday feed research 2026-07-26. Industry hub for the finance-ops family that already has three use-case articles but no parent: invoice-processing (draft-vs-pay), expense-management (submit-vs-approve), plus bookkeeping. Ties to financial-analysts keyword. Sources: Ramp/Stampli (AP), Expensify/Brex (expense), NetSuite three-way-match control. Same automate-the-work-not-the-approval frame."
+      "note": "Used 2026-07-28 → content/news/2026-07-28-ai-agents-for-accountants-{en,zh}.mdx (title 'AI Agents for Accountants: Record, Reconcile, Report'). Industry hub over the finance-ops family that had two use-case children but no parent: invoice-processing (07-20, draft-vs-pay) and expense-management (07-21, submit-vs-approve). Maps the accounting cycle record→reconcile→report to agents with the automate-the-work-not-the-sign-off frame. Record layer = Ramp Bill Pay / Stampli Billy the Bot / Expensify SmartScan (all reviewable capture); reconcile = FloQast AI Agents (self-described 'fully auditable, human-approved every step'; three-way matching, journal-entry prep; no-code AI Agent Builder Sep 2025); report = Thomson Reuters agentic AI 'Ready to Review' 1040 workflow (ready for review, not ready to file; human-in-the-loop, Nov 2025 launch) + Basis (OpenAI-profiled autonomous accounting agents). Wove an upward hub link into invoice-processing (en+zh) 'Which do you actually need?' section. Answers live GEO prompt 'What AI agents can help accountants?'. Sibling of recruiters/marketers industry hubs. Financial-analysts keyword still new."
     },
     {
       "term": "AI agents for marketers",

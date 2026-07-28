@@ -1,0 +1,46 @@
+---
+title: "会计师的 AI Agent：记录、对账、报告"
+date: "2026-07-28"
+excerpt: "AI agent 能帮会计录入发票、月结对账、起草报税表——但签字确认仍应由人完成。一份把会计流程逐阶段拆开的自动化地图。"
+---
+
+AI agent 能在会计的几个可拆分环节上帮上忙：录入发票与报销、在月结时对账、起草报表与报税表。Ramp、Expensify、FloQast、Thomson Reuters 这些具名工具，各自自动化其中一段"准备工作"。但没有哪一个应该独自握有**签字确认权**——专业复核与申报决定，仍应由人来做。
+
+## 会计流程，以及 agent 能接管哪几段
+
+会计是一个循环：记录交易 → 把它们对账成可信的数字 → 把数字报给老板、审计师或税务机关。AI agent 真正有用的地方，是每一段里那些重复、可核对的中间环节——抽取发票、给报销归类、把账户轧平、起草报税表——因为会计会在任何东西入账或申报之前复核它的产出。要留给人的，是那件带有专业责任的动作：**签字**，即由一个人背书这些数字是对的。所以看待任何"会计 AI agent"宣传的诚实方式，是在每一段都问一句：*agent 是在做工作，还是在替你做决定？* 这和我们在[发票处理](/zh/news/2026-07-20-ai-agent-for-invoice-processing/)、[报销管理](/zh/news/2026-07-21-ai-agent-for-expense-management/)，以及更早在 [Issue #001 的收件箱分拣](/zh/posts/2026-05-13-gmail-ai-agent/)里画的，是同一条"自动化工作、而非决定"的线。
+
+## 记录 —— 捕捉交易，别批准付款
+
+循环的最底层是数据捕捉，也是 OCR 加 agent 的工具最能省下敲键盘的地方。应付账款这一侧，起草型 agent 读取发票、做 GL 编码、与采购订单匹配，交给人批准——正是我们在[发票处理](/zh/news/2026-07-20-ai-agent-for-invoice-processing/)里拆过的"起草 vs 付款"：[Stampli 的 Billy the Bot](https://www.stampli.com/) 把产出定位为"可复核的建议"，[Ramp Bill Pay](https://ramp.com/bill-pay) 在有人放款之前先自动编码与匹配。报销这一侧同理：[Expensify 的 SmartScan](https://www.expensify.com/) 读取小票、预填报销单，但仍由人提交——这是[报销管理](/zh/news/2026-07-21-ai-agent-for-expense-management/)里的"提交 vs 批准"。捕捉之所以能放心自动化，是因为每一条记录都能对着单据核对。
+
+## 对账 —— 把账户轧平，把批准权留给人
+
+月结是 agent 如今在会计里做得最"野心勃勃"的一段——也是厂商自己坚持每一步都要有人的地方。[FloQast 的 AI Agents](https://www.floqast.com/ai-agents) 自动化对账、月结流程与分录准备，而 FloQast 明确表示这份工作"完全可审计、每一步都经人批准"（fully auditable, human-approved every step）——agent 负责合并上游数据、准备计提、做三方匹配，由会计批准。它在 2025 年 9 月发布的 [AI Agent Builder](https://www.floqast.com/press-releases/floqast-unveils-ai-agent-builder-and-expanded-ai-capabilities-to-redefine-the-future-of-accounting) 让团队用无代码方式搭出编码了自家控制点的 agent，而不是一个黑盒。要有这道人工关卡，原因和"三方匹配"本身成为一项控制的原因一样：一笔表面上轧平了的对账，仍可能藏着只有准备者才看得出的错误分类。
+
+## 报告 —— 起草报表与报税表，但由你签字
+
+报告是这条线最锋利的一段，因为一份已申报的报税表、一张已签字的报表，正是专业人士要为之担责的东西。[Thomson Reuters 面向税务与会计的 agentic AI](https://tax.thomsonreuters.com/en/tax-accounting/agentic-ai) 正是围绕这条边界设计的：它的 Ready to Review 工作流用 agent 处理源文件与上年度报税表、抽取并归类数据、生成一份——如产品名所示——"待复核"（ready for review）而非"待申报"的 1040 表。Thomson Reuters 把这套设计描述为"在校验与决策环节保持人在回路"（[2025 年 11 月发布](https://www.thomsonreuters.com/en/press-releases/2025/november/thomson-reuters-launches-agentic-ai-solutions-to-transform-tax-audit-and-accounting-workflows)）。像 [Basis](https://openai.com/index/basis/) 这类被 OpenAI 描述为"自主会计 agent"的全所级平台，把准备工作推得更远——但背书、专业判断与签名，仍归会计所有。
+
+## 会计该从哪个 agent 开始？
+
+从你循环里真正卡住的地方开始。如果发票和小票堆积，就从记录层入手——[发票处理](/zh/news/2026-07-20-ai-agent-for-invoice-processing/)和[报销管理](/zh/news/2026-07-21-ai-agent-for-expense-management/)两篇把"捕捉 vs 批准"的完整设置讲了一遍。如果瓶颈在月结，像 [FloQast](https://www.floqast.com/ai-agents) 这样的专用平台会自动化对账准备，同时保留你的批准关卡。完全是新手？先从 [Agent 101](/zh/agent-101/) 开始，或看看你能把会计环节接进去的[无代码 AI agent 工具](/zh/news/2026-07-08-no-code-ai-agent-tools/)。无论从哪起步，守住同一条线：自动化工作、握住签字权。
+
+## FAQ
+
+**有哪些 AI agent 能帮会计？**
+按环节对号入座。应付账款用 [Ramp Bill Pay](https://ramp.com/bill-pay) 或 [Stampli](https://www.stampli.com/) 这类起草 agent 捕捉并给发票做 GL 编码、交人批准；报销用 [Expensify SmartScan](https://www.expensify.com/) 读小票、预填报销单；月结用 [FloQast 的 AI Agents](https://www.floqast.com/ai-agents) 自动化对账与分录准备、每一步经人批准；报税用 [Thomson Reuters](https://tax.thomsonreuters.com/en/tax-accounting/agentic-ai) 起草"待专业复核"的报税表。从最花你时间的那一段开始。
+
+**AI agent 能独自把我的账做完吗？**
+它能做完大部分准备工作——抽取发票、轧平账户、起草报税表——但签字确认应留给人。这不只是谨慎：[FloQast](https://www.floqast.com/ai-agents) 把它的 agent 宣传为"每一步都经人批准"，[Thomson Reuters](https://tax.thomsonreuters.com/en/tax-accounting/agentic-ai) 把旗舰工作流命名为 *Ready to Review*（待复核）而非"待申报"。这份背书带着专业责任，而那正是人该在的位置。
+
+**AI 会计 agent 可审计吗？**
+认真做的那几家是奔着可审计去的。[FloQast 的 AI Agents](https://www.floqast.com/ai-agents) 被描述为完全可审计、每一步都有人批准，它的[无代码 AI Agent Builder](https://www.floqast.com/press-releases/floqast-unveils-ai-agent-builder-and-expanded-ai-capabilities-to-redefine-the-future-of-accounting) 让团队编码自家的控制点，而不是信一个黑盒。如果一个工具说不清它为什么做了某笔分录，那就把这当作"别在没复核前入账"的理由。
+
+**用会计 agent 需要写代码吗？**
+不需要。[FloQast](https://www.floqast.com/ai-agents)、[Ramp](https://ramp.com/bill-pay)、[Expensify](https://www.expensify.com/)、[Thomson Reuters](https://tax.thomsonreuters.com/en/tax-accounting/agentic-ai) 都把 AI 装进了会计团队本来就在用的软件里。如果你想把某个记账环节接进自定义流程，[无代码 AI agent 工具指南](/zh/news/2026-07-08-no-code-ai-agent-tools/)讲了能做到这点的搭建工具。
+
+**小事务所或独立记账人该从哪开始？**
+从最花时间的那一件事。对多数人来说是数据录入——先看[发票处理](/zh/news/2026-07-20-ai-agent-for-invoice-processing/)和[报销管理](/zh/news/2026-07-21-ai-agent-for-expense-management/)两篇，它们把"只捕捉、不擅自提交"的设置在单个岗位上讲清楚，随规模扩大再往上叠加月结与报告。
+
+每周一个真实的 AI agent，直接发到你邮箱。免费，无推销。
