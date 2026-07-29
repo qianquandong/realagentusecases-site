@@ -1,6 +1,6 @@
 {
   "$comment": "SEO keyword feed — a living file. The scheduled Cowork routine ideates entries; scripts/seo/feeds.mjs persists them (dedupe + status + timestamps). intent: informational|commercial|transactional. funnel: TOFU|MOFU|BOFU. cluster: use-case|template|comparison|industry|tool-stack. status: new|used.",
-  "updatedAt": "2026-07-28",
+  "updatedAt": "2026-07-29",
   "keywords": [
     {
       "term": "AI agent use cases",
@@ -380,9 +380,9 @@
       "funnel": "TOFU",
       "cluster": "industry",
       "locale": "both",
-      "status": "new",
+      "status": "used",
       "addedAt": "2026-07-26",
-      "note": "Sunday feed research 2026-07-26. Industry hub answering the already-live GEO prompt 'What AI agents can help consultants?'. Maps the consultant workflow (market research, competitive analysis, financial evaluation, knowledge retrieval, client reporting) to agents — Ema, AlphaSense, Crayon/Klue. Parent hub for the new market-research + competitive-analysis use-case keywords; same 'automate the work, not the judgment' frame as recruiters."
+      "note": "Used 2026-07-29 → content/news/2026-07-29-ai-agents-for-consultants-{en,zh}.mdx (title 'AI Agents for Consultants: Research, Draft, Advise'). Industry hub mapping the consulting pipeline to agents: research (McKinsey Lilli internal assistant, CIO Dive), draft the deck/model (BCG Deckster & GENE, Forbes; Deloitte Zora AI agentic platform, CIO), and advise (stays human). Empirical backbone = Harvard–BCG 'Jagged Technological Frontier' field experiment (758 BCG consultants: +12.2% tasks, 25.1% faster, >40% quality INSIDE the frontier; but MORE likely to reach wrong conclusions on the integrative-judgment task OUTSIDE it — the recommendation stage). Same 'automate the work, not the judgment' frame as recruiters/marketers/accountants hubs; grounded in Issue #001 for the desk-level reproducible pattern. Wove an upward link into real-ai-agent-examples (en+zh) 'The pattern under both' section. Parent hub for the still-unwritten market-research + competitive-analysis use-case keywords."
     },
     {
       "term": "AI agents for accountants",

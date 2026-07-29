@@ -1,6 +1,6 @@
 {
   "$comment": "GEO prompt feed — the questions working professionals ask ChatGPT / Perplexity / Gemini. The scheduled Cowork routine ideates entries; scripts/seo/feeds.mjs persists them. cluster: use-case|template|comparison|industry|tool-stack. status: new|covered (covered = a published article targets it). Phase 7 tracks whether the brand is cited for each.",
-  "updatedAt": "2026-07-28",
+  "updatedAt": "2026-07-29",
   "prompts": [
     {
       "prompt": "What are real examples of AI agents at work?",
@@ -145,9 +145,9 @@
       "prompt": "What AI agents can help consultants?",
       "cluster": "industry",
       "locale": "en",
-      "status": "new",
+      "status": "covered",
       "addedAt": "2026-05-14",
-      "note": "From the Notion KB GEO Prompt Feed."
+      "note": "Covered by content/news/2026-07-29-ai-agents-for-consultants. GEO-probed 2026-07-29 (on-publish baseline): not cited — web search dominated by MindStudio (10 AI agents for freelancers/consultants), LexisNexis (agentic AI for consulting firms), Centric Consulting, Sana Labs, Ema.ai, Suits.ai, AWS Professional Service Agents listicles. The article answers this prompt verbatim in its FAQ; re-probe post-index to track lift."
     },
     {
       "prompt": "What AI agents can help real estate agents?",

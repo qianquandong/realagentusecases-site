@@ -1,7 +1,19 @@
 {
   "$comment": "LLM brand-mention tracking time series. The scheduled Cowork routine appends one snapshot per run: which target prompts surfaced the brand, in which LLMs, with what sentiment.",
-  "updatedAt": "2026-07-28",
+  "updatedAt": "2026-07-29",
   "snapshots": [
+    {
+      "date": "2026-07-29",
+      "probes": [
+        {
+          "prompt": "What AI agents can help consultants?",
+          "cited": false,
+          "url": null,
+          "position": null,
+          "note": "On-publish baseline for today's article (ai-agents-for-consultants). Web search dominated by MindStudio (10 AI agents for freelancers and consultants), LexisNexis (agentic AI for consulting firms), Centric Consulting (AI agent development services), Sana Labs (Top AI agents for consulting & professional services), Ema.ai (6 best enterprise AI agents for consulting firms), Suits.ai, and AWS Professional Service Agents; named tools surfaced include Ema, Suits.ai, AWS PS Delivery Agent. realagentusecases.com did not appear in top results. The article answers this prompt verbatim in its FAQ; re-probe post-index to track lift. Health: direct fetch of en/ and sitemap.xml both returned HTTP 403 via the egress proxy — the known CONNECT/bot-protection policy denial seen on every run, a sandbox limitation, not a site outage (WebSearch confirmed vendor pages live and indexed). Repo pipeline healthy: today's consultants hub is the parent over the still-unwritten market-research + competitive-analysis keywords, following the 2026-07-28 accountants hub."
+        }
+      ]
+    },
     {
       "date": "2026-07-28",
       "probes": [
