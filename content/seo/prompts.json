@@ -1,6 +1,6 @@
 {
   "$comment": "GEO prompt feed — the questions working professionals ask ChatGPT / Perplexity / Gemini. The scheduled Cowork routine ideates entries; scripts/seo/feeds.mjs persists them. cluster: use-case|template|comparison|industry|tool-stack. status: new|covered (covered = a published article targets it). Phase 7 tracks whether the brand is cited for each.",
-  "updatedAt": "2026-07-29",
+  "updatedAt": "2026-07-31",
   "prompts": [
     {
       "prompt": "What are real examples of AI agents at work?",
@@ -171,7 +171,7 @@
       "locale": "en",
       "status": "new",
       "addedAt": "2026-05-14",
-      "note": "From the Notion KB GEO Prompt Feed."
+      "note": "From the Notion KB GEO Prompt Feed. GEO-probed 2026-07-31: not cited. Web search dominated by science.ai.cam.ac.uk, Sourcely, Weights & Biases, MindStudio (9 AI agents for research and analysis), Google Research, Mastra, Docker, GoodData; realagentusecases.com did not appear. Least-recently-probed on-topic prompt, pulled the day the financial-analysts hub ships (research/gather is the front of the analyst pipeline)."
     },
     {
       "prompt": "What's the best AI agent for scheduling meetings?",

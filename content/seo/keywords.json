@@ -1,6 +1,6 @@
 {
   "$comment": "SEO keyword feed — a living file. The scheduled Cowork routine ideates entries; scripts/seo/feeds.mjs persists them (dedupe + status + timestamps). intent: informational|commercial|transactional. funnel: TOFU|MOFU|BOFU. cluster: use-case|template|comparison|industry|tool-stack. status: new|used.",
-  "updatedAt": "2026-07-29",
+  "updatedAt": "2026-07-31",
   "keywords": [
     {
       "term": "AI agent use cases",
@@ -181,9 +181,9 @@
       "funnel": "TOFU",
       "cluster": "industry",
       "locale": "both",
-      "status": "new",
+      "status": "used",
       "addedAt": "2026-05-14",
-      "note": "Close to Jack's own background — authentic angle."
+      "note": "Used 2026-07-31 → content/news/2026-07-31-ai-agents-for-financial-analysts-{en,zh}.mdx (title 'AI Agents for Financial Analysts: Gather, Model, Advise'). Industry hub mapping the analyst pipeline gather→model→advise to agents, with the automate-the-work-not-the-judgment frame. Gather = AlphaSense Deep Research (investment-grade briefings, CEO Jack Kokko via CNBC: 'AI isn't replacing analysts, it's giving them superpowers') + Morgan Stanley AI Assistant (first Wall Street GPT-4 tool, ~100k research reports, CNBC) & Debrief (meeting notes, MS press release). Model = Microsoft 365 Copilot Finance (variance analysis in Excel, GA Oct 2025, learn.microsoft + Dynamics blog) + Rogo (financial modeling, SEC-filing analysis, Felix email agent, $160M Series D Apr 2026 / 35k users at 250+ institutions, SiliconANGLE). Advise = stays human, grounded in CFA Institute Jan 2026 'Growing Demand for Human Judgment' (augment-not-replace; agents autonomously complete only ~30% of complex multi-step tasks). Sibling of the accountants/consultants/recruiters/marketers professional-services hubs; wove an upward link into the consultants hub (en+zh) intro sibling list. Grounded in Issue #001 for the desk-level reproducible pattern."
     },
     {
       "term": "AI agents for founders",
