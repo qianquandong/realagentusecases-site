@@ -1,0 +1,46 @@
+---
+title: "金融分析师的 AI agent：搜集、建模、决策"
+date: "2026-07-31"
+excerpt: "AI agent 能帮金融分析师搜集资料、搭建模型，但投资判断仍由人来做。逐阶段拆解，从摩根士丹利到你自己的桌面。"
+---
+
+AI agent 在金融分析里能接手几件可拆分的活：搜集调研与数据、搭建模型或做分析。有名的工具——摩根士丹利的 Assistant、AlphaSense、微软 Copilot Finance、Rogo——都在把跑腿的活自动化。但有一件事它们都不该独自决定：判断本身。相关方要据以行动的那个投资或商业判断，要留给人。
+
+## 金融分析工作流：哪几段能交给 agent
+
+金融分析是一条流水线：搜集输入（财报、市场数据、既有模型）、把它们搭成模型或分析、再给出判断——一个估值、一份预测、一个买/卖或预算决定。AI agent 在流水线前段真正有用——拉财报、抽数字、起草模型——因为分析师会在任何人据此配置资金之前逐一过目。要留给人的是**判断**那一段：对具体情境的解读，钱和声誉都押在上面。所以检验任何「金融分析用 AI agent」说法的诚实办法，是在每个阶段都问一句：*agent 是在干活，还是在拍板？* 这跟我们给[会计](/zh/news/2026-07-28-ai-agents-for-accountants/)、[咨询顾问](/zh/news/2026-07-29-ai-agents-for-consultants/)、以及早于它们的 [Issue #001 收件箱分拣](/zh/posts/2026-05-13-gmail-ai-agent/)画的「自动化干活、别自动化决策」是同一条线。
+
+## 搜集——拉财报和数据，但别跳过阅读
+
+这份工作的前段就是读：10-K、财报电话会纪要、市场数据、卖方研报。最早的 agent 就落在这里，因为产出可核查——每个数字都能追回到一份你能打开的财报。[AlphaSense 的 Deep Research](https://www.alpha-sense.com/blog/product/ai-uplevel-financial-research/) 为金融工作流量身打造：给它一个问题，它会跑几十次搜索、解析上千条结果、再综合推理，产出投资级简报——公司把这形容为一支以「超人速度」运转的分析师团队。其 CEO Jack Kokko [对 CNBC](https://www.cnbc.com/2025/06/10/wall-street-analyst-now-ai-ceo-on-why-stock-pickers-wont-go-extinct.html) 把话说得很直白：「AI 不是在取代分析师，而是在给他们超能力。」在银行内部，[摩根士丹利](https://www.cnbc.com/2023/09/18/morgan-stanley-chatgpt-financial-advisors.html)是第一家把定制 GPT-4 工具交到员工手上的华尔街大行——AI @ Morgan Stanley Assistant 让顾问能快速调取约 10 万份研报和文档，配套的 [Debrief](https://www.morganstanley.com/press-releases/ai-at-morgan-stanley-debrief-launch) 则总结客户会议并梳理待办。搜集之所以能安全自动化，正因为每条论断背后的来源都能被人核对。
+
+## 建模——搭好分析，数字署你的名
+
+分析师活在电子表格里，起草模型是 agent 接手的第二件活。[微软 365 Copilot Finance](https://learn.microsoft.com/en-us/copilot/finance/welcome) 已于 [2025 年 10 月正式发布](https://www.microsoft.com/en-us/dynamics-365/blog/it-professional/2025/10/20/empowering-finance-with-an-ai-assistant-in-microsoft-365-copilot/)，能按自然语言条件对透视表做差异分析、把杂乱的 ERP 导出重整成可分析的表格、并在 Excel 里生成公式和图表——正是搭模型中那段机械的中间环节，做出来供人复核。专门平台更进一步：[Rogo](https://rogo.ai/) 能生成财务模型、分析 SEC 备案文件、总结财报电话会，它的 agent Felix 让银行家可以像「派给初级分析师那样」用邮件委派任务、拿回成品。Rogo 称已有 250 多家机构、逾 3.5 万名从业者在用——Lazard、Jefferies、Moelis 等——并于 [2026 年 4 月完成 1.6 亿美元 D 轮](https://siliconangle.com/2026/04/29/rogo-raises-160m-speed-financial-analysis-ai-agents/)。纪律和[会计的「记账层」](/zh/news/2026-07-28-ai-agents-for-accountants/)一模一样：让 agent 起草模型，然后在任何人据此行动之前，假设和数字由你负责。
+
+## 决策——判断留给人
+
+在这一步线最清楚，因为一个估值或一份预测，是别人要据以配置资金的东西。[CFA 协会 2026 年 1 月的分析](https://blogs.cfainstitute.org/investor/2026/01/05/ai-in-finance-changing-workflows-growing-demand-for-human-judgment/)——标题就点明「对人的判断需求在上升」——把 AI 读作对分析师的增强而非替代，并警告：过度依赖这些系统，可能钝化支撑稳健投资判断的那些认知能力。它也点出实际天花板：先进 AI agent 只能自主完成约 30% 的复杂多步骤任务，机器的产出仍然需要人来核对。这恰好对应我们在[头条级 vs 桌面级示例](/zh/news/2026-07-17-real-ai-agent-examples/)里讲的可复制模式：复制工作流，而不是复制那份自主。署着分析师名字的交付物——「基于这些假设，数字是这个、原因是这个」——正是那份要留给人的判断。
+
+## 分析师该从哪个 agent 起步？
+
+从你的工作真正卡壳的地方起步。如果每次建模前你都被财报和电话会压垮，就从搜集层起步——一个把来源综合成可核查简报的调研 agent，用桌面级的方式搭，而不是摩根士丹利那套。可复制的模式跟 [Issue #001 的 Gmail 分拣 agent](/zh/posts/2026-05-13-gmail-ai-agent/) 背后的一样：一个有边界的任务、一份可核查的产出、不需要平台团队。如果建模吃掉你一天，[微软 Copilot Finance](https://learn.microsoft.com/en-us/copilot/finance/welcome) 就在你已经在用的 Excel 里。刚接触 agent？先看 [Agent 101](/zh/agent-101/)，或从[无代码 AI agent 工具](/zh/news/2026-07-08-no-code-ai-agent-tools/)指南里挑一个搭建器。无论从哪起步，守住这条线：自动化搜集和建模，判断自己做。
+
+## FAQ
+
+**哪些 AI agent 能帮到金融分析师？**
+按阶段匹配。搜集上，一个调研 agent，比如 [AlphaSense Deep Research](https://www.alpha-sense.com/blog/product/ai-uplevel-financial-research/)，或[摩根士丹利](https://www.cnbc.com/2023/09/18/morgan-stanley-chatgpt-financial-advisors.html)那样的内部助手，拉取并总结财报与研报。建模上，[微软 Copilot Finance](https://learn.microsoft.com/en-us/copilot/finance/welcome) 在 Excel 里做差异分析，[Rogo](https://rogo.ai/) 起草财务模型。投资判断仍留给你。从最耗时间的那个阶段开始。
+
+**AI agent 能替我搭财务模型吗？**
+它能起草一份——[Rogo](https://rogo.ai/) 生成财务模型，[Copilot Finance](https://learn.microsoft.com/en-us/copilot/finance/welcome) 做差异分析和公式——但假设和数字要由你负责，才能被人据以行动。把模型当作会计对待对账那样：一份可复核的初稿，而不是自主的决定，跟我们给会计画的[「记账 vs 签字」那条线](/zh/news/2026-07-28-ai-agents-for-accountants/)一样。
+
+**AI agent 会取代金融分析师吗？**
+就目前证据看不会。[CFA 协会](https://blogs.cfainstitute.org/investor/2026/01/05/ai-in-finance-changing-workflows-growing-demand-for-human-judgment/)把 AI 读作增强而非替代，指出先进 agent 只能自主完成约 30% 的复杂多步骤任务，并主张这项技术反而*抬高*了人来把关的价值。AlphaSense 的 CEO 说法一致——「给他们超能力」，不是取代。判断，才是留下来的那份工作。
+
+**必须在银行工作才能用这些吗？**
+不必。Rogo 和摩根士丹利的 Assistant 是企业级工具，但那个*模式*——搜集、建模、人来判断——在桌面级就能复现。[微软 Copilot Finance](https://learn.microsoft.com/en-us/copilot/finance/welcome) 跑在 Excel 里，[无代码 AI agent 工具指南](/zh/news/2026-07-08-no-code-ai-agent-tools/)也覆盖了你能自己接上调研或取数步骤的搭建器。
+
+**单干的分析师或学生该从哪起步？**
+从最耗时间的阶段起——通常是阅读。先搭一个把财报和笔记变成你会去核对的简报的调研综合 agent，就是 [Issue #001](/zh/posts/2026-05-13-gmail-ai-agent/) 里那套「任务有边界、产出可核查」的搭法，再在信任之后加上起草模型。
+
+每周一个真实的 AI agent，直接发到你邮箱。免费，无推销。

@@ -1,7 +1,19 @@
 {
   "$comment": "LLM brand-mention tracking time series. The scheduled Cowork routine appends one snapshot per run: which target prompts surfaced the brand, in which LLMs, with what sentiment.",
-  "updatedAt": "2026-07-29",
+  "updatedAt": "2026-07-31",
   "snapshots": [
+    {
+      "date": "2026-07-31",
+      "probes": [
+        {
+          "prompt": "What is a good AI agent workflow for research?",
+          "cited": false,
+          "url": null,
+          "position": null,
+          "note": "Least-recently-probed on-topic prompt, pulled the day the AI-agents-for-financial-analysts hub ships (research/gather is the front of the analyst pipeline). Web search dominated by science.ai.cam.ac.uk (AI Agents for Research Workflows workshop), Sourcely, Weights & Biases (agentic workflows getting started), MindStudio (9 AI agents for research and analysis), Google Research (academic-workflow agents), Mastra, Docker (AI science agents), GoodData; realagentusecases.com did not appear in top results. Health: direct fetch of en/ and sitemap.xml both returned HTTP 403 via the egress proxy — the known CONNECT/bot-protection policy denial seen on every run, a sandbox limitation, not a site outage. Repo pipeline healthy: git log shows daily auto-merges landing cleanly through the 2026-07-29 consultants hub; today's financial-analysts hub is the finance-function sibling of the accountants (07-28) and consultants (07-29) hubs and answers the analyst-workflow question the research prompt orbits."
+        }
+      ]
+    },
     {
       "date": "2026-07-29",
       "probes": [
