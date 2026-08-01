@@ -1,7 +1,19 @@
 {
   "$comment": "LLM brand-mention tracking time series. The scheduled Cowork routine appends one snapshot per run: which target prompts surfaced the brand, in which LLMs, with what sentiment.",
-  "updatedAt": "2026-07-31",
+  "updatedAt": "2026-08-01",
   "snapshots": [
+    {
+      "date": "2026-08-01",
+      "probes": [
+        {
+          "prompt": "What AI agents can help real estate agents?",
+          "cited": false,
+          "url": null,
+          "position": null,
+          "note": "On-publish baseline for today's article (ai-agents-for-realtors), the least-recently-probed on-topic prompt (never probed before) and an exact match for the 'AI agents for realtors' keyword. Web search dominated by instinctools (AI tools for real estate agents), KapRE, HouseCanary (18 best AI tools), chatbot.com, youcanbook.me, Microsoft Copilot (official how-to for real estate agents), Ascendix (35+ tools), MindStudio; realagentusecases.com did not appear in top results. The article answers this prompt verbatim in its FAQ; re-probe post-index to track lift. Health: direct fetch of en/ and sitemap.xml both returned HTTP 403 via the egress proxy — a policy CONNECT denial (proxy status recentRelayFailures logs connect_rejected on realagentusecases.com:443), the known sandbox network limitation seen every run, not a site outage (WebSearch confirmed vendor pages live and indexed). Repo pipeline healthy: git log shows daily auto-merges landing cleanly through the 2026-07-31 financial-analysts hub; today's realtors hub is the newest industry sibling of the recruiters/marketers/accountants/consultants/financial-analysts hubs and weaves off the 2026-07-18 lead-qualification article's 'engage' job."
+        }
+      ]
+    },
     {
       "date": "2026-07-31",
       "probes": [

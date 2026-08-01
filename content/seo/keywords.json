@@ -1,6 +1,6 @@
 {
   "$comment": "SEO keyword feed — a living file. The scheduled Cowork routine ideates entries; scripts/seo/feeds.mjs persists them (dedupe + status + timestamps). intent: informational|commercial|transactional. funnel: TOFU|MOFU|BOFU. cluster: use-case|template|comparison|industry|tool-stack. status: new|used.",
-  "updatedAt": "2026-07-31",
+  "updatedAt": "2026-08-01",
   "keywords": [
     {
       "term": "AI agent use cases",
@@ -172,8 +172,9 @@
       "funnel": "TOFU",
       "cluster": "industry",
       "locale": "both",
-      "status": "new",
-      "addedAt": "2026-05-14"
+      "status": "used",
+      "addedAt": "2026-05-14",
+      "note": "Used 2026-08-01 → content/news/2026-08-01-ai-agents-for-realtors. Industry hub in the profession-cluster (recruiters/marketers/accountants/consultants/financial-analysts); follow-up/price/market split, fair-housing as the human-stays line."
     },
     {
       "term": "AI agents for financial analysts",
