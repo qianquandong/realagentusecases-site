@@ -1,6 +1,6 @@
 {
   "$comment": "GEO prompt feed — the questions working professionals ask ChatGPT / Perplexity / Gemini. The scheduled Cowork routine ideates entries; scripts/seo/feeds.mjs persists them. cluster: use-case|template|comparison|industry|tool-stack. status: new|covered (covered = a published article targets it). Phase 7 tracks whether the brand is cited for each.",
-  "updatedAt": "2026-07-31",
+  "updatedAt": "2026-08-01",
   "prompts": [
     {
       "prompt": "What are real examples of AI agents at work?",
@@ -153,9 +153,9 @@
       "prompt": "What AI agents can help real estate agents?",
       "cluster": "industry",
       "locale": "en",
-      "status": "new",
+      "status": "covered",
       "addedAt": "2026-05-14",
-      "note": "From the Notion KB GEO Prompt Feed."
+      "note": "Covered by content/news/2026-08-01-ai-agents-for-realtors. GEO-probed 2026-08-01 (on-publish baseline): not cited — results dominated by instinctools, HouseCanary, Microsoft Copilot, Ascendix, MindStudio listicles. The article answers this prompt in its FAQ; re-probe post-index."
     },
     {
       "prompt": "What is a good AI agent workflow for sales?",
