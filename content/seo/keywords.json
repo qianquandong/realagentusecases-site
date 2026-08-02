@@ -1,6 +1,6 @@
 {
   "$comment": "SEO keyword feed — a living file. The scheduled Cowork routine ideates entries; scripts/seo/feeds.mjs persists them (dedupe + status + timestamps). intent: informational|commercial|transactional. funnel: TOFU|MOFU|BOFU. cluster: use-case|template|comparison|industry|tool-stack. status: new|used.",
-  "updatedAt": "2026-08-01",
+  "updatedAt": "2026-08-02",
   "keywords": [
     {
       "term": "AI agent use cases",
@@ -414,6 +414,66 @@
       "status": "new",
       "addedAt": "2026-07-26",
       "note": "Sunday feed research 2026-07-26. TOFU explainer distinguishing a reactive chatbot (answers, one turn) from an agent (plans, uses tools, takes multi-step action) — the confusion behind most 'do I need an agent?' questions. Grounded in IBM, Google Cloud, Merge (ai-agent-vs-mcp / agent-vs-chatbot) definitions. Clusters with what-is-mcp-for-ai-agents and guardrails; feeds the whole use-case library by clarifying the category."
+    },
+    {
+      "term": "AI agents for lawyers",
+      "intent": "informational",
+      "funnel": "TOFU",
+      "cluster": "industry",
+      "locale": "both",
+      "status": "new",
+      "addedAt": "2026-08-02",
+      "note": "Sunday feed research 2026-08-02. Industry-hub sibling of recruiters/accountants/consultants/financial-analysts/realtors. Grounded in real named tools + reporting: Harvey (BigLaw multi-agent, ~$190M ARR / ~$11B valuation early 2026 per AgentMarketCap BigLaw report), Thomson Reuters CoCounsel (agentic AI in Westlaw/Practical Law, largest installed base), Spellbook (contract drafting) — see Stork.AI 'Best AI Tools for Lawyers 2026' and GC AI 'Harvey vs CoCounsel'. Harvey+CoCounsel processed 10M+ legal documents in Q1 2026. Human-stays line = legal judgment, privilege, and sign-off; maps to research→draft→review with the automate-the-work-not-the-judgment frame."
+    },
+    {
+      "term": "AI coding agents for developers",
+      "intent": "commercial",
+      "funnel": "MOFU",
+      "cluster": "tool-stack",
+      "locale": "both",
+      "status": "new",
+      "addedAt": "2026-08-02",
+      "note": "Sunday feed research 2026-08-02. Supervised-vs-autonomous framing for engineers: pair/terminal agents you review (Claude Code, Cursor) vs delegate-a-task cloud agents (Devin, Replit Agent). Grounded in MarkTechPost 'AI Coding Agents 2026' (Atoms/Devin/Windsurf/Cursor/Warp), Vellum '10 Best AI Coding Agents', Medium 'State of AI Coding Agents 2026'. Clusters with founders (solo builder), how-to-build-an-ai-agent, and no-code-tools (the opposite end). Ground the desk-level pattern in Issue #001's supervised-write discipline."
+    },
+    {
+      "term": "AI agent for data analysis",
+      "intent": "informational",
+      "funnel": "MOFU",
+      "cluster": "use-case",
+      "locale": "both",
+      "status": "new",
+      "addedAt": "2026-08-02",
+      "note": "Sunday feed research 2026-08-02. Analyze-vs-decide framing: an agent that ingests data, writes formulas, builds pivots/charts and drafts findings for a human to sign off. Grounded in Microsoft Excel Copilot Agent Mode (GA across web/Windows/Mac Jan 2026; edits workbook, ~2M-cell ceiling, degrades past 100k rows), Julius AI (upload/connect, runs Python in background), Rows — see GPT for Work 'Best AI Tools for Excel & Sheets 2026' and aipedia 'Best AI for Excel'. Clusters with financial-analysts, market-research, competitive-analysis."
+    },
+    {
+      "term": "AI agent orchestration",
+      "intent": "informational",
+      "funnel": "MOFU",
+      "cluster": "tool-stack",
+      "locale": "both",
+      "status": "new",
+      "addedAt": "2026-08-02",
+      "note": "Sunday feed research 2026-08-02. Single-agent-vs-multi-agent-team framing: when one agent is enough vs coordinating specialized agents. Grounded in Zapier 'What is AI agent orchestration' (built on 8,000+ connections; AI handles ambiguity, prioritizes, generates steps mid-workflow) and Zapier 2026 agentic-AI survey (72% of enterprises using or testing agents). Cross-cutting tool-stack angle that clusters with guardrails, what-is-mcp, and no-code-tools; timely as teams stack multiple agents."
+    },
+    {
+      "term": "best AI agent frameworks",
+      "intent": "commercial",
+      "funnel": "MOFU",
+      "cluster": "comparison",
+      "locale": "both",
+      "status": "new",
+      "addedAt": "2026-08-02",
+      "note": "Sunday feed research 2026-08-02. Build-vs-buy / code-vs-no-code decision for teams choosing a stack: LangChain, CrewAI, AutoGen, LangGraph (code frameworks) vs n8n (native LangChain support + AI Agent nodes, 2026) and no-code builders. Grounded in Lindy 'Top 10 AI Agent Frameworks 2026' and n8n's own AI Agent node docs. Clusters with how-to-build-an-ai-agent, no-code-ai-agent-tools, and ai-coding-agents-for-developers; the layer below the use-case library."
+    },
+    {
+      "term": "AI agents for HR teams",
+      "intent": "informational",
+      "funnel": "TOFU",
+      "cluster": "industry",
+      "locale": "both",
+      "status": "new",
+      "addedAt": "2026-08-02",
+      "note": "Sunday feed research 2026-08-02. Broader industry hub over recruiters (07-23) + resume-screening (07-22): the HR loop beyond hiring — onboarding, employee Q&A on pay/benefits/policy, and interview scheduling. Grounded in Lindy HR templates (resume matching, meeting summaries, employee-facing agents) and the same NYC Local Law 144 AEDT line used in resume-screening for the human-stays boundary. Automate-the-work-not-the-decision frame; sibling of the professional-services hubs."
     }
   ]
 }

@@ -1,7 +1,19 @@
 {
   "$comment": "LLM brand-mention tracking time series. The scheduled Cowork routine appends one snapshot per run: which target prompts surfaced the brand, in which LLMs, with what sentiment.",
-  "updatedAt": "2026-08-01",
+  "updatedAt": "2026-08-02",
   "snapshots": [
+    {
+      "date": "2026-08-02",
+      "probes": [
+        {
+          "prompt": "Can an AI agent take notes and follow up after my meetings?",
+          "cited": false,
+          "url": null,
+          "position": null,
+          "note": "Sunday run (feed-replenishment day, no article). Least-recently-probed on-topic prompt (never probed before), pulled as the baseline for the still-new 'AI agent for meeting notes' keyword (transcribe-vs-act). Web search dominated by Fellow (ai-agent-meeting-notes-to-tasks), Supernormal, Zoom AI note taker, agent.ai (Meeting Follow-up), Notion AI Meeting Notes, Simular, Otter Meeting Agent, UniClaw; realagentusecases.com did not appear in top results. Health: direct fetch of en/ and sitemap.xml returned HTTP 000 / curl exit 56 — the egress proxy logged connect_rejected (403 to CONNECT realagentusecases.com:443 at 14:07Z), the known sandbox network-policy denial seen every run, not a site outage (WebSearch confirmed the broader vendor ecosystem live and indexed). Repo pipeline healthy: git log shows daily auto-merges landing cleanly through the 2026-08-01 realtors hub; branch up to date with origin/main. Feed replenishment this run added 6 keywords (lawyers, coding-agents-for-developers, data-analysis, orchestration, best-agent-frameworks, HR-teams) and 5 GEO prompts (incl. one ZH)."
+        }
+      ]
+    },
     {
       "date": "2026-08-01",
       "probes": [

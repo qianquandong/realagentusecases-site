@@ -1,6 +1,6 @@
 {
   "$comment": "GEO prompt feed — the questions working professionals ask ChatGPT / Perplexity / Gemini. The scheduled Cowork routine ideates entries; scripts/seo/feeds.mjs persists them. cluster: use-case|template|comparison|industry|tool-stack. status: new|covered (covered = a published article targets it). Phase 7 tracks whether the brand is cited for each.",
-  "updatedAt": "2026-08-01",
+  "updatedAt": "2026-08-02",
   "prompts": [
     {
       "prompt": "What are real examples of AI agents at work?",
@@ -284,6 +284,46 @@
       "status": "new",
       "addedAt": "2026-07-26",
       "note": "Sunday feed research 2026-07-26. Pairs with the new 'AI agent vs chatbot' TOFU explainer; distinguish reactive chatbot from tool-using agent."
+    },
+    {
+      "prompt": "What AI agents can help lawyers?",
+      "cluster": "industry",
+      "locale": "en",
+      "status": "new",
+      "addedAt": "2026-08-02",
+      "note": "Sunday feed research 2026-08-02. Pairs with the new 'AI agents for lawyers' industry hub (Harvey / CoCounsel / Spellbook); research→draft→review, judgment stays human."
+    },
+    {
+      "prompt": "What are the best AI coding agents for developers?",
+      "cluster": "tool-stack",
+      "locale": "en",
+      "status": "new",
+      "addedAt": "2026-08-02",
+      "note": "Sunday feed research 2026-08-02. Pairs with the new 'AI coding agents for developers' keyword; supervised (Claude Code, Cursor) vs autonomous (Devin, Replit Agent) framing."
+    },
+    {
+      "prompt": "Can an AI agent analyze my spreadsheet data?",
+      "cluster": "use-case",
+      "locale": "en",
+      "status": "new",
+      "addedAt": "2026-08-02",
+      "note": "Sunday feed research 2026-08-02. Pairs with the new 'AI agent for data analysis' keyword; Excel Copilot Agent Mode / Julius / Rows, analyze-vs-decide."
+    },
+    {
+      "prompt": "What is AI agent orchestration and when do I need it?",
+      "cluster": "tool-stack",
+      "locale": "en",
+      "status": "new",
+      "addedAt": "2026-08-02",
+      "note": "Sunday feed research 2026-08-02. Pairs with the new 'AI agent orchestration' keyword; single-agent vs multi-agent-team, grounded in Zapier orchestration + 2026 adoption survey."
+    },
+    {
+      "prompt": "AI agent 能帮律师做什么工作？",
+      "cluster": "industry",
+      "locale": "zh",
+      "status": "new",
+      "addedAt": "2026-08-02",
+      "note": "Sunday feed research 2026-08-02. ZH pair for the lawyers industry hub; keeps the ZH prompt feed growing alongside EN."
     }
   ]
 }
