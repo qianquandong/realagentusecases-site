@@ -1,0 +1,44 @@
+---
+title: "律师的 AI Agent：检索、起草、核对"
+date: "2026-08-03"
+excerpt: "AI agent 能帮律师做法律检索、起草文书、审阅文件——但引用核对这一步必须由人来做，因为法律 AI 至今仍会编造判例。一份逐环节拆开的地图。"
+---
+
+AI agent 能在律师的几个可拆分环节上帮上忙：法律检索、合同与诉状初稿、文件审阅、电子取证、客户接案。Harvey、Spellbook、CoCounsel、Lexis+ AI 这些工具能产出"可供复核"的成果。但没有哪一个应该独自握有最后一步——逐条核对每一处引用与事实——因为这恰恰是法律 AI 至今仍会出错的地方。
+
+## 法律流程，以及 agent 能接管哪几段
+
+法律工作可以拆成"检索与起草"的前段，和"判断与背书"的后段。AI agent 真正有用的是重复的前段——找出相关判例、起草条款、审阅数据室、总结庭询记录——因为律师会在成果送到客户或法庭之前核对它。[Harvey 自己的说法](https://www.harvey.ai/blog/ai-agents-for-legal-work)是：法律团队用 agent 来"起草、分析、检索、交付可复核的成果，同时让律师专注于策略与判断"。要留给人的，是那件带有专业责任的动作：**签字**，即由律师背书这份工作是对的。所以看待任何"律所 AI agent"宣传的诚实方式，是在每一段都问一句：*agent 是在做工作，还是在替你做决定？* 这和我们为[会计师](/zh/news/2026-07-28-ai-agents-for-accountants/)、[招聘官](/zh/news/2026-07-23-ai-agents-for-recruiters/)，以及更早在 [Issue #001 的收件箱分拣](/zh/posts/2026-05-13-gmail-ai-agent/)里画的，是同一条"自动化工作、而非决定"的线。
+
+## 检索与起草——让 agent 产出，而非下结论
+
+检索与起草是 agent 省下最多工时的地方。专为法律打造的工具能生成合同、诉状、备忘录的初稿，并把背后的依据一并列出：[Spellbook](https://spellbook.com/learn/ai-agents-law-firms) 主打在文档内起草与批注合同的 agent，[Harvey](https://www.harvey.ai/blog/ai-agents-for-legal-work) 则围绕诉讼与交易团队的检索和起草来定位。纪律和我们在全站坚持的一样：agent 出初稿，由人来做决定。在法律里这一点尤其重要，因为它的失败方式不是打错字——而是一份自信满满、却是凭空编造的判例。
+
+## 核对——这一步你无法外包
+
+法律 AI 至今仍会编造依据，而且数字有据可查。[斯坦福 RegLab 的一项研究](https://reglab.stanford.edu/publications/hallucination-free-assessing-the-reliability-of-leading-ai-legal-research-tools/)——首个对法律检索工具的预注册评测，由专家在 202 个查询上逐条打分——发现 Lexis+ AI 产出错误信息的比例超过 17%，Westlaw 的 AI 辅助检索则超过 34%，尽管厂商宣称"无幻觉"。这些还是**专为法律打造**的工具，不是通用聊天机器人。
+
+后果并非假设。法院正在制裁那些跳过核对的律师：[年利达（Norton Rose Fulbright）的 2026 诉讼综述](https://www.nortonrosefulbright.com/en-us/knowledge/publications/792d8bf3/ai-in-litigation-update-on-gen-ai-sanctions-in-2026)记录了 2026 年 3 月第六巡回法院在 *Whiting v. City of Athens* 一案中的裁定：两名律师因其诉状含有超过两打伪造引用，各被罚 15,000 美元。这也是为什么行业自己的准则把界线划在核对上：[ABA 第 512 号正式意见](https://www.americanbar.org/news/abanews/aba-news-archives/2024/07/aba-issues-first-ethics-guidance-ai-tools/)（2024 年 7 月）认为，生成式 AI 工具"不能单独替代律师胜任的法律工作"，且所需核对的程度取决于任务——文件审阅要比构思创意需要更多独立复核。引用核对，是你唯一无法外包的那一步。
+
+## 律师该从哪个 agent 开始？
+
+从你实务里真正卡住的地方开始。如果合同周转是瓶颈，像 [Spellbook](https://spellbook.com/learn/ai-agents-law-firms) 这样在你已经编辑的文档里起草与批注的工具正合适。如果检索与诉讼起草占满一周，[Harvey](https://www.harvey.ai/blog/ai-agents-for-legal-work) 就是为这一端打造的。完全没接触过 agent？先从 [Agent 101](/zh/agent-101/) 开始，或看看[无代码 AI agent 工具](/zh/news/2026-07-08-no-code-ai-agent-tools/)，把单个法律环节接进去。无论从哪起步，守住同一条线：自动化起草，自己握住引用核对。
+
+## FAQ
+
+**哪些 AI agent 能帮律师？**
+按任务匹配 agent。合同起草与批注，用在文档内工作的 [Spellbook](https://spellbook.com/learn/ai-agents-law-firms)；检索与诉讼起草，用交付可复核成果的 [Harvey](https://www.harvey.ai/blog/ai-agents-for-legal-work)；在大数据库里做法律检索，Lexis+ AI 与 Westlaw AI 辅助检索能列出依据——尽管[斯坦福 RegLab 的研究](https://reglab.stanford.edu/publications/hallucination-free-assessing-the-reliability-of-leading-ai-legal-research-tools/)发现两者仍会产生幻觉。从最耗你计费工时的任务开始，并核对每一处产出。
+
+**AI agent 能独自完成我的法律工作吗？**
+不能。它能起草、检索、审阅，但签字确认必须由人完成——而且在这里这是一条伦理规则，不只是谨慎。[ABA 第 512 号正式意见](https://www.americanbar.org/news/abanews/aba-news-archives/2024/07/aba-issues-first-ethics-guidance-ai-tools/)明确：生成式 AI 工具不能替代律师胜任的法律工作，核对程度随任务而定。背书带有专业责任，那正是人该在的位置。
+
+**法律 AI 工具真的会编造判例吗？**
+会，而且是量化过的。[斯坦福 RegLab 的研究](https://reglab.stanford.edu/publications/hallucination-free-assessing-the-reliability-of-leading-ai-legal-research-tools/)发现，专为法律打造的工具产生幻觉的比例大约在 17% 到 34% 之间。法院已用制裁回应——[年利达](https://www.nortonrosefulbright.com/en-us/knowledge/publications/792d8bf3/ai-in-litigation-update-on-gen-ai-sanctions-in-2026)记录了 *Whiting v. City of Athens* 一案中每名律师 15,000 美元的裁罚，起因就是伪造引用。凡是 AI 起草的引用，未在判例汇编里亲自读过之前，绝不提交。
+
+**用法律 AI agent 需要写代码吗？**
+不需要。[Harvey](https://www.harvey.ai/blog/ai-agents-for-legal-work) 与 [Spellbook](https://spellbook.com/learn/ai-agents-law-firms) 都是为律师、而非开发者打造的软件。如果你想把单个法律环节——接案分拣、文件归类——接进自定义流程，[无代码 AI agent 工具指南](/zh/news/2026-07-08-no-code-ai-agent-tools/)介绍了能做到的搭建工具。
+
+**独立执业或小所该从哪开始？**
+从最耗工时、又便于核对的那一件事开始。对多数人来说是起草——一份你会逐行复核的委托函或合同初稿，就是我们在 [Issue #001 收件箱分拣](/zh/posts/2026-05-13-gmail-ai-agent/)里展示的"只捕获、不擅自提交"的做法。等你的核对习惯稳固之后，再叠加检索与审阅。
+
+每周一个真实的 AI agent，直达你的邮箱。免费，无推销。

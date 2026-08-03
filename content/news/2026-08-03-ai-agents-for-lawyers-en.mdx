@@ -1,0 +1,44 @@
+---
+title: "AI Agents for Lawyers: Research, Draft, Verify"
+date: "2026-08-03"
+excerpt: "AI agents help lawyers research, draft, and review documents — but the citation check stays human, because legal AI still hallucinates. A task-by-task map."
+---
+
+AI agents help lawyers across separable jobs: legal research, first-draft contracts and briefs, document review, e-discovery, and client intake. Tools like Harvey, Spellbook, CoCounsel, and Lexis+ AI produce review-ready work. What none of them should own alone is the last step — verifying every citation and fact — because that is exactly where legal AI still fails.
+
+## The legal workflow, and which parts an agent can take
+
+Legal work splits into a research-and-drafting front end and a judgment-and-attestation back end. An AI agent is genuinely useful for the repetitive front end — pull the relevant authority, draft the clause, review the data room, summarize the deposition — because a lawyer checks the output before it reaches a client or a court. [Harvey's own framing](https://www.harvey.ai/blog/ai-agents-for-legal-work) is that legal teams use agents to "draft, analyze, research, and deliver review-ready work while keeping lawyers focused on strategy and judgment." The part to keep human is the one that carries professional liability: the sign-off, where a lawyer attests the work is correct. So the honest way to read any "AI agent for law firms" pitch is to ask, at each stage, *does the agent do the work, or make the call?* It's the same automate-the-work-not-the-decision line we drew for [accountants](/en/news/2026-07-28-ai-agents-for-accountants/) and [recruiters](/en/news/2026-07-23-ai-agents-for-recruiters/), and — before any of them — for [inbox triage in Issue #001](/en/posts/2026-05-13-gmail-ai-agent/).
+
+## Research and draft — let the agent produce, not conclude
+
+Research and drafting are where agents remove the most hours. Purpose-built legal tools generate first drafts of contracts, briefs, and memos and surface the authority behind them: [Spellbook](https://spellbook.com/learn/ai-agents-law-firms) markets agents that draft and redline contracts inside the document, and [Harvey](https://www.harvey.ai/blog/ai-agents-for-legal-work) positions its agents around research and drafting for litigation and transactional teams. The discipline is the same one we hold everywhere on this site: the agent produces a draft, a person makes the call. That matters more in law than almost anywhere, because the failure mode is not a typo — it is a confidently fabricated case.
+
+## Verify — the step you cannot delegate
+
+Legal AI still invents authority, and the numbers are documented. A [Stanford RegLab study](https://reglab.stanford.edu/publications/hallucination-free-assessing-the-reliability-of-leading-ai-legal-research-tools/) — the first preregistered evaluation of legal research tools, hand-scored across 202 queries — found Lexis+ AI produced incorrect information more than 17% of the time and Westlaw's AI-Assisted Research hallucinated more than 34% of the time, despite vendor "hallucination-free" claims. These are the *purpose-built* legal tools, not a general chatbot.
+
+The consequences are not hypothetical. Courts are sanctioning the lawyers who skip the check: [Norton Rose Fulbright's 2026 litigation update](https://www.nortonrosefulbright.com/en-us/knowledge/publications/792d8bf3/ai-in-litigation-update-on-gen-ai-sanctions-in-2026) records a March 2026 Sixth Circuit order in *Whiting v. City of Athens* fining two attorneys $15,000 each after their briefs contained more than two dozen fabricated citations. This is why the profession's own guidance draws the line at verification: [ABA Formal Opinion 512](https://www.americanbar.org/news/abanews/aba-news-archives/2024/07/aba-issues-first-ethics-guidance-ai-tools/) (July 2024) holds that a generative-AI tool "cannot solely substitute for a lawyer's competent legal work," and that the required verification depends on the task — a document review demands more independent review than idea generation. The citation check is the one step you cannot delegate.
+
+## Which agent should a lawyer start with?
+
+Start where your practice actually stalls. If contract turnaround is the bottleneck, a drafting-and-redline tool like [Spellbook](https://spellbook.com/learn/ai-agents-law-firms) works inside the documents you already edit. If research and litigation drafting eat your week, [Harvey](https://www.harvey.ai/blog/ai-agents-for-legal-work) is built for that end. New to agents entirely? Begin at [Agent 101](/en/agent-101/), or see the [no-code AI agent tools](/en/news/2026-07-08-no-code-ai-agent-tools/) you can wire a single legal step into. Whatever you start with, hold the same line: automate the drafting, own the citation check.
+
+## FAQ
+
+**What AI agents can help lawyers?**
+Match the agent to the task. For contract drafting and redlining, [Spellbook](https://spellbook.com/learn/ai-agents-law-firms) works inside the document; for research and litigation drafting, [Harvey](https://www.harvey.ai/blog/ai-agents-for-legal-work) delivers review-ready work; for legal research inside the big databases, Lexis+ AI and Westlaw AI-Assisted Research surface authority — though a [Stanford RegLab study](https://reglab.stanford.edu/publications/hallucination-free-assessing-the-reliability-of-leading-ai-legal-research-tools/) found both still hallucinate. Start with the task that costs you the most billable hours, and verify every output.
+
+**Can an AI agent do my legal work on its own?**
+No. It can draft, research, and review, but the sign-off must stay human — and here that is an ethics rule, not just caution. [ABA Formal Opinion 512](https://www.americanbar.org/news/abanews/aba-news-archives/2024/07/aba-issues-first-ethics-guidance-ai-tools/) states that a generative-AI tool cannot substitute for a lawyer's competent legal work, and that verification scales with the task. The attestation carries professional liability, which is exactly where a person belongs.
+
+**Do legal AI tools really make up cases?**
+Yes, and it is measured. The [Stanford RegLab study](https://reglab.stanford.edu/publications/hallucination-free-assessing-the-reliability-of-leading-ai-legal-research-tools/) found purpose-built tools hallucinated between roughly 17% and 34% of the time. Courts have responded with sanctions — [Norton Rose Fulbright](https://www.nortonrosefulbright.com/en-us/knowledge/publications/792d8bf3/ai-in-litigation-update-on-gen-ai-sanctions-in-2026) documents a $15,000-per-attorney order in *Whiting v. City of Athens* over fabricated citations. Never file an AI-drafted citation you have not read in the reporter yourself.
+
+**Do I need code to use legal AI agents?**
+No. [Harvey](https://www.harvey.ai/blog/ai-agents-for-legal-work) and [Spellbook](https://spellbook.com/learn/ai-agents-law-firms) ship as software built for lawyers, not developers. If you want to wire a single legal step — intake triage, document sorting — into a custom flow, the [no-code AI agent tools guide](/en/news/2026-07-08-no-code-ai-agent-tools/) covers the builders that can do it.
+
+**Where should a solo or small firm begin?**
+With the one task that eats the most hours and is safe to check. For most that is drafting — a first-draft engagement letter or contract you review line by line, the same capture-don't-commit setup we show for [inbox triage in Issue #001](/en/posts/2026-05-13-gmail-ai-agent/). Layer research and review on top only once your verification habit is solid.
+
+One real AI agent a week, straight to your inbox. Free, no upsell.

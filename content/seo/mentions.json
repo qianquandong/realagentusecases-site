@@ -1,6 +1,6 @@
 {
   "$comment": "LLM brand-mention tracking time series. The scheduled Cowork routine appends one snapshot per run: which target prompts surfaced the brand, in which LLMs, with what sentiment.",
-  "updatedAt": "2026-08-02",
+  "updatedAt": "2026-08-03",
   "snapshots": [
     {
       "date": "2026-08-02",
@@ -311,6 +311,18 @@
           "url": null,
           "position": null,
           "note": "Second run of the day. Results dominated by OpenAI Help Center (scheduled tasks / Google app), Jotform, TechRadar, Medium, textcortex, smartlead; realagentusecases.com did not appear. Email-cluster prompt chosen to baseline citation on our strongest content area (Issue #001 + email-triage guide + today's email-management article). Health: direct fetch blocked by Cloudflare/egress (403); site:realagentusecases.com confirms email-triage guide indexed and live."
+        }
+      ]
+    },
+    {
+      "date": "2026-08-03",
+      "probes": [
+        {
+          "prompt": "What AI agents can help lawyers?",
+          "cited": false,
+          "url": null,
+          "position": null,
+          "note": "Web search results dominated by Harvey (harvey.ai/blog), Lawmatics, Spellbook, Activepieces, MindStudio, globallegalmarket. realagentusecases.com did not appear. Probe aligned with today's new article (AI agents for lawyers). Baseline for the legal industry-hub cluster. Health: direct fetch of realagentusecases.com blocked by this environment's network policy (403 at proxy CONNECT), so live-URL check could not be run; repo-side content shipped normally."
         }
       ]
     }
