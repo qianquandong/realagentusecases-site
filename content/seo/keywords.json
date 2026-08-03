@@ -1,6 +1,6 @@
 {
   "$comment": "SEO keyword feed — a living file. The scheduled Cowork routine ideates entries; scripts/seo/feeds.mjs persists them (dedupe + status + timestamps). intent: informational|commercial|transactional. funnel: TOFU|MOFU|BOFU. cluster: use-case|template|comparison|industry|tool-stack. status: new|used.",
-  "updatedAt": "2026-08-02",
+  "updatedAt": "2026-08-03",
   "keywords": [
     {
       "term": "AI agent use cases",
@@ -421,9 +421,9 @@
       "funnel": "TOFU",
       "cluster": "industry",
       "locale": "both",
-      "status": "new",
+      "status": "used",
       "addedAt": "2026-08-02",
-      "note": "Sunday feed research 2026-08-02. Industry-hub sibling of recruiters/accountants/consultants/financial-analysts/realtors. Grounded in real named tools + reporting: Harvey (BigLaw multi-agent, ~$190M ARR / ~$11B valuation early 2026 per AgentMarketCap BigLaw report), Thomson Reuters CoCounsel (agentic AI in Westlaw/Practical Law, largest installed base), Spellbook (contract drafting) — see Stork.AI 'Best AI Tools for Lawyers 2026' and GC AI 'Harvey vs CoCounsel'. Harvey+CoCounsel processed 10M+ legal documents in Q1 2026. Human-stays line = legal judgment, privilege, and sign-off; maps to research→draft→review with the automate-the-work-not-the-judgment frame."
+      "note": "Sunday feed research 2026-08-02. Industry-hub sibling of recruiters/accountants/consultants/financial-analysts/realtors. Grounded in real named tools + reporting: Harvey (BigLaw multi-agent, ~$190M ARR / ~$11B valuation early 2026 per AgentMarketCap BigLaw report), Thomson Reuters CoCounsel (agentic AI in Westlaw/Practical Law, largest installed base), Spellbook (contract drafting) — see Stork.AI 'Best AI Tools for Lawyers 2026' and GC AI 'Harvey vs CoCounsel'. Harvey+CoCounsel processed 10M+ legal documents in Q1 2026. Human-stays line = legal judgment, privilege, and sign-off; maps to research→draft→review with the automate-the-work-not-the-judgment frame. | Used 2026-08-03 → content/news/2026-08-03-ai-agents-for-lawyers. Angle: research→draft→verify; the citation check is the un-delegable step. Sourced to Harvey blog, Spellbook, Stanford RegLab hallucination study (Lexis>17%/Westlaw>34%), Norton Rose Fulbright 2026 sanctions update (Whiting v. City of Athens, $15k each), ABA Formal Opinion 512."
     },
     {
       "term": "AI coding agents for developers",
