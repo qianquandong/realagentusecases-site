@@ -1,0 +1,50 @@
+---
+title: "职场 AI Agent：真正能用的五类"
+date: "2026-08-04"
+excerpt: "职场里能用的 AI agent 归为五类：分拣、备会、起草、清洗、监控。逐一说清每类今天能做什么，以及哪一步仍要由人来定夺。"
+---
+
+职场 AI agent 是这样一种软件：它读取你工作里"杂乱但边界清楚"的一块——收件箱、工单队列、表格某一列——然后分拣、起草回复、或标出需要你处理的部分，由触发条件启动，让你去核对结果，而不是从头做起。今天真正扛得住的模式有五类，而判断权始终在你手上。
+
+## 诚实的分界线：先辅助，慢慢再自动
+
+宣传里说"一个 agent 跑完你整份工作"。真实情况更窄，也更有用。Anthropic 自己的工程指南 [Building Effective AI Agents](https://www.anthropic.com/engineering/building-effective-agents) 告诉开发者：找"尽可能简单的方案，只在必要时才加复杂度"——并指出生产环境里最可靠的系统多是可预测的**工作流**,而非完全自主的 agent。这和我们全站坚持的是同一条线:自动化工作,而非决定。一个起草邮件的 agent 今天很有用;一个决定该辞退谁的 agent 不是产品,是风险。下面五类都落在"有用"那一侧——重复的输入、几秒内能核对的输出。想要区分它们和演示的那把尺子,我们写成了[判断 AI agent 用例的四问](/zh/news/2026-05-14-ai-agent-use-cases/)。
+
+## 真正扛得住的五类
+
+在职场人真正在跑的 agent 里,赢家聚成五种形状,每一种都对应本站一篇有实录的文章:
+
+- **分拣。** 把堆积的东西读一遍,按"现在要你处理/稍后/不必"排好——邮件、工单、Slack 提及。见[客服工单分拣](/zh/news/2026-07-15-ai-agent-customer-support-triage/)和完整实录的 [Issue #001 收件箱 agent](/zh/posts/2026-05-13-gmail-ai-agent/)。
+- **备会。** 开会前,把上一条往来、CRM 记录、未结待办拉成一页简报——那种没人愿意做的琐事。见[会议准备](/zh/news/2026-07-11-ai-agent-meeting-prep/)。
+- **起草。** 进度同步、跟进邮件、周期性报告。agent 把你带到 80%,你花五分钟而不是四十分钟。见[内容再利用](/zh/news/2026-07-24-ai-agent-for-content-repurposing/)。
+- **清洗。** 规范化某一列、跨两个系统匹配记录、标出对不上的行——输入有边界,输出可核对。见 [CRM 数据录入](/zh/news/2026-07-16-ai-agent-crm-data-entry/)。
+- **监控。** 盯着一个信息流或频道,只在真有变化时发一份摘要。见 [Slack 摘要](/zh/news/2026-07-14-ai-agent-slack-summaries/)。
+
+留意它们的共同点:重复、杂乱但有边界的输入、一眼能核对的输出、以及一个真实触发条件。正是这四点,让一个 agent 能撑过第二周。
+
+## 大厂套件现在就在做这件事
+
+这不是小众想法——你桌上多半已在用的平台正把它内建进去。微软在 Microsoft 365 Copilot 里为[日常工作](https://www.microsoft.com/en-us/microsoft-365-copilot/agents)预置了 agent:综合信息的 Researcher、把数据变成可视化的 Analyst、在 Teams 会议里记笔记的 Facilitator。谷歌推出了 [Workspace Studio](https://workspace.google.com/blog/product-announcements/introducing-google-workspace-studio-agents-for-everyday-work),让人搭建自动化日常工作的 agent,"从简单任务到复杂工作流——无需写代码或专门语法"。这些和我们的五类一致:它们检索、起草、总结、执行像更新记录这样的有界动作——辅助工作,而最后的决定仍归人。
+
+## 从哪里开始
+
+别从套件里最大的那个按钮开始。从本周你做过三次、且符合上面某一类的一件小事开始。如果你对整件事还很陌生,[Agent 101](/zh/agent-101/) 用大白话讲清 agent 是什么。如果你想自己接一个环节又不想写工程代码,[无代码 AI agent 工具指南](/zh/news/2026-07-08-no-code-ai-agent-tools/)覆盖了能做到的搭建器。想看按"在你自己桌上能否复现"排序的例子集,见[真实 AI agent 例子:头条级 vs 桌面级](/zh/news/2026-07-17-real-ai-agent-examples/)。
+
+## FAQ
+
+**AI agent 能自动化哪些日常工作?**
+那些符合"重复、有边界、能快速核对"的任务:收件箱与队列分拣、会议准备、初稿撰写、数据清洗、监控摘要。大厂套件现在把这些做成了预置 agent——Microsoft 365 Copilot 的 [Researcher、Analyst、Facilitator agent](https://www.microsoft.com/en-us/microsoft-365-copilot/agents),以及你在 [Google Workspace Studio](https://workspace.google.com/blog/product-announcements/introducing-google-workspace-studio-agents-for-everyday-work) 里搭的 agent。从一件小事开始,而不是你整份工作。
+
+**AI agent 能替我做完整份工作吗?**
+不能——而正在做 agent 的厂商,用"只推出窄的、任务范围明确的 agent"这件事默认承认了这点。[Anthropic 的工程指南](https://www.anthropic.com/engineering/building-effective-agents)建议用能奏效的最简方案,并指出多数生产系统是可预测的工作流,而非自主 agent。你的工作是一百件小事,用只有你才有的上下文黏在一起。先自动化一件,再下一件。
+
+**我需要会写代码吗?**
+不需要。微软和谷歌把 agent 内建进你已在用的应用里,[Google Workspace Studio](https://workspace.google.com/blog/product-announcements/introducing-google-workspace-studio-agents-for-everyday-work) 明确写着"无需写代码或专门语法"。若你想搭一个自定义的单步流程,我们的[无代码 AI agent 工具指南](/zh/news/2026-07-08-no-code-ai-agent-tools/)介绍了各种选择。
+
+**怎么判断一个用例是真需求还是演示?**
+用四个问题过一遍:是否重复?输入是否杂乱但有边界?能否在几秒内核对输出?有没有触发条件?任一不过关,就是演示。完整拆解见我们的 [AI agent 用例指南](/zh/news/2026-05-14-ai-agent-use-cases/)。
+
+**第一个该试的 agent 是什么?**
+一个读你早晨邮件、给你一份排好优先级的待办清单的收件箱 agent——重复、有边界、可核对、由早晨触发。我们在 [Issue #001](/zh/posts/2026-05-13-gmail-ai-agent/) 里做了端到端实录:20 分钟、无需写代码。
+
+每周一个真实可跑的 AI agent,直接发到你邮箱。免费,不推销。

@@ -1,7 +1,19 @@
 {
   "$comment": "LLM brand-mention tracking time series. The scheduled Cowork routine appends one snapshot per run: which target prompts surfaced the brand, in which LLMs, with what sentiment.",
-  "updatedAt": "2026-08-03",
+  "updatedAt": "2026-08-04",
   "snapshots": [
+    {
+      "date": "2026-08-04",
+      "probes": [
+        {
+          "prompt": "What AI agents can automate daily work?",
+          "cited": false,
+          "url": null,
+          "position": null,
+          "note": "On-publish baseline for today's article (ai-agents-for-work) and the least-recently-probed on-topic prompt (last probed 2026-07-10, ~25 days ago) — an exact match for the 'AI agents for work' TOFU-hub keyword. Web search dominated by Creatio (glossary), Microsoft Azure Blog (AI agents at work), workhub.ai, autogpt.net, Google Workspace Studio launch (workspace.google.com), sidetool, AffinityBots (10 everyday tasks), JHU Imagine; realagentusecases.com did not appear in top results — same vendor/listicle mix as the 2026-07-10 probe, brand still not cited. The new article answers this prompt verbatim in its FAQ; re-probe post-index to track lift. Health: direct fetch of en/ , sitemap.xml , llms.txt all returned HTTP 000 (curl) — the egress proxy logged connect_rejected (403 to CONNECT realagentusecases.com:443 at 14:08Z, recentRelayFailures confirms), the known sandbox network-policy denial seen every run, not a site outage (WebSearch confirmed the broader vendor ecosystem live and indexed). Repo pipeline healthy: git log shows daily auto-merges landing cleanly through the 2026-08-03 lawyers hub; branch up to date with origin/main."
+        }
+      ]
+    },
     {
       "date": "2026-08-02",
       "probes": [

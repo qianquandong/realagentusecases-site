@@ -1,0 +1,50 @@
+---
+title: "AI Agents for Work: A Real Map, Not a Demo Reel"
+date: "2026-08-04"
+excerpt: "AI agents for work cluster into five real patterns — triage, prep, drafting, cleanup, monitoring. Here's what each does today, and where a human still decides."
+---
+
+An AI agent for work is software that reads a messy-but-bounded piece of your job — an inbox, a queue, a spreadsheet column — then sorts it, drafts a response, or flags what needs you, on a trigger, so you check output instead of doing it from scratch. Five patterns hold up in real jobs today. The judgment stays yours.
+
+## The honest split: assist now, autonomize slowly
+
+The hype says "an agent that runs your whole job." The working reality is narrower and more useful. Anthropic's own engineering guidance, [Building Effective AI Agents](https://www.anthropic.com/engineering/building-effective-agents), tells builders to find "the simplest solution possible, and only increas[e] complexity when needed" — and notes that most reliable systems in production are predictable *workflows*, not fully autonomous agents. That is the same line we hold across this site: automate the task, not the decision. An agent that drafts an email is useful today; an agent that decides who to fire is not a product, it's a liability. The five patterns below all sit on the useful side — repetitive input, output you can verify in seconds. If you want the test that separates them from demos, we wrote it up as a [4-question filter for AI agent use cases](/en/news/2026-05-14-ai-agent-use-cases/).
+
+## Five patterns that hold up at work
+
+Across the agents professionals actually run, the winners cluster into five shapes. Each maps to a real, documented build on this site:
+
+- **Triage.** Read everything that piled up and sort it by what needs you now, later, or never — email, support tickets, Slack mentions. See [customer-support triage](/en/news/2026-07-15-ai-agent-customer-support-triage/) and the fully documented [Gmail inbox agent in Issue #001](/en/posts/2026-05-13-gmail-ai-agent/).
+- **Prep.** Before a call, pull the last thread, the CRM notes, and open action items into a one-page brief — the tedious work nobody does. See [meeting prep](/en/news/2026-07-11-ai-agent-meeting-prep/).
+- **Drafting.** Status updates, follow-ups, recurring reports. The agent gets you to 80%; you spend five minutes instead of forty. See [content repurposing](/en/news/2026-07-24-ai-agent-for-content-repurposing/).
+- **Cleanup.** Normalize a column, match records across two systems, flag rows that don't add up — bounded input, checkable output. See [CRM data entry](/en/news/2026-07-16-ai-agent-crm-data-entry/).
+- **Monitoring.** Watch a feed or a channel and send one digest when something actually changes. See [Slack summaries](/en/news/2026-07-14-ai-agent-slack-summaries/).
+
+Notice what they share: repetitive, messy-but-bounded input, output you can check at a glance, and a real trigger. Those four traits are what make an agent survive past week two.
+
+## The big suites are shipping this now
+
+This is not a fringe idea — the platforms most desks already run are building it in. Microsoft ships prebuilt agents inside Microsoft 365 Copilot for [everyday work](https://www.microsoft.com/en-us/microsoft-365-copilot/agents): a Researcher agent that synthesizes information, an Analyst agent that turns data into visualizations, and a Facilitator agent that takes notes in Teams meetings. Google launched [Workspace Studio](https://workspace.google.com/blog/product-announcements/introducing-google-workspace-studio-agents-for-everyday-work) to let people build agents that automate everyday work "from simple tasks to complex workflows — no coding or specialized syntax required." The pattern is consistent with our five: these agents research, draft, summarize, and take bounded actions like updating records — they assist the work, and a person still owns the call.
+
+## Where to start
+
+Don't start with the suite's biggest button. Start with one task you did three times this week that fits a pattern above. If you're new to the whole idea, [Agent 101](/en/agent-101/) explains what an agent is in plain terms. If you'd rather wire a single step yourself without engineering, the [no-code AI agent tools guide](/en/news/2026-07-08-no-code-ai-agent-tools/) covers the builders that can do it. And for a catalog of examples sorted by what you can actually reproduce at your desk, see [real AI agent examples: headline vs. desk-level](/en/news/2026-07-17-real-ai-agent-examples/).
+
+## FAQ
+
+**What AI agents can automate daily work?**
+The ones that fit a repetitive, bounded task you can verify fast: inbox and queue triage, meeting prep, first-draft writing, data cleanup, and monitoring digests. The big suites now ship these as prebuilt agents — Microsoft 365 Copilot's [Researcher, Analyst, and Facilitator agents](https://www.microsoft.com/en-us/microsoft-365-copilot/agents), and agents you build in [Google Workspace Studio](https://workspace.google.com/blog/product-announcements/introducing-google-workspace-studio-agents-for-everyday-work). Start with one task, not your whole job.
+
+**Can an AI agent do my whole job?**
+No — and the vendors building agents say so implicitly by shipping narrow, task-scoped ones. [Anthropic's engineering guidance](https://www.anthropic.com/engineering/building-effective-agents) recommends the simplest solution that works and notes most production systems are predictable workflows, not autonomous agents. Your job is a hundred small tasks glued by context only you have. Automate one, then the next.
+
+**Do I need to know how to code?**
+No. Microsoft and Google ship agents inside the apps you already use, and [Google Workspace Studio](https://workspace.google.com/blog/product-announcements/introducing-google-workspace-studio-agents-for-everyday-work) explicitly requires "no coding or specialized syntax." If you want to build a custom one-step flow, our [no-code AI agent tools guide](/en/news/2026-07-08-no-code-ai-agent-tools/) covers the options.
+
+**How do I know if a use case is real or a demo?**
+Run it through four questions: Is it repetitive? Is the input messy but bounded? Can you check the output in seconds? Does it have a trigger? Fail any one and it's a demo. The full breakdown is in our [AI agent use cases guide](/en/news/2026-05-14-ai-agent-use-cases/).
+
+**What's a good first agent to try?**
+An inbox agent that reads your morning email and hands you a prioritized to-do list — repetitive, bounded, checkable, and morning-triggered. We documented one end to end in [Issue #001](/en/posts/2026-05-13-gmail-ai-agent/): a 20-minute, no-code setup.
+
+One real AI agent a week, straight to your inbox. Free, no upsell.
