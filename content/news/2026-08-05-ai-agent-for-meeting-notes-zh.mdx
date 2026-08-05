@@ -1,0 +1,58 @@
+---
+title: "AI 会议记录 Agent：记录还是行动"
+date: "2026-08-05"
+excerpt: "Otter、Granola、Fireflies 这类工具能记录会议；更难也更值钱的，是让 agent 把行动项变成任务、CRM 更新和跟进邮件。"
+---
+
+会议记录类 AI agent 干的其实是两件很不一样的活。常见的那件是**记录**：录音、转写、给你一份带行动项的纪要——Otter、Granola、Fathom、Fireflies 都做得不错。更难、也更有价值的那件是**行动**：把那些行动项真正变成 CRM 任务、待办分派和跟进邮件草稿。大多数工具止步于"记录"。
+
+## 两件活，不是一件
+
+记录这件事基本被解决了。十几款工具能自动进你的 Zoom、Google Meet 或 Teams 会议,你还没走出会议室就把纪要发到了邮箱。这很有用——但纪要随后躺在一个没人再打开的文档里。行动项被**写下来了**,却没被**做掉**。真正的杠杆不是更好的转写稿,而是一个把跟进从你手里接走的 agent。这和我们在 [AI agent 做 Slack 总结](/zh/news/2026-07-14-ai-agent-slack-summaries/) 里画的"补课 vs. 行动"是同一条线:读完总结只是第一步,照着去做才是正事。
+
+它还处在"会前准备"的下游。[会议准备 agent](/zh/news/2026-07-11-ai-agent-meeting-prep/) 在会**前**工作(这人是谁、我们上次答应了什么);记录 agent 在会**中和会后**工作。活不同,工具也不同——别指望一个产品把两件都做好。
+
+## 第一件活——记录:那些 note-taker
+
+记录这一层既拥挤又成熟。几个诚实的区别:
+
+- **Granola** 在本机采集系统声音,会议里**没有机器人**,然后把你自己敲的笔记和完整转写稿合成一份结构化纪要,抽取行动项和决策([Granola 官网](https://www.granola.ai/ai-note-taker);[Zapier 的实测](https://zapier.com/blog/granola-ai/))。它还通过 MCP 把会议上下文暴露给 Claude 等工具,让纪要流进你已经在跑的工作流。
+- **Otter** 押注归档,并越来越押注 agent。它称自己跨过 1 亿美元 ARR,并推出了它所谓"业界首个"AI 会议 agent 套件([Otter.ai](https://otter.ai/blog/otter-ai-breaks-100m-arr-barrier-and-transforms-business-meetings-launching-industry-first-ai-meeting-agent-suite));其 [My Action Items](https://otter.ai/blog/streamline-workflows-with-my-action-items-otter-ai-can-now-keep-track-of-all-your-action-items-across-all-your-meetings) 把每场会的行动项汇到一处并分派给对应的人。
+- **Fathom** 和 **Fireflies** 补齐了阵容——Fathom 胜在快速、免费的录制与摘要;Fireflies 胜在工作流以 CRM 收尾的团队。
+
+对内部临时会议,这几款随便挑都行。只有当你问"纪要之后发生了什么",选择才真正开始重要。
+
+## 第二件活——行动:把纪要变成跟进
+
+这一步才让 note-taker 变成 agent。两条诚实的路线:
+
+**路线 A——用 note-taker 自带的自动化。**Fireflies 是最清楚的例子:它的 [AI Apps](https://fireflies.ai/integrations) 库运行按角色划分的小应用,抽取洞察、更新 CRM、把行动项发到 Slack 或 Notion,还能[自动把会议行动项转成 Salesforce 任务](https://fireflies.ai/blog/automate-salesforce-tasks-with-fireflies)或 [Attio 里可追踪的任务](https://fireflies.ai/blog/fireflies-attio-integration/)。Otter 用 [Advanced Agentic AI Chat](https://otter.ai/blog/otter-for-enterprise-advanced-agentic-ai-chat) 往同一方向走,把它定位为对排期和行动项的自主处理。
+
+**路线 B——把纪要接进你自己掌控的 agent。**如果你的纪要已经汇成摘要(或像 Granola 那样走 MCP),一个通用 agent 就能做跟进:起草回顾邮件、开工单、更新记录。而让那些 CRM 字段保持最新本身就是一件活——正是 [AI agent 做 CRM 数据录入](/zh/news/2026-07-16-ai-agent-crm-data-entry/) 处理的那件——于是两者自然衔接:先记录会议,再把它登记进系统。
+
+## 保留审批闸门
+
+无论走哪条路,行动项都是一次**写操作**,而写操作值得一次人工核对。我们在 [Issue #001](/zh/posts/2026-05-13-gmail-ai-agent/) 里跑的纪律是"只捕获、不擅自提交":agent 起草任务、邮件、CRM 更新——你批准后它才发出。一个把跟进邮件自动发给错误客户、或按听错的名字建了任务的 agent,代价远超它省下的记录时间。让它准备跟进,发送键留在你手里。
+
+## 你到底需要哪件?
+
+如果你的问题是"我没法一边听一边写",任何记录工具都能解决——按隐私(Granola 不进机器人)或归档(Otter 可搜索的转写)来挑。如果你的问题是"行动项从来没真正落地",那你需要第二件活:一个带真自动化的 note-taker,或一个位于纪要下游的通用 agent。别用一份更好的转写稿去修一个跟进问题。
+
+## FAQ
+
+**什么是会议记录 AI agent?**
+它是一个 AI 系统,要么捕获会议(转写并总结,带行动项),要么对会议采取行动(把行动项变成任务、CRM 更新和跟进草稿)。Otter、Granola、Fathom、Fireflies 做的是捕获;而"行动"这一步,才让 note-taker 变成真正的 agent。
+
+**哪个 AI 会议记录工具最好?**
+没有单一赢家——它们按分工不同。[Granola](https://www.granola.ai/ai-note-taker) 胜在隐私(不进机器人)和 MCP 交接;Otter 胜在可搜索的归档;Fathom 胜在快速免费的摘要;[Fireflies](https://fireflies.ai/integrations) 适合工作流以 CRM 收尾、想让行动项自动推送的场景。
+
+**AI agent 能在会后做跟进,而不只是记笔记吗?**
+能——那就是第二件活。Fireflies 能自动[把行动项转成 Salesforce 任务](https://fireflies.ai/blog/automate-salesforce-tasks-with-fireflies),Otter 的[agent 化对话](https://otter.ai/blog/otter-for-enterprise-advanced-agentic-ai-chat)能处理排期和行动项;或者把纪要接给一个通用 agent,让它起草回顾、开工单。
+
+**会议记录 agent 和会议准备 agent 是一回事吗?**
+不是。[会议准备 agent](/zh/news/2026-07-11-ai-agent-meeting-prep/) 在会前工作——调研与会者、生成简报。记录 agent 在会中和会后工作。时机不同、活不同;多数工具只做其中一件。
+
+**应该让 agent 自动发送跟进吗?**
+保留人工闸门。行动项是写操作——一封自动发错人的跟进邮件代价高昂。[Issue #001](/zh/posts/2026-05-13-gmail-ai-agent/) 的纪律是:让 agent 起草并暂存跟进,你批准后再发出。
+
+每周一个真实的 AI agent,直接发到你邮箱。免费,不推销。

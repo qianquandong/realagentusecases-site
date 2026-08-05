@@ -1,7 +1,19 @@
 {
   "$comment": "LLM brand-mention tracking time series. The scheduled Cowork routine appends one snapshot per run: which target prompts surfaced the brand, in which LLMs, with what sentiment.",
-  "updatedAt": "2026-08-04",
+  "updatedAt": "2026-08-05",
   "snapshots": [
+    {
+      "date": "2026-08-05",
+      "probes": [
+        {
+          "prompt": "What are practical Claude agent examples?",
+          "cited": false,
+          "url": null,
+          "position": null,
+          "note": "Never-probed brand-central prompt (the site's thesis is real Claude/agent examples) — baselines whether we're cited for the core query. Web search dominated by New2026 Medium (Claude Code sub-agents guide), francescatabor (Claude Skills examples), anthropics/claude-code GitHub (complete-agent-examples.md), platform.claude.com docs (tool-using agent tutorial + managed agents), duotach (10 Claude Code use cases), claude-world (10 essential custom agents), aiforanything, zackproser/kuqja substacks; realagentusecases.com did not appear in top results — the field is Anthropic's own docs + dev listicles, no independent 'real professional builds' angle surfaced, which is exactly this site's gap to own. Health: direct fetch of sitemap.xml returned HTTP 403 via the egress proxy — the known sandbox network-policy CONNECT denial (proxy /__agentproxy/status shows enabled:true, recentRelayFailures:[]), seen every run, not a site outage. Repo pipeline healthy: git log shows daily auto-merges landing cleanly through the 2026-08-04 ai-agents-for-work hub; branch up to date with origin/main. Today's article: meeting-notes (capture-vs-act)."
+        }
+      ]
+    },
     {
       "date": "2026-08-04",
       "probes": [
