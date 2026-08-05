@@ -1,6 +1,6 @@
 {
   "$comment": "SEO keyword feed — a living file. The scheduled Cowork routine ideates entries; scripts/seo/feeds.mjs persists them (dedupe + status + timestamps). intent: informational|commercial|transactional. funnel: TOFU|MOFU|BOFU. cluster: use-case|template|comparison|industry|tool-stack. status: new|used.",
-  "updatedAt": "2026-08-04",
+  "updatedAt": "2026-08-05",
   "keywords": [
     {
       "term": "AI agent use cases",
@@ -352,9 +352,9 @@
       "funnel": "MOFU",
       "cluster": "use-case",
       "locale": "both",
-      "status": "new",
+      "status": "used",
       "addedAt": "2026-07-26",
-      "note": "Sunday feed research 2026-07-26. Transcribe-and-summarize vs act-on-action-items framing: note-takers (Otter, Fireflies, Fathom, Granola) capture the meeting read-only vs an agent that turns action items into CRM updates / tasks / follow-up drafts. Clusters tightly with meeting-prep (before) and slack-summaries (catch-up-vs-act) and crm-data-entry (the follow-through). Grounded in Issue #001's capture-don't-commit discipline."
+      "note": "Used 2026-08-05 → content/news/2026-08-05-ai-agent-for-meeting-notes-{en,zh}.mdx (title 'AI Agent for Meeting Notes: Capture vs. Act'). Capture-vs-act framing mirrors the site's two-jobs pattern (invoice draft-vs-pay, expense submit-vs-approve, slack catch-up-vs-act). Job 1 = capture (Otter, Granola, Fathom, Fireflies note-takers); Job 2 = act on the action items — Fireflies AI Apps auto-converting action items into Salesforce tasks / Attio trackable tasks / Slack (fireflies.ai/integrations + automate-salesforce-tasks + fireflies-attio-integration blogs), Otter Advanced Agentic AI Chat autonomous task handling + My Action Items + $100M ARR / 'industry-first AI Meeting Agent suite' (otter.ai official blogs), Granola local no-bot capture + MCP hand-off to Claude (granola.ai/ai-note-taker + Zapier walkthrough). Grounded in Issue #001's capture-don't-commit discipline (keep the approval gate on writes). Wove a downstream link into meeting-prep (en+zh) 'other side of the meeting' line — the before/after pair. Clusters with slack-summaries (catch-up-vs-act) and crm-data-entry (the follow-through, linked as Route B)."
     },
     {
       "term": "AI agent for competitive analysis",

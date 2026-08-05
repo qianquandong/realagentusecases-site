@@ -1,6 +1,6 @@
 {
   "$comment": "GEO prompt feed — the questions working professionals ask ChatGPT / Perplexity / Gemini. The scheduled Cowork routine ideates entries; scripts/seo/feeds.mjs persists them. cluster: use-case|template|comparison|industry|tool-stack. status: new|covered (covered = a published article targets it). Phase 7 tracks whether the brand is cited for each.",
-  "updatedAt": "2026-08-02",
+  "updatedAt": "2026-08-05",
   "prompts": [
     {
       "prompt": "What are real examples of AI agents at work?",
@@ -123,7 +123,7 @@
       "locale": "en",
       "status": "new",
       "addedAt": "2026-05-14",
-      "note": "From the Notion KB GEO Prompt Feed."
+      "note": "From the Notion KB GEO Prompt Feed. GEO-probed 2026-08-05: not cited — results dominated by New2026/francescatabor Medium, anthropics/claude-code GitHub (complete-agent-examples.md), platform.claude.com docs, duotach, claude-world, aiforanything listicles. The field is Anthropic's own docs + dev listicles; no 'real professional builds' angle, which is this site's gap to own."
     },
     {
       "prompt": "How do I use ChatGPT or Claude as a work assistant?",

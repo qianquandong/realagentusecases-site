@@ -1,0 +1,58 @@
+---
+title: "AI Agent for Meeting Notes: Capture vs. Act"
+date: "2026-08-05"
+excerpt: "Note-takers like Otter, Granola, and Fireflies capture the meeting. The harder job is an agent that turns action items into tasks and follow-ups."
+---
+
+An AI agent for meeting notes does one of two very different jobs. The common one is **capture**: record the call, transcribe it, and hand you a summary with action items — what Otter, Granola, Fathom, and Fireflies all do well. The harder, more valuable one is **act**: take those action items and turn them into CRM tasks, assignments, and follow-up drafts. Most tools stop at capture.
+
+## Two jobs, not one
+
+Capture is close to solved. A dozen note-takers will join your Zoom, Google Meet, or Teams call and email you a clean summary before you've left the room. That's genuinely useful — but the notes then sit in a doc nobody reopens. The action items get *written down*, not *done*. The leverage isn't a better transcript; it's an agent that moves the follow-through off your plate. It's the same "catch up vs. act" split we drew for [AI agent for Slack summaries](/en/news/2026-07-14-ai-agent-slack-summaries/): reading the recap is step one, acting on it is the real work.
+
+This also sits downstream of prep. A [meeting-prep agent](/en/news/2026-07-11-ai-agent-meeting-prep/) works *before* the call (who is this, what did we promise); a notes agent works *during and after* it. Different jobs, different tools — don't expect one product to do both well.
+
+## Job 1 — Capture: the note-takers
+
+The capture layer is crowded and mature. A few honest distinctions:
+
+- **Granola** captures system audio locally with *no bot in the meeting*, then combines your own typed notes with the full transcript into a structured summary that extracts action items and decisions ([Granola](https://www.granola.ai/ai-note-taker); [Zapier's walkthrough](https://zapier.com/blog/granola-ai/)). It also exposes that meeting context to Claude and other tools over MCP, so the notes can travel into a workflow you already run.
+- **Otter** leans into the archive and, increasingly, the agent. It says it crossed $100M ARR and launched what it calls an "industry-first" AI Meeting Agent suite ([Otter.ai](https://otter.ai/blog/otter-ai-breaks-100m-arr-barrier-and-transforms-business-meetings-launching-industry-first-ai-meeting-agent-suite)), and its [My Action Items](https://otter.ai/blog/streamline-workflows-with-my-action-items-otter-ai-can-now-keep-track-of-all-your-action-items-across-all-your-meetings) feature pulls action items from every meeting into one place and assigns them to the right people.
+- **Fathom** and **Fireflies** round out the field — Fathom for fast, free recording and summaries; Fireflies for teams whose workflow ends in a CRM.
+
+For internal one-offs, any of these is fine. The choice starts to matter only when you ask what happens *after* the summary.
+
+## Job 2 — Act: turning notes into follow-through
+
+This is where a note-taker becomes an agent. Two honest routes:
+
+**Route A — the note-taker's own automation.** Fireflies is the clearest example: its [AI Apps](https://fireflies.ai/integrations) library runs role-based mini-apps that extract insights, update CRMs, and post action items to Slack or Notion, and it will [automatically convert meeting action items into Salesforce tasks](https://fireflies.ai/blog/automate-salesforce-tasks-with-fireflies) or [trackable tasks in Attio](https://fireflies.ai/blog/fireflies-attio-integration/). Otter pushes the same direction with [Advanced Agentic AI Chat](https://otter.ai/blog/otter-for-enterprise-advanced-agentic-ai-chat), which it frames as autonomous task handling for scheduling and action items.
+
+**Route B — pipe the notes into an agent you control.** If your notes already flow to a summary (or over MCP, as Granola does), a general agent can do the follow-through: draft the recap email, open the tickets, update the record. Keeping those CRM fields current is itself a job — the one an [AI agent for CRM data entry](/en/news/2026-07-16-ai-agent-crm-data-entry/) handles — so the two chain naturally: capture the meeting, then log it.
+
+## Keep the approval gate
+
+Whichever route you take, an action item is a *write*, and writes deserve a human check. The discipline we run in [Issue #001](/en/posts/2026-05-13-gmail-ai-agent/) is capture-don't-commit: the agent drafts the task, the email, the CRM update — you approve before it fires. An agent that auto-sends a follow-up to the wrong client, or files a task against a misheard name, costs more than the note-taking saved. Let it prepare the follow-through; keep the send button yours.
+
+## Which do you need?
+
+If your problem is "I can't listen and write at once," any capture tool solves it — pick on privacy (Granola's no-bot approach) or archive (Otter's searchable transcripts). If your problem is "action items never actually happen," you need Job 2: a note-taker with real automation, or a general agent downstream of the notes. Don't buy a better transcript to fix a follow-through problem.
+
+## FAQ
+
+**What is an AI agent for meeting notes?**
+It's an AI system that either captures a meeting (transcribes and summarizes it, with action items) or acts on it (turns those action items into tasks, CRM updates, and follow-up drafts). Tools like Otter, Granola, Fathom, and Fireflies do the capture; the act step is where a note-taker becomes a true agent.
+
+**Which is the best AI meeting note taker?**
+There's no single winner — they split by job. [Granola](https://www.granola.ai/ai-note-taker) is strong for privacy (no bot joins the call) and MCP hand-off; Otter for a searchable archive; Fathom for fast free summaries; [Fireflies](https://fireflies.ai/integrations) when your workflow ends in a CRM and you want action items pushed automatically.
+
+**Can an AI agent do the follow-up after a meeting, not just take notes?**
+Yes — that's Job 2. Fireflies can [convert action items into Salesforce tasks](https://fireflies.ai/blog/automate-salesforce-tasks-with-fireflies) automatically, and Otter's [agentic chat](https://otter.ai/blog/otter-for-enterprise-advanced-agentic-ai-chat) handles scheduling and action items. Or pipe the notes to a general agent that drafts the recap and opens the tickets.
+
+**Is a meeting-notes agent the same as a meeting-prep agent?**
+No. A [meeting-prep agent](/en/news/2026-07-11-ai-agent-meeting-prep/) works before the call — researching attendees and building a brief. A notes agent works during and after it. Different timing, different job; most tools do one, not both.
+
+**Should I let the agent send follow-ups automatically?**
+Keep a human gate. Action items are writes — an auto-sent follow-up to the wrong person is costly. The [Issue #001](/en/posts/2026-05-13-gmail-ai-agent/) discipline is to let the agent draft and stage the follow-through, then approve before it fires.
+
+One real AI agent a week, straight to your inbox. Free, no upsell.
