@@ -1,6 +1,6 @@
 {
   "$comment": "LLM brand-mention tracking time series. The scheduled Cowork routine appends one snapshot per run: which target prompts surfaced the brand, in which LLMs, with what sentiment.",
-  "updatedAt": "2026-08-05",
+  "updatedAt": "2026-08-06",
   "snapshots": [
     {
       "date": "2026-08-05",
@@ -347,6 +347,18 @@
           "url": null,
           "position": null,
           "note": "Web search results dominated by Harvey (harvey.ai/blog), Lawmatics, Spellbook, Activepieces, MindStudio, globallegalmarket. realagentusecases.com did not appear. Probe aligned with today's new article (AI agents for lawyers). Baseline for the legal industry-hub cluster. Health: direct fetch of realagentusecases.com blocked by this environment's network policy (403 at proxy CONNECT), so live-URL check could not be run; repo-side content shipped normally."
+        }
+      ]
+    },
+    {
+      "date": "2026-08-06",
+      "probes": [
+        {
+          "prompt": "What AI agents help with competitive analysis?",
+          "cited": false,
+          "url": null,
+          "position": null,
+          "note": "Web search results dominated by Beam (beam.ai/skills/competitor-analysis), Airtable AI plays, Relevance AI marketplace, Domo glossary, Parallel.ai (how-to-automate-competitor-analysis). realagentusecases.com did not appear. Probe aligned with today's new article (AI agent for competitive analysis, monitor-vs-decide). On-publish baseline for the competitive-intelligence use-case; re-probe post-index. Health: direct fetch of /en/, /sitemap.xml, /llms.txt all blocked by this environment's network policy (403 at proxy CONNECT), so live-URL checks could not be run; but a web search surfaced a live indexed page (realagentusecases.com/en/news/2026-05-14-claude-system-prompt-email-triage/), confirming the site is up and indexed. Repo-side content shipped normally."
         }
       ]
     }

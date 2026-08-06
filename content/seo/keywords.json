@@ -1,6 +1,6 @@
 {
   "$comment": "SEO keyword feed — a living file. The scheduled Cowork routine ideates entries; scripts/seo/feeds.mjs persists them (dedupe + status + timestamps). intent: informational|commercial|transactional. funnel: TOFU|MOFU|BOFU. cluster: use-case|template|comparison|industry|tool-stack. status: new|used.",
-  "updatedAt": "2026-08-05",
+  "updatedAt": "2026-08-06",
   "keywords": [
     {
       "term": "AI agent use cases",
@@ -362,9 +362,9 @@
       "funnel": "MOFU",
       "cluster": "use-case",
       "locale": "both",
-      "status": "new",
+      "status": "used",
       "addedAt": "2026-07-26",
-      "note": "Sunday feed research 2026-07-26. Grounded in named tools: Crayon (broad signal capture), Klue (deal battlecards), Kompyte (autonomous competitor tracking), NoimosAI (lean-team signals). Monitor-signals vs write-the-battlecard two-jobs angle. Clusters with the new consultants + market-research keywords and content-repurposing (research-to-asset)."
+      "note": "Used 2026-08-06 → content/news/2026-08-06-ai-agent-for-competitive-analysis-{en,zh}.mdx (title 'AI Agent for Competitive Analysis: Monitor vs. Decide'). Monitor-vs-decide two-jobs framing mirrors the site's pattern (resume screen-vs-decide, meeting capture-vs-act). Job 1 monitor = Crayon (100+ data types: site/pricing/product/job posts/news, crayon.co/product/analyze) + Kompyte/Semrush (site/social/reviews/hiring; AI Daily Summaries 'days → ~1 hr/week' vendor claim, kompyte.com). Job 2 synthesize = Crayon Sparks agent auto-publishing curated analysis into battlecards (crayon.co/ai-toolkit) + Klue Compete Agent (automated battlecards refreshing from connected sources, klue.com/topics/automated-battlecards). Human-stays line grounded in the Harvard-BCG jagged-frontier finding via the consultants hub (integrative-judgment tasks = where GPT-4 users reach wrong conclusions). Wove a downstream link into the marketers hub (en+zh) Research section (which already discusses Crayon). Answers live GEO prompt 'What AI agents help with competitive analysis?'. Sibling use-case under consultants; market-research keyword still new."
     },
     {
       "term": "AI agent for market research",
