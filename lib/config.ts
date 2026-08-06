@@ -16,7 +16,7 @@ export const SITE_CONFIG = {
     twitter: "https://x.com/JackQianAI",
     linkedin: "https://www.linkedin.com/in/quandong-qian-156563191/",
     github: "https://github.com/qianquandong",
-    youtube: "",
+    youtube: "https://www.youtube.com/@JackBuildAI",
     xiaoyuzhou: "",
   },
 } as const;

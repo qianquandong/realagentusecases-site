@@ -36,6 +36,9 @@ function personSchema() {
       "https://x.com/JackQianAI",
       "https://github.com/qianquandong",
       "https://www.linkedin.com/in/quandong-qian-156563191/",
+      "https://www.youtube.com/@JackBuildAI",
+      "https://www.threads.com/@jack_qian616",
+      "https://www.douyin.com/user/MS4wLjABAAAAxNXwx4UCCwS2FwyO-bsDHbuWziAo5mszf_EHC8qbxSI_hlNPcRl6nKO1v6aRFMxK",
     ],
   };
 }
