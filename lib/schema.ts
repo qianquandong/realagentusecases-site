@@ -22,11 +22,18 @@ function personSchema() {
     "@type": "Person",
     "@id": PERSON_ID,
     name: SITE_CONFIG.host,
+    alternateName: "AI Man Jack",
     url: SITE_URL,
-    jobTitle: "Industrial Engineer",
+    jobTitle: "Business Planner",
     worksFor: { "@id": ORG_ID },
     description:
-      "Industrial engineer at Texas Instruments turning business planner, based in Dallas. Host of Real Agent Use Cases.",
+      "Business planner at Texas Instruments, based in Dallas. Host of Real Agent Use Cases and founder of AI Man Jack, which builds AI automation for Dallas small businesses.",
+    // Entity association: same Jack Qian as on aimanjack.com
+    sameAs: [
+      "https://aimanjack.com/",
+      "https://luma.com/user/usr-FlERJUF6Mcrie58",
+      "https://www.facebook.com/profile.php?id=100084925451350",
+    ],
   };
 }
 
