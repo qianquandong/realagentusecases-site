@@ -73,7 +73,7 @@ BLS is explicit in Job Outlook that AI coding tools "may affect the demand" for 
 Native EHR AI coders only see structured fields inside that EHR. The Screenpipe + MCP path **sees the specialist's entire desktop context** — multiple EHR tabs, the latest CPT updates on the CMS site, the internal coding-conventions wiki — and **keeps memory across sessions and applications**. The two are not in conflict; they stack.
 
 **Q4. Can this actually run on a clinic workstation?**  
-Screenpipe's stated overhead is <1% CPU and <400 MB RAM for the local PII model, with Rust + MLX/ONNX under the hood. It runs on aging Windows workstations. The real resource question is **storage** — 24/7 screen and audio grows fast, so hospitals must plan a local NAS or a shift-based rotation policy up front.
+Screenpipe's stated overhead is &lt;1% CPU and &lt;400 MB RAM for the local PII model, with Rust + MLX/ONNX under the hood. It runs on aging Windows workstations. The real resource question is **storage** — 24/7 screen and audio grows fast, so hospitals must plan a local NAS or a shift-based rotation policy up front.
 
 **Q5. How does this compose with other MCP tools you've covered?**  
 Screenpipe fills the "memory" layer. It's complementary to "action-layer" and "security-layer" MCP tools we've profiled before, like [Palmier Pro (MCP video editor)](/en/news/2026-07-26-software-developers-palmier-pro-mcp-video-editor/) and [MCP ANSI injection defenses](/en/news/2026-07-23-information-security-analysts-mcp-ansi-injection-defense/). A mature **AI medical coding agent** stack is usually the composition: Screenpipe memory + EHR MCP actions + coding-knowledge RAG + audit MCP.

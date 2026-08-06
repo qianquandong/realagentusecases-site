@@ -33,6 +33,9 @@ function personSchema() {
       "https://aimanjack.com/",
       "https://luma.com/user/usr-FlERJUF6Mcrie58",
       "https://www.facebook.com/profile.php?id=100084925451350",
+      "https://x.com/JackQianAI",
+      "https://github.com/qianquandong",
+      "https://www.linkedin.com/in/quandong-qian-156563191/",
     ],
   };
 }

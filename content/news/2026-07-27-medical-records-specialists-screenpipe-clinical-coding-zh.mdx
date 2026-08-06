@@ -31,7 +31,7 @@ BLS 在"Work Environment"里写得直白：这是"少数几种没有直接患者
 <a href="https://github.com/screenpipe/screenpipe" rel="noopener">Screenpipe</a> 由创始人 Louis Beaumont 于 2024 年开源、2026 年通过 YC S26 加速器发布 Launch HN，是一个跑在 macOS / Windows / 实验性 Linux 上的**本地屏幕与音频记录系统**。它的核心设计有四层，全部围绕"给 AI Agent 一个可查询的时间线记忆"：
 
 - **事件驱动的智能采样**：早期版本靠"连续录像 + 全帧 OCR"，把电脑变成"暖气片"。现在 Screenpipe 监听 app 切换、点击、打字停顿、滚动、闲置回退等事件，只在有意义变化时才把截图与操作系统的**无障碍树（accessibility tree）**在同一时间戳配对存下来。这直接解决了 OCR 数据爆炸与结构丢失两个问题。
-- **本地优先存储**：所有数据默认写进本地 SQLite + mp4 + md 文件。企业版才允许指定数据落到公司选定的位置。团队自研了一个跑在 Apple MLX / Windows DirectML 上的 **AI PII 脱敏模型**，本地做敏感信息遮蔽，CPU 占用 <1%、内存 <400 MB。这一点对 HIPAA 场景至关重要。
+- **本地优先存储**：所有数据默认写进本地 SQLite + mp4 + md 文件。企业版才允许指定数据落到公司选定的位置。团队自研了一个跑在 Apple MLX / Windows DirectML 上的 **AI PII 脱敏模型**，本地做敏感信息遮蔽，CPU 占用 &lt;1%、内存 &lt;400 MB。这一点对 HIPAA 场景至关重要。
 - **AI 友好 API + MCP**：在本地 `http://127.0.0.1:3030` 暴露带鉴权的 API 与一个 **MCP 服务器**。任何支持 MCP 的 Agent（Claude Code、Cursor、Codex、Claude Desktop、Openclaw、Hermes 等）都能像查数据库一样查"用户今天看过的所有病历页"。
 - **技术底座**：主体用 Rust 写，Apple 侧用 cidre 直连 C API，Windows 侧用 windows-rs，采用 MLX / ONNX 做本地推理。这套栈的意义是：**它足够快、足够小，能在诊所里那台老旧 Windows 工位机上安静地跑**，而不是需要一台工作站。
 
@@ -73,7 +73,7 @@ BLS 在 Job Outlook 里已经明确写道 AI 编码工具的采用"可能影响�
 EHR 自带 AI 编码通常只能看到结构化字段与该 EHR 内的信息。Screenpipe + MCP 的路径**看得到编码专家在整个桌面上的完整上下文**（多个 EHR 标签页、CMS 网站的最新 CPT 更新、内部 wiki 的编码惯例），并且**跨会话、跨 App 保持记忆**。两者不冲突，可以叠加。
 
 **Q4：本地跑得动吗？会不会拖慢诊所工位机？**  
-Screenpipe 官方数据是本地 PII 模型 CPU <1%、内存 <400 MB，主体用 Rust + MLX/ONNX。对老旧 Windows 工位机也能跑。真正的资源大头是**存储**——7×24 的屏幕 + 音频原文件会长很快，医院要提前规划本地 NAS 或按班次滚动清理策略。
+Screenpipe 官方数据是本地 PII 模型 CPU &lt;1%、内存 &lt;400 MB，主体用 Rust + MLX/ONNX。对老旧 Windows 工位机也能跑。真正的资源大头是**存储**——7×24 的屏幕 + 音频原文件会长很快，医院要提前规划本地 NAS 或按班次滚动清理策略。
 
 **Q5：跟我们之前介绍过的其他 MCP 工具有什么协同？**  
 Screenpipe 补的是"记忆层"，与之前介绍过的[Palmier Pro（MCP 视频剪辑）](/zh/news/2026-07-26-software-developers-palmier-pro-mcp-video-editor/)、[MCP ANSI 注入防御](/zh/news/2026-07-23-information-security-analysts-mcp-ansi-injection-defense/)这类"动作层" / "安全层" MCP 工具是互补关系。一个成熟的 **AI Agent 医疗编码**栈通常是：Screenpipe 记忆 + EHR MCP 动作 + 编码知识库 RAG + 审计 MCP 拼装出来的组合。

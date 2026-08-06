@@ -13,9 +13,9 @@ export const SITE_CONFIG = {
   subscriberCount: 0,
   social: {
     xiaohongshu: "",
-    twitter: "",
-    linkedin: "",
-    github: "",
+    twitter: "https://x.com/JackQianAI",
+    linkedin: "https://www.linkedin.com/in/quandong-qian-156563191/",
+    github: "https://github.com/qianquandong",
     youtube: "",
     xiaoyuzhou: "",
   },
