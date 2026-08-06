@@ -4,6 +4,14 @@
 //   /subscribe   → 302 to /en/#subscribe or /zh/#subscribe
 //                 (legacy URL preserved for old social bios)
 
+// Upgrade http→https in redirects (keep localhost for wrangler dev).
+function secureOrigin(url: URL): string {
+  if (url.protocol === "http:" && url.hostname !== "localhost" && url.hostname !== "127.0.0.1") {
+    return `https://${url.host}`;
+  }
+  return url.origin;
+}
+
 interface Env {
   ASSETS: { fetch: (req: Request) => Promise<Response> };
 }
@@ -135,12 +143,12 @@ export default {
 
     if (path === "/subscribe" || path === "/subscribe/") {
       const locale = resolveLocale(request);
-      return Response.redirect(`${url.origin}/${locale}/#subscribe`, 302);
+      return Response.redirect(`${secureOrigin(url)}/${locale}/#subscribe`, 302);
     }
 
     if (path === "/") {
       const locale = resolveLocale(request);
-      return Response.redirect(`${url.origin}/${locale}/`, 302);
+      return Response.redirect(`${secureOrigin(url)}/${locale}/`, 302);
     }
 
     return withSecurityHeaders(await env.ASSETS.fetch(request), path);
