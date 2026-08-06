@@ -1,0 +1,25 @@
+name: IndexNow ping
+on:
+  push:
+    branches: [main]
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+      - name: Ping IndexNow with changed content URLs
+        run: |
+          KEY=f613b8f49a0f40cdb8a3bf9c265efa53
+          # content/{news,posts}/<slug>-<locale>.mdx -> /<locale>/{news,posts}/<slug>
+          URLS=$(git diff --name-only HEAD^ HEAD -- 'content/news/*.mdx' 'content/posts/*.mdx' \
+            | sed -E 's#content/(news|posts)/(.+)-(en|zh)\.mdx#https://realagentusecases.com/\3/\1/\2#' \
+            | sort -u)
+          [ -z "$URLS" ] && { echo "no content changes, skipping"; exit 0; }
+          LIST=$(echo "$URLS" | sed 's/.*/"&"/' | paste -sd, -)
+          echo "pinging: $URLS"
+          curl -s -X POST https://api.indexnow.org/indexnow \
+            -H 'Content-Type: application/json; charset=utf-8' \
+            -d "{\"host\":\"realagentusecases.com\",\"key\":\"$KEY\",\"keyLocation\":\"https://realagentusecases.com/$KEY.txt\",\"urlList\":[$LIST]}" \
+            -w "\nIndexNow: HTTP %{http_code}\n"
