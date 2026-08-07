@@ -1,0 +1,46 @@
+---
+title: "AI Agent 做市场调研：搜集 vs. 决策"
+date: "2026-08-07"
+excerpt: "AI agent 能搜集并综合市场调研——AlphaSense、Perplexity、Qualtrics；但判断这些发现对你的战略意味着什么，仍要人来决定。"
+---
+
+AI agent 在市场调研里能接手两件可分开的活：搜集与综合证据——桌面调研、行业报告、问卷数据——以及判断这些证据对你的战略意味着什么。AlphaSense、Perplexity、Qualtrics 已经把第一件事做得不错。第二件事——那个战略判断——留给人。
+
+## 市场调研的流程，以及 agent 能接手的部分
+
+市场调研是一条流水线：搜集证据（桌面调研、行业报告、问卷数据），把它综合成一张市场图景，再决定这张图对你要做什么、定什么价、怎么讲有什么含义。前两步 agent 真正有用——搜集又慢又重复，综合出来的是一份人要复核的草稿。要留给人的是那个*决策*。所以检验任何"AI 市场调研 agent"的诚实办法，是在每一步问一句：*agent 是在干活，还是在拍板？* 这和我们给[咨询顾问](/zh/news/2026-07-29-ai-agents-for-consultants/)、[金融分析师](/zh/news/2026-07-31-ai-agents-for-financial-analysts/)划的"自动化干活、不自动化决策"是同一条线——而[竞品分析](/zh/news/2026-08-06-ai-agent-for-competitive-analysis/)只是这件事里的一小块。
+
+## 搜集——把桌面调研和问卷数据拉进来
+
+流水线的最前端是收集，它又分两类。二手调研——读已经存在的东西——正是调研 agent 明显胜过一个个标签页搜索的地方。[AlphaSense 的 Deep Research](https://www.prnewswire.com/news-releases/alphasense-launches-deep-research-automating-in-depth-analysis-with-agentic-ai-on-high-value-content-302476710.html) 会在数百万份来源文档——财报、券商研报、专家访谈纪要——里跑几十次搜索，返回一份结构化的公司简报或市场图景，而不是一串链接。要看实时的网络趋势，[Perplexity](https://www.perplexity.ai/) 会搜当前的网络来回答一个调研问题，并给每条结论附上引用，让你能核对来源。另一类是一手调研——你自己的问卷和访谈数据——如今 AI 已直接嵌进调研平台：[Qualtrics](https://www.qualtrics.com/market-research/) 把问卷设计、分析、对话式追问都做进了工具本身。
+
+## 综合——把来源变成一张图景，框架仍归你
+
+一堆文档和问卷导出还不是结论；得有人把它塑成一份能撑起决策的市场图景。这是 agent 如今接手的第二件活。AlphaSense 在 2026 年 1 月的 Generative Search 里加了 [Workflow Agents](https://help.alpha-sense.com/hc/en-us/articles/48824062007187-AlphaSense-Product-Updates-January-2026)，能自动跑完整段分析——搭一份公司简报、一张竞争格局图、一份 SWOT——把过去要花好几天的手工拼装压缩到几分钟。对待它的产出要像对待任何 agent 草稿：一份分析师要复核的强初稿，而不是已成定论。这和[竞品分析](/zh/news/2026-08-06-ai-agent-for-competitive-analysis/)背后"把调研变成资产"的纪律是同一套——自动化草稿，对发出去的东西负责。
+
+## 决策——战略判断留给人
+
+一张市场图景的价值，取决于读它的判断力，而判断恰恰是 agent 最弱的地方。我们在[咨询顾问那篇里写过的哈佛–BCG 田野实验](/zh/news/2026-07-29-ai-agents-for-consultants/)发现：在需要整合性商业判断的任务上，用 GPT-4 的专业人士*更*容易得出错误结论——自信、排版漂亮、且是错的。决定进哪个市场、怎么定位、数据到底说你该做什么，就是这类任务。连业内的乐观派也是这么框的：在 [Qualtrics 的 2026 市场调研趋势报告](https://www.qualtrics.com/articles/research-teams-not-using-ai-are-four-times-more-likely-lose-organizational-influence/)——一项覆盖 14 个国家、3000 多名市场调研从业者的调查——里，78% 的人预计到 2028 年 AI agent 会承担过半的调研项目，但通篇的框架都是 agent 干体力活、研究员做思考。agent 把证据汇总起来；它对你的下注意味着什么，是你留着的那个判断。
+
+## 该从哪个 agent 起步？
+
+从你证据最薄的地方起步。如果你对外部市场——竞争对手、行业变化、分析师观点——两眼一抹黑，就从 [AlphaSense](https://www.alpha-sense.com/solutions/generative-ai-in-market-research/) 或 [Perplexity](https://www.perplexity.ai/) 这样的桌面调研 agent 开始，让一份带来源的简报落到桌上，而不是一张白纸。如果你缺的是客户信号，就从 [Qualtrics](https://www.qualtrics.com/market-research/) 这样的一手调研平台开始。你也不需要企业席位才能拿到这套模式：可复现的桌面级版本，和 [Issue #001 的 Gmail 分拣 agent](/zh/posts/2026-05-13-gmail-ai-agent/) 背后是同一套有边界任务、可核对产出的搭法——[头条级 vs 桌面级的区别](/zh/news/2026-07-17-real-ai-agent-examples/)正是把一套企业调研套件和一个你这周就能用[无代码工具](/zh/news/2026-07-08-no-code-ai-agent-tools/)搭起来的 agent 分开的那条线。刚接触 agent？从 [Agent 101](/zh/agent-101/) 开始。无论你先上哪个，守住这条线：自动化搜集和综合，决策自己扛。
+
+## FAQ
+
+**哪些 AI agent 能帮做市场调研？**
+按环节匹配 agent。二手和桌面调研，[AlphaSense Deep Research](https://www.prnewswire.com/news-releases/alphasense-launches-deep-research-automating-in-depth-analysis-with-agentic-ai-on-high-value-content-302476710.html) 把财报、券商研报、专家访谈拉进一份结构化简报，[Perplexity](https://www.perplexity.ai/) 带引用地综合实时网络趋势。一手调研，[Qualtrics](https://www.qualtrics.com/market-research/) 把 AI 做进问卷设计和分析。判断这些发现意味着什么，仍归你。
+
+**AI agent 能替我把市场调研做完吗？**
+搜集和初稿综合它能干——几十次搜索、一份公司简报、一张竞争格局图、一份问卷小结。它靠不住的是这份调研本来要支撑的那个判断。[AlphaSense 的 Workflow Agents](https://help.alpha-sense.com/hc/en-us/articles/48824062007187-AlphaSense-Product-Updates-January-2026) 能搭出图景；对它该怎么办，是你自己扛的那部分。
+
+**对 agent 来说，一手调研和二手调研有什么区别？**
+二手调研是读已经存在的东西——报告、财报、网络——这是 AlphaSense、Perplexity 这类 agent 的强项。一手调研是你自己通过问卷和访谈收集的数据，[Qualtrics](https://www.qualtrics.com/market-research/) 这类平台把 AI 嵌进收集和分析里。真实项目大多两者都用；你可以自动化桌面工作而不自动化问卷设计。
+
+**要用企业级平台，还是桌面级就够？**
+都行。AlphaSense、Qualtrics 是企业套件，但底层模式——拉一组有边界的来源、做小结、起一份可核对的资产——用 [Issue #001](/zh/posts/2026-05-13-gmail-ai-agent/) 背后那套搭法就能复现。团队小就从小处起；[无代码 AI agent 工具](/zh/news/2026-07-08-no-code-ai-agent-tools/)指南讲了把调研这一步接到哪里。
+
+**小团队该从哪起步？**
+从最费你时间的那一环。如果你总在猜市场，就搭一个桌面调研 agent，每周读一份带来源的简报。如果你总在猜客户，就从问卷平台开始。分层来，别想一口吃成胖子——每一步都把战略判断留给人。
+
+每周一个真实的 AI agent，直接发到你邮箱。免费，不推销。
