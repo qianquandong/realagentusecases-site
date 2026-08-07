@@ -1,6 +1,6 @@
 {
   "$comment": "SEO keyword feed — a living file. The scheduled Cowork routine ideates entries; scripts/seo/feeds.mjs persists them (dedupe + status + timestamps). intent: informational|commercial|transactional. funnel: TOFU|MOFU|BOFU. cluster: use-case|template|comparison|industry|tool-stack. status: new|used.",
-  "updatedAt": "2026-08-06",
+  "updatedAt": "2026-08-07",
   "keywords": [
     {
       "term": "AI agent use cases",
@@ -372,9 +372,9 @@
       "funnel": "MOFU",
       "cluster": "use-case",
       "locale": "both",
-      "status": "new",
+      "status": "used",
       "addedAt": "2026-07-26",
-      "note": "Sunday feed research 2026-07-26. Grounded in AlphaSense (premium financial/market research), agensi market-research skills, NoimosAI market-research agents. Gather-and-synthesize vs decide framing; market sizing / personas / trend mapping. Clusters with competitive-analysis, consultants, financial-analysts, founders."
+      "note": "Used 2026-08-07 → content/news/2026-08-07-ai-agent-for-market-research-{en,zh}.mdx (title 'AI Agent for Market Research: Gather vs. Decide'). Gather-synthesize-vs-decide two-jobs framing mirrors competitive-analysis (monitor-vs-decide) and financial-analysts (gather-model-advise). Gather = secondary/desk (AlphaSense Deep Research over millions of source docs → company primer/market landscape, PRNewswire launch; Perplexity live-web cited summaries) + primary (Qualtrics AI in survey design/analysis). Synthesize = AlphaSense Jan-2026 Generative Search Workflow Agents (company primer / competitive landscape / SWOT, help-center Jan-2026 update). Decide = stays human, grounded in the Harvard–BCG jagged-frontier finding via the consultants hub + Qualtrics 2026 Market Research Trends report (3,000+ researchers across 14 countries; 78% expect AI agents to run >half of research projects by 2028, but agents-do-legwork-researchers-think framing). Wove a downstream link into competitive-analysis (en+zh) intro ('competitive analysis is one slice of the broader market research job'). Sibling use-case under consultants; clusters with competitive-analysis, financial-analysts, data-analysis, founders."
     },
     {
       "term": "AI agents for consultants",

@@ -1,7 +1,19 @@
 {
   "$comment": "LLM brand-mention tracking time series. The scheduled Cowork routine appends one snapshot per run: which target prompts surfaced the brand, in which LLMs, with what sentiment.",
-  "updatedAt": "2026-08-06",
+  "updatedAt": "2026-08-07",
   "snapshots": [
+    {
+      "date": "2026-08-07",
+      "probes": [
+        {
+          "prompt": "What is a good AI agent workflow for research?",
+          "cited": false,
+          "url": null,
+          "position": null,
+          "note": "On-topic re-probe aligned with today's new article (AI agent for market research, gather-vs-decide) — research/gather is the front of that pipeline. Web search dominated by MindStudio (9 AI Agents for Research and Analysis), Sourcely, Google Research (academic-workflow agents), Kimi (AI Agent Workflow), Mastra (developer guide), easyagentforyou, ticnote, Medium; realagentusecases.com did not appear in top results. Same research/dev-listicle field as the 2026-07-31 probe, brand still not cited. Health: direct fetch of /en/, /sitemap.xml, /llms.txt all returned EGRESS_BLOCKED via the environment's network proxy — the known sandbox network-policy denial seen every run, not a site outage (a web search for the domain surfaced no rows due to the WebSearch site: quirk, but the 2026-08-06 run confirmed a live indexed page at /en/news/2026-05-14-claude-system-prompt-email-triage/). Repo pipeline healthy: git log shows daily auto-merges landing cleanly through the 2026-08-06 competitive-analysis article; branch up to date with origin/main. Today's article: market-research (gather-vs-decide), sibling of competitive-analysis under the consultants hub."
+        }
+      ]
+    },
     {
       "date": "2026-08-05",
       "probes": [
