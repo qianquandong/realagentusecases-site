@@ -1,7 +1,19 @@
 {
   "$comment": "LLM brand-mention tracking time series. The scheduled Cowork routine appends one snapshot per run: which target prompts surfaced the brand, in which LLMs, with what sentiment.",
-  "updatedAt": "2026-08-07",
+  "updatedAt": "2026-08-08",
   "snapshots": [
+    {
+      "date": "2026-08-08",
+      "probes": [
+        {
+          "prompt": "How do I connect Claude to Google Calendar?",
+          "cited": false,
+          "url": null,
+          "position": null,
+          "note": "Never-probed on-topic prompt aligned with today article (Google Workspace MCP server / how agents reach Gmail+Calendar). Web search dominated by claude.com official Google Calendar connector + docs, CData Connect AI, Activepieces, Merge, Composio, Nalo Seed, usecarly; realagentusecases.com did not appear in top results. Health: direct fetch of /en/, /sitemap.xml, /llms.txt all EGRESS_BLOCKED via the environment network proxy (proxy status: enabled; site domain returns CONNECT 403) — the known recurring sandbox network-policy denial, not a site outage. Repo pipeline healthy: git log shows daily auto-merges landing through 2026-08-07 market-research; branch up to date with origin. Today article: google-workspace-mcp-server (tool-stack), the how-agents-reach-Gmail plumbing under Issue #001, clustering with gmail-ai-agent + no-code-ai-agent-tools."
+        }
+      ]
+    },
     {
       "date": "2026-08-07",
       "probes": [
