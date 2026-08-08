@@ -1,0 +1,54 @@
+---
+title: "Workspace MCP 服务器：Agent 如何连上 Gmail"
+date: "2026-08-08"
+excerpt: "Google Workspace MCP 服务器是 AI agent 读取你 Gmail、日历、云端硬盘的通道——靠你授予的 OAuth 权限范围，而不是交出密码。"
+---
+
+Google Workspace MCP 服务器，是让 AI agent 能读取并操作你 Gmail、日历、云端硬盘的那层连接器。它通过你授予的 OAuth 权限范围（scope）工作——比如 `gmail.readonly`——而不是共享一个密码。Google 现在提供官方版本，也有开源和原生连接器可选。给多少访问权限，由你决定。
+
+每一篇「让 Claude 连上你的 Gmail」教程背后，都藏着一块管道：MCP 服务器。它是聊天窗口和你真实邮箱之间的那一层。搞懂它，才分得清「只读三筛」和「不小心把你能看到的一切都交出去」。这篇讲清 agent 连上 Workspace 的三条路线，以及决定它能碰什么的那一个设置——OAuth 权限范围。
+
+## MCP 服务器到底是什么
+
+MCP——[模型上下文协议（Model Context Protocol）](https://modelcontextprotocol.io/)——是把 AI 模型连接到外部工具和数据的开放标准。它让每个应用不必各造一套胶水，而是由一个 MCP 服务器暴露一组带类型的工具（搜邮件、建日程、列文件），任何支持 MCP 的客户端都能调用。*Google Workspace* MCP 服务器，就是把这个服务器指向 Google 的 API。agent 说「看看我的日历」时，调的就是服务器注册的 `calendar` 工具——和 [Issue #001 的 Gmail 三筛 agent](/zh/posts/2026-05-13-gmail-ai-agent/) 是同一套感知→判断→行动的循环。
+
+## Agent 连上 Gmail 的三条路
+
+**Google 的官方服务器。** Google 现在发布了第一方 Workspace MCP 服务器。它的 [Configure the Google Workspace MCP servers](https://developers.google.com/workspace/guides/configure-mcp-servers) 指南走完整个配置流程，有专门的 [Gmail MCP server](https://developers.google.com/workspace/gmail/api/guides/configure-mcp-server) 配置文档，还有一个 [Universal Search MCP Server](https://developers.google.com/workspace/guides/universal-search-mcp)，让 agent 一次跨 Gmail、云端硬盘、日历、Chat 搜索。想要厂商支持的路线，看这条。
+
+**社区开源服务器。** 功能最完整的是 [taylorwilsdon/google_workspace_mcp](https://github.com/taylorwilsdon/google_workspace_mcp)，一个 MIT 许可的 Python 服务器（需 Python 3.11+），覆盖 Gmail、日历、Docs、Sheets、Slides、Chat、Forms、Tasks 和云端硬盘，已发布到 [PyPI 的 `workspace-mcp`](https://pypi.org/project/workspace-mcp/)。它用 OAuth 2.1，支持多用户托管——想要广度和掌控、又不介意自己跑服务器时选它。
+
+**原生连接器。** 什么都不想跑，就让平台替你跑：[Claude 的 Google 日历连接器](https://claude.com/connectors/google-calendar) 和 [Google Workspace 连接器](https://support.claude.com/en/articles/10166901-use-google-workspace-connectors)，让 Claude 用自然语言读 Gmail 和日历，无需代码，Pro、Max、Team、Enterprise 计划可用。多数人应该从这条上手——它就是我们 [Gmail AI agent 指南](/zh/news/2026-07-09-gmail-ai-agent/) 里的路线一，剩下的选择在 [无代码工具菜单](/zh/news/2026-07-08-no-code-ai-agent-tools/) 里。
+
+## OAuth 权限范围：你实际授予的访问
+
+无论走哪条路，访问都经过 OAuth，而访问的最小单位就是「范围（scope）」。你（或服务器运营者）在 Google Cloud 建一个 OAuth 客户端，按 Google 的 [配置文档](https://developers.google.com/workspace/guides/configure-mcp-servers)，填入客户端 ID 和密钥，在 **Data Access → Add or Remove Scopes** 下勾选范围。一个只读三筛 agent 只需窄范围——Google 的 Universal Search 示例用的是 `https://www.googleapis.com/auth/gmail.readonly`、`drive.readonly`、`calendar.readonly`。agent 不需要发邮件，就别给发送范围。范围是那个把「读我的收件箱」拧成「做我能做的一切」的旋钮——请刻意地设它。
+
+## 安全权衡——永远最小权限
+
+说点实在的风险。正如 Strac 的 [Google Workspace MCP 安全分析](https://www.strac.io/blog/google-workspace-mcp-server) 所说，每一次 Workspace MCP 工具调用，返回的都是授权用户能看到的数据——里面常有 PII、财务记录、合同、以及躺在旧邮件里的凭证。两条规则保平安：只授予任务所需的*最窄*范围（只读就只给只读）；并记住 MCP 工具和任何用工具的 agent 一样有提示注入风险——一封恶意邮件可能试图劫持有发送或删除权限的 agent。我们为[信息安全分析师](/zh/news/2026-07-23-information-security-analysts-mcp-ansi-injection-defense/)拆过这块攻击面。安全默认值：最小范围，任何发送前先人工确认。
+
+## 该选哪条路
+
+从能跑起来的最小方案开始。只是你自己的收件箱、只想要早晨三筛，用原生连接器——不跑服务器、不进 OAuth 控制台，几分钟搞定，[Issue #001](/zh/posts/2026-05-13-gmail-ai-agent/) 就是这么跑的。需要横跨 Docs、Sheets、Tasks，或者要给团队搭，就跑 [Google 官方服务器](https://developers.google.com/workspace/guides/configure-mcp-servers) 或[开源那个](https://github.com/taylorwilsdon/google_workspace_mcp)，并把范围收紧。全是新概念？从 [Agent 101](/zh/agent-101/) 开始。无论选哪个，规则不变：只给这件事所需的最小访问，把发送键留在人手里。
+
+## FAQ
+
+**Google Workspace MCP 服务器是什么？**
+它是一个 MCP 服务器——[模型上下文协议](https://modelcontextprotocol.io/)下的标准连接器——指向 Google 的 API，让 AI agent 能读取并操作你的 Gmail、日历、云端硬盘等。它暴露 agent 调用的带类型工具，访问通过你掌控的 OAuth 范围授予。
+
+**Google 有官方 MCP 服务器吗？**
+有。Google 发布了第一方 Workspace MCP 服务器，记录在 [Configure the Google Workspace MCP servers](https://developers.google.com/workspace/guides/configure-mcp-servers) 指南里，包括专门的 [Gmail MCP server](https://developers.google.com/workspace/gmail/api/guides/configure-mcp-server) 和一个跨 Gmail、云端硬盘、日历、Chat 搜索的 [Universal Search MCP Server](https://developers.google.com/workspace/guides/universal-search-mcp)。
+
+**连 Claude 到 Gmail，我必须跑服务器吗？**
+不必。像 [Claude 的 Google Workspace 连接器](https://support.claude.com/en/articles/10166901-use-google-workspace-connectors) 这样的原生连接器，替你处理 OAuth 和托管，无需代码，付费计划可用。自己跑服务器（Google 的或[开源](https://github.com/taylorwilsdon/google_workspace_mcp)那个）是为了广度和多用户掌控，单个人邮箱用不着。
+
+**怎么限制 agent 能访问什么？**
+靠 OAuth 范围。按 [Google 文档](https://developers.google.com/workspace/guides/configure-mcp-servers)，在 Data Access 下勾选范围；agent 只需读取时，给 `gmail.readonly` 这类只读范围。正如 [Strac 指出的](https://www.strac.io/blog/google-workspace-mcp-server)，每次调用都会返回授权用户能看到的一切，所以最小权限是主要的安全阀。
+
+**MCP 服务器用在工作邮箱上安全吗？**
+有纪律就可以。用最窄范围，任何发送或删除都留人工确认，并把收到的邮件当作不可信——对任何用工具的 agent 适用的[提示注入防范](/zh/news/2026-07-23-information-security-analysts-mcp-ansi-injection-defense/)，这里同样适用。
+
+---
+
+想要专业人士真正在跑的 agent 一手笔记——确切的搭建、成本、翻车点？[免费订阅](/zh/)，每周的实战搭建直接进你的收件箱。

@@ -222,9 +222,9 @@
       "funnel": "MOFU",
       "cluster": "tool-stack",
       "locale": "both",
-      "status": "new",
+      "status": "used",
       "addedAt": "2026-07-12",
-      "note": "Sunday feed research 2026-07-12. Grounded in Google's official MCP config docs, taylorwilsdon/google_workspace_mcp GitHub, and Claude Workspace connectors. Clusters with gmail-ai-agent and no-code-ai-agent-tools; the how-agents-reach-Gmail plumbing behind Issue #001."
+      "note": "Sunday feed research 2026-07-12. Grounded in Google's official MCP config docs, taylorwilsdon/google_workspace_mcp GitHub, and Claude Workspace connectors. Clusters with gmail-ai-agent and no-code-ai-agent-tools; the how-agents-reach-Gmail plumbing behind Issue #001. Used 2026-08-08 → content/news/2026-08-08-google-workspace-mcp-server-{en,zh}.mdx."
     },
     {
       "term": "AI agent for CRM data entry",

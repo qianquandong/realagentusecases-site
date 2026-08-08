@@ -16,7 +16,7 @@ agent 不只是摘要器。真正的 Gmail AI agent 会*感知*你的收件箱�
 
 ## 路线一 —— Claude 的 Gmail 连接器（无代码，个人）
 
-最快的路是根本不用搭。[Claude 的 Google Workspace 连接器](https://support.claude.com/en/articles/10166901-use-google-workspace-connectors)能让 Claude 用自然语言搜索和阅读你的 Gmail、跨邮件抽取信息、并把回复草稿写进你的账户——在你确认之下。按 Anthropic 的连接器文档，它只起草、不自动发送，而且只在你发起的对话里工作，不会被触发器自动唤起。
+最快的路是根本不用搭。[Claude 的 Google Workspace 连接器](https://support.claude.com/en/articles/10166901-use-google-workspace-connectors)能让 Claude 用自然语言搜索和阅读你的 Gmail、跨邮件抽取信息、并把回复草稿写进你的账户——在你确认之下。按 Anthropic 的连接器文档，它只起草、不自动发送，而且只在你发起的对话里工作，不会被触发器自动唤起。连接器在底层是怎么连上你收件箱的——靠 OAuth 权限范围，而不是你的密码——是 [Google Workspace MCP 服务器](/zh/news/2026-08-08-google-workspace-mcp-server/)那一层。
 
 这个"手动触发"的限制听起来像硬伤，直到你意识到：个人晨间 triage agent 本就是你*愿意*每天打开的东西。[Issue #001](/zh/posts/2026-05-13-gmail-ai-agent/)正是这么跑的：Claude.ai Pro + Gmail 连接器 + 一段 system prompt，约 20 分钟搭好，每月约 20 美元，零代码，一分钟内返回一份 P0/P1/P2 优先级待办清单。想要那段原文 prompt，我们发过[Claude 邮件 triage system prompt](/zh/news/2026-05-14-claude-system-prompt-email-triage/)。
 
