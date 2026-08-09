@@ -1,6 +1,6 @@
 {
   "$comment": "SEO keyword feed — a living file. The scheduled Cowork routine ideates entries; scripts/seo/feeds.mjs persists them (dedupe + status + timestamps). intent: informational|commercial|transactional. funnel: TOFU|MOFU|BOFU. cluster: use-case|template|comparison|industry|tool-stack. status: new|used.",
-  "updatedAt": "2026-08-07",
+  "updatedAt": "2026-08-09",
   "keywords": [
     {
       "term": "AI agent use cases",
@@ -475,6 +475,86 @@
       "status": "new",
       "addedAt": "2026-08-02",
       "note": "Sunday feed research 2026-08-02. Broader industry hub over recruiters (07-23) + resume-screening (07-22): the HR loop beyond hiring — onboarding, employee Q&A on pay/benefits/policy, and interview scheduling. Grounded in Lindy HR templates (resume matching, meeting summaries, employee-facing agents) and the same NYC Local Law 144 AEDT line used in resume-screening for the human-stays boundary. Automate-the-work-not-the-decision frame; sibling of the professional-services hubs."
+    },
+    {
+      "term": "AI agent memory and context",
+      "intent": "informational",
+      "funnel": "MOFU",
+      "cluster": "tool-stack",
+      "locale": "both",
+      "status": "new",
+      "note": "How agents remember across tasks/sessions — persistent memory is a headline 2026 shift (n8n/Zapier agent-node era). Clusters with orchestration + what-is-MCP. Added 2026-08-09 (Sunday ideation).",
+      "addedAt": "2026-08-09"
+    },
+    {
+      "term": "human in the loop AI agents",
+      "intent": "informational",
+      "funnel": "MOFU",
+      "cluster": "tool-stack",
+      "locale": "both",
+      "status": "new",
+      "note": "HITL is the most common agent-management approach (Zapier survey ~38%). Guardrails cluster. Added 2026-08-09 (Sunday ideation).",
+      "addedAt": "2026-08-09"
+    },
+    {
+      "term": "how to measure AI agent ROI",
+      "intent": "commercial",
+      "funnel": "BOFU",
+      "cluster": "comparison",
+      "locale": "both",
+      "status": "new",
+      "note": "Decision-stage query; Zapier 2026 survey reports 88% positive ROI on >=1 GenAI use case — measurable-outcomes angle. Added 2026-08-09 (Sunday ideation).",
+      "addedAt": "2026-08-09"
+    },
+    {
+      "term": "best MCP servers for AI agents",
+      "intent": "informational",
+      "funnel": "MOFU",
+      "cluster": "tool-stack",
+      "locale": "both",
+      "status": "new",
+      "note": "MCP went native in n8n (client+server) in 2026 — high-intent follow-on to what-is-MCP + the google-workspace-mcp article. Added 2026-08-09 (Sunday ideation).",
+      "addedAt": "2026-08-09"
+    },
+    {
+      "term": "multi-agent systems for business",
+      "intent": "informational",
+      "funnel": "MOFU",
+      "cluster": "tool-stack",
+      "locale": "both",
+      "status": "new",
+      "note": "Teams of specialized agents in parallel is the 2026 'agent leap' theme; sibling of AI agent orchestration. Added 2026-08-09 (Sunday ideation).",
+      "addedAt": "2026-08-09"
+    },
+    {
+      "term": "agentic AI vs generative AI",
+      "intent": "informational",
+      "funnel": "TOFU",
+      "cluster": "comparison",
+      "locale": "both",
+      "status": "new",
+      "note": "Definitional comparison with strong search demand; pairs with AI-agent-vs-chatbot. Added 2026-08-09 (Sunday ideation).",
+      "addedAt": "2026-08-09"
+    },
+    {
+      "term": "AI agent for project management",
+      "intent": "informational",
+      "funnel": "MOFU",
+      "cluster": "use-case",
+      "locale": "both",
+      "status": "new",
+      "note": "Use-case expansion (status/standup/follow-up automation); complements meeting-notes + Slack-summaries. Added 2026-08-09 (Sunday ideation).",
+      "addedAt": "2026-08-09"
+    },
+    {
+      "term": "AI agents for teachers",
+      "intent": "informational",
+      "funnel": "TOFU",
+      "cluster": "industry",
+      "locale": "both",
+      "status": "new",
+      "note": "Industry-hub expansion beyond office roles (grading prep, lesson planning). Added 2026-08-09 (Sunday ideation).",
+      "addedAt": "2026-08-09"
     }
   ]
 }
