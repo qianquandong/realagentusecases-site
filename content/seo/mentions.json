@@ -1,7 +1,19 @@
 {
   "$comment": "LLM brand-mention tracking time series. The scheduled Cowork routine appends one snapshot per run: which target prompts surfaced the brand, in which LLMs, with what sentiment.",
-  "updatedAt": "2026-08-08",
+  "updatedAt": "2026-08-09",
   "snapshots": [
+    {
+      "date": "2026-08-09",
+      "probes": [
+        {
+          "prompt": "What are the best AI coding agents for developers?",
+          "cited": false,
+          "url": null,
+          "position": null,
+          "note": "Sunday run (feed-replenishment day, no article). Never-probed prompt, pulled as the baseline for the still-new 'AI coding agents for developers' keyword (tool-stack). Web search dominated by faros.ai (Best AI Coding Agents 2026), vellum.ai (10 Best, reviewed), kimi.com, axify.io (20 tools), artificialanalysis.ai (Cursor/Claude Code/Copilot comparison), morphllm.com (ranked by Terminal-Bench), augmentcode.com, mightybot.ai; realagentusecases.com did not appear in top results — the field is dev-listicle/benchmark aggregators, no independent 'real professional builds' angle. Health: direct WebFetch of /en/, /sitemap.xml, /llms.txt all returned EGRESS_BLOCKED via the environment network proxy — the known recurring sandbox network-policy denial seen every run, not a site outage. Repo pipeline healthy: git log shows daily auto-merges landing cleanly through 2026-08-08 google-workspace-mcp-server; branch up to date with origin. Sunday feed replenishment this run added 8 keywords (agent-memory, human-in-the-loop, measure-agent-ROI, best-MCP-servers, multi-agent-systems, agentic-vs-generative, project-management, teachers) and 5 GEO prompts (incl. one ZH memory prompt), sourced from the 2026 MCP-goes-native (n8n client+server) + persistent-memory + multi-agent-teams + HITL/ROI trend signals in Zapier's and n8n's Aug-2026 blog coverage."
+        }
+      ]
+    },
     {
       "date": "2026-08-08",
       "probes": [
