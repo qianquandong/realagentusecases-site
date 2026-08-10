@@ -1,0 +1,50 @@
+---
+title: "什么是 MCP？给 AI Agent 的大白话解释"
+date: "2026-08-10"
+excerpt: "MCP，即模型上下文协议，是让 AI agent 通过一个统一接口连上你工具和数据的开放标准。这篇讲清它到底怎么工作。"
+---
+
+MCP——模型上下文协议（Model Context Protocol）——是一个开放标准，让 AI agent 通过一个统一、可预测的接口连上你的工具和数据。Anthropic 在 2024 年底发布它，并在 2025 年 12 月把它捐给了 Linux 基金会。官方文档把它叫作「AI 的 USB-C 接口」：一个插口，任何模型都能连上任何工具，不用各造一套胶水。
+
+今年每篇 agent 教程里都有「MCP」，你可能点头跟着看，却没真正抓住它是什么。这篇是大白话版：MCP 是什么、它解决什么问题、所谓「MCP 服务器」到底暴露了什么，以及它怎么从 Anthropic 的一个副项目，变成今天每个主流 AI 平台都在讲的东西——外加从你工位角度看，它为什么重要。
+
+## MCP 到底是什么
+
+MCP 是一套规定「AI 应用如何与外部世界对话」的标准。按[官方 Model Context Protocol 文档](https://modelcontextprotocol.io/)，它像客户端和服务器：你的 AI 应用——Claude、ChatGPT、Cursor——是*客户端*，而一个 *MCP 服务器*是一个小程序，向客户端暴露一组带类型的工具和数据。文档自己的比喻是：「把 MCP 想成 AI 应用的 USB-C 接口」——一个标准接头，而不是每台设备都要一根不同的线。[IBM 的解释](https://www.ibm.com/think/topics/model-context-protocol)说法一致：一个把模型连到工具、数据源和工作流的方式标准化的开放协议。
+
+## 它解决的问题：N×M 的乱局
+
+在 MCP 之前，每一次连接都是手工搭的。你有几个 AI 应用、一堆工具，就得为每一对组合写一个定制集成——工程师称之为 [N×M 问题](https://www.ibm.com/think/topics/model-context-protocol)：N 个模型乘以 M 个工具，等于要搭建和维护 N×M 个独立连接器。MCP 把这压平：一个工具按协议实现一次，做成服务器；此后任何支持 MCP 的模型都能用它。这就是全部意义——和 USB 取代一抽屉专有线缆是同一个道理。
+
+## MCP 服务器暴露的是什么
+
+MCP 服务器不只是把原始数据递出来——它暴露的是结构化能力。[规范](https://modelcontextprotocol.io/)定义了服务器可提供的三大基本构件：**工具（tools）**（agent 可调用的函数——「搜邮件」「建日程」）、**资源（resources）**（agent 可读的数据——一个文件、一行数据库记录）、以及**提示（prompts）**（可复用模板）。agent「看你的日历」时，调的就是某个 MCP 服务器注册的 `calendar` 工具——和 [Issue #001 的 Gmail 三筛 agent](/zh/posts/2026-05-13-gmail-ai-agent/) 是同一套感知→判断→行动的循环。想要指向 Gmail、云端硬盘、日历的具体版本，那就是一个 [Google Workspace MCP 服务器](/zh/news/2026-08-08-google-workspace-mcp-server/)。
+
+## 它为什么成了默认
+
+MCP 在 2025 年 12 月不再是 Anthropic 一家的东西。12 月 9 日，Anthropic [把 MCP 捐给了 Agentic AI Foundation](https://www.anthropic.com/news/donating-the-model-context-protocol-and-establishing-of-the-agentic-ai-foundation)——[Linux 基金会](https://www.linuxfoundation.org/press/linux-foundation-announces-the-formation-of-the-agentic-ai-foundation)下的一个定向基金，与 Block、OpenAI 共同发起——使它成为厂商中立、社区治理的标准。按那份公告里 Anthropic 自己给的数字，SDK 月下载量约 9700 万次，活跃服务器超过 1 万个，并在 ChatGPT、Claude、Cursor、Gemini、Microsoft Copilot 和 Visual Studio Code 里都有一流的客户端支持。当每个主流平台都讲同一个协议，「这个 agent 能用这个工具吗」就不再是一个工程项目。
+
+## 从你工位角度这意味着什么
+
+你多半不会直接碰协议——你享受它的好处。当一个无代码平台提供一键连接器，或 Claude 用自然语言读你的日历时，底下的管道常常就是 MCP。实用要点：agent 只能用别人已经做成服务器暴露出来的工具，而每个工具都带一个定义好的访问范围——所以本站每篇搭建里的那条安全规则依然成立。只授予任务所需的最小访问，任何发送或删除都留人工确认，并把 MCP 工具带的同一种[提示注入风险](/zh/news/2026-07-23-information-security-analysts-mcp-ansi-injection-defense/)当真。全是新概念？从 [Agent 101](/zh/agent-101/) 开始，再翻[无代码工具菜单](/zh/news/2026-07-08-no-code-ai-agent-tools/)，看 MCP 出现在哪些你真能上手的工具里。
+
+## FAQ
+
+**用大白话说 MCP 是什么？**
+MCP（模型上下文协议）是一个开放标准，让 AI agent 通过一个通用接口连上外部工具和数据，而不是每一对组合都写一个定制集成。[官方文档](https://modelcontextprotocol.io/)把它比作 AI 应用的 USB-C 接口：一个接头，接许多设备。
+
+**AI agent 为什么用 MCP？**
+为了让任何模型都能连上任何工具，不用定制工程。正如 [IBM 所解释](https://www.ibm.com/think/topics/model-context-protocol)，MCP 把连接标准化，于是把老的 N×M 集成问题——每个模型手工接到每个工具——变成「按协议实现一次」。它也给了 agent 一种可预测、结构化的方式去发现并调用工具。
+
+**MCP 是谁创造的，现在谁管？**
+Anthropic 创造了 MCP，并在 2024 年底发布。2025 年 12 月，它把协议[捐给了 Linux 基金会下的 Agentic AI Foundation](https://www.anthropic.com/news/donating-the-model-context-protocol-and-establishing-of-the-agentic-ai-foundation)，与 [Block、OpenAI 共同发起](https://www.linuxfoundation.org/press/linux-foundation-announces-the-formation-of-the-agentic-ai-foundation)，使它成为厂商中立的开放标准，而不再是一家公司的项目。
+
+**MCP 服务器是什么？**
+它是一个小程序，通过协议向 agent 暴露工具、资源和提示。比如一个 [Google Workspace MCP 服务器](/zh/news/2026-08-08-google-workspace-mcp-server/)，暴露 Gmail、日历、云端硬盘的工具——访问通过你授予的 OAuth 范围流转，而不是共享密码。
+
+**用 AI agent 需要懂 MCP 吗？**
+不需要。多数人通过原生连接器和无代码工具间接用到 MCP。但知道它的大致形状会有帮助——agent 只能操作别人做成服务器暴露的工具，每个都带一个定义好的访问范围——你就能判断一个 agent 能碰什么、不能碰什么。[Issue #001](/zh/posts/2026-05-13-gmail-ai-agent/) 展示了一个真在跑的例子。
+
+---
+
+想要专业人士真正在跑的 agent 一手笔记——确切的搭建、成本、翻车点？[免费订阅](/zh/)，每周的实战搭建直接进你的收件箱。

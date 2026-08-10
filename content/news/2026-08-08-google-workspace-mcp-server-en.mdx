@@ -10,7 +10,7 @@ Behind every "connect Claude to your Gmail" tutorial sits one piece of plumbing:
 
 ## What an MCP server actually is
 
-MCP — the [Model Context Protocol](https://modelcontextprotocol.io/) — is an open standard for connecting an AI model to external tools and data. Instead of every app inventing its own glue, an MCP server exposes a set of typed tools (search mail, create event, list files) that any MCP-aware client can call. A *Google Workspace* MCP server is just that server pointed at Google's APIs. When an agent says "check my calendar," it's calling a `calendar` tool the server registered — the same sense→decide→act loop behind [Issue #001's Gmail triage agent](/en/posts/2026-05-13-gmail-ai-agent/).
+MCP — the [Model Context Protocol](https://modelcontextprotocol.io/) — is an open standard for connecting an AI model to external tools and data (new to it? start with [what MCP is and why agents use it](/en/news/2026-08-10-what-is-mcp-for-ai-agents/)). Instead of every app inventing its own glue, an MCP server exposes a set of typed tools (search mail, create event, list files) that any MCP-aware client can call. A *Google Workspace* MCP server is just that server pointed at Google's APIs. When an agent says "check my calendar," it's calling a `calendar` tool the server registered — the same sense→decide→act loop behind [Issue #001's Gmail triage agent](/en/posts/2026-05-13-gmail-ai-agent/).
 
 ## The three ways an agent reaches Gmail
 

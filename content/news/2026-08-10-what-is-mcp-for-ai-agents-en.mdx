@@ -1,0 +1,50 @@
+---
+title: "What Is MCP for AI Agents? A Plain-English Guide"
+date: "2026-08-10"
+excerpt: "MCP, the Model Context Protocol, is the open standard that lets an AI agent reach your tools and data through one predictable interface. Here's how it works."
+---
+
+MCP — the Model Context Protocol — is an open standard that lets an AI agent connect to your tools and data through one predictable interface. Anthropic released it in late 2024 and donated it to the Linux Foundation in December 2025. The official docs call it the "USB-C port for AI": one plug, and any model can reach any tool without custom glue.
+
+You've seen "MCP" in every agent tutorial this year and maybe nodded along without a firm grip on it. This is the plain-English version: what MCP is, the problem it solves, what an "MCP server" actually exposes, and why it went from an Anthropic side-project to the thing every major AI platform now speaks — with the desk-level version of why it matters to you.
+
+## What MCP actually is
+
+MCP is a standard for how an AI application talks to the outside world. Per the [official Model Context Protocol docs](https://modelcontextprotocol.io/), it works like a client and a server: your AI app — Claude, ChatGPT, Cursor — is the *client*, and an *MCP server* is a small program that exposes a set of typed tools and data the client can use. The docs' own analogy: "Think of MCP like a USB-C port for AI applications" — a single, standard connector instead of a different cable for every device. [IBM's explainer](https://www.ibm.com/think/topics/model-context-protocol) puts it the same way: an open protocol that standardizes how models connect to tools, data sources, and workflows.
+
+## The problem it solves: the N×M mess
+
+Before MCP, every connection was hand-built. If you had a handful of AI apps and a pile of tools, you had to write a custom integration for each pairing — what engineers call the [N×M problem](https://www.ibm.com/think/topics/model-context-protocol): N models times M tools equals N×M separate connectors to build and maintain. MCP collapses that. A tool implements the protocol once as a server; any MCP-aware model can then use it. That's the whole point — the same reason USB replaced a drawer full of proprietary cables.
+
+## What an MCP server exposes
+
+An MCP server doesn't just hand over raw data — it exposes structured capabilities. The [specification](https://modelcontextprotocol.io/) defines three main building blocks a server can offer: **tools** (functions the agent can call — "search mail," "create event"), **resources** (data the agent can read — a file, a database row), and **prompts** (reusable templates). When an agent "checks your calendar," it's calling a `calendar` tool an MCP server registered — the same sense→decide→act loop behind [Issue #001's Gmail triage agent](/en/posts/2026-05-13-gmail-ai-agent/). If you want the concrete version pointed at Gmail, Drive, and Calendar, that's a [Google Workspace MCP server](/en/news/2026-08-08-google-workspace-mcp-server/).
+
+## Why it became the default
+
+MCP stopped being an Anthropic thing in December 2025. On December 9, Anthropic [donated MCP to the Agentic AI Foundation](https://www.anthropic.com/news/donating-the-model-context-protocol-and-establishing-of-the-agentic-ai-foundation) — a directed fund under the [Linux Foundation](https://www.linuxfoundation.org/press/linux-foundation-announces-the-formation-of-the-agentic-ai-foundation), co-founded with Block and OpenAI — making it a vendor-neutral, community-governed standard. By Anthropic's own numbers in that announcement, the SDKs see roughly 97 million monthly downloads and over 10,000 active servers, with first-class client support across ChatGPT, Claude, Cursor, Gemini, Microsoft Copilot, and Visual Studio Code. When every major platform speaks the same protocol, "can this agent use this tool?" stops being an engineering project.
+
+## What this means for you at your desk
+
+You mostly won't touch the protocol directly — you'll benefit from it. When a no-code platform offers a one-click connector, or Claude reads your calendar in plain language, MCP is often the plumbing underneath. The practical takeaways: an agent can only use tools someone has exposed as a server, and each tool comes with a defined scope of access — so the safety rule from every build on this site still holds. Grant the least access the job needs, keep a human on any send or delete, and treat the same [prompt-injection exposure](/en/news/2026-07-23-information-security-analysts-mcp-ansi-injection-defense/) MCP tools carry as real. New to all of this? Start at [Agent 101](/en/agent-101/), then browse the [no-code tool menu](/en/news/2026-07-08-no-code-ai-agent-tools/) for where MCP shows up in tools you can actually use.
+
+## FAQ
+
+**What is MCP in simple terms?**
+MCP (Model Context Protocol) is an open standard that lets an AI agent connect to external tools and data through one common interface, instead of a custom integration for every pairing. The [official docs](https://modelcontextprotocol.io/) compare it to a USB-C port for AI applications: one connector, many devices.
+
+**Why do AI agents use MCP?**
+So any model can reach any tool without bespoke engineering. As [IBM explains](https://www.ibm.com/think/topics/model-context-protocol), MCP standardizes the connection, which turns the old N×M integration problem — every model wired to every tool by hand — into "implement the protocol once." It also gives agents a predictable, structured way to discover and call tools.
+
+**Who created MCP and who controls it now?**
+Anthropic created MCP and released it in late 2024. In December 2025 it [donated the protocol to the Agentic AI Foundation](https://www.anthropic.com/news/donating-the-model-context-protocol-and-establishing-of-the-agentic-ai-foundation) under the [Linux Foundation](https://www.linuxfoundation.org/press/linux-foundation-announces-the-formation-of-the-agentic-ai-foundation), co-founded with Block and OpenAI, making it a vendor-neutral open standard rather than one company's project.
+
+**What is an MCP server?**
+It's a small program that exposes tools, resources, and prompts an agent can use over the protocol. A [Google Workspace MCP server](/en/news/2026-08-08-google-workspace-mcp-server/), for example, exposes Gmail, Calendar, and Drive tools — and access flows through OAuth scopes you grant, not a shared password.
+
+**Do I need to understand MCP to use an AI agent?**
+No. Most people use MCP indirectly through native connectors and no-code tools. It helps to know the shape of it — an agent can only act on tools someone exposed as a server, and each carries a defined access scope — so you can reason about what an agent can and can't touch. [Issue #001](/en/posts/2026-05-13-gmail-ai-agent/) shows a real one running.
+
+---
+
+Want the field notes on real agents professionals actually run — the exact setups, costs, and failure modes? [Subscribe free](/en/) and get each week's build in your inbox.

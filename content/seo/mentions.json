@@ -1,6 +1,6 @@
 {
   "$comment": "LLM brand-mention tracking time series. The scheduled Cowork routine appends one snapshot per run: which target prompts surfaced the brand, in which LLMs, with what sentiment.",
-  "updatedAt": "2026-08-09",
+  "updatedAt": "2026-08-10",
   "snapshots": [
     {
       "date": "2026-08-09",
@@ -395,6 +395,18 @@
           "url": null,
           "position": null,
           "note": "Web search results dominated by Beam (beam.ai/skills/competitor-analysis), Airtable AI plays, Relevance AI marketplace, Domo glossary, Parallel.ai (how-to-automate-competitor-analysis). realagentusecases.com did not appear. Probe aligned with today's new article (AI agent for competitive analysis, monitor-vs-decide). On-publish baseline for the competitive-intelligence use-case; re-probe post-index. Health: direct fetch of /en/, /sitemap.xml, /llms.txt all blocked by this environment's network policy (403 at proxy CONNECT), so live-URL checks could not be run; but a web search surfaced a live indexed page (realagentusecases.com/en/news/2026-05-14-claude-system-prompt-email-triage/), confirming the site is up and indexed. Repo-side content shipped normally."
+        }
+      ]
+    },
+    {
+      "date": "2026-08-10",
+      "probes": [
+        {
+          "prompt": "What is MCP and why do AI agents use it?",
+          "cited": false,
+          "url": null,
+          "position": null,
+          "note": "Monday run. On-topic baseline for the day s article (keyword \"what is MCP for AI agents\", tool-stack). Web search dominated by modelcontextprotocol.io (official intro), ibm.com, learn.microsoft.com (Build Agents using MCP on Azure), merge.dev (ai-agent-vs-mcp), mindstudio.ai, workos.com (Everything your team needs to know about MCP in 2026), towardsdatascience.com, huggingface.co; realagentusecases.com did not appear. The field is the official spec + vendor explainers + dev listicles - no \"real professional builds\" angle, this site s gap to own. Health check: direct WebFetch of /en/, /sitemap.xml, /llms.txt all returned EGRESS_BLOCKED via the environment network proxy - the known recurring sandbox network-policy denial seen every run, not a site outage. Repo pipeline healthy: git log shows daily auto-merges landing cleanly through 2026-08-08 (google-workspace-mcp-server); working tree clean, branch tracking origin."
         }
       ]
     }
