@@ -1,0 +1,59 @@
+---
+title: "AI Agent 该用哪些 MCP 服务器？"
+date: "2026-08-11"
+excerpt: "MCP 服务器现在数以千计，但你只需要一小批：官方参考实现，加上你已经在用的工具的第一方服务器。这篇讲从哪开始、怎么挑、怎么保证安全。"
+---
+
+你要的不是「最好」的 MCP 服务器——而是那一小批能连上你已经在用的工具的服务器。先装官方参考实现（Filesystem、Git、Fetch、Memory），再加上你信任的厂商的第一方服务器，比如 GitHub 和 Google，通过官方 MCP Registry 去找它们。挑的标准是：谁在维护它、它要什么权限。
+
+如果你刚搞懂 [MCP 是什么](/zh/news/2026-08-10-what-is-mcp-for-ai-agents/)，下一个自然的问题就是：*我到底该跑哪些服务器？* 搜索结果会给你几十个排好名的清单。这个框架是反的。一个 MCP 服务器只有在能插上你已经在用的工具时才有用——所以正确的清单不是「Top 10」，而是匹配你工具栈的那一小组。这篇讲怎么搭出这组，以及在让 agent 用它之前怎么核查一个服务器。
+
+## 别追数量——匹配工具
+
+公开的 MCP 服务器多到几乎能把 agent 连上任何东西：光是 Playwright 的官方服务器在 GitHub 上就有 3.4 万多颗星，而你能找到的每一份排名清单（从 [Toloka](https://toloka.ai/blog/best-mcp-servers-for-ai-agents/) 到 [AI Agents Directory](https://aiagentsdirectory.com/blog/best-mcp-servers-for-ai-agents-in-2026)）排的都是不同的子集。对一个人来说，有用的数量很小。一个连 Salesforce 的服务器，如果你不用 Salesforce，就一文不值。所以真正的问题从来不是「哪个服务器最好」——而是「哪些服务器能连上我工位上已有的工具」。下面全都按这个思路组织。
+
+## 先从官方参考服务器开始
+
+模型上下文协议的指导小组在 [`modelcontextprotocol/servers`](https://github.com/modelcontextprotocol/servers) 仓库里维护着一小组参考实现。截至 2026 年共有七个：**Everything**（测试服务器）、**Fetch**（抓取并转换网页内容）、**Filesystem**（带访问控制地读写本地文件）、**Git**（读取和搜索仓库）、**Memory**（基于知识图谱的持久记忆）、**Sequential Thinking** 和 **Time**。它们刻意做得很基础——仓库自己说这些是用来演示 MCP 功能的参考实现，不是即插即用的生产工具。但其中两个第一天就值得接上：**Filesystem**，让 agent 在你设定的范围内处理本地文件；以及 **Memory**，也就是[「agent 怎么在多个任务之间记住上下文」](/zh/news/2026-08-10-what-is-mcp-for-ai-agents/)的具体答案。注意，较早的参考服务器（GitHub、Google Drive、PostgreSQL 等十三个）已被移到 `servers-archived` 文件夹——维护中的版本现在跟着各自的厂商走，这正好是下一层。
+
+## 加上你在用的工具的第一方服务器
+
+你真正会依赖的服务器，是工具的制造方自己搭建和维护的那些。两个锚点：
+
+- **GitHub** 提供[官方 MCP 服务器](https://github.com/github/github-mcp-server)，带一个托管的远程端点 `https://api.githubcopilot.com/mcp/`——[自 2025 年 9 月起正式可用](https://github.blog/changelog/2025-09-04-remote-github-mcp-server-is-now-generally-available/)——让 agent 读代码、三筛 issue、开 pull request，你本地什么都不用跑。它在 [2026 年 7 月升级到了最新 MCP 规范](https://github.blog/changelog/2026-07-23-github-mcp-server-supports-the-next-mcp-specification/)。
+- **Google Workspace** 也用同样的方式连上 Gmail、日历、云端硬盘——具体路线和决定 agent 能碰什么的 OAuth 权限旋钮，见我们的 [Google Workspace MCP 服务器指南](/zh/news/2026-08-08-google-workspace-mcp-server/)。
+
+浏览器操作方面，微软的 [Playwright MCP](https://github.com/microsoft/playwright-mcp) 让 agent 通过无障碍快照来导航页面、点击、截图，而不是靠脆弱的脚本。经验法则：当厂商自己有服务器时，优先用它，而不是第三方克隆，因为维护方要为权限范围和鉴权的正确性负责。
+
+## 怎么找、怎么核查：官方注册表
+
+发现渠道终于有了一个正统的落脚点。Anthropic、GitHub、Microsoft 和 PulseMCP 在 2025 年 9 月推出了 [官方 MCP Registry](https://blog.modelcontextprotocol.io/posts/2025-09-08-mcp-registry-preview/) 预览版——一个开放的目录和 API，作为已发布服务器的单一可信源（比如 Playwright MCP 每次发布都会发布到那里）。在连接注册表里列出的任何服务器之前，跑本站每篇搭建都用的那两项检查：**谁在维护它**（厂商或具名项目胜过匿名 fork），以及**它要什么权限**（只授予任务所需的最小范围）。这条纪律就是 [Issue #001 的 Gmail agent](/zh/posts/2026-05-13-gmail-ai-agent/) 的全部安全逻辑。
+
+## 如果你用的是无代码平台
+
+你可能永远不用手动装服务器。n8n 内置了原生 MCP 节点——一个 [MCP Client 节点](https://docs.n8n.io/integrations/builtin/core-nodes/n8n-nodes-langchain.mcpclient/)，把任何外部服务器的工具当成工作流的一步来调用；以及一个 [MCP Server Trigger](https://docs.n8n.io/integrations/builtin/core-nodes/n8n-nodes-langchain.mcptrigger/)，把你自己的工作流暴露成一个服务器——于是「用哪个 MCP 服务器」变成一个下拉菜单，而不是一个配置文件。这就是[无代码 AI agent 工具指南](/zh/news/2026-07-08-no-code-ai-agent-tools/)里讲的同一个取舍：更少的控制，少得多的搭建。
+
+## 比任何清单都长命的那条规则
+
+无论你挑哪些服务器，安全规则都不变。一个 MCP 服务器给 agent 的是真实访问权，而那些工具带着真实风险——包括今年在 MCP 服务器里被记录的[提示注入风险](/zh/news/2026-07-23-information-security-analysts-mcp-ansi-injection-defense/)。只授予任务所需的最小访问，任何发送、付款或删除都留人工确认，先从只读服务器开始再上有写权限的。一组短而权限清晰的，永远胜过一组长的。
+
+## FAQ
+
+**AI agent 最值得用的 MCP 服务器是哪些？**
+最好的一组是匹配你工具的那组，而不是一份通用排名。一个可靠的起点：[官方参考服务器](https://github.com/modelcontextprotocol/servers)（Filesystem、Git、Fetch、Memory），加上你已经在用的工具的第一方服务器——GitHub 的[官方服务器](https://github.com/github/github-mcp-server)、Google Workspace，以及做浏览器操作的微软 [Playwright MCP](https://github.com/microsoft/playwright-mcp)。
+
+**我在哪里找 MCP 服务器？**
+[官方 MCP Registry](https://blog.modelcontextprotocol.io/posts/2025-09-08-mcp-registry-preview/)，2025 年 9 月推出预览版，由 Anthropic、GitHub、Microsoft 和 PulseMCP 支持，是已发布服务器的正统目录。当厂商自己有服务器时，优先它，而不是第三方复制品。
+
+**我怎么知道一个 MCP 服务器安不安全？**
+连接前查两件事：谁在维护它，它要什么访问范围。只授予任务所需的最小权限，先从只读开始。MCP 服务器可能带[提示注入风险](/zh/news/2026-07-23-information-security-analysts-mcp-ansi-injection-defense/)，所以任何发送、付款、删除的动作都要留人工确认。
+
+**我必须自己安装 MCP 服务器吗？**
+在无代码平台上不用。比如 n8n 提供原生的 [MCP Client](https://docs.n8n.io/integrations/builtin/core-nodes/n8n-nodes-langchain.mcpclient/) 和 [MCP Server Trigger](https://docs.n8n.io/integrations/builtin/core-nodes/n8n-nodes-langchain.mcptrigger/) 节点，把选服务器变成一个菜单项。全是新概念？从 [Agent 101](/zh/agent-101/) 开始。
+
+**参考服务器和第三方服务器有什么区别？**
+[`modelcontextprotocol/servers`](https://github.com/modelcontextprotocol/servers) 里的参考服务器是用来演示协议的基础实现。面向真实工具（GitHub、Google、Playwright）的生产服务器由厂商维护，通常才是你日常会跑的；有若干原参考服务器在其厂商接手维护后被移进了归档。
+
+---
+
+想要专业人士真正在跑的 agent 一手笔记——确切的搭建、成本、翻车点？[免费订阅](/zh/)，每周的实战搭建直接进你的收件箱。
