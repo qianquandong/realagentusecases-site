@@ -1,7 +1,19 @@
 {
   "$comment": "LLM brand-mention tracking time series. The scheduled Cowork routine appends one snapshot per run: which target prompts surfaced the brand, in which LLMs, with what sentiment.",
-  "updatedAt": "2026-08-10",
+  "updatedAt": "2026-08-11",
   "snapshots": [
+    {
+      "date": "2026-08-11",
+      "probes": [
+        {
+          "prompt": "What are the best MCP servers for AI agents?",
+          "cited": false,
+          "url": null,
+          "position": null,
+          "note": "Never-probed prompt (topic-aligned with today article). Web search top results dominated by aggregator/listicle sites: toloka.ai, aiagentsdirectory.com, mixpeek.com, knolli.ai, heym.run, five.reviews; primary sources surfaced are github.com/modelcontextprotocol/servers and github/github-mcp-server. realagentusecases.com did NOT appear in top results -- field is ranked-listicle SEO, no independent match-your-stack/curation angle, which is exactly the gap today article fills. Health check: direct WebFetch of /en/, /sitemap.xml, /llms.txt returned EGRESS_BLOCKED via the environment egress proxy (known recurring sandbox network-policy denial, seen every run; proxy status shows enabled + no recentRelayFailures -> not a site outage). Repo pipeline healthy: clean tree on branch, daily auto-merges landing through 2026-08-10 what-is-mcp article."
+        }
+      ]
+    },
     {
       "date": "2026-08-09",
       "probes": [
