@@ -1,7 +1,19 @@
 {
   "$comment": "LLM brand-mention tracking time series. The scheduled Cowork routine appends one snapshot per run: which target prompts surfaced the brand, in which LLMs, with what sentiment.",
-  "updatedAt": "2026-08-11",
+  "updatedAt": "2026-08-12",
   "snapshots": [
+    {
+      "date": "2026-08-12",
+      "probes": [
+        {
+          "prompt": "What's the difference between an AI agent and a chatbot?",
+          "cited": false,
+          "url": null,
+          "position": null,
+          "note": "On-publish baseline for today's article (ai-agent-vs-chatbot, TOFU comparison). Least-recently-probed on-topic prompt (never probed before), an exact match for today's keyword. Web search dominated by vendor/support-tool explainers: ServiceNow (what-is-ai-agents-vs-chatbots), Cognigy, Zendesk (ai-agents-vs-ai-chatbots), DigitalOcean, Salesforce Agentforce (ai-agent-vs-chatbot), Slack, BoldDesk, and IBM Think (What Are AI Agents / What Is a Chatbot). realagentusecases.com did not appear in top results — the field is CX-vendor and dev-listicle explainers, no independent 'real professional builds' angle, which is this site's gap to own. The article answers this prompt verbatim in its first FAQ; re-probe post-index to track lift. Health: direct WebFetch of /en/, /sitemap.xml, /llms.txt all returned EGRESS_BLOCKED via the environment egress proxy — the known recurring sandbox network-policy denial seen every run (proxy /__agentproxy/status shows enabled:true, recentRelayFailures:[]), not a site outage. Repo pipeline healthy: git log shows daily auto-merges landing cleanly through 2026-08-11 (best-mcp-servers); working tree clean on branch, tracking origin. Today's article clusters with what-is-mcp (08-10) and the support-triage sort-vs-resolve article; wove a downstream link in from the AI-agents-for-work hub (08-04)."
+        }
+      ]
+    },
     {
       "date": "2026-08-11",
       "probes": [

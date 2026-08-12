@@ -1,0 +1,58 @@
+---
+title: "AI Agent vs Chatbot: What's Actually Different"
+date: "2026-08-12"
+excerpt: "A chatbot answers; an AI agent acts. The real difference is autonomy — planning, using tools, finishing multi-step tasks. Here's how to tell them apart."
+---
+
+A chatbot responds to messages; an AI agent completes tasks. That's the core difference. A chatbot answers a question and stops. An AI agent takes a goal, plans the steps, uses tools like your calendar or a database, acts across systems, and keeps going until the job is done — usually with a human approving the risky steps.
+
+Both talk to you in natural language, so they look alike from the outside. The difference is what happens after the message. This is the plain-English version of the split that's behind most "do I even need an agent?" confusion.
+
+## A chatbot talks, an agent acts
+
+[IBM defines an AI agent](https://www.ibm.com/think/topics/ai-agents) as "a system or program capable of autonomously performing tasks on behalf of a user or another system" — the operative word is *performing*. A [chatbot](https://www.ibm.com/think/topics/chatbots), by contrast, is fundamentally a conversational interface: you send text, it sends text back. One produces answers; the other produces outcomes.
+
+Put concretely: ask a chatbot "what's on my calendar Friday?" and a good one tells you. Ask an agent "clear Friday afternoon and move my 2pm to Monday," and it reads the calendar, finds the conflicts, sends the reschedule, and reports back — the sense→decide→act loop behind [Issue #001's Gmail triage agent](/en/posts/2026-05-13-gmail-ai-agent/).
+
+## What a chatbot is good at
+
+A chatbot is the right tool for a bounded conversation. Rule-based bots follow scripted decision trees — the "press 1 for billing" of the web. AI chatbots (the LLM-powered kind) are far more fluent and can field open-ended questions, but their job is still to *respond*: answer the FAQ, look up an order, hand off to a human when they're stuck. That's not a flaw. For "what's your return policy?" a chatbot that answers in one turn is exactly what you want — no planning, no tools, no risk.
+
+## What makes something an agent
+
+An agent adds three things a chatbot doesn't have. [Google Cloud describes agents](https://cloud.google.com/transform/ai-agents-evolving-with-google-agentspace) as able to "autonomously take actions, plan, reason, and choose what kinds of tools to use." Unpack that:
+
+- **Planning.** It breaks a goal into steps instead of answering one message. "Analyze three competitors and build a deck" becomes research → summarize → draft slides.
+- **Tools.** It reaches beyond the chat window — your calendar, a database, the web, a code runner. How it reaches them is usually [MCP, the protocol agents use to connect to tools](/en/news/2026-08-10-what-is-mcp-for-ai-agents/).
+- **Action across steps.** It executes, checks the result, adjusts, and keeps going until the task is done — holding context across the whole run.
+
+The clearest public example of the shift: when OpenAI launched [ChatGPT agent](https://openai.com/index/introducing-chatgpt-agent/) in July 2025, the framing was "bridging research and action" — the same product that used to just chat could now browse websites, fill out forms, run code, and edit spreadsheets using its own virtual computer. Notably, it "requests permission before taking actions of consequence" — the human-in-the-loop gate that every safe build on this site keeps.
+
+## The gray zone: "agentic" chatbots
+
+The line isn't a wall. Many products marketed as chatbots now have agent features, and many agents wear a chat interface. A support bot that only answers FAQs is a chatbot; the same vendor's bot that looks up your order, issues the refund, and updates the ticket is doing agent work. We drew exactly that line for support in [sort vs. resolve](/en/news/2026-07-15-ai-agent-customer-support-triage/): reading and routing is chatbot-shaped; resolving end to end is agent-shaped. The useful test isn't the label on the box — it's whether the thing can *do* something or only *say* something.
+
+## Which one do you actually need?
+
+More agency isn't automatically better. [Anthropic's engineering guidance](https://www.anthropic.com/engineering/building-effective-agents) is blunt: find "the simplest solution possible," and it notes that most reliable production systems are predictable *workflows*, not fully autonomous agents — the difference between them is "the degree of autonomy." If your problem is "answer a common question fast," a chatbot wins on speed and predictability. If it's "complete a multi-step task across my tools," you want an agent — and you want a human on the steps that send, pay, or delete. New to all of this? Start at [Agent 101](/en/agent-101/), then see the [five agent patterns that actually hold up at work](/en/news/2026-08-04-ai-agents-for-work/).
+
+## FAQ
+
+**What's the difference between an AI agent and a chatbot?**
+A chatbot responds to messages; an AI agent completes tasks. [IBM defines an agent](https://www.ibm.com/think/topics/ai-agents) as a system that autonomously performs tasks, while a [chatbot](https://www.ibm.com/think/topics/chatbots) is a conversational interface that answers and stops. The agent plans, uses tools, and acts across multiple steps; the chatbot talks.
+
+**Is ChatGPT a chatbot or an AI agent?**
+Both, depending on how it's used. In a normal conversation it's a chatbot. But OpenAI's [ChatGPT agent](https://openai.com/index/introducing-chatgpt-agent/) mode, launched July 2025, lets it browse, fill forms, run code, and edit files on its own virtual computer — that's agent behavior. The same underlying model can do either.
+
+**Is an AI agent just a smarter chatbot?**
+No. The difference isn't intelligence, it's autonomy and reach. A very capable chatbot still only answers; an agent takes a goal, uses tools, and executes multi-step work. [Google Cloud](https://cloud.google.com/transform/ai-agents-evolving-with-google-agentspace) frames agents as systems that plan, reason, choose tools, and take action.
+
+**Do I always need an agent instead of a chatbot?**
+No — and often you shouldn't. [Anthropic recommends](https://www.anthropic.com/engineering/building-effective-agents) the simplest solution that works; for answering a bounded question, a chatbot is faster and more predictable. Reach for an agent only when the task genuinely spans multiple steps and tools.
+
+**How do I know if I'm using an agent?**
+Ask whether it can *do* something or only *say* something. If it takes an action in another system — sends an email, updates a record, books a slot — it's acting as an agent. If it only returns text for you to act on, it's a chatbot. [Issue #001](/en/posts/2026-05-13-gmail-ai-agent/) shows a real agent doing the former.
+
+---
+
+Want the field notes on real agents professionals actually run — the exact setups, costs, and failure modes? [Subscribe free](/en/) and get each week's build in your inbox.

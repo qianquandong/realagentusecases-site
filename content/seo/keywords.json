@@ -1,6 +1,6 @@
 {
   "$comment": "SEO keyword feed — a living file. The scheduled Cowork routine ideates entries; scripts/seo/feeds.mjs persists them (dedupe + status + timestamps). intent: informational|commercial|transactional. funnel: TOFU|MOFU|BOFU. cluster: use-case|template|comparison|industry|tool-stack. status: new|used.",
-  "updatedAt": "2026-08-11",
+  "updatedAt": "2026-08-12",
   "keywords": [
     {
       "term": "AI agent use cases",
@@ -412,9 +412,9 @@
       "funnel": "TOFU",
       "cluster": "comparison",
       "locale": "both",
-      "status": "new",
+      "status": "used",
       "addedAt": "2026-07-26",
-      "note": "Sunday feed research 2026-07-26. TOFU explainer distinguishing a reactive chatbot (answers, one turn) from an agent (plans, uses tools, takes multi-step action) — the confusion behind most 'do I need an agent?' questions. Grounded in IBM, Google Cloud, Merge (ai-agent-vs-mcp / agent-vs-chatbot) definitions. Clusters with what-is-mcp-for-ai-agents and guardrails; feeds the whole use-case library by clarifying the category."
+      "note": "Used 2026-08-12 → content/news/2026-08-12-ai-agent-vs-chatbot-{en,zh}.mdx (title 'AI Agent vs Chatbot: What's Actually Different'). TOFU explainer distinguishing a reactive chatbot (answers, one turn) from an agent (plans, uses tools, takes multi-step action across systems) — the confusion behind most 'do I need an agent?' questions. Talk-vs-act framing. Sources: IBM 'What Are AI Agents?' (agent = system that autonomously performs tasks) + 'What Is a Chatbot?', Google Cloud (agents plan/reason/choose tools/act), OpenAI ChatGPT agent launch July 17 2025 ('bridging research and action'; browses/fills forms/runs code/edits spreadsheets on its own virtual computer; asks permission before consequential actions = HITL gate), Anthropic 'Building Effective Agents' (workflows vs agents = degree of autonomy; simplest solution). Covers the gray zone of 'agentic' chatbots and which to pick. Clusters with what-is-mcp-for-ai-agents (08-10) and the support-triage sort-vs-resolve article; wove a downstream link in from the AI-agents-for-work hub (08-04) 'Where to start'. Sibling keyword 'agentic AI vs generative AI' still new."
     },
     {
       "term": "AI agents for lawyers",

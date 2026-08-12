@@ -1,6 +1,6 @@
 {
   "$comment": "GEO prompt feed — the questions working professionals ask ChatGPT / Perplexity / Gemini. The scheduled Cowork routine ideates entries; scripts/seo/feeds.mjs persists them. cluster: use-case|template|comparison|industry|tool-stack. status: new|covered (covered = a published article targets it). Phase 7 tracks whether the brand is cited for each.",
-  "updatedAt": "2026-08-10",
+  "updatedAt": "2026-08-12",
   "prompts": [
     {
       "prompt": "What are real examples of AI agents at work?",
@@ -281,9 +281,9 @@
       "prompt": "What's the difference between an AI agent and a chatbot?",
       "cluster": "comparison",
       "locale": "en",
-      "status": "new",
+      "status": "covered",
       "addedAt": "2026-07-26",
-      "note": "Sunday feed research 2026-07-26. Pairs with the new 'AI agent vs chatbot' TOFU explainer; distinguish reactive chatbot from tool-using agent."
+      "note": "Covered by content/news/2026-08-12-ai-agent-vs-chatbot. GEO-probed 2026-08-12 (on-publish baseline): not cited — web search dominated by ServiceNow, Cognigy, Zendesk, DigitalOcean, Salesforce Agentforce, Slack, BoldDesk, IBM Think; realagentusecases.com did not appear. The field is vendor/support-tool explainers, no 'real professional builds' angle. The article answers this prompt verbatim in its first FAQ; re-probe post-index to track lift."
     },
     {
       "prompt": "What AI agents can help lawyers?",
