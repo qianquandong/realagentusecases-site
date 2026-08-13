@@ -1,7 +1,19 @@
 {
   "$comment": "LLM brand-mention tracking time series. The scheduled Cowork routine appends one snapshot per run: which target prompts surfaced the brand, in which LLMs, with what sentiment.",
-  "updatedAt": "2026-08-12",
+  "updatedAt": "2026-08-13",
   "snapshots": [
+    {
+      "date": "2026-08-13",
+      "probes": [
+        {
+          "prompt": "Do I need a human in the loop for my AI agent?",
+          "cited": false,
+          "url": null,
+          "position": null,
+          "note": "On-publish baseline for today's article (human-in-the-loop-ai-agents, tool-stack). Least-recently-probed on-topic prompt (never probed before), an exact match for today's keyword. Web search dominated by HITL vendor/tooling explainers: port.io (AI coding agents guardrails), fast.io (Complete Guide 2026), Creatio glossary, Elementum, Galileo, Agno, Waxell (in-loop vs on-loop), and Oracle Integration docs — plus governance angles (EU AI Act high-risk, HIPAA, FINRA, GDPR). realagentusecases.com did not appear in top results — the field is vendor/governance explainers, no independent 'real professional builds, gate the writes' angle, this site's gap to own. The article answers this prompt verbatim in its first FAQ; re-probe post-index to track lift. Health: direct WebFetch of /en/, /sitemap.xml, /llms.txt all returned EGRESS_BLOCKED via the environment egress proxy — the known recurring sandbox network-policy denial seen every run (www.anthropic.com also EGRESS_BLOCKED this run), not a site outage. Repo pipeline healthy: git log shows daily auto-merges landing cleanly through 2026-08-12 (ai-agent-vs-chatbot); working tree clean on branch, tracking origin. Today's article is the concept hub the whole use-case library implicitly points to (gate the irreversible, let the reversible run); wove a downstream link in from the 08-12 chatbot article."
+        }
+      ]
+    },
     {
       "date": "2026-08-12",
       "probes": [
