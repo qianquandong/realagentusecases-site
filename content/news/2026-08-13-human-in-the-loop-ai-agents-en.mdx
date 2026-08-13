@@ -1,0 +1,73 @@
+---
+title: "Human in the Loop for AI Agents: When to Add a Gate"
+date: "2026-08-13"
+excerpt: "A human in the loop means your AI agent pauses for your approval before it sends, pays, or deletes. Here's when to add that gate — and when to skip it."
+---
+
+A human in the loop means your AI agent runs on its own but pauses for your approval before any step it can't take back — sending an email, moving money, deleting a record. You add the gate on the irreversible, high-stakes actions and let the reversible work run untouched. It's the line between a helpful agent and a risky one.
+
+Almost every "should I let the agent do this?" question is really a human-in-the-loop question. The useful answer isn't "always" or "never" — it's *which steps*. This guide is the plain-English version of the rule the rest of this site keeps coming back to: automate the work, keep a hand on the writes.
+
+## What "human in the loop" actually means
+
+A human in the loop (HITL) is a person positioned at a decision point in an otherwise automated process, with the context and the authority to approve, edit, or stop what the agent is about to do. It's the same instinct behind the [difference between a chatbot and an agent](/en/news/2026-08-12-ai-agent-vs-chatbot/): once a system can *act* — not just answer — someone has to own the actions that matter.
+
+The pattern shows up in the products you already use. When OpenAI launched [ChatGPT agent](https://openai.com/index/introducing-chatgpt-agent/) in July 2025, it could browse, fill forms, and run code on its own virtual computer — but it "requests permission before taking actions of consequence." That permission prompt *is* the human in the loop.
+
+## The rule: gate the irreversible, let the reversible run
+
+You don't put a human in front of everything. You put one in front of the steps that can't be undone.
+
+[Anthropic's guidance on building agents](https://www.anthropic.com/engineering/building-effective-agents) frames the design goal as "meaningful human oversight," and its [framework for safe and trustworthy agents](https://www.anthropic.com/news/our-framework-for-developing-safe-and-trustworthy-agents) is concrete about where: build checkpoints where the agent pauses for human review before it carries out irreversible actions like approving financial transactions or deleting data. The clearest example is Anthropic's own [Claude Code](/en/agent-101/), which runs with read-only permissions by default — it can read and analyze freely, but must ask before it modifies code or systems.
+
+That's the whole discipline in one sentence: **reading is safe, writing needs a gate.** It's the capture-don't-commit rule behind [Issue #001's Gmail triage agent](/en/posts/2026-05-13-gmail-ai-agent/) — the agent sorts and drafts all day on its own, but a human still presses send. And it's the split every use-case guide on this site draws: [invoice processing](/en/news/2026-07-20-ai-agent-for-invoice-processing/) separates drafting the invoice (automate) from paying it (approve), and [expense management](/en/news/2026-07-21-ai-agent-for-expense-management/) separates preparing the report from reimbursing it.
+
+## When you genuinely need the gate
+
+Add a human checkpoint when any of these is true:
+
+- **The action is irreversible.** Sending, paying, publishing, deleting — anything you'd have to apologize for or claw back.
+- **The stakes are material.** Money, legal exposure, a customer relationship, a public post in your name.
+- **A regulator requires it.** For high-risk systems, [Article 14 of the EU AI Act](https://artificialintelligenceact.eu/article/14/) requires that they be "designed and developed in such a way... that they can be effectively overseen by natural persons" — with the ability to understand the system, intervene, and halt it.
+- **The situation is novel or outside the agent's training.** New edge cases and judgment calls are exactly where a person should look before the machine commits.
+
+This is why the sensitive final call keeps staying human across the site's industry guides — the hire-or-reject decision for [recruiters](/en/news/2026-07-23-ai-agents-for-recruiters/), the citation check for [lawyers](/en/news/2026-08-03-ai-agents-for-lawyers/), the sign-off for [accountants](/en/news/2026-07-28-ai-agents-for-accountants/). The agent does the work up to the decision; the decision has a name on it.
+
+## When you can skip it (and why gating everything backfires)
+
+More approval prompts is not more safety. If a human has to click "approve" on every trivial step, you've rebuilt the manual process with extra clicks — and worse, approval fatigue trains people to rubber-stamp without reading.
+
+Anthropic's safe-agents framework makes the same point: mandating approval of *every* action "will create friction without necessarily producing safety benefits." Even [EU AI Act Article 14](https://artificialintelligenceact.eu/article/14/) does not require a human to review every decision before it takes effect — it requires that humans be *able* to monitor, intervene, and halt. The goal is oversight where it matters, not a checkpoint on every keystroke.
+
+For low-stakes, reversible, high-volume work, the better model is often **human on the loop** — the agent acts, and a person supervises and can step in — rather than human *in* the loop on each action. Reserve the hard gate for the writes that count.
+
+## How to actually add the gate
+
+The mechanics are simpler than they sound: run autonomously through the reversible steps, then pause and require an explicit approval before anything that can't be undone. A few real patterns:
+
+- **Native approval prompts.** [Buffer's AI Assistant](/en/news/2026-07-25-ai-agent-for-social-media-content/) drafts social posts but keeps a human on publish; [Thomson Reuters' "Ready to Review"](/en/news/2026-07-28-ai-agents-for-accountants/) drafts a tax return that's ready for a professional to review, not ready to file.
+- **A dedicated safety check before the write.** [Ramp Bill Pay](/en/news/2026-07-20-ai-agent-for-invoice-processing/) runs a fraud-prevention agent that flags vendor bank-detail changes *before* a payment goes out — an automated guardrail feeding a human decision.
+- **An approval step in your automation.** No-code platforms like Zapier and n8n let you insert an "await approval" node so a person confirms before the sensitive action fires — the same gate you'd build into any [agent that works across your tools](/en/news/2026-08-04-ai-agents-for-work/).
+
+Wherever you put it, enforce the gate in the workflow itself, not in the prompt. An instruction to "ask before sending" is a suggestion; an approval step the agent physically can't skip is a control.
+
+## FAQ
+
+**Do I need a human in the loop for my AI agent?**
+For any action that's irreversible or high-stakes — sending, paying, publishing, deleting — yes. For reversible, low-risk steps like reading, sorting, or drafting, usually no. [Anthropic's agent framework](https://www.anthropic.com/news/our-framework-for-developing-safe-and-trustworthy-agents) recommends checkpoints specifically before irreversible actions, not before every step.
+
+**What's the difference between human-in-the-loop and human-on-the-loop?**
+In the loop, the agent pauses and waits for a person to approve each gated action before it proceeds. On the loop, the agent acts on its own while a person supervises and can intervene or halt it. Use in-the-loop for high-stakes writes; on-the-loop for low-stakes, high-volume work.
+
+**Does the law require human oversight of AI agents?**
+For systems classified as high-risk, yes. [Article 14 of the EU AI Act](https://artificialintelligenceact.eu/article/14/) requires high-risk AI systems to be designed so they can be effectively overseen by a person who can understand, intervene in, and halt them — though it does not require a human to review every single decision.
+
+**Won't approving every action slow the agent down?**
+It will, which is why you shouldn't. Gating every step creates friction without adding safety and leads to rubber-stamping. Put the gate only on the irreversible, high-stakes actions and let the reversible work run — the approach behind [Issue #001](/en/posts/2026-05-13-gmail-ai-agent/).
+
+**Where should the approval gate live — in the prompt or the workflow?**
+In the workflow. Telling an agent to "ask before sending" is a suggestion it can drift from; an approval step enforced by the automation is a control it can't skip. Build the checkpoint into the execution layer.
+
+---
+
+Want the field notes on real agents professionals actually run — the exact setups, the writes they automate, and the ones they still approve by hand? [Subscribe free](/en/) and get each week's build in your inbox.
