@@ -1,0 +1,52 @@
+---
+title: "n8n vs Zapier：AI Agent 平台怎么选"
+date: "2026-08-14"
+excerpt: "n8n 给你一个能自托管、可控的 LangChain agent；Zapier 给你一个接入 9000+ 应用的 AI 助手。这篇讲清两者怎么选。"
+---
+
+想自己搭、要掌控权，选 **n8n**——它自带基于 LangChain 的 AI Agent 节点，源码可得、可自托管、按工作流运行次数计费。想要一个无需写代码、接入上千应用、人工介入多少由你定的 AI 助手，选 **Zapier**。一个是你自己拥有的引擎，另一个是你租用的服务。
+
+两家现在都在打「AI agent」的旗号，标签变得模糊。但底下它们下的是相反的赌注——在所有权、计费方式和面向谁上。下面是真正的分界，依据来自各家自己的文档。
+
+## 对「agent 是什么」的两种下注
+
+n8n 的 [AI Agent 节点](https://docs.n8n.io/integrations/builtin/cluster-nodes/root-nodes/n8n-nodes-langchain.agent) 实现的是 LangChain 的 agent 模式：你接上一个对话模型和一个或多个工具，「agent 自行决定调用哪些工具来完成任务」。从 v1.82.0 起它统一成单一的 Tools Agent——也就是 [agent 的核心](/zh/news/2026-08-12-ai-agent-vs-chatbot/) 那套推理加调工具的循环。你是在用零件拼出一个 agent。
+
+[Zapier Agents](https://zapier.com/agents) 从另一头出发：你用大白话描述一个角色，给 agent 访问你数据的权限，它就「跨 8000+ 应用工作——按指令、也在你睡觉时」。没有 LangChain 要配置。你是在雇一个现成的助手，指向你的应用。
+
+## 计费：按运行 vs 按任务
+
+一旦规模上来，这里是两家分歧最大的地方。Zapier 的模式，按它自己的[对比文章](https://zapier.com/blog/n8n-vs-zapier/)，是**按任务**计费——每一个动作步骤都算一次。一个五步工作流跑 1000 次，就是 5000 个任务。n8n 的[计费](https://n8n.io/pricing/)是**按工作流运行次数**，不管里面跑了多少节点——「只在工作流从头到尾跑完一次时才付费」。一个 20 节点的运行只算一次。对一个跨工具展开的多步 agent，随着复杂度上升，按运行计费会便宜得多。
+
+## 所有权：租它，还是自己跑
+
+Zapier 完全托管——你永远不碰基础设施，这正是卖点。n8n 则[源码可得、可自托管](https://n8n.io/pricing/)：它的社区版可在你自己的服务器上免费运行，采用 [fair-code 的 Sustainable Use 许可](https://docs.n8n.io/sustainable-use-license/)，允许内部商业使用、修改和非商业再分发。如果数据驻留、自定义逻辑或避开按任务计费对你重要，你可以自己托管。代价是自托管又多了一个要照看的系统——这个真实权衡我们在[无代码 AI agent 工具指南](/zh/news/2026-07-08-no-code-ai-agent-tools/) 里点过。
+
+## 覆盖面与受众
+
+Zapier 的优势是广度和易上手：[9000+ 应用集成](https://zapier.com/apps)，以及一个非技术同事也能接手的界面。n8n 的优势是深度和掌控——它是为想在可视化节点不够用时切进自定义逻辑的技术团队做的，它自己的 [n8n vs Zapier 页面](https://n8n.io/vs/zapier/)正是这么定位的。老实的经验法则：非技术操作者、应用多而杂 → Zapier；开发者或技术团队、要搭复杂、高频或自托管的 agent → n8n。
+
+## 有一块，两个平台都替你决定不了
+
+无论选哪个，安全线得你自己画。Zapier 让 agent「以你想要的多少人工介入」运行；n8n 会老老实实执行你工作流里写的任何东西。正因为有这份自由，你才更该把不可逆的动作——发送、付款、发布、删除——[放在一道人工确认的闸门后面](/zh/news/2026-08-13-human-in-the-loop-ai-agents/)，这也是 [Issue #001 的 Gmail agent](/zh/posts/2026-05-13-gmail-ai-agent/) 背后「先记录、不擅自提交」的纪律。两个平台现在也都提供 MCP 节点，所以如果你在给 agent 接工具，我们的 [什么是 MCP 讲解](/zh/news/2026-08-10-what-is-mcp-for-ai-agents/) 讲清了底层这套协议。
+
+## FAQ
+
+**搭 AI agent，n8n 和 Zapier 哪个更好？**
+看是谁搭。n8n 的 [基于 LangChain 的 AI Agent 节点](https://docs.n8n.io/integrations/builtin/cluster-nodes/root-nodes/n8n-nodes-langchain.agent) 给开发者掌控权和自托管；[Zapier Agents](https://zapier.com/agents) 给非技术用户一个跨 8000+ 应用、无需写代码的现成助手。掌控和成本偏 n8n，速度和覆盖面偏 Zapier。
+
+**n8n 和 Zapier 谁更便宜？**
+对复杂、高频的 agent，n8n 通常更便宜。n8n [按工作流运行次数计费](https://n8n.io/pricing/)，不管跑了多少步，且自托管社区版免费；Zapier [按任务计费](https://zapier.com/blog/n8n-vs-zapier/)，工作流越大，每个动作步骤累加得越多。
+
+**能在 n8n 上自托管 AI agent 吗？**
+能。n8n [源码可得、可自托管](https://n8n.io/pricing/)——社区版在你自己的基础设施上运行，采用 [fair-code 许可](https://docs.n8n.io/sustainable-use-license/)。Zapier 只有全托管，无法在你自己的服务器上跑。
+
+**n8n 和 Zapier 都原生支持 AI agent 吗？**
+都支持，但方式不同。n8n 提供一个你用模型和工具去配置的 [AI Agent 节点](https://docs.n8n.io/integrations/builtin/cluster-nodes/root-nodes/n8n-nodes-langchain.agent)；Zapier 提供 [Zapier Agents](https://zapier.com/agents)，一个你用大白话描述的托管产品。两者也都能通过 MCP 接工具。
+
+**非技术的人该选哪个？**
+Zapier。它的 [9000+ 集成](https://zapier.com/apps) 和大白话描述的 agent 就是为不写代码的人做的。只有当你需要自托管、自定义逻辑或更便宜的高频运行时，才转向 n8n——完整的取舍见[无代码工具指南](/zh/news/2026-07-08-no-code-ai-agent-tools/)。
+
+---
+
+每周一个真实 AI agent——真实搭建、成本、哪里翻了车——直接发到你邮箱。[免费订阅](/zh/)，绝不推销。

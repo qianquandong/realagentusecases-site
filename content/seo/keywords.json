@@ -145,8 +145,9 @@
       "funnel": "MOFU",
       "cluster": "comparison",
       "locale": "both",
-      "status": "new",
-      "addedAt": "2026-05-14"
+      "status": "used",
+      "addedAt": "2026-05-14",
+      "note": "Published 2026-08-14: content/news/2026-08-14-n8n-vs-zapier-ai-agents-{en,zh}.mdx. Platform head-to-head (LangChain AI Agent node vs Zapier Agents, per-execution vs per-task pricing, self-host vs hosted); deepens the no-code-tools cluster, wove a link from 2026-07-08-no-code-ai-agent-tools."
     },
     {
       "term": "Claude vs ChatGPT for work automation",
