@@ -1,0 +1,52 @@
+---
+title: "n8n vs Zapier for AI Agents: Which Platform Fits"
+date: "2026-08-14"
+excerpt: "n8n gives you a LangChain-based agent you can self-host and control; Zapier gives you an AI teammate across 9,000+ apps. Here's how to pick between them."
+---
+
+Pick **n8n** if you want to build and control the agent yourself — it ships a LangChain-based AI Agent node, is source-available, self-hostable, and prices per workflow run. Pick **Zapier** if you want an AI teammate wired into thousands of apps with no code and as much or as little human oversight as you set. One is an engine you own; the other is a service you rent.
+
+Both now market "AI agents," so the labels blur. But underneath they make opposite bets — on ownership, on pricing, and on who the tool is for. Here's the real split, grounded in each vendor's own docs.
+
+## Two different bets on what an agent is
+
+n8n's [AI Agent node](https://docs.n8n.io/integrations/builtin/cluster-nodes/root-nodes/n8n-nodes-langchain.agent) implements LangChain's agent pattern: you connect a chat model and one or more tools, and "the agent decides which tools to call to complete a task." Since v1.82.0 it standardized on a single Tools Agent — the reasoning-plus-tool-use loop that is [the core of an agent](/en/news/2026-08-12-ai-agent-vs-chatbot/). You're assembling the agent out of parts.
+
+[Zapier Agents](https://zapier.com/agents) start from the other end: you describe a role in plain language, give the agent access to your data, and it works "across 8,000+ apps — on command and while you sleep." There's no LangChain to configure. You're hiring a pre-built teammate and pointing it at your apps.
+
+## Pricing: per-run vs per-task
+
+This is where the platforms diverge most for anything that scales. Zapier's model, in its own [comparison](https://zapier.com/blog/n8n-vs-zapier/), charges **per task** — each action step counts. A five-step workflow run 1,000 times bills 5,000 tasks. n8n's [pricing](https://n8n.io/pricing/) charges **per workflow execution** regardless of how many nodes run — "you only pay when a workflow runs from start to finish." A 20-node run bills once. For a multi-step agent that fans out across tools, per-execution pricing gets dramatically cheaper as complexity grows.
+
+## Ownership: rent it or run it
+
+Zapier is fully hosted — you never touch infrastructure, which is the point. n8n is [source-available and self-hostable](https://n8n.io/pricing/): its Community Edition runs free on your own server under a [fair-code Sustainable Use License](https://docs.n8n.io/sustainable-use-license/) that permits internal business use, modification, and non-commercial redistribution. If data residency, custom logic, or avoiding per-task metering matters, you can host it yourself. The cost is that self-hosting is one more system to babysit — a real tradeoff we flagged in the [no-code AI agent tools guide](/en/news/2026-07-08-no-code-ai-agent-tools/).
+
+## Reach and audience
+
+Zapier's edge is breadth and accessibility: [9,000+ app integrations](https://zapier.com/apps) and a UI a non-technical teammate can own. n8n's edge is depth and control — it's built for technical teams who want to drop into custom logic when visual nodes run out, and its own [n8n vs Zapier page](https://n8n.io/vs/zapier/) leans into exactly that framing. The honest rule of thumb: non-technical operator with many SaaS apps → Zapier; developer or technical team building a complex, high-volume, or self-hosted agent → n8n.
+
+## The part neither platform decides for you
+
+Whichever you pick, the safety line is yours to draw. Zapier lets an agent run "with as little or as much human oversight as you want"; n8n will happily execute whatever your workflow says. That freedom is exactly why you should [gate the irreversible actions](/en/news/2026-08-13-human-in-the-loop-ai-agents/) — send, pay, publish, delete — behind a human approval step, the same capture-don't-commit discipline behind [Issue #001's Gmail agent](/en/posts/2026-05-13-gmail-ai-agent/). Both platforms also expose MCP nodes now, so if you're wiring tools to your agent, our [what-is-MCP explainer](/en/news/2026-08-10-what-is-mcp-for-ai-agents/) covers the protocol underneath.
+
+## FAQ
+
+**Is n8n or Zapier better for building AI agents?**
+It depends on who's building. n8n's [LangChain-based AI Agent node](https://docs.n8n.io/integrations/builtin/cluster-nodes/root-nodes/n8n-nodes-langchain.agent) gives developers control and self-hosting; [Zapier Agents](https://zapier.com/agents) gives non-technical users a pre-built teammate across 8,000+ apps with no code. Control and cost favor n8n; speed and breadth favor Zapier.
+
+**Which is cheaper, n8n or Zapier?**
+For complex, high-volume agents, n8n is usually cheaper. n8n [bills per workflow execution](https://n8n.io/pricing/) no matter how many steps run, and its self-hosted Community Edition is free; Zapier [bills per task](https://zapier.com/blog/n8n-vs-zapier/), so every action step adds up as workflows grow.
+
+**Can I self-host an AI agent on n8n?**
+Yes. n8n is [source-available and self-hostable](https://n8n.io/pricing/) — the Community Edition runs on your own infrastructure under a [fair-code license](https://docs.n8n.io/sustainable-use-license/). Zapier is fully hosted only; you can't run it on your own servers.
+
+**Do n8n and Zapier both support AI agents natively?**
+Yes, but differently. n8n exposes an [AI Agent node](https://docs.n8n.io/integrations/builtin/cluster-nodes/root-nodes/n8n-nodes-langchain.agent) you configure with a model and tools; Zapier offers [Zapier Agents](https://zapier.com/agents), a managed product you describe in plain language. Both can also connect to tools over MCP.
+
+**Which should a non-technical person choose?**
+Zapier. Its [9,000+ integrations](https://zapier.com/apps) and describe-in-plain-language agents are built for people who don't write code. Reach for n8n only when you need self-hosting, custom logic, or cheaper high-volume runs — see the [no-code tools guide](/en/news/2026-07-08-no-code-ai-agent-tools/) for the full decision.
+
+---
+
+One real AI agent a week — the actual setup, cost, and what broke — straight to your inbox. [Subscribe free](/en/), no upsell.

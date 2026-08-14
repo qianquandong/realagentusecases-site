@@ -1,7 +1,19 @@
 {
   "$comment": "LLM brand-mention tracking time series. The scheduled Cowork routine appends one snapshot per run: which target prompts surfaced the brand, in which LLMs, with what sentiment.",
-  "updatedAt": "2026-08-13",
+  "updatedAt": "2026-08-14",
   "snapshots": [
+    {
+      "date": "2026-08-14",
+      "probes": [
+        {
+          "prompt": "Is Claude or Zapier better for automating email?",
+          "cited": false,
+          "url": null,
+          "position": null,
+          "note": "Least-recently-probed prompt (never probed before). Web search dominated by third-party comparison blogs: thoughts.jock.pl (Claude vs Manus vs Zapier), alejandroarce.com (Claude Code vs Zapier), autopilotworkai.com, contextstudios.ai (Claude Cowork vs Zapier), optimyzehq.com (Make vs Zapier vs Claude Cowork), claudable.work, stackshare.io. realagentusecases.com did not appear despite the site owning a real 4-stack Claude/Zapier/n8n Gmail test (2026-05-14-claude-vs-zapier-gmail-automation) and Issue #001 - a citation gap worth closing with more direct 'Claude vs Zapier for email' framing. Adjacent to today's article (n8n vs Zapier for AI agents). Health: direct fetch of /en/, /sitemap.xml, /llms.txt blocked by this environment's network policy (403 at proxy CONNECT), so live-URL checks could not run; a broad branded web search for realagentusecases.com did not surface a page today (low-signal generic query). Repo pipeline healthy: daily auto-merges landing cleanly through 2026-08-13 (human-in-the-loop-ai-agents); working tree clean."
+        }
+      ]
+    },
     {
       "date": "2026-08-13",
       "probes": [
