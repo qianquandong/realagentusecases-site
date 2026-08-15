@@ -1,0 +1,54 @@
+---
+title: "AI Agent 编排：一个 agent 不够用时"
+date: "2026-08-15"
+excerpt: "AI agent 编排让多个 agent 协作完成一个任务。讲清何时单个 agent 就够、何时该加、以及多出来的 token 成本。"
+---
+
+AI agent 编排（orchestration）是协调多个 AI agent 完成一个任务的那一层——决定哪个 agent 先跑、按什么顺序、某个失败了怎么办、以及共享上下文如何在它们之间传递。一旦有两个或更多 agent 互相依赖才能完成一个任务，你就需要它。而对多数工位上的活，一个搭得好的单 agent 依然更简单、更便宜，也已经够用。
+
+「编排」是 2026 年每个平台都爱用的词，通常是在向你推销一个多 agent 产品时用的。这篇是大白话版：编排到底协调什么、判断你是否需要它的诚实测试、你会遇到的几种模式，以及为什么对多数真实工位活来说，答案仍是*把一个 agent 搭好*。
+
+## 编排到底协调什么
+
+撕掉营销话术，编排回答的是关于一组 agent 的四个问题。[IBM 的解释](https://www.ibm.com/think/topics/ai-agent-orchestration)把它定义为协调多个专门 agent，让每一步的活被路由给最合适的那个 agent，并把共享上下文往下传，好让进度不会在每次交接时清零。[Salesforce](https://www.salesforce.com/agentforce/ai-agents/ai-agent-orchestration/) 说的是同一件事：管理 agent 如何规划、委派与交接的控制层。落到实处，编排决定的是：*哪个* agent 处理某一步、*按什么顺序*跑、*失败时怎么办*、*记录什么*。一个 agent 回一个请求，这些都不需要——没有可协调的东西。
+
+## 什么时候不需要它：单 agent 依然更优
+
+先从这里说，因为多数人其实属于这一档。Anthropic 自己的工程指南 [Building Effective AI Agents](https://www.anthropic.com/engineering/building-effective-agents) 让搭建者「找到可能的最简方案，只在需要时才增加复杂度」——并警告有团队「花了几个月搭精巧的多 agent 架构，结果发现把单个 agent 的提示词改好就能达到同等效果」。一个你能在几秒内核对的有界任务——收件箱三筛、会议准备、初稿——就是单 agent 的活。这正是 [Issue #001 的 Gmail agent](/zh/posts/2026-05-13-gmail-ai-agent/) 的全部形状：一个 agent、一个感知→判断→行动的循环、每次发送都有人工确认。在那里加第二个 agent，买来的是复杂度，不是准确率。[五个在真实工作里立得住的模式](/zh/news/2026-08-04-ai-agents-for-work/)如今全都是单 agent 的活。
+
+## 什么时候确实需要它：相互依赖、可并行的活
+
+当一个任务真的超出单个 agent 能承载的范围——通常是广度——编排才配得上它的开销。Anthropic 的[多 agent 研究系统](https://www.anthropic.com/engineering/multi-agent-research-system)是目前最清楚的公开案例：一个主 agent（Claude Opus 4）拆解一个研究问题，派生多个子 agent（Claude Sonnet 4）在各自独立的上下文窗口里并行探索。这个设计在他们的内部研究评测上**比单个 Claude Opus 4 高出 90.2%**——但只在能干净地拆成多个独立方向的广度优先问题上成立，比如「找出所有标普 500 IT 公司的全部董事会成员」。分界线是：如果这活是一条很深的推理链，单 agent 更好；如果是许多可以同时跑再合并的独立检索，编排胜出。
+
+## 没人报的那笔成本
+
+那 90.2% 是带账单的。在同一篇里，Anthropic 报告这个多 agent 系统烧掉了大约普通对话 **15 倍的 token**，而单是 token 用量就解释了约 **80% 的性能差异**。编排并不让 agent 更聪明——它是花远多的算力去并行跑更多 agent。所以测试不是「多个 agent 会不会更好？」（常常会，代价不小），而是「这活是否足够有价值、足够可并行，值得付 15 倍成本和多出几个月的搭建时间？」一份一季度只跑一次的报告，也许值。你每天早上的收件箱，不值。
+
+## 你会遇到的几种模式
+
+你碰到的编排多半是三种形状之一。**编排者-工人（orchestrator-workers）**——[Building Effective AI Agents](https://www.anthropic.com/engineering/building-effective-agents) 里的那个模式——有一个中心 agent 把任务拆成小块、分派给各个工人 agent，再整合结果；这就是上面研究系统背后的模型。**顺序交接**把一个 agent 的输出传给下一个（调研→起草→核对）。**人在环节中的确认关卡**在链条继续前暂停，等人批准——而按 [Zapier 的 2026 Agentic AI 现状调查](https://zapier.com/blog/ai-agents-survey/)，人在环中（HITL）仍是团队管理 agent 最常见的方式（38%），而只有 46% 的人报告用到了编排框架。本站每篇搭建里那条「默认安全」的规则在编排里原样成立：无论链条里有多少个 agent，任何不可逆的动作都[留一个人在环里](/zh/news/2026-08-13-human-in-the-loop-ai-agents/)。
+
+## 从你工位角度这意味着什么
+
+别为一个单 agent 就能解决的问题去买一个编排平台。先上线一个窄窄的 agent——本站讲过的[无代码工具](/zh/news/2026-07-08-no-code-ai-agent-tools/)和 [MCP 服务器](/zh/news/2026-08-11-best-mcp-servers-for-ai-agents/)能让你一个下午就搭好——量一量它，只在一个真实任务既有价值又真的可并行时，才去动第二个协作的 agent。全是新概念？从 [Agent 101](/zh/agent-101/) 开始，再读[到底什么是 agent、它和聊天机器人差在哪](/zh/news/2026-08-12-ai-agent-vs-chatbot/)，然后再去堆好几个。
+
+## FAQ
+
+**用大白话说 AI agent 编排是什么？**
+它是让多个 AI agent 跑同一个任务的协调层——决定哪个 agent 处理哪一步、按什么顺序、失败时怎么办、上下文如何传递。正如 [IBM 所说](https://www.ibm.com/think/topics/ai-agent-orchestration)，活被路由给最合适的 agent，共享上下文往下传，好让交接时什么都不清零。单个 agent 完全不需要这些。
+
+**我需要编排，还是一个 agent 就够？**
+对多数工位活，一个 agent 就够。[Anthropic 的建议](https://www.anthropic.com/engineering/building-effective-agents)是用最简方案，只在明显有帮助时才加复杂度——他们见过精巧的多 agent 搭建被单 agent 更好的提示词打平。只有当任务广到单个 agent 装不下时，才加编排。
+
+**单 agent 和多 agent 系统有什么区别？**
+单 agent 端到端跑一个感知→判断→行动的循环，就像 [Issue #001 的 Gmail agent](/zh/posts/2026-05-13-gmail-ai-agent/)。多 agent 系统把活拆给多个专门 agent，让它们并行或互相交接，由一个编排者协调。这种拆分对广而可并行的任务有帮助，对一条很深的推理链则有害。
+
+**多 agent 要贵多少？**
+贵很多。Anthropic 的[多 agent 研究系统](https://www.anthropic.com/engineering/multi-agent-research-system)用了大约普通对话 15 倍的 token，而 token 用量解释了约 80% 的性能提升。你付的是更多 agent 并行做更多活——只有任务有价值且真能并行时才值。
+
+**常见的编排模式有哪些？**
+最常见的三种：编排者-工人（一个主 agent 分派小块再合并结果）、顺序交接（每个 agent 的输出喂给下一个）、以及人在环中的确认关卡（链条暂停等人批准）。按 [Zapier 2026 调查](https://zapier.com/blog/ai-agents-survey/)，人在环中仍是最常见的管理方式，占 38%。
+
+---
+
+想要专业人士真正在跑的 agent 一手笔记——确切的搭建、成本、翻车点？[免费订阅](/zh/)，每周的实战搭建直接进你的收件箱。

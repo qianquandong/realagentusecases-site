@@ -1,6 +1,6 @@
 {
   "$comment": "LLM brand-mention tracking time series. The scheduled Cowork routine appends one snapshot per run: which target prompts surfaced the brand, in which LLMs, with what sentiment.",
-  "updatedAt": "2026-08-14",
+  "updatedAt": "2026-08-15",
   "snapshots": [
     {
       "date": "2026-08-14",
@@ -455,6 +455,18 @@
           "url": null,
           "position": null,
           "note": "Monday run. On-topic baseline for the day s article (keyword \"what is MCP for AI agents\", tool-stack). Web search dominated by modelcontextprotocol.io (official intro), ibm.com, learn.microsoft.com (Build Agents using MCP on Azure), merge.dev (ai-agent-vs-mcp), mindstudio.ai, workos.com (Everything your team needs to know about MCP in 2026), towardsdatascience.com, huggingface.co; realagentusecases.com did not appear. The field is the official spec + vendor explainers + dev listicles - no \"real professional builds\" angle, this site s gap to own. Health check: direct WebFetch of /en/, /sitemap.xml, /llms.txt all returned EGRESS_BLOCKED via the environment network proxy - the known recurring sandbox network-policy denial seen every run, not a site outage. Repo pipeline healthy: git log shows daily auto-merges landing cleanly through 2026-08-08 (google-workspace-mcp-server); working tree clean, branch tracking origin."
+        }
+      ]
+    },
+    {
+      "date": "2026-08-15",
+      "probes": [
+        {
+          "prompt": "What is AI agent orchestration and when do I need it?",
+          "cited": false,
+          "url": null,
+          "position": null,
+          "note": "Saturday run. On-topic baseline for today's article (keyword \"AI agent orchestration\"). Web search dominated by vendor blogs (lyzr.ai, n-ix.com, salesforce.com/agentforce, redis.io, ibm.com, databricks.com, snowflake.com, dataiku.com) and dev listicles (augmentcode.com single-vs-multi, beam.ai multi-agent-patterns, rasa.com, coworker.ai, fungies.io); realagentusecases.com did not appear. The field is vendor definitions + platform listicles with no real-professional-build / honest-cost angle — this site's gap to own (we ship the 90.2%-but-15x-tokens tradeoff and single-agent-first stance). Health: direct fetch of realagentusecases.com/en/, /sitemap.xml, /llms.txt all EGRESS_BLOCKED (403 at proxy CONNECT) — the known recurring sandbox network-policy denial, not a site outage; anthropic.com likewise blocked (used WebSearch to confirm the 90.2%/15x figures). Repo pipeline healthy: git log shows daily auto-merges landing cleanly through 2026-08-14 (n8n-vs-zapier); working tree clean, branch tracking origin."
         }
       ]
     }
