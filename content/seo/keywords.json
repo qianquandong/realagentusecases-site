@@ -1,6 +1,6 @@
 {
   "$comment": "SEO keyword feed — a living file. The scheduled Cowork routine ideates entries; scripts/seo/feeds.mjs persists them (dedupe + status + timestamps). intent: informational|commercial|transactional. funnel: TOFU|MOFU|BOFU. cluster: use-case|template|comparison|industry|tool-stack. status: new|used.",
-  "updatedAt": "2026-08-13",
+  "updatedAt": "2026-08-15",
   "keywords": [
     {
       "term": "AI agent use cases",
@@ -453,9 +453,9 @@
       "funnel": "MOFU",
       "cluster": "tool-stack",
       "locale": "both",
-      "status": "new",
+      "status": "used",
       "addedAt": "2026-08-02",
-      "note": "Sunday feed research 2026-08-02. Single-agent-vs-multi-agent-team framing: when one agent is enough vs coordinating specialized agents. Grounded in Zapier 'What is AI agent orchestration' (built on 8,000+ connections; AI handles ambiguity, prioritizes, generates steps mid-workflow) and Zapier 2026 agentic-AI survey (72% of enterprises using or testing agents). Cross-cutting tool-stack angle that clusters with guardrails, what-is-mcp, and no-code-tools; timely as teams stack multiple agents."
+      "note": "Sunday feed research 2026-08-02. Single-agent-vs-multi-agent-team framing: when one agent is enough vs coordinating specialized agents. Grounded in Zapier 'What is AI agent orchestration' (built on 8,000+ connections; AI handles ambiguity, prioritizes, generates steps mid-workflow) and Zapier 2026 agentic-AI survey (72% of enterprises using or testing agents). Cross-cutting tool-stack angle that clusters with guardrails, what-is-mcp, and no-code-tools; timely as teams stack multiple agents. Used 2026-08-15 → content/news/2026-08-15-ai-agent-orchestration (en+zh), title \"AI Agent Orchestration: When One Agent Falls Short\". Single-agent-vs-multi-agent framing grounded in Anthropic Building Effective AI Agents (start simplest) + multi-agent research system (90.2% over single Opus 4 on breadth-first research, ~15x tokens, token usage ~80% of variance), IBM/Salesforce orchestration definitions, Zapier 2026 agentic survey (HITL 38%, 46% use orchestration frameworks). Wove reciprocal link in from the 2026-08-04 ai-agents-for-work hub (en+zh)."
     },
     {
       "term": "best AI agent frameworks",

@@ -1,0 +1,54 @@
+---
+title: "AI Agent Orchestration: When One Agent Falls Short"
+date: "2026-08-15"
+excerpt: "AI agent orchestration coordinates several agents on one task. Here is when a single agent still wins, when to add more, and the real token cost."
+---
+
+AI agent orchestration is the layer that coordinates multiple AI agents on one task — deciding which agent runs, in what order, what happens when one fails, and how shared context passes between them. You need it once two or more agents depend on each other to finish a job. For most desk work, a single well-built agent is still simpler, cheaper, and enough.
+
+"Orchestration" is the word every platform reached for in 2026, usually while selling you a multi-agent product. This is the plain version: what orchestration actually coordinates, the honest test for whether you need it, the patterns you'll meet, and why the answer for most real desk work is still *one agent, done well*.
+
+## What orchestration actually coordinates
+
+Strip the marketing and orchestration answers four questions about a group of agents. [IBM's explainer](https://www.ibm.com/think/topics/ai-agent-orchestration) frames it as coordinating multiple specialized agents so work is routed to whichever agent suits each step, with shared context carried forward so progress doesn't reset at every handoff. [Salesforce](https://www.salesforce.com/agentforce/ai-agents/ai-agent-orchestration/) describes the same idea as the control layer that manages how agents plan, delegate, and hand off. In practice orchestration decides: *which* agent handles a step, *in what order* they run, *what happens on failure*, and *what gets logged*. A single agent answering one request needs none of that — there's nothing to coordinate.
+
+## When you don't need it: one agent still wins
+
+Start here, because it's where most people actually belong. Anthropic's own engineering guidance, [Building Effective AI Agents](https://www.anthropic.com/engineering/building-effective-agents), tells builders to find "the simplest solution possible, and only increas[e] complexity when needed" — and warns that teams have "invested months building elaborate multi-agent architectures only to discover that improved prompting on a single agent achieved equivalent results." A bounded task you can verify in seconds — inbox triage, meeting prep, a first draft — is a single-agent job. That's the whole shape of [Issue #001's Gmail agent](/en/posts/2026-05-13-gmail-ai-agent/): one agent, one sense→decide→act loop, a human on every send. Adding a second agent there buys you complexity, not accuracy. The [five patterns that hold up in real jobs](/en/news/2026-08-04-ai-agents-for-work/) are all, today, single-agent work.
+
+## When you do need it: dependent, parallel work
+
+Orchestration earns its keep when one task genuinely exceeds what a single agent can hold — usually breadth. Anthropic's [multi-agent research system](https://www.anthropic.com/engineering/multi-agent-research-system) is the clearest published case: a lead agent (Claude Opus 4) decomposes a research question and spawns subagents (Claude Sonnet 4) that explore independently in parallel, each in its own context window. That design **outperformed a single-agent Claude Opus 4 by 90.2%** on their internal research eval — but only on breadth-first queries that split cleanly into independent directions, like "find every board member across all S&P 500 IT companies." The dividing line: if the work is one deep reasoning chain, one agent is better; if it's many independent searches you can run at once and merge, orchestration wins.
+
+## The cost nobody quotes
+
+That 90.2% comes with a bill. In the same write-up, Anthropic reports the multi-agent system burned roughly **15× the tokens** of an ordinary chat, and that token usage alone explained about **80% of the performance variance**. Orchestration doesn't make agents smarter — it spends far more compute to run more of them in parallel. So the test isn't "would multiple agents do better?" (often yes, at a price) but "is the task valuable and parallel enough to justify 15× the cost and months of extra build time?" For a report you run once a quarter, maybe. For your morning inbox, no.
+
+## The patterns you'll meet
+
+Most orchestration you'll encounter is one of three shapes. **Orchestrator-workers** — the [Building Effective AI Agents](https://www.anthropic.com/engineering/building-effective-agents) pattern — has a central agent break a task into pieces and delegate each to a worker, then integrate the results; it's the model behind the research system above. **Sequential handoff** passes one agent's output to the next (research → draft → check). **Human-in-the-loop gates** pause the chain for a person to approve before it proceeds — and per [Zapier's 2026 State of Agentic AI survey](https://zapier.com/blog/ai-agents-survey/), HITL is still the single most common way teams manage agents (38%), while only 46% report using orchestration frameworks at all. The safe-by-default rule from every build on this site survives orchestration intact: [keep a human in the loop](/en/news/2026-08-13-human-in-the-loop-ai-agents/) on any irreversible action, no matter how many agents are in the chain.
+
+## What this means at your desk
+
+Don't buy an orchestration platform to solve a single-agent problem. Ship one narrow agent first — the [no-code tools](/en/news/2026-07-08-no-code-ai-agent-tools/) and [MCP servers](/en/news/2026-08-11-best-mcp-servers-for-ai-agents/) covered here get you there in an afternoon — measure it, and only reach for a second coordinated agent when a real task is both valuable and genuinely parallel. New to all of this? Start at [Agent 101](/en/agent-101/), then read [what an agent even is versus a chatbot](/en/news/2026-08-12-ai-agent-vs-chatbot/) before you go stacking several of them.
+
+## FAQ
+
+**What is AI agent orchestration in simple terms?**
+It's the coordination layer that runs multiple AI agents on one task — deciding which agent handles each step, in what order, what happens on failure, and how context passes between them. As [IBM puts it](https://www.ibm.com/think/topics/ai-agent-orchestration), work is routed to the best-suited agent while shared context carries forward so nothing resets at a handoff. A single agent needs none of this.
+
+**Do I need orchestration, or is one agent enough?**
+For most desk work, one agent is enough. [Anthropic's guidance](https://www.anthropic.com/engineering/building-effective-agents) is to use the simplest solution and add complexity only when it clearly helps — they've seen elaborate multi-agent builds matched by better prompting on a single agent. Add orchestration only when a task is too broad for one agent to hold.
+
+**What's the difference between a single agent and a multi-agent system?**
+A single agent runs one sense→decide→act loop end to end, like [Issue #001's Gmail agent](/en/posts/2026-05-13-gmail-ai-agent/). A multi-agent system splits the work across specialized agents that run in parallel or hand off to each other, coordinated by an orchestrator. The split helps for broad, parallel tasks and hurts for one deep reasoning chain.
+
+**How much more does multi-agent cost?**
+A lot. Anthropic's [multi-agent research system](https://www.anthropic.com/engineering/multi-agent-research-system) used roughly 15× the tokens of a normal chat, and token usage explained about 80% of its performance gains. You're paying for more agents doing more work in parallel — worth it only when the task is valuable and genuinely parallelizable.
+
+**What are the common orchestration patterns?**
+Three you'll meet most: orchestrator-workers (a lead agent delegates pieces and merges results), sequential handoff (each agent's output feeds the next), and human-in-the-loop gates (the chain pauses for approval). Per [Zapier's 2026 survey](https://zapier.com/blog/ai-agents-survey/), human-in-the-loop is still the most common management approach at 38%.
+
+---
+
+Want the field notes on real agents professionals actually run — the exact setups, costs, and failure modes? [Subscribe free](/en/) and get each week's build in your inbox.
