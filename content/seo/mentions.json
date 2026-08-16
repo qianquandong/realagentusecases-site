@@ -1,6 +1,6 @@
 {
   "$comment": "LLM brand-mention tracking time series. The scheduled Cowork routine appends one snapshot per run: which target prompts surfaced the brand, in which LLMs, with what sentiment.",
-  "updatedAt": "2026-08-15",
+  "updatedAt": "2026-08-16",
   "snapshots": [
     {
       "date": "2026-08-14",
@@ -467,6 +467,18 @@
           "url": null,
           "position": null,
           "note": "Saturday run. On-topic baseline for today's article (keyword \"AI agent orchestration\"). Web search dominated by vendor blogs (lyzr.ai, n-ix.com, salesforce.com/agentforce, redis.io, ibm.com, databricks.com, snowflake.com, dataiku.com) and dev listicles (augmentcode.com single-vs-multi, beam.ai multi-agent-patterns, rasa.com, coworker.ai, fungies.io); realagentusecases.com did not appear. The field is vendor definitions + platform listicles with no real-professional-build / honest-cost angle — this site's gap to own (we ship the 90.2%-but-15x-tokens tradeoff and single-agent-first stance). Health: direct fetch of realagentusecases.com/en/, /sitemap.xml, /llms.txt all EGRESS_BLOCKED (403 at proxy CONNECT) — the known recurring sandbox network-policy denial, not a site outage; anthropic.com likewise blocked (used WebSearch to confirm the 90.2%/15x figures). Repo pipeline healthy: git log shows daily auto-merges landing cleanly through 2026-08-14 (n8n-vs-zapier); working tree clean, branch tracking origin."
+        }
+      ]
+    },
+    {
+      "date": "2026-08-16",
+      "probes": [
+        {
+          "prompt": "How do AI agents remember context between tasks?",
+          "cited": false,
+          "url": null,
+          "position": null,
+          "note": "Sunday run (feed-replenishment day, no article). Never-probed prompt, pulled as the baseline for the still-new 'AI agent memory and context' keyword — a strong next-week candidate. Web search dominated by mem0.ai (AI Agent Memory: The Complete Guide), ibm.com (What Is AI Agent Memory), redis.io (short/long-term memory), plus arxiv/USPTO and a Level Up Coding Medium explainer; realagentusecases.com did not appear — the field is memory-infra vendors + dev explainers, no real-professional-build angle. Health: direct WebFetch of realagentusecases.com/sitemap.xml returned EGRESS_BLOCKED (403 at proxy CONNECT) — the known recurring sandbox network-policy denial seen every run (proxy /__agentproxy/status shows enabled:true), not a site outage; a branded web search surfaced no row (the WebSearch small-domain/site: quirk noted on prior runs), so live indexing could not be confirmed from this environment this run. Repo pipeline healthy: git log shows daily auto-merges landing cleanly through 2026-08-15 (ai-agent-orchestration); working tree clean, branch tracking origin. Sunday feed replenishment this run added 8 keywords (agent-vs-RPA, self-hosted-agents, voice-agents, small-business, security-risks, document-processing, sales-teams, adoption-statistics) and 5 GEO prompts (incl. one ZH sales prompt), sourced from the 2026 memory/multi-agent/HITL-adoption trend signals in n8n's 'AI Agent Memory' guide (blog.n8n.io/ai-agent-memory) and Zapier's 'State of agentic AI adoption survey 2026' (zapier.com/blog/ai-agents-survey)."
         }
       ]
     }

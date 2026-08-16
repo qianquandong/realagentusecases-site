@@ -1,6 +1,6 @@
 {
   "$comment": "SEO keyword feed — a living file. The scheduled Cowork routine ideates entries; scripts/seo/feeds.mjs persists them (dedupe + status + timestamps). intent: informational|commercial|transactional. funnel: TOFU|MOFU|BOFU. cluster: use-case|template|comparison|industry|tool-stack. status: new|used.",
-  "updatedAt": "2026-08-15",
+  "updatedAt": "2026-08-16",
   "keywords": [
     {
       "term": "AI agent use cases",
@@ -556,6 +556,86 @@
       "status": "new",
       "note": "Industry-hub expansion beyond office roles (grading prep, lesson planning). Added 2026-08-09 (Sunday ideation).",
       "addedAt": "2026-08-09"
+    },
+    {
+      "term": "AI agent vs RPA",
+      "intent": "informational",
+      "funnel": "MOFU",
+      "cluster": "comparison",
+      "locale": "both",
+      "status": "new",
+      "note": "2026 landscape: buyers keep asking where agents fit vs rule-based RPA. Clusters with the agent-vs-chatbot + agentic-vs-generative comparison family. Added 2026-08-16 (Sunday ideation).",
+      "addedAt": "2026-08-16"
+    },
+    {
+      "term": "self-hosted AI agents",
+      "intent": "commercial",
+      "funnel": "MOFU",
+      "cluster": "tool-stack",
+      "locale": "both",
+      "status": "new",
+      "note": "n8n's self-host + AI-agent-node momentum (blog.n8n.io 2026 coverage). Clusters with no-code-ai-agent-tools + n8n-vs-zapier. Added 2026-08-16 (Sunday ideation).",
+      "addedAt": "2026-08-16"
+    },
+    {
+      "term": "AI voice agents for business",
+      "intent": "informational",
+      "funnel": "TOFU",
+      "cluster": "use-case",
+      "locale": "both",
+      "status": "new",
+      "note": "Voice-agent growth area in 2026; new use-case cluster beyond text/email. Added 2026-08-16 (Sunday ideation).",
+      "addedAt": "2026-08-16"
+    },
+    {
+      "term": "AI agents for small business",
+      "intent": "informational",
+      "funnel": "TOFU",
+      "cluster": "industry",
+      "locale": "both",
+      "status": "new",
+      "note": "Broad industry hub for SMB owners; sibling of the founders hub. Added 2026-08-16 (Sunday ideation).",
+      "addedAt": "2026-08-16"
+    },
+    {
+      "term": "AI agent security risks",
+      "intent": "informational",
+      "funnel": "MOFU",
+      "cluster": "tool-stack",
+      "locale": "both",
+      "status": "new",
+      "note": "Prompt-injection / data-exfiltration concerns (distinct from the guardrails how-to). Clusters with guardrails + human-in-the-loop. Added 2026-08-16 (Sunday ideation).",
+      "addedAt": "2026-08-16"
+    },
+    {
+      "term": "AI agent for document processing",
+      "intent": "informational",
+      "funnel": "MOFU",
+      "cluster": "use-case",
+      "locale": "both",
+      "status": "new",
+      "note": "Extract/route/summarize documents; clusters with invoice-processing + expense-management. Added 2026-08-16 (Sunday ideation).",
+      "addedAt": "2026-08-16"
+    },
+    {
+      "term": "AI agents for sales teams",
+      "intent": "informational",
+      "funnel": "TOFU",
+      "cluster": "industry",
+      "locale": "both",
+      "status": "new",
+      "note": "Sales industry hub over lead-qualification + CRM-data-entry + SDR-cold-outreach. Added 2026-08-16 (Sunday ideation).",
+      "addedAt": "2026-08-16"
+    },
+    {
+      "term": "AI agent adoption statistics",
+      "intent": "informational",
+      "funnel": "TOFU",
+      "cluster": "use-case",
+      "locale": "both",
+      "status": "new",
+      "note": "Stats hub grounded in Zapier 'State of agentic AI adoption survey 2026' (zapier.com/blog/ai-agents-survey) — real linkable source (72% enterprise-use, 38% HITL). Every stat must carry that link; no unsourced numbers. Added 2026-08-16 (Sunday ideation).",
+      "addedAt": "2026-08-16"
     }
   ]
 }
