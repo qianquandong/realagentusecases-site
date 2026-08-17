@@ -1,0 +1,60 @@
+---
+title: "Agentic AI 与生成式 AI 有什么不同"
+date: "2026-08-17"
+excerpt: "生成式 AI 负责写出答案，Agentic AI 负责去执行。真正的区别是自主性——会规划、调用工具、跨步骤行动。这篇教你一眼分清两者。"
+---
+
+生成式 AI 生成内容——它用文字、代码或图片回应你的提示，然后停下。Agentic AI 追一个目标：它规划步骤、调用工具、跨系统采取行动，并根据结果调整。分界线不在于聪明程度，而在于自主性——系统是「回应」还是「行动」。
+
+两者都跑在同一批大语言模型上，所以在聊天窗口里看起来一模一样。区别在于系统写完之后被允许做什么。这篇是大白话版，讲清 2026 年很多「我到底该用哪种 AI」困惑背后的分界线。
+
+## 同样的模型，不同的活
+
+[Red Hat 讲得很直白](https://www.redhat.com/en/topics/ai/agentic-ai-vs-generative-ai)：生成式 AI 根据提示生成内容，而 agentic AI 会规划、评估、并采取行动去达成目标。一个产出答案，一个产出结果——这正是我们在[AI agent 和聊天机器人](/zh/news/2026-08-12-ai-agent-vs-chatbot/)之间画过的那条线。Agentic AI 不是一门对立的技术，它是被套进一个能行动的循环里的生成式 AI。
+
+## 生成式 AI 在做什么
+
+生成式 AI 是 ChatGPT、Claude 和图像工具背后的技术：它从训练数据里学到统计规律，根据你的提示生成新内容——文字、代码、摘要、图片。[Databricks 把它描述](https://www.databricks.com/blog/agentic-ai-vs-generative-ai)为被动的：每次请求完成一轮，然后等下一次。对于「帮我起草这封邮件」或「解释一下这个报错」，这正是你想要的。产出是内容，接下来由*你*去行动。
+
+## Agentic AI 多了什么
+
+Agentic AI 把同一个生成式模型放进一个控制循环里。[IBM 的定义](https://www.ibm.com/think/topics/agentic-ai)很精确：agentic 系统「有规划、循环、反思等控制结构，大量调用模型固有的推理能力，端到端地完成一项任务」。三样只有 agent 才有、生成式系统缺的能力：
+
+- **规划**——把目标拆成步骤，而不是回答一条消息。
+- **工具**——伸手到文本框之外（日历、数据库、网页、代码运行环境），通常通过[MCP，agent 用来连接工具的协议](/zh/news/2026-08-10-what-is-mcp-for-ai-agents/)。
+- **跨步骤行动**——执行、检查结果、调整，一直做到任务完成。
+
+举个例子：问生成式 AI「这封邮件我该怎么回」，它给你起草一份回复。而 agent 会读完整个收件箱，判断哪些邮件需要回复，逐封起草，再在你确认后发出——这就是 [Issue #001 的 Gmail 分拣 agent](/zh/posts/2026-05-13-gmail-ai-agent/) 背后「感知→决策→行动」的循环。
+
+## 这是一条光谱，不是一个开关
+
+因为 agentic AI 建在生成式 AI 之上，两者活在同一条渐变线上，而不是两个盒子里。[Anthropic 的工程指南](https://www.anthropic.com/engineering/building-effective-agents)直接点出这个轴：固定工作流和自主 agent 之间的差别，就是「自主程度」。Anthropic 指出，大多数可靠的生产系统是可预测的工作流，而非完全自主的 agent，并建议找「最简单可行的方案」。自主性更高并不自动更好——它带来成本、延迟和新的失败方式。
+
+## 风险也变了
+
+因为 agentic AI 会*行动*，它的风险画像也不同。[Exabeam 这样划分](https://www.exabeam.com/explainers/agentic-ai/agentic-ai-vs-generative-ai-5-key-differences/)：生成式 AI 承担的是信息风险（一个错误或有偏见的答案），而 agentic AI 承担的是操作风险——一个自主系统在真实数据上做出错误动作。这就是为什么本站每个安全的搭建，都在会发送、付款、删除的步骤上[留一道人工确认](/zh/news/2026-08-13-human-in-the-loop-ai-agents/)。一段糟糕的文字你可以无视，一次糟糕的发送你收不回。
+
+## 你到底需要哪个
+
+如果任务是「产出内容、我来审」——一份草稿、一份摘要、一段分析——生成式 AI 就是全部答案，而且更快、更可预测。如果是「跨我的工具完成一件多步骤的事」，你要的是 agentic AI，并在不可逆的步骤上加一道闸门。刚入门？从 [Agent 101](/zh/agent-101/) 开始，再看[职场里真正立得住的五种 agent 模式](/zh/news/2026-08-04-ai-agents-for-work/)。
+
+## FAQ
+
+**Agentic AI 和生成式 AI 有什么区别？**
+生成式 AI 根据提示生成内容然后停下；agentic AI 通过规划、调用工具、跨步骤行动去追一个目标。[Red Hat](https://www.redhat.com/en/topics/ai/agentic-ai-vs-generative-ai) 一句话概括：生成式 AI 生成，agentic AI 行动。Agentic AI 通常建在一个生成式模型之上。
+
+**Agentic AI 只是多几步的生成式 AI 吗？**
+大致是，但那多出来的几步正是关键。它用生成式模型当推理引擎，再加上规划、工具调用，以及一个会执行并自我纠错的循环。[IBM](https://www.ibm.com/think/topics/agentic-ai) 把 agentic 系统描述为拥有「规划、循环、反思等控制结构」——这是单次生成式回应所没有的。
+
+**ChatGPT 是生成式还是 agentic AI？**
+看你怎么用。普通对话——你提问、它作答——是生成式 AI。而在 agent 模式下它会自己浏览网页、运行代码、采取行动，那是 agentic 行为；我们在 [AI agent 和聊天机器人](/zh/news/2026-08-12-ai-agent-vs-chatbot/) 里走过同一条线。
+
+**Agentic AI 会取代生成式 AI 吗？**
+不会。Agentic AI 建在生成式 AI 之上，是扩展而非替代。[Anthropic 建议](https://www.anthropic.com/engineering/building-effective-agents)用最简单可行的方案——对很多任务来说，一个朴素的生成式提示比一个自主 agent 更可靠。
+
+**Agentic AI 比生成式 AI 更危险吗？**
+是不同的风险，而不只是更多。[Exabeam](https://www.exabeam.com/explainers/agentic-ai/agentic-ai-vs-generative-ai-5-key-differences/) 把生成式 AI 的信息风险（一个错误答案）和 agentic AI 的操作风险（在真实系统上做出错误动作）对照起来。这也是为什么不可逆的步骤应当留在一道[人工确认闸门](/zh/news/2026-08-13-human-in-the-loop-ai-agents/)之后。
+
+---
+
+想看职场人真正在跑的 agent 现场笔记——具体配置、成本和翻车点？[免费订阅](/zh/)，每周的搭建直接发到你的收件箱。
