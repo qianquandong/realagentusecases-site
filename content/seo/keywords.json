@@ -1,6 +1,6 @@
 {
   "$comment": "SEO keyword feed — a living file. The scheduled Cowork routine ideates entries; scripts/seo/feeds.mjs persists them (dedupe + status + timestamps). intent: informational|commercial|transactional. funnel: TOFU|MOFU|BOFU. cluster: use-case|template|comparison|industry|tool-stack. status: new|used.",
-  "updatedAt": "2026-08-16",
+  "updatedAt": "2026-08-17",
   "keywords": [
     {
       "term": "AI agent use cases",
@@ -533,8 +533,8 @@
       "funnel": "TOFU",
       "cluster": "comparison",
       "locale": "both",
-      "status": "new",
-      "note": "Definitional comparison with strong search demand; pairs with AI-agent-vs-chatbot. Added 2026-08-09 (Sunday ideation).",
+      "status": "used",
+      "note": "Used 2026-08-17 -> content/news/2026-08-17-agentic-ai-vs-generative-ai (en+zh), title 'Agentic AI vs Generative AI: What Actually Changes'. Definitional comparison: generative AI creates content and stops; agentic AI is that same model in a loop that plans, calls tools, and acts (respond vs act = degree of autonomy). Sources: Red Hat agentic-vs-generative, Databricks blog, IBM What is Agentic AI, Anthropic Building Effective Agents, Exabeam 5 differences (informational vs operational risk). Sibling of agent-vs-chatbot (08-12); wove reciprocal link in from it (en+zh). Grounded in Issue #001.",
       "addedAt": "2026-08-09"
     },
     {

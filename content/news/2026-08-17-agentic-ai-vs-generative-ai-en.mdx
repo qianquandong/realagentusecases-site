@@ -1,0 +1,60 @@
+---
+title: "Agentic AI vs Generative AI: What Actually Changes"
+date: "2026-08-17"
+excerpt: "Generative AI writes the answer; agentic AI acts on it. The real difference is autonomy — planning, tools, and multi-step action. How to tell them apart."
+---
+
+Generative AI creates content — it answers a prompt with text, code, or an image, then stops. Agentic AI pursues a goal: it plans steps, calls tools, takes action across systems, and adjusts based on results. The dividing line isn't intelligence, it's autonomy — whether the system *responds* or *acts*.
+
+Both run on the same large language models, so they can look identical in a chat window. The split is what the system is allowed to do after it writes. This is the plain-English version of a distinction that's behind a lot of 2026 "which AI do I actually need?" confusion.
+
+## Same models, different jobs
+
+[Red Hat frames it simply](https://www.redhat.com/en/topics/ai/agentic-ai-vs-generative-ai): generative AI creates content in response to a prompt, while agentic AI plans, evaluates, and takes action to reach a goal. One produces answers; the other produces outcomes — the same line we drew between [an AI agent and a chatbot](/en/news/2026-08-12-ai-agent-vs-chatbot/). Agentic AI isn't a rival technology; it's generative AI wrapped in a loop that can act.
+
+## What generative AI does
+
+Generative AI is the technology behind ChatGPT, Claude, and image tools: it learns statistical patterns from training data and generates new content — text, code, a summary, an image — in response to your prompt. [Databricks describes](https://www.databricks.com/blog/agentic-ai-vs-generative-ai) it as reactive: it completes one turn per request and waits for the next. That's exactly what you want for "draft this email" or "explain this error." The output is content *you* then act on.
+
+## What agentic AI adds
+
+Agentic AI puts that same generative model inside a control loop. [IBM's definition](https://www.ibm.com/think/topics/agentic-ai) is precise: "agentic systems have a notion of planning, loops, reflection and other control structures that heavily use the model's inherent reasoning capabilities to accomplish a task end-to-end." Three capabilities a generative-only system lacks:
+
+- **Planning** — break a goal into steps instead of answering one message.
+- **Tools** — reach beyond the text box (calendar, database, web, a code runner), usually through [MCP, the protocol agents use to connect to tools](/en/news/2026-08-10-what-is-mcp-for-ai-agents/).
+- **Action across steps** — execute, check the result, adjust, and keep going until the task is done.
+
+Concrete: ask generative AI "what should I reply to this email?" and it drafts a reply. An agent reads the whole inbox, decides which messages need a response, drafts each one, and — with your approval — sends them: the sense→decide→act loop behind [Issue #001's Gmail triage agent](/en/posts/2026-05-13-gmail-ai-agent/).
+
+## It's a spectrum, not a switch
+
+Because agentic AI is built on generative AI, the two live on one gradient rather than in two boxes. [Anthropic's engineering guidance](https://www.anthropic.com/engineering/building-effective-agents) names the axis directly: the difference between a fixed workflow and an autonomous agent is "the degree of autonomy." Anthropic notes that most reliable production systems are predictable workflows — not fully autonomous agents — and recommends finding "the simplest solution possible." More agency isn't automatically better; it adds cost, latency, and new failure modes.
+
+## The risk changes too
+
+Because agentic AI *acts*, its risk profile shifts. [Exabeam frames the split](https://www.exabeam.com/explainers/agentic-ai/agentic-ai-vs-generative-ai-5-key-differences/): generative AI carries informational risk (a wrong or biased answer), while agentic AI carries operational risk — an autonomous system taking a wrong action on live data. That's why every safe build on this site keeps [a human in the loop on the steps that send, pay, or delete](/en/news/2026-08-13-human-in-the-loop-ai-agents/). A bad paragraph you can ignore; a bad send you can't.
+
+## Which one do you need?
+
+If the task is "produce content I'll review" — a draft, a summary, an analysis — generative AI is the whole answer, and it's faster and more predictable. If it's "complete a multi-step job across my tools," you want agentic AI, with a gate on the irreversible steps. New to all of this? Start at [Agent 101](/en/agent-101/), then see the [five agent patterns that hold up at work](/en/news/2026-08-04-ai-agents-for-work/).
+
+## FAQ
+
+**What's the difference between agentic AI and generative AI?**
+Generative AI creates content in response to a prompt and stops; agentic AI pursues a goal by planning, using tools, and taking action across steps. [Red Hat](https://www.redhat.com/en/topics/ai/agentic-ai-vs-generative-ai) sums it up: generative AI creates, agentic AI acts. Agentic AI is usually built on top of a generative model.
+
+**Is agentic AI just generative AI with extra steps?**
+Roughly, yes — but the extra steps are the whole point. It uses a generative model as its reasoning engine and adds planning, tool use, and a loop that executes and self-corrects. [IBM](https://www.ibm.com/think/topics/agentic-ai) describes agentic systems as having "planning, loops, reflection and other control structures" that a single generative response doesn't.
+
+**Is ChatGPT generative or agentic AI?**
+Both, depending on how it's used. A normal chat — you prompt, it writes — is generative AI. In agent mode it browses, runs code, and takes actions on its own, which is agentic behavior; we walk through that same line in [AI agent vs chatbot](/en/news/2026-08-12-ai-agent-vs-chatbot/).
+
+**Does agentic AI replace generative AI?**
+No. Agentic AI is built on generative AI, so it extends rather than replaces it. [Anthropic recommends](https://www.anthropic.com/engineering/building-effective-agents) the simplest solution that works — for many tasks a plain generative prompt is more reliable than an autonomous agent.
+
+**Is agentic AI riskier than generative AI?**
+It's a different risk, not simply more. [Exabeam](https://www.exabeam.com/explainers/agentic-ai/agentic-ai-vs-generative-ai-5-key-differences/) contrasts generative AI's informational risk (a wrong answer) with agentic AI's operational risk (a wrong action on live systems). That's why irreversible steps should stay behind a [human approval gate](/en/news/2026-08-13-human-in-the-loop-ai-agents/).
+
+---
+
+Want the field notes on real agents professionals actually run — the exact setups, costs, and failure modes? [Subscribe free](/en/) and get each week's build in your inbox.

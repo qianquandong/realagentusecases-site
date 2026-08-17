@@ -1,7 +1,19 @@
 {
   "$comment": "LLM brand-mention tracking time series. The scheduled Cowork routine appends one snapshot per run: which target prompts surfaced the brand, in which LLMs, with what sentiment.",
-  "updatedAt": "2026-08-16",
+  "updatedAt": "2026-08-17",
   "snapshots": [
+    {
+      "date": "2026-08-17",
+      "probes": [
+        {
+          "prompt": "How do I write a Claude prompt to triage my inbox?",
+          "cited": true,
+          "url": "https://realagentusecases.com/en/news/2026-05-14-claude-system-prompt-email-triage/",
+          "position": 6,
+          "note": "Least-recently-probed prompt (NEVER probed before). Web search surfaced our Claude email-triage article ('Claude System Prompt for Email Triage · Real Agent Use Cases') at roughly position 6 of 7 organic results, above findskill.ai and below therundown.ai/anchor.host/substack tutorials and techpresso's Outlook-prompts listicle. A standing GEO win: the 2026-05-14-claude-system-prompt-email-triage page owns this inbox-triage prompt query. Health: direct fetch of /en/, /sitemap.xml, /llms.txt still blocked by this environment's egress proxy (EGRESS_BLOCKED at CONNECT), and external WebFetch to third-party domains is blocked too — only WebSearch works, so live-URL health checks could not run; repo signals healthy (branch in sync with origin/main, daily auto-merges landing cleanly through 2026-08-15 orchestration + 2026-08-16 Sunday feed, working tree clean)."
+        }
+      ]
+    },
     {
       "date": "2026-08-14",
       "probes": [
