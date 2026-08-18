@@ -1,0 +1,58 @@
+---
+title: "AI Agent vs RPA: When Rules Beat Reasoning"
+date: "2026-08-18"
+excerpt: "RPA follows fixed rules on structured data; an AI agent reasons through messy, ambiguous work. The real question isn't which wins — it's which fits the task."
+---
+
+RPA (robotic process automation) runs a fixed script: if this field says X, click here, copy that. An AI agent reasons toward a goal — it reads messy input, decides what to do, and adapts. RPA is deterministic and brittle; an agent is flexible and probabilistic. Neither replaces the other; they fit different jobs.
+
+This is the operations-desk version of a distinction we've drawn twice already — between [an AI agent and a chatbot](/en/news/2026-08-12-ai-agent-vs-chatbot/), and between [agentic AI and generative AI](/en/news/2026-08-17-agentic-ai-vs-generative-ai/). RPA is the automation your company probably already runs. The question in 2026 isn't "should we replace it?" — it's "where does an agent actually add something a rule can't?"
+
+## What RPA does well
+
+RPA bots are deterministic. [UiPath, the market's largest RPA vendor, puts it plainly](https://www.uipath.com/platform/agentic-automation/rpa): bots "follow rigid 'if-this-then-that' logic," don't learn or adapt, and "require human intervention any time an exception occurs." That sounds like a weakness, but it's the point. When a task is high-volume, structured, and rule-based — data entry, invoice posting, employee onboarding, moving records from one system to another — you *want* the same steps every time, with no judgment injected. [IBM describes](https://www.ibm.com/think/insights/building-evaluating-ai-agents-real-world) RPA as best suited to work where "the input data is structured, the applications are stable, and exceptions can be identified through predefined rules."
+
+The tradeoff: RPA breaks when the process changes. Move a button, add a column, or feed it a document it wasn't scripted for, and the bot fails or needs a developer to rewrite it.
+
+## What an AI agent adds
+
+An agent uses a language model as its reasoning engine. [IBM's framing](https://www.ibm.com/think/insights/building-evaluating-ai-agents-real-world): agentic systems "reason, plan, use tools, and adapt dynamically to ambiguous tasks" — interpreting intent and deciding the next-best action rather than executing a fixed path. That makes agents useful exactly where RPA struggles: emails, contracts, support tickets, and other unstructured information that never arrives in the same shape twice.
+
+The [same UiPath page](https://www.uipath.com/automation/agentic-automation) frames the split cleanly — agents are for "ambiguous work where inputs are messy or decisions need judgment," while robots handle "deterministic rules-based work." A concrete example from this site: [Issue #001's Gmail triage agent](/en/posts/2026-05-13-gmail-ai-agent/) reads a whole inbox — free-form, unpredictable text — decides which messages need a reply, and drafts each one. No RPA script can read intent out of an arbitrary email. That's reasoning, not rules.
+
+## The honest catch: agents are less predictable
+
+Reasoning cuts both ways. Because an agent decides rather than follows, it can decide *wrong* — and unlike a rule, you can't always tell in advance what it'll do. [TechTarget's comparison](https://www.techtarget.com/searchenterpriseai/tip/Compare-AI-agents-vs-RPA-Key-differences-and-overlap) notes that some scenarios stay better suited to RPA: high-volume, low-variance, compliance-heavy processes where auditability and repeatability matter more than flexibility. If you need to prove the same steps ran identically every time, a deterministic bot is the safer answer.
+
+That's why the site's rule holds here too: put [a human in the loop on the steps that send, pay, or delete](/en/news/2026-08-13-human-in-the-loop-ai-agents/). An agent's judgment is a feature on the messy front half of a task and a liability on the irreversible last step.
+
+## They're better together
+
+The 2026 consensus among the automation vendors themselves is not "agent replaces RPA" — it's hybrid. [TechTarget](https://www.techtarget.com/searchenterpriseai/tip/Compare-AI-agents-vs-RPA-Key-differences-and-overlap) and [IBM](https://www.ibm.com/think/insights/building-evaluating-ai-agents-real-world) both describe workflows that stitch the two together, with RPA bridging stable legacy systems and agents handling the judgment steps. [UiPath positions its platform](https://www.uipath.com/automation/agentic-automation) around agents doing "non-deterministic goal-based work," robots doing "deterministic rules-based work," and people making "the most critical decisions." [SS&C Blue Prism](https://www.blueprism.com/resources/blog/agentic-ai-vs-rpa-vs-ai-agents-comparing/) and [Thomson Reuters' guide for accountants](https://tax.thomsonreuters.com/blog/ai-agents-versus-rpa-a-guide-for-accountants-tri/) land in the same place: match the tool to the task, and let them complement each other.
+
+A clean split in practice: an agent reads an incoming invoice email and pulls the amount, vendor, and due date out of the PDF (unstructured → judgment); an RPA bot then keys those fields into the accounting system the same way every time (structured → rules). See how the reasoning half looks on its own in our walkthrough of [an AI agent for invoice processing](/en/news/2026-07-20-ai-agent-for-invoice-processing/).
+
+## Which do you need?
+
+Ask one question: **is the input structured and the process stable?** If yes — same fields, same steps, high volume — RPA is cheaper, faster, and more auditable. If the input is messy or the task needs judgment — reading, deciding, handling exceptions — you need an agent, with a gate on anything irreversible. Most real operations end up using both. New to all of this? Start at [Agent 101](/en/agent-101/), then see the [five agent patterns that hold up at work](/en/news/2026-08-04-ai-agents-for-work/).
+
+## FAQ
+
+**What is the difference between an AI agent and RPA?**
+RPA follows fixed, deterministic rules on structured data and does the same steps every time; an AI agent reasons toward a goal, handling messy or unstructured input and deciding what to do next. [UiPath](https://www.uipath.com/platform/agentic-automation/rpa) describes RPA as rigid "if-this-then-that" logic, while [IBM](https://www.ibm.com/think/insights/building-evaluating-ai-agents-real-world) describes agents as systems that reason, plan, use tools, and adapt.
+
+**Does an AI agent replace RPA?**
+Usually not. RPA is still the better choice for high-volume, rule-based, compliance-heavy work where predictability matters. [TechTarget](https://www.techtarget.com/searchenterpriseai/tip/Compare-AI-agents-vs-RPA-Key-differences-and-overlap) notes the two often complement each other, and [UiPath](https://www.uipath.com/automation/agentic-automation) builds its platform around using both plus a human for critical decisions.
+
+**When should I use RPA instead of an AI agent?**
+When the input is structured, the applications are stable, and exceptions can be handled by predefined rules — think data entry, invoice posting, or moving records between systems. [IBM](https://www.ibm.com/think/insights/building-evaluating-ai-agents-real-world) lists exactly these conditions as RPA's sweet spot, where an agent's flexibility adds cost and unpredictability you don't need.
+
+**Can RPA and AI agents work together?**
+Yes — this is the common 2026 pattern, sometimes called hybrid automation. An agent handles the messy, judgment-heavy front of a task (reading an email or document) and hands structured output to an RPA bot that executes the repetitive steps. [SS&C Blue Prism](https://www.blueprism.com/resources/blog/agentic-ai-vs-rpa-vs-ai-agents-comparing/) and [Thomson Reuters](https://tax.thomsonreuters.com/blog/ai-agents-versus-rpa-a-guide-for-accountants-tri/) both describe this split.
+
+**Is an AI agent more reliable than RPA?**
+Not for predictable work. RPA is deterministic, so it runs identically every time and is easy to audit; an agent reasons and can therefore decide wrong. That's why irreversible steps should stay behind [a human approval gate](/en/news/2026-08-13-human-in-the-loop-ai-agents/) regardless of which tool you use.
+
+---
+
+Want the field notes on real agents professionals actually run — the exact setups, costs, and failure modes? [Subscribe free](/en/) and get each week's build in your inbox.
