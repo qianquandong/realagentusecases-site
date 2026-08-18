@@ -1,0 +1,58 @@
+---
+title: "AI Agent 与 RPA：规则与推理各管一段"
+date: "2026-08-18"
+excerpt: "RPA 按固定规则处理结构化数据，AI agent 靠推理搞定杂乱、模糊的活。真正该问的不是谁更强，而是哪个更适合手上的任务。"
+---
+
+RPA（机器人流程自动化）跑的是一段固定脚本：如果这个字段是 X，就点这里、复制那里。AI agent 则朝一个目标推理——它读取杂乱的输入，决定该做什么，并随之调整。RPA 是确定性的、脆的；agent 是灵活的、概率性的。谁也替代不了谁，它们适合不同的活。
+
+这是运营岗视角下的一个老区别，我们已经讲过两次——[AI agent 与 chatbot](/zh/news/2026-08-12-ai-agent-vs-chatbot/)，以及 [Agentic AI 与生成式 AI](/zh/news/2026-08-17-agentic-ai-vs-generative-ai/)。RPA 很可能是你公司早就在跑的自动化。2026 年真正的问题不是「要不要换掉它」，而是「哪里 agent 能补上规则做不到的那部分」。
+
+## RPA 擅长什么
+
+RPA 机器人是确定性的。[UiPath——市场上最大的 RPA 厂商——说得很直白](https://www.uipath.com/platform/agentic-automation/rpa)：机器人「遵循僵硬的『如果这样就那样』逻辑」，不学习也不适应，「一旦出现异常就需要人来介入」。这听起来像缺点，其实正是它的价值。当任务是高频、结构化、有规则可循的——录入数据、过账发票、员工入职、把记录从一个系统搬到另一个——你**要的**就是每次都走一样的步骤，不掺进任何判断。[IBM 指出](https://www.ibm.com/think/insights/building-evaluating-ai-agents-real-world)，RPA 最适合「输入数据结构化、应用稳定、异常能靠预设规则识别」的场景。
+
+代价是：流程一变，RPA 就崩。挪个按钮、加一列、喂它一份没被脚本覆盖的文档，机器人要么失败，要么得让开发者重写。
+
+## AI agent 补上了什么
+
+agent 用大语言模型当推理引擎。[还是 IBM 的说法](https://www.ibm.com/think/insights/building-evaluating-ai-agents-real-world)：agent 系统会「推理、规划、调用工具，并对模糊任务动态适应」——它理解意图、决定下一步最该做什么，而不是照一条固定路径执行。这让 agent 恰好在 RPA 吃力的地方好用：邮件、合同、工单，以及各种从不以同一形状出现两次的非结构化信息。
+
+[UiPath 同一页](https://www.uipath.com/automation/agentic-automation)把分工讲得很清楚——agent 负责「输入杂乱、需要判断的模糊工作」，机器人负责「确定性的、有规则的工作」。本站一个具体例子：[Issue #001 的 Gmail 分拣 agent](/zh/posts/2026-05-13-gmail-ai-agent/) 读一整个收件箱——自由格式、无法预测的文本——判断哪些邮件要回，并逐条起草。没有任何 RPA 脚本能从任意一封邮件里读出意图。那是推理，不是规则。
+
+## 诚实的另一面：agent 没那么可预测
+
+推理是把双刃剑。因为 agent 是「决定」而非「照做」，它也可能**决定错**——而且不像规则，你未必能提前知道它会干什么。[TechTarget 的对比](https://www.techtarget.com/searchenterpriseai/tip/Compare-AI-agents-vs-RPA-Key-differences-and-overlap)指出，有些场景仍然更适合 RPA：高频、低变化、强合规的流程，那里可审计、可复现比灵活更重要。如果你要证明每一次都走了完全一样的步骤，确定性的机器人是更稳的答案。
+
+所以本站那条规矩在这儿同样成立：在会发送、付款、删除的步骤上[保留一个人来把关](/zh/news/2026-08-13-human-in-the-loop-ai-agents/)。agent 的判断力在一个任务杂乱的前半段是优点，在不可逆的最后一步就是隐患。
+
+## 它们其实是搭档
+
+2026 年连自动化厂商自己都不说「agent 取代 RPA」，而是说混合。[TechTarget](https://www.techtarget.com/searchenterpriseai/tip/Compare-AI-agents-vs-RPA-Key-differences-and-overlap) 和 [IBM](https://www.ibm.com/think/insights/building-evaluating-ai-agents-real-world) 都描述过把两者拼起来的工作流：RPA 打通稳定的老系统，agent 处理需要判断的步骤。[UiPath 把平台](https://www.uipath.com/automation/agentic-automation)搭在三方之上——agent 做「非确定性的目标导向工作」、机器人做「确定性的规则工作」、人做「最关键的决定」。[SS&C Blue Prism](https://www.blueprism.com/resources/blog/agentic-ai-vs-rpa-vs-ai-agents-comparing/) 和[汤森路透给会计师的指南](https://tax.thomsonreuters.com/blog/ai-agents-versus-rpa-a-guide-for-accountants-tri/)也落到同一处：让工具去匹配任务，彼此互补。
+
+实践里一个干净的分法：agent 读一封发票邮件，从 PDF 里抽出金额、供应商、到期日（非结构化→判断）；RPA 机器人再把这些字段每次都用一样的方式录进财务系统（结构化→规则）。想看推理那半段单独长什么样，读我们的[AI agent 处理发票](/zh/news/2026-07-20-ai-agent-for-invoice-processing/)。
+
+## 你到底需要哪个
+
+问一个问题：**输入是结构化的、流程是稳定的吗？** 是——同样的字段、同样的步骤、量大——RPA 更便宜、更快、更好审计。如果输入杂乱、任务需要判断——读、决定、处理异常——你需要 agent，并在任何不可逆的步骤上加一道关。大多数真实运营最后都是两个都用。刚入门？先看 [Agent 101](/zh/agent-101/)，再读[职场里真正立得住的五种 agent 模式](/zh/news/2026-08-04-ai-agents-for-work/)。
+
+## FAQ
+
+**AI agent 和 RPA 有什么区别？**
+RPA 在结构化数据上照固定的确定性规则走，每次步骤都一样；AI agent 朝目标推理，处理杂乱或非结构化的输入并决定下一步。[UiPath](https://www.uipath.com/platform/agentic-automation/rpa) 把 RPA 描述成僵硬的「如果这样就那样」逻辑，而 [IBM](https://www.ibm.com/think/insights/building-evaluating-ai-agents-real-world) 把 agent 描述成会推理、规划、调用工具并适应的系统。
+
+**AI agent 会取代 RPA 吗？**
+通常不会。对高频、有规则、强合规、看重可预测性的工作，RPA 仍是更好的选择。[TechTarget](https://www.techtarget.com/searchenterpriseai/tip/Compare-AI-agents-vs-RPA-Key-differences-and-overlap) 指出两者常常互补，[UiPath](https://www.uipath.com/automation/agentic-automation) 更是把平台建在「两者加一个人做关键决策」之上。
+
+**什么时候该用 RPA 而不是 agent？**
+当输入结构化、应用稳定、异常能靠预设规则处理时——比如录数据、过账发票、在系统间搬记录。[IBM](https://www.ibm.com/think/insights/building-evaluating-ai-agents-real-world) 把这些条件列为 RPA 的甜区，那里 agent 的灵活反而带来你不需要的成本和不可预测性。
+
+**RPA 和 AI agent 能一起用吗？**
+能——这正是 2026 年常见的做法，有时叫混合自动化。agent 处理任务里杂乱、需判断的前半段（读邮件或文档），把结构化结果交给 RPA 机器人执行重复步骤。[SS&C Blue Prism](https://www.blueprism.com/resources/blog/agentic-ai-vs-rpa-vs-ai-agents-comparing/) 和[汤森路透](https://tax.thomsonreuters.com/blog/ai-agents-versus-rpa-a-guide-for-accountants-tri/)都描述过这种分工。
+
+**AI agent 比 RPA 更可靠吗？**
+对可预测的工作不是。RPA 是确定性的，每次都跑得一模一样，容易审计；agent 会推理，因此也可能判断错。所以不管用哪个工具，不可逆的步骤都该留在[一道人工审批关](/zh/news/2026-08-13-human-in-the-loop-ai-agents/)后面。
+
+---
+
+想看职场人真正在跑的 agent 现场笔记——具体配置、成本和翻车点？[免费订阅](/zh/)，每周的搭建直接发到你的收件箱。
