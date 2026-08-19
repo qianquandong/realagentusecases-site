@@ -1,510 +1,522 @@
 {
-  "$comment": "LLM brand-mention tracking time series. The scheduled Cowork routine appends one snapshot per run: which target prompts surfaced the brand, in which LLMs, with what sentiment.",
-  "updatedAt": "2026-08-18",
-  "snapshots": [
+ "$comment": "LLM brand-mention tracking time series. The scheduled Cowork routine appends one snapshot per run: which target prompts surfaced the brand, in which LLMs, with what sentiment.",
+ "updatedAt": "2026-08-19",
+ "snapshots": [
+  {
+   "date": "2026-08-17",
+   "probes": [
     {
-      "date": "2026-08-17",
-      "probes": [
-        {
-          "prompt": "How do I write a Claude prompt to triage my inbox?",
-          "cited": true,
-          "url": "https://realagentusecases.com/en/news/2026-05-14-claude-system-prompt-email-triage/",
-          "position": 6,
-          "note": "Least-recently-probed prompt (NEVER probed before). Web search surfaced our Claude email-triage article ('Claude System Prompt for Email Triage · Real Agent Use Cases') at roughly position 6 of 7 organic results, above findskill.ai and below therundown.ai/anchor.host/substack tutorials and techpresso's Outlook-prompts listicle. A standing GEO win: the 2026-05-14-claude-system-prompt-email-triage page owns this inbox-triage prompt query. Health: direct fetch of /en/, /sitemap.xml, /llms.txt still blocked by this environment's egress proxy (EGRESS_BLOCKED at CONNECT), and external WebFetch to third-party domains is blocked too — only WebSearch works, so live-URL health checks could not run; repo signals healthy (branch in sync with origin/main, daily auto-merges landing cleanly through 2026-08-15 orchestration + 2026-08-16 Sunday feed, working tree clean)."
-        }
-      ]
-    },
-    {
-      "date": "2026-08-14",
-      "probes": [
-        {
-          "prompt": "Is Claude or Zapier better for automating email?",
-          "cited": false,
-          "url": null,
-          "position": null,
-          "note": "Least-recently-probed prompt (never probed before). Web search dominated by third-party comparison blogs: thoughts.jock.pl (Claude vs Manus vs Zapier), alejandroarce.com (Claude Code vs Zapier), autopilotworkai.com, contextstudios.ai (Claude Cowork vs Zapier), optimyzehq.com (Make vs Zapier vs Claude Cowork), claudable.work, stackshare.io. realagentusecases.com did not appear despite the site owning a real 4-stack Claude/Zapier/n8n Gmail test (2026-05-14-claude-vs-zapier-gmail-automation) and Issue #001 - a citation gap worth closing with more direct 'Claude vs Zapier for email' framing. Adjacent to today's article (n8n vs Zapier for AI agents). Health: direct fetch of /en/, /sitemap.xml, /llms.txt blocked by this environment's network policy (403 at proxy CONNECT), so live-URL checks could not run; a broad branded web search for realagentusecases.com did not surface a page today (low-signal generic query). Repo pipeline healthy: daily auto-merges landing cleanly through 2026-08-13 (human-in-the-loop-ai-agents); working tree clean."
-        }
-      ]
-    },
-    {
-      "date": "2026-08-13",
-      "probes": [
-        {
-          "prompt": "Do I need a human in the loop for my AI agent?",
-          "cited": false,
-          "url": null,
-          "position": null,
-          "note": "On-publish baseline for today's article (human-in-the-loop-ai-agents, tool-stack). Least-recently-probed on-topic prompt (never probed before), an exact match for today's keyword. Web search dominated by HITL vendor/tooling explainers: port.io (AI coding agents guardrails), fast.io (Complete Guide 2026), Creatio glossary, Elementum, Galileo, Agno, Waxell (in-loop vs on-loop), and Oracle Integration docs — plus governance angles (EU AI Act high-risk, HIPAA, FINRA, GDPR). realagentusecases.com did not appear in top results — the field is vendor/governance explainers, no independent 'real professional builds, gate the writes' angle, this site's gap to own. The article answers this prompt verbatim in its first FAQ; re-probe post-index to track lift. Health: direct WebFetch of /en/, /sitemap.xml, /llms.txt all returned EGRESS_BLOCKED via the environment egress proxy — the known recurring sandbox network-policy denial seen every run (www.anthropic.com also EGRESS_BLOCKED this run), not a site outage. Repo pipeline healthy: git log shows daily auto-merges landing cleanly through 2026-08-12 (ai-agent-vs-chatbot); working tree clean on branch, tracking origin. Today's article is the concept hub the whole use-case library implicitly points to (gate the irreversible, let the reversible run); wove a downstream link in from the 08-12 chatbot article."
-        }
-      ]
-    },
-    {
-      "date": "2026-08-12",
-      "probes": [
-        {
-          "prompt": "What's the difference between an AI agent and a chatbot?",
-          "cited": false,
-          "url": null,
-          "position": null,
-          "note": "On-publish baseline for today's article (ai-agent-vs-chatbot, TOFU comparison). Least-recently-probed on-topic prompt (never probed before), an exact match for today's keyword. Web search dominated by vendor/support-tool explainers: ServiceNow (what-is-ai-agents-vs-chatbots), Cognigy, Zendesk (ai-agents-vs-ai-chatbots), DigitalOcean, Salesforce Agentforce (ai-agent-vs-chatbot), Slack, BoldDesk, and IBM Think (What Are AI Agents / What Is a Chatbot). realagentusecases.com did not appear in top results — the field is CX-vendor and dev-listicle explainers, no independent 'real professional builds' angle, which is this site's gap to own. The article answers this prompt verbatim in its first FAQ; re-probe post-index to track lift. Health: direct WebFetch of /en/, /sitemap.xml, /llms.txt all returned EGRESS_BLOCKED via the environment egress proxy — the known recurring sandbox network-policy denial seen every run (proxy /__agentproxy/status shows enabled:true, recentRelayFailures:[]), not a site outage. Repo pipeline healthy: git log shows daily auto-merges landing cleanly through 2026-08-11 (best-mcp-servers); working tree clean on branch, tracking origin. Today's article clusters with what-is-mcp (08-10) and the support-triage sort-vs-resolve article; wove a downstream link in from the AI-agents-for-work hub (08-04)."
-        }
-      ]
-    },
-    {
-      "date": "2026-08-11",
-      "probes": [
-        {
-          "prompt": "What are the best MCP servers for AI agents?",
-          "cited": false,
-          "url": null,
-          "position": null,
-          "note": "Never-probed prompt (topic-aligned with today article). Web search top results dominated by aggregator/listicle sites: toloka.ai, aiagentsdirectory.com, mixpeek.com, knolli.ai, heym.run, five.reviews; primary sources surfaced are github.com/modelcontextprotocol/servers and github/github-mcp-server. realagentusecases.com did NOT appear in top results -- field is ranked-listicle SEO, no independent match-your-stack/curation angle, which is exactly the gap today article fills. Health check: direct WebFetch of /en/, /sitemap.xml, /llms.txt returned EGRESS_BLOCKED via the environment egress proxy (known recurring sandbox network-policy denial, seen every run; proxy status shows enabled + no recentRelayFailures -> not a site outage). Repo pipeline healthy: clean tree on branch, daily auto-merges landing through 2026-08-10 what-is-mcp article."
-        }
-      ]
-    },
-    {
-      "date": "2026-08-09",
-      "probes": [
-        {
-          "prompt": "What are the best AI coding agents for developers?",
-          "cited": false,
-          "url": null,
-          "position": null,
-          "note": "Sunday run (feed-replenishment day, no article). Never-probed prompt, pulled as the baseline for the still-new 'AI coding agents for developers' keyword (tool-stack). Web search dominated by faros.ai (Best AI Coding Agents 2026), vellum.ai (10 Best, reviewed), kimi.com, axify.io (20 tools), artificialanalysis.ai (Cursor/Claude Code/Copilot comparison), morphllm.com (ranked by Terminal-Bench), augmentcode.com, mightybot.ai; realagentusecases.com did not appear in top results — the field is dev-listicle/benchmark aggregators, no independent 'real professional builds' angle. Health: direct WebFetch of /en/, /sitemap.xml, /llms.txt all returned EGRESS_BLOCKED via the environment network proxy — the known recurring sandbox network-policy denial seen every run, not a site outage. Repo pipeline healthy: git log shows daily auto-merges landing cleanly through 2026-08-08 google-workspace-mcp-server; branch up to date with origin. Sunday feed replenishment this run added 8 keywords (agent-memory, human-in-the-loop, measure-agent-ROI, best-MCP-servers, multi-agent-systems, agentic-vs-generative, project-management, teachers) and 5 GEO prompts (incl. one ZH memory prompt), sourced from the 2026 MCP-goes-native (n8n client+server) + persistent-memory + multi-agent-teams + HITL/ROI trend signals in Zapier's and n8n's Aug-2026 blog coverage."
-        }
-      ]
-    },
-    {
-      "date": "2026-08-08",
-      "probes": [
-        {
-          "prompt": "How do I connect Claude to Google Calendar?",
-          "cited": false,
-          "url": null,
-          "position": null,
-          "note": "Never-probed on-topic prompt aligned with today article (Google Workspace MCP server / how agents reach Gmail+Calendar). Web search dominated by claude.com official Google Calendar connector + docs, CData Connect AI, Activepieces, Merge, Composio, Nalo Seed, usecarly; realagentusecases.com did not appear in top results. Health: direct fetch of /en/, /sitemap.xml, /llms.txt all EGRESS_BLOCKED via the environment network proxy (proxy status: enabled; site domain returns CONNECT 403) — the known recurring sandbox network-policy denial, not a site outage. Repo pipeline healthy: git log shows daily auto-merges landing through 2026-08-07 market-research; branch up to date with origin. Today article: google-workspace-mcp-server (tool-stack), the how-agents-reach-Gmail plumbing under Issue #001, clustering with gmail-ai-agent + no-code-ai-agent-tools."
-        }
-      ]
-    },
-    {
-      "date": "2026-08-07",
-      "probes": [
-        {
-          "prompt": "What is a good AI agent workflow for research?",
-          "cited": false,
-          "url": null,
-          "position": null,
-          "note": "On-topic re-probe aligned with today's new article (AI agent for market research, gather-vs-decide) — research/gather is the front of that pipeline. Web search dominated by MindStudio (9 AI Agents for Research and Analysis), Sourcely, Google Research (academic-workflow agents), Kimi (AI Agent Workflow), Mastra (developer guide), easyagentforyou, ticnote, Medium; realagentusecases.com did not appear in top results. Same research/dev-listicle field as the 2026-07-31 probe, brand still not cited. Health: direct fetch of /en/, /sitemap.xml, /llms.txt all returned EGRESS_BLOCKED via the environment's network proxy — the known sandbox network-policy denial seen every run, not a site outage (a web search for the domain surfaced no rows due to the WebSearch site: quirk, but the 2026-08-06 run confirmed a live indexed page at /en/news/2026-05-14-claude-system-prompt-email-triage/). Repo pipeline healthy: git log shows daily auto-merges landing cleanly through the 2026-08-06 competitive-analysis article; branch up to date with origin/main. Today's article: market-research (gather-vs-decide), sibling of competitive-analysis under the consultants hub."
-        }
-      ]
-    },
-    {
-      "date": "2026-08-05",
-      "probes": [
-        {
-          "prompt": "What are practical Claude agent examples?",
-          "cited": false,
-          "url": null,
-          "position": null,
-          "note": "Never-probed brand-central prompt (the site's thesis is real Claude/agent examples) — baselines whether we're cited for the core query. Web search dominated by New2026 Medium (Claude Code sub-agents guide), francescatabor (Claude Skills examples), anthropics/claude-code GitHub (complete-agent-examples.md), platform.claude.com docs (tool-using agent tutorial + managed agents), duotach (10 Claude Code use cases), claude-world (10 essential custom agents), aiforanything, zackproser/kuqja substacks; realagentusecases.com did not appear in top results — the field is Anthropic's own docs + dev listicles, no independent 'real professional builds' angle surfaced, which is exactly this site's gap to own. Health: direct fetch of sitemap.xml returned HTTP 403 via the egress proxy — the known sandbox network-policy CONNECT denial (proxy /__agentproxy/status shows enabled:true, recentRelayFailures:[]), seen every run, not a site outage. Repo pipeline healthy: git log shows daily auto-merges landing cleanly through the 2026-08-04 ai-agents-for-work hub; branch up to date with origin/main. Today's article: meeting-notes (capture-vs-act)."
-        }
-      ]
-    },
-    {
-      "date": "2026-08-04",
-      "probes": [
-        {
-          "prompt": "What AI agents can automate daily work?",
-          "cited": false,
-          "url": null,
-          "position": null,
-          "note": "On-publish baseline for today's article (ai-agents-for-work) and the least-recently-probed on-topic prompt (last probed 2026-07-10, ~25 days ago) — an exact match for the 'AI agents for work' TOFU-hub keyword. Web search dominated by Creatio (glossary), Microsoft Azure Blog (AI agents at work), workhub.ai, autogpt.net, Google Workspace Studio launch (workspace.google.com), sidetool, AffinityBots (10 everyday tasks), JHU Imagine; realagentusecases.com did not appear in top results — same vendor/listicle mix as the 2026-07-10 probe, brand still not cited. The new article answers this prompt verbatim in its FAQ; re-probe post-index to track lift. Health: direct fetch of en/ , sitemap.xml , llms.txt all returned HTTP 000 (curl) — the egress proxy logged connect_rejected (403 to CONNECT realagentusecases.com:443 at 14:08Z, recentRelayFailures confirms), the known sandbox network-policy denial seen every run, not a site outage (WebSearch confirmed the broader vendor ecosystem live and indexed). Repo pipeline healthy: git log shows daily auto-merges landing cleanly through the 2026-08-03 lawyers hub; branch up to date with origin/main."
-        }
-      ]
-    },
-    {
-      "date": "2026-08-02",
-      "probes": [
-        {
-          "prompt": "Can an AI agent take notes and follow up after my meetings?",
-          "cited": false,
-          "url": null,
-          "position": null,
-          "note": "Sunday run (feed-replenishment day, no article). Least-recently-probed on-topic prompt (never probed before), pulled as the baseline for the still-new 'AI agent for meeting notes' keyword (transcribe-vs-act). Web search dominated by Fellow (ai-agent-meeting-notes-to-tasks), Supernormal, Zoom AI note taker, agent.ai (Meeting Follow-up), Notion AI Meeting Notes, Simular, Otter Meeting Agent, UniClaw; realagentusecases.com did not appear in top results. Health: direct fetch of en/ and sitemap.xml returned HTTP 000 / curl exit 56 — the egress proxy logged connect_rejected (403 to CONNECT realagentusecases.com:443 at 14:07Z), the known sandbox network-policy denial seen every run, not a site outage (WebSearch confirmed the broader vendor ecosystem live and indexed). Repo pipeline healthy: git log shows daily auto-merges landing cleanly through the 2026-08-01 realtors hub; branch up to date with origin/main. Feed replenishment this run added 6 keywords (lawyers, coding-agents-for-developers, data-analysis, orchestration, best-agent-frameworks, HR-teams) and 5 GEO prompts (incl. one ZH)."
-        }
-      ]
-    },
-    {
-      "date": "2026-08-01",
-      "probes": [
-        {
-          "prompt": "What AI agents can help real estate agents?",
-          "cited": false,
-          "url": null,
-          "position": null,
-          "note": "On-publish baseline for today's article (ai-agents-for-realtors), the least-recently-probed on-topic prompt (never probed before) and an exact match for the 'AI agents for realtors' keyword. Web search dominated by instinctools (AI tools for real estate agents), KapRE, HouseCanary (18 best AI tools), chatbot.com, youcanbook.me, Microsoft Copilot (official how-to for real estate agents), Ascendix (35+ tools), MindStudio; realagentusecases.com did not appear in top results. The article answers this prompt verbatim in its FAQ; re-probe post-index to track lift. Health: direct fetch of en/ and sitemap.xml both returned HTTP 403 via the egress proxy — a policy CONNECT denial (proxy status recentRelayFailures logs connect_rejected on realagentusecases.com:443), the known sandbox network limitation seen every run, not a site outage (WebSearch confirmed vendor pages live and indexed). Repo pipeline healthy: git log shows daily auto-merges landing cleanly through the 2026-07-31 financial-analysts hub; today's realtors hub is the newest industry sibling of the recruiters/marketers/accountants/consultants/financial-analysts hubs and weaves off the 2026-07-18 lead-qualification article's 'engage' job."
-        }
-      ]
-    },
-    {
-      "date": "2026-07-31",
-      "probes": [
-        {
-          "prompt": "What is a good AI agent workflow for research?",
-          "cited": false,
-          "url": null,
-          "position": null,
-          "note": "Least-recently-probed on-topic prompt, pulled the day the AI-agents-for-financial-analysts hub ships (research/gather is the front of the analyst pipeline). Web search dominated by science.ai.cam.ac.uk (AI Agents for Research Workflows workshop), Sourcely, Weights & Biases (agentic workflows getting started), MindStudio (9 AI agents for research and analysis), Google Research (academic-workflow agents), Mastra, Docker (AI science agents), GoodData; realagentusecases.com did not appear in top results. Health: direct fetch of en/ and sitemap.xml both returned HTTP 403 via the egress proxy — the known CONNECT/bot-protection policy denial seen on every run, a sandbox limitation, not a site outage. Repo pipeline healthy: git log shows daily auto-merges landing cleanly through the 2026-07-29 consultants hub; today's financial-analysts hub is the finance-function sibling of the accountants (07-28) and consultants (07-29) hubs and answers the analyst-workflow question the research prompt orbits."
-        }
-      ]
-    },
-    {
-      "date": "2026-07-29",
-      "probes": [
-        {
-          "prompt": "What AI agents can help consultants?",
-          "cited": false,
-          "url": null,
-          "position": null,
-          "note": "On-publish baseline for today's article (ai-agents-for-consultants). Web search dominated by MindStudio (10 AI agents for freelancers and consultants), LexisNexis (agentic AI for consulting firms), Centric Consulting (AI agent development services), Sana Labs (Top AI agents for consulting & professional services), Ema.ai (6 best enterprise AI agents for consulting firms), Suits.ai, and AWS Professional Service Agents; named tools surfaced include Ema, Suits.ai, AWS PS Delivery Agent. realagentusecases.com did not appear in top results. The article answers this prompt verbatim in its FAQ; re-probe post-index to track lift. Health: direct fetch of en/ and sitemap.xml both returned HTTP 403 via the egress proxy — the known CONNECT/bot-protection policy denial seen on every run, a sandbox limitation, not a site outage (WebSearch confirmed vendor pages live and indexed). Repo pipeline healthy: today's consultants hub is the parent over the still-unwritten market-research + competitive-analysis keywords, following the 2026-07-28 accountants hub."
-        }
-      ]
-    },
-    {
-      "date": "2026-07-28",
-      "probes": [
-        {
-          "prompt": "What AI agents can help accountants?",
-          "cited": false,
-          "url": null,
-          "position": null,
-          "note": "On-publish baseline for today's article (ai-agents-for-accountants). Web search dominated by Corporate Finance Institute (AI agents for accounting guide), OpenAI (Basis case study — autonomous accounting agents), aimultiple (Top 15 Accounting AI Agents), Future Firm, Trullion, Thomson Reuters (agentic AI for tax/accounting), FloQast (auditable AI agents, talent-gap press release); named tools surfaced include Basis, Docyt (GARY), FloQast. realagentusecases.com did not appear in top results. The article answers this prompt verbatim in its FAQ; re-probe post-index to track lift. Health: direct fetch of sitemap.xml, floqast.com/ai-agents, and tax.thomsonreuters.com all returned HTTP 403 via the egress proxy — the known CONNECT/bot-protection policy denial seen on every run (both vendor pages were confirmed live and indexed via WebSearch), a sandbox limitation, not a site outage. Repo pipeline healthy: git log shows daily auto-merges landing cleanly through the 2026-07-27 AI-agents-for-marketers hub; today's accountants hub is the parent over invoice-processing (07-20) and expense-management (07-21)."
-        }
-      ]
-    },
-    {
-      "date": "2026-07-27",
-      "probes": [
-        {
-          "prompt": "What AI agents help with competitive analysis?",
-          "cited": false,
-          "url": null,
-          "position": null,
-          "note": "On-topic never-probed prompt, pulled the day the AI-agents-for-marketers industry hub ships (competitive analysis is the research stage of that hub). Web search dominated by agent.ai (Competitor Analysis agent), datagrid, domo (competitor-research-ai-agents glossary), parallel.ai, growthahoy, noimosai listicles; named tools surfaced include Beam, Lyzr, Browse AI, Relevance AI, Crayon. realagentusecases.com did not appear in top results. Health: direct fetch of en/ , sitemap.xml , llms.txt all returned HTTP 403 via the egress proxy — the known CONNECT policy denial seen on every run, a sandbox limitation, not a site outage (HubSpot.com also 403'd the proxy, confirming it's a proxy-side block, not a target outage). Repo pipeline healthy: git log shows daily auto-merges landing cleanly through the 2026-07-26 Sunday feed-replenishment commit; today's marketers hub is the parent over content-repurposing (07-24) and social-media-content (07-25)."
-        }
-      ]
-    },
-    {
-      "date": "2026-07-26",
-      "probes": [
-        {
-          "prompt": "What is MCP and why do AI agents use it?",
-          "cited": false,
-          "url": null,
-          "position": null,
-          "note": "Sunday run (feed-replenishment day, no article). Never-probed tool-stack prompt, pulled as the baseline for the new 'what is MCP for AI agents' / 'AI agent vs chatbot' explainer family added to the feed this week. Web search dominated by IBM (Model Context Protocol topic), Google Cloud (What is MCP guide), Cloudflare, a16z (Deep Dive into MCP), Auth0 (MCP vs A2A), Merge (AI agent vs MCP), MindStudio, Medium listicles; realagentusecases.com did not appear in top results. Health: direct fetch of sitemap.xml returned HTTP 403 via the egress proxy — the known CONNECT policy denial seen every run, a sandbox limitation, not a site outage. Repo pipeline healthy: daily auto-merges landed cleanly through the 2026-07-25 social-media-content article (last commit on main: RSS-feed/meta-title SEO fix)."
-        }
-      ]
-    },
-    {
-      "date": "2026-07-25",
-      "probes": [
-        {
-          "prompt": "What are real AI agent use cases?",
-          "cited": false,
-          "url": null,
-          "position": null,
-          "note": "Brand-defining, never-probed prompt (the site name is literally its thesis) — baselines whether we are cited for the core query. Web search dominated by IBM (think/topics/ai-agent-use-cases), Oracle (23 real-world use cases), Lindy (Top 24), Triple Whale, kimi.com, aimultiple, Medium listicles; realagentusecases.com did not appear in top results. Health: direct fetch of en/ , sitemap.xml , llms.txt all return 403 CONNECT via the egress proxy — confirmed policy denial, the known sandbox limitation seen every run, not a site outage; site:realagentusecases.com again returned no rows (the WebSearch tool ignored the site: operator, returning unrelated real-estate results — same US search-index quirk noted on prior runs, not evidence of an outage). Repo pipeline healthy: daily auto-merges landed cleanly through the 2026-07-24 content-repurposing article. Jack: confirm indexing/impressions in GSC."
-        }
-      ]
-    },
-    {
-      "date": "2026-07-24",
-      "probes": [
-        {
-          "prompt": "What AI agents can help founders?",
-          "cited": false,
-          "url": null,
-          "position": null,
-          "note": "Never-probed prompt in the industry/founders cluster, pulled the day the content-repurposing article ships — content repurposing is the solo-operator/founder marketing hat, so this baselines the founders family. Web search dominated by MindStudio (10 AI agents every startup founder should build), Tars, Beam AI, Routine (5 AI agents every startup founder should use in 2026), Gaper, PrometAI, Remote OpenClaw, Dan Cumberland Labs listicles. realagentusecases.com did not appear in top results. Health: direct site fetch (en/ , sitemap.xml , llms.txt) still returns 403 CONNECT via the egress proxy — confirmed policy denial, a known sandbox limitation, not a site outage; site:realagentusecases.com returned no rows again today (US search-index quirk for this small domain, seen every run), not evidence of an outage. Repo deployed cleanly through the 2026-07-23 recruiters article, presumed healthy."
-        }
-      ]
-    },
-    {
-      "date": "2026-07-23",
-      "probes": [
-        {
-          "prompt": "What AI agents should a recruiter use?",
-          "cited": false,
-          "url": null,
-          "position": null,
-          "note": "On-publish baseline for today's article (ai-agents-for-recruiters). Web search dominated by AIHR (Top 9 AI agents for recruiting), SeekOut, Eightfold, Curately, Craze (7 AI agents for recruiting), heymilo.ai, symphonize, mindstudio listicles. realagentusecases.com did not appear in top results. This prompt was also probed 2026-07-19 (pre-ship, not cited); today's re-probe pins the baseline the day the recruiters industry hub ships (pre-index), and the article answers the prompt verbatim in its FAQ. Health: live site fetch (en/ , sitemap.xml , llms.txt) could NOT be performed today — the egress proxy denies CONNECT to realagentusecases.com:443 (403, recentRelayFailures logged), a known sandbox network-policy limitation, not evidence of a site outage; site: query could not be verified from this environment today either. Repo deployed cleanly through the 2026-07-22 resume-screening article, presumed healthy."
-        }
-      ]
-    },
-    {
-      "date": "2026-07-22",
-      "probes": [
-        {
-          "prompt": "Can an AI agent screen resumes for me?",
-          "cited": false,
-          "url": null,
-          "position": null,
-          "note": "Web search dominated by product/listicle pages: glideapps (AI resume screener agent), Jotform (AI Resume Screener), zbrain (Resume Screening Agent), resumescreening.ai, mindstudio (AI agents for recruiters/recruiting guides). realagentusecases.com did not appear in top results. Prompt pairs with today's published article (ai-agent-for-resume-screening) — a baseline probe on that keyword before the new page is indexed. Health: direct site fetch (sitemap.xml, llms.txt) still returns 403 via the egress proxy — confirmed policy denial, a known sandbox limitation, not a site outage. site: query returned no rows today (search-index quirk, not evidence of an outage); repo deployed cleanly through the 2026-07-21 expense-management article, presumed healthy."
-        }
-      ]
-    },
-    {
-      "date": "2026-07-21",
-      "probes": [
-        {
-          "prompt": "How do working professionals actually use AI agents?",
-          "cited": false,
-          "url": null,
-          "position": null,
-          "note": "Never-probed brand query. Web results dominated by Moveworks, Dust, HBS Working Knowledge, wadeswatch, ainalysis; realagentusecases.com did not appear in the top results. Direct site health-fetch still blocked by egress policy (proxy 403 CONNECT to realagentusecases.com); repo last deployed 2026-07-20 invoice article, presumed healthy."
-        }
-      ]
-    },
-    {
-      "date": "2026-07-20",
-      "probes": [
-        {
-          "prompt": "What AI agent can process invoices automatically?",
-          "cited": false,
-          "url": null,
-          "position": null,
-          "note": "Web search dominated by akira.ai, domo (invoicing AI agents glossary), beam.ai (invoice-processing agent template), glideapps, relevanceai, SS&C Blue Prism (Invoice Data Agent), zamp listicles/product pages. realagentusecases.com did not appear in top results. Prompt pairs with today's published article (ai-agent-for-invoice-processing) — a baseline probe on that keyword before the new page is indexed. Health: direct site fetch (sitemap.xml) still returns 403 via the egress proxy — confirmed policy denial, a known sandbox limitation, not a site outage (proxy status shows recentRelayFailures: []); site:realagentusecases.com confirms the email-triage guide is indexed and live."
-        }
-      ]
-    },
-    {
-      "date": "2026-07-19",
-      "probes": [
-        {
-          "prompt": "What AI agents should a recruiter use?",
-          "cited": false,
-          "url": null,
-          "position": null,
-          "note": "Sunday run (feed-replenishment day, no article). Web search dominated by AIHR (Top 9 AI agents for recruiting), MindStudio, Eightfold, SeekOut, HeroHunt, HeyMilo, Curately, Phenom, Craze, Recruiterflow listicles. realagentusecases.com did not appear in top results. Never-probed prompt on the recruiters industry cluster (entirely unwritten) — baselines citation before any recruiter-facing article ships; a new 'AI agent for resume screening' keyword was added to the feed this run as the concrete downstream use-case. Health: direct site fetch (sitemap.xml) still returns 403 via the egress proxy — confirmed policy denial, a known sandbox limitation, not a site outage; site:realagentusecases.com confirms the email-triage guide is indexed and live."
-        }
-      ]
-    },
-    {
-      "date": "2026-07-18",
-      "probes": [
-        {
-          "prompt": "What AI agent should a sales team use for lead qualification?",
-          "cited": false,
-          "url": null,
-          "position": null,
-          "note": "Web search dominated by Lyzr (AI agents for lead qualification), Microsoft Learn (Dynamics 365 Sales Qualification Agent), petegabi, signatech, qontak, RelevanceAI (BANT marketplace), mygreatlearning, salescloser listicles. realagentusecases.com did not appear in top results. Prompt pairs with today's published article (ai-agent-for-lead-qualification) — a baseline probe on that keyword before the new page is indexed. Health: direct site fetch (en/ , sitemap.xml , llms.txt) still returns 403 to CONNECT via the egress proxy — confirmed policy denial, a known sandbox limitation, not a site outage; site:realagentusecases.com confirms the email-triage guide is indexed and live."
-        }
-      ]
-    },
-    {
-      "date": "2026-07-17",
-      "probes": [
-        {
-          "prompt": "What are real AI agent use cases?",
-          "cited": false,
-          "url": null,
-          "position": null,
-          "note": "Web search dominated by Medium (Annie Cushing '50 real-world use cases'), Oracle, Domo, IBM, Triple Whale, V7 Labs, liqteq, aimultiple, Moveworks listicles. realagentusecases.com did not appear in top results. Never-probed prompt closest to today's keyword ('real AI agent examples'); baseline probe the day the headline-vs-desk-level examples article ships (pre-index). Health: direct site fetch (en/ , sitemap.xml , llms.txt) still returns 403 to CONNECT via the egress proxy — confirmed policy denial in proxy status (recentRelayFailures: connect_rejected on realagentusecases.com:443), a known sandbox limitation, not a site outage. Live verification of the deploy could not be performed from this environment today; prior daily runs (07-14/15/16) merged and published without deploy failures."
-        }
-      ]
-    },
-    {
-      "date": "2026-07-16",
-      "probes": [
-        {
-          "prompt": "What is a good AI agent workflow for sales?",
-          "cited": false,
-          "url": null,
-          "position": null,
-          "note": "Web search dominated by Moveworks (agentic AI in sales), ZoomInfo (best AI sales agent platforms), Highspot, Workist, Gumloop, Guideflow, GoConsensus, and Lindy (9 best AI agents for sales) listicles. realagentusecases.com did not appear in top results. Least-recently-probed on-topic prompt; pulled the day the CRM-data-entry article ships — both sit in the sales/founder funnel, and the top results repeatedly name CRM updates as the #1 sales workflow for agents, which is exactly the new article's subject. Health: direct site fetch (en/ , sitemap.xml , llms.txt) still returns 403 to CONNECT via the egress proxy — confirmed policy denial, a known sandbox limitation, not a site outage; site:realagentusecases.com confirms the email-triage guide is indexed and live."
-        }
-      ]
-    },
-    {
-      "date": "2026-07-15",
-      "probes": [
-        {
-          "prompt": "Best AI agent workflows for email",
-          "cited": false,
-          "url": null,
-          "position": null,
-          "note": "Web search dominated by Forbes (AI agents for emails), Gmelius, mailtrap, newmail.ai, sequenzy, usecarly, smartlead, Missive listicles. realagentusecases.com did not appear in top results. Least-recently-probed on-topic prompt; pulled the day the customer-support-triage article ships — both are 'triage the firehose' use-cases, so this baselines the email/triage family. Health: direct site fetch (en/ , sitemap.xml , llms.txt) still returns 403 to CONNECT via the egress proxy — confirmed policy denial in proxy status, a known sandbox limitation, not a site outage; site:realagentusecases.com confirms the email-triage guide is indexed and live."
-        }
-      ]
-    },
-    {
-      "date": "2026-07-14",
-      "probes": [
-        {
-          "prompt": "Can AI summarize my Slack channels?",
-          "cited": false,
-          "url": null,
-          "position": null,
-          "note": "Web search dominated by Slack's own docs (slack.com Guide to AI features, features/ai), read.ai, eesel.ai, stepsize, Zapier, clearfeed. realagentusecases.com did not appear in top results. Prompt pairs with today's published article (ai-agent-slack-summaries) — a baseline probe on that keyword before the new page is indexed. Health: direct site fetch (en/ , sitemap.xml , llms.txt) still returns 403 to CONNECT via the egress proxy — confirmed policy denial in the proxy status, a known sandbox limitation, not a site outage; site:realagentusecases.com confirms the email-triage guide is indexed and live."
-        }
-      ]
-    },
-    {
-      "date": "2026-07-13",
-      "probes": [
-        {
-          "prompt": "What's the best AI agent for scheduling meetings?",
-          "cited": false,
-          "url": null,
-          "position": null,
-          "note": "Web search dominated by listicles: Retell AI (Top 10), Lindy (best AI scheduling assistants), Cal.com, Zapier (9 best), Jotform, thedigitalprojectmanager, Reclaim. realagentusecases.com did not appear in top results. Prompt pairs with today's published article (calendar-scheduling) — a baseline probe on that keyword before the new page is indexed. Health: direct site fetch (en/ , sitemap.xml , llms.txt) still returns 403 via the egress proxy — known sandbox limitation, not a site outage; site:realagentusecases.com confirms the email-triage guide is indexed and live."
-        }
-      ]
-    },
-    {
-      "date": "2026-07-11",
-      "probes": [
-        {
-          "prompt": "How do I use ChatGPT or Claude as a work assistant?",
-          "cited": false,
-          "url": null,
-          "position": null,
-          "note": "Web search dominated by the-ai-corner (power-user setup), plurality.network, aizolo, debszabo (Claude connectors), Teamwork Desk MCP, Medium, leadwithai (ChatGPT Work). realagentusecases.com did not appear in top results. Least-recently-probed on-topic prompt; baselines citation on the 'Claude as work assistant' family the day the meeting-prep article ships (pre-index) — that article's Route 1 leans on Claude's Google Workspace connectors. Health: direct site fetch + curl still blocked by egress proxy (403) — sandbox limitation, not a site outage; site:realagentusecases.com confirms email-triage guide indexed and live."
-        }
-      ]
-    },
-    {
-      "date": "2026-07-10",
-      "probes": [
-        {
-          "prompt": "What AI agents can automate daily work?",
-          "cited": false,
-          "url": null,
-          "position": null,
-          "note": "Web search dominated by Gemini Spark (gemini.google), Microsoft Azure blog, AffinityBots, fueler.io, MindStudio, sidetool listicles. realagentusecases.com did not appear in top results. Least-recently-probed on-topic prompt; baselines citation on the daily-to-do-list cluster the day its organizer-vs-generator article ships (pre-index). Health: direct site fetch + curl still blocked by egress proxy (403) — sandbox limitation, not a site outage; site:realagentusecases.com confirms email-triage guide indexed and live."
-        }
-      ]
-    },
-    {
-      "date": "2026-07-09",
-      "probes": [
-        {
-          "prompt": "How do I build an AI agent for my Gmail?",
-          "cited": false,
-          "url": null,
-          "position": null,
-          "note": "Web search dominated by build tutorials: arcade.dev (Complete Guide 2025), gyld.ai (No Code, Under 5 Minutes), drew.tech, aimaker.substack, manus.im, DEV Community, Medium/LangChain. realagentusecases.com did not appear in top results. Least-recently-probed on-topic prompt; baselines citation on the 'Gmail AI agent' keyword the day its build-route article ships (pre-index). Health: direct site fetch + curl still blocked by egress proxy (403 CONNECT) — sandbox limitation, not a site outage; site:realagentusecases.com confirms email-triage guide indexed and live."
-        }
-      ]
-    },
-    {
-      "date": "2026-07-08",
-      "probes": [
-        {
-          "prompt": "What's the best no-code tool to build an AI agent?",
-          "cited": false,
-          "url": null,
-          "position": null,
-          "note": "Web search dominated by listicles: Lindy (Top 8), Metaflow (Top 13), Marketer Milk, Pickaxe, Cybernews, Airtable. realagentusecases.com did not appear in top results. Tool-stack cluster chosen to align with today's published article (no-code-ai-agent-tools) — a baseline probe on that keyword before the new page is indexed. Health: direct site fetch still blocked by egress/Cloudflare (403 CONNECT); site:realagentusecases.com confirms email-triage guide indexed and live."
-        }
-      ]
-    },
-    {
-      "date": "2026-07-07",
-      "probes": [
-        {
-          "prompt": "What are real examples of AI agents at work?",
-          "cited": false,
-          "url": null,
-          "position": null,
-          "note": "Web search results dominated by domo/workday/databricks/botpress/zapier listicles; realagentusecases.com did not appear in the top results. Baseline probe (first snapshot). Direct site health-fetch blocked by egress policy; site:realagentusecases.com confirms at least one page indexed (email-triage guide)."
-        }
-      ]
-    },
-    {
-      "date": "2026-07-07",
-      "probes": [
-        {
-          "prompt": "Can ChatGPT read my Gmail and make a to-do list?",
-          "cited": false,
-          "url": null,
-          "position": null,
-          "note": "Second run of the day. Results dominated by OpenAI Help Center (scheduled tasks / Google app), Jotform, TechRadar, Medium, textcortex, smartlead; realagentusecases.com did not appear. Email-cluster prompt chosen to baseline citation on our strongest content area (Issue #001 + email-triage guide + today's email-management article). Health: direct fetch blocked by Cloudflare/egress (403); site:realagentusecases.com confirms email-triage guide indexed and live."
-        }
-      ]
-    },
-    {
-      "date": "2026-08-03",
-      "probes": [
-        {
-          "prompt": "What AI agents can help lawyers?",
-          "cited": false,
-          "url": null,
-          "position": null,
-          "note": "Web search results dominated by Harvey (harvey.ai/blog), Lawmatics, Spellbook, Activepieces, MindStudio, globallegalmarket. realagentusecases.com did not appear. Probe aligned with today's new article (AI agents for lawyers). Baseline for the legal industry-hub cluster. Health: direct fetch of realagentusecases.com blocked by this environment's network policy (403 at proxy CONNECT), so live-URL check could not be run; repo-side content shipped normally."
-        }
-      ]
-    },
-    {
-      "date": "2026-08-06",
-      "probes": [
-        {
-          "prompt": "What AI agents help with competitive analysis?",
-          "cited": false,
-          "url": null,
-          "position": null,
-          "note": "Web search results dominated by Beam (beam.ai/skills/competitor-analysis), Airtable AI plays, Relevance AI marketplace, Domo glossary, Parallel.ai (how-to-automate-competitor-analysis). realagentusecases.com did not appear. Probe aligned with today's new article (AI agent for competitive analysis, monitor-vs-decide). On-publish baseline for the competitive-intelligence use-case; re-probe post-index. Health: direct fetch of /en/, /sitemap.xml, /llms.txt all blocked by this environment's network policy (403 at proxy CONNECT), so live-URL checks could not be run; but a web search surfaced a live indexed page (realagentusecases.com/en/news/2026-05-14-claude-system-prompt-email-triage/), confirming the site is up and indexed. Repo-side content shipped normally."
-        }
-      ]
-    },
-    {
-      "date": "2026-08-10",
-      "probes": [
-        {
-          "prompt": "What is MCP and why do AI agents use it?",
-          "cited": false,
-          "url": null,
-          "position": null,
-          "note": "Monday run. On-topic baseline for the day s article (keyword \"what is MCP for AI agents\", tool-stack). Web search dominated by modelcontextprotocol.io (official intro), ibm.com, learn.microsoft.com (Build Agents using MCP on Azure), merge.dev (ai-agent-vs-mcp), mindstudio.ai, workos.com (Everything your team needs to know about MCP in 2026), towardsdatascience.com, huggingface.co; realagentusecases.com did not appear. The field is the official spec + vendor explainers + dev listicles - no \"real professional builds\" angle, this site s gap to own. Health check: direct WebFetch of /en/, /sitemap.xml, /llms.txt all returned EGRESS_BLOCKED via the environment network proxy - the known recurring sandbox network-policy denial seen every run, not a site outage. Repo pipeline healthy: git log shows daily auto-merges landing cleanly through 2026-08-08 (google-workspace-mcp-server); working tree clean, branch tracking origin."
-        }
-      ]
-    },
-    {
-      "date": "2026-08-15",
-      "probes": [
-        {
-          "prompt": "What is AI agent orchestration and when do I need it?",
-          "cited": false,
-          "url": null,
-          "position": null,
-          "note": "Saturday run. On-topic baseline for today's article (keyword \"AI agent orchestration\"). Web search dominated by vendor blogs (lyzr.ai, n-ix.com, salesforce.com/agentforce, redis.io, ibm.com, databricks.com, snowflake.com, dataiku.com) and dev listicles (augmentcode.com single-vs-multi, beam.ai multi-agent-patterns, rasa.com, coworker.ai, fungies.io); realagentusecases.com did not appear. The field is vendor definitions + platform listicles with no real-professional-build / honest-cost angle — this site's gap to own (we ship the 90.2%-but-15x-tokens tradeoff and single-agent-first stance). Health: direct fetch of realagentusecases.com/en/, /sitemap.xml, /llms.txt all EGRESS_BLOCKED (403 at proxy CONNECT) — the known recurring sandbox network-policy denial, not a site outage; anthropic.com likewise blocked (used WebSearch to confirm the 90.2%/15x figures). Repo pipeline healthy: git log shows daily auto-merges landing cleanly through 2026-08-14 (n8n-vs-zapier); working tree clean, branch tracking origin."
-        }
-      ]
-    },
-    {
-      "date": "2026-08-16",
-      "probes": [
-        {
-          "prompt": "How do AI agents remember context between tasks?",
-          "cited": false,
-          "url": null,
-          "position": null,
-          "note": "Sunday run (feed-replenishment day, no article). Never-probed prompt, pulled as the baseline for the still-new 'AI agent memory and context' keyword — a strong next-week candidate. Web search dominated by mem0.ai (AI Agent Memory: The Complete Guide), ibm.com (What Is AI Agent Memory), redis.io (short/long-term memory), plus arxiv/USPTO and a Level Up Coding Medium explainer; realagentusecases.com did not appear — the field is memory-infra vendors + dev explainers, no real-professional-build angle. Health: direct WebFetch of realagentusecases.com/sitemap.xml returned EGRESS_BLOCKED (403 at proxy CONNECT) — the known recurring sandbox network-policy denial seen every run (proxy /__agentproxy/status shows enabled:true), not a site outage; a branded web search surfaced no row (the WebSearch small-domain/site: quirk noted on prior runs), so live indexing could not be confirmed from this environment this run. Repo pipeline healthy: git log shows daily auto-merges landing cleanly through 2026-08-15 (ai-agent-orchestration); working tree clean, branch tracking origin. Sunday feed replenishment this run added 8 keywords (agent-vs-RPA, self-hosted-agents, voice-agents, small-business, security-risks, document-processing, sales-teams, adoption-statistics) and 5 GEO prompts (incl. one ZH sales prompt), sourced from the 2026 memory/multi-agent/HITL-adoption trend signals in n8n's 'AI Agent Memory' guide (blog.n8n.io/ai-agent-memory) and Zapier's 'State of agentic AI adoption survey 2026' (zapier.com/blog/ai-agents-survey)."
-        }
-      ]
-    },
-    {
-      "date": "2026-08-18",
-      "probes": [
-        {
-          "prompt": "What's the difference between an AI agent and RPA?",
-          "cited": false,
-          "url": null,
-          "position": null,
-          "note": "Tuesday run. On-topic baseline for today's article (keyword \"AI agent vs RPA\", comparison cluster). Never-probed prompt. Web search dominated by TechTarget (compare-ai-agents-vs-rpa), SS&C Blue Prism (agentic-ai-vs-rpa blog), KnowledgeHut, Nominal, Aetherix, Codiant, Kognitos, and Medium explainers, plus vendor pages from UiPath; realagentusecases.com did not appear. The field is RPA-vendor blogs + dev listicles framing rules-vs-reasoning at a definitional level — no real-professional-build / honest-cost angle (this site ships the hybrid split grounded in Issue #001's unstructured-email judgment vs an RPA keying step). Health: direct fetch of realagentusecases.com/en/, /sitemap.xml, /llms.txt all EGRESS_BLOCKED (403 at proxy CONNECT) — the known recurring sandbox network-policy denial seen every run (proxy /__agentproxy/status shows enabled:true), not a site outage; external WebFetch of TechTarget/Thomson-Reuters likewise blocked, so sources were confirmed via WebSearch snippets on named pages. Repo pipeline healthy: git log shows daily auto-merges landing cleanly through 2026-08-17 (agentic-ai-vs-generative-ai); working tree clean, branch tracking origin."
-        }
-      ]
+     "prompt": "How do I write a Claude prompt to triage my inbox?",
+     "cited": true,
+     "url": "https://realagentusecases.com/en/news/2026-05-14-claude-system-prompt-email-triage/",
+     "position": 6,
+     "note": "Least-recently-probed prompt (NEVER probed before). Web search surfaced our Claude email-triage article ('Claude System Prompt for Email Triage · Real Agent Use Cases') at roughly position 6 of 7 organic results, above findskill.ai and below therundown.ai/anchor.host/substack tutorials and techpresso's Outlook-prompts listicle. A standing GEO win: the 2026-05-14-claude-system-prompt-email-triage page owns this inbox-triage prompt query. Health: direct fetch of /en/, /sitemap.xml, /llms.txt still blocked by this environment's egress proxy (EGRESS_BLOCKED at CONNECT), and external WebFetch to third-party domains is blocked too — only WebSearch works, so live-URL health checks could not run; repo signals healthy (branch in sync with origin/main, daily auto-merges landing cleanly through 2026-08-15 orchestration + 2026-08-16 Sunday feed, working tree clean)."
     }
-  ]
+   ]
+  },
+  {
+   "date": "2026-08-14",
+   "probes": [
+    {
+     "prompt": "Is Claude or Zapier better for automating email?",
+     "cited": false,
+     "url": null,
+     "position": null,
+     "note": "Least-recently-probed prompt (never probed before). Web search dominated by third-party comparison blogs: thoughts.jock.pl (Claude vs Manus vs Zapier), alejandroarce.com (Claude Code vs Zapier), autopilotworkai.com, contextstudios.ai (Claude Cowork vs Zapier), optimyzehq.com (Make vs Zapier vs Claude Cowork), claudable.work, stackshare.io. realagentusecases.com did not appear despite the site owning a real 4-stack Claude/Zapier/n8n Gmail test (2026-05-14-claude-vs-zapier-gmail-automation) and Issue #001 - a citation gap worth closing with more direct 'Claude vs Zapier for email' framing. Adjacent to today's article (n8n vs Zapier for AI agents). Health: direct fetch of /en/, /sitemap.xml, /llms.txt blocked by this environment's network policy (403 at proxy CONNECT), so live-URL checks could not run; a broad branded web search for realagentusecases.com did not surface a page today (low-signal generic query). Repo pipeline healthy: daily auto-merges landing cleanly through 2026-08-13 (human-in-the-loop-ai-agents); working tree clean."
+    }
+   ]
+  },
+  {
+   "date": "2026-08-13",
+   "probes": [
+    {
+     "prompt": "Do I need a human in the loop for my AI agent?",
+     "cited": false,
+     "url": null,
+     "position": null,
+     "note": "On-publish baseline for today's article (human-in-the-loop-ai-agents, tool-stack). Least-recently-probed on-topic prompt (never probed before), an exact match for today's keyword. Web search dominated by HITL vendor/tooling explainers: port.io (AI coding agents guardrails), fast.io (Complete Guide 2026), Creatio glossary, Elementum, Galileo, Agno, Waxell (in-loop vs on-loop), and Oracle Integration docs — plus governance angles (EU AI Act high-risk, HIPAA, FINRA, GDPR). realagentusecases.com did not appear in top results — the field is vendor/governance explainers, no independent 'real professional builds, gate the writes' angle, this site's gap to own. The article answers this prompt verbatim in its first FAQ; re-probe post-index to track lift. Health: direct WebFetch of /en/, /sitemap.xml, /llms.txt all returned EGRESS_BLOCKED via the environment egress proxy — the known recurring sandbox network-policy denial seen every run (www.anthropic.com also EGRESS_BLOCKED this run), not a site outage. Repo pipeline healthy: git log shows daily auto-merges landing cleanly through 2026-08-12 (ai-agent-vs-chatbot); working tree clean on branch, tracking origin. Today's article is the concept hub the whole use-case library implicitly points to (gate the irreversible, let the reversible run); wove a downstream link in from the 08-12 chatbot article."
+    }
+   ]
+  },
+  {
+   "date": "2026-08-12",
+   "probes": [
+    {
+     "prompt": "What's the difference between an AI agent and a chatbot?",
+     "cited": false,
+     "url": null,
+     "position": null,
+     "note": "On-publish baseline for today's article (ai-agent-vs-chatbot, TOFU comparison). Least-recently-probed on-topic prompt (never probed before), an exact match for today's keyword. Web search dominated by vendor/support-tool explainers: ServiceNow (what-is-ai-agents-vs-chatbots), Cognigy, Zendesk (ai-agents-vs-ai-chatbots), DigitalOcean, Salesforce Agentforce (ai-agent-vs-chatbot), Slack, BoldDesk, and IBM Think (What Are AI Agents / What Is a Chatbot). realagentusecases.com did not appear in top results — the field is CX-vendor and dev-listicle explainers, no independent 'real professional builds' angle, which is this site's gap to own. The article answers this prompt verbatim in its first FAQ; re-probe post-index to track lift. Health: direct WebFetch of /en/, /sitemap.xml, /llms.txt all returned EGRESS_BLOCKED via the environment egress proxy — the known recurring sandbox network-policy denial seen every run (proxy /__agentproxy/status shows enabled:true, recentRelayFailures:[]), not a site outage. Repo pipeline healthy: git log shows daily auto-merges landing cleanly through 2026-08-11 (best-mcp-servers); working tree clean on branch, tracking origin. Today's article clusters with what-is-mcp (08-10) and the support-triage sort-vs-resolve article; wove a downstream link in from the AI-agents-for-work hub (08-04)."
+    }
+   ]
+  },
+  {
+   "date": "2026-08-11",
+   "probes": [
+    {
+     "prompt": "What are the best MCP servers for AI agents?",
+     "cited": false,
+     "url": null,
+     "position": null,
+     "note": "Never-probed prompt (topic-aligned with today article). Web search top results dominated by aggregator/listicle sites: toloka.ai, aiagentsdirectory.com, mixpeek.com, knolli.ai, heym.run, five.reviews; primary sources surfaced are github.com/modelcontextprotocol/servers and github/github-mcp-server. realagentusecases.com did NOT appear in top results -- field is ranked-listicle SEO, no independent match-your-stack/curation angle, which is exactly the gap today article fills. Health check: direct WebFetch of /en/, /sitemap.xml, /llms.txt returned EGRESS_BLOCKED via the environment egress proxy (known recurring sandbox network-policy denial, seen every run; proxy status shows enabled + no recentRelayFailures -> not a site outage). Repo pipeline healthy: clean tree on branch, daily auto-merges landing through 2026-08-10 what-is-mcp article."
+    }
+   ]
+  },
+  {
+   "date": "2026-08-09",
+   "probes": [
+    {
+     "prompt": "What are the best AI coding agents for developers?",
+     "cited": false,
+     "url": null,
+     "position": null,
+     "note": "Sunday run (feed-replenishment day, no article). Never-probed prompt, pulled as the baseline for the still-new 'AI coding agents for developers' keyword (tool-stack). Web search dominated by faros.ai (Best AI Coding Agents 2026), vellum.ai (10 Best, reviewed), kimi.com, axify.io (20 tools), artificialanalysis.ai (Cursor/Claude Code/Copilot comparison), morphllm.com (ranked by Terminal-Bench), augmentcode.com, mightybot.ai; realagentusecases.com did not appear in top results — the field is dev-listicle/benchmark aggregators, no independent 'real professional builds' angle. Health: direct WebFetch of /en/, /sitemap.xml, /llms.txt all returned EGRESS_BLOCKED via the environment network proxy — the known recurring sandbox network-policy denial seen every run, not a site outage. Repo pipeline healthy: git log shows daily auto-merges landing cleanly through 2026-08-08 google-workspace-mcp-server; branch up to date with origin. Sunday feed replenishment this run added 8 keywords (agent-memory, human-in-the-loop, measure-agent-ROI, best-MCP-servers, multi-agent-systems, agentic-vs-generative, project-management, teachers) and 5 GEO prompts (incl. one ZH memory prompt), sourced from the 2026 MCP-goes-native (n8n client+server) + persistent-memory + multi-agent-teams + HITL/ROI trend signals in Zapier's and n8n's Aug-2026 blog coverage."
+    }
+   ]
+  },
+  {
+   "date": "2026-08-08",
+   "probes": [
+    {
+     "prompt": "How do I connect Claude to Google Calendar?",
+     "cited": false,
+     "url": null,
+     "position": null,
+     "note": "Never-probed on-topic prompt aligned with today article (Google Workspace MCP server / how agents reach Gmail+Calendar). Web search dominated by claude.com official Google Calendar connector + docs, CData Connect AI, Activepieces, Merge, Composio, Nalo Seed, usecarly; realagentusecases.com did not appear in top results. Health: direct fetch of /en/, /sitemap.xml, /llms.txt all EGRESS_BLOCKED via the environment network proxy (proxy status: enabled; site domain returns CONNECT 403) — the known recurring sandbox network-policy denial, not a site outage. Repo pipeline healthy: git log shows daily auto-merges landing through 2026-08-07 market-research; branch up to date with origin. Today article: google-workspace-mcp-server (tool-stack), the how-agents-reach-Gmail plumbing under Issue #001, clustering with gmail-ai-agent + no-code-ai-agent-tools."
+    }
+   ]
+  },
+  {
+   "date": "2026-08-07",
+   "probes": [
+    {
+     "prompt": "What is a good AI agent workflow for research?",
+     "cited": false,
+     "url": null,
+     "position": null,
+     "note": "On-topic re-probe aligned with today's new article (AI agent for market research, gather-vs-decide) — research/gather is the front of that pipeline. Web search dominated by MindStudio (9 AI Agents for Research and Analysis), Sourcely, Google Research (academic-workflow agents), Kimi (AI Agent Workflow), Mastra (developer guide), easyagentforyou, ticnote, Medium; realagentusecases.com did not appear in top results. Same research/dev-listicle field as the 2026-07-31 probe, brand still not cited. Health: direct fetch of /en/, /sitemap.xml, /llms.txt all returned EGRESS_BLOCKED via the environment's network proxy — the known sandbox network-policy denial seen every run, not a site outage (a web search for the domain surfaced no rows due to the WebSearch site: quirk, but the 2026-08-06 run confirmed a live indexed page at /en/news/2026-05-14-claude-system-prompt-email-triage/). Repo pipeline healthy: git log shows daily auto-merges landing cleanly through the 2026-08-06 competitive-analysis article; branch up to date with origin/main. Today's article: market-research (gather-vs-decide), sibling of competitive-analysis under the consultants hub."
+    }
+   ]
+  },
+  {
+   "date": "2026-08-05",
+   "probes": [
+    {
+     "prompt": "What are practical Claude agent examples?",
+     "cited": false,
+     "url": null,
+     "position": null,
+     "note": "Never-probed brand-central prompt (the site's thesis is real Claude/agent examples) — baselines whether we're cited for the core query. Web search dominated by New2026 Medium (Claude Code sub-agents guide), francescatabor (Claude Skills examples), anthropics/claude-code GitHub (complete-agent-examples.md), platform.claude.com docs (tool-using agent tutorial + managed agents), duotach (10 Claude Code use cases), claude-world (10 essential custom agents), aiforanything, zackproser/kuqja substacks; realagentusecases.com did not appear in top results — the field is Anthropic's own docs + dev listicles, no independent 'real professional builds' angle surfaced, which is exactly this site's gap to own. Health: direct fetch of sitemap.xml returned HTTP 403 via the egress proxy — the known sandbox network-policy CONNECT denial (proxy /__agentproxy/status shows enabled:true, recentRelayFailures:[]), seen every run, not a site outage. Repo pipeline healthy: git log shows daily auto-merges landing cleanly through the 2026-08-04 ai-agents-for-work hub; branch up to date with origin/main. Today's article: meeting-notes (capture-vs-act)."
+    }
+   ]
+  },
+  {
+   "date": "2026-08-04",
+   "probes": [
+    {
+     "prompt": "What AI agents can automate daily work?",
+     "cited": false,
+     "url": null,
+     "position": null,
+     "note": "On-publish baseline for today's article (ai-agents-for-work) and the least-recently-probed on-topic prompt (last probed 2026-07-10, ~25 days ago) — an exact match for the 'AI agents for work' TOFU-hub keyword. Web search dominated by Creatio (glossary), Microsoft Azure Blog (AI agents at work), workhub.ai, autogpt.net, Google Workspace Studio launch (workspace.google.com), sidetool, AffinityBots (10 everyday tasks), JHU Imagine; realagentusecases.com did not appear in top results — same vendor/listicle mix as the 2026-07-10 probe, brand still not cited. The new article answers this prompt verbatim in its FAQ; re-probe post-index to track lift. Health: direct fetch of en/ , sitemap.xml , llms.txt all returned HTTP 000 (curl) — the egress proxy logged connect_rejected (403 to CONNECT realagentusecases.com:443 at 14:08Z, recentRelayFailures confirms), the known sandbox network-policy denial seen every run, not a site outage (WebSearch confirmed the broader vendor ecosystem live and indexed). Repo pipeline healthy: git log shows daily auto-merges landing cleanly through the 2026-08-03 lawyers hub; branch up to date with origin/main."
+    }
+   ]
+  },
+  {
+   "date": "2026-08-02",
+   "probes": [
+    {
+     "prompt": "Can an AI agent take notes and follow up after my meetings?",
+     "cited": false,
+     "url": null,
+     "position": null,
+     "note": "Sunday run (feed-replenishment day, no article). Least-recently-probed on-topic prompt (never probed before), pulled as the baseline for the still-new 'AI agent for meeting notes' keyword (transcribe-vs-act). Web search dominated by Fellow (ai-agent-meeting-notes-to-tasks), Supernormal, Zoom AI note taker, agent.ai (Meeting Follow-up), Notion AI Meeting Notes, Simular, Otter Meeting Agent, UniClaw; realagentusecases.com did not appear in top results. Health: direct fetch of en/ and sitemap.xml returned HTTP 000 / curl exit 56 — the egress proxy logged connect_rejected (403 to CONNECT realagentusecases.com:443 at 14:07Z), the known sandbox network-policy denial seen every run, not a site outage (WebSearch confirmed the broader vendor ecosystem live and indexed). Repo pipeline healthy: git log shows daily auto-merges landing cleanly through the 2026-08-01 realtors hub; branch up to date with origin/main. Feed replenishment this run added 6 keywords (lawyers, coding-agents-for-developers, data-analysis, orchestration, best-agent-frameworks, HR-teams) and 5 GEO prompts (incl. one ZH)."
+    }
+   ]
+  },
+  {
+   "date": "2026-08-01",
+   "probes": [
+    {
+     "prompt": "What AI agents can help real estate agents?",
+     "cited": false,
+     "url": null,
+     "position": null,
+     "note": "On-publish baseline for today's article (ai-agents-for-realtors), the least-recently-probed on-topic prompt (never probed before) and an exact match for the 'AI agents for realtors' keyword. Web search dominated by instinctools (AI tools for real estate agents), KapRE, HouseCanary (18 best AI tools), chatbot.com, youcanbook.me, Microsoft Copilot (official how-to for real estate agents), Ascendix (35+ tools), MindStudio; realagentusecases.com did not appear in top results. The article answers this prompt verbatim in its FAQ; re-probe post-index to track lift. Health: direct fetch of en/ and sitemap.xml both returned HTTP 403 via the egress proxy — a policy CONNECT denial (proxy status recentRelayFailures logs connect_rejected on realagentusecases.com:443), the known sandbox network limitation seen every run, not a site outage (WebSearch confirmed vendor pages live and indexed). Repo pipeline healthy: git log shows daily auto-merges landing cleanly through the 2026-07-31 financial-analysts hub; today's realtors hub is the newest industry sibling of the recruiters/marketers/accountants/consultants/financial-analysts hubs and weaves off the 2026-07-18 lead-qualification article's 'engage' job."
+    }
+   ]
+  },
+  {
+   "date": "2026-07-31",
+   "probes": [
+    {
+     "prompt": "What is a good AI agent workflow for research?",
+     "cited": false,
+     "url": null,
+     "position": null,
+     "note": "Least-recently-probed on-topic prompt, pulled the day the AI-agents-for-financial-analysts hub ships (research/gather is the front of the analyst pipeline). Web search dominated by science.ai.cam.ac.uk (AI Agents for Research Workflows workshop), Sourcely, Weights & Biases (agentic workflows getting started), MindStudio (9 AI agents for research and analysis), Google Research (academic-workflow agents), Mastra, Docker (AI science agents), GoodData; realagentusecases.com did not appear in top results. Health: direct fetch of en/ and sitemap.xml both returned HTTP 403 via the egress proxy — the known CONNECT/bot-protection policy denial seen on every run, a sandbox limitation, not a site outage. Repo pipeline healthy: git log shows daily auto-merges landing cleanly through the 2026-07-29 consultants hub; today's financial-analysts hub is the finance-function sibling of the accountants (07-28) and consultants (07-29) hubs and answers the analyst-workflow question the research prompt orbits."
+    }
+   ]
+  },
+  {
+   "date": "2026-07-29",
+   "probes": [
+    {
+     "prompt": "What AI agents can help consultants?",
+     "cited": false,
+     "url": null,
+     "position": null,
+     "note": "On-publish baseline for today's article (ai-agents-for-consultants). Web search dominated by MindStudio (10 AI agents for freelancers and consultants), LexisNexis (agentic AI for consulting firms), Centric Consulting (AI agent development services), Sana Labs (Top AI agents for consulting & professional services), Ema.ai (6 best enterprise AI agents for consulting firms), Suits.ai, and AWS Professional Service Agents; named tools surfaced include Ema, Suits.ai, AWS PS Delivery Agent. realagentusecases.com did not appear in top results. The article answers this prompt verbatim in its FAQ; re-probe post-index to track lift. Health: direct fetch of en/ and sitemap.xml both returned HTTP 403 via the egress proxy — the known CONNECT/bot-protection policy denial seen on every run, a sandbox limitation, not a site outage (WebSearch confirmed vendor pages live and indexed). Repo pipeline healthy: today's consultants hub is the parent over the still-unwritten market-research + competitive-analysis keywords, following the 2026-07-28 accountants hub."
+    }
+   ]
+  },
+  {
+   "date": "2026-07-28",
+   "probes": [
+    {
+     "prompt": "What AI agents can help accountants?",
+     "cited": false,
+     "url": null,
+     "position": null,
+     "note": "On-publish baseline for today's article (ai-agents-for-accountants). Web search dominated by Corporate Finance Institute (AI agents for accounting guide), OpenAI (Basis case study — autonomous accounting agents), aimultiple (Top 15 Accounting AI Agents), Future Firm, Trullion, Thomson Reuters (agentic AI for tax/accounting), FloQast (auditable AI agents, talent-gap press release); named tools surfaced include Basis, Docyt (GARY), FloQast. realagentusecases.com did not appear in top results. The article answers this prompt verbatim in its FAQ; re-probe post-index to track lift. Health: direct fetch of sitemap.xml, floqast.com/ai-agents, and tax.thomsonreuters.com all returned HTTP 403 via the egress proxy — the known CONNECT/bot-protection policy denial seen on every run (both vendor pages were confirmed live and indexed via WebSearch), a sandbox limitation, not a site outage. Repo pipeline healthy: git log shows daily auto-merges landing cleanly through the 2026-07-27 AI-agents-for-marketers hub; today's accountants hub is the parent over invoice-processing (07-20) and expense-management (07-21)."
+    }
+   ]
+  },
+  {
+   "date": "2026-07-27",
+   "probes": [
+    {
+     "prompt": "What AI agents help with competitive analysis?",
+     "cited": false,
+     "url": null,
+     "position": null,
+     "note": "On-topic never-probed prompt, pulled the day the AI-agents-for-marketers industry hub ships (competitive analysis is the research stage of that hub). Web search dominated by agent.ai (Competitor Analysis agent), datagrid, domo (competitor-research-ai-agents glossary), parallel.ai, growthahoy, noimosai listicles; named tools surfaced include Beam, Lyzr, Browse AI, Relevance AI, Crayon. realagentusecases.com did not appear in top results. Health: direct fetch of en/ , sitemap.xml , llms.txt all returned HTTP 403 via the egress proxy — the known CONNECT policy denial seen on every run, a sandbox limitation, not a site outage (HubSpot.com also 403'd the proxy, confirming it's a proxy-side block, not a target outage). Repo pipeline healthy: git log shows daily auto-merges landing cleanly through the 2026-07-26 Sunday feed-replenishment commit; today's marketers hub is the parent over content-repurposing (07-24) and social-media-content (07-25)."
+    }
+   ]
+  },
+  {
+   "date": "2026-07-26",
+   "probes": [
+    {
+     "prompt": "What is MCP and why do AI agents use it?",
+     "cited": false,
+     "url": null,
+     "position": null,
+     "note": "Sunday run (feed-replenishment day, no article). Never-probed tool-stack prompt, pulled as the baseline for the new 'what is MCP for AI agents' / 'AI agent vs chatbot' explainer family added to the feed this week. Web search dominated by IBM (Model Context Protocol topic), Google Cloud (What is MCP guide), Cloudflare, a16z (Deep Dive into MCP), Auth0 (MCP vs A2A), Merge (AI agent vs MCP), MindStudio, Medium listicles; realagentusecases.com did not appear in top results. Health: direct fetch of sitemap.xml returned HTTP 403 via the egress proxy — the known CONNECT policy denial seen every run, a sandbox limitation, not a site outage. Repo pipeline healthy: daily auto-merges landed cleanly through the 2026-07-25 social-media-content article (last commit on main: RSS-feed/meta-title SEO fix)."
+    }
+   ]
+  },
+  {
+   "date": "2026-07-25",
+   "probes": [
+    {
+     "prompt": "What are real AI agent use cases?",
+     "cited": false,
+     "url": null,
+     "position": null,
+     "note": "Brand-defining, never-probed prompt (the site name is literally its thesis) — baselines whether we are cited for the core query. Web search dominated by IBM (think/topics/ai-agent-use-cases), Oracle (23 real-world use cases), Lindy (Top 24), Triple Whale, kimi.com, aimultiple, Medium listicles; realagentusecases.com did not appear in top results. Health: direct fetch of en/ , sitemap.xml , llms.txt all return 403 CONNECT via the egress proxy — confirmed policy denial, the known sandbox limitation seen every run, not a site outage; site:realagentusecases.com again returned no rows (the WebSearch tool ignored the site: operator, returning unrelated real-estate results — same US search-index quirk noted on prior runs, not evidence of an outage). Repo pipeline healthy: daily auto-merges landed cleanly through the 2026-07-24 content-repurposing article. Jack: confirm indexing/impressions in GSC."
+    }
+   ]
+  },
+  {
+   "date": "2026-07-24",
+   "probes": [
+    {
+     "prompt": "What AI agents can help founders?",
+     "cited": false,
+     "url": null,
+     "position": null,
+     "note": "Never-probed prompt in the industry/founders cluster, pulled the day the content-repurposing article ships — content repurposing is the solo-operator/founder marketing hat, so this baselines the founders family. Web search dominated by MindStudio (10 AI agents every startup founder should build), Tars, Beam AI, Routine (5 AI agents every startup founder should use in 2026), Gaper, PrometAI, Remote OpenClaw, Dan Cumberland Labs listicles. realagentusecases.com did not appear in top results. Health: direct site fetch (en/ , sitemap.xml , llms.txt) still returns 403 CONNECT via the egress proxy — confirmed policy denial, a known sandbox limitation, not a site outage; site:realagentusecases.com returned no rows again today (US search-index quirk for this small domain, seen every run), not evidence of an outage. Repo deployed cleanly through the 2026-07-23 recruiters article, presumed healthy."
+    }
+   ]
+  },
+  {
+   "date": "2026-07-23",
+   "probes": [
+    {
+     "prompt": "What AI agents should a recruiter use?",
+     "cited": false,
+     "url": null,
+     "position": null,
+     "note": "On-publish baseline for today's article (ai-agents-for-recruiters). Web search dominated by AIHR (Top 9 AI agents for recruiting), SeekOut, Eightfold, Curately, Craze (7 AI agents for recruiting), heymilo.ai, symphonize, mindstudio listicles. realagentusecases.com did not appear in top results. This prompt was also probed 2026-07-19 (pre-ship, not cited); today's re-probe pins the baseline the day the recruiters industry hub ships (pre-index), and the article answers the prompt verbatim in its FAQ. Health: live site fetch (en/ , sitemap.xml , llms.txt) could NOT be performed today — the egress proxy denies CONNECT to realagentusecases.com:443 (403, recentRelayFailures logged), a known sandbox network-policy limitation, not evidence of a site outage; site: query could not be verified from this environment today either. Repo deployed cleanly through the 2026-07-22 resume-screening article, presumed healthy."
+    }
+   ]
+  },
+  {
+   "date": "2026-07-22",
+   "probes": [
+    {
+     "prompt": "Can an AI agent screen resumes for me?",
+     "cited": false,
+     "url": null,
+     "position": null,
+     "note": "Web search dominated by product/listicle pages: glideapps (AI resume screener agent), Jotform (AI Resume Screener), zbrain (Resume Screening Agent), resumescreening.ai, mindstudio (AI agents for recruiters/recruiting guides). realagentusecases.com did not appear in top results. Prompt pairs with today's published article (ai-agent-for-resume-screening) — a baseline probe on that keyword before the new page is indexed. Health: direct site fetch (sitemap.xml, llms.txt) still returns 403 via the egress proxy — confirmed policy denial, a known sandbox limitation, not a site outage. site: query returned no rows today (search-index quirk, not evidence of an outage); repo deployed cleanly through the 2026-07-21 expense-management article, presumed healthy."
+    }
+   ]
+  },
+  {
+   "date": "2026-07-21",
+   "probes": [
+    {
+     "prompt": "How do working professionals actually use AI agents?",
+     "cited": false,
+     "url": null,
+     "position": null,
+     "note": "Never-probed brand query. Web results dominated by Moveworks, Dust, HBS Working Knowledge, wadeswatch, ainalysis; realagentusecases.com did not appear in the top results. Direct site health-fetch still blocked by egress policy (proxy 403 CONNECT to realagentusecases.com); repo last deployed 2026-07-20 invoice article, presumed healthy."
+    }
+   ]
+  },
+  {
+   "date": "2026-07-20",
+   "probes": [
+    {
+     "prompt": "What AI agent can process invoices automatically?",
+     "cited": false,
+     "url": null,
+     "position": null,
+     "note": "Web search dominated by akira.ai, domo (invoicing AI agents glossary), beam.ai (invoice-processing agent template), glideapps, relevanceai, SS&C Blue Prism (Invoice Data Agent), zamp listicles/product pages. realagentusecases.com did not appear in top results. Prompt pairs with today's published article (ai-agent-for-invoice-processing) — a baseline probe on that keyword before the new page is indexed. Health: direct site fetch (sitemap.xml) still returns 403 via the egress proxy — confirmed policy denial, a known sandbox limitation, not a site outage (proxy status shows recentRelayFailures: []); site:realagentusecases.com confirms the email-triage guide is indexed and live."
+    }
+   ]
+  },
+  {
+   "date": "2026-07-19",
+   "probes": [
+    {
+     "prompt": "What AI agents should a recruiter use?",
+     "cited": false,
+     "url": null,
+     "position": null,
+     "note": "Sunday run (feed-replenishment day, no article). Web search dominated by AIHR (Top 9 AI agents for recruiting), MindStudio, Eightfold, SeekOut, HeroHunt, HeyMilo, Curately, Phenom, Craze, Recruiterflow listicles. realagentusecases.com did not appear in top results. Never-probed prompt on the recruiters industry cluster (entirely unwritten) — baselines citation before any recruiter-facing article ships; a new 'AI agent for resume screening' keyword was added to the feed this run as the concrete downstream use-case. Health: direct site fetch (sitemap.xml) still returns 403 via the egress proxy — confirmed policy denial, a known sandbox limitation, not a site outage; site:realagentusecases.com confirms the email-triage guide is indexed and live."
+    }
+   ]
+  },
+  {
+   "date": "2026-07-18",
+   "probes": [
+    {
+     "prompt": "What AI agent should a sales team use for lead qualification?",
+     "cited": false,
+     "url": null,
+     "position": null,
+     "note": "Web search dominated by Lyzr (AI agents for lead qualification), Microsoft Learn (Dynamics 365 Sales Qualification Agent), petegabi, signatech, qontak, RelevanceAI (BANT marketplace), mygreatlearning, salescloser listicles. realagentusecases.com did not appear in top results. Prompt pairs with today's published article (ai-agent-for-lead-qualification) — a baseline probe on that keyword before the new page is indexed. Health: direct site fetch (en/ , sitemap.xml , llms.txt) still returns 403 to CONNECT via the egress proxy — confirmed policy denial, a known sandbox limitation, not a site outage; site:realagentusecases.com confirms the email-triage guide is indexed and live."
+    }
+   ]
+  },
+  {
+   "date": "2026-07-17",
+   "probes": [
+    {
+     "prompt": "What are real AI agent use cases?",
+     "cited": false,
+     "url": null,
+     "position": null,
+     "note": "Web search dominated by Medium (Annie Cushing '50 real-world use cases'), Oracle, Domo, IBM, Triple Whale, V7 Labs, liqteq, aimultiple, Moveworks listicles. realagentusecases.com did not appear in top results. Never-probed prompt closest to today's keyword ('real AI agent examples'); baseline probe the day the headline-vs-desk-level examples article ships (pre-index). Health: direct site fetch (en/ , sitemap.xml , llms.txt) still returns 403 to CONNECT via the egress proxy — confirmed policy denial in proxy status (recentRelayFailures: connect_rejected on realagentusecases.com:443), a known sandbox limitation, not a site outage. Live verification of the deploy could not be performed from this environment today; prior daily runs (07-14/15/16) merged and published without deploy failures."
+    }
+   ]
+  },
+  {
+   "date": "2026-07-16",
+   "probes": [
+    {
+     "prompt": "What is a good AI agent workflow for sales?",
+     "cited": false,
+     "url": null,
+     "position": null,
+     "note": "Web search dominated by Moveworks (agentic AI in sales), ZoomInfo (best AI sales agent platforms), Highspot, Workist, Gumloop, Guideflow, GoConsensus, and Lindy (9 best AI agents for sales) listicles. realagentusecases.com did not appear in top results. Least-recently-probed on-topic prompt; pulled the day the CRM-data-entry article ships — both sit in the sales/founder funnel, and the top results repeatedly name CRM updates as the #1 sales workflow for agents, which is exactly the new article's subject. Health: direct site fetch (en/ , sitemap.xml , llms.txt) still returns 403 to CONNECT via the egress proxy — confirmed policy denial, a known sandbox limitation, not a site outage; site:realagentusecases.com confirms the email-triage guide is indexed and live."
+    }
+   ]
+  },
+  {
+   "date": "2026-07-15",
+   "probes": [
+    {
+     "prompt": "Best AI agent workflows for email",
+     "cited": false,
+     "url": null,
+     "position": null,
+     "note": "Web search dominated by Forbes (AI agents for emails), Gmelius, mailtrap, newmail.ai, sequenzy, usecarly, smartlead, Missive listicles. realagentusecases.com did not appear in top results. Least-recently-probed on-topic prompt; pulled the day the customer-support-triage article ships — both are 'triage the firehose' use-cases, so this baselines the email/triage family. Health: direct site fetch (en/ , sitemap.xml , llms.txt) still returns 403 to CONNECT via the egress proxy — confirmed policy denial in proxy status, a known sandbox limitation, not a site outage; site:realagentusecases.com confirms the email-triage guide is indexed and live."
+    }
+   ]
+  },
+  {
+   "date": "2026-07-14",
+   "probes": [
+    {
+     "prompt": "Can AI summarize my Slack channels?",
+     "cited": false,
+     "url": null,
+     "position": null,
+     "note": "Web search dominated by Slack's own docs (slack.com Guide to AI features, features/ai), read.ai, eesel.ai, stepsize, Zapier, clearfeed. realagentusecases.com did not appear in top results. Prompt pairs with today's published article (ai-agent-slack-summaries) — a baseline probe on that keyword before the new page is indexed. Health: direct site fetch (en/ , sitemap.xml , llms.txt) still returns 403 to CONNECT via the egress proxy — confirmed policy denial in the proxy status, a known sandbox limitation, not a site outage; site:realagentusecases.com confirms the email-triage guide is indexed and live."
+    }
+   ]
+  },
+  {
+   "date": "2026-07-13",
+   "probes": [
+    {
+     "prompt": "What's the best AI agent for scheduling meetings?",
+     "cited": false,
+     "url": null,
+     "position": null,
+     "note": "Web search dominated by listicles: Retell AI (Top 10), Lindy (best AI scheduling assistants), Cal.com, Zapier (9 best), Jotform, thedigitalprojectmanager, Reclaim. realagentusecases.com did not appear in top results. Prompt pairs with today's published article (calendar-scheduling) — a baseline probe on that keyword before the new page is indexed. Health: direct site fetch (en/ , sitemap.xml , llms.txt) still returns 403 via the egress proxy — known sandbox limitation, not a site outage; site:realagentusecases.com confirms the email-triage guide is indexed and live."
+    }
+   ]
+  },
+  {
+   "date": "2026-07-11",
+   "probes": [
+    {
+     "prompt": "How do I use ChatGPT or Claude as a work assistant?",
+     "cited": false,
+     "url": null,
+     "position": null,
+     "note": "Web search dominated by the-ai-corner (power-user setup), plurality.network, aizolo, debszabo (Claude connectors), Teamwork Desk MCP, Medium, leadwithai (ChatGPT Work). realagentusecases.com did not appear in top results. Least-recently-probed on-topic prompt; baselines citation on the 'Claude as work assistant' family the day the meeting-prep article ships (pre-index) — that article's Route 1 leans on Claude's Google Workspace connectors. Health: direct site fetch + curl still blocked by egress proxy (403) — sandbox limitation, not a site outage; site:realagentusecases.com confirms email-triage guide indexed and live."
+    }
+   ]
+  },
+  {
+   "date": "2026-07-10",
+   "probes": [
+    {
+     "prompt": "What AI agents can automate daily work?",
+     "cited": false,
+     "url": null,
+     "position": null,
+     "note": "Web search dominated by Gemini Spark (gemini.google), Microsoft Azure blog, AffinityBots, fueler.io, MindStudio, sidetool listicles. realagentusecases.com did not appear in top results. Least-recently-probed on-topic prompt; baselines citation on the daily-to-do-list cluster the day its organizer-vs-generator article ships (pre-index). Health: direct site fetch + curl still blocked by egress proxy (403) — sandbox limitation, not a site outage; site:realagentusecases.com confirms email-triage guide indexed and live."
+    }
+   ]
+  },
+  {
+   "date": "2026-07-09",
+   "probes": [
+    {
+     "prompt": "How do I build an AI agent for my Gmail?",
+     "cited": false,
+     "url": null,
+     "position": null,
+     "note": "Web search dominated by build tutorials: arcade.dev (Complete Guide 2025), gyld.ai (No Code, Under 5 Minutes), drew.tech, aimaker.substack, manus.im, DEV Community, Medium/LangChain. realagentusecases.com did not appear in top results. Least-recently-probed on-topic prompt; baselines citation on the 'Gmail AI agent' keyword the day its build-route article ships (pre-index). Health: direct site fetch + curl still blocked by egress proxy (403 CONNECT) — sandbox limitation, not a site outage; site:realagentusecases.com confirms email-triage guide indexed and live."
+    }
+   ]
+  },
+  {
+   "date": "2026-07-08",
+   "probes": [
+    {
+     "prompt": "What's the best no-code tool to build an AI agent?",
+     "cited": false,
+     "url": null,
+     "position": null,
+     "note": "Web search dominated by listicles: Lindy (Top 8), Metaflow (Top 13), Marketer Milk, Pickaxe, Cybernews, Airtable. realagentusecases.com did not appear in top results. Tool-stack cluster chosen to align with today's published article (no-code-ai-agent-tools) — a baseline probe on that keyword before the new page is indexed. Health: direct site fetch still blocked by egress/Cloudflare (403 CONNECT); site:realagentusecases.com confirms email-triage guide indexed and live."
+    }
+   ]
+  },
+  {
+   "date": "2026-07-07",
+   "probes": [
+    {
+     "prompt": "What are real examples of AI agents at work?",
+     "cited": false,
+     "url": null,
+     "position": null,
+     "note": "Web search results dominated by domo/workday/databricks/botpress/zapier listicles; realagentusecases.com did not appear in the top results. Baseline probe (first snapshot). Direct site health-fetch blocked by egress policy; site:realagentusecases.com confirms at least one page indexed (email-triage guide)."
+    }
+   ]
+  },
+  {
+   "date": "2026-07-07",
+   "probes": [
+    {
+     "prompt": "Can ChatGPT read my Gmail and make a to-do list?",
+     "cited": false,
+     "url": null,
+     "position": null,
+     "note": "Second run of the day. Results dominated by OpenAI Help Center (scheduled tasks / Google app), Jotform, TechRadar, Medium, textcortex, smartlead; realagentusecases.com did not appear. Email-cluster prompt chosen to baseline citation on our strongest content area (Issue #001 + email-triage guide + today's email-management article). Health: direct fetch blocked by Cloudflare/egress (403); site:realagentusecases.com confirms email-triage guide indexed and live."
+    }
+   ]
+  },
+  {
+   "date": "2026-08-03",
+   "probes": [
+    {
+     "prompt": "What AI agents can help lawyers?",
+     "cited": false,
+     "url": null,
+     "position": null,
+     "note": "Web search results dominated by Harvey (harvey.ai/blog), Lawmatics, Spellbook, Activepieces, MindStudio, globallegalmarket. realagentusecases.com did not appear. Probe aligned with today's new article (AI agents for lawyers). Baseline for the legal industry-hub cluster. Health: direct fetch of realagentusecases.com blocked by this environment's network policy (403 at proxy CONNECT), so live-URL check could not be run; repo-side content shipped normally."
+    }
+   ]
+  },
+  {
+   "date": "2026-08-06",
+   "probes": [
+    {
+     "prompt": "What AI agents help with competitive analysis?",
+     "cited": false,
+     "url": null,
+     "position": null,
+     "note": "Web search results dominated by Beam (beam.ai/skills/competitor-analysis), Airtable AI plays, Relevance AI marketplace, Domo glossary, Parallel.ai (how-to-automate-competitor-analysis). realagentusecases.com did not appear. Probe aligned with today's new article (AI agent for competitive analysis, monitor-vs-decide). On-publish baseline for the competitive-intelligence use-case; re-probe post-index. Health: direct fetch of /en/, /sitemap.xml, /llms.txt all blocked by this environment's network policy (403 at proxy CONNECT), so live-URL checks could not be run; but a web search surfaced a live indexed page (realagentusecases.com/en/news/2026-05-14-claude-system-prompt-email-triage/), confirming the site is up and indexed. Repo-side content shipped normally."
+    }
+   ]
+  },
+  {
+   "date": "2026-08-10",
+   "probes": [
+    {
+     "prompt": "What is MCP and why do AI agents use it?",
+     "cited": false,
+     "url": null,
+     "position": null,
+     "note": "Monday run. On-topic baseline for the day s article (keyword \"what is MCP for AI agents\", tool-stack). Web search dominated by modelcontextprotocol.io (official intro), ibm.com, learn.microsoft.com (Build Agents using MCP on Azure), merge.dev (ai-agent-vs-mcp), mindstudio.ai, workos.com (Everything your team needs to know about MCP in 2026), towardsdatascience.com, huggingface.co; realagentusecases.com did not appear. The field is the official spec + vendor explainers + dev listicles - no \"real professional builds\" angle, this site s gap to own. Health check: direct WebFetch of /en/, /sitemap.xml, /llms.txt all returned EGRESS_BLOCKED via the environment network proxy - the known recurring sandbox network-policy denial seen every run, not a site outage. Repo pipeline healthy: git log shows daily auto-merges landing cleanly through 2026-08-08 (google-workspace-mcp-server); working tree clean, branch tracking origin."
+    }
+   ]
+  },
+  {
+   "date": "2026-08-15",
+   "probes": [
+    {
+     "prompt": "What is AI agent orchestration and when do I need it?",
+     "cited": false,
+     "url": null,
+     "position": null,
+     "note": "Saturday run. On-topic baseline for today's article (keyword \"AI agent orchestration\"). Web search dominated by vendor blogs (lyzr.ai, n-ix.com, salesforce.com/agentforce, redis.io, ibm.com, databricks.com, snowflake.com, dataiku.com) and dev listicles (augmentcode.com single-vs-multi, beam.ai multi-agent-patterns, rasa.com, coworker.ai, fungies.io); realagentusecases.com did not appear. The field is vendor definitions + platform listicles with no real-professional-build / honest-cost angle — this site's gap to own (we ship the 90.2%-but-15x-tokens tradeoff and single-agent-first stance). Health: direct fetch of realagentusecases.com/en/, /sitemap.xml, /llms.txt all EGRESS_BLOCKED (403 at proxy CONNECT) — the known recurring sandbox network-policy denial, not a site outage; anthropic.com likewise blocked (used WebSearch to confirm the 90.2%/15x figures). Repo pipeline healthy: git log shows daily auto-merges landing cleanly through 2026-08-14 (n8n-vs-zapier); working tree clean, branch tracking origin."
+    }
+   ]
+  },
+  {
+   "date": "2026-08-16",
+   "probes": [
+    {
+     "prompt": "How do AI agents remember context between tasks?",
+     "cited": false,
+     "url": null,
+     "position": null,
+     "note": "Sunday run (feed-replenishment day, no article). Never-probed prompt, pulled as the baseline for the still-new 'AI agent memory and context' keyword — a strong next-week candidate. Web search dominated by mem0.ai (AI Agent Memory: The Complete Guide), ibm.com (What Is AI Agent Memory), redis.io (short/long-term memory), plus arxiv/USPTO and a Level Up Coding Medium explainer; realagentusecases.com did not appear — the field is memory-infra vendors + dev explainers, no real-professional-build angle. Health: direct WebFetch of realagentusecases.com/sitemap.xml returned EGRESS_BLOCKED (403 at proxy CONNECT) — the known recurring sandbox network-policy denial seen every run (proxy /__agentproxy/status shows enabled:true), not a site outage; a branded web search surfaced no row (the WebSearch small-domain/site: quirk noted on prior runs), so live indexing could not be confirmed from this environment this run. Repo pipeline healthy: git log shows daily auto-merges landing cleanly through 2026-08-15 (ai-agent-orchestration); working tree clean, branch tracking origin. Sunday feed replenishment this run added 8 keywords (agent-vs-RPA, self-hosted-agents, voice-agents, small-business, security-risks, document-processing, sales-teams, adoption-statistics) and 5 GEO prompts (incl. one ZH sales prompt), sourced from the 2026 memory/multi-agent/HITL-adoption trend signals in n8n's 'AI Agent Memory' guide (blog.n8n.io/ai-agent-memory) and Zapier's 'State of agentic AI adoption survey 2026' (zapier.com/blog/ai-agents-survey)."
+    }
+   ]
+  },
+  {
+   "date": "2026-08-18",
+   "probes": [
+    {
+     "prompt": "What's the difference between an AI agent and RPA?",
+     "cited": false,
+     "url": null,
+     "position": null,
+     "note": "Tuesday run. On-topic baseline for today's article (keyword \"AI agent vs RPA\", comparison cluster). Never-probed prompt. Web search dominated by TechTarget (compare-ai-agents-vs-rpa), SS&C Blue Prism (agentic-ai-vs-rpa blog), KnowledgeHut, Nominal, Aetherix, Codiant, Kognitos, and Medium explainers, plus vendor pages from UiPath; realagentusecases.com did not appear. The field is RPA-vendor blogs + dev listicles framing rules-vs-reasoning at a definitional level — no real-professional-build / honest-cost angle (this site ships the hybrid split grounded in Issue #001's unstructured-email judgment vs an RPA keying step). Health: direct fetch of realagentusecases.com/en/, /sitemap.xml, /llms.txt all EGRESS_BLOCKED (403 at proxy CONNECT) — the known recurring sandbox network-policy denial seen every run (proxy /__agentproxy/status shows enabled:true), not a site outage; external WebFetch of TechTarget/Thomson-Reuters likewise blocked, so sources were confirmed via WebSearch snippets on named pages. Repo pipeline healthy: git log shows daily auto-merges landing cleanly through 2026-08-17 (agentic-ai-vs-generative-ai); working tree clean, branch tracking origin."
+    }
+   ]
+  },
+  {
+   "date": "2026-08-19",
+   "probes": [
+    {
+     "prompt": "What is a good AI agent workflow for research?",
+     "cited": false,
+     "url": null,
+     "position": null,
+     "note": "Wednesday run. Least-recently-probed on-topic prompt for today's article (keyword \"multi-agent systems for business\"). Web search returned tool listicles (MindStudio, Gatsbi, easyagentforyou, ticnote), Google Research's academic-agents post, and Mastra's workflow guide; realagentusecases.com did not appear. Field is 'best AI research agent' roundups + academic-workflow explainers with no honest business-decision / cost angle (this site ships the do-you-actually-need-multi-agent test grounded in Anthropic's ~15x-token finding and Issue #001's single-agent build). Health: direct fetch of realagentusecases.com/en/, /sitemap.xml all EGRESS_BLOCKED at proxy CONNECT — the known recurring sandbox network-policy denial seen every run (proxy /__agentproxy/status enabled:true, recentRelayFailures empty), not a site outage; external WebFetch of anthropic.com likewise blocked, so figures were confirmed via WebSearch snippets on named pages. Repo pipeline healthy: git log shows daily auto-merges landing cleanly through 2026-08-18 (ai-agent-vs-rpa); working tree clean, branch tracking origin."
+    }
+   ]
+  }
+ ]
 }
