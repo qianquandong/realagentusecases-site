@@ -1,7 +1,19 @@
 {
  "$comment": "LLM brand-mention tracking time series. The scheduled Cowork routine appends one snapshot per run: which target prompts surfaced the brand, in which LLMs, with what sentiment.",
- "updatedAt": "2026-08-19",
+ "updatedAt": "2026-08-20",
  "snapshots": [
+  {
+   "date": "2026-08-20",
+   "probes": [
+    {
+     "prompt": "Can an AI agent analyze my spreadsheet data?",
+     "cited": false,
+     "url": null,
+     "position": null,
+     "note": "Thursday run. On-publish baseline for today's article (keyword \"AI agent for data analysis\", analyze-vs-decide). Never-probed prompt, an exact match for today's keyword. Web search dominated by v7labs (AI Spreadsheet Analysis Agent / Ask Questions of Your Excel Data), fast.io (How to Automate Spreadsheets with AI Agents), o-mega.ai (Top 10 AI Agents for Excel Analysis 2026), LlamaIndex (Spreadsheet Agent private preview), GPT for Work (10 Best AI Tools for Data Analysis in Excel & Sheets), plus arxiv agent-benchmark papers (TabClaw, SpreadsheetBench 2); realagentusecases.com did not appear — the field is spreadsheet-AI vendors + dev/benchmark listicles, no real-professional-build / analyze-vs-decide angle, this site's gap to own. The article answers this prompt verbatim in its first FAQ; re-probe post-index to track lift. Notably the same web search surfaced Claude for Excel and Microsoft Copilot as the named tools — both sourced in today's article. Health: direct WebFetch of realagentusecases.com/sitemap.xml returned EGRESS_BLOCKED (403 at proxy CONNECT) — the known recurring sandbox network-policy denial seen every run, not a site outage; WebSearch is the only working channel (confirmed the vendor ecosystem live and indexed). Repo pipeline healthy: git log shows daily auto-merges landing cleanly through 2026-08-19 (multi-agent-systems-for-business); working tree clean, branch tracking origin. Today's article clusters with financial-analysts / market-research / competitive-analysis; wove a reciprocal downstream link into the financial-analysts Model section (en+zh)."
+    }
+   ]
+  },
   {
    "date": "2026-08-17",
    "probes": [

@@ -443,9 +443,9 @@
    "funnel": "MOFU",
    "cluster": "use-case",
    "locale": "both",
-   "status": "new",
+   "status": "used",
    "addedAt": "2026-08-02",
-   "note": "Sunday feed research 2026-08-02. Analyze-vs-decide framing: an agent that ingests data, writes formulas, builds pivots/charts and drafts findings for a human to sign off. Grounded in Microsoft Excel Copilot Agent Mode (GA across web/Windows/Mac Jan 2026; edits workbook, ~2M-cell ceiling, degrades past 100k rows), Julius AI (upload/connect, runs Python in background), Rows — see GPT for Work 'Best AI Tools for Excel & Sheets 2026' and aipedia 'Best AI for Excel'. Clusters with financial-analysts, market-research, competitive-analysis."
+   "note": "Used 2026-08-20 → content/news/2026-08-20-ai-agent-for-data-analysis-{en,zh}.mdx (title 'AI Agent for Data Analysis: Analyze vs. Decide'). Analyze-vs-decide two-jobs framing (prepare → analyze → decide) mirrors financial-analysts gather-model-advise and market-research gather-vs-decide. Prepare/analyze = Microsoft Excel Agent Mode (official Excel blog: GA web Dec 2025 / Windows+Mac Jan 2026; builds tables/charts/PivotTables/formulas in-workbook, plans/acts/iterates/validates, model switcher GPT-5.2 / Claude Opus 4.5) + Claude for Excel (claude.com/claude-for-excel: sidebar, reads multi-tab workbooks, cell-level citations, preserves formula dependencies, GA on paid plans) + Julius (julius.ai/home/excel-ai: upload CSV/Excel/Sheets, writes & runs Python/R in secure env). Decide = stays human, grounded in the Harvard–BCG jagged-frontier finding via the consultants hub (integrative-judgment tasks = GPT-4 users more likely to reach wrong conclusions), with the human-in-the-loop gate on workbook edits. Wove a reciprocal downstream link into the financial-analysts Model section (en+zh). Answers the new GEO prompt 'Can an AI agent analyze my spreadsheet data?' verbatim in its first FAQ. Clusters with financial-analysts, market-research, competitive-analysis."
   },
   {
    "term": "AI agent orchestration",
