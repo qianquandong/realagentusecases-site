@@ -1,0 +1,46 @@
+---
+title: "AI Agent for Data Analysis: Analyze vs. Decide"
+date: "2026-08-20"
+excerpt: "AI agents clean, compute, and chart your spreadsheets — Excel Agent Mode, Claude for Excel, Julius. But what the numbers mean for the business stays your call."
+---
+
+AI agents can now do the mechanical half of data analysis: clean a messy spreadsheet, write the formulas, build the pivots and charts, and draft what the numbers say. Excel's Agent Mode, Claude for Excel, and Julius all do it in plain English. What stays human is deciding what those findings mean — and what to do about them.
+
+## The data-analysis workflow, and which parts an agent can take
+
+Data analysis is a pipeline: prepare the data, run the analysis, and decide what it means. An agent is genuinely useful for the first two stages — the wrangling is tedious and the computation is checkable, because every number traces back to a cell or a line of code you can open. The part to keep human is the *decision*: the read of what a trend means for your pricing, your budget, or your next bet. So the honest way to test any "AI agent for data analysis" pitch is to ask, at each stage, *does the agent do the work, or make the call?* It's the same automate-the-work-not-the-decision line we drew for [financial analysts](/en/news/2026-07-31-ai-agents-for-financial-analysts/), [market research](/en/news/2026-08-07-ai-agent-for-market-research/), and [competitive analysis](/en/news/2026-08-06-ai-agent-for-competitive-analysis/) — the pattern holds anywhere a professional turns data into a decision.
+
+## Prepare — clean and shape the data, don't hand-wrangle it
+
+The unglamorous front of every analysis is getting the data usable: multi-tab workbooks, merged cells, inconsistent headers, exports that don't line up. This is where the newest agents earn their keep, and it's safe to hand off because the output is checkable against the source. [Claude for Excel](https://claude.com/claude-for-excel), now generally available on Anthropic's paid plans, runs in a sidebar, reads complex multi-tab workbooks, explains calculations with cell-level citations, and — its safest design choice — updates assumptions while preserving the formula dependencies underneath, so you can trace what changed. [Julius](https://julius.ai/home/excel-ai) takes the same job from the other direction: upload a CSV, Excel file, or connect Google Sheets, and it reads the data, refers to individual tab names in your prompts, and gets it analysis-ready. Nothing here is irreversible — you're still looking at your own data before anything acts on it.
+
+## Analyze — run the numbers and draft the finding
+
+The middle of the job is the computation: the pivots, the variance, the regression, the chart. This is the second stage agents now take, and it's the one the big platforms are racing to own. Microsoft's [Agent Mode in Excel](https://techcommunity.microsoft.com/blog/excelblog/agent-mode-in-excel-is-now-generally-available-on-desktop/4457408) — generally available on Excel for the web since December 2025 and on Windows and Mac since January 2026 — takes a goal in plain English, plans the steps, acts directly in your workbook building tables, charts, PivotTables, and formulas, then iterates and validates the result. It even lets you switch the model behind it between OpenAI's GPT-5.2 and Anthropic's Claude Opus 4.5. [Julius](https://julius.ai/home/excel-ai) goes deeper on statistics: it writes Python or R, runs that code in a secure environment, and returns a clean chart or a written answer — so you can replicate exactly what it did. Treat the output the way an analyst treats a first-pass model: a reviewable draft, not a conclusion — the same [own-the-numbers discipline](/en/news/2026-07-31-ai-agents-for-financial-analysts/) that the model-building step demands.
+
+## Decide — what the data means stays human
+
+Here the line is sharpest, because a chart is not a decision. The [Harvard–BCG field experiment we covered for consultants](/en/news/2026-07-29-ai-agents-for-consultants/) found that on tasks requiring integrative business judgment, professionals using GPT-4 were *more* likely to reach the wrong conclusion — confident, well-formatted, and incorrect. Reading what a dip in retention or a shift in a cohort curve *means* for your strategy is exactly that kind of task. The agent can compute the number and draft the takeaway; whether that number changes your price, your headcount, or your roadmap is the call you keep. And because these tools now *edit* the workbook rather than just read it, the same [human-in-the-loop gate](/en/news/2026-08-13-human-in-the-loop-ai-agents/) applies: keep a copy, review the formulas it wrote, and don't let a generated figure flow into a board deck unread. The number is the agent's; the meaning is yours.
+
+## Which agent should you start with?
+
+Start where your analysis actually stalls. If you live in spreadsheets and the wrangling eats your morning, begin inside the tool you already use — [Excel's Agent Mode](https://techcommunity.microsoft.com/blog/excelblog/agent-mode-in-excel-is-now-generally-available-on-desktop/4457408) or [Claude for Excel](https://claude.com/claude-for-excel) sit in the sidebar and act on the open workbook. If your data lives in CSVs or databases and you want real statistics — regressions, forecasts, clustering — [Julius](https://julius.ai/home/excel-ai) runs the Python for you and shows its work. You don't need an enterprise stack to get the pattern: the reproducible, desk-level version is the same bounded-task, checkable-output setup behind [Issue #001's Gmail triage agent](/en/posts/2026-05-13-gmail-ai-agent/), the [headline-vs-desk-level split](/en/news/2026-07-17-real-ai-agent-examples/) that separates a demo from something you can run this week. New to agents? Begin at [Agent 101](/en/agent-101/), or pick a builder from the [no-code AI agent tools](/en/news/2026-07-08-no-code-ai-agent-tools/) guide. Whatever you start with, hold the line: automate the preparing and the analyzing, own the decision.
+
+## FAQ
+
+**Can an AI agent analyze my spreadsheet data?**
+Yes — that's the mature part. [Claude for Excel](https://claude.com/claude-for-excel) and Microsoft's [Excel Agent Mode](https://techcommunity.microsoft.com/blog/excelblog/agent-mode-in-excel-is-now-generally-available-on-desktop/4457408) read your workbook in a sidebar, write formulas, build PivotTables and charts, and explain the calculations. [Julius](https://julius.ai/home/excel-ai) takes an uploaded CSV or Excel file and runs the analysis in Python. All of them answer in plain English. What they can't do is decide what the results mean for your business — that stays with you.
+
+**Which AI agent is best for data analysis?**
+Match it to where your data lives. If you work inside Excel, [Agent Mode](https://techcommunity.microsoft.com/blog/excelblog/agent-mode-in-excel-is-now-generally-available-on-desktop/4457408) and [Claude for Excel](https://claude.com/claude-for-excel) act on the open workbook. If your data is in CSVs or databases and you want statistical depth, [Julius](https://julius.ai/home/excel-ai) writes and runs the code. Start with the one that removes your biggest bottleneck, not the one with the longest feature list.
+
+**Will an AI agent replace data analysts?**
+Not on the current evidence. Agents automate the preparing and the computing, but the [Harvard–BCG study](/en/news/2026-07-29-ai-agents-for-consultants/) found professionals using GPT-4 were *more* likely to reach wrong conclusions on integrative-judgment tasks — the exact work of interpreting what data means. The analysis is increasingly automatable; the judgment that turns it into a decision is what stays human.
+
+**Is it safe to let an agent edit my workbook?**
+Treat it like any write action: gate it. [Claude for Excel](https://claude.com/claude-for-excel) is designed to preserve formula dependencies when it updates assumptions, but you should still keep a copy and review the formulas it wrote before the output travels anywhere. It's the same [human-in-the-loop discipline](/en/news/2026-08-13-human-in-the-loop-ai-agents/) we apply to every agent that touches something hard to undo.
+
+**Do I need to know Python to use these?**
+No. [Julius](https://julius.ai/home/excel-ai) writes and runs the Python or R for you and shows the code, so you can check it without writing it, and the Excel tools work entirely in natural language. Knowing enough to sanity-check the output still helps — but you don't need to code to get an analysis.
+
+One real AI agent a week, straight to your inbox. Free, no upsell.
