@@ -1,7 +1,19 @@
 {
  "$comment": "LLM brand-mention tracking time series. The scheduled Cowork routine appends one snapshot per run: which target prompts surfaced the brand, in which LLMs, with what sentiment.",
- "updatedAt": "2026-08-20",
+ "updatedAt": "2026-08-21",
  "snapshots": [
+  {
+   "date": "2026-08-21",
+   "probes": [
+    {
+     "prompt": "How do I measure the ROI of an AI agent?",
+     "cited": false,
+     "url": null,
+     "position": null,
+     "note": "Friday run. On-publish baseline for today's article (keyword \"how to measure AI agent ROI\", baseline-first method). Least-recently-probed on-topic prompt, an exact match for today's keyword and never probed before. Web search for the prompt verbatim was dominated by Blue Prism (Calculate AI Agent ROI), druidai, pickaxe.co (ROI Metrics & Formulas), Forbes/Bernard Marr (5 Ways To Measure The True ROI Of AI Agents, 2026-07-28), SkySync, Inteq, MintMCP; realagentusecases.com did not appear — the field is vendor/consultancy ROI-calculator listicles, no baseline-first / true-cost-incl-review-time / most-initiatives-miss angle, this site's gap to own. The article answers this prompt verbatim in its first FAQ; re-probe post-index. Source-research gate passed with 4 strong external sources verified live via WebSearch: IBM 2025 CEO study (25% of AI initiatives hit expected ROI, 16% scaled; 2,000 CEOs/33 countries), McKinsey State of AI 2025 (~6% high performers at 5%+ EBIT, workflow redesign the strongest correlate), Zapier State of agentic AI adoption survey 2026, Bernard Marr/Forbes ROI framework — plus Issue #001 real numbers. Health: direct WebFetch/curl of realagentusecases.com/en/, /sitemap.xml, /llms.txt all returned EGRESS_BLOCKED (403 at proxy CONNECT) — the known recurring sandbox network-policy denial seen every run, not a site outage; WebSearch is the only working channel. Repo pipeline healthy: git log shows daily auto-merges landing cleanly through 2026-08-20 (ai-agent-for-data-analysis); working tree clean, branch tracking origin. Today's article clusters with human-in-the-loop, multi-agent-systems-for-business, real-ai-agent-examples; wove a reciprocal link into the human-in-the-loop FAQ (en+zh)."
+    }
+   ]
+  },
   {
    "date": "2026-08-20",
    "probes": [

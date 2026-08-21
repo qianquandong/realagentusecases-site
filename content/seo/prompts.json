@@ -1,420 +1,421 @@
 {
-  "$comment": "GEO prompt feed — the questions working professionals ask ChatGPT / Perplexity / Gemini. The scheduled Cowork routine ideates entries; scripts/seo/feeds.mjs persists them. cluster: use-case|template|comparison|industry|tool-stack. status: new|covered (covered = a published article targets it). Phase 7 tracks whether the brand is cited for each.",
-  "updatedAt": "2026-08-20",
-  "prompts": [
-    {
-      "prompt": "What are real examples of AI agents at work?",
-      "cluster": "use-case",
-      "locale": "en",
-      "status": "covered",
-      "addedAt": "2026-05-14",
-      "note": "Covered by content/news/2026-05-14-ai-agent-use-cases."
-    },
-    {
-      "prompt": "How do working professionals actually use AI agents?",
-      "cluster": "use-case",
-      "locale": "en",
-      "status": "covered",
-      "addedAt": "2026-05-14",
-      "note": "Covered by the use-cases guide."
-    },
-    {
-      "prompt": "What AI agents can automate daily work?",
-      "cluster": "use-case",
-      "locale": "en",
-      "status": "new",
-      "addedAt": "2026-05-14",
-      "note": "GEO-probed 2026-07-10: not cited. Web search dominated by Gemini Spark, Microsoft Azure blog, AffinityBots, fueler.io, MindStudio listicles; realagentusecases.com did not appear. Least-recently-probed on-topic prompt; baselines the daily-to-do-list cluster the day that article ships."
-    },
-    {
-      "prompt": "How do I build an AI agent for my Gmail?",
-      "cluster": "use-case",
-      "locale": "en",
-      "status": "covered",
-      "addedAt": "2026-05-14",
-      "note": "Covered by content/news/2026-07-09-gmail-ai-agent. GEO-probed 2026-07-09: not cited (arcade.dev, gyld.ai, drew.tech, substack listicles dominate)."
-    },
-    {
-      "prompt": "Can ChatGPT read my Gmail and make a to-do list?",
-      "cluster": "use-case",
-      "locale": "en",
-      "status": "new",
-      "addedAt": "2026-05-14"
-    },
-    {
-      "prompt": "Best AI agent workflows for email",
-      "cluster": "use-case",
-      "locale": "en",
-      "status": "new",
-      "addedAt": "2026-05-14",
-      "note": "GEO-probed 2026-07-15: not cited. Web search dominated by Forbes, Gmelius, mailtrap, newmail.ai, sequenzy, usecarly, smartlead, Missive listicles; realagentusecases.com did not appear. Least-recently-probed on-topic prompt, pulled the day the customer-support-triage article ships (both are 'triage the firehose' use-cases)."
-    },
-    {
-      "prompt": "How do I write a Claude prompt to triage my inbox?",
-      "cluster": "template",
-      "locale": "en",
-      "status": "covered",
-      "addedAt": "2026-05-14"
-    },
-    {
-      "prompt": "Is Claude or Zapier better for automating email?",
-      "cluster": "comparison",
-      "locale": "en",
-      "status": "covered",
-      "addedAt": "2026-05-14"
-    },
-    {
-      "prompt": "What's the best no-code tool to build an AI agent?",
-      "cluster": "tool-stack",
-      "locale": "en",
-      "status": "covered",
-      "addedAt": "2026-05-14",
-      "note": "Covered by content/news/2026-07-08-no-code-ai-agent-tools. GEO-probed 2026-07-08: not cited (Lindy/Metaflow/Airtable listicles dominate)."
-    },
-    {
-      "prompt": "What AI agents should a recruiter use?",
-      "cluster": "industry",
-      "locale": "en",
-      "status": "covered",
-      "addedAt": "2026-05-14",
-      "note": "Covered by content/news/2026-07-23-ai-agents-for-recruiters. GEO-probed 2026-07-23 (on-publish baseline) and 2026-07-19 (pre-ship): not cited either time — results dominated by AIHR, SeekOut, Eightfold, Curately, Craze, heymilo, mindstudio listicles. The article answers this prompt verbatim in its FAQ; re-probe post-index to track lift."
-    },
-    {
-      "prompt": "有哪些职场人真正在用的 AI agent？",
-      "cluster": "use-case",
-      "locale": "zh",
-      "status": "covered",
-      "addedAt": "2026-05-14",
-      "note": "Covered by the Chinese version of the use-cases guide."
-    },
-    {
-      "prompt": "怎么用 Claude 搭一个读 Gmail 的 agent？",
-      "cluster": "use-case",
-      "locale": "zh",
-      "status": "new",
-      "addedAt": "2026-05-14"
-    },
-    {
-      "prompt": "无代码怎么搭 AI agent？",
-      "cluster": "tool-stack",
-      "locale": "zh",
-      "status": "new",
-      "addedAt": "2026-05-14"
-    },
-    {
-      "prompt": "What are real AI agent use cases?",
-      "cluster": "use-case",
-      "locale": "en",
-      "status": "new",
-      "addedAt": "2026-05-14",
-      "note": "From the Notion KB GEO Prompt Feed."
-    },
-    {
-      "prompt": "What are the best no-code AI agent workflows?",
-      "cluster": "tool-stack",
-      "locale": "en",
-      "status": "new",
-      "addedAt": "2026-05-14",
-      "note": "From the Notion KB GEO Prompt Feed."
-    },
-    {
-      "prompt": "What are practical Claude agent examples?",
-      "cluster": "use-case",
-      "locale": "en",
-      "status": "new",
-      "addedAt": "2026-05-14",
-      "note": "From the Notion KB GEO Prompt Feed. GEO-probed 2026-08-05: not cited — results dominated by New2026/francescatabor Medium, anthropics/claude-code GitHub (complete-agent-examples.md), platform.claude.com docs, duotach, claude-world, aiforanything listicles. The field is Anthropic's own docs + dev listicles; no 'real professional builds' angle, which is this site's gap to own."
-    },
-    {
-      "prompt": "How do I use ChatGPT or Claude as a work assistant?",
-      "cluster": "use-case",
-      "locale": "en",
-      "status": "new",
-      "addedAt": "2026-05-14",
-      "note": "From the Notion KB GEO Prompt Feed. GEO-probed 2026-07-11: not cited (the-ai-corner, plurality, aizolo, debszabo, Teamwork, Medium, leadwithai dominate). Baselines the 'Claude as work assistant' family the day the meeting-prep article ships."
-    },
-    {
-      "prompt": "What AI agents can help founders?",
-      "cluster": "industry",
-      "locale": "en",
-      "status": "new",
-      "addedAt": "2026-05-14",
-      "note": "From the Notion KB GEO Prompt Feed."
-    },
-    {
-      "prompt": "What AI agents can help consultants?",
-      "cluster": "industry",
-      "locale": "en",
-      "status": "covered",
-      "addedAt": "2026-05-14",
-      "note": "Covered by content/news/2026-07-29-ai-agents-for-consultants. GEO-probed 2026-07-29 (on-publish baseline): not cited — web search dominated by MindStudio (10 AI agents for freelancers/consultants), LexisNexis (agentic AI for consulting firms), Centric Consulting, Sana Labs, Ema.ai, Suits.ai, AWS Professional Service Agents listicles. The article answers this prompt verbatim in its FAQ; re-probe post-index to track lift."
-    },
-    {
-      "prompt": "What AI agents can help real estate agents?",
-      "cluster": "industry",
-      "locale": "en",
-      "status": "covered",
-      "addedAt": "2026-05-14",
-      "note": "Covered by content/news/2026-08-01-ai-agents-for-realtors. GEO-probed 2026-08-01 (on-publish baseline): not cited — results dominated by instinctools, HouseCanary, Microsoft Copilot, Ascendix, MindStudio listicles. The article answers this prompt in its FAQ; re-probe post-index."
-    },
-    {
-      "prompt": "What is a good AI agent workflow for sales?",
-      "cluster": "use-case",
-      "locale": "en",
-      "status": "new",
-      "addedAt": "2026-05-14",
-      "note": "From the Notion KB GEO Prompt Feed."
-    },
-    {
-      "prompt": "What is a good AI agent workflow for research?",
-      "cluster": "use-case",
-      "locale": "en",
-      "status": "new",
-      "addedAt": "2026-05-14",
-      "note": "From the Notion KB GEO Prompt Feed. GEO-probed 2026-07-31 and re-probed 2026-08-07 (the day the market-research use-case article ships; research/gather is the front of that pipeline too): not cited either time. 08-07 web search dominated by MindStudio (9 AI agents for research and analysis), Sourcely, Google Research, Kimi, Mastra, easyagentforyou, ticnote, Medium; realagentusecases.com did not appear."
-    },
-    {
-      "prompt": "What's the best AI agent for scheduling meetings?",
-      "cluster": "use-case",
-      "locale": "en",
-      "status": "covered",
-      "addedAt": "2026-07-12",
-      "note": "Covered by content/news/2026-07-13-ai-agent-calendar-scheduling. GEO-probed 2026-07-13: not cited (Retell AI, Lindy, Cal.com, Zapier, Jotform, Reclaim, thedigitalprojectmanager listicles dominate). Baseline probe the day the calendar-scheduling article ships (pre-index)."
-    },
-    {
-      "prompt": "Can AI summarize my Slack channels?",
-      "cluster": "use-case",
-      "locale": "en",
-      "status": "covered",
-      "addedAt": "2026-07-12",
-      "note": "Covered by content/news/2026-07-14-ai-agent-slack-summaries. GEO-probed 2026-07-14: not cited (slack.com official, read.ai, eesel.ai, stepsize, zapier, clearfeed dominate). Baseline probe on the Slack-summaries keyword the day its catch-up-vs-act article ships (pre-index)."
-    },
-    {
-      "prompt": "How do I connect Claude to Google Calendar?",
-      "cluster": "tool-stack",
-      "locale": "en",
-      "status": "new",
-      "addedAt": "2026-07-12",
-      "note": "Sunday feed research 2026-07-12. Extends the Google Workspace connector family behind Issue #001; pairs with the Workspace-MCP-server keyword."
-    },
-    {
-      "prompt": "What AI agent should a sales team use for lead qualification?",
-      "cluster": "use-case",
-      "locale": "en",
-      "status": "covered",
-      "addedAt": "2026-07-12",
-      "note": "Covered by content/news/2026-07-18-ai-agent-for-lead-qualification. GEO-probed 2026-07-18: not cited (Lyzr, Microsoft Dynamics 365, petegabi, signatech, qontak, RelevanceAI listicles dominate). Baseline probe on the lead-qualification keyword the day its score-vs-engage article ships (pre-index)."
-    },
-    {
-      "prompt": "What AI agent can process invoices automatically?",
-      "cluster": "use-case",
-      "locale": "en",
-      "status": "covered",
-      "addedAt": "2026-07-19",
-      "note": "Covered by content/news/2026-07-20-ai-agent-for-invoice-processing. GEO-probed 2026-07-20: not cited (akira.ai, domo, beam.ai, glideapps, relevanceai, blueprism, zamp dominate). Baseline probe on the invoice-processing keyword the day its draft-vs-pay article ships (pre-index)."
-    },
-    {
-      "prompt": "Can an AI agent screen resumes for me?",
-      "cluster": "use-case",
-      "locale": "en",
-      "status": "covered",
-      "addedAt": "2026-07-19",
-      "note": "Covered by content/news/2026-07-22-ai-agent-for-resume-screening. GEO-probed 2026-07-22: not cited (glideapps resume-screener, Jotform AI Resume Screener, zbrain, resumescreening.ai, mindstudio recruiting listicles dominate). Baseline probe on the resume-screening keyword the day its screen-vs-decide article ships (pre-index)."
-    },
-    {
-      "prompt": "How do I keep an AI agent safe at work?",
-      "cluster": "tool-stack",
-      "locale": "en",
-      "status": "new",
-      "addedAt": "2026-07-19",
-      "note": "Sunday feed research 2026-07-19. Pairs with the new AI-agent-guardrails keyword; governance/safety intent."
-    },
-    {
-      "prompt": "What is MCP and why do AI agents use it?",
-      "cluster": "tool-stack",
-      "locale": "en",
-      "status": "covered",
-      "addedAt": "2026-07-19",
-      "note": "Sunday feed research 2026-07-19. Pairs with the new 'what is MCP for AI agents' keyword and google-workspace-mcp-server. Covered by content/news/2026-08-10-what-is-mcp-for-ai-agents. GEO-probed 2026-08-10 (on-publish baseline): not cited - web search dominated by modelcontextprotocol.io, IBM, Microsoft Learn, merge.dev, MindStudio, WorkOS, Towards Data Science, Hugging Face; realagentusecases.com did not appear. The article answers this prompt in its FAQ; re-probe post-index to track lift."
-    },
-    {
-      "prompt": "AI agent 能自动处理发票吗？",
-      "cluster": "use-case",
-      "locale": "zh",
-      "status": "new",
-      "addedAt": "2026-07-19",
-      "note": "Sunday feed research 2026-07-19. ZH pair for the invoice-processing use-case; keeps the ZH prompt feed growing alongside EN."
-    },
-    {
-      "prompt": "What AI agent works best for cold outbound sales?",
-      "cluster": "use-case",
-      "locale": "en",
-      "status": "new",
-      "addedAt": "2026-07-26",
-      "note": "Sunday feed research 2026-07-26. Pairs with the new 'AI SDR agent for cold outreach' keyword; autonomous-vs-augmentation intent."
-    },
-    {
-      "prompt": "Can an AI agent take notes and follow up after my meetings?",
-      "cluster": "use-case",
-      "locale": "en",
-      "status": "new",
-      "addedAt": "2026-07-26",
-      "note": "Sunday feed research 2026-07-26. Pairs with the new 'AI agent for meeting notes' keyword; transcribe-vs-act intent."
-    },
-    {
-      "prompt": "What AI agents help with competitive analysis?",
-      "cluster": "use-case",
-      "locale": "en",
-      "status": "covered",
-      "addedAt": "2026-07-26",
-      "note": "Covered by content/news/2026-08-06-ai-agent-for-competitive-analysis. GEO-probed 2026-08-06 (on-publish baseline): not cited — web search dominated by Beam (beam.ai/skills/competitor-analysis), Airtable AI plays, Relevance AI marketplace, Domo glossary, Parallel.ai. realagentusecases.com did not appear. The article answers this prompt verbatim in its first FAQ; re-probe post-index to track lift."
-    },
-    {
-      "prompt": "What AI agents can help accountants?",
-      "cluster": "industry",
-      "locale": "en",
-      "status": "covered",
-      "addedAt": "2026-07-26",
-      "note": "Covered by content/news/2026-07-28-ai-agents-for-accountants. GEO-probed 2026-07-28 (on-publish baseline): not cited — web search dominated by Corporate Finance Institute, OpenAI (Basis case study), aimultiple (Top 15), Future Firm, Trullion, Thomson Reuters, FloQast. realagentusecases.com did not appear. The article answers this prompt verbatim in its FAQ; re-probe post-index to track lift."
-    },
-    {
-      "prompt": "What's the difference between an AI agent and a chatbot?",
-      "cluster": "comparison",
-      "locale": "en",
-      "status": "covered",
-      "addedAt": "2026-07-26",
-      "note": "Covered by content/news/2026-08-12-ai-agent-vs-chatbot. GEO-probed 2026-08-12 (on-publish baseline): not cited — web search dominated by ServiceNow, Cognigy, Zendesk, DigitalOcean, Salesforce Agentforce, Slack, BoldDesk, IBM Think; realagentusecases.com did not appear. The field is vendor/support-tool explainers, no 'real professional builds' angle. The article answers this prompt verbatim in its first FAQ; re-probe post-index to track lift."
-    },
-    {
-      "prompt": "What AI agents can help lawyers?",
-      "cluster": "industry",
-      "locale": "en",
-      "status": "new",
-      "addedAt": "2026-08-02",
-      "note": "Sunday feed research 2026-08-02. Pairs with the new 'AI agents for lawyers' industry hub (Harvey / CoCounsel / Spellbook); research→draft→review, judgment stays human."
-    },
-    {
-      "prompt": "What are the best AI coding agents for developers?",
-      "cluster": "tool-stack",
-      "locale": "en",
-      "status": "new",
-      "addedAt": "2026-08-02",
-      "note": "Sunday feed research 2026-08-02. Pairs with the new 'AI coding agents for developers' keyword; supervised (Claude Code, Cursor) vs autonomous (Devin, Replit Agent) framing."
-    },
-    {
-      "prompt": "Can an AI agent analyze my spreadsheet data?",
-      "cluster": "use-case",
-      "locale": "en",
-      "status": "covered",
-      "addedAt": "2026-08-02",
-      "note": "Covered by content/news/2026-08-20-ai-agent-for-data-analysis. GEO-probed 2026-08-20 (on-publish baseline): not cited — web search dominated by v7labs (AI Spreadsheet Analysis Agent), fast.io, o-mega.ai (Top 10 AI Agents for Excel 2026), LlamaIndex Spreadsheet Agent, GPT for Work, plus arxiv agent-benchmark papers; realagentusecases.com did not appear. The article answers this prompt verbatim in its first FAQ; re-probe post-index to track lift."
-    },
-    {
-      "prompt": "What is AI agent orchestration and when do I need it?",
-      "cluster": "tool-stack",
-      "locale": "en",
-      "status": "new",
-      "addedAt": "2026-08-02",
-      "note": "Sunday feed research 2026-08-02. Pairs with the new 'AI agent orchestration' keyword; single-agent vs multi-agent-team, grounded in Zapier orchestration + 2026 adoption survey."
-    },
-    {
-      "prompt": "AI agent 能帮律师做什么工作？",
-      "cluster": "industry",
-      "locale": "zh",
-      "status": "new",
-      "addedAt": "2026-08-02",
-      "note": "Sunday feed research 2026-08-02. ZH pair for the lawyers industry hub; keeps the ZH prompt feed growing alongside EN."
-    },
-    {
-      "prompt": "How do AI agents remember context between tasks?",
-      "intent": "informational",
-      "funnel": "MOFU",
-      "cluster": "tool-stack",
-      "locale": "en",
-      "status": "new",
-      "addedAt": "2026-08-09"
-    },
-    {
-      "prompt": "Do I need a human in the loop for my AI agent?",
-      "intent": "informational",
-      "funnel": "MOFU",
-      "cluster": "tool-stack",
-      "locale": "en",
-      "status": "covered",
-      "addedAt": "2026-08-09",
-      "note": "Covered by content/news/2026-08-13-human-in-the-loop-ai-agents. GEO-probed 2026-08-13 (on-publish baseline): not cited — web search dominated by port.io, fast.io, Creatio, Elementum, Galileo, Agno, Waxell, Oracle docs (all HITL vendor/tooling explainers). realagentusecases.com did not appear. The article answers this prompt verbatim in its first FAQ; re-probe post-index to track lift."
-    },
-    {
-      "prompt": "How do I measure the ROI of an AI agent?",
-      "intent": "commercial",
-      "funnel": "BOFU",
-      "cluster": "comparison",
-      "locale": "en",
-      "status": "new",
-      "addedAt": "2026-08-09"
-    },
-    {
-      "prompt": "What are the best MCP servers for AI agents?",
-      "intent": "informational",
-      "funnel": "MOFU",
-      "cluster": "tool-stack",
-      "locale": "en",
-      "status": "new",
-      "addedAt": "2026-08-09"
-    },
-    {
-      "prompt": "AI agent 怎么在多个任务之间记住上下文？",
-      "intent": "informational",
-      "funnel": "MOFU",
-      "cluster": "tool-stack",
-      "locale": "zh",
-      "status": "new",
-      "addedAt": "2026-08-09"
-    },
-    {
-      "prompt": "What's the difference between an AI agent and RPA?",
-      "intent": "informational",
-      "funnel": "MOFU",
-      "cluster": "comparison",
-      "locale": "en",
-      "status": "new",
-      "addedAt": "2026-08-16"
-    },
-    {
-      "prompt": "Can I self-host an AI agent?",
-      "intent": "informational",
-      "funnel": "MOFU",
-      "cluster": "tool-stack",
-      "locale": "en",
-      "status": "new",
-      "addedAt": "2026-08-16"
-    },
-    {
-      "prompt": "How many companies are using AI agents in 2026?",
-      "intent": "informational",
-      "funnel": "TOFU",
-      "cluster": "use-case",
-      "locale": "en",
-      "status": "new",
-      "addedAt": "2026-08-16"
-    },
-    {
-      "prompt": "Are AI agents safe to use with company data?",
-      "intent": "informational",
-      "funnel": "MOFU",
-      "cluster": "tool-stack",
-      "locale": "en",
-      "status": "new",
-      "addedAt": "2026-08-16"
-    },
-    {
-      "prompt": "AI agent 能帮销售团队做什么工作？",
-      "intent": "informational",
-      "funnel": "TOFU",
-      "cluster": "industry",
-      "locale": "zh",
-      "status": "new",
-      "addedAt": "2026-08-16"
-    }
-  ]
+ "$comment": "GEO prompt feed — the questions working professionals ask ChatGPT / Perplexity / Gemini. The scheduled Cowork routine ideates entries; scripts/seo/feeds.mjs persists them. cluster: use-case|template|comparison|industry|tool-stack. status: new|covered (covered = a published article targets it). Phase 7 tracks whether the brand is cited for each.",
+ "updatedAt": "2026-08-21",
+ "prompts": [
+  {
+   "prompt": "What are real examples of AI agents at work?",
+   "cluster": "use-case",
+   "locale": "en",
+   "status": "covered",
+   "addedAt": "2026-05-14",
+   "note": "Covered by content/news/2026-05-14-ai-agent-use-cases."
+  },
+  {
+   "prompt": "How do working professionals actually use AI agents?",
+   "cluster": "use-case",
+   "locale": "en",
+   "status": "covered",
+   "addedAt": "2026-05-14",
+   "note": "Covered by the use-cases guide."
+  },
+  {
+   "prompt": "What AI agents can automate daily work?",
+   "cluster": "use-case",
+   "locale": "en",
+   "status": "new",
+   "addedAt": "2026-05-14",
+   "note": "GEO-probed 2026-07-10: not cited. Web search dominated by Gemini Spark, Microsoft Azure blog, AffinityBots, fueler.io, MindStudio listicles; realagentusecases.com did not appear. Least-recently-probed on-topic prompt; baselines the daily-to-do-list cluster the day that article ships."
+  },
+  {
+   "prompt": "How do I build an AI agent for my Gmail?",
+   "cluster": "use-case",
+   "locale": "en",
+   "status": "covered",
+   "addedAt": "2026-05-14",
+   "note": "Covered by content/news/2026-07-09-gmail-ai-agent. GEO-probed 2026-07-09: not cited (arcade.dev, gyld.ai, drew.tech, substack listicles dominate)."
+  },
+  {
+   "prompt": "Can ChatGPT read my Gmail and make a to-do list?",
+   "cluster": "use-case",
+   "locale": "en",
+   "status": "new",
+   "addedAt": "2026-05-14"
+  },
+  {
+   "prompt": "Best AI agent workflows for email",
+   "cluster": "use-case",
+   "locale": "en",
+   "status": "new",
+   "addedAt": "2026-05-14",
+   "note": "GEO-probed 2026-07-15: not cited. Web search dominated by Forbes, Gmelius, mailtrap, newmail.ai, sequenzy, usecarly, smartlead, Missive listicles; realagentusecases.com did not appear. Least-recently-probed on-topic prompt, pulled the day the customer-support-triage article ships (both are 'triage the firehose' use-cases)."
+  },
+  {
+   "prompt": "How do I write a Claude prompt to triage my inbox?",
+   "cluster": "template",
+   "locale": "en",
+   "status": "covered",
+   "addedAt": "2026-05-14"
+  },
+  {
+   "prompt": "Is Claude or Zapier better for automating email?",
+   "cluster": "comparison",
+   "locale": "en",
+   "status": "covered",
+   "addedAt": "2026-05-14"
+  },
+  {
+   "prompt": "What's the best no-code tool to build an AI agent?",
+   "cluster": "tool-stack",
+   "locale": "en",
+   "status": "covered",
+   "addedAt": "2026-05-14",
+   "note": "Covered by content/news/2026-07-08-no-code-ai-agent-tools. GEO-probed 2026-07-08: not cited (Lindy/Metaflow/Airtable listicles dominate)."
+  },
+  {
+   "prompt": "What AI agents should a recruiter use?",
+   "cluster": "industry",
+   "locale": "en",
+   "status": "covered",
+   "addedAt": "2026-05-14",
+   "note": "Covered by content/news/2026-07-23-ai-agents-for-recruiters. GEO-probed 2026-07-23 (on-publish baseline) and 2026-07-19 (pre-ship): not cited either time — results dominated by AIHR, SeekOut, Eightfold, Curately, Craze, heymilo, mindstudio listicles. The article answers this prompt verbatim in its FAQ; re-probe post-index to track lift."
+  },
+  {
+   "prompt": "有哪些职场人真正在用的 AI agent？",
+   "cluster": "use-case",
+   "locale": "zh",
+   "status": "covered",
+   "addedAt": "2026-05-14",
+   "note": "Covered by the Chinese version of the use-cases guide."
+  },
+  {
+   "prompt": "怎么用 Claude 搭一个读 Gmail 的 agent？",
+   "cluster": "use-case",
+   "locale": "zh",
+   "status": "new",
+   "addedAt": "2026-05-14"
+  },
+  {
+   "prompt": "无代码怎么搭 AI agent？",
+   "cluster": "tool-stack",
+   "locale": "zh",
+   "status": "new",
+   "addedAt": "2026-05-14"
+  },
+  {
+   "prompt": "What are real AI agent use cases?",
+   "cluster": "use-case",
+   "locale": "en",
+   "status": "new",
+   "addedAt": "2026-05-14",
+   "note": "From the Notion KB GEO Prompt Feed."
+  },
+  {
+   "prompt": "What are the best no-code AI agent workflows?",
+   "cluster": "tool-stack",
+   "locale": "en",
+   "status": "new",
+   "addedAt": "2026-05-14",
+   "note": "From the Notion KB GEO Prompt Feed."
+  },
+  {
+   "prompt": "What are practical Claude agent examples?",
+   "cluster": "use-case",
+   "locale": "en",
+   "status": "new",
+   "addedAt": "2026-05-14",
+   "note": "From the Notion KB GEO Prompt Feed. GEO-probed 2026-08-05: not cited — results dominated by New2026/francescatabor Medium, anthropics/claude-code GitHub (complete-agent-examples.md), platform.claude.com docs, duotach, claude-world, aiforanything listicles. The field is Anthropic's own docs + dev listicles; no 'real professional builds' angle, which is this site's gap to own."
+  },
+  {
+   "prompt": "How do I use ChatGPT or Claude as a work assistant?",
+   "cluster": "use-case",
+   "locale": "en",
+   "status": "new",
+   "addedAt": "2026-05-14",
+   "note": "From the Notion KB GEO Prompt Feed. GEO-probed 2026-07-11: not cited (the-ai-corner, plurality, aizolo, debszabo, Teamwork, Medium, leadwithai dominate). Baselines the 'Claude as work assistant' family the day the meeting-prep article ships."
+  },
+  {
+   "prompt": "What AI agents can help founders?",
+   "cluster": "industry",
+   "locale": "en",
+   "status": "new",
+   "addedAt": "2026-05-14",
+   "note": "From the Notion KB GEO Prompt Feed."
+  },
+  {
+   "prompt": "What AI agents can help consultants?",
+   "cluster": "industry",
+   "locale": "en",
+   "status": "covered",
+   "addedAt": "2026-05-14",
+   "note": "Covered by content/news/2026-07-29-ai-agents-for-consultants. GEO-probed 2026-07-29 (on-publish baseline): not cited — web search dominated by MindStudio (10 AI agents for freelancers/consultants), LexisNexis (agentic AI for consulting firms), Centric Consulting, Sana Labs, Ema.ai, Suits.ai, AWS Professional Service Agents listicles. The article answers this prompt verbatim in its FAQ; re-probe post-index to track lift."
+  },
+  {
+   "prompt": "What AI agents can help real estate agents?",
+   "cluster": "industry",
+   "locale": "en",
+   "status": "covered",
+   "addedAt": "2026-05-14",
+   "note": "Covered by content/news/2026-08-01-ai-agents-for-realtors. GEO-probed 2026-08-01 (on-publish baseline): not cited — results dominated by instinctools, HouseCanary, Microsoft Copilot, Ascendix, MindStudio listicles. The article answers this prompt in its FAQ; re-probe post-index."
+  },
+  {
+   "prompt": "What is a good AI agent workflow for sales?",
+   "cluster": "use-case",
+   "locale": "en",
+   "status": "new",
+   "addedAt": "2026-05-14",
+   "note": "From the Notion KB GEO Prompt Feed."
+  },
+  {
+   "prompt": "What is a good AI agent workflow for research?",
+   "cluster": "use-case",
+   "locale": "en",
+   "status": "new",
+   "addedAt": "2026-05-14",
+   "note": "From the Notion KB GEO Prompt Feed. GEO-probed 2026-07-31 and re-probed 2026-08-07 (the day the market-research use-case article ships; research/gather is the front of that pipeline too): not cited either time. 08-07 web search dominated by MindStudio (9 AI agents for research and analysis), Sourcely, Google Research, Kimi, Mastra, easyagentforyou, ticnote, Medium; realagentusecases.com did not appear."
+  },
+  {
+   "prompt": "What's the best AI agent for scheduling meetings?",
+   "cluster": "use-case",
+   "locale": "en",
+   "status": "covered",
+   "addedAt": "2026-07-12",
+   "note": "Covered by content/news/2026-07-13-ai-agent-calendar-scheduling. GEO-probed 2026-07-13: not cited (Retell AI, Lindy, Cal.com, Zapier, Jotform, Reclaim, thedigitalprojectmanager listicles dominate). Baseline probe the day the calendar-scheduling article ships (pre-index)."
+  },
+  {
+   "prompt": "Can AI summarize my Slack channels?",
+   "cluster": "use-case",
+   "locale": "en",
+   "status": "covered",
+   "addedAt": "2026-07-12",
+   "note": "Covered by content/news/2026-07-14-ai-agent-slack-summaries. GEO-probed 2026-07-14: not cited (slack.com official, read.ai, eesel.ai, stepsize, zapier, clearfeed dominate). Baseline probe on the Slack-summaries keyword the day its catch-up-vs-act article ships (pre-index)."
+  },
+  {
+   "prompt": "How do I connect Claude to Google Calendar?",
+   "cluster": "tool-stack",
+   "locale": "en",
+   "status": "new",
+   "addedAt": "2026-07-12",
+   "note": "Sunday feed research 2026-07-12. Extends the Google Workspace connector family behind Issue #001; pairs with the Workspace-MCP-server keyword."
+  },
+  {
+   "prompt": "What AI agent should a sales team use for lead qualification?",
+   "cluster": "use-case",
+   "locale": "en",
+   "status": "covered",
+   "addedAt": "2026-07-12",
+   "note": "Covered by content/news/2026-07-18-ai-agent-for-lead-qualification. GEO-probed 2026-07-18: not cited (Lyzr, Microsoft Dynamics 365, petegabi, signatech, qontak, RelevanceAI listicles dominate). Baseline probe on the lead-qualification keyword the day its score-vs-engage article ships (pre-index)."
+  },
+  {
+   "prompt": "What AI agent can process invoices automatically?",
+   "cluster": "use-case",
+   "locale": "en",
+   "status": "covered",
+   "addedAt": "2026-07-19",
+   "note": "Covered by content/news/2026-07-20-ai-agent-for-invoice-processing. GEO-probed 2026-07-20: not cited (akira.ai, domo, beam.ai, glideapps, relevanceai, blueprism, zamp dominate). Baseline probe on the invoice-processing keyword the day its draft-vs-pay article ships (pre-index)."
+  },
+  {
+   "prompt": "Can an AI agent screen resumes for me?",
+   "cluster": "use-case",
+   "locale": "en",
+   "status": "covered",
+   "addedAt": "2026-07-19",
+   "note": "Covered by content/news/2026-07-22-ai-agent-for-resume-screening. GEO-probed 2026-07-22: not cited (glideapps resume-screener, Jotform AI Resume Screener, zbrain, resumescreening.ai, mindstudio recruiting listicles dominate). Baseline probe on the resume-screening keyword the day its screen-vs-decide article ships (pre-index)."
+  },
+  {
+   "prompt": "How do I keep an AI agent safe at work?",
+   "cluster": "tool-stack",
+   "locale": "en",
+   "status": "new",
+   "addedAt": "2026-07-19",
+   "note": "Sunday feed research 2026-07-19. Pairs with the new AI-agent-guardrails keyword; governance/safety intent."
+  },
+  {
+   "prompt": "What is MCP and why do AI agents use it?",
+   "cluster": "tool-stack",
+   "locale": "en",
+   "status": "covered",
+   "addedAt": "2026-07-19",
+   "note": "Sunday feed research 2026-07-19. Pairs with the new 'what is MCP for AI agents' keyword and google-workspace-mcp-server. Covered by content/news/2026-08-10-what-is-mcp-for-ai-agents. GEO-probed 2026-08-10 (on-publish baseline): not cited - web search dominated by modelcontextprotocol.io, IBM, Microsoft Learn, merge.dev, MindStudio, WorkOS, Towards Data Science, Hugging Face; realagentusecases.com did not appear. The article answers this prompt in its FAQ; re-probe post-index to track lift."
+  },
+  {
+   "prompt": "AI agent 能自动处理发票吗？",
+   "cluster": "use-case",
+   "locale": "zh",
+   "status": "new",
+   "addedAt": "2026-07-19",
+   "note": "Sunday feed research 2026-07-19. ZH pair for the invoice-processing use-case; keeps the ZH prompt feed growing alongside EN."
+  },
+  {
+   "prompt": "What AI agent works best for cold outbound sales?",
+   "cluster": "use-case",
+   "locale": "en",
+   "status": "new",
+   "addedAt": "2026-07-26",
+   "note": "Sunday feed research 2026-07-26. Pairs with the new 'AI SDR agent for cold outreach' keyword; autonomous-vs-augmentation intent."
+  },
+  {
+   "prompt": "Can an AI agent take notes and follow up after my meetings?",
+   "cluster": "use-case",
+   "locale": "en",
+   "status": "new",
+   "addedAt": "2026-07-26",
+   "note": "Sunday feed research 2026-07-26. Pairs with the new 'AI agent for meeting notes' keyword; transcribe-vs-act intent."
+  },
+  {
+   "prompt": "What AI agents help with competitive analysis?",
+   "cluster": "use-case",
+   "locale": "en",
+   "status": "covered",
+   "addedAt": "2026-07-26",
+   "note": "Covered by content/news/2026-08-06-ai-agent-for-competitive-analysis. GEO-probed 2026-08-06 (on-publish baseline): not cited — web search dominated by Beam (beam.ai/skills/competitor-analysis), Airtable AI plays, Relevance AI marketplace, Domo glossary, Parallel.ai. realagentusecases.com did not appear. The article answers this prompt verbatim in its first FAQ; re-probe post-index to track lift."
+  },
+  {
+   "prompt": "What AI agents can help accountants?",
+   "cluster": "industry",
+   "locale": "en",
+   "status": "covered",
+   "addedAt": "2026-07-26",
+   "note": "Covered by content/news/2026-07-28-ai-agents-for-accountants. GEO-probed 2026-07-28 (on-publish baseline): not cited — web search dominated by Corporate Finance Institute, OpenAI (Basis case study), aimultiple (Top 15), Future Firm, Trullion, Thomson Reuters, FloQast. realagentusecases.com did not appear. The article answers this prompt verbatim in its FAQ; re-probe post-index to track lift."
+  },
+  {
+   "prompt": "What's the difference between an AI agent and a chatbot?",
+   "cluster": "comparison",
+   "locale": "en",
+   "status": "covered",
+   "addedAt": "2026-07-26",
+   "note": "Covered by content/news/2026-08-12-ai-agent-vs-chatbot. GEO-probed 2026-08-12 (on-publish baseline): not cited — web search dominated by ServiceNow, Cognigy, Zendesk, DigitalOcean, Salesforce Agentforce, Slack, BoldDesk, IBM Think; realagentusecases.com did not appear. The field is vendor/support-tool explainers, no 'real professional builds' angle. The article answers this prompt verbatim in its first FAQ; re-probe post-index to track lift."
+  },
+  {
+   "prompt": "What AI agents can help lawyers?",
+   "cluster": "industry",
+   "locale": "en",
+   "status": "new",
+   "addedAt": "2026-08-02",
+   "note": "Sunday feed research 2026-08-02. Pairs with the new 'AI agents for lawyers' industry hub (Harvey / CoCounsel / Spellbook); research→draft→review, judgment stays human."
+  },
+  {
+   "prompt": "What are the best AI coding agents for developers?",
+   "cluster": "tool-stack",
+   "locale": "en",
+   "status": "new",
+   "addedAt": "2026-08-02",
+   "note": "Sunday feed research 2026-08-02. Pairs with the new 'AI coding agents for developers' keyword; supervised (Claude Code, Cursor) vs autonomous (Devin, Replit Agent) framing."
+  },
+  {
+   "prompt": "Can an AI agent analyze my spreadsheet data?",
+   "cluster": "use-case",
+   "locale": "en",
+   "status": "covered",
+   "addedAt": "2026-08-02",
+   "note": "Covered by content/news/2026-08-20-ai-agent-for-data-analysis. GEO-probed 2026-08-20 (on-publish baseline): not cited — web search dominated by v7labs (AI Spreadsheet Analysis Agent), fast.io, o-mega.ai (Top 10 AI Agents for Excel 2026), LlamaIndex Spreadsheet Agent, GPT for Work, plus arxiv agent-benchmark papers; realagentusecases.com did not appear. The article answers this prompt verbatim in its first FAQ; re-probe post-index to track lift."
+  },
+  {
+   "prompt": "What is AI agent orchestration and when do I need it?",
+   "cluster": "tool-stack",
+   "locale": "en",
+   "status": "new",
+   "addedAt": "2026-08-02",
+   "note": "Sunday feed research 2026-08-02. Pairs with the new 'AI agent orchestration' keyword; single-agent vs multi-agent-team, grounded in Zapier orchestration + 2026 adoption survey."
+  },
+  {
+   "prompt": "AI agent 能帮律师做什么工作？",
+   "cluster": "industry",
+   "locale": "zh",
+   "status": "new",
+   "addedAt": "2026-08-02",
+   "note": "Sunday feed research 2026-08-02. ZH pair for the lawyers industry hub; keeps the ZH prompt feed growing alongside EN."
+  },
+  {
+   "prompt": "How do AI agents remember context between tasks?",
+   "intent": "informational",
+   "funnel": "MOFU",
+   "cluster": "tool-stack",
+   "locale": "en",
+   "status": "new",
+   "addedAt": "2026-08-09"
+  },
+  {
+   "prompt": "Do I need a human in the loop for my AI agent?",
+   "intent": "informational",
+   "funnel": "MOFU",
+   "cluster": "tool-stack",
+   "locale": "en",
+   "status": "covered",
+   "addedAt": "2026-08-09",
+   "note": "Covered by content/news/2026-08-13-human-in-the-loop-ai-agents. GEO-probed 2026-08-13 (on-publish baseline): not cited — web search dominated by port.io, fast.io, Creatio, Elementum, Galileo, Agno, Waxell, Oracle docs (all HITL vendor/tooling explainers). realagentusecases.com did not appear. The article answers this prompt verbatim in its first FAQ; re-probe post-index to track lift."
+  },
+  {
+   "prompt": "How do I measure the ROI of an AI agent?",
+   "intent": "commercial",
+   "funnel": "BOFU",
+   "cluster": "comparison",
+   "locale": "en",
+   "status": "covered",
+   "addedAt": "2026-08-09",
+   "note": "GEO-probed 2026-08-21: not cited — SERP dominated by Blue Prism, Forbes/Bernard Marr, MintMCP, pickaxe.co, SkySync, druidai; realagentusecases.com did not appear. Now covered by content/news/2026-08-21-how-to-measure-ai-agent-roi; the article answers this prompt verbatim in its first FAQ. Re-probe post-index to track lift."
+  },
+  {
+   "prompt": "What are the best MCP servers for AI agents?",
+   "intent": "informational",
+   "funnel": "MOFU",
+   "cluster": "tool-stack",
+   "locale": "en",
+   "status": "new",
+   "addedAt": "2026-08-09"
+  },
+  {
+   "prompt": "AI agent 怎么在多个任务之间记住上下文？",
+   "intent": "informational",
+   "funnel": "MOFU",
+   "cluster": "tool-stack",
+   "locale": "zh",
+   "status": "new",
+   "addedAt": "2026-08-09"
+  },
+  {
+   "prompt": "What's the difference between an AI agent and RPA?",
+   "intent": "informational",
+   "funnel": "MOFU",
+   "cluster": "comparison",
+   "locale": "en",
+   "status": "new",
+   "addedAt": "2026-08-16"
+  },
+  {
+   "prompt": "Can I self-host an AI agent?",
+   "intent": "informational",
+   "funnel": "MOFU",
+   "cluster": "tool-stack",
+   "locale": "en",
+   "status": "new",
+   "addedAt": "2026-08-16"
+  },
+  {
+   "prompt": "How many companies are using AI agents in 2026?",
+   "intent": "informational",
+   "funnel": "TOFU",
+   "cluster": "use-case",
+   "locale": "en",
+   "status": "new",
+   "addedAt": "2026-08-16"
+  },
+  {
+   "prompt": "Are AI agents safe to use with company data?",
+   "intent": "informational",
+   "funnel": "MOFU",
+   "cluster": "tool-stack",
+   "locale": "en",
+   "status": "new",
+   "addedAt": "2026-08-16"
+  },
+  {
+   "prompt": "AI agent 能帮销售团队做什么工作？",
+   "intent": "informational",
+   "funnel": "TOFU",
+   "cluster": "industry",
+   "locale": "zh",
+   "status": "new",
+   "addedAt": "2026-08-16"
+  }
+ ]
 }
