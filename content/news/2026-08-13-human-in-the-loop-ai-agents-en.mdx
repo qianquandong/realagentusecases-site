@@ -63,7 +63,7 @@ In the loop, the agent pauses and waits for a person to approve each gated actio
 For systems classified as high-risk, yes. [Article 14 of the EU AI Act](https://artificialintelligenceact.eu/article/14/) requires high-risk AI systems to be designed so they can be effectively overseen by a person who can understand, intervene in, and halt them — though it does not require a human to review every single decision.
 
 **Won't approving every action slow the agent down?**
-It will, which is why you shouldn't. Gating every step creates friction without adding safety and leads to rubber-stamping. Put the gate only on the irreversible, high-stakes actions and let the reversible work run — the approach behind [Issue #001](/en/posts/2026-05-13-gmail-ai-agent/).
+It will, which is why you shouldn't. Gating every step creates friction without adding safety and leads to rubber-stamping. Put the gate only on the irreversible, high-stakes actions and let the reversible work run — the approach behind [Issue #001](/en/posts/2026-05-13-gmail-ai-agent/). That review time is also a real recurring cost, so factor it in when you [measure the agent's ROI](/en/news/2026-08-21-how-to-measure-ai-agent-roi/).
 
 **Where should the approval gate live — in the prompt or the workflow?**
 In the workflow. Telling an agent to "ask before sending" is a suggestion it can drift from; an approval step enforced by the automation is a control it can't skip. Build the checkpoint into the execution layer.

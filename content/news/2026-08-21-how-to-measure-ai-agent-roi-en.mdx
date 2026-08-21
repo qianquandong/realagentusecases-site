@@ -1,0 +1,65 @@
+---
+title: "How to Measure AI Agent ROI: Baseline First"
+date: "2026-08-21"
+excerpt: "Only 25% of AI initiatives hit their expected ROI (IBM). The fix isn't a better model — it's setting a baseline before you deploy and counting the true cost."
+---
+
+To measure an AI agent's ROI, set a baseline before you deploy — what the task costs in time, money, and errors today — then track (value gained − full running cost) against it. Count the whole cost: subscription, tokens, setup, and the human review time. Most initiatives skip the baseline, which is why most miss.
+
+## Why most AI-agent ROI numbers don't survive contact
+
+The number to sit with first: in [IBM's 2025 CEO study](https://newsroom.ibm.com/2025-05-06-ibm-study-ceos-double-down-on-ai-while-navigating-enterprise-hurdles) of 2,000 CEOs across 33 countries, only **25% of AI initiatives delivered the ROI they expected**, and just 16% had scaled AI across the enterprise. [McKinsey's State of AI 2025](https://www.mckinsey.com/capabilities/quantumblack/our-insights/the-state-of-ai) tells the same story from the finance side: most organizations now use AI, but only about 6% are high performers seeing a 5%-or-more EBIT impact from it. The gap isn't the model. McKinsey's strongest single correlate of real bottom-line impact is *fundamental workflow redesign* — the companies that reworked how the job gets done, not the ones that bolted an agent onto the old process.
+
+So before you calculate anything, know what you're up against. A dashboard that says "the agent handled 4,000 tasks" is not ROI — it's activity. ROI is (value − cost), measured against what the task cost you *before* the agent existed. That's the same [hype-vs-reality discipline](/en/news/2026-08-19-multi-agent-systems-for-business/) we apply to every agent claim: a demo counts nothing until it's measured against a baseline. Here's how to get an honest number in three steps.
+
+## Step 1 — Set the baseline before you deploy
+
+You cannot measure a return against a number you never wrote down. Before the agent runs on anything real, spend a week measuring the task as it is today: **how long each instance takes, what it costs, and how often it goes wrong.** [Blue Prism](https://www.blueprism.com/resources/blog/ai-agent-roi/) frames the pre-work the same way — you need to know what the target process costs per transaction, how long each step takes, and where errors occur, or there's nothing to compare against later.
+
+This is the step everyone skips, and skipping it is why so many projects can't answer "was it worth it?" six months in. As [Bernard Marr notes in Forbes](https://www.forbes.com/sites/bernardmarr/2026/07/28/5-ways-to-measure-the-true-roi-of-ai-agents/), the most common failure is that nobody decided, up front, what "worth it" would look like — so the agent ships, everyone nods, and no one can prove it earned its keep. Write the baseline down first. It doesn't have to be perfect; it has to exist.
+
+## Step 2 — Count the full cost, not the sticker price
+
+The subscription line is the smallest part of what an agent costs you. An honest denominator includes:
+
+- **Platform or API fees** — the obvious monthly number.
+- **Token / compute usage** — variable, and easy to under-budget once volume grows.
+- **Setup and integration time** — the hours to connect it, write the prompt, and wire it into the workflow.
+- **Ongoing review and monitoring** — the recurring human time to check the agent's output and correct it.
+
+That last line is the one people forget, and it's rarely zero. Any agent that touches something hard to undo needs a [human-in-the-loop](/en/news/2026-08-13-human-in-the-loop-ai-agents/) gate, and that review is a real, recurring cost — not a rounding error. Marr's point in [Forbes](https://www.forbes.com/sites/bernardmarr/2026/07/28/5-ways-to-measure-the-true-roi-of-ai-agents/) lands here too: ROI on an agent isn't computed once. It compounds — or decays — every week depending on whether someone is reviewing real output, tuning it, and feeding back what it got wrong. Budget that time in, or your ROI number is fiction.
+
+## Step 3 — Pick one honest metric and re-measure on a schedule
+
+The core formula is unglamorous: **ROI = (value gained − total cost) ÷ total cost**, per [IBM's own ROI guidance](https://www.ibm.com/think/insights/ai-roi). The hard part is picking *one* value metric you can actually measure and defend — hours saved on a named task, cost per resolved ticket, error rate, or throughput per week — instead of a vague "productivity" claim. Then re-measure it on the same cadence you'd review any investment. One measurement at launch tells you almost nothing; the trend over eight weeks tells you whether to keep it, tune it, or kill it. Resist the temptation to backfill "soft" benefits to make the number look good — if the hard metric doesn't move, that's the finding.
+
+## A worked example: the real numbers behind Issue #001
+
+You don't need an enterprise stack to run this. Take the Gmail triage agent from [Issue #001](/en/posts/2026-05-13-gmail-ai-agent/) — a real, documented build with real numbers:
+
+- **Baseline (Step 1):** ~25 minutes of inbox-staring every morning before the agent existed.
+- **Full cost (Step 2):** $20/month for the Claude plan, ~20 minutes of one-time setup, plus a few minutes each morning to glance at the output and copy actions into a task manager.
+- **Metric (Step 3):** minutes of triage saved per day, and priority-call accuracy — which reached ~90% only after 5–7 days of correcting the prompt.
+
+Now do the arithmetic honestly. Value your own time at whatever rate you'd defend, multiply by ~25 minutes × working days, and subtract the $20 and the review minutes. Whether that clears your "worth it" bar is *your* call — but notice what the honest version forces you to admit: the agent was net-negative for the first week, while accuracy climbed and you were still correcting it. That's the compounding curve, not a launch-day miracle. It's also why the [reproducible, desk-level](/en/news/2026-07-17-real-ai-agent-examples/) build is the one worth measuring — every input is visible, so every number traces back to something you can check.
+
+Context on the payoff, honestly stated: enterprise appetite is real — [Zapier's State of agentic AI adoption survey (2026)](https://zapier.com/blog/ai-agents-survey/) reports most enterprises are already using or testing agents and a large majority plan to increase investment. But appetite isn't ROI. The IBM and McKinsey numbers above are the reminder that spending is easy and returns are earned — by the baseline, the workflow redesign, and the re-measuring, not by the tool. New to all this? Start at [Agent 101](/en/agent-101/), then measure your first agent the way you'd measure any investment.
+
+## FAQ
+
+**How do I calculate AI agent ROI?**
+Use ROI = (value gained − total cost) ÷ total cost, per [IBM's ROI guidance](https://www.ibm.com/think/insights/ai-roi). The work is in the inputs: set a baseline for what the task costs today (time, money, errors) before you deploy, count the *full* cost (subscription, tokens, setup, and human review time), and pick one value metric you can measure — hours saved, cost per ticket, error rate. Then re-measure on a schedule rather than trusting a single launch-day number.
+
+**What costs do people forget when measuring AI agent ROI?**
+Token/compute usage as volume grows, setup and integration hours, and — most often — the ongoing [human review time](/en/news/2026-08-13-human-in-the-loop-ai-agents/) to check and correct the agent's output. Any agent that writes or acts needs a review gate, and that time is a recurring cost, not a rounding error. Leave it out and your ROI number is fiction.
+
+**Why do most AI agent projects miss their ROI target?**
+Because they skip the baseline and skip the workflow redesign. [IBM's 2025 CEO study](https://newsroom.ibm.com/2025-05-06-ibm-study-ceos-double-down-on-ai-while-navigating-enterprise-hurdles) found only 25% of AI initiatives delivered the expected ROI, and [McKinsey](https://www.mckinsey.com/capabilities/quantumblack/our-insights/the-state-of-ai) found the strongest correlate of real impact is fundamentally reworking how the job is done — not bolting an agent onto the old process.
+
+**What's a realistic ROI timeline for an AI agent?**
+Expect it to be net-negative at first while you tune it. In [Issue #001](/en/posts/2026-05-13-gmail-ai-agent/), the agent's priority calls only reached ~90% accuracy after 5–7 days of prompt correction — meaning the payoff compounded over weeks, not on day one. Measure the trend over a couple of months, not a single week.
+
+**Can I measure ROI on a personal (non-enterprise) agent?**
+Yes, and the method is identical — it's just cheaper to run. Time the task before, add up the subscription and your review minutes after, and track one metric like minutes saved per day. The [Issue #001](/en/posts/2026-05-13-gmail-ai-agent/) example works entirely at the individual level.
+
+One real AI agent a week, measured honestly, straight to your inbox. Free, no upsell.
