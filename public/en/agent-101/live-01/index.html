@@ -1690,5 +1690,25 @@ I'll report back after each step, then you give the next one; when I'm stuck, te
   links.forEach(function(l){ io.observe(l.sec); });
 })();
 </script>
+<script>
+(function(){
+  document.querySelectorAll('a[href$="restaurant-zh.png"], a[href$="restaurant-en.png"]').forEach(function(a){
+    a.addEventListener('click', function(e){
+      e.preventDefault();
+      var ov=document.createElement('div');
+      ov.style.cssText='position:fixed;inset:0;z-index:100;background:rgba(0,0,0,.93);display:flex;align-items:center;justify-content:center;cursor:zoom-out;padding:2vh 2vw;';
+      var big=document.createElement('img');
+      big.src=a.href; big.alt=a.querySelector('img')?a.querySelector('img').alt:'';
+      big.style.cssText='max-width:96vw;max-height:96vh;width:auto;height:auto;object-fit:contain;border-radius:.5rem;';
+      ov.appendChild(big);
+      function close(){ ov.remove(); document.removeEventListener('keydown', esc); }
+      function esc(ev){ if(ev.key==='Escape') close(); }
+      ov.addEventListener('click', close);
+      document.addEventListener('keydown', esc);
+      document.body.appendChild(ov);
+    });
+  });
+})();
+</script>
 </body>
 </html>
