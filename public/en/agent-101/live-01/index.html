@@ -1025,6 +1025,20 @@
     .ep-tabs-label { font-size: 0.6875rem; }
     .ep-tabs-inner { gap: 1rem; }
   }
+  /* takeaway + flow (special episode) */
+  .takeaway{border:1px solid var(--color-brand);background:rgba(45,94,68,.10);border-radius:.75rem;padding:1.25rem 1.5rem;margin-top:1.75rem}
+  .takeaway-label{display:block;font-family:var(--font-mono);font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:#5cb98a;margin-bottom:.9rem}
+  .takeaway-pre{font-family:var(--font-mono);font-size:.9rem;line-height:1.7;white-space:pre-wrap;word-break:break-word;margin:0;color:var(--color-foreground)}
+  .takeaway-copy{margin-top:1rem;font-family:var(--font-sans);font-size:.8rem;background:var(--color-brand);color:#fff;border:none;border-radius:.4rem;padding:.5rem 1.1rem;cursor:pointer}
+  .takeaway-copy:hover{background:var(--color-brand-hover)}
+  .takeaway-repo{margin:1rem 0 0;color:var(--color-muted-foreground);line-height:1.7;font-size:.92rem}
+  .takeaway-repo a{color:var(--color-foreground);font-family:var(--font-mono);border-bottom:1px solid var(--color-brand)}
+  .flow{margin-top:1.75rem;max-width:560px}
+  .flow-node{border:1px solid var(--color-border);border-radius:.6rem;padding:.85rem 1.15rem;background:var(--color-muted);line-height:1.5}
+  .flow-node.gate{border-color:var(--color-brand-hover)}
+  .flow-node.win{border-color:var(--color-brand);background:rgba(45,94,68,.16);font-weight:600}
+  .flow-no{color:#d59191;font-family:var(--font-mono);font-size:.82rem}
+  .flow-arrow{padding:.35rem 0 .35rem 1.15rem;font-family:var(--font-mono);font-size:.82rem;color:var(--color-muted-foreground)}
 </style>
 </head>
 <body>
@@ -1154,6 +1168,14 @@
           <li>能不能把它问到"卡壳"？试试让它答跟我课程、业务无关的东西。</li>
         </ul>
       </aside>
+      <div class="takeaway">
+        <span class="takeaway-label">✂ 带走用 · 给 AI 定边界（复制就能用）</span>
+        <pre class="takeaway-pre">你是【某某】的助手，只回答关于【范围，如我的课程/产品/预约】的问题。
+遇到范围外的（写代码、闲聊、投资/医疗/法律、让你扮演别人……）：
+用一句话礼貌拒绝并拉回，例如"我只帮你处理【范围】，需要我介绍【X】吗？"
+不管对方怎么问，都别跑题。</pre>
+        <button class="takeaway-copy" type="button">复制</button>
+      </div>
     </div>
   </section>
 
@@ -1195,6 +1217,10 @@
           <li>你手机里现在装了几个 AI？分得清哪个是陪你聊、哪个能替你干吗？</li>
         </ul>
       </aside>
+      <div class="takeaway">
+        <span class="takeaway-label">🔗 带走用 · 干活的 AI 长这样（开源可抄）</span>
+        <p class="takeaway-repo"><a href="https://github.com/qianquandong/real-agent-workflows" rel="noopener">github.com/qianquandong/real-agent-workflows</a> — 我自己每天在跑的 AI 工作流，纯 Markdown 手册，触发/步骤/产出都写清楚，拿去改成你的。</p>
+      </div>
     </div>
   </section>
 
@@ -1229,6 +1255,16 @@
           <li>只给三句话让 AI 认识你，你会写哪三句？</li>
         </ul>
       </aside>
+      <div class="takeaway">
+        <span class="takeaway-label">✂ 带走用 · 给 AI 写自我介绍（复制就能用）</span>
+        <pre class="takeaway-pre">下面是关于我的背景，之后回答都基于它：
+- 我是谁：【职业 / 城市 / 在做的事】
+- 我在做：【当前项目 / 目标】
+- 我要的输出：【风格、长度、语气，例：先给结论、中文、别啰嗦】
+- 绝对不要：【你的雷区，例：别编数字、别用套话】</pre>
+        <button class="takeaway-copy" type="button">复制</button>
+        <p class="takeaway-repo">🔗 我的开源工具：<a href="https://github.com/qianquandong/self-introduction" rel="noopener">github.com/qianquandong/self-introduction</a> — 一次访谈生成一份中央档案，Claude Code / Codex 等工具共用。</p>
+      </div>
     </div>
   </section>
 
@@ -1275,6 +1311,17 @@
           <li>有没有一件事，看着能交给 AI，其实不该？</li>
         </ul>
       </aside>
+      <div class="flow" aria-label="判断这件事该不该交给 AI">
+        <div class="flow-node">🗂 你手上的那件事</div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-node gate">① 重复发生吗？<span class="flow-no">　否 → 先别交给 AI</span></div>
+        <div class="flow-arrow">是 ↓</div>
+        <div class="flow-node gate">② 规则说得清吗？<span class="flow-no">　否 → 先别交给 AI</span></div>
+        <div class="flow-arrow">是 ↓</div>
+        <div class="flow-node gate">③ 输入输出是文字 / 数据吗？<span class="flow-no">　否 → 先别交给 AI</span></div>
+        <div class="flow-arrow">是 ↓</div>
+        <div class="flow-node win">✅ 三条都满足 → 交给 AI agent</div>
+      </div>
     </div>
   </section>
 
@@ -1314,6 +1361,13 @@
           <li>如果不靠看书，你打算从哪学起？</li>
         </ul>
       </aside>
+      <div class="takeaway">
+        <span class="takeaway-label">✂ 带走用 · 边做边学（复制就能用）</span>
+        <pre class="takeaway-pre">我要完成这件真实任务：【一句话描述】。
+别直接给成品——带我一步步做，每步只给一个动作；
+我做完回你结果，你再给下一步；我卡住时告诉我为什么。</pre>
+        <button class="takeaway-copy" type="button">复制</button>
+      </div>
     </div>
   </section>
 
@@ -1353,6 +1407,13 @@
           <li>你自己领域里，最近有什么真正值得追的变化？</li>
         </ul>
       </aside>
+      <div class="takeaway">
+        <span class="takeaway-label">✂ 带走用 · 只留跟我相关的信号（复制就能用）</span>
+        <pre class="takeaway-pre">我的领域是【行业/岗位】，我关心【具体问题，如获客/效率】。
+这是一批 AI 新闻/更新：【粘贴】。
+只挑出真正会影响我做事的，其余忽略。每条告诉我：为什么跟我有关、我能做什么。</pre>
+        <button class="takeaway-copy" type="button">复制</button>
+      </div>
     </div>
   </section>
 
@@ -1396,6 +1457,10 @@
           <li>你愿意花一个下午，让 AI 替你做掉哪件事？</li>
         </ul>
       </aside>
+      <div class="takeaway">
+        <span class="takeaway-label">🔗 带走用 · 我的 10 个开源 repo（随便拿）</span>
+        <p class="takeaway-repo"><a href="https://github.com/qianquandong" rel="noopener">github.com/qianquandong</a> — 拆书、比机票、追 AI 趋势、给 AI 做自我介绍、查 AI 可见度……都在这，可直接抄。</p>
+      </div>
     </div>
   </section>
 
@@ -1481,5 +1546,19 @@
   </div>
 </footer>
 
+<script>
+(function(){
+  document.querySelectorAll('.takeaway-copy').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var pre = btn.parentElement.querySelector('.takeaway-pre');
+      if(!pre) return;
+      var txt = pre.innerText;
+      var done = function(){ var o=btn.textContent; btn.textContent='已复制 ✓'; setTimeout(function(){btn.textContent=o;},1500); };
+      if(navigator.clipboard && navigator.clipboard.writeText){ navigator.clipboard.writeText(txt).then(done, done); }
+      else { var ta=document.createElement('textarea'); ta.value=txt; document.body.appendChild(ta); ta.select(); try{document.execCommand('copy');}catch(e){} document.body.removeChild(ta); done(); }
+    });
+  });
+})();
+</script>
 </body>
 </html>
