@@ -1,0 +1,58 @@
+---
+title: "AI Agent for Document Processing: Extract vs. Act"
+date: "2026-08-22"
+excerpt: "One document agent reads the file — classifying it and extracting the fields; another acts on that data, routing and writing it downstream. Here's the split."
+---
+
+An AI agent for document processing does one of two jobs. One *reads the document* — classifying its type, pulling the fields, and scoring its own confidence for a person to use. The other *acts on that data* — writing it into your systems or routing it for approval. Reading is safe; acting is where the gate goes.
+
+## Two jobs hiding in "automate my documents"
+
+"Document processing" sounds like one chore, but it splits the moment you ask *what the agent does after it reads the page*. One version ingests a PDF or scan, decides what kind of document it is, extracts the fields, and hands you a clean, structured record — then stops. The other version takes that record and *does* something with it: writes it into your ERP, files it, or routes it for approval. The first is a reader; the second is an actor. It's the same read-only-vs-act line we drew for [invoice processing](/en/news/2026-07-20-ai-agent-for-invoice-processing/) (draft vs. pay) and [expense management](/en/news/2026-07-21-ai-agent-for-expense-management/) (submit vs. approve) — in fact, both of those are *specialized* document-processing jobs. The bucket-and-priority discipline behind our [Gmail triage agent](/en/posts/2026-05-13-gmail-ai-agent/) in Issue #001 is the same instinct: an agent that reads and prepares is a different risk from one that commits an action you can't easily undo.
+
+## Job 1 — Read the document (classify, extract, score)
+
+This is the safe half, and it's the mature part of the field — the big clouds all ship it as a service. The pattern is consistent: classify the document type first, then run the matching extractor.
+
+- **Google Cloud [Document AI](https://cloud.google.com/document-ai)** lets you build processors that classify, split, and extract structured data from documents. Its [custom classifier](https://docs.cloud.google.com/document-ai/docs/custom-classifier) identifies a document's type from a set of classes so you can route it to the right extractor, and its [Custom Extractor — now generally available and powered by generative AI](https://cloud.google.com/blog/products/ai-machine-learning/document-ai-custom-extractor-powered-by-generative-ai-is-now-ga) — pulls the fields you define in a schema, tunable on as few as 10 sample documents.
+- **[Amazon Textract](https://aws.amazon.com/textract/)** goes past plain OCR: its [document-analysis operations](https://docs.aws.amazon.com/textract/latest/dg/how-it-works-analyzing.html) return five categories — raw text, forms (as key-value pairs), tables, query answers, and signatures — and, critically, a **confidence score for every element** it extracts, so you can decide programmatically what to trust.
+- **[Azure AI Document Intelligence](https://learn.microsoft.com/en-us/azure/ai-services/document-intelligence/model-overview?view=doc-intel-4.0.0)** ships prebuilt models (like `prebuilt-invoice` and `prebuilt-receipt`, where Microsoft maintains the field schema) plus [custom classification and extraction models](https://learn.microsoft.com/en-us/azure/ai-services/document-intelligence/train/custom-classifier?view=doc-intel-4.0.0) you train on your own document types.
+
+Notice what all three stop at: they output a structured record with a confidence signal. Nothing has been written to a system of record yet. That's Job 1 done right.
+
+## Job 2 — Act on the data (write, route, approve)
+
+The value only lands when the extracted data goes somewhere — but this is also where the risk climbs, because now the agent is *writing*, not reading. The common no-code route is an automation platform that triggers on a new document, runs extraction, and pushes the result downstream. [Zapier's own guide](https://zapier.com/blog/create-extract-data-from-pdfs/) walks through exactly this: a workflow fires when a new PDF lands, extracts the fields, and sends them on — for example, reading an incoming invoice and passing vendor, date, and total to your accounting software.
+
+That last hop — into accounting, a CRM, a ticketing system — is the irreversible part. An invoice written to the wrong GL account, a contract filed under the wrong entity, a resume auto-advanced or auto-rejected: these are actions, not reads. So the same rule from every use-case on this site applies here. Automate the reading freely; put a gate on the writing.
+
+## The gate: confidence scores and human review
+
+The reason document processing is safer than most write-heavy automations is that the extractors *tell you when they're unsure*. Textract returns a confidence score per field; you don't have to treat a 62%-confidence value the same as a 99% one. Amazon built the human-review step directly on top of this: [Amazon Augmented AI (A2I)](https://docs.aws.amazon.com/textract/latest/dg/a2i-textract.html) routes Textract results **below a confidence threshold you set** to human reviewers, while high-confidence extractions flow straight through. A blurry scan or bad handwriting gets a person; a clean invoice doesn't.
+
+That's the [human-in-the-loop](/en/news/2026-08-13-human-in-the-loop-ai-agents/) gate in its most practical form — not "review everything," which just recreates the manual work you were trying to remove, but *review the flagged minority*. Wire the threshold into the workflow, not the prompt, and you get the throughput of automation with a catch on the cases most likely to be wrong.
+
+## Which do you actually need?
+
+If your pain is *"we retype the same fields off PDFs and scans all day,"* that's Job 1 — a reader that classifies and extracts into a structured record, with a person using the output. If your pain is *"even after it's extracted, getting the data into our systems is a manual chain,"* that's Job 2 — an actor that writes and routes, gated by confidence thresholds and human review on the low-confidence slice. Most teams should earn Job 2: trust the extraction on your real documents first, then automate the downstream write for the high-confidence cases and let a human clear the rest.
+
+For the specialized versions of this job, see [invoice processing](/en/news/2026-07-20-ai-agent-for-invoice-processing/) and [expense management](/en/news/2026-07-21-ai-agent-for-expense-management/); for where document work sits in a finance team's whole cycle, see [AI agents for accountants](/en/news/2026-07-28-ai-agents-for-accountants/). New to the idea? Start at [Agent 101](/en/agent-101/), or see the [no-code AI agent tools](/en/news/2026-07-08-no-code-ai-agent-tools/) that can wire the extract-and-route step together.
+
+## FAQ
+
+**Can an AI agent process documents automatically?**
+Yes, in two stages. The safe stage is reading: services like [Google Document AI](https://cloud.google.com/document-ai), [Amazon Textract](https://aws.amazon.com/textract/), and [Azure AI Document Intelligence](https://learn.microsoft.com/en-us/azure/ai-services/document-intelligence/model-overview?view=doc-intel-4.0.0) classify the document and extract its fields into a structured record. Acting on that data — writing it into your systems or routing it for approval — is a separate, higher-risk step you gate with confidence thresholds and human review.
+
+**How does a document agent know what kind of document it is?**
+It runs a classifier first. [Google's custom classifier](https://docs.cloud.google.com/document-ai/docs/custom-classifier) and [Azure's custom classification model](https://learn.microsoft.com/en-us/azure/ai-services/document-intelligence/train/custom-classifier?view=doc-intel-4.0.0) both identify a document's type from a defined set of classes, then hand it to the matching extractor. Classifying before extracting is what lets one pipeline handle invoices, contracts, and forms without you sorting them by hand.
+
+**What stops a document agent from making expensive mistakes?**
+Confidence scores plus a human-review gate. [Amazon Textract](https://docs.aws.amazon.com/textract/latest/dg/how-it-works-analyzing.html) returns a confidence score for every extracted element, and [Amazon Augmented AI (A2I)](https://docs.aws.amazon.com/textract/latest/dg/a2i-textract.html) routes anything below your threshold to a person while clean extractions flow through. You review the uncertain minority, not everything — the practical form of [human-in-the-loop](/en/news/2026-08-13-human-in-the-loop-ai-agents/).
+
+**Do I need code to process documents with an agent?**
+Not necessarily. No-code platforms like [Zapier](https://zapier.com/blog/create-extract-data-from-pdfs/) can trigger on a new PDF, extract fields, and push them to another app. The cloud extractors (Document AI, Textract, Document Intelligence) are API services, but many are usable through no-code connectors and prebuilt models — start with a prebuilt model on your real documents before building anything custom.
+
+**How is this different from an invoice-processing agent?**
+An invoice agent is a document agent with a narrow, high-stakes specialty. The structure is identical — a read layer that extracts and matches, then an act layer that pays — but invoice processing raises the stakes because the committed action is a payment. Our [invoice-processing guide](/en/news/2026-07-20-ai-agent-for-invoice-processing/) draws that draft-vs-pay line in detail.
+
+One real AI agent a week, straight to your inbox. Free, no upsell.

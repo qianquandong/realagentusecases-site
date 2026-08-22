@@ -1,7 +1,19 @@
 {
  "$comment": "LLM brand-mention tracking time series. The scheduled Cowork routine appends one snapshot per run: which target prompts surfaced the brand, in which LLMs, with what sentiment.",
- "updatedAt": "2026-08-21",
+ "updatedAt": "2026-08-22",
  "snapshots": [
+  {
+   "date": "2026-08-22",
+   "probes": [
+    {
+     "prompt": "AI agent 能自动处理发票吗？",
+     "cited": false,
+     "url": null,
+     "position": null,
+     "note": "Saturday run. On-topic ZH probe for today's article (keyword 'AI agent for document processing', extract-vs-act) — invoice processing is a document-processing sub-case, and this ZH prompt had never been probed before. Web search (verbatim) dominated by vocus.cc (會計怎麼導入 AI Agent 發票辨識), csdn.net / 金智维 · 实在智能 developer-community posts, and ai-indeed.com (实在智能) encyclopedia pages on 数电发票批量开具/红冲/审核自动化; realagentusecases.com did not appear — the ZH field is domestic 财税/发票-automation vendors + dev-community explainers, no independent real-professional-build / read-vs-act angle. The site already answers this prompt verbatim in the ZH FAQ of the 2026-07-20 invoice-processing article, and today's document-processing umbrella deepens the cluster; re-probe post-index to track lift. Health: direct WebFetch of realagentusecases.com/en/ and /sitemap.xml both returned EGRESS_BLOCKED (403 at proxy CONNECT) — the known recurring sandbox network-policy denial seen every run, not a site outage; a branded WebSearch surfaced no row (the known small-domain/site: quirk), so live indexing could not be reconfirmed from this environment this run (prior runs confirmed a live indexed page at /en/news/2026-05-14-claude-system-prompt-email-triage/). Repo pipeline healthy: git log shows daily auto-merges landing cleanly through 2026-08-21 (how-to-measure-ai-agent-roi); working tree clean, branch tracking origin. Today's article clusters with invoice-processing, expense-management, accountants, and human-in-the-loop; wove an upward umbrella link into the invoice-processing 'Which do you actually need?' section (en+zh). Source-research gate passed with 5 real linkable sources, 4 primary: Google Cloud Document AI (docs + Custom Extractor GA blog), Amazon Textract (product + Analyzing Documents docs), Azure AI Document Intelligence (Microsoft Learn model overview + custom classifier), Amazon Augmented AI/A2I (Textract human-review docs), and Zapier's extract-from-PDF guide."
+    }
+   ]
+  },
   {
    "date": "2026-08-21",
    "probes": [
