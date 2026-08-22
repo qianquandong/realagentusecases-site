@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Agent 101 特别现场版 · 把你工作里最烦的那件事，交给 AI —— Jack Qian 达拉斯线下讲座幻灯片。">
+<title>Agent 101 · 特别现场版 · 把你最烦的工作交给 AI</title>
+<link rel="canonical" href="https://realagentusecases.com/en/agent-101/live-01/">
+<link rel="alternate" hreflang="zh" href="https://realagentusecases.com/agent-101/live-01/">
+<link rel="alternate" hreflang="en" href="https://realagentusecases.com/en/agent-101/live-01/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@300..900&family=Geist+Mono:wght@300..700&display=swap">
+<style>
+  :root {
+    --bg: #0a0a0a;
+    --fg: #f2f2f2;
+    --muted: #a3a3a3;
+    --border: #262626;
+    --brand: #2d5e44;
+    --brand-bright: #4a9c70;
+    --font-sans: "Geist", -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", sans-serif;
+    --font-mono: "Geist Mono", ui-monospace, Menlo, monospace;
+  }
+  * { box-sizing: border-box; margin: 0; }
+  html, body { height: 100%; overflow: hidden; background: var(--bg); }
+  body { font-family: var(--font-sans); color: var(--fg); -webkit-font-smoothing: antialiased; }
+
+  .slide {
+    position: absolute; inset: 0;
+    display: none;
+    flex-direction: column; justify-content: center;
+    padding: 6vh 8vw;
+    background: var(--bg);
+  }
+  .slide.active { display: flex; }
+
+  .eyebrow {
+    font-family: var(--font-mono);
+    font-size: clamp(0.8rem, 1.6vw, 1.1rem);
+    letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--brand-bright);
+    margin-bottom: 2.2vh;
+  }
+  h1 { font-size: clamp(2.2rem, 6.5vw, 5rem); font-weight: 750; letter-spacing: -0.025em; line-height: 1.12; }
+  h2 { font-size: clamp(1.8rem, 5vw, 3.8rem); font-weight: 700; letter-spacing: -0.02em; line-height: 1.15; margin-bottom: 3.5vh; }
+  .sub { font-size: clamp(1.05rem, 2.4vw, 1.7rem); color: var(--muted); margin-top: 3vh; line-height: 1.55; }
+  .sub b, li b { color: var(--fg); font-weight: 650; }
+
+  ul.big { list-style: none; padding: 0; }
+  ul.big li {
+    font-size: clamp(1.15rem, 2.8vw, 2rem);
+    line-height: 1.5; padding: 1.6vh 0 1.6vh 2.2rem;
+    position: relative; border-bottom: 1px solid var(--border);
+  }
+  ul.big li:last-child { border-bottom: none; }
+  ul.big li::before { content: "→"; position: absolute; left: 0; color: var(--brand-bright); }
+
+  .huge {
+    font-family: var(--font-mono);
+    font-size: clamp(2.6rem, 9vw, 7rem);
+    font-weight: 700; letter-spacing: -0.02em;
+    color: var(--brand-bright);
+    margin: 3vh 0;
+  }
+
+  .cols { display: grid; grid-template-columns: 1fr 1fr; gap: 4vw; margin-top: 2vh; }
+  .col { border: 1px solid var(--border); border-radius: 0.75rem; padding: 3.2vh 2.2vw; }
+  .col.brand { border-color: var(--brand); background: rgba(45, 94, 68, 0.12); }
+  .col h3 { font-size: clamp(1.2rem, 2.6vw, 2rem); margin-bottom: 1.8vh; }
+  .col p, .col li { font-size: clamp(0.95rem, 1.9vw, 1.35rem); color: var(--muted); line-height: 1.6; }
+  .col ul { list-style: none; padding: 0; }
+  .col li { padding: 0.7vh 0; }
+  .col li b { color: var(--fg); }
+
+  .price-row { display: flex; gap: 3vw; margin-top: 4vh; align-items: stretch; flex-wrap: wrap; }
+  .price { border: 1px solid var(--border); border-radius: 0.75rem; padding: 3vh 2.5vw; flex: 1; min-width: 240px; }
+  .price.hot { border-color: var(--brand-bright); background: rgba(45, 94, 68, 0.15); }
+  .price .amt { font-family: var(--font-mono); font-size: clamp(1.8rem, 4.5vw, 3.2rem); font-weight: 700; }
+  .price .amt s { color: var(--muted); font-size: 0.55em; font-weight: 400; margin-right: 0.4em; }
+  .price .lbl { color: var(--muted); font-size: clamp(0.95rem, 1.8vw, 1.25rem); margin-top: 1vh; line-height: 1.5; }
+  .price .lbl b { color: var(--brand-bright); font-family: var(--font-mono); }
+
+  .qr-wrap { display: flex; align-items: center; gap: 4vw; margin-top: 3vh; }
+  .qr-wrap img { width: clamp(160px, 24vh, 300px); height: auto; background: #fff; padding: 12px; border-radius: 0.75rem; }
+
+  .foot {
+    position: absolute; left: 8vw; right: 8vw; bottom: 3.5vh;
+    display: flex; justify-content: space-between; align-items: baseline;
+    font-family: var(--font-mono); font-size: clamp(0.7rem, 1.3vw, 0.95rem);
+    color: var(--muted);
+  }
+  .foot a { color: var(--muted); text-decoration: none; }
+
+  #bar { position: fixed; top: 0; left: 0; height: 3px; background: var(--brand-bright); width: 0; transition: width 0.25s; z-index: 10; }
+  #counter { position: fixed; right: 2vw; bottom: 2vh; font-family: var(--font-mono); font-size: 0.85rem; color: var(--muted); z-index: 10; }
+
+  @media (max-width: 640px) {
+    .cols { grid-template-columns: 1fr; gap: 2vh; }
+    .slide { padding: 5vh 6vw; }
+  }
+</style>
+</head>
+<body>
+
+<div id="bar"></div>
+<div id="counter"></div>
+
+<!-- 1 · 封面 -->
+<section class="slide active">
+  <div class="eyebrow">Real Agent Use Cases · Agent 101 · 特别现场版</div>
+  <h1>把你工作里<br>最烦的那件事，交给 AI</h1>
+  <p class="sub">Jack Qian · Dallas · 2026.08.22</p>
+  <div class="foot"><span>realagentusecases.com</span><span>aimanjack.com</span></div>
+</section>
+
+<!-- 2 · 开场互动 -->
+<section class="slide">
+  <div class="eyebrow">现在就拿出手机</div>
+  <h2>给这个号码发一条短信</h2>
+  <div class="huge">(469) 425-4142</div>
+  <ul class="big">
+    <li>问它 <b>9 月课程</b>的任何问题</li>
+    <li>问它 <b>我做过什么项目</b></li>
+    <li>直接<b>跟它约我的时间</b>，1 对 1 聊</li>
+  </ul>
+  <p class="sub">中文英文都行。聊两句，我们等等再揭晓。</p>
+</section>
+
+<!-- 3 · 揭晓 -->
+<section class="slide">
+  <div class="eyebrow">揭晓</div>
+  <h2>刚才回复你的，不是人</h2>
+  <ul class="big">
+    <li>它<b>读懂</b>了你的问题</li>
+    <li>自己<b>查了</b>课程信息和空闲时段</li>
+    <li>自己<b>决定</b>怎么回、用什么语言回</li>
+    <li>约好的时间，已经<b>写进了我的数据库</b></li>
+  </ul>
+  <p class="sub">这就是 AI Agent。今天 90 分钟，讲清楚它是什么、你怎么拥有一个。</p>
+</section>
+
+<!-- 4 · 我是谁 -->
+<section class="slide">
+  <div class="eyebrow">我是谁</div>
+  <h2>白天工程师，晚上每天 3 小时</h2>
+  <ul class="big">
+    <li>白天：达拉斯一家<b>半导体公司</b>的工程师</li>
+    <li><b>AI Man Jack</b> —— 帮达拉斯小生意做网站和 AI 工作流</li>
+    <li><b>Real Agent Use Cases</b> —— 双语周刊，只写真实在用的 agent</li>
+    <li>组织免费社区 AI workshop：<b>70 人大课</b>、1 场 hackathon</li>
+  </ul>
+  <p class="sub">今天讲的所有东西，都是我业余时间每天 3 小时做出来的。</p>
+</section>
+
+<!-- 5 · 认知一 -->
+<section class="slide">
+  <div class="eyebrow">认知一</div>
+  <h2>聊天的 AI，和干活的 AI，是两种东西</h2>
+  <div class="cols">
+    <div class="col">
+      <h3>ChatGPT / Claude 网页版</h3>
+      <ul>
+        <li><b>你问，它答</b></li>
+        <li>一次一句，你来回搬运</li>
+        <li>产出是<b>一段文字</b></li>
+      </ul>
+    </div>
+    <div class="col brand">
+      <h3>Agent（Claude Code / Codex / OpenClaw）</h3>
+      <ul>
+        <li><b>你给目标，它执行</b></li>
+        <li>自己拆步骤、自己用工具、自己跑完</li>
+        <li>产出是<b>一件做完的事</b></li>
+      </ul>
+    </div>
+  </div>
+  <p class="sub">工具名字不用记，记住这条分界线就够了。</p>
+</section>
+
+<!-- 6 · 认知二 -->
+<section class="slide">
+  <div class="eyebrow">认知二</div>
+  <h2>AI 不好用，是因为它不认识你</h2>
+  <ul class="big">
+    <li>它不知道你的<b>职业、项目、口味、底线</b></li>
+    <li>解法：写一份<b>「自我介绍文件」</b>，让每次对话自带背景</li>
+    <li>我是谁 / 我在做什么 / 我喜欢什么样的输出</li>
+  </ul>
+  <p class="sub">接下来现场演示：同一个问题，AI 认识我前 vs 认识我后。</p>
+</section>
+
+<!-- 7 · 带练 -->
+<section class="slide">
+  <div class="eyebrow">现场带练 · 25 分钟</div>
+  <h2>跟我一起做</h2>
+  <ul class="big">
+    <li><b>1.</b> 打开你常用的 AI（网页版就行）</li>
+    <li><b>2.</b> 跟着我，写你自己的自我介绍文件</li>
+    <li><b>3.</b> 用它跑一个真任务，对比前后差别</li>
+  </ul>
+  <p class="sub">没带电脑的用手机；卡住了举手。</p>
+</section>
+
+<!-- 8 · 认知三 -->
+<section class="slide">
+  <div class="eyebrow">认知三</div>
+  <h2>不是所有事都该交给 AI</h2>
+  <p class="sub" style="margin-top:0">值得交给 agent 的事，同时满足三条：</p>
+  <ul class="big">
+    <li><b>重复发生</b> —— 每天、每周都要做一遍</li>
+    <li><b>规则说得清</b> —— 你能给同事写成操作说明</li>
+    <li><b>输入输出是文字或数据</b> —— 邮件、表格、文档、消息</li>
+  </ul>
+</section>
+
+<!-- 9 · 动手写 -->
+<section class="slide">
+  <div class="eyebrow">动手 · 3 分钟</div>
+  <h2>写下你自己的那件事</h2>
+  <p class="sub" style="margin-top:0">你工作里，最烦、重复发生、规则明确的<b>一件事</b>。</p>
+  <div class="huge" style="font-size:clamp(1.6rem,4vw,3rem)">写在手机备忘录或纸上，一句话。</div>
+  <p class="sub">等一下要用到它。</p>
+</section>
+
+<!-- 10 · 我用 AI 做了什么 -->
+<section class="slide">
+  <div class="eyebrow">成果 · 全是业余时间做的</div>
+  <h2>我用 AI 做了什么</h2>
+  <ul class="big">
+    <li><b>aimanjack.com</b> —— 网站、收款、SEO，全流程 AI 工作流在跑</li>
+    <li><b>realagentusecases.com</b> —— 双语周刊 + 播客，AI 排产</li>
+    <li>刚才那个<b>短信客服</b> —— 一个下午做出来的</li>
+    <li><b>10 个开源 repo</b> —— github.com/qianquandong</li>
+  </ul>
+</section>
+
+<!-- 11 · 课程四步 -->
+<section class="slide">
+  <div class="eyebrow">9 月线下课 · Dallas</div>
+  <h2>你手里写的那件事，<br>就是课程要做出来的</h2>
+  <ul class="big">
+    <li><b>发现痛点</b> —— 带着你刚写的那句话来</li>
+    <li><b>判断可行性</b> —— 能不能用 AI 解决、值不值得</li>
+    <li><b>设计工作流</b> —— 拆成输入、步骤、输出</li>
+    <li><b>选路径做出来</b> —— 纯代码 / Skill / 智能体，用哪个模型</li>
+  </ul>
+</section>
+
+<!-- 12 · 报名 -->
+<section class="slide">
+  <div class="eyebrow">报名 · aimanjack.com/class</div>
+  <h2>今天在场的人，有早鸟价</h2>
+  <div class="price-row">
+    <div class="price hot">
+      <div class="amt"><s>$399</s>$299</div>
+      <div class="lbl">9 月正课 · 结账输优惠码 <b>AIMANJACK</b><br>只限讲座后 48 小时</div>
+    </div>
+    <div class="price">
+      <div class="amt">$99</div>
+      <div class="lbl">9 月体验课 · 先感受一节再决定</div>
+    </div>
+  </div>
+  <div class="qr-wrap">
+    <img src="class-qr.svg" alt="报名页二维码 aimanjack.com/class" width="300" height="300">
+    <p class="sub" style="margin-top:0">扫码打开报名页<br><b style="color:var(--fg)">aimanjack.com/class</b></p>
+  </div>
+</section>
+
+<!-- 13 · QA -->
+<section class="slide">
+  <div class="eyebrow">Q &amp; A</div>
+  <h2>有问题，现在问；<br>回家想到了，发短信问</h2>
+  <div class="qr-wrap">
+    <img src="class-qr.svg" alt="报名页二维码 aimanjack.com/class" width="300" height="300">
+    <ul class="big" style="flex:1">
+      <li>报名 / 早鸟码 <b>AIMANJACK</b>：aimanjack.com/class</li>
+      <li>短信 AI 客服 &amp; 约 1v1：<b>(469) 425-4142</b></li>
+      <li>每周真实 agent 案例：<b>realagentusecases.com</b></li>
+    </ul>
+  </div>
+  <div class="foot"><span>谢谢！</span><a href="/en/agent-101/">← Agent 101 全部集数</a></div>
+</section>
+
+<script>
+  var slides = document.querySelectorAll(".slide"), i = 0;
+  var bar = document.getElementById("bar"), counter = document.getElementById("counter");
+  function show(n) {
+    i = Math.max(0, Math.min(slides.length - 1, n));
+    slides.forEach(function (s, k) { s.classList.toggle("active", k === i); });
+    bar.style.width = ((i + 1) / slides.length * 100) + "%";
+    counter.textContent = (i + 1) + " / " + slides.length;
+    location.hash = i + 1;
+  }
+  addEventListener("keydown", function (e) {
+    if (["ArrowRight", "ArrowDown", "PageDown", " "].indexOf(e.key) > -1) { e.preventDefault(); show(i + 1); }
+    if (["ArrowLeft", "ArrowUp", "PageUp"].indexOf(e.key) > -1) { e.preventDefault(); show(i - 1); }
+    if (e.key === "Home") show(0);
+    if (e.key === "End") show(slides.length - 1);
+  });
+  addEventListener("click", function (e) {
+    if (e.target.closest("a")) return;
+    show(e.clientX < innerWidth / 3 ? i - 1 : i + 1);
+  });
+  var tx = null;
+  addEventListener("touchstart", function (e) { tx = e.touches[0].clientX; }, { passive: true });
+  addEventListener("touchend", function (e) {
+    if (tx === null) return;
+    var dx = e.changedTouches[0].clientX - tx;
+    if (Math.abs(dx) > 40) show(dx < 0 ? i + 1 : i - 1);
+    tx = null;
+  }, { passive: true });
+  show(parseInt(location.hash.slice(1), 10) - 1 || 0);
+</script>
+
+</body>
+</html>
