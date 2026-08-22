@@ -1050,6 +1050,8 @@
   .chapter-rail-item.is-current{opacity:1}
   .chapter-rail-item.is-current .cr-dot{border-color:var(--color-brand);background:var(--color-brand);color:#fff}
   .chapter-rail-item.is-current .cr-label{color:var(--color-foreground)}
+  .cr-time{font-family:var(--font-mono);font-size:.6rem;color:var(--color-muted-foreground);margin-left:.35rem;white-space:nowrap}
+  .chapter-rail-item.is-current .cr-time{color:var(--color-brand)}
   @media (max-width:1200px){.chapter-rail{display:none}}
 </style>
 </head>
@@ -1861,6 +1863,7 @@
   if(!secs.length) return;
   var rail = document.createElement('nav');
   rail.className='chapter-rail'; rail.setAttribute('aria-label','章节导航');
+  var TIMES=['0–3','3–8','8–14','14–24','24–29','29–35','35–41','41–65','65–70','70–76','76–80','80–83','83–87','88–90',''];
   var links = secs.map(function(sec,i){
     var eb = sec.querySelector('.eyebrow, .eyebrow-lg');
     var h = sec.querySelector('h1, h2');
@@ -1868,9 +1871,10 @@
     if(m) num=m[1]; else if(i===0) num='0'; else if(sec.id==='cta') num='✦';
     var title = (h?h.textContent.trim():'').replace(/\s+/g,' ');
     var a=document.createElement('a'); a.className='chapter-rail-item'; a.href='#'; a.title=title;
-    a.innerHTML='<span class="cr-dot"></span><span class="cr-label"></span>';
+    a.innerHTML='<span class="cr-dot"></span><span class="cr-label"></span><span class="cr-time"></span>';
     a.querySelector('.cr-dot').textContent=num;
     a.querySelector('.cr-label').textContent=title;
+    a.querySelector('.cr-time').textContent=TIMES[i]||'';
     a.addEventListener('click',function(e){e.preventDefault(); sec.scrollIntoView({behavior:'smooth',block:'start'});});
     rail.appendChild(a); return {sec:sec,a:a};
   });
