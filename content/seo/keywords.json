@@ -1,6 +1,6 @@
 {
  "$comment": "SEO keyword feed — a living file. The scheduled Cowork routine ideates entries; scripts/seo/feeds.mjs persists them (dedupe + status + timestamps). intent: informational|commercial|transactional. funnel: TOFU|MOFU|BOFU. cluster: use-case|template|comparison|industry|tool-stack. status: new|used.",
- "updatedAt": "2026-08-21",
+ "updatedAt": "2026-08-22",
  "keywords": [
   {
    "term": "AI agent use cases",
@@ -613,8 +613,8 @@
    "funnel": "MOFU",
    "cluster": "use-case",
    "locale": "both",
-   "status": "new",
-   "note": "Extract/route/summarize documents; clusters with invoice-processing + expense-management. Added 2026-08-16 (Sunday ideation).",
+   "status": "used",
+   "note": "Used 2026-08-22 → content/news/2026-08-22-ai-agent-for-document-processing-{en,zh}.mdx (title 'AI Agent for Document Processing: Extract vs. Act'). Extract-vs-act two-jobs framing (read the document vs act on the data) — the umbrella parent over invoice-processing (07-20, draft-vs-pay) and expense-management (07-21, submit-vs-approve), both of which are specialized document-processing jobs. Job 1 read/classify/extract = Google Cloud Document AI (custom classifier + generative-AI Custom Extractor GA, fine-tune on as few as 10 docs) + Amazon Textract (5 categories text/forms/tables/queries/signatures, confidence score per element) + Azure AI Document Intelligence (prebuilt-invoice/receipt + custom classification/extraction). Job 2 act/route = Zapier no-code (trigger on new PDF → extract → push to accounting). The gate = confidence scores + Amazon Augmented AI (A2I) routing sub-threshold extractions to human review = the practical human-in-the-loop form (linked to 08-13). Wove an upward umbrella link into the invoice-processing 'Which do you actually need?' section (en+zh). Answers the GEO prompt 'AI agent 能自动处理发票吗？' (invoice = a document-processing sub-case; probed this run, not cited). Clusters with invoice-processing, expense-management, accountants, human-in-the-loop; grounded in Issue #001's read-vs-write discipline.",
    "addedAt": "2026-08-16"
   },
   {

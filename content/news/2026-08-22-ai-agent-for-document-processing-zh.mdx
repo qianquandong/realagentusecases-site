@@ -1,0 +1,58 @@
+---
+title: "文档处理 AI Agent：提取还是执行"
+date: "2026-08-22"
+excerpt: "一类文档 agent 只读文件——判定类型、抽取字段；另一类对这些数据动手，路由并写进下游系统。本文讲清两者的分野，以及该从哪一步开始。"
+---
+
+文档处理的 AI agent 只做两件事之一。一是*读这份文件*——判定它是哪类文档、抽出字段、给自己的判断打上置信度，交给人来用；二是*对这些数据动手*——把它写进你的系统，或路由去审批。读取是安全的，动手才是那道关卡该设的地方。
+
+## "帮我处理文档"背后藏着两个活儿
+
+"文档处理"听起来是一件杂事，但只要问一句*agent 读完这页之后做什么*，它就分成两半。一种摄入一个 PDF 或扫描件，判定它是哪类文档，抽出字段，交给你一条干净、结构化的记录——然后停下。另一种则拿着这条记录去*做*点什么：写进你的 ERP、归档、或路由去审批。前者是读者，后者是执行者。这和我们为[发票处理](/zh/news/2026-07-20-ai-agent-for-invoice-processing/)（起草 vs 付款）、[费用报销](/zh/news/2026-07-21-ai-agent-for-expense-management/)（提交 vs 审批）划下的"只读 vs 动手"是同一条线——事实上，这两者本身就是文档处理的*专门化*版本。我们在 Issue #001 的 [Gmail 分诊 agent](/zh/posts/2026-05-13-gmail-ai-agent/) 背后那套"分桶定优先级"的纪律，本质是同一个直觉：一个读取并准备的 agent，和一个提交你难以撤销的动作的 agent，是两种不同的风险。
+
+## 活儿一 —— 读这份文件（分类、抽取、打分）
+
+这是安全的那一半，也是这个领域最成熟的部分——几家大云都把它当服务来卖。套路是一致的：先判定文档类型，再跑对应的抽取器。
+
+- **Google Cloud [Document AI](https://cloud.google.com/document-ai)** 让你构建能对文档做分类、拆分和结构化抽取的处理器。它的[自定义分类器](https://docs.cloud.google.com/document-ai/docs/custom-classifier)从一组类别里识别出一份文档属于哪类，好把它路由到正确的抽取器；它的 [Custom Extractor——现已正式发布、由生成式 AI 驱动](https://cloud.google.com/blog/products/ai-machine-learning/document-ai-custom-extractor-powered-by-generative-ai-is-now-ga)——按你在 schema 里定义的字段抽取，最少用 10 份样本文档即可微调。
+- **[Amazon Textract](https://aws.amazon.com/textract/)** 越过了纯 OCR：它的[文档分析操作](https://docs.aws.amazon.com/textract/latest/dg/how-it-works-analyzing.html)返回五类结果——原始文本、表单（键值对）、表格、查询答案、签名——而且关键在于，它给抽出的**每一个元素都附一个置信度分数**，让你能用程序决定信哪个。
+- **[Azure AI Document Intelligence](https://learn.microsoft.com/en-us/azure/ai-services/document-intelligence/model-overview?view=doc-intel-4.0.0)** 提供预置模型（如 `prebuilt-invoice` 和 `prebuilt-receipt`，字段 schema 由微软维护），外加你在自己文档类型上训练的[自定义分类与抽取模型](https://learn.microsoft.com/en-us/azure/ai-services/document-intelligence/train/custom-classifier?view=doc-intel-4.0.0)。
+
+注意这三者都停在哪：它们输出一条带置信度信号的结构化记录。还没有任何东西被写进系统。这就是活儿一做对的样子。
+
+## 活儿二 —— 对数据动手（写入、路由、审批）
+
+价值要在抽出的数据去到某处时才落地——但这也是风险爬升的地方，因为现在 agent 是在*写*，而不是在读。常见的无代码路径是：一个自动化平台在有新文档时触发，跑抽取，再把结果推到下游。[Zapier 自己的指南](https://zapier.com/blog/create-extract-data-from-pdfs/)走的正是这一套：一个工作流在新 PDF 落地时触发，抽出字段并往下发——比如读进一张来件发票，把供应商、日期、总额传给你的会计软件。
+
+最后这一跳——进会计系统、进 CRM、进工单系统——才是不可逆的那部分。发票被写进错误的 GL 科目、合同归到错误的主体名下、简历被自动推进或自动拒绝：这些是动作，不是读取。所以本站每一个用例里的那条规则在这里同样成立。读取尽管自动化；写入要设一道关卡。
+
+## 那道关卡：置信度分数与人工复核
+
+文档处理比多数"写得重"的自动化更安全，原因在于抽取器*会告诉你它什么时候没把握*。Textract 给每个字段返回置信度分数；你不必把一个 62% 置信度的值和一个 99% 的一视同仁。Amazon 就把人工复核这一步直接建在它之上：[Amazon Augmented AI（A2I）](https://docs.aws.amazon.com/textract/latest/dg/a2i-textract.html)把 Textract 结果里**低于你设定阈值**的部分路由给人工复核，而高置信度的抽取直接放行。一张模糊的扫描件或潦草的手写会交给人，一张干净的发票不会。
+
+这就是[人在环](/zh/news/2026-08-13-human-in-the-loop-ai-agents/)最实用的形态——不是"什么都复核"（那只会把你想去掉的手工活儿又原样造回来），而是*只复核被标出的那一小撮*。把阈值接进工作流、而不是提示词里，你就能拿到自动化的吞吐量，同时对最可能出错的那些情况留了一手。
+
+## 你到底需要哪一个？
+
+如果你的痛点是*"我们整天在把同样的字段从 PDF 和扫描件里重新敲一遍"*，那是活儿一——一个把文档分类、抽取成结构化记录的读者，产出交给人来用。如果你的痛点是*"就算抽出来了，把数据弄进系统仍是一条手工链"*，那是活儿二——一个写入并路由的执行者，由置信度阈值和对低置信度那一撮的人工复核把关。多数团队应当"挣得"活儿二：先在你真实的文档上信任抽取，再为高置信度的情况自动化下游写入，其余交给人来清。
+
+想看这个活儿的专门化版本，见[发票处理](/zh/news/2026-07-20-ai-agent-for-invoice-processing/)和[费用报销](/zh/news/2026-07-21-ai-agent-for-expense-management/)；想知道文档工作在财务团队整个循环里处于什么位置，看[会计师的 AI Agent](/zh/news/2026-07-28-ai-agents-for-accountants/)。刚入门？从 [Agent 101](/zh/agent-101/) 开始，或看看能把"抽取加路由"接到一起的[无代码 AI agent 工具](/zh/news/2026-07-08-no-code-ai-agent-tools/)。
+
+## FAQ
+
+**AI agent 能自动处理文档吗？**
+能，分两步。安全的一步是读取：[Google Document AI](https://cloud.google.com/document-ai)、[Amazon Textract](https://aws.amazon.com/textract/)、[Azure AI Document Intelligence](https://learn.microsoft.com/en-us/azure/ai-services/document-intelligence/model-overview?view=doc-intel-4.0.0) 这类服务把文档分类、把字段抽成一条结构化记录。而对这些数据动手——写进你的系统或路由去审批——是另一个更高风险的步骤，需要用置信度阈值和人工复核来把关。
+
+**文档 agent 怎么知道一份文件是哪类文档？**
+它先跑一个分类器。[Google 的自定义分类器](https://docs.cloud.google.com/document-ai/docs/custom-classifier)和 [Azure 的自定义分类模型](https://learn.microsoft.com/en-us/azure/ai-services/document-intelligence/train/custom-classifier?view=doc-intel-4.0.0)都从一组定义好的类别里识别文档类型，再把它交给对应的抽取器。先分类再抽取，正是让一条流水线能同时处理发票、合同、表单而不用你手工分拣的原因。
+
+**是什么在拦住文档 agent 犯昂贵的错？**
+置信度分数，加一道人工复核关卡。[Amazon Textract](https://docs.aws.amazon.com/textract/latest/dg/how-it-works-analyzing.html) 给抽出的每一个元素返回置信度分数，[Amazon Augmented AI（A2I）](https://docs.aws.amazon.com/textract/latest/dg/a2i-textract.html)把低于你阈值的部分路由给人，干净的抽取则直接放行。你复核的是没把握的那一小撮，不是全部——这正是[人在环](/zh/news/2026-08-13-human-in-the-loop-ai-agents/)的实用形态。
+
+**用 agent 处理文档需要写代码吗？**
+不一定。[Zapier](https://zapier.com/blog/create-extract-data-from-pdfs/) 这类无代码平台能在有新 PDF 时触发、抽出字段、推给另一个应用。那几个云抽取器（Document AI、Textract、Document Intelligence）是 API 服务，但很多都能通过无代码连接器和预置模型来用——先在你真实的文档上用预置模型跑通，再考虑做任何自定义。
+
+**这和发票处理 agent 有什么不同？**
+发票 agent 就是一个专攻窄领域、且高风险的文档 agent。结构是一样的——一个抽取并匹配的读取层，对上一个付款的执行层——只是发票处理把风险抬高了，因为被提交的那个动作是一笔付款。我们的[发票处理指南](/zh/news/2026-07-20-ai-agent-for-invoice-processing/)把这条"起草 vs 付款"的线讲得很细。
+
+每周一个真实的 AI agent，直接发到你的邮箱。免费，无推销。
