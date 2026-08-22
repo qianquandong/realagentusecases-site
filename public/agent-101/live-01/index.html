@@ -1112,25 +1112,26 @@
     </h1>
 
     <p class="hero-sub" style="margin-top: 1.5rem;">
-      这门课不讲概念，只带你动手：先亲手用一次 AI，再找出你最该交给它的那件事。
+      今天不需要记住 Agent、Workflow、Skill 这些词。<br>
+      90 分钟后，你会带走三样东西：
     </p>
 
+    <ul class="hero-list">
+      <li class="hero-list-item"><span class="dot"></span><span>一件真正值得交给 AI 的事</span></li>
+      <li class="hero-list-item"><span class="dot"></span><span>一份能直接运行的任务说明</span></li>
+      <li class="hero-list-item"><span class="dot"></span><span>一个已经测试过的第一版结果</span></li>
+    </ul>
+
     <div style="margin-top:2.25rem;padding:1.5rem 1.75rem;border:1px solid var(--color-brand);border-radius:0.75rem;background:rgba(45,94,68,0.10);">
-      <span class="eyebrow" style="display:block;margin-bottom:0.6rem;">热身 · 现在就试</span>
+      <span class="eyebrow" style="display:block;margin-bottom:0.6rem;">先别听我讲 AI · 拿出手机</span>
       <a href="sms:+14694254142?body=%E8%AF%BE%E5%95%A5%E6%97%B6%E5%80%99%E5%BC%80%EF%BC%9F" style="font-family:var(--font-mono);font-size:clamp(1.75rem,5.5vw,3rem);font-weight:700;color:var(--color-foreground);text-decoration:none;letter-spacing:-0.02em;">(469) 425-4142</a>
       <p style="margin:0.75rem 0 0;color:var(--color-muted-foreground);line-height:1.6;">
-        这是我的 AI 客服。给它发条短信，问一句<strong style="color:var(--color-foreground);">"课啥时候开？"</strong>——中文英文都行，手机上点号码就能直接发。
+        先让它替你做一件事。给这个号码发条短信，问一句<strong style="color:var(--color-foreground);">"课啥时候开？"</strong>——中文英文都行，手机上点号码就能直接发。
       </p>
     </div>
 
-    <ul class="hero-list">
-      <li class="hero-list-item"><span class="dot"></span><span>开场先动手 — 给一个电话号码发短信，和一个真的 AI agent 聊两句</span></li>
-      <li class="hero-list-item"><span class="dot"></span><span>三个认知 — 聊天的 AI ≠ 干活的 AI；AI 不好用是因为不认识你；不是所有事都该交给 AI</span></li>
-      <li class="hero-list-item"><span class="dot"></span><span>离场作业 — 写下你工作里那件重复、烦人、规则明确的事</span></li>
-    </ul>
-
     <div class="hero-ctas">
-      <a class="btn btn-lg" href="#sms">现在就动手 →</a>
+      <a class="btn btn-lg" href="#sms">开始 →</a>
     </div>
 
     <div class="hero-foot">
@@ -1157,30 +1158,60 @@
         </li>
         <li class="item">
           <span class="item-eyebrow">试试 · 02</span>
-          <h3>问它 Jack 做过什么项目</h3>
-          <p>它知道我的 10 个开源 repo、我的网站、我在做的每一件事。</p>
+          <h3>直接跟它约我的时间</h3>
+          <p>说"我想跟 Jack 约个 1 对 1"，它会报出真实的空闲时段，帮你订好——订单直接写进我的数据库。</p>
         </li>
         <li class="item">
           <span class="item-eyebrow">试试 · 03</span>
-          <h3>直接跟它约我的时间</h3>
-          <p>说"我想跟 Jack 约个 1 对 1"，它会报出真实的空闲时段，帮你订好——订单直接写进我的数据库。</p>
+          <h3>能不能把它问到"卡壳"？</h3>
+          <p>试试让它答跟我课程、业务无关的东西，看它怎么应对。</p>
         </li>
       </ul>
 
       <aside class="aside">
         <span class="aside-label">揭晓</span>
         <p>
-          刚才回复你的，不是人。它读懂了你的问题，自己查了课程信息和空闲时段，自己决定用哪种语言回你。
-          <strong>这就是 AI agent：你给目标，它执行。</strong>这一页往下，讲的就是你怎么拥有一个。
+          刚才回复你的，不是人。它读懂了你的问题，自己查了资料和空闲时段，自己决定怎么回。
+          <strong>接下来我们把它拆开，看看里面到底有什么。</strong>
         </p>
       </aside>
-      <aside class="aside">
-        <span class="aside-label">问问大家</span>
-        <ul style="margin:0;padding-left:1.25rem;line-height:1.7;">
-          <li>你刚给它发了什么？它答上来了吗？</li>
-          <li>能不能把它问到"卡壳"？试试让它答跟我课程、业务无关的东西。</li>
-        </ul>
-      </aside>
+    </div>
+  </section>
+
+  <!-- ============ § 2 拆解 ============ -->
+  <section class="essay">
+    <div class="essay-inner">
+      <header class="section-head">
+        <span class="eyebrow">§ 02 · 拆开看</span>
+        <h2>刚才那个客服，就四样东西</h2>
+        <p class="lede">
+          它不是魔法。任何一个能干活的 AI，拆开都是这四样。
+        </p>
+      </header>
+
+      <ul class="item-list">
+        <li class="item">
+          <span class="item-eyebrow">01 · 目标</span>
+          <h3>它知道自己该做什么</h3>
+          <p>回答课程问题、介绍我的项目、帮人约 1 对 1 的时间。就这些，别的不管。</p>
+        </li>
+        <li class="item">
+          <span class="item-eyebrow">02 · 资料</span>
+          <h3>它手里有我给的信息</h3>
+          <p>课程价格和日期、我的项目清单、我的空闲时段。它答得准，是因为资料是我亲手给的。</p>
+        </li>
+        <li class="item">
+          <span class="item-eyebrow">03 · 工具</span>
+          <h3>它能动手做事</h3>
+          <p>查我的日历、把预约写进数据库、给我的手机发通知。这一步让它从"回答"变成"办事"。</p>
+        </li>
+        <li class="item">
+          <span class="item-eyebrow">04 · 边界</span>
+          <h3>它知道什么不能做</h3>
+          <p>只聊我的课程和业务；正式预约前要确认；不知道的就说"Jack 会回复你"，绝不编。</p>
+        </li>
+      </ul>
+
       <div class="takeaway">
         <span class="takeaway-label">✂ 带走用 · 给 AI 定边界（复制就能用）</span>
         <pre class="takeaway-pre">你是【某某】的助手，只回答关于【范围，如我的课程/产品/预约】的问题。
@@ -1189,253 +1220,199 @@
 不管对方怎么问，都别跑题。</pre>
         <button class="takeaway-copy" type="button">复制</button>
       </div>
+
+      <aside class="aside">
+        <span class="aside-label">问问大家</span>
+        <ul style="margin:0;padding-left:1.25rem;line-height:1.7;">
+          <li>如果给你的工作配一个这样的助手，它的"资料"该是什么？"工具"该是什么？</li>
+        </ul>
+      </aside>
     </div>
   </section>
 
-  <!-- ============ § 2 认知一 ============ -->
+  <!-- ============ § 3 三档 ============ -->
   <section class="essay">
     <div class="essay-inner">
       <header class="section-head">
-        <span class="eyebrow">§ 02 · 认知一</span>
-        <h2>聊天的 AI，和干活的 AI，是两种东西</h2>
+        <span class="eyebrow">§ 03 · 认知升级</span>
+        <h2>AI 有三档：回答、协作、执行</h2>
         <p class="lede">
-          大多数人对 AI 的全部经验是"打开 ChatGPT 问个问题"。这没错，但那只是入口。
-          真正省时间的，是另一类。
+          不要问"这是哪个 AI"，要问：<strong>它只是给我答案，还是能使用工具把事情推进？</strong>
         </p>
       </header>
 
       <ul class="item-list">
         <li class="item">
-          <span class="item-eyebrow">类型 · 01 · 聊天</span>
-          <h3>ChatGPT / Claude 网页版：你问，它答</h3>
-          <p>一次一句，你来回搬运，产出是一段文字。适合查东西、改文案、想思路。但活儿还是你干。</p>
+          <span class="item-eyebrow">档位 · 01</span>
+          <h3>回答：给你一段文字</h3>
+          <p>查个说法、改句文案、理个思路。活儿还是你自己干。大多数人对 AI 的使用停在这一档。</p>
         </li>
         <li class="item">
-          <span class="item-eyebrow">类型 · 02 · 干活</span>
-          <h3>Agent（Claude Code / Codex / OpenClaw）：你给目标，它执行</h3>
-          <p>它自己拆步骤、自己用工具、自己跑完，产出是一件做完的事。刚才那个短信客服，就是我用一个下午让 agent 做出来的。</p>
+          <span class="item-eyebrow">档位 · 02</span>
+          <h3>协作：读你的资料，和你一起完成</h3>
+          <p>把你的文档、表格、PPT 给它，让它基于你的东西干活——比如读完入职资料帮你整理重点。</p>
         </li>
         <li class="item">
-          <span class="item-eyebrow">分界线</span>
-          <h3>名字不用记，记住这条线</h3>
-          <p>问"这个 AI 是陪我聊，还是替我干"，就能把市面上所有工具分成两堆。今天讲的是右边那堆。</p>
+          <span class="item-eyebrow">档位 · 03</span>
+          <h3>执行：调用工具，完成动作</h3>
+          <p>刚才的短信客服就在这一档：查时段、写预约、发通知。同一个产品也可能三档都有——档位说的是用法，不是牌子。</p>
         </li>
       </ul>
 
       <aside class="aside">
         <span class="aside-label">顺手一招 · 多一双眼睛</span>
-        <p>同时有 Claude 和 ChatGPT？把 Claude 干的活丢给 ChatGPT 检查，或者反过来。多一双眼睛，不容易犯错——重要的东西，让另一个模型挑挑毛病，比你自己反复看更靠谱。</p>
+        <p>同时有 Claude 和 ChatGPT？把一个干的活丢给另一个检查。多一双眼睛，不容易犯错——重要的东西，让另一个模型挑挑毛病，比你自己反复看更靠谱。</p>
       </aside>
 
       <aside class="aside">
         <span class="aside-label">问问大家</span>
         <ul style="margin:0;padding-left:1.25rem;line-height:1.7;">
-          <li>那有了能做事的 AI，聊天的 AI 就没用了吗？</li>
-          <li>有了 Claude、Codex，豆包是不是可以卸载了？</li>
-          <li>你手机里现在装了几个 AI？分得清哪个是陪你聊、哪个能替你干吗？</li>
+          <li>你平时用 AI，停在哪一档？</li>
+          <li>你最想让它替你"执行"的一件事是什么？</li>
         </ul>
       </aside>
-      <div class="takeaway">
-        <span class="takeaway-label">🔗 带走用 · 干活的 AI 长这样（开源可抄）</span>
-        <p class="takeaway-repo"><a href="https://github.com/qianquandong/real-agent-workflows" rel="noopener">github.com/qianquandong/real-agent-workflows</a> — 我自己每天在跑的 AI 工作流，纯 Markdown 手册，触发/步骤/产出都写清楚，拿去改成你的。</p>
-      </div>
     </div>
   </section>
 
-  <!-- ============ § 3 认知二 ============ -->
+  <!-- ============ § 4 挑事 ============ -->
   <section class="essay">
     <div class="essay-inner">
       <header class="section-head">
-        <span class="eyebrow">§ 03 · 认知二</span>
-        <h2>AI 不好用，是因为它不认识你</h2>
+        <span class="eyebrow">§ 04 · 挑一件事</span>
+        <h2>先挑一件容易成功的事</h2>
         <p class="lede">
-          你觉得 AI 回答"太水"、"不懂我"，多数时候不是模型不行——是它对你一无所知：
-          不知道你的职业、你的项目、你的口味、你的底线。
+          不要从工具出发，要从你的一个真实问题出发。用四个问题，挑一件容易赢的。
         </p>
       </header>
 
       <ul class="item-list">
         <li class="item">
-          <span class="item-eyebrow">解法</span>
-          <h3>写一份「自我介绍文件」</h3>
-          <p>我是谁、我在做什么、我喜欢什么样的输出、什么坚决不要。写一次，之后每次对话自带背景。</p>
+          <span class="item-eyebrow">问题 · 01</span>
+          <h3>这件事够烦、够慢，或者价值够高吗？</h3>
+          <p>不烦不慢也不值钱的事，自动化了也没感觉。</p>
         </li>
         <li class="item">
-          <span class="item-eyebrow">现场演示</span>
-          <h3>同一个问题，认识我前 vs 认识我后</h3>
-          <p>讲座现场我们把这两个回答放在一起对比——差距大到不像同一个模型。这也是现场带练的第一步：25 分钟，每个人写出自己的自我介绍文件，用它跑一个真任务。</p>
+          <span class="item-eyebrow">问题 · 02</span>
+          <h3>AI 能拿到需要的资料或工具吗？</h3>
+          <p>资料在纸上、在别人脑子里、在进不去的系统里，它就帮不上。</p>
+        </li>
+        <li class="item">
+          <span class="item-eyebrow">问题 · 03</span>
+          <h3>什么叫"做对了"，你能检查吗？</h3>
+          <p>你自己都说不清对错标准的事，AI 做完你也没法验收。</p>
+        </li>
+        <li class="item">
+          <span class="item-eyebrow">问题 · 04</span>
+          <h3>做错的风险可控吗？重要动作能由人确认吗？</h3>
+          <p>第一件事别选"错一次就出大事"的。发送、付款这类动作，留给自己按最后一下。</p>
         </li>
       </ul>
-      <aside class="aside">
-        <span class="aside-label">问问大家</span>
-        <ul style="margin:0;padding-left:1.25rem;line-height:1.7;">
-          <li>你上次嫌 AI「答得太水」，是它真不行，还是它根本不认识你？</li>
-          <li>只给三句话让 AI 认识你，你会写哪三句？</li>
-        </ul>
-      </aside>
-      <div class="takeaway">
-        <span class="takeaway-label">✂ 带走用 · 给 AI 写自我介绍（复制就能用）</span>
-        <pre class="takeaway-pre">下面是关于我的背景，之后回答都基于它：
-- 我是谁：【职业 / 城市 / 在做的事】
-- 我在做：【当前项目 / 目标】
-- 我要的输出：【风格、长度、语气，例：先给结论、中文、别啰嗦】
-- 绝对不要：【你的雷区，例：别编数字、别用套话】</pre>
-        <button class="takeaway-copy" type="button">复制</button>
-        <p class="takeaway-repo">🔗 我的开源工具：<a href="https://github.com/qianquandong/self-introduction" rel="noopener">github.com/qianquandong/self-introduction</a> — 一次访谈生成一份中央档案，Claude Code / Codex 等工具共用。</p>
+
+      <div class="flow" aria-label="用四个问题挑一件适合交给 AI 的事">
+        <div class="flow-node">🗂 你想交给 AI 的那件事</div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-node gate">① 够烦 / 够慢 / 价值够高？<span class="flow-no">　否 → 换一件</span></div>
+        <div class="flow-arrow">是 ↓</div>
+        <div class="flow-node gate">② AI 拿得到资料和工具？<span class="flow-no">　否 → 换一件</span></div>
+        <div class="flow-arrow">是 ↓</div>
+        <div class="flow-node gate">③ "做对了"你能检查？<span class="flow-no">　否 → 换一件</span></div>
+        <div class="flow-arrow">是 ↓</div>
+        <div class="flow-node gate">④ 风险可控、重要动作人确认？<span class="flow-no">　否 → 换一件</span></div>
+        <div class="flow-arrow">是 ↓</div>
+        <div class="flow-node win">✅ 就它了 → 下一节写任务说明书</div>
       </div>
-    </div>
-  </section>
-
-  <!-- ============ § 4 认知三 ============ -->
-  <section class="essay">
-    <div class="essay-inner">
-      <header class="section-head">
-        <span class="eyebrow">§ 04 · 认知三</span>
-        <h2>不是所有事都该交给 AI</h2>
-        <p class="lede">
-          为了用 AI 而用 AI，是最快浪费时间的方式。值得交给 agent 的事，同时满足三条。
-        </p>
-      </header>
-
-      <ul class="item-list">
-        <li class="item">
-          <span class="item-eyebrow">标准 · 01</span>
-          <h3>重复发生</h3>
-          <p>每天、每周都要做一遍。只发生一次的事，教 AI 的时间比自己做还长。</p>
-        </li>
-        <li class="item">
-          <span class="item-eyebrow">标准 · 02</span>
-          <h3>规则说得清</h3>
-          <p>你能把它写成给同事的操作说明。说不清规则的事，AI 也只能猜。</p>
-        </li>
-        <li class="item">
-          <span class="item-eyebrow">标准 · 03</span>
-          <h3>输入输出是文字或数据</h3>
-          <p>邮件、表格、文档、消息——AI 的主场。要动手搬箱子的，暂时别想。</p>
-        </li>
-      </ul>
 
       <aside class="aside">
         <span class="aside-label">动手 · 3 分钟</span>
         <p>
-          现在就写：你工作里最烦、重复发生、规则明确的<strong>一件事</strong>。一句话，写在手机备忘录或纸上。
-          <strong>你手里写的这件事，就是下面 9 月课程要带你做出来的。</strong>
+          现在就写：用这四个问题过一遍，选出你的<strong>一件事</strong>。一句话，写在手机备忘录或纸上。
+          <strong>接下来的一切，都围绕你写的这件事。</strong>
         </p>
       </aside>
-      <aside class="aside">
-        <span class="aside-label">问问大家</span>
-        <ul style="margin:0;padding-left:1.25rem;line-height:1.7;">
-          <li>你每天重复做、最烦的一件事，是什么？</li>
-          <li>有没有一件事，看着能交给 AI，其实不该？</li>
-        </ul>
-      </aside>
-      <div class="flow" aria-label="判断这件事该不该交给 AI">
-        <div class="flow-node">🗂 你手上的那件事</div>
-        <div class="flow-arrow">↓</div>
-        <div class="flow-node gate">① 重复发生吗？<span class="flow-no">　否 → 先别交给 AI</span></div>
-        <div class="flow-arrow">是 ↓</div>
-        <div class="flow-node gate">② 规则说得清吗？<span class="flow-no">　否 → 先别交给 AI</span></div>
-        <div class="flow-arrow">是 ↓</div>
-        <div class="flow-node gate">③ 输入输出是文字 / 数据吗？<span class="flow-no">　否 → 先别交给 AI</span></div>
-        <div class="flow-arrow">是 ↓</div>
-        <div class="flow-node win">✅ 三条都满足 → 交给 AI agent</div>
-      </div>
     </div>
   </section>
 
-  <!-- ============ § 5 认知四 · 三种做法怎么选 ============ -->
+  <!-- ============ § 5 任务说明书 ============ -->
   <section class="essay">
     <div class="essay-inner">
       <header class="section-head">
-        <span class="eyebrow">§ 05 · 认知四</span>
-        <h2>代码、工作流、还是 agent？</h2>
+        <span class="eyebrow">§ 05 · 写清楚</span>
+        <h2>把它写成一份"任务说明书"</h2>
         <p class="lede">
-          决定一件事交给 AI 之后，下一个问题是用哪种形态。判断轴只有一条：<strong>你能把步骤定死到什么程度</strong>——定得越死，越该用更简单的那一档。
+          AI 不好用，通常不是它不行，是任务没交代完整：目标不清、缺资料、没说格式、没说什么时候该停下来问人。
+        </p>
+      </header>
+
+      <div class="takeaway">
+        <span class="takeaway-label">✂ 带走用 · 任务说明书模板（今天最重要的一份）</span>
+        <pre class="takeaway-pre">当【什么情况】发生时，
+使用【哪些资料 / 工具】，
+完成【什么动作】，
+输出为【什么格式】。
+如果遇到【不确定或越界的情况】，先停下来问我。
+在【发送、付款、删除、预约】之前，必须让我确认。</pre>
+        <button class="takeaway-copy" type="button">复制</button>
+      </div>
+
+      <ul class="item-list">
+        <li class="item">
+          <span class="item-eyebrow">例子 · 01 · 开场那个客服</span>
+          <h3>它的说明书就是这么写的</h3>
+          <p>收到课程咨询时，查课程资料并回答；如果用户要预约，查日历并提供时间；正式预约前再次确认；课程之外的问题不回答。——就这几行，撑起了你刚才聊的整个客服。</p>
+        </li>
+        <li class="item">
+          <span class="item-eyebrow">例子 · 02 · 新人入职</span>
+          <h3>把入职资料变成你的助手</h3>
+          <p>把入职 PPT、流程文件和术语表放进一个 AI 项目，让它先整理"最该知道的十件事"，之后不懂的先问它、再问同事。想长期管理这些资料，再考虑用 <a href="/agent-101/04-obsidian-second-brain/">Obsidian</a> 这类工具——先会做法，再挑工具。</p>
+        </li>
+        <li class="item">
+          <span class="item-eyebrow">加分项</span>
+          <h3>顺手写一份"自我介绍"</h3>
+          <p>我是谁、在做什么、要什么风格的输出。写一次，每份说明书都能复用。我做了个开源工具：<a href="https://github.com/qianquandong/self-introduction" rel="noopener">self-introduction</a>。</p>
+        </li>
+      </ul>
+
+      <aside class="aside">
+        <span class="aside-label">动手 · 5 分钟</span>
+        <p>用上面的模板，给你刚选的那件事填一版说明书。填不满没关系，空着的格子就是你还没想清楚的地方。</p>
+      </aside>
+    </div>
+  </section>
+
+  <!-- ============ § 6 跑第一版 ============ -->
+  <section class="essay">
+    <div class="essay-inner">
+      <header class="section-head">
+        <span class="eyebrow">§ 06 · 跑起来</span>
+        <h2>跑出第一版：做 → 反馈 → 再做</h2>
+        <p class="lede">
+          别等学完再开始。学 AI 的核心就一个循环：拿真事做一版、看反馈、再改一版。
         </p>
       </header>
 
       <ul class="item-list">
         <li class="item">
-          <span class="item-eyebrow">01 · 步骤能定死</span>
-          <h3>写代码 / 脚本</h3>
-          <p>规则完全固定、每次都一样、不需要 AI 判断。比如批量改文件名、从接口拉数据、整理表格。最快、最稳、最便宜。AI 可以帮你写这段代码，但真正跑的只是代码。</p>
+          <span class="item-eyebrow">循环 · 01</span>
+          <h3>把说明书丢给 AI，跑第一版</h3>
+          <p>结果多半不完美——这正是重点。第一版的意义是让问题暴露出来。</p>
         </li>
         <li class="item">
-          <span class="item-eyebrow">02 · 步骤固定，某步要 AI</span>
-          <h3>工作流</h3>
-          <p>路径是你定好的，只是中间某一步需要 AI 的语言能力。比如"每封邮件 → AI 总结 → AI 分类 → 归档"。流程你拍板，AI 只是流程里的一个零件。可预测、可测试。</p>
+          <span class="item-eyebrow">循环 · 02</span>
+          <h3>看反馈：哪错了，缺什么</h3>
+          <p>是资料没给够？格式没说清？还是边界没定？把问题记下来，补进说明书。</p>
         </li>
         <li class="item">
-          <span class="item-eyebrow">03 · 步骤没法提前定</span>
-          <h3>agent</h3>
-          <p>你给的是目标，不是路径。它自己决定先做什么、调哪个工具、什么时候算完。比如"研究这家公司再起草跟进邮件"。最灵活，但也最不可控、最贵。</p>
+          <span class="item-eyebrow">循环 · 03</span>
+          <h3>再跑一版，对比</h3>
+          <p>第二版比第一版好还是差？差在哪？这套循环放哪都成立——投一版广告、看数据、下月改一版，是同一个道理。</p>
         </li>
       </ul>
 
       <aside class="aside">
         <span class="aside-label">一句话记住</span>
-        <p>能用代码就别上工作流，能用工作流就别上 agent。<strong>越灵活 = 越不可控 = 越贵，够用就好。</strong>大多数人一上来就想做 agent，其实八成的活儿，一段代码或一个固定工作流又快又稳。</p>
+        <p>只看书、刷新闻、看教学视频却不动手，大概率在走弯路。热点也一样——<strong>只追跟你手上这件事有关的。</strong></p>
       </aside>
 
-      <div class="takeaway">
-        <span class="takeaway-label">✂ 带走用 · 帮我选形态（复制就能用）</span>
-        <pre class="takeaway-pre">我想让 AI 帮我做这件事：【描述】。
-帮我判断：这该写成一段代码、一个固定工作流、还是一个 agent？
-按"步骤越能定死就用越简单的那档"来选，并说明理由。</pre>
-        <button class="takeaway-copy" type="button">复制</button>
-      </div>
-
-      <aside class="aside">
-        <span class="aside-label">问问大家</span>
-        <ul style="margin:0;padding-left:1.25rem;line-height:1.7;">
-          <li>你最近想交给 AI 的那件事，步骤是固定的，还是每次都不一样？</li>
-          <li>你有没有把一件"写段代码就能搞定"的事，硬做成了 agent？</li>
-        </ul>
-      </aside>
-    </div>
-  </section>
-
-  <!-- ============ § 5 认知四 · 怎么学 AI ============ -->
-  <section class="essay">
-    <div class="essay-inner">
-      <header class="section-head">
-        <span class="eyebrow">§ 06 · 认知五</span>
-        <h2>学 AI，不是靠看书</h2>
-        <p class="lede">
-          想入门 AI，很多人第一反应是买本书。但能印成书的内容，写完、编完、印完、上架，大半年就过去了——书里讲的工具和做法，那时候早换了一轮。
-        </p>
-      </header>
-
-      <ul class="item-list">
-        <li class="item">
-          <span class="item-eyebrow">01</span>
-          <h3>书的问题不是内容差，是太慢</h3>
-          <p>一本书从动笔到你手上要大半年。AI 这大半年，工具能换好几轮。等你读完，书里的"最新"已经是旧闻。</p>
-        </li>
-        <li class="item">
-          <span class="item-eyebrow">02</span>
-          <h3>那学什么？学不变的那部分</h3>
-          <p>变的是工具和模型，不变的是判断：哪件事值得交给 AI、怎么把它说清楚、怎么验证它做得对。这些道理书上也有，但真学会只能靠做。</p>
-        </li>
-        <li class="item">
-          <span class="item-eyebrow">03</span>
-          <h3>真正的框架：做 → 反馈 → 再做</h3>
-          <p>学 AI 没有捷径，核心就一个循环：拿一件真事做一遍 → 看反馈 → 改一版 → 再做。做完一次，胜过读十本书。今天的现场带练，就是这个循环的第一圈。</p>
-        </li>
-        <li class="item">
-          <span class="item-eyebrow">04</span>
-          <h3>这套循环，放哪都成立</h3>
-          <p>比如做品牌营销：这个月投一版 Facebook 广告，看数据，下个月改一版——第二版比第一版好还是差？差在哪？换个领域也一样，都是"做 + 反馈"一轮一轮转起来。<strong>反过来，学 AI 只是看书、刷新闻、看 Claude Code 教学视频却不动手，大概率在走弯路。</strong></p>
-        </li>
-      </ul>
-
-      <aside class="aside">
-        <span class="aside-label">问问大家</span>
-        <ul style="margin:0;padding-left:1.25rem;line-height:1.7;">
-          <li>你上一本讲"数字工具"的书，读完真的用上了吗？</li>
-          <li>如果不靠看书，你打算从哪学起？</li>
-        </ul>
-      </aside>
       <div class="takeaway">
         <span class="takeaway-label">✂ 带走用 · 边做边学（复制就能用）</span>
         <pre class="takeaway-pre">我要完成这件真实任务：【一句话描述】。
@@ -1446,193 +1423,115 @@
     </div>
   </section>
 
-  <!-- ============ § 6 认知五 · 该不该追热点 ============ -->
+  <!-- ============ § 7 检查 ============ -->
   <section class="essay">
     <div class="essay-inner">
       <header class="section-head">
-        <span class="eyebrow">§ 07 · 认知六</span>
-        <h2>热点该不该追？只追你自己的</h2>
+        <span class="eyebrow">§ 07 · 用得安全</span>
+        <h2>上线前，学会检查它</h2>
         <p class="lede">
-          每天几百条 AI 新闻，追不过来，也不用追。我的做法：结合你的经历和兴趣，只追你自己领域里的热点。
+          AI 会一本正经地编。让它替你干活之前，三条规矩先立好。
         </p>
       </header>
 
       <ul class="item-list">
         <li class="item">
-          <span class="item-eyebrow">01</span>
-          <h3>先问一句"跟我有关系吗"</h3>
-          <p>举个例子：DeepSeek 的 harness 有用吗？有用。跟我有关系吗？没有——至少现在对我没有。"有用"和"对你有用"，是两件事。</p>
+          <span class="item-eyebrow">规矩 · 01</span>
+          <h3>机密资料，不进未批准的工具</h3>
+          <p>公司数据、客户信息，别直接上传到没经公司批准的 AI 工具里。</p>
         </li>
         <li class="item">
-          <span class="item-eyebrow">02</span>
-          <h3>只追你领域里的</h3>
-          <p>你做餐饮，就盯 AI 怎么改客服、点单、复购；你写代码，就盯 coding agent。别人领域里的"炸裂"，划过去就行。</p>
+          <span class="item-eyebrow">规矩 · 02</span>
+          <h3>事实、数字、引用，回原始来源核对</h3>
+          <p>它给的数字再像真的，也要回到原文查一遍。查不到来源的，当它没说。</p>
         </li>
         <li class="item">
-          <span class="item-eyebrow">03</span>
-          <h3>用你的经历当过滤器</h3>
-          <p>你的职业、你手上的项目，就是最好的筛子。跟它们挂得上钩的热点才留下，剩下的都是噪音。</p>
+          <span class="item-eyebrow">规矩 · 03</span>
+          <h3>发送、付款、预约、删除——必须人确认</h3>
+          <p>动作类的最后一下，永远留给自己按。我的短信客服订时间后也要我本人确认，就是这条。</p>
         </li>
       </ul>
 
-      <aside class="aside">
-        <span class="aside-label">问问大家</span>
-        <ul style="margin:0;padding-left:1.25rem;line-height:1.7;">
-          <li>最近哪条 AI 新闻，你觉得"炸裂"，但其实跟你没关系？</li>
-          <li>你自己领域里，最近有什么真正值得追的变化？</li>
-        </ul>
-      </aside>
       <div class="takeaway">
-        <span class="takeaway-label">✂ 带走用 · 只留跟我相关的信号（复制就能用）</span>
-        <pre class="takeaway-pre">我的领域是【行业/岗位】，我关心【具体问题，如获客/效率】。
-这是一批 AI 新闻/更新：【粘贴】。
-只挑出真正会影响我做事的，其余忽略。每条告诉我：为什么跟我有关、我能做什么。</pre>
+        <span class="takeaway-label">✂ 带走用 · 三条安全规矩（贴在工位上）</span>
+        <pre class="takeaway-pre">1. 机密资料不上传到未经批准的 AI 工具
+2. 事实、数字、引用回到原始来源核对
+3. 发送 / 付款 / 预约 / 删除之前，必须由人确认</pre>
         <button class="takeaway-copy" type="button">复制</button>
       </div>
-    </div>
-  </section>
-
-  <!-- ============ § 7 案例 · 入职助手 ============ -->
-  <section class="essay">
-    <div class="essay-inner">
-      <header class="section-head">
-        <span class="eyebrow">§ 08 · 案例</span>
-        <h2>一个能抄的例子：新人用 Obsidian 搭个"入职助手"</h2>
-        <p class="lede">
-          刚入职，老板甩给你一个入职 PPT，再加一堆文档、群消息、wiki 链接——信息全是散的，问人又怕烦。这时候最该搭的，就是一个帮你更快上手的 agent。
-        </p>
-      </header>
-
-      <ul class="item-list">
-        <li class="item">
-          <span class="item-eyebrow">步骤 · 01</span>
-          <h3>收集：全丢进一个文件夹</h3>
-          <p>把入职 PPT、流程文档、组织架构、黑话表，全部拖进一个 Obsidian vault（说白了就是一个文件夹）。先别整理，堆起来就行。</p>
-        </li>
-        <li class="item">
-          <span class="item-eyebrow">步骤 · 02</span>
-          <h3>让 AI 读它，当你的问答机</h3>
-          <p>把这个 vault 交给 AI，让它当你的"入职问答机"。不懂的先问它，而不是第一时间去打扰同事。</p>
-        </li>
-        <li class="item">
-          <span class="item-eyebrow">步骤 · 03</span>
-          <h3>让它主动帮你</h3>
-          <p>让它把 PPT 拆成"我这个岗位真正要记住的 10 条"、整理一份黑话对照表、再列出"我还缺哪些信息"。</p>
-        </li>
-        <li class="item">
-          <span class="item-eyebrow">步骤 · 04</span>
-          <h3>越用越准</h3>
-          <p>它答错、或你学到新东西，就补进 vault，下次更准——又是"做 + 反馈"那个循环。</p>
-        </li>
-      </ul>
-
-      <div class="takeaway">
-        <span class="takeaway-label">✂ 带走用 · 入职助手（复制就能用）</span>
-        <pre class="takeaway-pre">这是我新工作的入职资料（PPT、流程、文档）：【把内容或文件放进来】。
-你现在是我的入职助手，只根据这些资料回答：
-1. 先帮我列出这个岗位最该先记住的 10 件事
-2. 我随时问你流程或黑话，资料里没有就说"没有，建议问谁"
-3. 我每补充新资料，你就更新答案</pre>
-        <button class="takeaway-copy" type="button">复制</button>
-        <p class="takeaway-repo">🔗 我的 Obsidian 玩法：<a href="https://github.com/qianquandong/real-agent-workflows" rel="noopener">real-agent-workflows</a> 里的 obsidian-* 工作流，配合 <a href="/agent-101/04-obsidian-second-brain/">Agent 101 · EP04《Obsidian 第二大脑》</a>。</p>
-      </div>
 
       <aside class="aside">
         <span class="aside-label">问问大家</span>
         <ul style="margin:0;padding-left:1.25rem;line-height:1.7;">
-          <li>你入职时，最想第一天就有人替你回答的问题是什么？</li>
-          <li>你手上有没有一堆"该看但没空看"的资料，正适合丢给它？</li>
+          <li>你敢让 AI 直接替你发邮件吗？哪一步必须你亲手点？</li>
         </ul>
       </aside>
     </div>
   </section>
 
-  <!-- ============ § 5 成果 ============ -->
+  <!-- ============ § 8 下一步 ============ -->
   <section class="essay">
     <div class="essay-inner">
       <header class="section-head">
-        <span class="eyebrow">§ 09 · 全是业余时间做的</span>
-        <h2>我用 AI 做了什么</h2>
+        <span class="eyebrow">§ 08 · 下一步</span>
+        <h2>从一次对话，到工作流，到 Agent</h2>
         <p class="lede">
-          白天我是达拉斯一家半导体公司的工程师，业余每天 3 小时。下面这些，全是这 3 小时 × AI 工作流做出来的。
+          第一版跑通之后，才谈升级。升级的路只有一条：<strong>能用简单的，就别上复杂的。</strong>
         </p>
       </header>
 
       <ul class="item-list">
         <li class="item">
-          <span class="item-eyebrow">01</span>
-          <h3>aimanjack.com — 服务达拉斯小生意</h3>
-          <p>网站、收款、SEO、获客，全流程 AI 工作流在跑。还组织免费社区 AI workshop：50+ 人大讲座办了 5 场、1 场 hackathon。</p>
+          <span class="item-eyebrow">阶段 · 01</span>
+          <h3>一次对话</h3>
+          <p>每次你手动把说明书丢给 AI 跑。今天你已经会了。</p>
         </li>
         <li class="item">
-          <span class="item-eyebrow">02</span>
-          <h3>realagentusecases.com — 你正在看的这个站</h3>
-          <p>双语周刊 + Agent 101 系列，只写真实在用的 agent，AI 排产。</p>
+          <span class="item-eyebrow">阶段 · 02</span>
+          <h3>固定工作流</h3>
+          <p>步骤定死，自动触发——"每封邮件进来 → AI 总结 → 分类归档"。AI 只是流程里的一个零件。</p>
         </li>
         <li class="item">
-          <span class="item-eyebrow">03</span>
-          <h3>那个短信客服 — 一个下午</h3>
-          <p>你开场发短信的 (469) 425-4142，就是一个 agent：读消息、查数据库、订时间、发通知。</p>
-        </li>
-        <li class="item">
-          <span class="item-eyebrow">04</span>
-          <h3>10 个开源 repo</h3>
-          <p>拆书、比机票、追 AI 趋势、给 AI 做自我介绍……都在 <a href="https://github.com/qianquandong" rel="noopener">github.com/qianquandong</a>，随便拿。</p>
+          <span class="item-eyebrow">阶段 · 03</span>
+          <h3>Agent</h3>
+          <p>你给目标，它自己决定路径和工具——就像开场那个短信客服。最灵活，也最需要边界和检查。</p>
         </li>
       </ul>
-      <aside class="aside">
-        <span class="aside-label">问问大家</span>
-        <ul style="margin:0;padding-left:1.25rem;line-height:1.7;">
-          <li>这几个里，哪一个你也想给自己来一个？</li>
-          <li>你愿意花一个下午，让 AI 替你做掉哪件事？</li>
-        </ul>
-      </aside>
+
       <div class="takeaway">
-        <span class="takeaway-label">🔗 带走用 · 我的 10 个开源 repo（随便拿）</span>
-        <p class="takeaway-repo"><a href="https://github.com/qianquandong" rel="noopener">github.com/qianquandong</a> — 拆书、比机票、追 AI 趋势、给 AI 做自我介绍、查 AI 可见度……都在这，可直接抄。</p>
+        <span class="takeaway-label">🔗 带走用 · 我的开源 repo（随便拿）</span>
+        <p class="takeaway-repo"><a href="https://github.com/qianquandong/real-agent-workflows" rel="noopener">real-agent-workflows</a> — 我每天在跑的工作流，纯 Markdown 手册，可直接抄。<br>更多在 <a href="https://github.com/qianquandong" rel="noopener">github.com/qianquandong</a>：拆书、比机票、追趋势、给 AI 做自我介绍……共 10 个。</p>
       </div>
     </div>
   </section>
 
-  <!-- ============ § 6 课程 ============ -->
+  <!-- ============ § 9 课程 ============ -->
   <section id="course" class="essay">
     <div class="essay-inner">
       <header class="section-head">
-        <span class="eyebrow">§ 10 · 9 月线下课 · Dallas</span>
+        <span class="eyebrow">§ 09 · 9 月线下课 · Dallas</span>
         <h2>你写下的那件事，四步做出来</h2>
         <p class="lede">
-          带着你刚写的那句话来上课：发现痛点 → 判断可行性 → 设计工作流 → 选路径做出来（纯代码 / Skill / 智能体，用哪个模型）。
-          走的时候，它已经在替你干活。
+          带着你今天写的说明书来上课：发现痛点 → 判断可行性 → 设计工作流 → 动手实现。
+          走的时候，你会带走一个<strong>能运行的第一版</strong>，以及把它接入真实工作的下一步方案。
         </p>
       </header>
 
-      <ul class="item-list">
-        <li class="item">
-          <span class="item-eyebrow">正课 · $399 → 早鸟 $299</span>
-          <h3>结账输优惠码 AIMANJACK，立减 $100</h3>
-          <p>只限讲座后 48 小时（8 月 24 日 23:59 截止）。之后恢复 $399。</p>
-        </li>
-        <li class="item">
-          <span class="item-eyebrow">体验课 · $99</span>
-          <h3>先感受一节再决定</h3>
-          <p>单次线下课，跟着做一个能带走的 AI 工作流 demo。</p>
-        </li>
-      </ul>
+      <div class="takeaway" style="text-align:left;">
+        <span class="takeaway-label">报名 · 主推</span>
+        <p style="margin:0 0 .35rem;font-size:1.35rem;font-weight:650;">带着你的问题，来上 9 月实战课</p>
+        <p style="margin:0 0 1.1rem;color:var(--color-muted-foreground);">早鸟 <strong style="color:var(--color-foreground);">$299</strong>（原价 $399）· 结账输优惠码 <strong style="color:var(--color-foreground);font-family:var(--font-mono);">AIMANJACK</strong> · 只限讲座后 48 小时</p>
+        <a class="btn btn-lg" href="https://aimanjack.com/class/" rel="noopener">报名 9 月实战课 →</a>
+        <p style="margin:1.1rem 0 0;font-size:.85rem;color:var(--color-muted-foreground);">还不确定？可先参加 $99 体验课，之后报名正课可抵扣。</p>
+      </div>
 
       <div style="display:flex;align-items:center;gap:2rem;margin-top:2.5rem;flex-wrap:wrap;">
         <img src="/agent-101/live-01/class-qr.svg" alt="报名页二维码 aimanjack.com/class" width="180" height="180" style="background:#fff;padding:10px;border-radius:0.75rem;">
         <div>
-          <p style="margin:0 0 1rem;color:var(--color-muted-foreground);">扫码或直接打开报名页：</p>
-          <a class="btn btn-lg" href="https://aimanjack.com/class/" rel="noopener">aimanjack.com/class →</a>
+          <p style="margin:0 0 1rem;color:var(--color-muted-foreground);">扫码打开报名页：</p>
+          <p style="margin:0;font-family:var(--font-mono);color:var(--color-foreground);">aimanjack.com/class</p>
         </div>
       </div>
-      <aside class="aside">
-        <span class="aside-label">问问大家</span>
-        <ul style="margin:0;padding-left:1.25rem;line-height:1.7;">
-          <li>你刚写下的那件事——你觉得该写段代码、做个 Skill，还是搭个 agent？</li>
-          <li>一个月后，这件事已经不用你自己做了，你信吗？</li>
-        </ul>
-      </aside>
     </div>
   </section>
 
@@ -1641,9 +1540,9 @@
     <div class="essay-inner">
       <header class="section-head" style="text-align:center;">
         <span class="eyebrow" style="display:inline-block;">Real Agent Use Cases</span>
-        <h2 style="margin-top: 0.75rem;">讲座会散场，工作流不会</h2>
+        <h2 style="margin-top: 0.75rem;">讲座会散场，循环不会</h2>
         <p class="lede" style="margin-left:auto;margin-right:auto;">
-          每周一条真实职场人在用的 agent 工作流，双语，完整可复制。<br>
+          每周一条真实职场人在用的 AI 工作流，双语，完整可复制。<br>
           课程问题、约 1 对 1：发短信给 <strong style="color:var(--color-foreground);font-family:var(--font-mono);">(469) 425-4142</strong>。
         </p>
       </header>
@@ -1654,7 +1553,7 @@
           <button class="btn" type="submit">Subscribe — free</button>
         </form>
         <p class="subscribe-note">
-          免费订阅，每周一封。这个 Newsletter 不"鼓励"你，能不能跑通是你的事。
+          免费订阅，每周一封。
         </p>
       </div>
 
