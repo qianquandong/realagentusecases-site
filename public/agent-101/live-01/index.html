@@ -1,317 +1,1357 @@
 <!DOCTYPE html>
-<html lang="zh">
+<html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Agent 101 特别现场版 · 把你工作里最烦的那件事，交给 AI —— Jack Qian 达拉斯线下讲座幻灯片。">
-<title>Agent 101 · 特别现场版 · 把你最烦的工作交给 AI</title>
+<meta name="description" content="Agent 101 特别现场版 · 8.22 达拉斯讲座 · 把你工作里最烦的那件事，交给 AI · 由 Real Agent Use Cases 出品">
+<title>Agent 101 · 特别现场版 · 8.22 达拉斯 · Real Agent Use Cases</title>
 <link rel="canonical" href="https://realagentusecases.com/agent-101/live-01/">
 <link rel="alternate" hreflang="zh" href="https://realagentusecases.com/agent-101/live-01/">
 <link rel="alternate" hreflang="en" href="https://realagentusecases.com/en/agent-101/live-01/">
+
+<!-- Open Graph -->
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Real Agent Use Cases">
+<meta property="og:title" content="Agent 101 · 特别现场版 · 把你工作里最烦的那件事，交给 AI">
+<meta property="og:description" content="8 月 22 日达拉斯线下讲座现场版：从给 AI 发短信开始，到写下你该交给 AI 的那件事。三个认知 + 一份离场作业。">
+<meta property="og:url" content="https://realagentusecases.com/agent-101/live-01/">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:locale:alternate" content="en_US">
+<meta property="og:image" content="https://realagentusecases.com/og/agent-101/opengraph-image">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:alt" content="Agent 101 · Special Episode · Live in Dallas 2026.08.22">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Agent 101 · 特别现场版 · 8.22 达拉斯">
+<meta name="twitter:description" content="把你工作里最烦的那件事，交给 AI。达拉斯线下讲座现场版。">
+<meta name="twitter:image" content="https://realagentusecases.com/og/agent-101/opengraph-image">
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@300..900&family=Geist+Mono:wght@300..700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@300..900&family=Geist+Mono:wght@300..700&family=Source+Serif+4:ital,wght@0,400..700;1,400..700&display=swap">
 <style>
+  /* ==========================================================
+     Tokens — mirrors realagentusecases.com
+     ========================================================== */
   :root {
-    --bg: #0a0a0a;
-    --fg: #f2f2f2;
-    --muted: #a3a3a3;
-    --border: #262626;
-    --brand: #2d5e44;
-    --brand-bright: #4a9c70;
-    --font-sans: "Geist", -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", sans-serif;
-    --font-mono: "Geist Mono", ui-monospace, Menlo, monospace;
-  }
-  * { box-sizing: border-box; margin: 0; }
-  html, body { height: 100%; overflow: hidden; background: var(--bg); }
-  body { font-family: var(--font-sans); color: var(--fg); -webkit-font-smoothing: antialiased; }
+    --color-background: #0a0a0a;
+    --color-foreground: #f2f2f2;
+    --color-muted: #161616;
+    --color-muted-foreground: #a3a3a3;
+    --color-border: #262626;
+    --color-brand: #2d5e44;
+    --color-brand-hover: #387554;
+    --color-brand-foreground: #fff;
 
-  .slide {
-    position: absolute; inset: 0;
-    display: none;
-    flex-direction: column; justify-content: center;
-    padding: 6vh 8vw;
-    background: var(--bg);
-  }
-  .slide.active { display: flex; }
+    --font-sans: "Geist", -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", "Hiragino Sans GB", sans-serif;
+    --font-serif: "Source Serif 4", "Songti SC", "STSong", Georgia, "Times New Roman", serif;
+    --font-mono: "Geist Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
 
+    --tracking-tight: -0.025em;
+    --leading-snug: 1.375;
+    --leading-relaxed: 1.625;
+
+    --radius-md: 0.375rem;
+    --radius-lg: 0.5rem;
+    --radius-xl: 0.75rem;
+
+    --container-2xl: 42rem; /* 672 — body sections */
+    --container-3xl: 48rem; /* 768 — hero */
+    --container-6xl: 72rem; /* 1152 — nav */
+  }
+
+  /* ==========================================================
+     Reset & base
+     ========================================================== */
+  *, *::before, *::after { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    background: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    line-height: var(--leading-relaxed);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+  h1, h2, h3, h4 {
+    color: var(--color-foreground);
+    font-weight: 600;
+    letter-spacing: var(--tracking-tight);
+    line-height: var(--leading-snug);
+    margin: 0;
+    text-wrap: balance;
+  }
+  p { margin: 0 0 1rem; }
+  a {
+    color: var(--color-foreground);
+    text-decoration: none;
+    transition: color 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  a:hover { color: var(--color-brand); }
+  ::selection { background: var(--color-brand); color: white; }
+  img, svg { max-width: 100%; display: block; }
+
+  /* ==========================================================
+     Layout primitives
+     ========================================================== */
+  .mx-auto { margin-left: auto; margin-right: auto; }
+  .max-w-6xl { max-width: var(--container-6xl); }
+  .max-w-3xl { max-width: var(--container-3xl); }
+  .max-w-2xl { max-width: var(--container-2xl); }
+  .px-6 { padding-left: 1.5rem; padding-right: 1.5rem; }
+  main { min-height: 100vh; }
+
+  /* ==========================================================
+     Sticky nav (matches parent site)
+     ========================================================== */
+  nav.topnav {
+    position: sticky;
+    top: 0;
+    z-index: 40;
+    border-bottom: 1px solid var(--color-border);
+    background: rgba(10, 10, 10, 0.8);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+  }
+  @supports (backdrop-filter: blur(12px)) {
+    nav.topnav { background: rgba(10, 10, 10, 0.6); }
+  }
+  .nav-inner {
+    max-width: var(--container-6xl);
+    margin: 0 auto;
+    padding: 0 1.5rem;
+    height: 3.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .brand {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    letter-spacing: -0.01em;
+    color: var(--color-foreground);
+  }
+  @media (min-width: 640px) { .brand { font-size: 0.875rem; } }
+  .brand:hover { color: var(--color-brand); }
+  .nav-right {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+  }
+  @media (min-width: 640px) { .nav-right { gap: 1.5rem; } }
+  .nav-link {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--color-muted-foreground);
+    letter-spacing: -0.01em;
+    transition: color 0.15s;
+  }
+  @media (min-width: 640px) { .nav-link { font-size: 0.875rem; } }
+  .nav-link:hover { color: var(--color-brand); }
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--radius-md);
+    font-family: var(--font-sans);
+    font-weight: 500;
+    font-size: 0.875rem;
+    height: 2.25rem;
+    padding: 0 1rem;
+    background: var(--color-brand);
+    color: var(--color-brand-foreground);
+    transition: background-color 0.15s, transform 0.15s;
+    cursor: pointer;
+    border: none;
+  }
+  .btn:hover {
+    background: var(--color-brand-hover);
+    color: var(--color-brand-foreground);
+    transform: translateY(-1px);
+  }
+  .btn:active { transform: translateY(0); }
+  .btn.btn-lg { height: 3rem; padding: 0 1.5rem; font-size: 1rem; }
+
+  /* ==========================================================
+     Eyebrow (mono uppercase label)
+     ========================================================== */
   .eyebrow {
     font-family: var(--font-mono);
-    font-size: clamp(0.8rem, 1.6vw, 1.1rem);
-    letter-spacing: 0.18em; text-transform: uppercase;
-    color: var(--brand-bright);
-    margin-bottom: 2.2vh;
+    font-size: 0.6875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--color-muted-foreground);
+    font-weight: 400;
   }
-  h1 { font-size: clamp(2.2rem, 6.5vw, 5rem); font-weight: 750; letter-spacing: -0.025em; line-height: 1.12; }
-  h2 { font-size: clamp(1.8rem, 5vw, 3.8rem); font-weight: 700; letter-spacing: -0.02em; line-height: 1.15; margin-bottom: 3.5vh; }
-  .sub { font-size: clamp(1.05rem, 2.4vw, 1.7rem); color: var(--muted); margin-top: 3vh; line-height: 1.55; }
-  .sub b, li b { color: var(--fg); font-weight: 650; }
-
-  ul.big { list-style: none; padding: 0; }
-  ul.big li {
-    font-size: clamp(1.15rem, 2.8vw, 2rem);
-    line-height: 1.5; padding: 1.6vh 0 1.6vh 2.2rem;
-    position: relative; border-bottom: 1px solid var(--border);
-  }
-  ul.big li:last-child { border-bottom: none; }
-  ul.big li::before { content: "→"; position: absolute; left: 0; color: var(--brand-bright); }
-
-  .huge {
+  .eyebrow-lg {
     font-family: var(--font-mono);
-    font-size: clamp(2.6rem, 9vw, 7rem);
-    font-weight: 700; letter-spacing: -0.02em;
-    color: var(--brand-bright);
-    margin: 3vh 0;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: var(--color-muted-foreground);
   }
 
-  .cols { display: grid; grid-template-columns: 1fr 1fr; gap: 4vw; margin-top: 2vh; }
-  .col { border: 1px solid var(--border); border-radius: 0.75rem; padding: 3.2vh 2.2vw; }
-  .col.brand { border-color: var(--brand); background: rgba(45, 94, 68, 0.12); }
-  .col h3 { font-size: clamp(1.2rem, 2.6vw, 2rem); margin-bottom: 1.8vh; }
-  .col p, .col li { font-size: clamp(0.95rem, 1.9vw, 1.35rem); color: var(--muted); line-height: 1.6; }
-  .col ul { list-style: none; padding: 0; }
-  .col li { padding: 0.7vh 0; }
-  .col li b { color: var(--fg); }
-
-  .price-row { display: flex; gap: 3vw; margin-top: 4vh; align-items: stretch; flex-wrap: wrap; }
-  .price { border: 1px solid var(--border); border-radius: 0.75rem; padding: 3vh 2.5vw; flex: 1; min-width: 240px; }
-  .price.hot { border-color: var(--brand-bright); background: rgba(45, 94, 68, 0.15); }
-  .price .amt { font-family: var(--font-mono); font-size: clamp(1.8rem, 4.5vw, 3.2rem); font-weight: 700; }
-  .price .amt s { color: var(--muted); font-size: 0.55em; font-weight: 400; margin-right: 0.4em; }
-  .price .lbl { color: var(--muted); font-size: clamp(0.95rem, 1.8vw, 1.25rem); margin-top: 1vh; line-height: 1.5; }
-  .price .lbl b { color: var(--brand-bright); font-family: var(--font-mono); }
-
-  .qr-wrap { display: flex; align-items: center; gap: 4vw; margin-top: 3vh; }
-  .qr-wrap img { width: clamp(160px, 24vh, 300px); height: auto; background: #fff; padding: 12px; border-radius: 0.75rem; }
-
-  .foot {
-    position: absolute; left: 8vw; right: 8vw; bottom: 3.5vh;
-    display: flex; justify-content: space-between; align-items: baseline;
-    font-family: var(--font-mono); font-size: clamp(0.7rem, 1.3vw, 0.95rem);
-    color: var(--muted);
+  /* ==========================================================
+     Hero
+     ========================================================== */
+  .hero {
+    max-width: var(--container-3xl);
+    margin: 0 auto;
+    padding: 4rem 1.5rem 7rem;
+    text-align: center;
   }
-  .foot a { color: var(--muted); text-decoration: none; }
+  @media (min-width: 640px) {
+    .hero { padding: 6rem 1.5rem 9rem; }
+  }
+  .hero .eyebrow-lg { display: block; margin-bottom: 1.5rem; }
+  .hero h1 {
+    font-size: 2.25rem;
+    font-weight: 600;
+    letter-spacing: var(--tracking-tight);
+    line-height: 1.1;
+    text-wrap: balance;
+  }
+  @media (min-width: 640px) { .hero h1 { font-size: 3rem; } }
+  @media (min-width: 768px) { .hero h1 { font-size: 3.75rem; } }
+  .hero h1 .brand-word {
+    color: var(--color-brand);
+  }
+  .hero-sub {
+    margin: 1.25rem auto 0;
+    max-width: var(--container-2xl);
+    font-size: 1.125rem;
+    color: var(--color-muted-foreground);
+    line-height: var(--leading-relaxed);
+    text-wrap: balance;
+  }
+  @media (min-width: 640px) { .hero-sub { font-size: 1.25rem; } }
 
-  #bar { position: fixed; top: 0; left: 0; height: 3px; background: var(--brand-bright); width: 0; transition: width 0.25s; z-index: 10; }
-  #counter { position: fixed; right: 2vw; bottom: 2vh; font-family: var(--font-mono); font-size: 0.85rem; color: var(--muted); z-index: 10; }
+  .hero-list {
+    margin: 1.75rem auto 0;
+    max-width: 30rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    text-align: left;
+    font-size: 0.9375rem;
+    color: var(--color-muted-foreground);
+  }
+  @media (min-width: 640px) { .hero-list { font-size: 0.9375rem; } }
+  .hero-list-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+  }
+  .dot {
+    width: 0.25rem;
+    height: 0.25rem;
+    border-radius: 9999px;
+    background: var(--color-brand);
+    flex-shrink: 0;
+    margin-top: 0.6em;
+  }
+  .hero-ctas {
+    margin-top: 2.5rem;
+    display: flex;
+    gap: 0.75rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .hero-foot {
+    margin-top: 2.5rem;
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: rgba(163, 163, 163, 0.7);
+  }
 
+  /* ==========================================================
+     Section base (essay-style)
+     ========================================================== */
+  section.essay {
+    border-top: 1px solid rgba(38, 38, 38, 0.4);
+  }
+  .essay-inner {
+    max-width: var(--container-2xl);
+    margin: 0 auto;
+    padding: 5rem 1.5rem;
+  }
+  @media (min-width: 640px) {
+    .essay-inner { padding: 6rem 1.5rem; }
+  }
+  .essay-inner.wide {
+    max-width: var(--container-3xl);
+  }
+  .section-head { margin-bottom: 2.5rem; }
+  .section-head .eyebrow { display: block; margin-bottom: 0.75rem; }
+  .section-head h2 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    letter-spacing: var(--tracking-tight);
+    line-height: var(--leading-snug);
+  }
+  @media (min-width: 640px) {
+    .section-head h2 { font-size: 1.875rem; }
+  }
+  .section-head .lede {
+    margin-top: 0.875rem;
+    font-size: 1.0625rem;
+    color: var(--color-muted-foreground);
+    line-height: var(--leading-relaxed);
+  }
+  .essay-body p {
+    color: var(--color-muted-foreground);
+    line-height: var(--leading-relaxed);
+    font-size: 1rem;
+  }
+  .essay-body strong { color: var(--color-foreground); font-weight: 600; }
+
+  /* ==========================================================
+     Item list (matches "Read the latest" article list)
+     ========================================================== */
+  .item-list {
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .item {
+    display: block;
+  }
+  .item .item-eyebrow {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--color-muted-foreground);
+  }
+  .item h3 {
+    margin-top: 0.5rem;
+    font-size: 1.25rem;
+    font-weight: 600;
+    letter-spacing: var(--tracking-tight);
+    line-height: var(--leading-snug);
+    color: var(--color-foreground);
+  }
+  @media (min-width: 640px) {
+    .item h3 { font-size: 1.375rem; }
+  }
+  .item p {
+    margin-top: 0.5rem;
+    color: var(--color-muted-foreground);
+    line-height: var(--leading-relaxed);
+  }
+
+  /* ==========================================================
+     Compare table (Chatbot vs Agent) — minimal two-col
+     ========================================================== */
+  .compare {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+  }
+  @media (min-width: 640px) {
+    .compare { grid-template-columns: 1fr 1fr; }
+  }
+  .compare-cell {
+    padding: 1.75rem;
+    background: var(--color-muted);
+  }
+  .compare-cell + .compare-cell {
+    border-top: 1px solid var(--color-border);
+  }
+  @media (min-width: 640px) {
+    .compare-cell + .compare-cell {
+      border-top: none;
+      border-left: 1px solid var(--color-border);
+    }
+  }
+  .compare-cell.is-agent { background: rgba(45, 94, 68, 0.08); }
+  .compare-cell .item-eyebrow { display: block; margin-bottom: 0.5rem; }
+  .compare-cell .is-agent-eyebrow { color: var(--color-brand); }
+  .compare-cell h3 {
+    font-size: 1.125rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+  }
+  .compare-cell > p {
+    color: var(--color-muted-foreground);
+    font-size: 0.9375rem;
+    margin-bottom: 1rem;
+  }
+  .compare-cell ul {
+    list-style: none;
+    padding: 0;
+    margin: 0.75rem 0 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  .compare-cell li {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.625rem;
+    font-size: 0.9375rem;
+    color: var(--color-muted-foreground);
+  }
+  .compare-cell li::before {
+    content: "×";
+    color: var(--color-muted-foreground);
+    font-family: var(--font-mono);
+    flex-shrink: 0;
+    margin-top: 0.05em;
+  }
+  .compare-cell.is-agent li::before {
+    content: "✓";
+    color: var(--color-brand);
+  }
+
+  /* ==========================================================
+     Pull-quote / aside (analogy block)
+     ========================================================== */
+  .aside {
+    margin-top: 2rem;
+    padding: 1.75rem;
+    border-left: 2px solid var(--color-brand);
+    background: var(--color-muted);
+    border-radius: 0 var(--radius-lg) var(--radius-lg) 0;
+  }
+  .aside .aside-label {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--color-brand);
+    display: block;
+    margin-bottom: 0.625rem;
+  }
+  .aside p {
+    margin: 0;
+    color: var(--color-foreground);
+    font-family: var(--font-serif);
+    font-size: 1.0625rem;
+    line-height: var(--leading-relaxed);
+    font-style: italic;
+  }
+  .aside p strong { font-style: normal; }
+
+  /* ==========================================================
+     Agent loop (SVG + steps)
+     ========================================================== */
+  .loop-wrap {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+    align-items: center;
+  }
+  @media (min-width: 760px) {
+    .loop-wrap { grid-template-columns: 280px 1fr; gap: 3rem; }
+  }
+  .loop-svg { width: 100%; max-width: 280px; margin: 0 auto; }
+  .loop-steps {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  .loop-step {
+    display: grid;
+    grid-template-columns: 2rem 1fr;
+    gap: 0.875rem;
+    align-items: start;
+  }
+  .loop-step .n {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--color-brand);
+    letter-spacing: 0.05em;
+    padding-top: 0.125rem;
+  }
+  .loop-step h4 {
+    font-size: 1.0625rem;
+    margin-bottom: 0.25rem;
+  }
+  .loop-step h4 .en {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--color-muted-foreground);
+    margin-left: 0.5rem;
+    font-weight: 400;
+    letter-spacing: 0.05em;
+  }
+  .loop-step p { margin: 0; color: var(--color-muted-foreground); font-size: 0.9375rem; }
+
+  /* ==========================================================
+     Use cases — vertical list with mono labels (no flashy cards)
+     ========================================================== */
+  .use-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+  .use {
+    padding: 2rem 0;
+    border-top: 1px solid var(--color-border);
+  }
+  .use:first-child { border-top: none; padding-top: 0; }
+  .use:last-child { padding-bottom: 0; }
+  .use-top {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 0.5rem;
+    flex-wrap: wrap;
+  }
+  .use-top .use-label {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--color-muted-foreground);
+  }
+  .use-top .use-gain {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--color-brand);
+    letter-spacing: 0.05em;
+  }
+  .use h3 {
+    font-size: 1.25rem;
+    margin-bottom: 0.625rem;
+  }
+  @media (min-width: 640px) { .use h3 { font-size: 1.375rem; } }
+  .use p { color: var(--color-muted-foreground); margin-bottom: 0.875rem; }
+  .use-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 0.875rem;
+  }
+  .chip {
+    display: inline-block;
+    padding: 0.25rem 0.625rem;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    color: var(--color-muted-foreground);
+    letter-spacing: 0.02em;
+  }
+
+  /* ==========================================================
+     Demo block — mono code-style terminal mock
+     ========================================================== */
+  .demo {
+    margin-top: 2.5rem;
+    padding-top: 2.5rem;
+    border-top: 1px solid var(--color-border);
+  }
+  .demo:first-of-type { border-top: none; padding-top: 0; margin-top: 0; }
+  .demo-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-bottom: 0.625rem;
+  }
+  .demo-num {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--color-brand);
+  }
+  .demo-time {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    color: var(--color-muted-foreground);
+    letter-spacing: 0.05em;
+  }
+  .demo h3 {
+    font-size: 1.375rem;
+    margin-bottom: 0.625rem;
+  }
+  .demo > p {
+    color: var(--color-muted-foreground);
+    margin-bottom: 1.25rem;
+  }
+  .demo-steps {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 1.5rem;
+    counter-reset: step;
+  }
+  .demo-steps li {
+    counter-increment: step;
+    padding: 0.625rem 0 0.625rem 2rem;
+    position: relative;
+    color: var(--color-muted-foreground);
+    font-size: 0.9375rem;
+    line-height: var(--leading-relaxed);
+    border-top: 1px dashed rgba(38, 38, 38, 0.6);
+  }
+  .demo-steps li:first-child { border-top: none; }
+  .demo-steps li::before {
+    content: counter(step, decimal-leading-zero);
+    position: absolute;
+    left: 0;
+    top: 0.625rem;
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    color: var(--color-brand);
+    letter-spacing: 0.05em;
+  }
+  .demo-steps strong { color: var(--color-foreground); font-weight: 600; }
+
+  .terminal {
+    background: var(--color-muted);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    font-family: var(--font-mono);
+    font-size: 0.8125rem;
+    line-height: 1.7;
+    color: var(--color-foreground);
+    overflow: hidden;
+  }
+  .terminal-bar {
+    padding: 0.625rem 0.875rem;
+    background: rgba(0, 0, 0, 0.3);
+    border-bottom: 1px solid var(--color-border);
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    color: var(--color-muted-foreground);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .terminal-body { padding: 1.125rem; }
+  .terminal-body .row { padding: 0.05rem 0; }
+  .terminal-body .mu { color: var(--color-muted-foreground); }
+  .terminal-body .ok { color: var(--color-brand); }
+  .terminal-body .label {
+    display: inline-block;
+    color: var(--color-muted-foreground);
+    margin-right: 0.5rem;
+  }
+  .terminal-body .label.user { color: #c2a8ff; }
+  .terminal-body .label.bot { color: var(--color-brand); }
+  .terminal-body .label.tool { color: #d4a657; }
+  .terminal-body .hr {
+    border-top: 1px dashed var(--color-border);
+    margin: 0.5rem 0;
+  }
+  /* Workflow terminal helpers */
+  .terminal-body .step {
+    display: inline-block;
+    min-width: 6.5rem;
+    color: var(--color-foreground);
+    font-weight: 500;
+  }
+  .terminal-body .num {
+    display: inline-block;
+    width: 1.75rem;
+    color: var(--color-brand);
+  }
+  .terminal-body .meta {
+    color: var(--color-brand);
+    font-weight: 500;
+  }
+  .terminal-title-tag {
+    display: inline-block;
+    padding: 1px 6px;
+    margin-right: 0.5rem;
+    background: var(--color-brand);
+    color: var(--color-brand-foreground);
+    border-radius: 3px;
+    font-size: 0.625rem;
+    letter-spacing: 0.1em;
+    font-weight: 600;
+  }
+
+  /* Case-list divider: visual separation between "by-job" and "by-scenario" cases */
+  .case-divider {
+    margin: 3rem 0;
+    padding: 2.25rem 1.5rem;
+    border-top: 1px solid var(--color-border);
+    border-bottom: 1px solid var(--color-border);
+    text-align: center;
+  }
+  .case-divider .eyebrow {
+    display: block;
+    margin-bottom: 0.75rem;
+    color: var(--color-brand);
+  }
+  .case-divider h3 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 0.625rem;
+    letter-spacing: var(--tracking-tight);
+  }
+  .case-divider p {
+    color: var(--color-muted-foreground);
+    max-width: 40rem;
+    margin: 0 auto;
+    font-size: 0.9375rem;
+    line-height: var(--leading-relaxed);
+  }
+
+  /* ==========================================================
+     Timeline — minimal vertical list with mono dates
+     ========================================================== */
+  .timeline {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+  .tl {
+    padding-left: 1.5rem;
+    border-left: 1px solid var(--color-border);
+    position: relative;
+  }
+  .tl::before {
+    content: "";
+    position: absolute;
+    left: -0.3125rem;
+    top: 0.4rem;
+    width: 0.5625rem;
+    height: 0.5625rem;
+    border-radius: 9999px;
+    background: var(--color-background);
+    border: 2px solid var(--color-brand);
+  }
+  .tl .tl-week {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--color-brand);
+    display: block;
+    margin-bottom: 0.375rem;
+  }
+  .tl h3 {
+    font-size: 1.125rem;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+  }
+  .tl p { margin: 0; color: var(--color-muted-foreground); }
+
+  /* ==========================================================
+     Subscribe / CTA
+     ========================================================== */
+  .subscribe {
+    margin: 2.5rem auto 0;
+    max-width: 28rem;
+  }
+  .subscribe-form {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  @media (min-width: 640px) {
+    .subscribe-form { flex-direction: row; }
+  }
+  .subscribe input[type="email"] {
+    flex: 1;
+    min-width: 0;
+    height: 3rem;
+    padding: 0 1rem;
+    border-radius: var(--radius-md);
+    background: var(--color-muted);
+    border: 1px solid rgba(163, 163, 163, 0.3);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    transition: border-color 0.15s;
+  }
+  .subscribe input[type="email"]::placeholder { color: var(--color-muted-foreground); }
+  .subscribe input[type="email"]:focus {
+    outline: none;
+    border-color: var(--color-brand);
+  }
+  .subscribe .btn { flex-shrink: 0; height: 3rem; padding: 0 1.5rem; font-size: 1rem; }
+  .subscribe-note {
+    margin-top: 0.75rem;
+    font-size: 0.75rem;
+    color: var(--color-muted-foreground);
+    text-align: center;
+  }
+
+  /* ==========================================================
+     Footer
+     ========================================================== */
+  footer.site {
+    border-top: 1px solid var(--color-border);
+    padding: 2.5rem 1.5rem;
+    margin-top: 4rem;
+  }
+  .footer-inner {
+    max-width: var(--container-2xl);
+    margin: 0 auto;
+    text-align: center;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--color-muted-foreground);
+    letter-spacing: 0.05em;
+  }
+  .footer-inner a { color: var(--color-muted-foreground); }
+  .footer-inner a:hover { color: var(--color-brand); }
+  .footer-inner .sep { color: var(--color-border); margin: 0 0.625rem; }
+
+  /* ==========================================================
+     Audience profile chart (donut + legend)
+     ========================================================== */
+  .audience {
+    margin-bottom: 4rem;
+    padding-bottom: 3rem;
+    border-bottom: 1px solid var(--color-border);
+  }
+  .audience-head { margin-bottom: 2rem; }
+  .audience-head .eyebrow { display: block; margin-bottom: 0.625rem; }
+  .audience-head h3 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    letter-spacing: var(--tracking-tight);
+  }
+  @media (min-width: 640px) { .audience-head h3 { font-size: 1.375rem; } }
+  .audience-head p { color: var(--color-muted-foreground); margin: 0; }
+
+  .audience-body {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    align-items: center;
+  }
+  @media (min-width: 720px) {
+    .audience-body { grid-template-columns: 260px 1fr; gap: 3rem; }
+  }
+
+  .donut {
+    width: 100%;
+    max-width: 240px;
+    margin: 0 auto;
+    aspect-ratio: 1;
+    position: relative;
+  }
+  .donut svg { width: 100%; height: 100%; display: block; }
+  .donut-center {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    pointer-events: none;
+  }
+  .donut-center .n {
+    font-family: var(--font-mono);
+    font-size: 1.875rem;
+    font-weight: 600;
+    color: var(--color-foreground);
+    line-height: 1;
+    letter-spacing: -0.02em;
+  }
+  .donut-center .lbl {
+    margin-top: 0.375rem;
+    font-family: var(--font-mono);
+    font-size: 0.625rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--color-muted-foreground);
+  }
+
+  .legend {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.875rem;
+  }
+  .legend li {
+    display: grid;
+    grid-template-columns: 0.625rem 1fr auto;
+    gap: 0.75rem;
+    align-items: center;
+    padding: 0.625rem 0;
+    border-top: 1px solid var(--color-border);
+  }
+  .legend li:first-child { border-top: none; padding-top: 0; }
+  .legend .swatch {
+    width: 0.625rem;
+    height: 0.625rem;
+    border-radius: 2px;
+  }
+  .legend .name {
+    color: var(--color-foreground);
+    font-size: 0.9375rem;
+    font-weight: 500;
+  }
+  .legend .pct {
+    font-family: var(--font-mono);
+    font-size: 0.9375rem;
+    color: var(--color-muted-foreground);
+    letter-spacing: 0.02em;
+    font-feature-settings: "tnum" 1;
+  }
+
+  /* Sub-bullets inside a use case */
+  .sub-list {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 0.875rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  .sub-list li {
+    display: grid;
+    grid-template-columns: 1.5rem 1fr;
+    gap: 0.5rem;
+    color: var(--color-muted-foreground);
+    font-size: 0.9375rem;
+    line-height: var(--leading-relaxed);
+  }
+  .sub-list li::before {
+    content: "→";
+    font-family: var(--font-mono);
+    color: var(--color-brand);
+    margin-top: 0.05em;
+  }
+  .sub-list strong { color: var(--color-foreground); font-weight: 600; }
+
+  /* ==========================================================
+     Utilities
+     ========================================================== */
+  .mono { font-family: var(--font-mono); }
+  .serif { font-family: var(--font-serif); }
+
+  /* ==========================================================
+     Episode tabs — sits between topnav and main on agent-101 pages
+     ========================================================== */
+  .ep-tabs {
+    position: sticky;
+    top: 3.5rem;
+    z-index: 39;
+    border-bottom: 1px solid var(--color-border);
+    background: var(--color-background);
+  }
+  .ep-tabs-inner {
+    max-width: var(--container-6xl);
+    margin: 0 auto;
+    padding: 0 1.5rem;
+    display: flex;
+    align-items: stretch;
+    gap: 1.25rem;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+  }
+  .ep-tabs-inner::-webkit-scrollbar { display: none; }
+  .ep-tabs-label {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--color-muted-foreground);
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    padding: 0.875rem 0;
+  }
+  .ep-tab {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    text-decoration: none;
+    white-space: nowrap;
+    padding: 0.875rem 0;
+    color: var(--color-muted-foreground);
+    transition: color 0.15s;
+    border-bottom: 2px solid transparent;
+    margin-bottom: -1px;
+  }
+  .ep-tab:hover { color: var(--color-foreground); text-decoration: none; }
+  .ep-tab.is-current {
+    color: var(--color-foreground);
+    border-bottom-color: var(--color-brand);
+  }
+  .ep-tab-num {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+    color: var(--color-brand);
+    font-weight: 600;
+  }
+  .ep-tab-title {
+    font-family: var(--font-sans);
+    font-size: 0.875rem;
+    font-weight: 500;
+  }
+  .ep-tab-lang {
+    font-family: var(--font-mono);
+    font-size: 0.625rem;
+    letter-spacing: 0.1em;
+    color: var(--color-muted-foreground);
+    margin-left: 0.375rem;
+    padding: 1px 5px;
+    border: 1px solid var(--color-border);
+    border-radius: 3px;
+  }
   @media (max-width: 640px) {
-    .cols { grid-template-columns: 1fr; gap: 2vh; }
-    .slide { padding: 5vh 6vw; }
+    .ep-tab-title { display: none; }
+    .ep-tabs-label { font-size: 0.6875rem; }
+    .ep-tabs-inner { gap: 1rem; }
   }
 </style>
 </head>
 <body>
 
-<div id="bar"></div>
-<div id="counter"></div>
-
-<!-- 1 · 封面 -->
-<section class="slide active">
-  <div class="eyebrow">Real Agent Use Cases · Agent 101 · 特别现场版</div>
-  <h1>把你工作里<br>最烦的那件事，交给 AI</h1>
-  <p class="sub">Jack Qian · Dallas · 2026.08.22</p>
-  <div class="foot"><span>realagentusecases.com</span><span>aimanjack.com</span></div>
-</section>
-
-<!-- 2 · 开场互动 -->
-<section class="slide">
-  <div class="eyebrow">现在就拿出手机</div>
-  <h2>给这个号码发一条短信</h2>
-  <div class="huge">(469) 425-4142</div>
-  <ul class="big">
-    <li>问它 <b>9 月课程</b>的任何问题</li>
-    <li>问它 <b>我做过什么项目</b></li>
-    <li>直接<b>跟它约我的时间</b>，1 对 1 聊</li>
-  </ul>
-  <p class="sub">中文英文都行。聊两句，我们等等再揭晓。</p>
-</section>
-
-<!-- 3 · 揭晓 -->
-<section class="slide">
-  <div class="eyebrow">揭晓</div>
-  <h2>刚才回复你的，不是人</h2>
-  <ul class="big">
-    <li>它<b>读懂</b>了你的问题</li>
-    <li>自己<b>查了</b>课程信息和空闲时段</li>
-    <li>自己<b>决定</b>怎么回、用什么语言回</li>
-    <li>约好的时间，已经<b>写进了我的数据库</b></li>
-  </ul>
-  <p class="sub">这就是 AI Agent。今天 90 分钟，讲清楚它是什么、你怎么拥有一个。</p>
-</section>
-
-<!-- 4 · 我是谁 -->
-<section class="slide">
-  <div class="eyebrow">我是谁</div>
-  <h2>白天工程师，晚上每天 3 小时</h2>
-  <ul class="big">
-    <li>白天：达拉斯一家<b>半导体公司</b>的工程师</li>
-    <li><b>AI Man Jack</b> —— 帮达拉斯小生意做网站和 AI 工作流</li>
-    <li><b>Real Agent Use Cases</b> —— 双语周刊，只写真实在用的 agent</li>
-    <li>组织免费社区 AI workshop：<b>70 人大课</b>、1 场 hackathon</li>
-  </ul>
-  <p class="sub">今天讲的所有东西，都是我业余时间每天 3 小时做出来的。</p>
-</section>
-
-<!-- 5 · 认知一 -->
-<section class="slide">
-  <div class="eyebrow">认知一</div>
-  <h2>聊天的 AI，和干活的 AI，是两种东西</h2>
-  <div class="cols">
-    <div class="col">
-      <h3>ChatGPT / Claude 网页版</h3>
-      <ul>
-        <li><b>你问，它答</b></li>
-        <li>一次一句，你来回搬运</li>
-        <li>产出是<b>一段文字</b></li>
-      </ul>
-    </div>
-    <div class="col brand">
-      <h3>Agent（Claude Code / Codex / OpenClaw）</h3>
-      <ul>
-        <li><b>你给目标，它执行</b></li>
-        <li>自己拆步骤、自己用工具、自己跑完</li>
-        <li>产出是<b>一件做完的事</b></li>
-      </ul>
+<nav class="topnav">
+  <div class="nav-inner">
+    <a href="/" class="brand">realagentusecases.com</a>
+    <div class="nav-right">
+      <a href="/zh/news/" class="nav-link">News</a>
+      <a href="/en/agent-101/live-01/" class="nav-link">EN</a>
+      <a class="btn" href="#cta">Subscribe</a>
     </div>
   </div>
-  <p class="sub">工具名字不用记，记住这条分界线就够了。</p>
-</section>
+</nav>
 
-<!-- 6 · 认知二 -->
-<section class="slide">
-  <div class="eyebrow">认知二</div>
-  <h2>AI 不好用，是因为它不认识你</h2>
-  <ul class="big">
-    <li>它不知道你的<b>职业、项目、口味、底线</b></li>
-    <li>解法：写一份<b>「自我介绍文件」</b>，让每次对话自带背景</li>
-    <li>我是谁 / 我在做什么 / 我喜欢什么样的输出</li>
-  </ul>
-  <p class="sub">接下来现场演示：同一个问题，AI 认识我前 vs 认识我后。</p>
-</section>
-
-<!-- 7 · 带练 -->
-<section class="slide">
-  <div class="eyebrow">现场带练 · 25 分钟</div>
-  <h2>跟我一起做</h2>
-  <ul class="big">
-    <li><b>1.</b> 打开你常用的 AI（网页版就行）</li>
-    <li><b>2.</b> 跟着我，写你自己的自我介绍文件</li>
-    <li><b>3.</b> 用它跑一个真任务，对比前后差别</li>
-  </ul>
-  <p class="sub">没带电脑的用手机；卡住了举手。</p>
-</section>
-
-<!-- 8 · 认知三 -->
-<section class="slide">
-  <div class="eyebrow">认知三</div>
-  <h2>不是所有事都该交给 AI</h2>
-  <p class="sub" style="margin-top:0">值得交给 agent 的事，同时满足三条：</p>
-  <ul class="big">
-    <li><b>重复发生</b> —— 每天、每周都要做一遍</li>
-    <li><b>规则说得清</b> —— 你能给同事写成操作说明</li>
-    <li><b>输入输出是文字或数据</b> —— 邮件、表格、文档、消息</li>
-  </ul>
-</section>
-
-<!-- 9 · 动手写 -->
-<section class="slide">
-  <div class="eyebrow">动手 · 3 分钟</div>
-  <h2>写下你自己的那件事</h2>
-  <p class="sub" style="margin-top:0">你工作里，最烦、重复发生、规则明确的<b>一件事</b>。</p>
-  <div class="huge" style="font-size:clamp(1.6rem,4vw,3rem)">写在手机备忘录或纸上，一句话。</div>
-  <p class="sub">等一下要用到它。</p>
-</section>
-
-<!-- 10 · 我用 AI 做了什么 -->
-<section class="slide">
-  <div class="eyebrow">成果 · 全是业余时间做的</div>
-  <h2>我用 AI 做了什么</h2>
-  <ul class="big">
-    <li><b>aimanjack.com</b> —— 网站、收款、SEO，全流程 AI 工作流在跑</li>
-    <li><b>realagentusecases.com</b> —— 双语周刊 + 播客，AI 排产</li>
-    <li>刚才那个<b>短信客服</b> —— 一个下午做出来的</li>
-    <li><b>10 个开源 repo</b> —— github.com/qianquandong</li>
-  </ul>
-</section>
-
-<!-- 11 · 课程四步 -->
-<section class="slide">
-  <div class="eyebrow">9 月线下课 · Dallas</div>
-  <h2>你手里写的那件事，<br>就是课程要做出来的</h2>
-  <ul class="big">
-    <li><b>发现痛点</b> —— 带着你刚写的那句话来</li>
-    <li><b>判断可行性</b> —— 能不能用 AI 解决、值不值得</li>
-    <li><b>设计工作流</b> —— 拆成输入、步骤、输出</li>
-    <li><b>选路径做出来</b> —— 纯代码 / Skill / 智能体，用哪个模型</li>
-  </ul>
-</section>
-
-<!-- 12 · 报名 -->
-<section class="slide">
-  <div class="eyebrow">报名 · aimanjack.com/class</div>
-  <h2>今天在场的人，有早鸟价</h2>
-  <div class="price-row">
-    <div class="price hot">
-      <div class="amt"><s>$399</s>$299</div>
-      <div class="lbl">9 月正课 · 结账输优惠码 <b>AIMANJACK</b><br>只限讲座后 48 小时</div>
-    </div>
-    <div class="price">
-      <div class="amt">$99</div>
-      <div class="lbl">9 月体验课 · 先感受一节再决定</div>
-    </div>
+<nav class="ep-tabs" aria-label="Agent 101 episode navigation">
+  <div class="ep-tabs-inner">
+    <span class="ep-tabs-label">Agent 101 ·</span>
+    <a href="/agent-101/live-01/" class="ep-tab is-current">
+      <span class="ep-tab-num">EP ★</span>
+      <span class="ep-tab-title">8.22 达拉斯</span>
+    </a>
+    <a href="/agent-101/" class="ep-tab">
+      <span class="ep-tab-num">EP 01</span>
+      <span class="ep-tab-title">什么是 AI Agent</span>
+    </a>
+    <a href="/agent-101/02-multi-agent/" class="ep-tab">
+      <span class="ep-tab-num">EP 02</span>
+      <span class="ep-tab-title">Multi-agent &amp; Skills</span>
+    </a>
+    <a href="/agent-101/03-ai-tools-workflows/" class="ep-tab">
+      <span class="ep-tab-num">EP 03</span>
+      <span class="ep-tab-title">工具与工作流</span>
+    </a>
+    <a href="/agent-101/04-obsidian-second-brain/" class="ep-tab">
+      <span class="ep-tab-num">EP 04</span>
+      <span class="ep-tab-title">Obsidian 第二大脑</span>
+    </a>
+    <a href="/agent-101/05-talk-to-ai/" class="ep-tab">
+      <span class="ep-tab-num">EP 05</span>
+      <span class="ep-tab-title">与 AI 高效沟通</span>
+    </a>
+    <a href="/agent-101/06-track-ai-trends/" class="ep-tab">
+      <span class="ep-tab-num">EP 06</span>
+      <span class="ep-tab-title">主动了解 AI 趋势</span>
+    </a>
   </div>
-  <div class="qr-wrap">
-    <img src="class-qr.svg" alt="报名页二维码 aimanjack.com/class" width="300" height="300">
-    <p class="sub" style="margin-top:0">扫码打开报名页<br><b style="color:var(--fg)">aimanjack.com/class</b></p>
-  </div>
-</section>
+</nav>
 
-<!-- 13 · QA -->
-<section class="slide">
-  <div class="eyebrow">Q &amp; A</div>
-  <h2>有问题，现在问；<br>回家想到了，发短信问</h2>
-  <div class="qr-wrap">
-    <img src="class-qr.svg" alt="报名页二维码 aimanjack.com/class" width="300" height="300">
-    <ul class="big" style="flex:1">
-      <li>报名 / 早鸟码 <b>AIMANJACK</b>：aimanjack.com/class</li>
-      <li>短信 AI 客服 &amp; 约 1v1：<b>(469) 425-4142</b></li>
-      <li>每周真实 agent 案例：<b>realagentusecases.com</b></li>
+<main>
+
+  <!-- ============ HERO ============ -->
+  <section class="hero">
+    <span class="eyebrow-lg">SPECIAL EPISODE · Live in Dallas · 2026.08.22</span>
+    <h1>
+      把你工作里最<span class="brand-word">烦</span>的那件事，<br>
+      交给 <span class="brand-word">AI</span>。
+    </h1>
+
+    <p class="hero-sub" style="margin-top: 1.5rem;">
+      这是 8 月 22 日达拉斯线下讲座的现场版。<br>
+      不讲概念——90 分钟，从"发条短信给 AI"开始，到你写下自己该交给 AI 的那件事。
+    </p>
+
+    <ul class="hero-list">
+      <li class="hero-list-item"><span class="dot"></span><span>开场先动手 — 给一个电话号码发短信，和一个真的 AI agent 聊两句</span></li>
+      <li class="hero-list-item"><span class="dot"></span><span>三个认知 — 聊天的 AI ≠ 干活的 AI；AI 不好用是因为不认识你；不是所有事都该交给 AI</span></li>
+      <li class="hero-list-item"><span class="dot"></span><span>离场作业 — 写下你工作里那件重复、烦人、规则明确的事</span></li>
     </ul>
-  </div>
-  <div class="foot"><span>谢谢！</span><a href="/agent-101/">← Agent 101 全部集数</a></div>
-</section>
 
-<script>
-  var slides = document.querySelectorAll(".slide"), i = 0;
-  var bar = document.getElementById("bar"), counter = document.getElementById("counter");
-  function show(n) {
-    i = Math.max(0, Math.min(slides.length - 1, n));
-    slides.forEach(function (s, k) { s.classList.toggle("active", k === i); });
-    bar.style.width = ((i + 1) / slides.length * 100) + "%";
-    counter.textContent = (i + 1) + " / " + slides.length;
-    location.hash = i + 1;
-  }
-  addEventListener("keydown", function (e) {
-    if (["ArrowRight", "ArrowDown", "PageDown", " "].indexOf(e.key) > -1) { e.preventDefault(); show(i + 1); }
-    if (["ArrowLeft", "ArrowUp", "PageUp"].indexOf(e.key) > -1) { e.preventDefault(); show(i - 1); }
-    if (e.key === "Home") show(0);
-    if (e.key === "End") show(slides.length - 1);
-  });
-  addEventListener("click", function (e) {
-    if (e.target.closest("a")) return;
-    show(e.clientX < innerWidth / 3 ? i - 1 : i + 1);
-  });
-  var tx = null;
-  addEventListener("touchstart", function (e) { tx = e.touches[0].clientX; }, { passive: true });
-  addEventListener("touchend", function (e) {
-    if (tx === null) return;
-    var dx = e.changedTouches[0].clientX - tx;
-    if (Math.abs(dx) > 40) show(dx < 0 ? i + 1 : i - 1);
-    tx = null;
-  }, { passive: true });
-  show(parseInt(location.hash.slice(1), 10) - 1 || 0);
-</script>
+    <div class="hero-ctas">
+      <a class="btn btn-lg" href="#sms">现在就动手 →</a>
+    </div>
+
+    <div class="hero-foot">
+      AGENT 101 SERIES · SPECIAL EP · 现场版
+    </div>
+  </section>
+
+  <!-- ============ § 1 先动手 ============ -->
+  <section id="sms" class="essay">
+    <div class="essay-inner">
+      <header class="section-head">
+        <span class="eyebrow">§ 01 · 先动手，再听讲</span>
+        <h2>给这个号码发一条短信</h2>
+        <p class="lede">
+          拿出手机，给 <strong style="color:var(--color-foreground);font-family:var(--font-mono);">(469) 425-4142</strong> 发条短信，中文英文都行。
+          别客气，它是用来玩的。
+        </p>
+      </header>
+
+      <ul class="item-list">
+        <li class="item">
+          <span class="item-eyebrow">试试 · 01</span>
+          <h3>问它 9 月课程的任何问题</h3>
+          <p>多少钱、讲什么、早鸟价怎么拿——它都答得上来，而且不会不耐烦。</p>
+        </li>
+        <li class="item">
+          <span class="item-eyebrow">试试 · 02</span>
+          <h3>问它 Jack 做过什么项目</h3>
+          <p>它知道我的 10 个开源 repo、我的网站、我在做的每一件事。</p>
+        </li>
+        <li class="item">
+          <span class="item-eyebrow">试试 · 03</span>
+          <h3>直接跟它约我的时间</h3>
+          <p>说"我想跟 Jack 约个 1 对 1"，它会报出真实的空闲时段，帮你订好——订单直接写进我的数据库。</p>
+        </li>
+      </ul>
+
+      <aside class="aside">
+        <span class="aside-label">揭晓</span>
+        <p>
+          刚才回复你的，不是人。它读懂了你的问题，自己查了课程信息和空闲时段，自己决定用哪种语言回你。
+          <strong>这就是 AI agent：你给目标，它执行。</strong>这一页往下，讲的就是你怎么拥有一个。
+        </p>
+      </aside>
+    </div>
+  </section>
+
+  <!-- ============ § 2 认知一 ============ -->
+  <section class="essay">
+    <div class="essay-inner">
+      <header class="section-head">
+        <span class="eyebrow">§ 02 · 认知一</span>
+        <h2>聊天的 AI，和干活的 AI，是两种东西</h2>
+        <p class="lede">
+          大多数人对 AI 的全部经验是"打开 ChatGPT 问个问题"。这没错，但那只是入口。
+          真正省时间的，是另一类。
+        </p>
+      </header>
+
+      <ul class="item-list">
+        <li class="item">
+          <span class="item-eyebrow">类型 · 01 · 聊天</span>
+          <h3>ChatGPT / Claude 网页版：你问，它答</h3>
+          <p>一次一句，你来回搬运，产出是一段文字。适合查东西、改文案、想思路。但活儿还是你干。</p>
+        </li>
+        <li class="item">
+          <span class="item-eyebrow">类型 · 02 · 干活</span>
+          <h3>Agent（Claude Code / Codex / OpenClaw）：你给目标，它执行</h3>
+          <p>它自己拆步骤、自己用工具、自己跑完，产出是一件做完的事。刚才那个短信客服，就是我用一个下午让 agent 做出来的。</p>
+        </li>
+        <li class="item">
+          <span class="item-eyebrow">分界线</span>
+          <h3>名字不用记，记住这条线</h3>
+          <p>问"这个 AI 是陪我聊，还是替我干"，就能把市面上所有工具分成两堆。今天讲的是右边那堆。</p>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ============ § 3 认知二 ============ -->
+  <section class="essay">
+    <div class="essay-inner">
+      <header class="section-head">
+        <span class="eyebrow">§ 03 · 认知二</span>
+        <h2>AI 不好用，是因为它不认识你</h2>
+        <p class="lede">
+          你觉得 AI 回答"太水"、"不懂我"，多数时候不是模型不行——是它对你一无所知：
+          不知道你的职业、你的项目、你的口味、你的底线。
+        </p>
+      </header>
+
+      <ul class="item-list">
+        <li class="item">
+          <span class="item-eyebrow">解法</span>
+          <h3>写一份「自我介绍文件」</h3>
+          <p>我是谁、我在做什么、我喜欢什么样的输出、什么坚决不要。写一次，之后每次对话自带背景。</p>
+        </li>
+        <li class="item">
+          <span class="item-eyebrow">现场演示</span>
+          <h3>同一个问题，认识我前 vs 认识我后</h3>
+          <p>讲座现场我们把这两个回答放在一起对比——差距大到不像同一个模型。这也是现场带练的第一步：25 分钟，每个人写出自己的自我介绍文件，用它跑一个真任务。</p>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ============ § 4 认知三 ============ -->
+  <section class="essay">
+    <div class="essay-inner">
+      <header class="section-head">
+        <span class="eyebrow">§ 04 · 认知三</span>
+        <h2>不是所有事都该交给 AI</h2>
+        <p class="lede">
+          为了用 AI 而用 AI，是最快浪费时间的方式。值得交给 agent 的事，同时满足三条。
+        </p>
+      </header>
+
+      <ul class="item-list">
+        <li class="item">
+          <span class="item-eyebrow">标准 · 01</span>
+          <h3>重复发生</h3>
+          <p>每天、每周都要做一遍。只发生一次的事，教 AI 的时间比自己做还长。</p>
+        </li>
+        <li class="item">
+          <span class="item-eyebrow">标准 · 02</span>
+          <h3>规则说得清</h3>
+          <p>你能把它写成给同事的操作说明。说不清规则的事，AI 也只能猜。</p>
+        </li>
+        <li class="item">
+          <span class="item-eyebrow">标准 · 03</span>
+          <h3>输入输出是文字或数据</h3>
+          <p>邮件、表格、文档、消息——AI 的主场。要动手搬箱子的，暂时别想。</p>
+        </li>
+      </ul>
+
+      <aside class="aside">
+        <span class="aside-label">动手 · 3 分钟</span>
+        <p>
+          现在就写：你工作里最烦、重复发生、规则明确的<strong>一件事</strong>。一句话，写在手机备忘录或纸上。
+          <strong>你手里写的这件事，就是下面 9 月课程要带你做出来的。</strong>
+        </p>
+      </aside>
+    </div>
+  </section>
+
+  <!-- ============ § 5 成果 ============ -->
+  <section class="essay">
+    <div class="essay-inner">
+      <header class="section-head">
+        <span class="eyebrow">§ 05 · 全是业余时间做的</span>
+        <h2>我用 AI 做了什么</h2>
+        <p class="lede">
+          白天我是达拉斯一家半导体公司的工程师，业余每天 3 小时。下面这些，全是这 3 小时 × AI 工作流做出来的。
+        </p>
+      </header>
+
+      <ul class="item-list">
+        <li class="item">
+          <span class="item-eyebrow">01</span>
+          <h3>aimanjack.com — 服务达拉斯小生意</h3>
+          <p>网站、收款、SEO、获客，全流程 AI 工作流在跑。还组织免费社区 AI workshop：70 人大课、1 场 hackathon。</p>
+        </li>
+        <li class="item">
+          <span class="item-eyebrow">02</span>
+          <h3>realagentusecases.com — 你正在看的这个站</h3>
+          <p>双语周刊 + Agent 101 系列，只写真实在用的 agent，AI 排产。</p>
+        </li>
+        <li class="item">
+          <span class="item-eyebrow">03</span>
+          <h3>那个短信客服 — 一个下午</h3>
+          <p>你开场发短信的 (469) 425-4142，就是一个 agent：读消息、查数据库、订时间、发通知。</p>
+        </li>
+        <li class="item">
+          <span class="item-eyebrow">04</span>
+          <h3>10 个开源 repo</h3>
+          <p>拆书、比机票、追 AI 趋势、给 AI 做自我介绍……都在 <a href="https://github.com/qianquandong" rel="noopener">github.com/qianquandong</a>，随便拿。</p>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ============ § 6 课程 ============ -->
+  <section id="course" class="essay">
+    <div class="essay-inner">
+      <header class="section-head">
+        <span class="eyebrow">§ 06 · 9 月线下课 · Dallas</span>
+        <h2>你写下的那件事，四步做出来</h2>
+        <p class="lede">
+          带着你刚写的那句话来上课：发现痛点 → 判断可行性 → 设计工作流 → 选路径做出来（纯代码 / Skill / 智能体，用哪个模型）。
+          走的时候，它已经在替你干活。
+        </p>
+      </header>
+
+      <ul class="item-list">
+        <li class="item">
+          <span class="item-eyebrow">正课 · $399 → 早鸟 $299</span>
+          <h3>结账输优惠码 AIMANJACK，立减 $100</h3>
+          <p>只限讲座后 48 小时（8 月 24 日 23:59 截止）。之后恢复 $399。</p>
+        </li>
+        <li class="item">
+          <span class="item-eyebrow">体验课 · $99</span>
+          <h3>先感受一节再决定</h3>
+          <p>单次线下课，跟着做一个能带走的 AI 工作流 demo。</p>
+        </li>
+      </ul>
+
+      <div style="display:flex;align-items:center;gap:2rem;margin-top:2.5rem;flex-wrap:wrap;">
+        <img src="/agent-101/live-01/class-qr.svg" alt="报名页二维码 aimanjack.com/class" width="180" height="180" style="background:#fff;padding:10px;border-radius:0.75rem;">
+        <div>
+          <p style="margin:0 0 1rem;color:var(--color-muted-foreground);">扫码或直接打开报名页：</p>
+          <a class="btn btn-lg" href="https://aimanjack.com/class/" rel="noopener">aimanjack.com/class →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CTA ============ -->
+  <section id="cta" class="essay">
+    <div class="essay-inner">
+      <header class="section-head" style="text-align:center;">
+        <span class="eyebrow" style="display:inline-block;">Real Agent Use Cases</span>
+        <h2 style="margin-top: 0.75rem;">讲座会散场，工作流不会</h2>
+        <p class="lede" style="margin-left:auto;margin-right:auto;">
+          每周一条真实职场人在用的 agent 工作流，双语，完整可复制。<br>
+          课程问题、约 1 对 1：发短信给 <strong style="color:var(--color-foreground);font-family:var(--font-mono);">(469) 425-4142</strong>。
+        </p>
+      </header>
+
+      <div class="subscribe">
+        <form class="subscribe-form" onsubmit="event.preventDefault(); window.open('https://realagentusecases.com', '_blank');">
+          <input type="email" placeholder="your@email.com" required>
+          <button class="btn" type="submit">Subscribe — free</button>
+        </form>
+        <p class="subscribe-note">
+          免费订阅，每周一封。这个 Newsletter 不"鼓励"你，能不能跑通是你的事。
+        </p>
+      </div>
+
+      <p style="text-align:center;margin-top:2.5rem;font-family:var(--font-mono);font-size:0.75rem;color:var(--color-muted-foreground);letter-spacing:0.05em;">
+        EP ★（你在这里）　·　<a href="/agent-101/">EP 01 · 什么是 AI Agent →</a>
+      </p>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site">
+  <div class="footer-inner">
+    © 2026 · Jack Qian
+    <span class="sep">·</span>
+    <a href="https://realagentusecases.com">realagentusecases.com</a>
+    <span class="sep">·</span>
+    Dallas, TX
+  </div>
+</footer>
 
 </body>
 </html>
