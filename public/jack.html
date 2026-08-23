@@ -184,6 +184,7 @@
     }
     .ev-badge.up { border-color: rgba(45,94,68,0.6); color: var(--brand-h); background: rgba(45,94,68,0.08); }
     a.ev-badge { text-decoration: none; }
+    a.ev-badge:hover { border-color: var(--muted-fg); color: var(--fg); }
     a.ev-badge.up:hover { border-color: var(--brand-h); background: rgba(45,94,68,0.16); }
 
     /* BUILDS */
@@ -209,6 +210,20 @@
       font-family: var(--mono); font-size: 10px; padding: 2px 7px;
       border-radius: 3px; border: 1px solid var(--border); color: rgba(163,163,163,0.55);
     }
+    .sys-list { margin-top: 40px; display: flex; flex-direction: column; gap: 12px; }
+    .sys-card {
+      display: block; border: 1px solid var(--border); border-radius: 8px;
+      background: var(--muted); padding: 24px; text-decoration: none;
+      transition: background 0.15s;
+    }
+    .sys-card:hover { background: #1c1c1c; }
+    .sys-head {
+      display: flex; align-items: baseline; justify-content: space-between;
+      gap: 16px; flex-wrap: wrap; margin-bottom: 8px;
+    }
+    .sys-name { font-size: 16px; font-weight: 600; color: var(--fg); letter-spacing: -0.01em; }
+    .sys-stat { font-family: var(--mono); font-size: 11px; color: var(--brand-h); white-space: nowrap; }
+    .sys-desc { font-size: 13.5px; line-height: 1.7; color: rgba(163,163,163,0.8); }
 
     /* ABOUT */
     .blockquote {
@@ -372,14 +387,13 @@
   <p class="sec-label">Events</p>
   <h2 class="sec-h2">Monthly in Dallas.</h2>
   <div class="sec-body">
-    <p>Every month, one live event. Demos, discussions, real agent walkthroughs. Recordings published for those who can't make it in person.</p>
+    <p>Live sessions in Dallas: hands-on workshops, real agent walkthroughs, and demo nights, in Chinese and English. All events run through Luma.</p>
   </div>
   <div class="events-list">
-    <div class="ev-row"><span class="ev-date">2026.07.18</span><span class="ev-title">Dallas AI Meetup — July Edition</span><a class="ev-badge up" href="https://luma.com/rsihvu8x" target="_blank" rel="noopener">Register →</a></div>
-    <div class="ev-row"><span class="ev-date">2026.05.24</span><span class="ev-title">Multi-Agent Workflows — Live Demo Night</span><span class="ev-badge">Recorded</span></div>
-    <div class="ev-row"><span class="ev-date">2026.04.19</span><span class="ev-title">AI Agents in the Enterprise — Panel</span><span class="ev-badge">Recorded</span></div>
-    <div class="ev-row"><span class="ev-date">2026.03.15</span><span class="ev-title">What Is an AI Agent? — Foundations Session</span><span class="ev-badge">Recorded</span></div>
-    <div class="ev-row"><span class="ev-date">2026.02.22</span><span class="ev-title">Prompt Engineering for Non-Developers</span><span class="ev-badge">Recorded</span></div>
+    <div class="ev-row"><span class="ev-date">2026.08.22</span><span class="ev-title">零基础也能上手：用 AI 完成你的第一个小项目 (free workshop for students &amp; parents)</span><a class="ev-badge up" href="https://luma.com/xhx7oos8" target="_blank" rel="noopener">Today · 59 attended</a></div>
+    <div class="ev-row"><span class="ev-date">2026.07.18</span><span class="ev-title">AI Workflow Automation 实战分享（第三期）</span><a class="ev-badge" href="https://luma.com/rsihvu8x" target="_blank" rel="noopener">40 attended</a></div>
+    <div class="ev-row"><span class="ev-date">2026.05.17</span><span class="ev-title">OpenClaw: 走进 AI Agent 的世界 Meetup #2</span><a class="ev-badge" href="https://luma.com/u1tw9z8m" target="_blank" rel="noopener">70 attended</a></div>
+    <div class="ev-row"><span class="ev-date">2026.04.02</span><span class="ev-title">Dallas Openclaw</span><a class="ev-badge" href="https://luma.com/5703yxcr" target="_blank" rel="noopener">40 attended</a></div>
   </div>
 </section>
 
@@ -416,16 +430,58 @@
 
 <section class="section" id="builds">
   <p class="sec-label">Builds</p>
-  <h2 class="sec-h2">Ships code, not just ideas.</h2>
+  <h2 class="sec-h2">AI systems running in production.</h2>
   <div class="sec-body">
-    <p>When not organizing Dallas's AI scene, Jack builds — open-source tools that put real AI models into production workflows.</p>
+    <p>Jack runs his day-to-day work, at Texas Instruments and in his side business, on AI systems he built and operates himself. He designs the pipeline, sets the quality gates, and reviews the output; the agents do the work.</p>
+  </div>
+  <div class="sys-list">
+    <div class="sys-card">
+      <div class="sys-head">
+        <span class="sys-name">Supply-chain planning at Texas Instruments, on Claude</span>
+        <span class="sys-stat">50%+ of daily ops automated</span>
+      </div>
+      <p class="sys-desc">In his day job as a business planner, Jack rebuilt the recurring parts of his supply-chain operation around Claude workflows: routine data pulls, recurring reports, and exception checks now run through automations he built himself. By his own count, more than half of his daily operational work is automated; his time goes to the judgment calls the automation surfaces.</p>
+    </div>
+    <a class="sys-card" href="https://realagentusecases.com/en/news/" target="_blank">
+      <div class="sys-head">
+        <span class="sys-name">Bilingual SEO/GEO content pipeline</span>
+        <span class="sys-stat">1 article pair / day, gated</span>
+      </div>
+      <p class="sys-desc">A scheduled Claude agent picks a topic from a curated keyword feed, researches it, writes the English article, translates it through a three-pass Chinese process, then must clear a mechanical SEO audit and a full site build before anything deploys. Hard rules: every claim needs a named, linked source, and a day without enough real sources gets skipped. An early version bulk-produced 22 low-quality article pairs; Jack deleted them all and wrote that failure mode into the agent's rules.</p>
+    </a>
+    <a class="sys-card" href="https://www.youtube.com/channel/UCrjnqySYv7EHjAFCGvPuQHg" target="_blank">
+      <div class="sys-head">
+        <span class="sys-name">Kids' AI channel, end-to-end video pipeline</span>
+        <span class="sys-stat">7 episodes live on YouTube</span>
+      </div>
+      <p class="sys-desc">A YouTube channel that explains one AI term per episode in third-grade English. The whole production line is scripted: structured script generation, narration from a locally hosted clone of Jack's own voice (Qwen3-TTS), code-rendered illustration frames, ffmpeg assembly with loudness checks, and upload through the YouTube Data API with thumbnails and metadata.</p>
+    </a>
+    <a class="sys-card" href="https://aimanjack.com" target="_blank">
+      <div class="sys-head">
+        <span class="sys-name">Local-business audit + outreach agents</span>
+        <span class="sys-stat">drafts only, sending stays human</span>
+      </div>
+      <p class="sys-desc">One agent audits a local business's online presence (Google Business Profile, reviews vs. map-pack competitors, website, AI-search visibility) into a one-page report a shop owner can read. A second agent batches prospects by category and city, runs the audit on each, and turns the report into outreach email drafts in Gmail. Jack reviews every draft before it sends.</p>
+    </a>
   </div>
   <div class="builds-grid">
+    <a class="build-card" href="https://realagentusecases.com/en/posts/2026-05-13-gmail-ai-agent/" target="_blank">
+      <span class="build-tag">Agent · Daily driver</span>
+      <div class="build-name">Gmail inbox to daily to-do</div>
+      <p class="build-desc">Reads the morning inbox, ranks what matters, and outputs the day's list from rules anyone can edit. Read-only by design. Issue #001 of the newsletter, and the agent workshop attendees build live.</p>
+      <div class="build-stack"><span class="pill">Claude</span><span class="pill">Gmail</span></div>
+    </a>
+    <a class="build-card" href="https://github.com/qianquandong/cheap-flights" target="_blank">
+      <span class="build-tag">Agent skill · Open source</span>
+      <div class="build-name">cheap-flights</div>
+      <p class="build-desc">Finds the cheapest bookable fare for a route: nearby airports, split one-ways, bag-inclusive pricing. Hands back links, never books.</p>
+      <div class="build-stack"><span class="pill">CLI</span><span class="pill">Agent skill</span></div>
+    </a>
     <a class="build-card" href="https://realagentusecases.com" target="_blank">
       <span class="build-tag">Newsletter · Media</span>
       <div class="build-name">Real Agent Use Cases</div>
       <p class="build-desc">Weekly interviews with working professionals on the AI agents they actually run. Full setup: prompts, tools, integrations.</p>
-      <div class="build-stack"><span class="pill">Next.js</span><span class="pill">Tailwind</span><span class="pill">MDX</span></div>
+      <div class="build-stack"><span class="pill">Next.js</span><span class="pill">MDX</span><span class="pill">Cloudflare</span></div>
     </a>
     <a class="build-card" href="https://github.com/qianquandong/aeo-studio" target="_blank">
       <span class="build-tag">AI Tooling · Web</span>
@@ -442,7 +498,7 @@
     <a class="build-card" href="https://github.com/qianquandong/Blindspot" target="_blank">
       <span class="build-tag">iOS · Swift</span>
       <div class="build-name">Blindspot</div>
-      <p class="build-desc">A Swift-based iOS app for startup discovery — helping founders and investors spot what the radar misses.</p>
+      <p class="build-desc">A Swift-based iOS app for startup discovery, helping founders and investors spot what the radar misses.</p>
       <div class="build-stack"><span class="pill">Swift</span><span class="pill">iOS</span></div>
     </a>
   </div>
@@ -456,12 +512,12 @@
   <div class="sec-body">
     <p>Most useful AI agents at work aren't written down anywhere. The people who've figured out how to actually run them are too busy doing the work to publish — so what works stays inside their heads.</p>
     <p>Real Agent Use Cases changes that. Every week, one working professional walks through one AI agent they actually run. Full setup published: prompts, tools, integrations. No filler. No paid tier.</p>
-    <p>Hosted by Jack Qian — industrial engineer at Texas Instruments turning business planner, based in Dallas. There's a monthly AI hackathon if you're in town. But the recordings are the meal.</p>
+    <p>Hosted by Jack Qian, business planner at Texas Instruments, based in Dallas. There's a monthly AI hackathon if you're in town. But the recordings are the meal.</p>
   </div>
   <blockquote class="blockquote">"AI's biggest impact comes from the communities built around it — not just the technology itself."</blockquote>
   <div class="meta-table">
     <div class="meta-row"><span class="meta-k">Based in</span><span class="meta-v">Dallas, Texas</span></div>
-    <div class="meta-row"><span class="meta-k">Day job</span><span class="meta-v">Industrial Engineer → Business Planner at Texas Instruments</span></div>
+    <div class="meta-row"><span class="meta-k">Day job</span><span class="meta-v">Business Planner (supply chain) at Texas Instruments</span></div>
     <div class="meta-row"><span class="meta-k">Community</span><span class="meta-v">1,000+ member Dallas AI meetup group</span></div>
     <div class="meta-row"><span class="meta-k">Newsletter</span><span class="meta-v">Real Agent Use Cases — weekly, free forever</span></div>
     <div class="meta-row"><span class="meta-k">GitHub</span><span class="meta-v">github.com/qianquandong</span></div>
