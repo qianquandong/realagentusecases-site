@@ -132,17 +132,6 @@
     .tag-text { font-family: var(--mono); font-size: 11px; color: var(--muted-fg); white-space: nowrap; }
 
 
-    /* PIE */
-    .pie-wrap { display: flex; align-items: center; gap: 32px; margin-top: 40px; flex-wrap: wrap; }
-    .pie {
-      width: 150px; height: 150px; border-radius: 50%; flex-shrink: 0;
-      border: 1px solid var(--border);
-      background: conic-gradient(#387554 0 66.1%, #86b89b 66.1% 81.4%, #a3a3a3 81.4% 94.9%, #525252 94.9% 100%);
-    }
-    .pie-legend { list-style: none; display: flex; flex-direction: column; gap: 9px; font-size: 13px; color: var(--muted-fg); }
-    .pie-legend li { display: flex; align-items: center; gap: 9px; }
-    .pie-swatch { width: 10px; height: 10px; border-radius: 2px; flex-shrink: 0; }
-    .pie-src { margin-top: 12px; font-family: var(--mono); font-size: 11px; color: rgba(163,163,163,0.45); width: 100%; }
     /* DIVIDER */
     .divider { max-width: 768px; margin: 0 auto; padding: 0 24px; }
     .divider hr { border: none; border-top: 1px solid rgba(38,38,38,0.5); }
@@ -381,18 +370,8 @@
   <p class="sec-label">社区</p>
   <h2 class="sec-h2">达拉斯 AI builder 的大本营。</h2>
   <div class="sec-body">
-    <p>德州最活跃的 AI 社区之一。来的大多是上班族，也有学生和自己做生意的，聚在一起的原因很一致：想真的把 AI 用起来，而不是聊完就散。</p>
+    <p>德州最活跃的 AI 社区之一。来的人什么行业都有：写代码的、做数据的、在银行上班的，也有开饭馆的、做小生意的，还有会计、律师、房产中介。目的很一致：想真的把 AI 用起来，而不是聊完就散。</p>
     <p>每个月在达拉斯办一场线下活动。现场演示、真实工作流，还有那种只有到了现场才聊得起来的话题。</p>
-  </div>
-  <div class="pie-wrap">
-    <div class="pie" role="img" aria-label="社区成员构成饼图：上班族 66%，学生 15%，创业或个体经营 14%，其他 5%"></div>
-    <ul class="pie-legend">
-      <li><span class="pie-swatch" style="background:#387554"></span>在职上班族 · 39 人 · 66%</li>
-      <li><span class="pie-swatch" style="background:#86b89b"></span>学生 · 9 人 · 15%</li>
-      <li><span class="pie-swatch" style="background:#a3a3a3"></span>创业 / 个体经营 · 8 人 · 14%</li>
-      <li><span class="pie-swatch" style="background:#525252"></span>其他 · 3 人 · 5%</li>
-    </ul>
-    <p class="pie-src">数据来自 8.22 讲座报名问卷，59 位报名成功者全量统计</p>
   </div>
   <div class="stats-grid">
     <div class="stat-cell"><div class="stat-n">700+</div><div class="stat-l">社区成员</div></div>
