@@ -451,13 +451,17 @@
       </div>
       <p class="sys-desc">一个定时运行的 Claude agent，每天从选题库里取一个关键词，先查资料，写英文稿，再走三步翻译流程出中文稿，最后要过机械 SEO 审计和完整站点构建才能上线。硬规则：每个事实都要有具名的链接来源，当天凑不齐真实来源就跳过不发。早期版本批量产出过 22 对低质量文章，Jack 全删了，还把这个翻车模式写进了 agent 的禁令。</p>
     </a>
-    <a class="sys-card" href="https://www.youtube.com/channel/UCrjnqySYv7EHjAFCGvPuQHg" target="_blank">
+    <div class="sys-card">
       <div class="sys-head">
         <span class="sys-name">少儿 AI 科普频道，全自动视频产线</span>
         <span class="sys-stat">已在 YouTube 上线 7 集</span>
       </div>
       <p class="sys-desc">一个给小孩讲 AI 名词的 YouTube 频道，每集只讲一个词，用的是美国三年级水平的英文。整条产线都是代码：脚本按固定结构生成，配音来自本地部署的 Jack 声音克隆（Qwen3-TTS），插画帧用代码渲染，ffmpeg 合成后过响度检查，最后通过 YouTube Data API 自动上传，连缩略图和 metadata 一起。</p>
-    </a>
+      <div style="position:relative;padding-top:56.25%;border-radius:8px;overflow:hidden;border:1px solid var(--border);margin-top:16px;">
+        <iframe src="https://www.youtube.com/embed/ojH3x85CppM" title="How Does AI Learn? Training Explained for Kids" style="position:absolute;inset:0;width:100%;height:100%;border:0;" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+      </div>
+      <p class="sys-desc" style="margin-top:10px;">这是产线直接产出的第 3 集，频道在 <a href="https://www.youtube.com/@JackBuildAI" target="_blank" rel="noopener" style="color:var(--brand-h);">youtube.com/@JackBuildAI</a></p>
+    </div>
     <a class="sys-card" href="https://aimanjack.com" target="_blank">
       <div class="sys-head">
         <span class="sys-name">本地商家体检 + 获客 agent</span>
