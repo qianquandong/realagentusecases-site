@@ -131,6 +131,18 @@
     @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.3} }
     .tag-text { font-family: var(--mono); font-size: 11px; color: var(--muted-fg); white-space: nowrap; }
 
+
+    /* PIE */
+    .pie-wrap { display: flex; align-items: center; gap: 32px; margin-top: 40px; flex-wrap: wrap; }
+    .pie {
+      width: 150px; height: 150px; border-radius: 50%; flex-shrink: 0;
+      border: 1px solid var(--border);
+      background: conic-gradient(#387554 0 66.1%, #86b89b 66.1% 81.4%, #a3a3a3 81.4% 94.9%, #525252 94.9% 100%);
+    }
+    .pie-legend { list-style: none; display: flex; flex-direction: column; gap: 9px; font-size: 13px; color: var(--muted-fg); }
+    .pie-legend li { display: flex; align-items: center; gap: 9px; }
+    .pie-swatch { width: 10px; height: 10px; border-radius: 2px; flex-shrink: 0; }
+    .pie-src { margin-top: 12px; font-family: var(--mono); font-size: 11px; color: rgba(163,163,163,0.45); width: 100%; }
     /* DIVIDER */
     .divider { max-width: 768px; margin: 0 auto; padding: 0 24px; }
     .divider hr { border: none; border-top: 1px solid rgba(38,38,38,0.5); }
@@ -369,8 +381,18 @@
   <p class="sec-label">Community</p>
   <h2 class="sec-h2">Dallas's home for AI builders.</h2>
   <div class="sec-body">
-    <p>One of the most active AI communities in Texas — bringing together engineers, founders, operators, and curious minds who want to actually use AI, not just talk about it.</p>
+    <p>One of the most active AI communities in Texas. Mostly working professionals, plus students and business owners, all here to actually use AI, not just talk about it.</p>
     <p>Every month, one live event in Dallas. Hands-on demos, real workflows, and the kind of conversations that only happen in the room.</p>
+  </div>
+  <div class="pie-wrap">
+    <div class="pie" role="img" aria-label="Community composition pie chart: working professionals 66%, students 15%, business owners 14%, other 5%"></div>
+    <ul class="pie-legend">
+      <li><span class="pie-swatch" style="background:#387554"></span>Working professionals · 39 · 66%</li>
+      <li><span class="pie-swatch" style="background:#86b89b"></span>Students · 9 · 15%</li>
+      <li><span class="pie-swatch" style="background:#a3a3a3"></span>Business owners / self-employed · 8 · 14%</li>
+      <li><span class="pie-swatch" style="background:#525252"></span>Other · 3 · 5%</li>
+    </ul>
+    <p class="pie-src">From the Aug 22 workshop registration survey, all 59 confirmed guests</p>
   </div>
   <div class="stats-grid">
     <div class="stat-cell"><div class="stat-n">700+</div><div class="stat-l">Members</div></div>
