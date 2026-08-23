@@ -1,7 +1,19 @@
 {
  "$comment": "LLM brand-mention tracking time series. The scheduled Cowork routine appends one snapshot per run: which target prompts surfaced the brand, in which LLMs, with what sentiment.",
- "updatedAt": "2026-08-22",
+ "updatedAt": "2026-08-23",
  "snapshots": [
+  {
+   "date": "2026-08-23",
+   "probes": [
+    {
+     "prompt": "How many companies are using AI agents in 2026?",
+     "cited": false,
+     "url": null,
+     "position": null,
+     "note": "Sunday run (feed-replenishment day, no article). Never-probed prompt, pulled as the on-topic baseline for the still-new 'AI agent adoption statistics' keyword (a strong next-week candidate). Web search (verbatim) dominated by listicle/aggregator pages: blog.magmalabs.io (Top Companies using Agents), spanglobalservices.com (Top 50 Companies Using AI Agent Platforms), teneo.ai, rootsanalysis.com, alphacorp.ai, sophisticatedcloud.com, devcom.com; realagentusecases.com did not appear — the field is 'top companies' vendor-directory listicles with no honest, sourced-statistics angle, which is this site's gap to own (every stat linked, no invented numbers). Named linkable stats that surfaced: Gartner '40% of enterprise apps embed task-specific agents by end of 2026', EY 2026 '59% of agentic-AI adopters target customer-facing ops', and the AI-agents market ~$7.6B (2025) -> ~$10.9B (2026). Health: direct WebFetch of realagentusecases.com/sitemap.xml returned EGRESS_BLOCKED (403 at proxy CONNECT) — the known recurring sandbox network-policy denial seen every run (not a site outage); a branded WebSearch surfaced no row (the known small-domain/site: WebSearch quirk), so live indexing could not be reconfirmed from this environment this run (prior runs confirmed a live indexed page at /en/news/2026-05-14-claude-system-prompt-email-triage/). Repo pipeline healthy: git log shows daily auto-merges landing cleanly through 2026-08-22 (document-processing); working tree clean, branch tracking origin. Sunday feed replenishment this run added 7 keywords (how-much-do-agents-cost, deploy-in-production, agent-governance, how-to-evaluate-agents, browser-agents, best-LLM-for-agents, customer-service) and 5 GEO prompts (incl. one ZH production-deployment prompt), sourced from this week's competitor sweep + trend signals: Zapier's 2026 governed-AI update (AI Guardrails, BYOM, Memory, agent 'Pods'; ~9,000 apps / 593M+ tasks, zapier.com/blog/best-ai-agents + zapier-ai-guide), n8n's 2026 multi-agent orchestration + multi-provider AI Agent node (blog.n8n.io / releasebot.io/updates/n8n), and the pilot-to-production / agentic-ops-governance enterprise-adoption theme (joget.com, digitalapplied.com, writer.com enterprise-AI-adoption roundups)."
+    }
+   ]
+  },
   {
    "date": "2026-08-22",
    "probes": [
