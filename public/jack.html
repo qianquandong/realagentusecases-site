@@ -329,6 +329,7 @@
   <div class="nav">
     <a class="nav-logo" href="https://realagentusecases.com">Real Agent Use Cases</a>
     <ul class="nav-links">
+      <li><a href="#builds">Builds</a></li>
       <li><a href="#community">Community</a></li>
       <li><a href="#events">Events</a></li>
       <li><a href="#about">About</a></li>
@@ -363,6 +364,131 @@
     </div>
   </div>
 </section>
+
+<div class="divider"><hr /></div>
+
+<section class="section" id="builds">
+  <p class="sec-label">Builds</p>
+  <h2 class="sec-h2">AI systems running in production.</h2>
+  <div class="sec-body">
+    <p>Jack runs his day-to-day work, at Texas Instruments and in his side business, on AI systems he built and operates himself. He designs the pipeline, sets the quality gates, and reviews the output; the agents do the work.</p>
+  </div>
+  <div class="sys-list">
+    <div class="sys-card">
+      <div class="sys-head">
+        <span class="sys-name">Supply-chain planning at Texas Instruments, on Claude</span>
+        <span class="sys-stat">50%+ of daily ops automated</span>
+      </div>
+      <p class="sys-desc">In his day job as a business planner, Jack rebuilt the recurring parts of his supply-chain operation around Claude workflows: routine data pulls, recurring reports, and exception checks now run through automations he built himself. By his own count, more than half of his daily operational work is automated; his time goes to the judgment calls the automation surfaces.</p>
+    </div>
+    <a class="sys-card" href="https://realagentusecases.com/en/news/" target="_blank">
+      <div class="sys-head">
+        <span class="sys-name">Bilingual SEO/GEO content pipeline</span>
+        <span class="sys-stat">75 bilingual pairs live</span>
+      </div>
+      <p class="sys-desc">A scheduled Claude agent picks a topic from a curated keyword feed, researches it, writes the English article, translates it through a three-pass Chinese process, then must clear a mechanical SEO audit and a full site build before anything deploys. Hard rules: every claim needs a named, linked source, and a day without enough real sources gets skipped. An early version bulk-produced 22 low-quality article pairs; Jack deleted them all and wrote that failure mode into the agent's rules.</p>
+    </a>
+    <div class="sys-card">
+      <div class="sys-head">
+        <span class="sys-name">Kids' AI channel, end-to-end video pipeline</span>
+        <span class="sys-stat">7 episodes live on YouTube</span>
+      </div>
+      <p class="sys-desc">A YouTube channel that explains one AI term per episode in third-grade English. The whole production line is scripted: structured script generation, narration from a locally hosted clone of Jack's own voice (Qwen3-TTS), code-rendered illustration frames, ffmpeg assembly with loudness checks, and upload through the YouTube Data API with thumbnails and metadata.</p>
+      <div style="position:relative;padding-top:56.25%;border-radius:8px;overflow:hidden;border:1px solid var(--border);margin-top:16px;">
+        <iframe src="https://www.youtube.com/embed/ojH3x85CppM" title="How Does AI Learn? Training Explained for Kids" style="position:absolute;inset:0;width:100%;height:100%;border:0;" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+      </div>
+      <p class="sys-desc" style="margin-top:10px;">Episode 3, straight off the pipeline: <a href="https://www.youtube.com/@JackBuildAI" target="_blank" rel="noopener" style="color:var(--brand-h);">youtube.com/@JackBuildAI</a></p>
+    </div>
+    <a class="sys-card" href="https://aimanjack.com" target="_blank">
+      <div class="sys-head">
+        <span class="sys-name">Local-business audit + outreach agents</span>
+        <span class="sys-stat">9 custom demo sites shipped</span>
+      </div>
+      <p class="sys-desc">One agent audits a local business's online presence (Google Business Profile, reviews vs. map-pack competitors, website, AI-search visibility) into a one-page report a shop owner can read. A second agent batches prospects by category and city, runs the audit on each, and turns the report into outreach email drafts in Gmail. Jack reviews every draft before it sends. So far it has shipped nine demo sites for shops with no website: a shoe repair, a tailor, a donut shop, a tire shop among them.</p>
+    </a>
+  </div>
+  <div class="builds-grid">
+    <a class="build-card" href="https://realagentusecases.com/en/posts/2026-05-13-gmail-ai-agent/" target="_blank">
+      <span class="build-tag">Agent · Daily driver</span>
+      <div class="build-name">Gmail inbox to daily to-do</div>
+      <p class="build-desc">Reads the morning inbox, ranks what matters, and outputs the day's list from rules anyone can edit. Read-only by design. His logs put the saving at about 25 minutes a day. It is also the one workshop attendees build live.</p>
+      <div class="build-stack"><span class="pill">Claude</span><span class="pill">Gmail</span></div>
+    </a>
+    <a class="build-card" href="https://github.com/qianquandong/cheap-flights" target="_blank">
+      <span class="build-tag">Agent skill · Open source</span>
+      <div class="build-name">cheap-flights</div>
+      <p class="build-desc">Finds the cheapest bookable fare for a route: nearby airports, split one-ways, bag-inclusive pricing. Hands back links, never books.</p>
+      <div class="build-stack"><span class="pill">CLI</span><span class="pill">Agent skill</span></div>
+    </a>
+    <a class="build-card" href="https://github.com/qianquandong/real-agent-workflows" target="_blank">
+      <span class="build-tag">Open source · 6 workflows</span>
+      <div class="build-name">Obsidian AI content OS</div>
+      <p class="build-desc">Obsidian as a content hub: AI-news intake, a morning briefing, Xiaohongshu and Douyin favorites turned into knowledge cards via yt-dlp and Whisper, link ingest, 90-second scripts generated from the vault, and email triage. Information in, AI sorts, a human filters, content out.</p>
+      <div class="build-stack"><span class="pill">Obsidian</span><span class="pill">Whisper</span><span class="pill">yt-dlp</span></div>
+    </a>
+    <a class="build-card" href="https://github.com/qianquandong/track-ai-visibility" target="_blank">
+      <span class="build-tag">Open source · Agent skill</span>
+      <div class="build-name">track-ai-visibility</div>
+      <p class="build-desc">Checks how a brand shows up in AI search and recommendations: prompt coverage, competitor mentions, cited domains, content gaps. Evidence saved as JSON and Markdown; platforms it cannot observe are marked unobserved, never faked.</p>
+      <div class="build-stack"><span class="pill">Codex</span><span class="pill">Claude Code</span></div>
+    </a>
+    <a class="build-card" href="https://github.com/qianquandong/booking-research-agent" target="_blank">
+      <span class="build-tag">Open source · CRM</span>
+      <div class="build-name">booking-research-agent</div>
+      <p class="build-desc">When someone books a call, it researches the contact and company, writes the record into a Notion CRM, and drafts a prep email in Jack's voice. Drafts only; it never sends and never commits price or scope.</p>
+      <div class="build-stack"><span class="pill">Notion</span><span class="pill">n8n</span></div>
+    </a>
+    <a class="build-card" href="https://github.com/qianquandong/google-business-profile-skill" target="_blank">
+      <span class="build-tag">Open source · 44-chapter guide</span>
+      <div class="build-name">google-business-profile-skill</div>
+      <p class="build-desc">A bilingual Google Business Profile playbook plus installable skill: eligibility, verification, review management, local SEO, suspension appeals, multi-location. Explicitly refuses fake addresses and bought reviews.</p>
+      <div class="build-stack"><span class="pill">Local SEO</span><span class="pill">Skill</span></div>
+    </a>
+    <a class="build-card" href="https://github.com/qianquandong/book80-skill" target="_blank">
+      <span class="build-tag">Open source · Skill</span>
+      <div class="build-name">book80-skill</div>
+      <p class="build-desc">Compresses an EPUB or PDF into 30-second, 3-minute, and 10-minute briefings, with every key claim traceable back to the source.</p>
+      <div class="build-stack"><span class="pill">EPUB</span><span class="pill">PDF</span></div>
+    </a>
+    <a class="build-card" href="https://github.com/qianquandong/self-introduction" target="_blank">
+      <span class="build-tag">Open source · Skill</span>
+      <div class="build-name">self-introduction</div>
+      <p class="build-desc">One interview produces a central personal profile that Claude Code, Codex, and other agents share, so a new agent already knows who it is working for.</p>
+      <div class="build-stack"><span class="pill">Claude Code</span><span class="pill">Codex</span></div>
+    </a>
+    <div class="build-card">
+      <span class="build-tag">Internal · 20 runs logged</span>
+      <div class="build-name">6-agent startup validation pipeline</div>
+      <p class="build-desc">Six agents a day: scan Hacker News, GitHub, and Product Hunt, produce five product directions, score and rank them, then write the winner a spec, pricing, a 30-day roadmap, a landing page, and launch posts. Each run leaves 7 to 8 files.</p>
+      <div class="build-stack"><span class="pill">Multi-agent</span></div>
+    </div>
+    <div class="build-card">
+      <span class="build-tag">Internal · 54 runs logged</span>
+      <div class="build-name">Multi-platform social automation</div>
+      <p class="build-desc">Separate rules, topics, publish logs, and performance data for LinkedIn, X, Threads, and Xiaohongshu. Content passes a timeliness and quality check first; a round with nothing good publishes nothing.</p>
+      <div class="build-stack"><span class="pill">LinkedIn</span><span class="pill">X</span><span class="pill">XHS</span></div>
+    </div>
+    <a class="build-card" href="https://github.com/qianquandong/aeo-studio" target="_blank">
+      <span class="build-tag">AI Tooling · Web</span>
+      <div class="build-name">aeo-studio</div>
+      <p class="build-desc">Track how your brand is cited across ChatGPT, Perplexity, and Google AI. Answer Engine Optimization for the AI search era.</p>
+      <div class="build-stack"><span class="pill">HTML</span><span class="pill">AI Search</span></div>
+    </a>
+    <a class="build-card" href="https://github.com/qianquandong/douyin-analyzer" target="_blank">
+      <span class="build-tag">Python · CLI · AI</span>
+      <div class="build-name">douyin-analyzer</div>
+      <p class="build-desc">Download TikTok videos, detect key scenes, transcribe speech with Whisper, generate image prompts via Claude API.</p>
+      <div class="build-stack"><span class="pill">Python</span><span class="pill">Claude API</span><span class="pill">Whisper</span></div>
+    </a>
+    <a class="build-card" style="grid-column:1/-1" href="https://github.com/qianquandong/Blindspot" target="_blank">
+      <span class="build-tag">iOS · Swift</span>
+      <div class="build-name">Blindspot</div>
+      <p class="build-desc">A Swift-based iOS app for startup discovery, helping founders and investors spot what the radar misses.</p>
+      <div class="build-stack"><span class="pill">Swift</span><span class="pill">iOS</span></div>
+    </a>
+  </div>
+</section>
+
 
 <div class="divider"><hr /></div>
 
@@ -426,81 +552,7 @@
     </div>
 </section>
 
-<div class="divider"><hr /></div>
 
-<section class="section" id="builds">
-  <p class="sec-label">Builds</p>
-  <h2 class="sec-h2">AI systems running in production.</h2>
-  <div class="sec-body">
-    <p>Jack runs his day-to-day work, at Texas Instruments and in his side business, on AI systems he built and operates himself. He designs the pipeline, sets the quality gates, and reviews the output; the agents do the work.</p>
-  </div>
-  <div class="sys-list">
-    <div class="sys-card">
-      <div class="sys-head">
-        <span class="sys-name">Supply-chain planning at Texas Instruments, on Claude</span>
-        <span class="sys-stat">50%+ of daily ops automated</span>
-      </div>
-      <p class="sys-desc">In his day job as a business planner, Jack rebuilt the recurring parts of his supply-chain operation around Claude workflows: routine data pulls, recurring reports, and exception checks now run through automations he built himself. By his own count, more than half of his daily operational work is automated; his time goes to the judgment calls the automation surfaces.</p>
-    </div>
-    <a class="sys-card" href="https://realagentusecases.com/en/news/" target="_blank">
-      <div class="sys-head">
-        <span class="sys-name">Bilingual SEO/GEO content pipeline</span>
-        <span class="sys-stat">1 article pair / day, gated</span>
-      </div>
-      <p class="sys-desc">A scheduled Claude agent picks a topic from a curated keyword feed, researches it, writes the English article, translates it through a three-pass Chinese process, then must clear a mechanical SEO audit and a full site build before anything deploys. Hard rules: every claim needs a named, linked source, and a day without enough real sources gets skipped. An early version bulk-produced 22 low-quality article pairs; Jack deleted them all and wrote that failure mode into the agent's rules.</p>
-    </a>
-    <div class="sys-card">
-      <div class="sys-head">
-        <span class="sys-name">Kids' AI channel, end-to-end video pipeline</span>
-        <span class="sys-stat">7 episodes live on YouTube</span>
-      </div>
-      <p class="sys-desc">A YouTube channel that explains one AI term per episode in third-grade English. The whole production line is scripted: structured script generation, narration from a locally hosted clone of Jack's own voice (Qwen3-TTS), code-rendered illustration frames, ffmpeg assembly with loudness checks, and upload through the YouTube Data API with thumbnails and metadata.</p>
-      <div style="position:relative;padding-top:56.25%;border-radius:8px;overflow:hidden;border:1px solid var(--border);margin-top:16px;">
-        <iframe src="https://www.youtube.com/embed/ojH3x85CppM" title="How Does AI Learn? Training Explained for Kids" style="position:absolute;inset:0;width:100%;height:100%;border:0;" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
-      </div>
-      <p class="sys-desc" style="margin-top:10px;">Episode 3, straight off the pipeline: <a href="https://www.youtube.com/@JackBuildAI" target="_blank" rel="noopener" style="color:var(--brand-h);">youtube.com/@JackBuildAI</a></p>
-    </div>
-    <a class="sys-card" href="https://aimanjack.com" target="_blank">
-      <div class="sys-head">
-        <span class="sys-name">Local-business audit + outreach agents</span>
-        <span class="sys-stat">drafts only, sending stays human</span>
-      </div>
-      <p class="sys-desc">One agent audits a local business's online presence (Google Business Profile, reviews vs. map-pack competitors, website, AI-search visibility) into a one-page report a shop owner can read. A second agent batches prospects by category and city, runs the audit on each, and turns the report into outreach email drafts in Gmail. Jack reviews every draft before it sends.</p>
-    </a>
-  </div>
-  <div class="builds-grid">
-    <a class="build-card" href="https://realagentusecases.com/en/posts/2026-05-13-gmail-ai-agent/" target="_blank">
-      <span class="build-tag">Agent · Daily driver</span>
-      <div class="build-name">Gmail inbox to daily to-do</div>
-      <p class="build-desc">Reads the morning inbox, ranks what matters, and outputs the day's list from rules anyone can edit. Read-only by design, and the one workshop attendees build live.</p>
-      <div class="build-stack"><span class="pill">Claude</span><span class="pill">Gmail</span></div>
-    </a>
-    <a class="build-card" href="https://github.com/qianquandong/cheap-flights" target="_blank">
-      <span class="build-tag">Agent skill · Open source</span>
-      <div class="build-name">cheap-flights</div>
-      <p class="build-desc">Finds the cheapest bookable fare for a route: nearby airports, split one-ways, bag-inclusive pricing. Hands back links, never books.</p>
-      <div class="build-stack"><span class="pill">CLI</span><span class="pill">Agent skill</span></div>
-    </a>
-    <a class="build-card" href="https://github.com/qianquandong/aeo-studio" target="_blank">
-      <span class="build-tag">AI Tooling · Web</span>
-      <div class="build-name">aeo-studio</div>
-      <p class="build-desc">Track how your brand is cited across ChatGPT, Perplexity, and Google AI. Answer Engine Optimization for the AI search era.</p>
-      <div class="build-stack"><span class="pill">HTML</span><span class="pill">AI Search</span></div>
-    </a>
-    <a class="build-card" href="https://github.com/qianquandong/douyin-analyzer" target="_blank">
-      <span class="build-tag">Python · CLI · AI</span>
-      <div class="build-name">douyin-analyzer</div>
-      <p class="build-desc">Download TikTok videos, detect key scenes, transcribe speech with Whisper, generate image prompts via Claude API.</p>
-      <div class="build-stack"><span class="pill">Python</span><span class="pill">Claude API</span><span class="pill">Whisper</span></div>
-    </a>
-    <a class="build-card" style="grid-column:1/-1" href="https://github.com/qianquandong/Blindspot" target="_blank">
-      <span class="build-tag">iOS · Swift</span>
-      <div class="build-name">Blindspot</div>
-      <p class="build-desc">A Swift-based iOS app for startup discovery, helping founders and investors spot what the radar misses.</p>
-      <div class="build-stack"><span class="pill">Swift</span><span class="pill">iOS</span></div>
-    </a>
-  </div>
-</section>
 
 <div class="divider"><hr /></div>
 

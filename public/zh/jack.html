@@ -329,6 +329,7 @@
   <div class="nav">
     <a class="nav-logo" href="https://realagentusecases.com">Real Agent Use Cases</a>
     <ul class="nav-links">
+      <li><a href="#builds">作品</a></li>
       <li><a href="#community">社区</a></li>
       <li><a href="#events">活动</a></li>
       <li><a href="#about">关于</a></li>
@@ -363,6 +364,131 @@
     </div>
   </div>
 </section>
+
+<div class="divider"><hr /></div>
+
+<section class="section" id="builds">
+  <p class="sec-label">作品</p>
+  <h2 class="sec-h2">在生产环境里跑着的 AI 系统。</h2>
+  <div class="sec-body">
+    <p>Jack 的日常工作，不管是在德州仪器上班还是做自己的 side project，都跑在他自己搭的 AI 系统上。他负责设计流程、定质检规则、做最后验收，干活的是 agent。</p>
+  </div>
+  <div class="sys-list">
+    <div class="sys-card">
+      <div class="sys-head">
+        <span class="sys-name">德州仪器的供应链 planning，跑在 Claude 上</span>
+        <span class="sys-stat">日常运营 50%+ 已自动化</span>
+      </div>
+      <p class="sys-desc">白天的工作是 business planner。他把供应链运营里重复出现的部分逐个改成 Claude 工作流：例行取数、周期报表、异常检查，现在都走他自己搭的自动化。按他自己的统计，日常运营一半以上已经不用手动做了，省下的时间花在自动化筛出来的那些需要人判断的事上。</p>
+    </div>
+    <a class="sys-card" href="https://realagentusecases.com/en/news/" target="_blank">
+      <div class="sys-head">
+        <span class="sys-name">双语 SEO/GEO 内容 pipeline</span>
+        <span class="sys-stat">已发布 75 对双语文章</span>
+      </div>
+      <p class="sys-desc">一个定时运行的 Claude agent，每天从选题库里取一个关键词，先查资料，写英文稿，再走三步翻译流程出中文稿，最后要过机械 SEO 审计和完整站点构建才能上线。硬规则：每个事实都要有具名的链接来源，当天凑不齐真实来源就跳过不发。早期版本批量产出过 22 对低质量文章，Jack 全删了，还把这个翻车模式写进了 agent 的禁令。</p>
+    </a>
+    <div class="sys-card">
+      <div class="sys-head">
+        <span class="sys-name">少儿 AI 科普频道，全自动视频产线</span>
+        <span class="sys-stat">已在 YouTube 上线 7 集</span>
+      </div>
+      <p class="sys-desc">一个给小孩讲 AI 名词的 YouTube 频道，每集只讲一个词，用的是美国三年级水平的英文。整条产线都是代码：脚本按固定结构生成，配音来自本地部署的 Jack 声音克隆（Qwen3-TTS），插画帧用代码渲染，ffmpeg 合成后过响度检查，最后通过 YouTube Data API 自动上传，连缩略图和 metadata 一起。</p>
+      <div style="position:relative;padding-top:56.25%;border-radius:8px;overflow:hidden;border:1px solid var(--border);margin-top:16px;">
+        <iframe src="https://www.youtube.com/embed/ojH3x85CppM" title="How Does AI Learn? Training Explained for Kids" style="position:absolute;inset:0;width:100%;height:100%;border:0;" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+      </div>
+      <p class="sys-desc" style="margin-top:10px;">这是产线直接产出的第 3 集，频道在 <a href="https://www.youtube.com/@JackBuildAI" target="_blank" rel="noopener" style="color:var(--brand-h);">youtube.com/@JackBuildAI</a></p>
+    </div>
+    <a class="sys-card" href="https://aimanjack.com" target="_blank">
+      <div class="sys-head">
+        <span class="sys-name">本地商家体检 + 获客 agent</span>
+        <span class="sys-stat">已交付 9 个定制 demo 页</span>
+      </div>
+      <p class="sys-desc">一个 agent 给本地商家做线上体检（Google Business Profile、评价和地图竞品对比、网站、AI 搜索可见度），产出一页老板看得懂的报告。另一个 agent 按品类和城市批量找潜在客户，逐家跑体检，再把报告改写成获客邮件草稿放进 Gmail。每封草稿 Jack 都审完才发。目前已给鞋靴维修、裁缝店、甜甜圈店这类没官网的店做了 9 个定制 demo 页。</p>
+    </a>
+  </div>
+  <div class="builds-grid">
+    <a class="build-card" href="https://realagentusecases.com/zh/posts/2026-05-13-gmail-ai-agent/" target="_blank">
+      <span class="build-tag">Agent · 天天在用</span>
+      <div class="build-name">Gmail 收件箱变当日待办</div>
+      <p class="build-desc">每天早上读收件箱，按重要程度排序，输出当日待办清单，规则谁都能改。故意设计成只读。按历史记录估算，每天省下约 25 分钟。它也是线下 workshop 带大家现场搭的那个 agent。</p>
+      <div class="build-stack"><span class="pill">Claude</span><span class="pill">Gmail</span></div>
+    </a>
+    <a class="build-card" href="https://github.com/qianquandong/cheap-flights" target="_blank">
+      <span class="build-tag">Agent skill · 开源</span>
+      <div class="build-name">cheap-flights</div>
+      <p class="build-desc">找一条航线上真正可订的最低价：会试临近机场、拆单程、按含行李的总价比较。只给链接，从不代订。</p>
+      <div class="build-stack"><span class="pill">CLI</span><span class="pill">Agent skill</span></div>
+    </a>
+    <a class="build-card" href="https://github.com/qianquandong/real-agent-workflows" target="_blank">
+      <span class="build-tag">开源 · 6 个 workflow</span>
+      <div class="build-name">Obsidian AI 内容操作系统</div>
+      <p class="build-desc">把 Obsidian 变成内容中枢：AI 新闻输入、晨间简报、小红书和抖音收藏经 yt-dlp 加 Whisper 转成知识卡、链接转结构化笔记、从知识库生成 90 秒口播稿、邮件分诊。信息进来，AI 整理，人筛选，内容出去。</p>
+      <div class="build-stack"><span class="pill">Obsidian</span><span class="pill">Whisper</span><span class="pill">yt-dlp</span></div>
+    </a>
+    <a class="build-card" href="https://github.com/qianquandong/track-ai-visibility" target="_blank">
+      <span class="build-tag">开源 · Agent skill</span>
+      <div class="build-name">track-ai-visibility</div>
+      <p class="build-desc">检查品牌在 AI 搜索和推荐里的曝光：prompt 覆盖、竞品出现、引用域名、内容缺口。证据存成 JSON 和 Markdown，观察不到的平台标记为 unobserved，从不伪造结果。</p>
+      <div class="build-stack"><span class="pill">Codex</span><span class="pill">Claude Code</span></div>
+    </a>
+    <a class="build-card" href="https://github.com/qianquandong/booking-research-agent" target="_blank">
+      <span class="build-tag">开源 · CRM</span>
+      <div class="build-name">booking-research-agent</div>
+      <p class="build-desc">有人约了通话，它去研究联系人和公司，写进 Notion CRM，再按 Jack 的语气起草会前准备邮件。只出草稿，从不代发，也不许替人承诺价格。</p>
+      <div class="build-stack"><span class="pill">Notion</span><span class="pill">n8n</span></div>
+    </a>
+    <a class="build-card" href="https://github.com/qianquandong/google-business-profile-skill" target="_blank">
+      <span class="build-tag">开源 · 44 章双语指南</span>
+      <div class="build-name">google-business-profile-skill</div>
+      <p class="build-desc">Google 商家档案的运营手册加可安装 skill：资格判断、验证、评论管理、local SEO、封号申诉、多门店。明确拒绝假地址和买评论。</p>
+      <div class="build-stack"><span class="pill">Local SEO</span><span class="pill">Skill</span></div>
+    </a>
+    <a class="build-card" href="https://github.com/qianquandong/book80-skill" target="_blank">
+      <span class="build-tag">开源 · Skill</span>
+      <div class="build-name">book80-skill</div>
+      <p class="build-desc">把 EPUB 或 PDF 压成 30 秒、3 分钟、10 分钟三档 briefing，关键结论都能追溯回原文。</p>
+      <div class="build-stack"><span class="pill">EPUB</span><span class="pill">PDF</span></div>
+    </a>
+    <a class="build-card" href="https://github.com/qianquandong/self-introduction" target="_blank">
+      <span class="build-tag">开源 · Skill</span>
+      <div class="build-name">self-introduction</div>
+      <p class="build-desc">一次访谈生成一份中央个人档案，Claude Code、Codex 和其他 agent 共用同一份背景，新 agent 上来就认识你。</p>
+      <div class="build-stack"><span class="pill">Claude Code</span><span class="pill">Codex</span></div>
+    </a>
+    <div class="build-card">
+      <span class="build-tag">内部工具 · 20 次运行记录</span>
+      <div class="build-name">6-agent 创业验证流水线</div>
+      <p class="build-desc">每天 6 个 agent 协作：扫 Hacker News、GitHub 和 Product Hunt，出 5 个产品方向，统一评分排序，给第一名写 spec、定价、30 天路线图，连 landing page 和各平台发布素材一起出。每次运行落 7 到 8 份文件。</p>
+      <div class="build-stack"><span class="pill">Multi-agent</span></div>
+    </div>
+    <div class="build-card">
+      <span class="build-tag">内部工具 · 54 条执行记录</span>
+      <div class="build-name">多平台社媒运营自动化</div>
+      <p class="build-desc">LinkedIn、X、Threads、小红书各自维护规则、选题、发布记录和效果数据。内容先过时效和质量判断，那一轮没有合格内容就不发。</p>
+      <div class="build-stack"><span class="pill">LinkedIn</span><span class="pill">X</span><span class="pill">小红书</span></div>
+    </div>
+    <a class="build-card" href="https://github.com/qianquandong/aeo-studio" target="_blank">
+      <span class="build-tag">AI 工具 · Web</span>
+      <div class="build-name">aeo-studio</div>
+      <p class="build-desc">追踪你的品牌在 ChatGPT、Perplexity 和 Google AI 里被怎么引用。AI 搜索时代的 Answer Engine Optimization。</p>
+      <div class="build-stack"><span class="pill">HTML</span><span class="pill">AI Search</span></div>
+    </a>
+    <a class="build-card" href="https://github.com/qianquandong/douyin-analyzer" target="_blank">
+      <span class="build-tag">Python · CLI · AI</span>
+      <div class="build-name">douyin-analyzer</div>
+      <p class="build-desc">下载短视频，检测关键场景，用 Whisper 转录语音，再通过 Claude API 生成图像 prompt。</p>
+      <div class="build-stack"><span class="pill">Python</span><span class="pill">Claude API</span><span class="pill">Whisper</span></div>
+    </a>
+    <a class="build-card" style="grid-column:1/-1" href="https://github.com/qianquandong/Blindspot" target="_blank">
+      <span class="build-tag">iOS · Swift</span>
+      <div class="build-name">Blindspot</div>
+      <p class="build-desc">一个 Swift 写的 iOS 应用，帮创始人和投资人发现雷达扫不到的创业公司。</p>
+      <div class="build-stack"><span class="pill">Swift</span><span class="pill">iOS</span></div>
+    </a>
+  </div>
+</section>
+
 
 <div class="divider"><hr /></div>
 
@@ -426,81 +552,7 @@
     </div>
 </section>
 
-<div class="divider"><hr /></div>
 
-<section class="section" id="builds">
-  <p class="sec-label">作品</p>
-  <h2 class="sec-h2">在生产环境里跑着的 AI 系统。</h2>
-  <div class="sec-body">
-    <p>Jack 的日常工作，不管是在德州仪器上班还是做自己的 side project，都跑在他自己搭的 AI 系统上。他负责设计流程、定质检规则、做最后验收，干活的是 agent。</p>
-  </div>
-  <div class="sys-list">
-    <div class="sys-card">
-      <div class="sys-head">
-        <span class="sys-name">德州仪器的供应链 planning，跑在 Claude 上</span>
-        <span class="sys-stat">日常运营 50%+ 已自动化</span>
-      </div>
-      <p class="sys-desc">白天的工作是 business planner。他把供应链运营里重复出现的部分逐个改成 Claude 工作流：例行取数、周期报表、异常检查，现在都走他自己搭的自动化。按他自己的统计，日常运营一半以上已经不用手动做了，省下的时间花在自动化筛出来的那些需要人判断的事上。</p>
-    </div>
-    <a class="sys-card" href="https://realagentusecases.com/en/news/" target="_blank">
-      <div class="sys-head">
-        <span class="sys-name">双语 SEO/GEO 内容 pipeline</span>
-        <span class="sys-stat">每天最多一对文章，门禁全过才发</span>
-      </div>
-      <p class="sys-desc">一个定时运行的 Claude agent，每天从选题库里取一个关键词，先查资料，写英文稿，再走三步翻译流程出中文稿，最后要过机械 SEO 审计和完整站点构建才能上线。硬规则：每个事实都要有具名的链接来源，当天凑不齐真实来源就跳过不发。早期版本批量产出过 22 对低质量文章，Jack 全删了，还把这个翻车模式写进了 agent 的禁令。</p>
-    </a>
-    <div class="sys-card">
-      <div class="sys-head">
-        <span class="sys-name">少儿 AI 科普频道，全自动视频产线</span>
-        <span class="sys-stat">已在 YouTube 上线 7 集</span>
-      </div>
-      <p class="sys-desc">一个给小孩讲 AI 名词的 YouTube 频道，每集只讲一个词，用的是美国三年级水平的英文。整条产线都是代码：脚本按固定结构生成，配音来自本地部署的 Jack 声音克隆（Qwen3-TTS），插画帧用代码渲染，ffmpeg 合成后过响度检查，最后通过 YouTube Data API 自动上传，连缩略图和 metadata 一起。</p>
-      <div style="position:relative;padding-top:56.25%;border-radius:8px;overflow:hidden;border:1px solid var(--border);margin-top:16px;">
-        <iframe src="https://www.youtube.com/embed/ojH3x85CppM" title="How Does AI Learn? Training Explained for Kids" style="position:absolute;inset:0;width:100%;height:100%;border:0;" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
-      </div>
-      <p class="sys-desc" style="margin-top:10px;">这是产线直接产出的第 3 集，频道在 <a href="https://www.youtube.com/@JackBuildAI" target="_blank" rel="noopener" style="color:var(--brand-h);">youtube.com/@JackBuildAI</a></p>
-    </div>
-    <a class="sys-card" href="https://aimanjack.com" target="_blank">
-      <div class="sys-head">
-        <span class="sys-name">本地商家体检 + 获客 agent</span>
-        <span class="sys-stat">只出草稿，发送这步留给人</span>
-      </div>
-      <p class="sys-desc">一个 agent 给本地商家做线上体检（Google Business Profile、评价和地图竞品对比、网站、AI 搜索可见度），产出一页老板看得懂的报告。另一个 agent 按品类和城市批量找潜在客户，逐家跑体检，再把报告改写成获客邮件草稿放进 Gmail。每封草稿 Jack 都审完才发。</p>
-    </a>
-  </div>
-  <div class="builds-grid">
-    <a class="build-card" href="https://realagentusecases.com/zh/posts/2026-05-13-gmail-ai-agent/" target="_blank">
-      <span class="build-tag">Agent · 天天在用</span>
-      <div class="build-name">Gmail 收件箱变当日待办</div>
-      <p class="build-desc">每天早上读收件箱，按重要程度排序，输出当日待办清单，规则谁都能改。故意设计成只读。它也是线下 workshop 带大家现场搭的那个 agent。</p>
-      <div class="build-stack"><span class="pill">Claude</span><span class="pill">Gmail</span></div>
-    </a>
-    <a class="build-card" href="https://github.com/qianquandong/cheap-flights" target="_blank">
-      <span class="build-tag">Agent skill · 开源</span>
-      <div class="build-name">cheap-flights</div>
-      <p class="build-desc">找一条航线上真正可订的最低价：会试临近机场、拆单程、按含行李的总价比较。只给链接，从不代订。</p>
-      <div class="build-stack"><span class="pill">CLI</span><span class="pill">Agent skill</span></div>
-    </a>
-    <a class="build-card" href="https://github.com/qianquandong/aeo-studio" target="_blank">
-      <span class="build-tag">AI 工具 · Web</span>
-      <div class="build-name">aeo-studio</div>
-      <p class="build-desc">追踪你的品牌在 ChatGPT、Perplexity 和 Google AI 里被怎么引用。AI 搜索时代的 Answer Engine Optimization。</p>
-      <div class="build-stack"><span class="pill">HTML</span><span class="pill">AI Search</span></div>
-    </a>
-    <a class="build-card" href="https://github.com/qianquandong/douyin-analyzer" target="_blank">
-      <span class="build-tag">Python · CLI · AI</span>
-      <div class="build-name">douyin-analyzer</div>
-      <p class="build-desc">下载短视频，检测关键场景，用 Whisper 转录语音，再通过 Claude API 生成图像 prompt。</p>
-      <div class="build-stack"><span class="pill">Python</span><span class="pill">Claude API</span><span class="pill">Whisper</span></div>
-    </a>
-    <a class="build-card" style="grid-column:1/-1" href="https://github.com/qianquandong/Blindspot" target="_blank">
-      <span class="build-tag">iOS · Swift</span>
-      <div class="build-name">Blindspot</div>
-      <p class="build-desc">一个 Swift 写的 iOS 应用，帮创始人和投资人发现雷达扫不到的创业公司。</p>
-      <div class="build-stack"><span class="pill">Swift</span><span class="pill">iOS</span></div>
-    </a>
-  </div>
-</section>
 
 <div class="divider"><hr /></div>
 
