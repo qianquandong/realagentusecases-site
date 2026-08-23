@@ -332,7 +332,6 @@
       <li><a href="#events">活动</a></li>
       <li><a href="#about">关于</a></li>
       <li><a href="/jack.html">EN</a></li>
-      <li><a href="https://realagentusecases.com/zh/" target="_blank" class="btn btn-primary">订阅</a></li>
     </ul>
   </div>
 </header>
@@ -345,14 +344,12 @@
       <p class="hero-sub">德州仪器 business planner，白天用 Claude 自动化自己的供应链日常，下班后运营达拉斯的 AI 社区。</p>
       <ul class="hero-bullets">
         <li>700+ 人社区，线下办过 5 场活动，workshop 和黑客松都有</li>
-        <li>Real Agent Use Cases 周刊，每周拆一个职场人真在用的 agent，免费</li>
         <li>YouTube 频道 Jack Builds AI，7 集少儿 AI 科普，全自动产线产出</li>
       </ul>
       <div class="hero-cta">
-        <a href="https://realagentusecases.com/zh/" target="_blank" class="btn btn-primary">读周刊 →</a>
+        <a href="#builds" class="btn btn-primary">看他做的东西 →</a>
         <a href="#community" class="btn btn-outline">了解社区</a>
       </div>
-      <p class="hero-fine">完全免费，每周一期，随时退订。</p>
     </div>
     <div class="photo-col">
       <div class="photo-frame">
@@ -377,8 +374,8 @@
   </div>
   <div class="stats-grid">
     <div class="stat-cell"><div class="stat-n">700+</div><div class="stat-l">社区成员</div></div>
-    <div class="stat-cell"><div class="stat-n">每月</div><div class="stat-l">线下活动</div></div>
-    <div class="stat-cell"><div class="stat-n">每周</div><div class="stat-l">一期周刊</div></div>
+    <div class="stat-cell"><div class="stat-n">5 场</div><div class="stat-l">线下活动</div></div>
+    <div class="stat-cell"><div class="stat-n">59 人</div><div class="stat-l">最近一场到场</div></div>
   </div>
 </section>
 
@@ -474,7 +471,7 @@
     <a class="build-card" href="https://realagentusecases.com/zh/posts/2026-05-13-gmail-ai-agent/" target="_blank">
       <span class="build-tag">Agent · 天天在用</span>
       <div class="build-name">Gmail 收件箱变当日待办</div>
-      <p class="build-desc">每天早上读收件箱，按重要程度排序，输出当日待办清单，规则谁都能改。故意设计成只读。它是周刊第一期的主角，也是线下 workshop 带大家现场搭的那个 agent。</p>
+      <p class="build-desc">每天早上读收件箱，按重要程度排序，输出当日待办清单，规则谁都能改。故意设计成只读。它也是线下 workshop 带大家现场搭的那个 agent。</p>
       <div class="build-stack"><span class="pill">Claude</span><span class="pill">Gmail</span></div>
     </a>
     <a class="build-card" href="https://github.com/qianquandong/cheap-flights" target="_blank">
@@ -482,12 +479,6 @@
       <div class="build-name">cheap-flights</div>
       <p class="build-desc">找一条航线上真正可订的最低价：会试临近机场、拆单程、按含行李的总价比较。只给链接，从不代订。</p>
       <div class="build-stack"><span class="pill">CLI</span><span class="pill">Agent skill</span></div>
-    </a>
-    <a class="build-card" href="https://realagentusecases.com" target="_blank">
-      <span class="build-tag">周刊 · 媒体</span>
-      <div class="build-name">Real Agent Use Cases</div>
-      <p class="build-desc">每周采访一位职场人，拆解一个他真的在用的 AI agent。完整配置全公开：prompt、工具、集成方式。</p>
-      <div class="build-stack"><span class="pill">Next.js</span><span class="pill">MDX</span><span class="pill">Cloudflare</span></div>
     </a>
     <a class="build-card" href="https://github.com/qianquandong/aeo-studio" target="_blank">
       <span class="build-tag">AI 工具 · Web</span>
@@ -501,7 +492,7 @@
       <p class="build-desc">下载短视频，检测关键场景，用 Whisper 转录语音，再通过 Claude API 生成图像 prompt。</p>
       <div class="build-stack"><span class="pill">Python</span><span class="pill">Claude API</span><span class="pill">Whisper</span></div>
     </a>
-    <a class="build-card" href="https://github.com/qianquandong/Blindspot" target="_blank">
+    <a class="build-card" style="grid-column:1/-1" href="https://github.com/qianquandong/Blindspot" target="_blank">
       <span class="build-tag">iOS · Swift</span>
       <div class="build-name">Blindspot</div>
       <p class="build-desc">一个 Swift 写的 iOS 应用，帮创始人和投资人发现雷达扫不到的创业公司。</p>
@@ -517,15 +508,14 @@
   <h2 class="sec-h2">为什么做这些。</h2>
   <div class="sec-body">
     <p>工作里真正好用的 AI agent，大多没被写下来。摸索出来的人忙着干活，没空发帖，好用的方法就一直锁在他们脑子里。</p>
-    <p>Real Agent Use Cases 想把这些挖出来。每周请一位职场人，完整走一遍他真的在用的一个 agent，prompt、工具、集成方式全公开。不注水，也没有付费墙。</p>
-    <p>主理人钱诠东（Jack Qian），德州仪器 business planner，住在达拉斯。人在达拉斯的话，每月还有一场 AI hackathon 可以来，不在也没关系，内容都在线上。</p>
+    <p>所以他把自己跑通的东西都公开：达拉斯的线下讲座、少儿 YouTube 频道、开源的 agent skill，还有这一页上的这些系统。</p>
+    <p>钱诠东（Jack Qian），德州仪器 business planner，住在达拉斯。人在达拉斯的话，欢迎来现场。</p>
   </div>
   <blockquote class="blockquote">"AI 最大的影响来自围绕它形成的社区，不只是技术本身。"</blockquote>
   <div class="meta-table">
     <div class="meta-row"><span class="meta-k">坐标</span><span class="meta-v">美国达拉斯</span></div>
     <div class="meta-row"><span class="meta-k">日常工作</span><span class="meta-v">德州仪器 Business Planner（供应链）</span></div>
     <div class="meta-row"><span class="meta-k">社区</span><span class="meta-v">达拉斯 700+ 人 AI 社区</span></div>
-    <div class="meta-row"><span class="meta-k">周刊</span><span class="meta-v">Real Agent Use Cases，每周一期，永久免费</span></div>
     <div class="meta-row"><span class="meta-k">GitHub</span><span class="meta-v">github.com/qianquandong</span></div>
   </div>
 </section>
@@ -533,12 +523,8 @@
 <div class="divider"><hr /></div>
 
 <div class="final-cta" id="subscribe">
-  <p class="cta-lead">每周一期，直接进你的邮箱。</p>
-  <div class="sub-form">
-    <input class="sub-input" type="email" placeholder="you@example.com" />
-    <button class="sub-btn" onclick="window.open('https://realagentusecases.com/zh/','_blank')">免费订阅</button>
-  </div>
-  <p class="sub-note">完全免费，每周一期，随时退订。</p>
+  <p class="cta-lead">下一场活动，现场见。</p>
+  <a href="https://luma.com/user/usr-FlERJUF6Mcrie58" target="_blank" class="btn btn-primary">Luma 看活动 →</a>
 </div>
 
 <footer>
@@ -546,7 +532,6 @@
     <span class="foot-copy">© 2026 Real Agent Use Cases · 达拉斯出品</span>
     <div class="foot-links">
       <a href="https://github.com/qianquandong" target="_blank">GitHub</a>
-      <a href="https://realagentusecases.com/zh/" target="_blank">周刊</a>
       <a href="#events">活动</a>
     </div>
   </div>
