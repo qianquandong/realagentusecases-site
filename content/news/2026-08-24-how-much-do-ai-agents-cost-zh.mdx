@@ -1,0 +1,52 @@
+---
+title: "AI agent 到底要花多少钱？三种答案"
+date: "2026-08-24"
+excerpt: "桌面级 AI agent 每月几美元到 30 美元；定制化企业系统则是六位数起。差别取决于你买的是席位、按 token 付费，还是从头搭建。"
+---
+
+"AI agent 要花多少钱"有三种诚实的答案，因为你买的可能是三种不同的东西。按席位租用的 copilot 大约每人每月 20–30 美元；自己在 API 上搭的 agent 每月几美元 token 费；定制化企业系统则从几万美元起步。先确认你到底在哪一行。
+
+## 为什么这个问题没有单一答案
+
+大多数"AI agent 报价"文章只报一个吓人的区间——搭建六位数、运行每月几千——因为它们只算了第三行：定制的、有团队维护的企业系统。那是真实成本，但不是大多数人给邮箱接一个 agent 时想问的。同一件事的桌面版本，成本还不到一顿午饭。诚实的答案是：价格取决于**你在为三样东西中的哪一样付费**，下面把三行都摆出来，配上真实数字。
+
+### 第一行——买席位（copilot 路线）
+
+最简单的 agent 是别人搭好、按席位租给你的。[微软 Microsoft 365 Copilot 定价](https://www.microsoft.com/en-us/microsoft-365/copilot/enterprise)企业版为**每人每月 30 美元**（年付），小企业还有更低价的 Copilot 档位。它带来 Word、Excel、Outlook、Teams 里贴着你自己租户数据的应用内助手。在我们自己桌面上，[Issue #001 的 Gmail agent](/zh/posts/2026-05-13-gmail-ai-agent/) 只靠 **Claude Pro 每月 20 美元**——Gmail 连接器已包含，没有 API key，也没有托管账单。按席位付费可预测、零工程量；代价是你用的是厂商的 agent，不是你自己的。
+
+### 第二行——按 token 付费（自己搭建路线）
+
+如果你自己对着模型 API 搭 agent，计价单位是 token——进去的文字和出来的文字——而且比大多数人以为的便宜。[Anthropic 的定价](https://www.anthropic.com/pricing)按*每百万* token 计：Claude Haiku **进 1 / 出 5 美元**，Sonnet **3 / 15**，Opus **5 / 25**。两个杠杆还能再压低，都写在 [Anthropic 文档](https://docs.anthropic.com/en/docs/build-with-claude/prompt-caching)里：批处理便宜 50%，prompt 缓存把重复上下文的成本压低最多 90%。这就是为什么个人 agent 运行几乎免费：同样的 Gmail 分拣任务，走 API 路线而非 Claude Pro，在 [Issue #001 的横向对比](/zh/posts/2026-05-13-gmail-ai-agent/)里每月约 **3 美元 API 费用**。难点不在 token——在于代码、prompt 调优和调试现在都归你。
+
+### 第三行——租平台（无代码中间层）
+
+在"买席位"和"写代码"之间是自动化平台档，它的计价模型是你动手前必须搞清楚的。各平台计量方式不同：Zapier 按**任务**计费（自动化执行的每个动作），n8n 按**工作流执行**计费（一次运行不论几步），或者跑在你自建的服务器上免费。完整取舍见 [n8n vs Zapier 搭 AI agent](/zh/news/2026-08-14-n8n-vs-zapier-ai-agents/)，但成本要点是：当 agent 做很多小动作时，按任务计费会迅速变贵，而按执行或自托管则保持平稳。Issue #001 的表格把自托管 n8n 方案算到每月约 **5 美元**服务器成本，而同一件事在托管的按任务平台上要 **20–50+ 美元**。
+
+### 第四行——定制搭建（企业路线）
+
+这正是那些榜单文章盯着看的一行，区间确实很宽，因为"定制 agent"从一个范围明确的内部工具，到接进遗留系统的多 agent 系统都算。对任何单一报价都要存疑——厂商估价能差一个数量级——去拿你自己范围明确的报价。唯一不变的一点：定制搭建带的是*持续*成本，不只是一次性价格。Retool 主张对 [AI agent 按小时、按结果计价](https://retool.com/blog/cost-of-ai-agents-hourly-pricing-model)之所以值得一读，正因为它把搭建成本和每月都要来的运行成本分开了。
+
+## 每个人都忘掉的成本
+
+不管你在哪一行，标价都不是总账。人们漏掉的那笔是**人工复核时间**——一个人在 agent 干完活后、把结果算数之前花的那几分钟。那是真实的经常性支出，也是我们主张 [对着基线衡量 ROI](/zh/news/2026-08-21-how-to-measure-ai-agent-roi/) 而非只看上线当天数字的原因：订阅 + token + 搭建 + 复核才是真实的运行成本。一个运行便宜但每个任务要人复核十分钟的 agent，可能比一个贵一点、你却能放手让它无人值守的 agent 更费钱。下判断前，把这些全算进去。
+
+## FAQ
+
+**基础 AI agent 每月要花多少钱？**
+单人桌面 agent 大约每月 3 到 30 美元。走 API 只付 token——[Issue #001 的 Gmail 分拣](/zh/posts/2026-05-13-gmail-ai-agent/)这样跑每月约 3 美元，或打包进 Claude Pro 每月 20 美元。像 [Microsoft 365 Copilot](https://www.microsoft.com/en-us/microsoft-365/copilot/enterprise) 这样的按席位 copilot 是每人每月 30 美元。
+
+**为什么有些来源说 AI agent 要六位数？**
+那些数字是定制的、有团队维护的企业搭建——接进现有软件的多 agent 系统，加上持续的工程投入。那是真实成本，但和你一下午就能配好的桌面 agent 是不同的产品。一旦你确定问的是三档中的哪一档，这个问题就只有一个答案。
+
+**在 Claude 或 GPT API 上运行 agent 要花多少？**
+按每百万 token 计费。[Anthropic 定价](https://www.anthropic.com/pricing)为 Haiku 1/5、Sonnet 3/15、Opus 5/25（进/出）。[批处理和 prompt 缓存](https://docs.anthropic.com/en/docs/build-with-claude/prompt-caching)分别便宜 50% 和最多 90%，这就是轻量个人 agent 往往每月只要几美元的原因。
+
+**无代码平台比自己搭便宜吗？**
+取决于用量和 agent 做多少动作。像 Zapier 这样按任务的平台起步最简单，但 agent 一忙就往上涨；像 n8n 这样的自托管工具保持平稳，但要你自己维护。[n8n vs Zapier 对比](/zh/news/2026-08-14-n8n-vs-zapier-ai-agents/)讲清了临界点。
+
+**AI agent 的隐藏成本是什么？**
+人工复核时间。每个需要人批准或再检查的受控动作，都是很少出现在定价页上的经常性劳动。把它算进运行成本——这是[衡量 agent 真实 ROI](/zh/news/2026-08-21-how-to-measure-ai-agent-roi/) 的核心。
+
+---
+
+我们记录职场人真正在用的 agent——连同真实成本，不是发布会上的算术。[免费订阅](/zh/)，每周一个真实搭建。
