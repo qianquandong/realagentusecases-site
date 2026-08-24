@@ -1,0 +1,52 @@
+---
+title: "How Much Do AI Agents Cost? Three Honest Answers"
+date: "2026-08-24"
+excerpt: "A desk AI agent can run $3–$30 a month; a custom enterprise build runs six figures. The number depends on whether you buy a seat, pay per token, or build."
+---
+
+"How much does an AI agent cost?" has three honest answers, because you can be buying three different things. A per-seat copilot is about $20–$30 a user per month. A do-it-yourself agent on an API costs a few dollars a month in tokens. A custom enterprise build runs tens of thousands and up. Pick the row you're actually in.
+
+## Why the question has no single number
+
+Most "AI agent pricing" articles quote one scary range — six figures to build, thousands a month to run — because they only cost the third row: a custom, staffed enterprise system. That's real, but it's not what most people mean when they wire up an agent to read their email. The desk-level version of the same job costs less than a lunch. The honest answer is that price tracks *which of three things you're paying for*, so here are all three, with real numbers.
+
+### Row 1 — Buy a seat (the copilot path)
+
+The simplest agent is one someone else built and rents you by the seat. [Microsoft's Microsoft 365 Copilot pricing](https://www.microsoft.com/en-us/microsoft-365/copilot/enterprise) lists it at **$30 per user per month** (annual) for enterprise, with a lower-priced Copilot tier for smaller businesses. That buys in-app assistance across Word, Excel, Outlook, and Teams, grounded in your own tenant data. On our own desk, [Issue #001's Gmail agent](/en/posts/2026-05-13-gmail-ai-agent/) runs on nothing more than **Claude Pro at $20/month** — the Gmail connector is included, there's no API key and no hosting bill. Per-seat pricing is predictable and needs zero engineering; the trade-off is you get the vendor's agent, not yours.
+
+### Row 2 — Pay per token (the build-it-yourself path)
+
+If you build the agent yourself against a model API, the meter is tokens — text in and text out — and it's cheaper than most people expect. [Anthropic's pricing](https://www.anthropic.com/pricing) is per *million* tokens: Claude Haiku at **$1 in / $5 out**, Sonnet at **$3 / $15**, and Opus at **$5 / $25**. Two levers cut that further, both documented in [Anthropic's docs](https://docs.anthropic.com/en/docs/build-with-claude/prompt-caching): batch processing is 50% cheaper, and prompt caching cuts the cost of re-sent context by up to 90%. This is why a personal agent is nearly free to run: the same Gmail triage job, built on the API path instead of Claude Pro, cost about **$3/month in API usage** in [Issue #001's own side-by-side](/en/posts/2026-05-13-gmail-ai-agent/). The catch isn't the tokens — it's that you now own the code, the prompt tuning, and the debugging.
+
+### Row 3 — Rent a platform (the no-code middle)
+
+Between "buy a seat" and "write code" sits the automation-platform tier, and its cost model is the thing to understand before you commit. Platforms meter differently: Zapier bills per **task** (each action an automation takes), while n8n bills per **workflow execution** (one run, however many steps) or runs free on a server you host. We walk the full trade-off in [n8n vs Zapier for AI agents](/en/news/2026-08-14-n8n-vs-zapier-ai-agents/), but the cost headline is this: a per-task meter gets expensive fast as an agent takes many small actions, while a per-execution or self-hosted model stays flat. Issue #001's table put a self-hosted n8n build at roughly **$5/month** in server cost versus **$20–$50+** for the same job on a hosted per-task platform.
+
+### Row 4 — Commission a custom build (the enterprise path)
+
+This is the row the listicles fixate on, and the ranges are genuinely wide because "custom agent" covers everything from a scoped internal tool to a multi-agent system wired into legacy software. Treat any single quoted figure with suspicion — vendor estimates vary by an order of magnitude — and get your own scoped bid. The one durable point: a custom build carries *ongoing* cost, not just a one-time price. Retool's argument for [hourly, outcome-based pricing of AI agents](https://retool.com/blog/cost-of-ai-agents-hourly-pricing-model) is worth reading precisely because it separates the build cost from the run cost that keeps arriving every month.
+
+## The cost everyone forgets
+
+Whatever row you're in, the sticker price is not the total. The cost people leave out is **human review time** — the minutes a person spends checking what the agent did before it counts. That's a real recurring line item, and it's the reason we argue for [measuring ROI against a baseline](/en/news/2026-08-21-how-to-measure-ai-agent-roi/) instead of a launch-day number: subscription plus tokens plus setup plus review is the true running cost. An agent that's cheap to run but needs ten minutes of checking per task may cost more than a pricier one you can trust to run unattended. Count all of it before you decide the agent is worth it.
+
+## FAQ
+
+**How much does a basic AI agent cost per month?**
+For a single-person desk agent, roughly $3 to $30 a month. On an API you pay only for tokens — [Issue #001's Gmail triage](/en/posts/2026-05-13-gmail-ai-agent/) ran about $3/month that way, or $20/month bundled inside Claude Pro. A per-seat copilot like [Microsoft 365 Copilot](https://www.microsoft.com/en-us/microsoft-365/copilot/enterprise) is $30/user/month.
+
+**Why do some sources say AI agents cost six figures?**
+Those figures are for custom, staffed enterprise builds — a bespoke multi-agent system integrated into existing software, with ongoing engineering. That's a real cost, but it's a different product from a desk agent you set up in an afternoon. The question only has one answer once you fix which of the three tiers you mean.
+
+**What does it cost to run an agent on the Claude or GPT API?**
+You're billed per million tokens. [Anthropic's pricing](https://www.anthropic.com/pricing) is $1/$5 for Haiku, $3/$15 for Sonnet, and $5/$25 for Opus (input/output). [Batch and prompt caching](https://docs.anthropic.com/en/docs/build-with-claude/prompt-caching) cut that by 50% and up to 90% respectively, which is why a light personal agent often costs only a few dollars a month.
+
+**Is a no-code platform cheaper than building my own?**
+It depends on volume and how many actions your agent takes. Per-task platforms like Zapier are simplest to start but climb as the agent gets busy; a self-hosted tool like n8n stays flat but you maintain it. The [n8n vs Zapier breakdown](/en/news/2026-08-14-n8n-vs-zapier-ai-agents/) walks the crossover point.
+
+**What's the hidden cost of an AI agent?**
+Human review time. Every gated action a person has to approve or double-check is recurring labor that rarely shows up in the pricing page. Count it as part of the running cost — it's central to [measuring an agent's real ROI](/en/news/2026-08-21-how-to-measure-ai-agent-roi/).
+
+---
+
+We document real agents professionals actually run — with the real costs, not demo-day math. [Subscribe free](/en/) for a new build each week.

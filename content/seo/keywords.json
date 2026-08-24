@@ -1,6 +1,6 @@
 {
   "$comment": "SEO keyword feed — a living file. The scheduled Cowork routine ideates entries; scripts/seo/feeds.mjs persists them (dedupe + status + timestamps). intent: informational|commercial|transactional. funnel: TOFU|MOFU|BOFU. cluster: use-case|template|comparison|industry|tool-stack. status: new|used.",
-  "updatedAt": "2026-08-23",
+  "updatedAt": "2026-08-24",
   "keywords": [
     {
       "term": "AI agent use cases",
@@ -643,9 +643,9 @@
       "funnel": "BOFU",
       "cluster": "comparison",
       "locale": "both",
-      "status": "new",
+      "status": "used",
       "addedAt": "2026-08-23",
-      "note": "Sunday feed research 2026-08-23. Cost/pricing is the BOFU question that sits next to (but is distinct from) the existing 'how to measure AI agent ROI' keyword — ROI is return; this is the sticker + hidden cost. Sourceable: Zapier per-task pricing + '593M+ AI tasks / ~9,000 apps' scale (zapier.com/blog/best-ai-agents), platform pricing pages, and the 2026 token-cost reality (Anthropic multi-agent ~15x tokens already cited on-site). Clusters with measure-ROI, self-hosted-agents (cost-control angle), no-code-tools."
+      "note": "Sunday feed research 2026-08-23. Cost/pricing is the BOFU question that sits next to (but is distinct from) the existing 'how to measure AI agent ROI' keyword — ROI is return; this is the sticker + hidden cost. Sourceable: Zapier per-task pricing + '593M+ AI tasks / ~9,000 apps' scale (zapier.com/blog/best-ai-agents), platform pricing pages, and the 2026 token-cost reality (Anthropic multi-agent ~15x tokens already cited on-site). Clusters with measure-ROI, self-hosted-agents (cost-control angle), no-code-tools. Used 2026-08-24 -> content/news/2026-08-24-how-much-do-ai-agents-cost (en+zh), title \"How Much Do AI Agents Cost? Three Honest Answers\". BOFU cost/pricing guide framed as three honest answers (buy a seat / pay per token / rent a platform / commission a build), grounded in primary pricing pages (Microsoft 365 Copilot, Anthropic per-M-token) + Issue #001 real cost table (~$3/mo API, $20/mo Claude Pro, ~$5/mo self-host n8n). Sibling of the ROI guide (08-21) and n8n-vs-zapier (08-14); wove a reciprocal link in from the ROI article (en+zh)."
     },
     {
       "term": "how to deploy AI agents in production",
