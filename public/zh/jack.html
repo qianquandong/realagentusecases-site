@@ -3,13 +3,13 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>钱诠东 Jack Qian｜Business Planner · AI FDE Builder</title>
+  <title>钱诠东 Jack Qian｜Business Planner · AI Workflow Builder</title>
   <meta name="description" content="钱诠东（Jack Qian）是常驻达拉斯的 Business Planner 和 AI workflow builder，专注把供应链与企业流程做成可靠、可控、有人使用的 AI 系统。" />
   <link rel="canonical" href="https://realagentusecases.com/zh/jack" />
   <link rel="alternate" hreflang="zh-CN" href="https://realagentusecases.com/zh/jack" />
   <link rel="alternate" hreflang="en" href="https://realagentusecases.com/jack" />
   <meta property="og:type" content="profile" />
-  <meta property="og:title" content="钱诠东 Jack Qian｜Business Planner · AI FDE Builder" />
+  <meta property="og:title" content="钱诠东 Jack Qian｜Business Planner · AI Workflow Builder" />
   <meta property="og:description" content="把供应链与企业流程做成可靠、可控、有人使用的 AI 系统。" />
   <meta property="og:url" content="https://realagentusecases.com/zh/jack" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -300,6 +300,7 @@
       margin-bottom: 18px; text-wrap: balance;
     }
     .case-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; }
+    .case-grid .case-wide { grid-column: 1 / -1; }
     .case-k {
       display: block; margin-bottom: 6px; font-family: var(--mono);
       font-size: 10px; color: rgba(163,163,163,.62); text-transform: uppercase;
@@ -458,12 +459,13 @@
       <h1 class="hero-h1">钱诠东 Jack Qian</h1>
       <p class="hero-sub">我从真实业务流程下手，把跨 SAP、SQL、Excel 和内部工具的重复工作，做成有 dry-run、人工复核和失败边界的 automation。现在希望把这套能力带到 AI FDE / Solutions Engineer 岗位。</p>
       <ul class="hero-bullets">
-        <li><strong>50%+</strong> 供应链日常运营已自动化</li>
-        <li><strong>700+</strong> 发起并运营达拉斯首个华人 AI 社群，5 场活动累计 246 人次</li>
-        <li><strong>300 人</strong> 公司内部 AI 社群，每两周分享一次</li>
+        <li><strong>13 个组</strong>的 TI planner 每天在用我做的自动化和报告</li>
+        <li><strong>700+ 成员</strong>的达拉斯首个华人 AI 社群（发起人），5 场活动累计到场 246 人次</li>
+        <li><strong>300 人</strong>的公司内部 AI 社群，每两周分享一次</li>
       </ul>
       <div class="hero-cta">
         <a href="#builds" class="btn btn-primary">看三个代表案例 →</a>
+        <a href="/Jack_Qian_Resume.pdf" class="btn btn-outline" download>下载简历 PDF</a>
       </div>
       <div class="contact-row">
         <a href="mailto:jack@aimanjack.com">jack@aimanjack.com</a>
@@ -495,16 +497,20 @@
       <div class="xp-top"><span class="xp-co">Texas Instruments</span><span class="xp-period">Dallas, TX</span></div>
       <div class="xp-role">
         <span class="xp-role-name">Business Planner，供应链</span> <span class="xp-period">2026.4 至今</span>
-        <ul class="xp-ul"><li>自动化 50%+ 的供应链日常运营，把人工时间留给自动化筛出的判断题。</li><li>用 Python（win32com）脚本化 SAP GUI：销售订单从排产、修正到放行整条链路自动跑，开独立会话不打扰人工操作，默认 dry-run。</li><li>用 Selenium 自动填写十几类内部审批与请求表单，填好留给人复核提交，从不自动发送。</li><li>用 SQL 直连数据虚拟化层，替代手工跨 SAP、Spotfire、Excel 对数：供应缺口组合报告、每周风险报告定时邮件、季度评审 PPT 直接从数据生成。</li><li>创办 300 人的公司内部 AI 社群，每两周分享一次这些做法。</li></ul>
+        <ul class="xp-ul"><li>把排产、修单和对数类日常工作做成自动化，每周省下约 5 小时人工核对；这些报告和工具现在被 13 个不同组的 planner 日常使用，并持续给我反馈。</li><li>用 Python（win32com）脚本化 SAP GUI：销售订单从排产、修正到放行整条链路自动跑，开独立会话不打扰人工操作，默认 dry-run。</li><li>用 Selenium 自动填写十几类内部审批与请求表单，填好留给人复核提交，从不自动发送。</li><li>用 SQL 直连数据虚拟化层，替代手工跨 SAP、Spotfire、Excel 对数：供应缺口组合报告、每周风险报告定时邮件、季度评审 PPT 直接从数据生成。</li><li>创办 300 人的公司内部 AI 社群，每两周分享一次这些做法。</li></ul>
       </div>
       <div class="xp-role">
         <span class="xp-role-name">Industrial Engineer</span> <span class="xp-period">2023.8 – 2026.4</span>
         <ul class="xp-ul"><li>主导约束感知的排产逻辑，把旧逻辑忽略的 load port 和表达式类限制纳入调度，提高派工准确率。</li><li>改造 MES 消息结构和相关报表，支持一体化上下料功能；解决 4,802 种组合的数据映射。</li><li>编写实时派工规则，兼顾产出、成本、生产周期和准时交付。</li><li>自动化每日派工指标邮件、光罩配送 ETL 分析，以及冗余服务器的文件版本校验和派工任务迁移。</li></ul>
       </div>
+      <div class="xp-role">
+        <span class="xp-role-name">Application Engineer，IT</span> <span class="xp-period">2022.7 – 2023.8</span>
+        <ul class="xp-ul"><li>运行维护 TI 全球晶圆厂的实时派工（RTD）服务器：版本升级、自动化重启、安全验证、监控告警和服务器健康 dashboard。</li><li>参与实时派工的 high availability 项目：全自动晶圆厂在派工停摆时整厂停线，停机成本约每小时 400 万美元；HA 上线后，服务器升级期间产线照常生产。</li></ul>
+      </div>
     </div>
     <div class="xp-card">
       <div class="xp-top"><span class="xp-co">达拉斯华人 AI 社群 · Real Agent Use Cases</span><span class="xp-period">发起人兼主理人（side project）· 2026 至今</span></div>
-      <ul class="xp-ul"><li>发起并从零运营达拉斯首个华人 AI 社群，现有 700+ 成员：2026 年 4 月到 8 月办了 5 场线下活动，累计到场 246 人次，单场最多 70 人。</li><li>到场的人来自各行各业：程序员、数据分析、银行职员、会计、律师、房产中介，还有开饭馆和做小生意的老板。8.22 场报名问卷（59 人全量）：66% 在职上班族，49% 已经每天在用 AI。</li><li>设计并主讲 Agent 101 双语课程和动手 workshop，学员现场用模板搭出自己的 Gmail agent。<a href="/agent-101/live-01/" style="color:var(--brand-h);">看讲座 slides →</a></li><li>上线 realagentusecases.com，定时产线门禁全过才发，已发 75 对双语文章。</li></ul>
+      <ul class="xp-ul"><li>发起并从零运营达拉斯首个华人 AI 社群，现有 700+ 成员：2026 年 4 月到 8 月办了 5 场线下活动，累计到场 246 人次，单场最多 70 人。</li><li>到场的人来自各行各业：程序员、数据分析、银行职员、会计、律师、房产中介，还有开饭馆和做小生意的老板。8.22 场报名问卷（59 人全量）：66% 在职上班族，49% 已经每天在用 AI。</li><li>设计并主讲 Agent 101 双语课程和动手 workshop，学员现场用模板搭出自己的 Gmail agent。<a href="/agent-101/live-01/" style="color:var(--brand-h);">看讲座 slides →</a></li><li>上线 realagentusecases.com，社群的双语内容站和课程主页。</li></ul>
     </div>
     <div class="xp-card">
       <div class="xp-top"><span class="xp-co">Texas A&amp;M University</span><span class="xp-period">2022 届</span></div>
@@ -520,27 +526,28 @@
   <p class="sec-label">代表案例</p>
   <h2 class="sec-h2">三件事，说明我怎么做 FDE。</h2>
   <div class="sec-body">
-    <p>这三项分别对应企业内部交付、个人日常使用和面对非技术用户的现场落地。每项都从具体问题开始，也都保留了人工判断和失败边界。</p>
+    <p>这三项分别对应线上运行的 AI 客服、企业内部交付，以及非技术用户现场落地。每项都从具体问题开始，也都保留了人工判断和失败边界。</p>
   </div>
   <div class="case-list">
     <article class="case-card">
-      <div class="case-top"><span class="case-tag">01 · 企业内部 · 每日使用</span><span class="case-status">50%+ 日常运营已自动化</span></div>
+      <div class="case-top"><span class="case-tag">01 · AI 客服 · 线上运行</span><span class="case-status">SMS 可直接体验 · 中英西三语</span></div>
+      <h3 class="case-title">AI 短信客服：回答咨询、查询档期、完成预约</h3>
+      <div class="case-grid">
+        <div><span class="case-k">问题</span><p class="case-v">课程和业务咨询通过短信进来，重复问题要逐条回复；约一对一咨询时，还要来回确认双方时间。</p></div>
+        <div><span class="case-k">交付</span><p class="case-v">用 Cloudflare Worker 接收 Twilio webhook，OpenAI function calling 查询可约时间、把预约写入 D1，并向我发送客户、主题和时间摘要；对话支持中、英、西三语。</p></div>
+        <div><span class="case-k">边界</span><p class="case-v">只回答课程、服务和个人项目相关问题；超出范围就拒答；不确定时转给本人；不通过短信收款；用户明确选定时间后才写入预约。</p></div>
+        <div class="case-wide"><span class="case-k">架构与取舍</span><p class="case-v">Twilio 只当短信管道，不依赖它的会话功能；对话和预约状态都在 Worker 和 D1 这一侧。写库只有一个入口——用户明确选定时间之后的那次 function call——所以模型答错的最坏结果是回错一句话，不会产生错误预约。另留了一个直连测试接口，不发短信也能跑通整条链路；换一份商家配置就能部署给下一家店。</p></div>
+      </div>
+      <div class="case-links"><a class="text-link" href="sms:+14694254142">发短信体验 →</a><a class="text-link" href="/agent-101/live-01/">查看现场演示 →</a></div>
+    </article>
+    <article class="case-card">
+      <div class="case-top"><span class="case-tag">02 · 企业内部 · 每日使用</span><span class="case-status">13 个组的 planner 日常使用</span></div>
       <h3 class="case-title">Texas Instruments 供应链运营自动化</h3>
       <div class="case-grid">
         <div><span class="case-k">问题</span><p class="case-v">排产、销售订单修正、供应缺口和周期报告，需要反复跨 SAP、Spotfire、Excel 与内部表单核对。</p></div>
         <div><span class="case-k">交付</span><p class="case-v">用 Python 驱动独立 SAP GUI 会话，SQL 直连数据虚拟化层，Selenium 填写十几类表单，并从同一数据源生成报告、邮件和评审 PPT。</p></div>
         <div><span class="case-k">边界</span><p class="case-v">默认 dry-run；表单只填不交；异常交给人判断；自动化会话不干扰人工操作。</p></div>
       </div>
-    </article>
-    <article class="case-card">
-      <div class="case-top"><span class="case-tag">02 · Personal agent · 天天在用</span><span class="case-status">每天约省 25 分钟</span></div>
-      <h3 class="case-title">Gmail 收件箱变成当天 P0 / P1 / P2 待办</h3>
-      <div class="case-grid">
-        <div><span class="case-k">问题</span><p class="case-v">重要动作藏在过去 24 小时的邮件线程里，手工翻找既慢，也容易漏掉时间窗口。</p></div>
-        <div><span class="case-k">交付</span><p class="case-v">做过两种架构：Claude + Gmail Connector 的零代码版本，以及 Apps Script + Claude API 的定时版本；每项待办都带动作、时间窗和原文链接。</p></div>
-        <div><span class="case-k">边界</span><p class="case-v">全程只读，不回信、不删信；找不到证据就不生成任务，最终优先级由人确认。</p></div>
-      </div>
-      <div class="case-links"><a class="text-link" href="https://realagentusecases.com/zh/posts/2026-05-13-gmail-ai-agent/" target="_blank" rel="noopener">阅读完整案例 →</a></div>
     </article>
     <article class="case-card">
       <div class="case-top"><span class="case-tag">03 · 用户现场 · 双语教学</span><span class="case-status">5 场活动 · 246 人次</span></div>
@@ -556,8 +563,13 @@
   <details class="more-projects">
     <summary>更多开源项目与实验</summary>
     <div class="builds-grid">
-    <a class="build-card" href="https://realagentusecases.com/en/news/" target="_blank" rel="noopener">
-      <span class="build-tag">Content pipeline · 75 对双语文章</span>
+    <a class="build-card" href="https://realagentusecases.com/zh/posts/2026-05-13-gmail-ai-agent/" target="_blank" rel="noopener">
+      <span class="build-tag">Personal agent · 天天在用</span>
+      <div class="build-name">Gmail → P0 / P1 / P2 行动清单</div>
+      <p class="build-desc">把过去 24 小时的邮件整理成带优先级、时间窗和原文链接的待办；全程只读，不回信、不删信，每天约省 25 分钟。</p>
+    </a>
+    <a class="build-card" href="https://realagentusecases.com/zh/news/" target="_blank" rel="noopener">
+      <span class="build-tag">Content pipeline · 门禁全过才发</span>
       <div class="build-name">SEO / GEO 内容流水线</div>
       <p class="build-desc">资料不足就跳过；每个事实必须有具名来源；曾删除 22 对低质文章，并把失败模式写回 agent 规则。</p>
     </a>
@@ -678,14 +690,13 @@
   <h2 class="sec-h2">我想解决什么问题。</h2>
   <div class="sec-body">
     <p>很多企业 AI 项目停在 demo，是因为模型之外还有流程、权限、例外、责任边界和用户习惯。我擅长从这些具体约束出发，把可用的部分接进真实工作。</p>
-    <p>我目前在 Texas Instruments 做供应链 Business Planning，也在达拉斯组织 AI workshop，并持续开源自己跑通的 agent 和 workflow。</p>
-    <p>我正在了解 AI FDE / Solutions Engineer 机会，也愿意交流企业 workflow automation、客户 demo 和 AI 用户教育。</p>
+    <p>我目前在 Texas Instruments 做供应链 Business Planning。工作之外的事看起来杂——社群、课程、开源 workflow、给本地商家做的 demo——其实都在练同一件事：把 AI 落进真实工作。它们是练习场，不是要经营的第二职业。</p>
+    <p>我正在找 AI FDE / Solutions Engineer 的全职机会，也愿意交流企业 workflow automation、客户 demo 和 AI 用户教育。</p>
   </div>
-  <blockquote class="blockquote">“把 demo 变成工作系统，需要同时理解业务、技术和人。”</blockquote>
   <div class="meta-table">
     <div class="meta-row"><span class="meta-k">邮箱</span><span class="meta-v"><a href="mailto:jack@aimanjack.com" style="color:var(--muted-fg);">jack@aimanjack.com</a></span></div>
     <div class="meta-row"><span class="meta-k">LinkedIn</span><span class="meta-v"><a href="https://www.linkedin.com/in/quandong-qian-156563191/" target="_blank" rel="noopener" style="color:var(--muted-fg);">linkedin.com/in/quandong-qian-156563191</a></span></div>
-    <div class="meta-row"><span class="meta-k">公司</span><span class="meta-v"><a href="https://aimanjack.com" target="_blank" rel="noopener" style="color:var(--muted-fg);">aimanjack.com</a>，AI 网站与工作流服务</span></div>
+    <div class="meta-row"><span class="meta-k">个人项目</span><span class="meta-v"><a href="https://aimanjack.com" target="_blank" rel="noopener" style="color:var(--muted-fg);">aimanjack.com</a>，给本地商家做的 AI demo 与网站</span></div>
     <div class="meta-row"><span class="meta-k">坐标</span><span class="meta-v">美国达拉斯</span></div>
     <div class="meta-row"><span class="meta-k">日常工作</span><span class="meta-v">德州仪器 Business Planner（供应链）</span></div>
     <div class="meta-row"><span class="meta-k">社群</span><span class="meta-v">达拉斯首个华人 AI 社群发起人，现有 700+ 成员</span></div>
@@ -700,6 +711,7 @@
   <p class="cta-lead">如果你在找能进业务现场、也能把系统交付出来的 AI FDE，欢迎聊聊。</p>
   <div class="hero-cta" style="justify-content:center;">
     <a href="mailto:jack@aimanjack.com?subject=AI%20FDE%20conversation" class="btn btn-primary">发邮件给 Jack →</a>
+    <a href="/Jack_Qian_Resume.pdf" class="btn btn-outline" download>下载简历 PDF</a>
     <a href="https://www.linkedin.com/in/quandong-qian-156563191/" target="_blank" rel="noopener" class="btn btn-outline">LinkedIn</a>
   </div>
 </div>
