@@ -742,7 +742,7 @@
   var fill = document.querySelector('.scroll-rail-fill');
   function max() { return document.documentElement.scrollHeight - window.innerHeight; }
   function update() { var m = max(); fill.style.height = (m > 0 ? (window.scrollY / m) * 100 : 0) + '%'; }
-  function seek(e) { window.scrollTo({ top: (e.clientY / window.innerHeight) * max(), behavior: 'auto' }); }
+  function seek(e) { window.scrollTo({ top: (e.clientY / window.innerHeight) * max(), behavior: 'instant' }); }
   window.addEventListener('scroll', update, { passive: true });
   window.addEventListener('resize', update);
   rail.addEventListener('pointerdown', function (e) { seek(e); try { rail.setPointerCapture(e.pointerId); } catch (_) {} e.preventDefault(); });
