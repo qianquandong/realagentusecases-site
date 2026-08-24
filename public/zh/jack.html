@@ -745,7 +745,7 @@
   function seek(e) { window.scrollTo({ top: (e.clientY / window.innerHeight) * max(), behavior: 'auto' }); }
   window.addEventListener('scroll', update, { passive: true });
   window.addEventListener('resize', update);
-  rail.addEventListener('pointerdown', function (e) { rail.setPointerCapture(e.pointerId); seek(e); e.preventDefault(); });
+  rail.addEventListener('pointerdown', function (e) { seek(e); try { rail.setPointerCapture(e.pointerId); } catch (_) {} e.preventDefault(); });
   rail.addEventListener('pointermove', function (e) { if (e.buttons) seek(e); });
   update();
 })();
