@@ -1,7 +1,19 @@
 {
   "$comment": "LLM brand-mention tracking time series. The scheduled Cowork routine appends one snapshot per run: which target prompts surfaced the brand, in which LLMs, with what sentiment.",
-  "updatedAt": "2026-08-24",
+  "updatedAt": "2026-08-25",
   "snapshots": [
+    {
+      "date": "2026-08-25",
+      "probes": [
+        {
+          "prompt": "Are AI agents safe to use with company data?",
+          "cited": false,
+          "url": null,
+          "position": null,
+          "note": "Tuesday run. On-publish baseline for today's article (keyword 'AI agent security risks', threat-model angle). Never-probed prompt, an exact on-topic match for today's keyword. Web search (verbatim) dominated by data-security-vendor explainers: wix.com (ai-agents-customer-data-safety), kiteworks.com (two posts on ungoverned-agent data risks + inherited permissions), metomic.io (inherited permissions), visione-edge.com (customer-data safety), plus a yahoo.com reprint; realagentusecases.com did not appear — the field is enterprise data-loss-prevention vendors framing risk to sell governance, no independent least-privilege-at-your-desk / real-professional-build angle, this site's gap to own. The article answers this prompt verbatim in its first FAQ; re-probe post-index to track lift. Source-research gate passed with strong primary sources: Meta AI blog 'Agents Rule of Two' (ai.meta.com/blog/practical-ai-agent-security), OWASP GenAI LLM Top 10 (genai.owasp.org/llm-top-10 — Prompt Injection LLM01, Excessive Agency LLM06), OWASP AI Agent Security Cheat Sheet (cheatsheetseries.owasp.org), Anthropic platform docs on mitigating jailbreaks/prompt injection, ReversingLabs analysis (excessive agency rising), plus Issue #001's read-vs-write discipline. Health: direct WebFetch of realagentusecases.com/sitemap.xml returned EGRESS_BLOCKED (403 at proxy CONNECT) — the known recurring sandbox network-policy denial seen every run, not a site outage; live indexing could not be reconfirmed from this environment. Repo pipeline healthy: git log shows daily auto-merges landing cleanly through 2026-08-24 (how-much-do-ai-agents-cost); working tree clean, branch tracking origin. Today's article clusters with human-in-the-loop (08-13, wove a reciprocal link in from its intro), google-workspace-mcp (08-08, OAuth-scope least-privilege), best-mcp-servers (08-11, least-scope), and the 07-23 MCP ANSI-injection disclosure as the concrete real-vuln anchor."
+        }
+      ]
+    },
     {
       "date": "2026-08-24",
       "probes": [
