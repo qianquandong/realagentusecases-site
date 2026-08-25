@@ -1,6 +1,6 @@
 {
   "$comment": "GEO prompt feed — the questions working professionals ask ChatGPT / Perplexity / Gemini. The scheduled Cowork routine ideates entries; scripts/seo/feeds.mjs persists them. cluster: use-case|template|comparison|industry|tool-stack. status: new|covered (covered = a published article targets it). Phase 7 tracks whether the brand is cited for each.",
-  "updatedAt": "2026-08-23",
+  "updatedAt": "2026-08-25",
   "prompts": [
     {
       "prompt": "What are real examples of AI agents at work?",
@@ -405,8 +405,9 @@
       "funnel": "MOFU",
       "cluster": "tool-stack",
       "locale": "en",
-      "status": "new",
-      "addedAt": "2026-08-16"
+      "status": "covered",
+      "addedAt": "2026-08-16",
+      "note": "Covered by content/news/2026-08-25-ai-agent-security-risks. GEO-probed 2026-08-25 (on-publish baseline): not cited — web search dominated by wix.com (customer-data safety), kiteworks.com (ungoverned-agent data risks), metomic.io (inherited permissions), visione-edge.com, yahoo.com reprint; realagentusecases.com did not appear. The field is data-security-vendor explainers with no real-professional-build / least-privilege-at-your-desk angle. The article answers this prompt verbatim in its first FAQ; re-probe post-index to track lift."
     },
     {
       "prompt": "AI agent 能帮销售团队做什么工作？",

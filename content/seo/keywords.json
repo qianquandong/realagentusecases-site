@@ -1,6 +1,6 @@
 {
   "$comment": "SEO keyword feed — a living file. The scheduled Cowork routine ideates entries; scripts/seo/feeds.mjs persists them (dedupe + status + timestamps). intent: informational|commercial|transactional. funnel: TOFU|MOFU|BOFU. cluster: use-case|template|comparison|industry|tool-stack. status: new|used.",
-  "updatedAt": "2026-08-24",
+  "updatedAt": "2026-08-25",
   "keywords": [
     {
       "term": "AI agent use cases",
@@ -603,9 +603,8 @@
       "funnel": "MOFU",
       "cluster": "tool-stack",
       "locale": "both",
-      "status": "new",
-      "note": "Prompt-injection / data-exfiltration concerns (distinct from the guardrails how-to). Clusters with guardrails + human-in-the-loop. Added 2026-08-16 (Sunday ideation).",
-      "addedAt": "2026-08-16"
+      "status": "used",
+      "note": "Prompt-injection / data-exfiltration concerns (distinct from the guardrails how-to). Clusters with guardrails + human-in-the-loop. Added 2026-08-16 (Sunday ideation). | Used 2026-08-25 → content/news/2026-08-25-ai-agent-security-risks-{en,zh}.mdx (title 'AI Agent Security Risks: What Actually Goes Wrong'). Threat-model angle grounded in the exploit chain = prompt injection (OWASP LLM01) + excessive agency (OWASP LLM06) + access, and framed on Meta's 'Agents Rule of Two' (at most two of: reads untrusted input / accesses sensitive data / can act externally). Sources: Meta AI blog 'Agents Rule of Two' (ai.meta.com/blog/practical-ai-agent-security), OWASP GenAI LLM Top 10 (genai.owasp.org/llm-top-10), OWASP AI Agent Security Cheat Sheet (cheatsheetseries.owasp.org), ReversingLabs analysis on Excessive Agency rising, Anthropic platform docs on mitigating jailbreaks/prompt injection, and Issue #001's read-vs-write discipline. Cuts each risk: least privilege / OAuth-scope dial (linked to 08-08 google-workspace-mcp), gate irreversible actions (linked to 08-13 human-in-the-loop), isolate untrusted input, vet MCP servers (linked to 08-11 best-mcp-servers). Concrete real-vuln anchor = the 07-23 MCP ANSI-injection disclosure. Wove a reciprocal link in from the 08-13 human-in-the-loop intro (en+zh). Clusters with human-in-the-loop, guardrails (still new), google-workspace-mcp, best-mcp-servers, security-adjacent. Answers GEO prompt 'Are AI agents safe to use with company data?' verbatim in its first FAQ (probed this run, not cited)."
     },
     {
       "term": "AI agent for document processing",
