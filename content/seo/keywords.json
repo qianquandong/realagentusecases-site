@@ -652,9 +652,9 @@
       "funnel": "MOFU",
       "cluster": "tool-stack",
       "locale": "both",
-      "status": "new",
+      "status": "used",
       "addedAt": "2026-08-23",
-      "note": "Sunday feed research 2026-08-23. 'Move agents from pilot to production' is THE headline 2026 enterprise theme — Gartner/IDC roundups report a pilot-to-production gap (e.g. joget.com AI-agent-adoption-2026; only ~31% of enterprises have one agent in production per digitalapplied.com 120+ data points). Pilot-vs-production framing mirrors the site's two-jobs pattern. Clusters with human-in-the-loop (the gate), guardrails, orchestration, measure-ROI."
+      "note": "Sunday feed research 2026-08-23. 'Move agents from pilot to production' is THE headline 2026 enterprise theme — Gartner/IDC roundups report a pilot-to-production gap (e.g. joget.com AI-agent-adoption-2026; only ~31% of enterprises have one agent in production per digitalapplied.com 120+ data points). Pilot-vs-production framing mirrors the site's two-jobs pattern. Clusters with human-in-the-loop (the gate), guardrails, orchestration, measure-ROI. Used 2026-08-26 → content/news/2026-08-26-how-to-deploy-ai-agents-in-production-{en,zh}.mdx"
     },
     {
       "term": "AI agent governance for enterprises",
