@@ -1,0 +1,52 @@
+---
+title: "How to Deploy AI Agents in Production Safely"
+date: "2026-08-26"
+excerpt: "The demo proved the agent can work; production proves it works reliably. Here's how to move an AI agent from pilot to daily use — scope, evals, and gates."
+---
+
+Deploying an AI agent to production is mostly an operating change, not a bigger model. A demo proves the agent *can* do the task on a clean example; production proves it does the task reliably on the messy real inputs, with the right permissions, checks, and people around it. The move is: narrow the scope, add evals and monitoring, and gate every irreversible action.
+
+Most agents that look great in a demo stall on the way to daily use — not because the model got worse, but because the operating model around it was never built. This guide is the deployment checklist that sits on top of the site's [cost](/en/news/2026-08-24-how-much-do-ai-agents-cost/) and [ROI](/en/news/2026-08-21-how-to-measure-ai-agent-roi/) math: once you've decided an agent is worth running, this is how you actually put it to work without getting burned.
+
+## Why a demo and a deployment are different jobs
+
+A demo runs once, on an input you chose, with you watching. Production runs hundreds of times, on inputs you didn't choose, while you're asleep. Everything that "usually works" becomes "fails 3% of the time on invoices from one vendor" — and at scale, 3% is a lot of wrong actions.
+
+Both [Anthropic](https://www.anthropic.com/research/building-effective-agents) and [OpenAI](https://openai.com/business/guides-and-resources/a-practical-guide-to-building-ai-agents/) open their agent guides with the same advice: start with the simplest thing that works and add autonomy only when a simpler version falls short. OpenAI puts the deployment posture plainly — "start small, validate with real users, and grow capabilities over time." The path to production is not all-or-nothing; it's a ramp you climb as the agent earns trust.
+
+## The deployment checklist
+
+Four things a working demo almost always skips. Add them in order.
+
+**1. Narrow the scope to one real workflow.** Don't deploy "an agent for email." Deploy "an agent that drafts replies to shipping-status questions and leaves everything else untouched." A tight scope is what makes the next three steps possible — you can only write evals, set guardrails, and monitor a task you've actually defined. The [Gmail triage agent in Issue #001](/en/posts/2026-05-13-gmail-ai-agent/) does exactly this: one job, clearly bounded.
+
+**2. Build evals before you trust it.** Anthropic calls this eval-driven development: [write the tests that define the capability first](https://www.anthropic.com/engineering/demystifying-evals-for-ai-agents), then iterate until the agent passes them. Collect 20–50 real past examples with known-good outcomes, and run the agent against them every time you change a prompt or a tool. Automated evals are your first line of defense pre-launch and in CI/CD; they're what tells you a "small tweak" quietly broke a case that used to work.
+
+**3. Set guardrails and a human gate on irreversible actions.** OpenAI describes guardrails as [layered defense](https://openai.com/business/guides-and-resources/a-practical-guide-to-building-ai-agents/) — no single check is enough, so you stack relevance filters, safety classifiers, and access controls. And crucially, define your human-intervention triggers: OpenAI names two — the agent exceeding a failure or retry threshold, and any high-risk, sensitive, or irreversible action. Anything that sends, pays, publishes, or deletes stays behind a [human in the loop](/en/news/2026-08-13-human-in-the-loop-ai-agents/) until the agent has earned autonomy on that specific action. This is also your best defense against the [security risks](/en/news/2026-08-25-ai-agent-security-risks/) that come with giving an agent real access.
+
+**4. Monitor after launch — the demo can't show you drift.** Pre-launch evals catch what you thought to test; production monitoring catches what you didn't. Anthropic's full picture of agent performance combines [production monitoring, user feedback, and manual transcript review](https://www.anthropic.com/engineering/demystifying-evals-for-ai-agents) to detect distribution drift and real-world failures after launch. Practically: log every run, review a sample of transcripts each week, watch your escalation and failure rates, and keep an eye on token cost per task so a quietly looping agent doesn't blow up your [bill](/en/news/2026-08-24-how-much-do-ai-agents-cost/).
+
+## Start where the blast radius is smallest
+
+The safest first deployment is one where a mistake is cheap and reversible: an agent that *drafts* rather than sends, *suggests* rather than acts, *flags* rather than deletes. You get the real-world inputs and the transcript history you need to build trust — without any single failure costing you a customer. As the evals hold and the transcripts stay clean, you widen the scope one action at a time. That ramp, not a big-bang launch, is how a pilot becomes production.
+
+## FAQ
+
+**How do I move an AI agent from pilot to production?**
+Treat it as an operating change, not a model upgrade. Narrow the agent to one clearly defined workflow, build a set of real-example [evals](https://www.anthropic.com/engineering/demystifying-evals-for-ai-agents) it must pass, put a [human gate](/en/news/2026-08-13-human-in-the-loop-ai-agents/) on any irreversible action, and add production monitoring. Then widen the scope gradually as the agent earns trust — [OpenAI](https://openai.com/business/guides-and-resources/a-practical-guide-to-building-ai-agents/) calls it "start small, validate with real users, and grow capabilities over time."
+
+**Why do so many agent pilots never reach production?**
+Usually the model works and the operating model doesn't. A demo skips the unglamorous parts — evals, guardrails, monitoring, permissions, escalation paths — and those are exactly what production requires. The fix isn't a better model; it's building the scaffolding around a scope you've deliberately kept small.
+
+**What should I monitor once an agent is live?**
+Log every run and review a weekly sample of transcripts. Track failure and escalation rates, watch for [distribution drift](https://www.anthropic.com/engineering/demystifying-evals-for-ai-agents) (real inputs stop looking like your test set), and monitor token [cost per task](/en/news/2026-08-24-how-much-do-ai-agents-cost/) so a looping agent doesn't quietly run up the bill.
+
+**When can I remove the human from the loop?**
+One action at a time, backed by evidence. When your transcripts show the agent handling a specific action correctly across a meaningful run of real cases, you can let that action run unattended while keeping the gate on riskier ones. High-risk, sensitive, or irreversible steps are the last to lose their [human check](/en/news/2026-08-13-human-in-the-loop-ai-agents/), not the first.
+
+**Do I need MLOps or a big platform to deploy an agent?**
+Not to start. A single well-scoped agent needs a defined task, a handful of real-example evals, a human gate on risky actions, and a log you actually read. Heavier orchestration and platform tooling earn their place later, when [one agent grows into several](/en/news/2026-08-15-ai-agent-orchestration/) — not on day one.
+
+---
+
+Every agent worth running in this series climbs the same ramp: one narrow job, gated writes, and a human who watches the transcripts until the agent earns more rope. Want the real deployments — the exact scope each professional shipped, what they automated, and what they still approve by hand? [Subscribe free](/en/) and get each week's build in your inbox.
