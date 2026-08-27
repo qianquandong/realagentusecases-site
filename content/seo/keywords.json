@@ -1,6 +1,6 @@
 {
   "$comment": "SEO keyword feed — a living file. The scheduled Cowork routine ideates entries; scripts/seo/feeds.mjs persists them (dedupe + status + timestamps). intent: informational|commercial|transactional. funnel: TOFU|MOFU|BOFU. cluster: use-case|template|comparison|industry|tool-stack. status: new|used.",
-  "updatedAt": "2026-08-25",
+  "updatedAt": "2026-08-27",
   "keywords": [
     {
       "term": "AI agent use cases",
@@ -672,9 +672,9 @@
       "funnel": "MOFU",
       "cluster": "tool-stack",
       "locale": "both",
-      "status": "new",
+      "status": "used",
       "addedAt": "2026-08-23",
-      "note": "Sunday feed research 2026-08-23. Eval/testing is a real content gap — 'is my agent actually working?' Sourceable: IBM 'building and evaluating AI agents' (already cited on-site for agent-vs-RPA), LangSmith/Arize agent-eval tooling, and Issue #001's own accuracy-over-5-7-days measurement. Clusters with measure-ROI, deploy-in-production, human-in-the-loop."
+      "note": "Used 2026-08-27 → content/news/2026-08-27-how-to-evaluate-ai-agents-{en,zh}.mdx (title 'How to Evaluate an AI Agent: Answer vs. Path'). Answer-vs-trajectory two-jobs framing (check the final output vs check the path — the tool calls/steps it took), then offline test set before launch + online monitoring after. Sources: LangChain/LangSmith trajectory-evals doc (trajectory match vs LLM-as-judge, AgentEvals; an agent can return the right answer yet fail trajectory eval by calling unnecessary tools/wrong params/looping), Google Cloud Vertex AI Evaluate Gen AI agents (trajectory_exact_match / trajectory_single_tool_use metrics), Anthropic 'Demystifying evals for AI agents' (eval-driven development, offline evals + production monitoring + transcript review, distribution drift), IBM watsonx Agentic AI evaluation docs (offline vs in-the-loop), and Issue #001's ~90%-after-5-7-days accuracy as a real desk-level eval baseline. The natural sequel to deploy-in-production (08-26, where evals were step 2 — wove a link in from its 'Build evals' step, en+zh); clusters with measure-ROI (08-21) and human-in-the-loop (08-13, aimed at the LLM-judge scoring step). Answers GEO prompt 'How do I evaluate or test an AI agent?' verbatim in its first FAQ (probed this run, not cited)."
     },
     {
       "term": "AI browser agents",

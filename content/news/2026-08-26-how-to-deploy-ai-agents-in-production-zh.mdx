@@ -20,7 +20,7 @@ Demo 只跑一次，用你挑的输入，你在旁边盯着。生产环境跑几
 
 **1. 把范围收窄到一个真实工作流。**别部署「一个管邮件的 agent」，去部署「一个只给『物流状态』类问题起草回复、其余一律不碰的 agent」。范围越紧，后面三步才越做得动——你只能对一个真正定义清楚的任务去写评测、设护栏、做监控。[Issue #001 里的 Gmail 分拣 agent](/zh/posts/2026-05-13-gmail-ai-agent/) 正是这么干的：一份工作，边界清楚。
 
-**2. 在信它之前，先建评测。**Anthropic 把这叫评测驱动开发：[先写下定义这项能力的测试](https://www.anthropic.com/engineering/demystifying-evals-for-ai-agents)，再反复迭代直到 agent 通过。收集 20–50 个有已知正确结果的真实历史例子，每次改提示词或工具就让 agent 跑一遍。上线前和 CI/CD 里的自动评测是你的第一道防线——它会告诉你，一个「小改动」是不是悄悄弄坏了一个本来能过的案例。
+**2. 在信它之前，先建评测。**Anthropic 把这叫评测驱动开发：[先写下定义这项能力的测试](https://www.anthropic.com/engineering/demystifying-evals-for-ai-agents)，再反复迭代直到 agent 通过。收集 20–50 个有已知正确结果的真实历史例子，每次改提示词或工具就让 agent 跑一遍。上线前和 CI/CD 里的自动评测是你的第一道防线——它会告诉你，一个「小改动」是不是悄悄弄坏了一个本来能过的案例。（[如何评估一个 AI agent](/zh/news/2026-08-27-how-to-evaluate-ai-agents/) 讲的就是怎么同时核对结果和它走过的路径。）
 
 **3. 给不可逆动作设护栏和人工关卡。**OpenAI 把护栏描述成[分层防御](https://openai.com/business/guides-and-resources/a-practical-guide-to-building-ai-agents/)——单一检查不够，所以要把相关性过滤、安全分类器、访问控制叠起来。更关键的是定义好「何时该人来接管」：OpenAI 点了两个触发条件——agent 超过失败/重试阈值，以及任何高风险、敏感或不可逆的动作。凡是会发送、付款、发布、删除的，都留在[人类关卡](/zh/news/2026-08-13-human-in-the-loop-ai-agents/)后面，直到 agent 在这个具体动作上挣得了自主权。这也是你应对给 agent 真实权限所带来的[安全风险](/zh/news/2026-08-25-ai-agent-security-risks/)的最佳手段。
 
