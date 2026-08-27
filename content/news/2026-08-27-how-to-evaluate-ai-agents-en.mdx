@@ -1,0 +1,60 @@
+---
+title: "How to Evaluate an AI Agent: Answer vs. Path"
+date: "2026-08-27"
+excerpt: "A demo shows an agent can work once; evaluation shows it works reliably. The two jobs are checking the answer, and checking the path it took to get there."
+---
+
+Evaluating an AI agent is two jobs, not one: checking whether the final answer is right, and checking whether the path the agent took to get there was sane — the tools it called, the steps it took, the ones it skipped. You do the first before launch against a set of real examples, and you keep doing both after launch through monitoring.
+
+That distinction is the whole game. A regular chatbot has one output to grade. An agent plans, calls tools, and takes multiple steps, so it can land on the right answer through a wrong or wasteful path — and it can fail in the middle while still returning something that *looks* fine. This guide is the "is it actually working?" companion to the [deployment checklist](/en/news/2026-08-26-how-to-deploy-ai-agents-in-production/) and the [ROI math](/en/news/2026-08-21-how-to-measure-ai-agent-roi/): evaluation is the evidence those both depend on.
+
+## The two questions an evaluation answers
+
+Ask them in this order:
+
+**1. Was the final answer right?** The output eval — did the agent produce the correct bucket, the correct draft, the correct number? This is the one people remember to do.
+
+**2. Was the path to it sane?** The trajectory eval — the sequence of tool calls, inputs, and intermediate steps the agent took. [LangChain's LangSmith](https://docs.langchain.com/langsmith/trajectory-evals) makes the point plainly: an agent can return the correct answer while still failing a trajectory evaluation because it called unnecessary tools, passed the wrong parameters, or repeated the same step. [Google Cloud's Vertex AI](https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/evaluation-agents) ships metrics for exactly this — `trajectory_exact_match` (did it call the same tools in the same order as a reference run?) and `trajectory_single_tool_use` (did it use a specific required tool at all?).
+
+Why both matter: an agent that gets the right answer by luck, or by an expensive detour, will break the day the input shifts — and it quietly runs up your [token bill](/en/news/2026-08-24-how-much-do-ai-agents-cost/) while it does. The final answer tells you *what* went wrong; the trajectory tells you *where*.
+
+## Build the test set before you trust it
+
+Evaluation starts offline, before a single real user is affected. Anthropic calls this **eval-driven development**: [write the tests that define the capability first](https://www.anthropic.com/engineering/demystifying-evals-for-ai-agents), then iterate until the agent passes them. IBM frames the same split as [offline evaluations](https://www.ibm.com/docs/en/watsonx/saas?topic=sdk-agentic-ai-evaluation) — run before production to iteratively improve the design — versus in-the-loop evaluations that run during execution.
+
+At a desk, offline evaluation is not exotic. Collect 20–50 real past examples with known-good outcomes, run the agent against every one, and count how many it gets right. Re-run that set every time you change a prompt or a tool, so a "small tweak" can't silently break a case that used to work. The [Gmail triage agent in Issue #001](/en/posts/2026-05-13-gmail-ai-agent/) was tuned exactly this way: measured against real inbox history until it settled around 90% accuracy after five to seven days of correction. That number *is* an evaluation — a baseline you can defend and re-measure.
+
+## When there's no single right answer, use a judge
+
+Bucketing an email has a correct answer you can check with a string match. "Is this draft reply appropriate?" doesn't. For open-ended outputs, the common tool is **LLM-as-a-judge**: a second model scores the agent's output (or its whole trajectory) against a written rubric. LangChain's [AgentEvals](https://docs.langchain.com/langsmith/trajectory-evals) supports both a hard-coded trajectory match and an LLM judge that reviews the run qualitatively — more flexible, but less deterministic and it costs an extra model call.
+
+A judge is a useful scaler, not an oracle. The honest practice is to validate the judge against a sample of human-scored examples first, then let it grade the rest — and keep spot-checking. This is the same [human-in-the-loop](/en/news/2026-08-13-human-in-the-loop-ai-agents/) discipline the rest of the site applies to writes, aimed at the scoring step instead.
+
+## Evaluation doesn't stop at launch
+
+Offline evals catch what you thought to test. Production catches what you didn't. Anthropic's full picture of agent performance combines [pre-launch evals with production monitoring, user feedback, and manual transcript review](https://www.anthropic.com/engineering/demystifying-evals-for-ai-agents) to detect **distribution drift** — the day real inputs stop looking like your test set. IBM's [in-the-loop evaluation](https://www.ibm.com/docs/en/watsonx/saas?topic=sdk-agentic-ai-evaluation) runs during execution so a bad step can be caught as it happens. In practice: log every run, review a weekly sample of transcripts, and watch failure and escalation rates — the live version of the same two questions you asked offline.
+
+## Start where you can actually grade it
+
+The easiest agent to evaluate is a narrow one: one clearly defined job, on inputs you have history for, producing an output you can check. That is also, not coincidentally, [the safest first agent to deploy](/en/news/2026-08-26-how-to-deploy-ai-agents-in-production/). Pick a task where "right" is legible, build the small test set, and let the evidence — not a good demo — decide when the agent has earned more rope.
+
+## FAQ
+
+**How do I evaluate or test an AI agent?**
+Test two things separately: the final answer (did it produce the right output?) and the trajectory (did it take a sane path — the right tools, no wasted or wrong steps?), which [LangChain](https://docs.langchain.com/langsmith/trajectory-evals) and [Google Cloud's Vertex AI](https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/evaluation-agents) both treat as distinct evaluations. Start offline: collect 20–50 real past examples with known-good outcomes, run the agent against them, and count how many it gets right. Re-run that set on every change, and keep monitoring after launch.
+
+**What's the difference between checking the answer and checking the trajectory?**
+The answer eval asks whether the output is correct; the trajectory eval asks whether the agent reached it sanely. An agent can return the right answer while calling unnecessary tools, passing wrong parameters, or looping — a trajectory failure that hard-to-see [output-only scoring misses](https://docs.langchain.com/langsmith/trajectory-evals). The answer tells you *what* went wrong; the trajectory tells you *where*.
+
+**What is LLM-as-a-judge, and can I trust it?**
+It's using a second model to score outputs that have no single correct answer against a written rubric — flexible, but not deterministic. Trust it the way you'd trust any grader you haven't checked: validate it against a sample of human-scored examples first, then let it scale the rest while you keep [spot-checking](/en/news/2026-08-13-human-in-the-loop-ai-agents/).
+
+**How many test examples do I need to start?**
+Fewer than you think. A working starting point is 20–50 real past cases with known-good outcomes — enough to catch obvious regressions when you change a prompt or tool. Anthropic's [eval-driven development](https://www.anthropic.com/engineering/demystifying-evals-for-ai-agents) is about writing those tests first; you grow the set as production surfaces cases you didn't anticipate.
+
+**Do I still need to evaluate after the agent is live?**
+Yes — that's when [distribution drift](https://www.anthropic.com/engineering/demystifying-evals-for-ai-agents) shows up, as real inputs stop matching your test set. Log every run, review a weekly sample of transcripts, and watch failure and escalation rates. Offline evals prove the agent works on what you tested; monitoring proves it still works on what you didn't.
+
+---
+
+Every agent in this series was graded before it was trusted — measured against real cases, not a clean demo. Want the actual numbers each professional runs on, the test they used, and what still gets a human check? [Subscribe free](/en/) and get each week's build in your inbox.

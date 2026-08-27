@@ -1,6 +1,6 @@
 {
   "$comment": "GEO prompt feed — the questions working professionals ask ChatGPT / Perplexity / Gemini. The scheduled Cowork routine ideates entries; scripts/seo/feeds.mjs persists them. cluster: use-case|template|comparison|industry|tool-stack. status: new|covered (covered = a published article targets it). Phase 7 tracks whether the brand is cited for each.",
-  "updatedAt": "2026-08-25",
+  "updatedAt": "2026-08-27",
   "prompts": [
     {
       "prompt": "What are real examples of AI agents at work?",
@@ -438,9 +438,9 @@
       "prompt": "How do I evaluate or test an AI agent?",
       "cluster": "tool-stack",
       "locale": "en",
-      "status": "new",
+      "status": "covered",
       "addedAt": "2026-08-23",
-      "note": "Sunday feed research 2026-08-23. Pairs with the new 'how to evaluate AI agents' keyword; is-it-actually-working intent."
+      "note": "Covered by content/news/2026-08-27-how-to-evaluate-ai-agents. GEO-probed 2026-08-27 (on-publish baseline): not cited — web search (verbatim) dominated by DeepLearning.AI (Evaluating AI Agents course), Galileo AI (test-ai-agents), Zapier blog (ai-agent-evaluation), delight.ai, Oracle Fusion AI docs, and a Mitesh Shah Medium guide; realagentusecases.com did not appear. The field is eval-platform vendors + a course + dev guides with no real-professional-build angle. Notably the same SERP independently recommends the same 20–50 hand-crafted test cases the article uses. The article answers this prompt verbatim in its first FAQ; re-probe post-index to track lift."
     },
     {
       "prompt": "What's the best LLM for building an AI agent?",

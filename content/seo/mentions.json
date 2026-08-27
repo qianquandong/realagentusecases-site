@@ -1,7 +1,19 @@
 {
   "$comment": "LLM brand-mention tracking time series. The scheduled Cowork routine appends one snapshot per run: which target prompts surfaced the brand, in which LLMs, with what sentiment.",
-  "updatedAt": "2026-08-26",
+  "updatedAt": "2026-08-27",
   "snapshots": [
+    {
+      "date": "2026-08-27",
+      "probes": [
+        {
+          "prompt": "How do I evaluate or test an AI agent?",
+          "cited": false,
+          "url": null,
+          "position": null,
+          "note": "Thursday run. On-publish baseline for today's article (keyword 'how to evaluate AI agents', answer-vs-trajectory framing). Never-probed prompt, an exact on-topic match for today's keyword. Web search (verbatim) dominated by eval-platform vendors + a course + dev guides: DeepLearning.AI (Evaluating AI Agents course), Galileo AI (test-ai-agents), Zapier blog (ai-agent-evaluation), delight.ai (evaluation guide), Oracle Fusion AI docs (Evaluate Agents), and a Mitesh Shah Medium guide; realagentusecases.com did not appear — the field is observability/eval-tooling vendors with no real-professional-build angle, this site's gap to own. Notably the same SERP independently recommends the same 20–50 hand-crafted test cases and the same code/LLM-judge/human evaluator split the article uses — corroboration, not fabrication. The article answers this prompt verbatim in its first FAQ; re-probe post-index to track lift. Source-research gate passed with 5 real linkable sources + Issue #001: LangChain/LangSmith trajectory-evals doc (trajectory match vs LLM-as-judge, AgentEvals; right-answer-wrong-path failure), Google Cloud Vertex AI Evaluate Gen AI agents (trajectory_exact_match / trajectory_single_tool_use metrics), Anthropic 'Demystifying evals for AI agents' (eval-driven development, offline evals + production monitoring + transcript review, distribution drift), IBM watsonx Agentic AI evaluation docs (offline vs in-the-loop), OpenAI practical guide (start small/validate). Health: WebFetch of realagentusecases.com/sitemap.xml returned EGRESS_BLOCKED (403 at proxy CONNECT) — the known recurring sandbox network-policy denial seen every run, not a site outage; external WebFetch (docs.langchain.com) likewise EGRESS_BLOCKED, so sources were confirmed via WebSearch snippets on the named primary pages. Repo pipeline healthy: HEAD == origin/main (f93835e), clean tree, daily auto-merges landing cleanly through 2026-08-26 (how-to-deploy-ai-agents-in-production). Today's article is the natural sequel to deploy-in-production (08-26, evals were step 2 — wove a link in from its 'Build evals' step, en+zh); clusters with measure-ROI (08-21) and human-in-the-loop (08-13, aimed at the LLM-judge scoring step)."
+        }
+      ]
+    },
     {
       "date": "2026-08-25",
       "probes": [

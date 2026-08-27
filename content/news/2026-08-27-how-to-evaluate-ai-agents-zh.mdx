@@ -1,0 +1,60 @@
+---
+title: "如何评估 AI Agent：看结果，也看过程"
+date: "2026-08-27"
+excerpt: "Demo 只证明 agent 能跑一次，评估才证明它稳定可用。要分开看两件事：结果对不对，以及它到达结果的路径合不合理。"
+---
+
+评估一个 AI agent 其实是两件事，不是一件：一是看最终结果对不对，二是看它到达结果的路径是否合理——调了哪些工具、走了哪些步、又漏了哪些步。第一件事在上线前用一批真实样本来做，两件事在上线后都要靠监控持续做。
+
+这个区分是关键。普通聊天机器人只有一个输出要打分；而 agent 会规划、调工具、走多步，所以它可能通过一条错误或绕远的路径得到正确答案，也可能在中途出错却仍返回一个"看起来没问题"的结果。这篇是[部署清单](/zh/news/2026-08-26-how-to-deploy-ai-agents-in-production/)和 [ROI 计算](/zh/news/2026-08-21-how-to-measure-ai-agent-roi/)背后那句"它到底跑没跑对"的配套——评估正是那两者所依赖的证据。
+
+## 评估要回答的两个问题
+
+按这个顺序问：
+
+**1. 最终答案对吗？** 结果评估——agent 有没有给出正确的分类、正确的草稿、正确的数字。这是大家都记得做的那一个。
+
+**2. 到达答案的路径合理吗？** 轨迹（trajectory）评估——agent 走过的工具调用、输入和中间步骤的序列。[LangChain 的 LangSmith](https://docs.langchain.com/langsmith/trajectory-evals) 说得很直白：一个 agent 可能返回了正确答案，却仍然通不过轨迹评估——因为它调了不必要的工具、传了错误的参数、或重复了同一步。[Google Cloud 的 Vertex AI](https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/evaluation-agents) 正好为此提供了指标：`trajectory_exact_match`（是否按参考运行的相同顺序调用了相同的工具）和 `trajectory_single_tool_use`（是否用到了某个必需的工具）。
+
+为什么两者都重要：一个靠运气或靠昂贵绕路得到正确答案的 agent，一旦输入发生变化就会崩——而它在绕路时还在悄悄推高你的 [token 账单](/zh/news/2026-08-24-how-much-do-ai-agents-cost/)。结果告诉你*哪里*错了的"什么"，轨迹告诉你错在*哪一步*。
+
+## 上线前先建好测试集
+
+评估从离线开始，在任何真实用户受影响之前。Anthropic 把这叫**评估驱动开发**（eval-driven development）：[先写下定义能力的测试](https://www.anthropic.com/engineering/demystifying-evals-for-ai-agents)，再迭代直到 agent 通过。IBM 用同样的划分：[离线评估](https://www.ibm.com/docs/en/watsonx/saas?topic=sdk-agentic-ai-evaluation)——在上线前运行、迭代改进设计——对应在执行过程中运行的 in-the-loop 评估。
+
+在办公桌层面，离线评估并不玄。收集 20–50 个有已知正确结果的真实历史样本，让 agent 逐个跑一遍，数它答对多少。每次改动 prompt 或工具就重跑一遍，这样一个"小改动"就无法悄悄弄坏一个原本正确的用例。[Issue #001 里的 Gmail 分拣 agent](/zh/posts/2026-05-13-gmail-ai-agent/) 就是这样调的：对着真实收件箱历史来衡量，经过五到七天的纠正后稳定在约 90% 的准确率。那个数字本身*就是*一次评估——一个你能站得住、能反复衡量的基线。
+
+## 没有唯一正确答案时，用一个"裁判"
+
+给邮件分类有可以用字符串匹配核对的正确答案；"这封回复草稿合适吗"没有。对于开放式输出，常用的工具是 **LLM-as-a-judge**：用第二个模型按一份书面评分标准给 agent 的输出（或整条轨迹）打分。LangChain 的 [AgentEvals](https://docs.langchain.com/langsmith/trajectory-evals) 同时支持硬编码的轨迹匹配，和一个对运行做定性评审的 LLM 裁判——更灵活，但确定性更差，还要多花一次模型调用。
+
+裁判是好用的放大器，不是神谕。诚实的做法是：先拿一批人工打过分的样本验证这个裁判，再让它去评其余的——并且持续抽查。这跟本站对写操作一贯的[人在环](/zh/news/2026-08-13-human-in-the-loop-ai-agents/)纪律是同一回事，只是对准了打分这一步。
+
+## 评估不止于上线
+
+离线评估抓的是你想到要测的东西，生产环境抓的是你没想到的。Anthropic 对 agent 表现的完整看法，是把[上线前评估与生产监控、用户反馈和人工审阅转录](https://www.anthropic.com/engineering/demystifying-evals-for-ai-agents)结合起来，以发现**分布漂移**（distribution drift）——真实输入不再像你的测试集的那一天。IBM 的 [in-the-loop 评估](https://www.ibm.com/docs/en/watsonx/saas?topic=sdk-agentic-ai-evaluation)在执行过程中运行，好让一个坏步骤当场被抓住。具体做法：记录每一次运行，每周抽查一批转录，盯住失败率和升级率——这就是你在离线时问的那两个问题的实时版本。
+
+## 从你真能打分的地方开始
+
+最容易评估的 agent 是窄的那种：一个定义清晰的任务、有历史数据的输入、一个你能核对的输出。这恰好也是[最安全的第一个上线的 agent](/zh/news/2026-08-26-how-to-deploy-ai-agents-in-production/)。挑一个"对"是清晰可辨的任务，建好那个小测试集，让证据——而不是一次漂亮的 demo——决定这个 agent 什么时候能放更多权。
+
+## FAQ
+
+**怎么评估或测试一个 AI agent？**
+分开测两件事：最终答案（有没有产出正确的输出）和轨迹（有没有走一条合理的路径——用对工具、没有多余或错误的步骤），[LangChain](https://docs.langchain.com/langsmith/trajectory-evals) 和 [Google Cloud 的 Vertex AI](https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/evaluation-agents) 都把它们当成两种不同的评估。从离线开始：收集 20–50 个有已知正确结果的真实历史样本，让 agent 跑一遍，数它答对多少。每次改动就重跑，上线后继续监控。
+
+**"看结果"和"看轨迹"有什么区别？**
+结果评估问输出对不对；轨迹评估问它到达结果的方式合不合理。一个 agent 可能返回了正确答案，却调了不必要的工具、传了错参数、或在打转——这是[只看输出的打分](https://docs.langchain.com/langsmith/trajectory-evals)看不见的轨迹失败。结果告诉你错了"什么"，轨迹告诉你错在"哪一步"。
+
+**LLM-as-a-judge 是什么，能信吗？**
+就是用第二个模型，按一份书面评分标准去给那些没有唯一正确答案的输出打分——灵活，但没有确定性。对它的信任程度，应该和你对任何还没核验过的评分者一样：先拿一批人工打过分的样本验证它，再让它去规模化其余的，同时持续[抽查](/zh/news/2026-08-13-human-in-the-loop-ai-agents/)。
+
+**开始时需要多少测试样本？**
+比你想的少。一个可行的起点是 20–50 个有已知正确结果的真实历史用例——足够在你改 prompt 或工具时抓住明显的回归。Anthropic 的[评估驱动开发](https://www.anthropic.com/engineering/demystifying-evals-for-ai-agents)讲的就是先写这些测试；等生产环境暴露出你没预料到的用例，再扩充这个集合。
+
+**agent 上线后还要评估吗？**
+要——那正是[分布漂移](https://www.anthropic.com/engineering/demystifying-evals-for-ai-agents)出现的时候，真实输入不再匹配你的测试集。记录每一次运行，每周抽查一批转录，盯住失败率和升级率。离线评估证明 agent 在你测过的东西上跑得对；监控证明它在你没测过的东西上仍然跑得对。
+
+---
+
+这个系列里的每个 agent，在被信任之前都先被打过分——用真实用例衡量，而不是一次干净的 demo。想看每位职场人真正跑的那些数字、他们用的测试、以及哪一步仍然留给人来把关？[免费订阅](/zh/)，每周的搭建案例直接送到你的邮箱。
