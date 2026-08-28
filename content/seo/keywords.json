@@ -1,6 +1,6 @@
 {
   "$comment": "SEO keyword feed — a living file. The scheduled Cowork routine ideates entries; scripts/seo/feeds.mjs persists them (dedupe + status + timestamps). intent: informational|commercial|transactional. funnel: TOFU|MOFU|BOFU. cluster: use-case|template|comparison|industry|tool-stack. status: new|used.",
-  "updatedAt": "2026-08-27",
+  "updatedAt": "2026-08-28",
   "keywords": [
     {
       "term": "AI agent use cases",
@@ -343,9 +343,9 @@
       "funnel": "MOFU",
       "cluster": "use-case",
       "locale": "both",
-      "status": "new",
+      "status": "used",
       "addedAt": "2026-07-26",
-      "note": "Sunday feed research 2026-07-26. Grounded in the 2026 AI-SDR reality check: the market split into fully autonomous senders (11x, Artisan/Ava, AiSDR) vs augmentation platforms that research + draft for a human rep (Clay data layer, Lindy custom agents), with reporting (Amplemarket, Salesmotion, tooldirectory.ai) that autonomous SDRs have NOT replaced human reps at scale. Perfect draft-vs-send / augment-vs-autonomous two-jobs angle mirroring lead-qualification (score-vs-engage). Clusters with lead-qualification, crm-data-entry, founders."
+      "note": "Used 2026-08-28 → content/news/2026-08-28-ai-sdr-agent-cold-outreach-{en,zh}.mdx (title 'AI SDR Agent for Cold Outreach: Research vs. Send'). Research-vs-send two-jobs framing, the outbound mirror of lead-qualification's score-vs-engage (inbound). Job 1 research/draft = Clay (GTM data infrastructure, waterfall enrichment across 150+ providers + Claygent web-research agent, explicitly 'not an AI SDR', clay.com/waterfall-enrichment + /blog/enrich-with-ai) + a Lindy draft agent (lindy.ai/blog/ai-agents-sales). Job 2 autonomous prospect-and-send = 11x's Alice ('the first true digital worker in sales', full email/LinkedIn/SMS/WhatsApp/voice cycle to a booked meeting, 11x.ai/blog/meet-alice-the-first-true-digital-worker-in-sales + /f/alice) + Artisan's Ava (autonomous AI BDR, artisan.co/ai-sales-agent + blog artisan-launches-ava-2-0-first-autonomous-ai-bdr; vendor's own line: 'Ava doesn't replace your reps, she replaces their busywork — she books the meetings and your reps close them') + HubSpot-native AiSDR. Human-stays line = the send is irreversible and runs into two hard constraints: Google email sender guidelines (spam rate <0.10%, never 0.30%; SPF/DKIM/DMARC; one-click unsubscribe; bulk = 5,000+/day; in force Feb 1 2024, enforcement ramping late 2025, support.google.com/a/answer/81126) and LinkedIn's ban on automated messaging/scraping (linkedin.com/help/linkedin/answer/a1341387). Wove an upward link into the lead-qualification article (en+zh) 'Which do you actually need?' section (outbound mirror). Answers the GEO prompt 'What AI agent works best for cold outbound sales?' verbatim in its first FAQ (probed this run, not cited). Grounded in Issue #001's capture-don't-commit discipline + human-in-the-loop gate. Clusters with lead-qualification, crm-data-entry, founders, meeting-prep."
     },
     {
       "term": "AI agent for meeting notes",

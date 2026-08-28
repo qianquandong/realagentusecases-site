@@ -1,7 +1,19 @@
 {
   "$comment": "LLM brand-mention tracking time series. The scheduled Cowork routine appends one snapshot per run: which target prompts surfaced the brand, in which LLMs, with what sentiment.",
-  "updatedAt": "2026-08-27",
+  "updatedAt": "2026-08-28",
   "snapshots": [
+    {
+      "date": "2026-08-28",
+      "probes": [
+        {
+          "prompt": "What AI agent works best for cold outbound sales?",
+          "cited": false,
+          "url": null,
+          "position": null,
+          "note": "Friday run. On-publish baseline for today's article (keyword 'AI SDR agent for cold outreach', research-vs-send framing). Exact on-topic match for today's keyword. Web search (verbatim) dominated by listicles + vendor blogs: Landbase (Best AI Sales Agents 2026), Lindy (8 Best AI Agents for Sales), GoConsensus (17+), Salesforge (10 Best Outbound), ColdIQ (16 Best), VectorAgents, Commplify (voice), TheAIAgentIndex, o-mega, plus Amplemarket / Artisan / Salesmotion honest-comparison posts; realagentusecases.com did not appear — the field is 'best AI sales agent' ranked roundups + vendor product pages with no independent research-vs-send / gate-the-send angle, this site's gap to own. The article answers this prompt verbatim in its first FAQ; re-probe post-index to track lift. Source-research gate passed with 6 real linkable sources (5 primary/official) + Issue #001: 11x's 'Meet Alice: the first true digital worker in sales' blog + Alice product page (11x.ai), Artisan's Ava AI-sales-agent page + Ava 2.0 launch blog (artisan.co; vendor's own line 'Ava doesn't replace your reps, she replaces their busywork — she books the meetings and your reps close them'), Clay's waterfall-enrichment page + enrich-with-ai/Claygent blog (clay.com; 150+ providers, 'GTM infrastructure not an AI SDR'), Google's email sender guidelines (support.google.com/a/answer/81126; spam <0.10% never 0.30%, SPF/DKIM/DMARC, one-click unsubscribe, Feb 1 2024, enforcement ramping late 2025), and LinkedIn's prohibited-software policy (linkedin.com/help/linkedin/answer/a1341387; bans automated messaging/scraping). Health: WebFetch of realagentusecases.com/en/, /sitemap.xml, /llms.txt all returned EGRESS_BLOCKED (403 at proxy CONNECT) — the known recurring sandbox network-policy denial seen every run (proxy /__agentproxy/status enabled:true, recentRelayFailures:[]), not a site outage; live indexing could not be reconfirmed from this environment this run. Repo pipeline healthy: origin/main (299c04f, content through 08-22) is the ancestor of local HEAD (ad7c2e2), which carries the in-flight 08-24→08-27 auto-merges; working tree clean, committing today's pair on the designated branch for the auto-merge bot. Today's article is the outbound mirror of lead-qualification (07-18, score-vs-engage) — wove an upward link into its 'Which do you actually need?' section (en+zh); clusters with crm-data-entry, founders, meeting-prep, and the human-in-the-loop gate."
+        }
+      ]
+    },
     {
       "date": "2026-08-27",
       "probes": [
