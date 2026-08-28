@@ -1,0 +1,64 @@
+---
+title: "AI SDR 陌生开发：调研 vs 发送"
+date: "2026-08-28"
+excerpt: "一种 AI SDR agent 负责调研并起草外呼、交给销售发送；另一种自己找客户、自己发送。这里讲清两者的分工，以及那条线该画在哪。"
+---
+
+一个做陌生开发（cold outreach）的 AI SDR agent，只做两件事中的一件。一种负责*调研*——找到潜客、补全每条记录、为销售起草个性化外呼，交给人来审核和发送。另一种负责*跑完整个流程*——自己找客户、写、跨邮件和 LinkedIn 发送、处理回复、约到会议。前者是给销售减负，后者是把杂活连同"发送"一起接管。
+
+## "让 agent 帮我做陌生开发"里藏着两件事
+
+"陌生开发"听起来是一件事，但只要一问*谁按下发送*，它立刻分成两半。一种停在准备好的草稿上：它做人做不动的调研和个性化，然后把一条待审的消息递给销售。另一种接管整个动作，以公司的名义发给那些从没要求听你说话的人。前者是个有文案习惯的调研分析师，后者是个完整的 [SDR](https://en.wikipedia.org/wiki/Sales_development_representative)。这跟我们给[线索资格评定](/zh/news/2026-07-18-ai-agent-for-lead-qualification/)画的"沉默的筛子 vs 会开口的 agent"是同一条线——只不过线索资格评定处理的是*主动举手*的入站线索，陌生开发是*主动出击*、去搭讪一个没举手的人。这让"发送"这一步的风险更高，而不是更低。
+
+## 任务一 —— 调研并起草（安全的那一半）
+
+多数团队应该从这里开始，因为一份错的草稿只花销售 30 秒改掉，而不是烧掉一个发信域名或封掉一个账号。agent 做那些不体面、又扩展不了的调研，把发送留给人：
+
+- **把数据补全当基础设施。** [Clay](https://www.clay.com/waterfall-enrichment) 明确定位自己是 *GTM 数据基础设施，而不是 AI SDR*：它的瀑布式补全会按优先级顺序查询 150 多个数据源，某个源没命中就退到下一个，拼出一条完整记录。它内置的调研 agent [Claygent](https://www.clay.com/blog/enrich-with-ai) 会读公开网络来回答关于每个潜客的问题。这些产出喂给销售的外呼——它自己不发任何东西。
+- **定制起草 agent。** [Lindy](https://www.lindy.ai/blog/ai-agents-sales) 这类无代码搭建器，能拼出一个调研线索、起草首次触达消息、由你审核的 agent——跟[会前准备 agent](/zh/news/2026-07-11-ai-agent-meeting-prep/) 在通话前"先补全再判断"是同一个动作。
+- **办公桌层面的版本。** [Issue #001 里 Gmail 分拣 agent](/zh/posts/2026-05-13-gmail-ai-agent/) 背后"只捕获、不擅自提交"的纪律，就是同一个直觉：让 agent 去读、去起草，凡是要离开公司大门的动作都留人把关。
+
+任务一的产出会自然流入 [CRM 录入层](/zh/news/2026-07-16-ai-agent-crm-data-entry/)，让 agent 做过的调研记在客户档案上，而不是白白丢掉。
+
+## 任务二 —— 找客户并发送（自主的数字员工）
+
+当你想让 agent *发送*——不是起草，是发送——你就从分析师跨到了自主 SDR，一次失误现在是一条以你名义发给陌生人的真实消息。有两家厂商定义了市场的这一端：
+
+- [**11x** 把 Alice 定位为"销售领域第一个真正的数字员工"](https://www.11x.ai/blog/meet-alice-the-first-true-digital-worker-in-sales)：一个跑完整个外呼周期的 agent——找客户、调研、个性化、[跨邮件、LinkedIn、短信、WhatsApp 和语音的多渠道触达](https://www.11x.ai/f/alice)——一直到约成会议，定位是执行这份工作，而不是辅助它。
+- [**Artisan** 的 Ava](https://www.artisan.co/ai-sales-agent) 被宣传为一个自主的 AI BDR：识别并调研潜客、写个性化外呼、发多渠道序列、处理回复，并[直接在你的日历上约会议](https://www.artisan.co/blog/artisan-launches-ava-2-0-first-autonomous-ai-bdr)。HubSpot 原生的工具如 [AiSDR](https://aisdr.com/) 也在这一端，用 CRM 数据个性化邮件和 LinkedIn 外呼。
+
+值得注意诚实的厂商自己把线画在哪：Artisan 的产品页直白地写着，["Ava 不取代你的销售，她取代的是他们的杂活——她约到会议，你的销售去成交。"](https://www.artisan.co/ai-sales-agent) 连自主这一派，也把人留在成交本身上。
+
+## 什么把人留在"发送"上
+
+发送是不可逆的一步，而大批量的陌生开发会撞上两条草稿永远碰不到的硬约束：
+
+- **可达性（deliverability）。** [Google 的邮件发信方指南](https://support.google.com/a/answer/81126)——自 2024 年 2 月 1 日生效、到 2025 年末逐步加严执法——要求批量发信方（每天向个人 Gmail 发 5,000 封以上）用 SPF、DKIM、DMARC 做认证，提供一键退订，并把垃圾投诉率保持在 0.10% 以下、绝不触及 0.30%。越过这条线，你的消息会被丢进垃圾箱或被拒收——是整个域名，不只是那一波坏活动。一个为量而优化的自主发送器，恰恰是在跟这个数字对着干。
+- **平台规则。** [LinkedIn 关于"禁止的软件与扩展"的政策](https://www.linkedin.com/help/linkedin/answer/a1341387/prohibited-software-and-extensions)禁止用机器人或自动化手段发消息、加联系人或抓取平台数据，并警告这样做的账号可能被限制或封停。"自主的 LinkedIn 外呼"和 LinkedIn 的条款是直接冲突的。
+
+一个烧掉的发信域名、一个被封的 LinkedIn 账号，都又慢又痛才能恢复。这正是[人在环把关](/zh/news/2026-08-13-human-in-the-loop-ai-agents/)的教科书场景：让 agent 自由地调研和起草，但在发送上留一只手，直到可达性数字和消息质量赢得你的信任——再一段一段地放开自主权。
+
+## 你到底需要哪一个？
+
+如果你的痛点是*"我的销售整天在做调研，而不是在跟人说话"*，那是任务一——一个补全并起草、仍由人发送的 agent。如果你的痛点是*"我们线索不够，又来不及招 SDR"*，任务二才是那个卖点，但要从窄处起步：一个养好的域名、一份精准的名单、以及一个在数字站稳前审核发送的人。多数团队从任务一拿到的持久价值，比预期更多——因为调研正是人真正扩展不了的部分，而发送正是人不该完全交出去的部分。刚接触？先从 [Agent 101](/zh/agent-101/) 开始，或看看能搭出调研与起草层的[无代码 AI agent 工具](/zh/news/2026-07-08-no-code-ai-agent-tools/)。
+
+## FAQ
+
+**做陌生外呼，哪个 AI agent 最好用？**
+取决于你想让它做哪件事。如果要调研和起草、仍由销售发送，[Clay](https://www.clay.com/waterfall-enrichment)（跨 150 多个数据源的 GTM 数据补全）加上 [Lindy](https://www.lindy.ai/blog/ai-agents-sales) 这类起草 agent，是安全又高杠杆的起点。如果要自主找客户并发送，[11x 的 Alice](https://www.11x.ai/blog/meet-alice-the-first-true-digital-worker-in-sales) 和 [Artisan 的 Ava](https://www.artisan.co/ai-sales-agent) 跑完整个周期。先从调研层开始，在可达性和消息质量站稳前，把人留在发送上。
+
+**该让 AI agent 自动发冷邮件吗？**
+谨慎，且第一天别开满量。[Google 的发信方指南](https://support.google.com/a/answer/81126)要求批量发信方把垃圾投诉率保持在 0.10% 以下（绝不到 0.30%），越线会把你整个域名丢进垃圾箱。在你养起发信信誉的同时，把发送卡在人工审核后面，再在失误代价低的分段上放开自动化。
+
+**AI SDR 能取代我的销售吗？**
+按厂商自己的说法，取代不了成交。[Artisan 直白地写](https://www.artisan.co/ai-sales-agent) Ava"取代的是他们的杂活"、约到会议，而"你的销售去成交"。2026 年持久的模式是增强——agent 以人扩展不了的规模做调研和起草，销售掌握关系和成交。
+
+**自动化的 LinkedIn 外呼被允许吗？**
+它违反平台规则。[LinkedIn 禁止](https://www.linkedin.com/help/linkedin/answer/a1341387/prohibited-software-and-extensions)用机器人或自动化工具发消息、加联系人或抓取数据，并警告这样做的账号可能被限制或封停。把 LinkedIn 当成一个人要留在环里的渠道，而不是一个可以完全自动化的渠道。
+
+**搭一个陌生开发 agent 需要写代码吗？**
+不需要。调研与起草层用无代码工具就能搭——[Clay](https://www.clay.com/blog/enrich-with-ai) 做补全、[Lindy](https://www.lindy.ai/blog/ai-agents-sales) 这类搭建器做草稿——自主平台是配置出来的，不是写代码写出来的。权衡见[无代码 AI agent 工具指南](/zh/news/2026-07-08-no-code-ai-agent-tools/)。
+
+---
+
+这个系列里的每个 agent 都是真实的搭建，把留给人的那一步明明白白标出来。想看职场人每周真正在跑的那一个——用的工具、写的 prompt、以及他们把手留在"发送"上的地方？[免费订阅](/zh/)，每周的搭建案例直接送到你的邮箱。

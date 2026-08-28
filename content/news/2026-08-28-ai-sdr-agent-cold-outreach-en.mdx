@@ -1,0 +1,64 @@
+---
+title: "AI SDR Agent for Cold Outreach: Research vs. Send"
+date: "2026-08-28"
+excerpt: "One AI SDR agent researches and drafts outbound for a rep to send; another prospects and sends on its own. Here's the split, and where to draw the line."
+---
+
+An AI SDR agent for cold outreach does one of two jobs. One *researches* — it finds prospects, enriches each record, and drafts personalized outbound for a rep to review and send. The other *runs the whole cycle* — it prospects, writes, sends across email and LinkedIn, handles replies, and books the meeting, on its own. The first augments a rep; the second replaces the busywork and takes over the send.
+
+## Two jobs hiding in "let an agent do my cold outreach"
+
+"Cold outreach" sounds like one task, but it splits the moment you ask *who hits send?* One version stops at a prepared draft: it does the research and personalization a human can't scale, then hands the rep a ready-to-review message. The other version owns the whole motion, sending in your company's name to people who never asked to hear from you. The first is a research analyst with a copywriting habit; the second is a full [SDR](https://en.wikipedia.org/wiki/Sales_development_representative). It's the same silent-filter-vs-agent-that-talks-back split we drew for [lead qualification](/en/news/2026-07-18-ai-agent-for-lead-qualification/) — except lead qualification works *inbound* leads who raised a hand, and cold outreach starts the conversation *outbound* with someone who didn't. That raises the stakes on the send, not lowers them.
+
+## Job 1 — Research and draft (the safe half)
+
+This is where most teams should start, because a wrong draft costs a rep 30 seconds to fix, not a burned domain or a restricted account. The agent does the unglamorous, unscalable research and leaves the send to a human:
+
+- **Enrichment as infrastructure.** [Clay](https://www.clay.com/waterfall-enrichment) is explicitly *GTM data infrastructure, not an AI SDR*: its waterfall enrichment queries a priority sequence of 150+ data providers, falling back to the next source when one returns no match, to build a complete record. Its built-in research agent, [Claygent](https://www.clay.com/blog/enrich-with-ai), reads the open web to answer a prompt about each prospect. The output feeds a rep's outreach — it doesn't send anything.
+- **Custom draft agents.** No-code builders like [Lindy](https://www.lindy.ai/blog/ai-agents-sales) assemble an agent that researches a lead and drafts a first-touch message you approve, the same enrich-before-you-judge move a [meeting-prep agent](/en/news/2026-07-11-ai-agent-meeting-prep/) makes before a call.
+- **The desk-level version.** The capture-don't-commit discipline behind our [Gmail triage agent in Issue #001](/en/posts/2026-05-13-gmail-ai-agent/) is the same instinct: let the agent do the reading and the drafting, keep the human on anything that leaves the building.
+
+The output of Job 1 flows naturally into the [CRM capture layer](/en/news/2026-07-16-ai-agent-crm-data-entry/), so the research the agent did is logged against the record instead of lost.
+
+## Job 2 — Prospect and send (the autonomous digital worker)
+
+When you want the agent to *send* — not draft, send — you've crossed from analyst to autonomous SDR, and a misfire is now a real message to a real stranger in your name. Two vendors define this end of the market:
+
+- [**11x** positions Alice as "the first true digital worker in sales"](https://www.11x.ai/blog/meet-alice-the-first-true-digital-worker-in-sales): an agent that runs the full outbound cycle — prospecting, research, personalization, and [multi-channel outreach across email, LinkedIn, SMS, WhatsApp, and voice](https://www.11x.ai/f/alice) — through to booking the meeting, positioned as executing the job rather than assisting it.
+- [**Artisan's** Ava](https://www.artisan.co/ai-sales-agent) is billed as an autonomous AI BDR that identifies and researches prospects, writes personalized outreach, sends multi-channel sequences, handles replies, and [books meetings directly on your calendar](https://www.artisan.co/blog/artisan-launches-ava-2-0-first-autonomous-ai-bdr). HubSpot-native tools like [AiSDR](https://aisdr.com/) sit here too, personalizing email and LinkedIn outreach from CRM data.
+
+Worth noting where the honest vendors draw their own line: Artisan's product page says plainly, ["Ava doesn't replace your reps, she replaces their busywork — she books the meetings and your reps close them."](https://www.artisan.co/ai-sales-agent) Even the autonomous camp keeps a human on the deal itself.
+
+## What keeps a human on the send
+
+The send is the irreversible step, and cold outreach at volume runs into two hard constraints that a draft never touches:
+
+- **Deliverability.** [Google's email sender guidelines](https://support.google.com/a/answer/81126) — in force since February 1, 2024, with enforcement ramping through late 2025 — require bulk senders (5,000+ messages a day to personal Gmail) to authenticate with SPF, DKIM, and DMARC, offer one-click unsubscribe, and keep the spam-complaint rate below 0.10%, never reaching 0.30%. Cross that line and your messages get routed to spam or rejected — for the whole domain, not just the bad campaign. An autonomous sender optimizing for volume is optimizing against exactly this number.
+- **Platform rules.** [LinkedIn's policy on prohibited software and extensions](https://www.linkedin.com/help/linkedin/answer/a1341387/prohibited-software-and-extensions) bans using bots or automated means to send messages, add contacts, or scrape the platform — and warns that accounts doing so can be restricted or shut down. "Autonomous LinkedIn outreach" and LinkedIn's terms are in direct tension.
+
+A burned sending domain and a restricted LinkedIn account are slow and painful to undo. That's the textbook case for a [human-in-the-loop gate](/en/news/2026-08-13-human-in-the-loop-ai-agents/): let the agent research and draft freely, but put a hand on the send until the deliverability numbers and the message quality have earned your trust — then widen the autonomy one segment at a time.
+
+## Which do you actually need?
+
+If your pain is *"my reps spend all day researching instead of talking to people,"* that's Job 1 — an agent that enriches and drafts, with a human still sending. If your pain is *"we don't have enough pipeline and can't hire SDRs fast enough,"* Job 2 is the pitch, but start it narrow: one well-warmed domain, a tight list, and a human reviewing sends until the numbers hold. Most teams get more durable value from Job 1 than they expect, because the research is the part humans genuinely can't scale and the send is the part they shouldn't fully hand over. New to the idea? Start at [Agent 101](/en/agent-101/), or see the [no-code AI agent tools](/en/news/2026-07-08-no-code-ai-agent-tools/) that build the research-and-draft layer.
+
+## FAQ
+
+**What AI agent works best for cold outbound sales?**
+It depends on which job you want done. For research and drafting that a rep still sends, [Clay](https://www.clay.com/waterfall-enrichment) (GTM data enrichment across 150+ sources) plus a draft agent like [Lindy](https://www.lindy.ai/blog/ai-agents-sales) is the safe, high-leverage start. For autonomous prospecting and sending, [11x's Alice](https://www.11x.ai/blog/meet-alice-the-first-true-digital-worker-in-sales) and [Artisan's Ava](https://www.artisan.co/ai-sales-agent) run the full cycle. Start with the research layer and keep a human on the send until deliverability and message quality hold.
+
+**Should I let an AI agent send cold emails automatically?**
+Cautiously, and not at full volume on day one. [Google's sender guidelines](https://support.google.com/a/answer/81126) require bulk senders to keep spam complaints under 0.10% (never 0.30%), and crossing that routes your whole domain to spam. Gate the send behind human review while you build a sending reputation, then automate the segments where a misfire is cheap.
+
+**Can an AI SDR replace my sales reps?**
+Not the closing, by the vendors' own framing. [Artisan says plainly](https://www.artisan.co/ai-sales-agent) that Ava "replaces their busywork" and books meetings while "your reps close them." The durable pattern in 2026 is augmentation — the agent does research and drafting at a scale humans can't, and a rep owns the relationship and the deal.
+
+**Is automated LinkedIn outreach allowed?**
+It's against the platform's rules. [LinkedIn prohibits](https://www.linkedin.com/help/linkedin/answer/a1341387/prohibited-software-and-extensions) using bots or automated tools to send messages, add contacts, or scrape data, and warns that accounts doing so can be restricted or banned. Treat LinkedIn as a channel where a human stays in the loop, not one you fully automate.
+
+**Do I need code to build a cold-outreach agent?**
+No. The research-and-draft layer is buildable with no-code tools — [Clay](https://www.clay.com/blog/enrich-with-ai) for enrichment and a builder like [Lindy](https://www.lindy.ai/blog/ai-agents-sales) for the draft — and the autonomous platforms are configured, not coded. See the [no-code AI agent tools guide](/en/news/2026-07-08-no-code-ai-agent-tools/) for the trade-offs.
+
+---
+
+Every agent in this series is a real build, with the part that stays human called out plainly. Want the one professionals actually run each week — the tools, the prompts, and where they keep a hand on the send? [Subscribe free](/en/) and get each week's build in your inbox.
