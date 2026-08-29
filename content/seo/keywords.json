@@ -313,9 +313,9 @@
       "funnel": "MOFU",
       "cluster": "tool-stack",
       "locale": "both",
-      "status": "new",
+      "status": "used",
       "addedAt": "2026-07-19",
-      "note": "Sunday feed research 2026-07-19. Grounded in Zapier's Feb-2026 AI guardrails/governance update (PII scan across 30+ types, prompt-injection detection, block/route/escalate) and the 2026 governance theme in Google Cloud's agent-trends report. Cross-cutting 'deploy safely' angle that clusters with every use-case article; timely as agents gain write access."
+      "note": "Sunday feed research 2026-07-19. Grounded in Zapier's Feb-2026 AI guardrails/governance update (PII scan across 30+ types, prompt-injection detection, block/route/escalate) and the 2026 governance theme in Google Cloud's agent-trends report. Cross-cutting 'deploy safely' angle that clusters with every use-case article; timely as agents gain write access. Used 2026-08-29 → content/news/2026-08-29-ai-agent-guardrails-for-business-{en,zh}.mdx (title 'AI Agent Guardrails for Business: What to Enforce'). Framing: guardrails as the implementation layer under the security threat model — the four points a guardrail sits (input / output / tool-and-action / monitoring), the two that pay off first (least privilege + one approval gate), and enforce-in-workflow-not-prompt (a prompt request drops under injection; the send tool being unavailable until approved holds), with over-gating → approval fatigue. Sources: OpenAI Agents SDK guardrails docs (input/output tripwires halting the run), OWASP GenAI LLM Top 10 (prompt injection LLM01 unsolved at model layer, defense-in-depth + HITL), Anthropic safe-and-trustworthy-agents framework (Claude Code read-only by default, checkpoints before high-stakes) + prompt-injection classifier docs, and Issue #001's read-vs-write build. The how-to-enforce companion to security-risks (08-25, wove a downward link in from its 'How to cut each risk' closing, en+zh); clusters with human-in-the-loop (08-13), deploy-in-production (08-26), and the Google Workspace MCP OAuth-scope guide. Answers GEO prompt 'How do I keep an AI agent safe at work?' verbatim (probed this run, not cited)."
     },
     {
       "term": "AI agent for social media content",
