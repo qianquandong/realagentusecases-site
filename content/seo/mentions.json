@@ -1,7 +1,19 @@
 {
   "$comment": "LLM brand-mention tracking time series. The scheduled Cowork routine appends one snapshot per run: which target prompts surfaced the brand, in which LLMs, with what sentiment.",
-  "updatedAt": "2026-08-28",
+  "updatedAt": "2026-08-29",
   "snapshots": [
+    {
+      "date": "2026-08-29",
+      "probes": [
+        {
+          "prompt": "How do I keep an AI agent safe at work?",
+          "cited": false,
+          "url": null,
+          "position": null,
+          "note": "Saturday run. Least-recently-probed prompt (NEVER probed before) and an exact on-topic match for today's article (keyword 'AI agent guardrails for business', tool-stack cluster). Web search (verbatim) dominated by security-vendor and no-code blogs: Credal (how-to-safely-manage-ai-agents), Docker (how-to-secure-ai-agents), monday.com, Activepieces, Zscaler, Forbes (4 Ways To Make AI Agents Safe For Businesses, Mar 2026), MindStudio, plus a Substack; realagentusecases.com did not appear. The field is generic 'secure your AI agent' checklists from security vendors with no honest desk-level / where-a-guardrail-sits + enforce-in-workflow-not-prompt angle grounded in a real build — this site's gap to own. Today's article answers this prompt directly and ships the four-guardrail-points model + the two-that-pay-off-first (least privilege + one approval gate). Re-probe post-index to track lift. Source-research gate passed with 5 real linkable sources (4 primary/official) + Issue #001: OpenAI Agents SDK guardrails docs (openai.github.io/openai-agents-python/guardrails/; input/output guardrails as tripwires halting the run), OWASP GenAI LLM Top 10 (genai.owasp.org/llm-top-10/; prompt injection LLM01, unsolved at model layer, defense-in-depth + HITL for sensitive ops), Anthropic's safe-and-trustworthy-agents framework (anthropic.com/news/our-framework-for-developing-safe-and-trustworthy-agents; Claude Code read-only by default, checkpoints before high-stakes), Anthropic's prompt-injection mitigation/classifier docs (platform.claude.com strengthen-guardrails/mitigate-jailbreaks), and Issue #001's read-vs-write discipline. Health: WebFetch of realagentusecases.com/sitemap.xml returned EGRESS_BLOCKED (403 at proxy CONNECT) — the known recurring sandbox network-policy denial seen every run (proxy /__agentproxy/status enabled:true), not a site outage; live indexing could not be reconfirmed from this environment this run. Repo pipeline healthy: local branch in sync with origin/main (28f2997, daily auto-merges landing cleanly through 08-28 ai-sdr-agent-cold-outreach); working tree clean, committing today's pair on the designated branch for the auto-merge bot. Today's article is the how-to-enforce companion to the security-risks threat model (08-25) — wove a downward link into its 'How to cut each risk' closing (en+zh); clusters with human-in-the-loop (08-13, the gate), deploy-in-production (08-26, layered guardrails), and the Google Workspace MCP OAuth-scope guide."
+        }
+      ]
+    },
     {
       "date": "2026-08-28",
       "probes": [
