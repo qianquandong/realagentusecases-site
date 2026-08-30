@@ -1,7 +1,19 @@
 {
   "$comment": "LLM brand-mention tracking time series. The scheduled Cowork routine appends one snapshot per run: which target prompts surfaced the brand, in which LLMs, with what sentiment.",
-  "updatedAt": "2026-08-29",
+  "updatedAt": "2026-08-30",
   "snapshots": [
+    {
+      "date": "2026-08-30",
+      "probes": [
+        {
+          "prompt": "What's the best LLM for building an AI agent?",
+          "cited": false,
+          "url": null,
+          "position": null,
+          "note": "Sunday run (feed-replenishment day, no article). On-topic baseline for the still-new 'best LLM for AI agents' keyword (comparison, a strong next-week candidate; the prompt was already in prompts.json from the 08-23 Sunday, never probed until now). Web search (verbatim) dominated by framework/model-listicle aggregators: SiliconFlow (Best Open Source LLM for Agent Workflow 2026), Ema.ai (7 Best LLM Agent Frameworks), Second Talent (Top 8 LLM Frameworks), Promptise Foundry (Best LLMs for Building AI Agents 2026), AI Tools Atlas, VisionVix (9 Best LLMs for Agents); realagentusecases.com did not appear — the field is 'best LLM/framework' ranked roundups with no independent match-the-model-to-the-job / measure-on-your-own-tasks angle grounded in a real build, this site's gap to own. Notably the same SERP independently states the site's intended thesis ('there is no single best model; only the best model for your workload, measured on your tasks') — corroboration for the planned article, not fabrication. Health: WebFetch of realagentusecases.com/en/ and /sitemap.xml both returned EGRESS_BLOCKED (403 at proxy CONNECT) — the known recurring sandbox network-policy denial seen every run (proxy /__agentproxy/status enabled:true), not a site outage; live indexing could not be reconfirmed from this environment this run (prior runs confirmed a live indexed page at /en/news/2026-05-14-claude-system-prompt-email-triage/, and 08-17 confirmed that page cited at ~position 6 for the inbox-triage prompt — a standing GEO win). Repo pipeline healthy: local branch in sync with origin/main, daily auto-merges landing cleanly through 08-29 (ai-agent-guardrails-for-business); working tree clean, committing this Sunday's content/seo feed changes on the designated branch for the auto-merge bot. Sunday feed replenishment this run added 6 keywords (agentic-commerce, AI-shopping-agents, AI-agents-for-e-commerce, AI-agent-observability, AI-agent-workflow-templates, AI-agents-for-product-managers) and 4 GEO prompts (incl. one ZH e-commerce prompt), sourced from this week's competitor sweep + trend signals: the 2026 agentic-commerce wave (Visa+OpenAI tokenized agent checkout inside ChatGPT/Codex, announced Jun 10 2026 per digitalcommerce360; Mastercard Agent Pay + Agentic Tokens; ChatGPT Instant Checkout + Agentic Commerce Protocol on Stripe, 1M+ Shopify merchants live, Walmart/Target announced), the AI-agent-observability stack (LangSmith, Langfuse, MLflow, OpenTelemetry, OpenAI Agents SDK tracing), Zapier's governed-AI + Central/Guardrails/BYOM/Memory push (~9,000 apps / 593M+ tasks), and n8n's 2026 multi-agent orchestration + ReAct mode + prebuilt agents (n8n@1.107.0)."
+        }
+      ]
+    },
     {
       "date": "2026-08-29",
       "probes": [

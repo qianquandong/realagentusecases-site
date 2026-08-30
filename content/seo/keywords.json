@@ -1,6 +1,6 @@
 {
   "$comment": "SEO keyword feed — a living file. The scheduled Cowork routine ideates entries; scripts/seo/feeds.mjs persists them (dedupe + status + timestamps). intent: informational|commercial|transactional. funnel: TOFU|MOFU|BOFU. cluster: use-case|template|comparison|industry|tool-stack. status: new|used.",
-  "updatedAt": "2026-08-28",
+  "updatedAt": "2026-08-30",
   "keywords": [
     {
       "term": "AI agent use cases",
@@ -705,6 +705,66 @@
       "status": "new",
       "addedAt": "2026-08-23",
       "note": "Sunday feed research 2026-08-23. Industry hub parent over the existing support-triage use-case (07-15, sort-vs-resolve): the whole CX loop — deflect, triage, resolve, escalate. Sourceable: Zendesk intelligent triage (official 45 sec/ticket, already on-site), Intercom Fin (per-resolution billing, on-site), EY 2026 note that 59% of agentic-AI adopters target customer-facing ops (via the adoption roundups). Human-stays line = the escalation/refund decision. Sibling of recruiters/accountants/sales-teams hubs."
+    },
+    {
+      "term": "agentic commerce",
+      "intent": "informational",
+      "funnel": "TOFU",
+      "cluster": "comparison",
+      "locale": "both",
+      "status": "new",
+      "addedAt": "2026-08-30",
+      "note": "Sunday feed research 2026-08-30. THE new 2026 category: AI agents that discover, decide, and pay on a person's behalf. Strong primary/reporting sources verified this run — Visa + OpenAI tokenized agent-led payments inside ChatGPT and Codex (announced Jun 10 2026, digitalcommerce360.com/2026/06/12/visa-openai-agent-led-payments), Mastercard Agent Pay + Agentic Tokens (tokenized credential bound to agent/merchant/consent scope, Apr 2025), OpenAI ChatGPT Instant Checkout on the open Agentic Commerce Protocol built with Stripe (1M+ Shopify merchants live; Walmart/Target announced), Amazon 'Buy for Me'. Explainer/comparison angle for professionals: what agentic checkout actually is + the human-stays line (spend authority / consent scope / the irreversible payment = the gate). Head term over the new e-commerce cluster; clusters with human-in-the-loop (the gate on payments), ai-agent-vs-chatbot (act-not-talk), and security-risks (agent with a wallet)."
+    },
+    {
+      "term": "AI shopping agents",
+      "intent": "informational",
+      "funnel": "TOFU",
+      "cluster": "use-case",
+      "locale": "both",
+      "status": "new",
+      "addedAt": "2026-08-30",
+      "note": "Sunday feed research 2026-08-30. Consumer-facing sibling of agentic-commerce: the agent that browses, compares, and (optionally) buys for a shopper. Sourceable this run — OpenAI ChatGPT Shopping / Instant Checkout (1M+ Shopify merchants), Amazon 'Buy for Me', Visa Intelligent Commerce + Mastercard Agent Pay as the payment rails. Recommend-vs-buy framing mirrors the site's two-jobs pattern (draft-vs-pay, score-vs-engage): Job 1 = surface and compare options a human confirms; Job 2 = the autonomous purchase, which is irreversible and needs the consent/spend gate. Clusters with agentic-commerce, e-commerce hub, human-in-the-loop."
+    },
+    {
+      "term": "AI agents for e-commerce",
+      "intent": "informational",
+      "funnel": "TOFU",
+      "cluster": "industry",
+      "locale": "both",
+      "status": "new",
+      "addedAt": "2026-08-30",
+      "note": "Sunday feed research 2026-08-30. Merchant-side industry hub (the flip of AI-shopping-agents, which is buyer-side): agents across the store loop — merchandising, support, order/returns, and now agent-readable storefronts. Sourceable — Shopify live on ChatGPT Shopping (Agentic Commerce Protocol + Stripe, 1M+ merchants), Zendesk/Intercom for CX (already on-site), the Walmart/Target ChatGPT partnerships. Automate-the-work-not-the-decision frame (pricing/policy stays human). Sibling of the recruiters/accountants/realtors/customer-service hubs; parent over the still-new customer-service hub for the support slice."
+    },
+    {
+      "term": "AI agent observability",
+      "intent": "informational",
+      "funnel": "MOFU",
+      "cluster": "tool-stack",
+      "locale": "both",
+      "status": "new",
+      "addedAt": "2026-08-30",
+      "note": "Sunday feed research 2026-08-30. The after-launch companion to evaluate-agents (08-27, offline test) and deploy-in-production (08-26): once an agent is live, how you watch it — traces of every tool call, per-step latency and token cost, failure/loop detection. Sourceable this run — LangSmith (LangChain-native tracing/eval), Langfuse (self-host, ClickHouse), MLflow (open-source), OpenTelemetry GenAI semantic conventions, OpenAI Agents SDK tracing. See-the-path framing reuses the answer-vs-trajectory lens from the evaluate article. Clusters with evaluate-agents, deploy-in-production, human-in-the-loop, governance."
+    },
+    {
+      "term": "AI agent workflow templates",
+      "intent": "informational",
+      "funnel": "MOFU",
+      "cluster": "template",
+      "locale": "both",
+      "status": "new",
+      "addedAt": "2026-08-30",
+      "note": "Sunday feed research 2026-08-30 (competitor sweep). Distinct from the existing 'AI agent prompt template' keyword (a prompt) — this is a ready-to-import workflow. Grounded in the competitor sweep: n8n's prebuilt agents shipped from the AI Agent node (n8n@1.107.0, five importable workflows with credential setup) and Zapier's agent/template gallery. Start-from-a-template-then-narrow angle; the site's own Issue #001 email-triage build is the canonical real template. Clusters with no-code-tools, claude-system-prompt-email-triage (template), n8n-vs-zapier."
+    },
+    {
+      "term": "AI agents for product managers",
+      "intent": "informational",
+      "funnel": "TOFU",
+      "cluster": "industry",
+      "locale": "both",
+      "status": "new",
+      "addedAt": "2026-08-30",
+      "note": "Sunday ideation 2026-08-30. Industry-hub expansion beyond the office-ops roles: the PM loop — research/synthesis (feedback + interviews), spec/PRD drafting, and roadmap/standup follow-up. Sourceable at write time via already-cited tools (meeting-notes agents, market-research/competitive-analysis agents, project-management follow-up). Automate-the-work-not-the-prioritization-call frame; sibling of the consultants/marketers/sales-teams hubs. Reuses the site's existing use-case children (meeting-notes 08-05, market-research 08-07, competitive-analysis 08-06, project-management still-new) as its body."
     }
   ]
 }
