@@ -1,6 +1,6 @@
 {
   "$comment": "GEO prompt feed — the questions working professionals ask ChatGPT / Perplexity / Gemini. The scheduled Cowork routine ideates entries; scripts/seo/feeds.mjs persists them. cluster: use-case|template|comparison|industry|tool-stack. status: new|covered (covered = a published article targets it). Phase 7 tracks whether the brand is cited for each.",
-  "updatedAt": "2026-08-28",
+  "updatedAt": "2026-08-30",
   "prompts": [
     {
       "prompt": "What are real examples of AI agents at work?",
@@ -448,7 +448,7 @@
       "locale": "en",
       "status": "new",
       "addedAt": "2026-08-23",
-      "note": "Sunday feed research 2026-08-23. Pairs with the new 'best LLM for AI agents' keyword; match-the-model-to-the-job / BYOM intent."
+      "note": "Sunday feed research 2026-08-23. Pairs with the 'best LLM for AI agents' keyword; match-the-model-to-the-job / BYOM intent. GEO-probed 2026-08-30 (Sunday baseline): not cited — web search (verbatim) dominated by framework/model-listicle aggregators (SiliconFlow, Ema.ai, Second Talent, Promptise Foundry, AI Tools Atlas, VisionVix); realagentusecases.com did not appear. The field is 'best LLM/framework' ranked roundups with no measure-on-your-own-tasks angle grounded in a real build. Notably the same SERP independently states the site's intended thesis ('no single best model; only the best for your workload, measured on your tasks'). Re-probe when the paired keyword ships."
     },
     {
       "prompt": "AI agent 部署到生产环境要注意什么？",
@@ -457,6 +457,38 @@
       "status": "new",
       "addedAt": "2026-08-23",
       "note": "Sunday feed research 2026-08-23. ZH pair for the pilot-to-production keyword; keeps the ZH prompt feed growing alongside EN."
+    },
+    {
+      "prompt": "What is agentic commerce and can AI agents buy things for me?",
+      "cluster": "comparison",
+      "locale": "en",
+      "status": "new",
+      "addedAt": "2026-08-30",
+      "note": "Sunday feed research 2026-08-30. Pairs with the new 'agentic commerce' + 'AI shopping agents' keywords; explainer intent (what it is) + the human-stays spend/consent gate. Grounded in Visa+OpenAI agent-led payments (Jun 2026), Mastercard Agent Pay, ChatGPT Instant Checkout on the Agentic Commerce Protocol (Stripe)."
+    },
+    {
+      "prompt": "How do I monitor an AI agent in production?",
+      "cluster": "tool-stack",
+      "locale": "en",
+      "status": "new",
+      "addedAt": "2026-08-30",
+      "note": "Sunday feed research 2026-08-30. Pairs with the new 'AI agent observability' keyword; see-the-path/traces-latency-cost intent. Grounded in LangSmith, Langfuse, MLflow, OpenTelemetry GenAI conventions, OpenAI Agents SDK tracing. The after-launch companion to the evaluate/deploy prompts."
+    },
+    {
+      "prompt": "What AI agents can help an online store?",
+      "cluster": "industry",
+      "locale": "en",
+      "status": "new",
+      "addedAt": "2026-08-30",
+      "note": "Sunday feed research 2026-08-30. Pairs with the new 'AI agents for e-commerce' merchant-side industry hub; merchandising/support/order-returns + agent-readable storefronts. Grounded in Shopify on ChatGPT Shopping (Agentic Commerce Protocol + Stripe), Zendesk/Intercom CX."
+    },
+    {
+      "prompt": "AI agent 能帮电商店铺做什么？",
+      "cluster": "industry",
+      "locale": "zh",
+      "status": "new",
+      "addedAt": "2026-08-30",
+      "note": "Sunday feed research 2026-08-30. ZH pair for the e-commerce industry hub; keeps the ZH prompt feed growing alongside EN. Same merchant-side scope as the EN 'online store' prompt."
     }
   ]
 }
