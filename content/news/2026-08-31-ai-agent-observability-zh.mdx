@@ -1,0 +1,58 @@
+---
+title: "AI Agent 可观测性：生产环境该盯哪些指标"
+date: "2026-08-31"
+excerpt: "Agent 的答案只告诉你它做了什么，轨迹才告诉你它怎么做的。可观测性就是记录每一步——工具调用、token、延迟，好让你找到出问题的那一步。"
+---
+
+AI agent 可观测性，指的是把每一次运行的完整轨迹都记录下来——每一次模型调用、工具调用、输入、延迟和 token 成本——这样你才能看清是哪一步慢了、错了或烧钱了。和聊天机器人只回一句话不同，agent 一个任务要走很多步，光靠日志根本说不清它到底在**哪一步**出的问题。起点是分布式追踪（distributed tracing）。
+
+这正是 agent 和你熟悉的应用监控之间的区别。普通服务接一个请求、返回一个响应，你可以计时、可以计数。而 agent 会规划、调工具、循环、分叉——一个用户请求会扇出成十几个内部操作，[正如 OpenObserve 和 oneuptime 的指南所说](https://oneuptime.com/blog/post/2026-03-14-how-to-monitor-ai-agents-in-production/view)，光看日志无法告诉你其中哪一步慢了、失败了、或在烧你的 token 预算。这是[评估](/zh/news/2026-08-27-how-to-evaluate-ai-agents/)的实时那一半：离线评估证明 agent 在你测过的输入上能跑，监控证明它在你没测过的输入上还跑得住。
+
+## 要的是轨迹，不是日志
+
+真正该观察的单位是**轨迹（trace）**——一次 agent 运行背后的完整步骤树——再拆成一个个 **span**，每次模型调用或工具调用一个。好消息是这套结构你不用自己发明了。[OpenTelemetry 的 GenAI 语义约定](https://github.com/open-telemetry/semantic-conventions/blob/main/docs/gen-ai/gen-ai-spans.md)是一套由 CNCF 支持、厂商中立的标准，它已经为此定义了标准字段：`gen_ai.agent.name` 标识 agent，`gen_ai.usage.input_tokens` 和 `gen_ai.usage.output_tokens` 记成本，`gen_ai.response.finish_reasons` 记模型这次为什么停下。[OpenTelemetry 自己关于 GenAI 可观测性的文章](https://opentelemetry.io/blog/2026/genai-observability/)论证了：按这套标准埋点，你的轨迹就不会被锁死在某一家的看板里。
+
+为什么这在一张桌子上、而不只在大规模场景下重要：当 [Issue #001 里那个 Gmail 分类 agent](/zh/posts/2026-05-13-gmail-ai-agent/) 把一封邮件标错时，"agent 弄错了"这句话毫无用处。轨迹会告诉你它是读错了字段、调错了工具、还是在正确输入上模型本身判断失误——这是三种完全不同的修法。
+
+## 到底该盯什么
+
+不是什么都值得设一个指标。这份短清单来自 [Galileo 对生产环境 agent 监控工具的梳理](https://galileo.ai/blog/best-agent-monitoring-tools-production)：
+
+- **每次运行和每一步的延迟**——一个请求里可能藏着 10 到 50 多个决策点；你要的是那一步慢，而不只是总时长慢。
+- **每次运行的 token 成本**——直通你的[月度账单](/zh/news/2026-08-24-how-much-do-ai-agents-cost/)。一条打转的轨迹，在变错之前先变贵。
+- **工具报错与重试**——工具层是 agent 最"安静"地失败的地方，往往还返回一个*看起来*没问题的结果。
+- **质量信号**——忠实度（输出有没有依据，还是幻觉？）、答案相关性、任务推进度，要在实时运行上打分，而不只在离线时。
+- **升级与失败率**——agent 多久交给人一次、或干脆放弃一次。这个比率上升，是漂移最早的信号。
+
+最终答案告诉你*出了什么*错；这些信号告诉你错在*哪里*、代价*多大*。
+
+## 一套开源的起步栈
+
+你不需要企业合同才能开始。[Langfuse](https://github.com/langfuse/langfuse) 是一个开源、可自托管的可观测性平台——端到端追踪、agent 图视图、工具调用分析，以及在这些数据之上的评估——而且它[能接入 OpenTelemetry 数据，并和 LangChain、OpenAI SDK 集成](https://langfuse.com/docs/observability/overview)，所以按上面那套标准埋点，几行就能接起来。Arize Phoenix 和 MLflow 处在同一个可自托管的位置。因为它们都讲 OpenTelemetry，你写的埋点是可移植的——以后换看板不用重埋 agent。
+
+比工具更重要的是纪律：在把任何[会写、会发](/zh/news/2026-08-25-ai-agent-security-risks/)的动作交给 agent 之前，先记录每一次运行，然后每周抽查一批真实轨迹。你没测到的那种漂移，就是这样在还便宜的时候被抓出来的。
+
+## 从窄处起步，盯紧了看
+
+最容易观察的 agent，正是那个[最容易评估、也最安全部署](/zh/news/2026-08-26-how-to-deploy-ai-agents-in-production/)的：一件很窄的活、跑在你有历史数据的输入上、产出一个你能核对的结果。用标准给它埋点，盯住上面那五个信号，让轨迹——而不是一次干净的 demo——来告诉你它什么时候配拿到更大的权限。
+
+## FAQ
+
+**AI agent 部署到生产环境后怎么监控？**
+把每一次运行都记成一条轨迹——每次模型调用和工具调用都是一个 span，附上延迟、token 成本和报错——而不是靠一堆扁平日志。先从分布式追踪入手，因为[一个请求会扇出成十几个内部步骤](https://oneuptime.com/blog/post/2026-03-14-how-to-monitor-ai-agents-in-production/view)，你需要看清是哪一步慢了或挂了。按 [OpenTelemetry 的 GenAI 约定](https://github.com/open-telemetry/semantic-conventions/blob/main/docs/gen-ai/gen-ai-spans.md)埋点，数据就不会被锁死在某一家。
+
+**可观测性和评估有什么区别？**
+[评估](/zh/news/2026-08-27-how-to-evaluate-ai-agents/)判断 agent 对不对；可观测性展示它一步步到底做了什么。在生产里两者会合流：你在实时轨迹上跑质量检查（忠实度、任务推进度），所以监控就是你最初离线跑的那套评估的持续、实时版。
+
+**AI agent 该追踪哪些指标？**
+每次运行和每一步的延迟、每次运行的 token 成本、工具报错与重试、忠实度和任务推进度这类质量信号，以及升级/失败率。[Galileo 的监控指南](https://galileo.ai/blog/best-agent-monitoring-tools-production)给的也是这份短清单——重点是抓到那一*步*的错或浪费，而不只是一个糟糕的最终答案。
+
+**一定要用付费平台才能开始吗？**
+不用。[Langfuse](https://github.com/langfuse/langfuse)、Arize Phoenix 和 MLflow 都是开源、可自托管的，而且因为它们都能接入 [OpenTelemetry](https://opentelemetry.io/blog/2026/genai-observability/) 数据，你写的埋点在它们之间是可移植的。先从记录一个窄 agent 的每一次运行开始，等你知道要看什么了再加看板。
+
+**为什么不能直接用现有的应用监控？**
+因为它是为请求-响应式服务造的。agent 会在运行时做出难以预料的决策，穿过分叉、循环、多步的流程，所以你需要能捕获整条路径的会话级轨迹——而不是给一个内部干了十件事的调用只报一个延迟数字。
+
+---
+
+这个系列里的每个 agent 都是被"盯着"的，不只是上线了事——被记录、被追踪、被拿去和真实运行核对。想知道每位专业人士具体盯哪些信号、他们的 agent 最早在哪一步翻了车？[免费订阅](/zh/)，每周的搭建实录直接进你的邮箱。
