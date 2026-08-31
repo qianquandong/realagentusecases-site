@@ -1,0 +1,58 @@
+---
+title: "AI Agent Observability: What to Watch in Production"
+date: "2026-08-31"
+excerpt: "An agent's answer tells you what it did; its trace tells you how. Observability logs every step — tool calls, tokens, latency — so you can find what broke."
+---
+
+AI agent observability means capturing the full trace of every run — each model call, tool use, input, latency, and token cost — so you can see which step was slow, wrong, or expensive. Unlike a single chatbot reply, an agent takes many steps per task, so logs alone can't tell you *where* it broke. The place to start is distributed tracing.
+
+That is the difference between an agent and the app monitoring you already know. A regular service handles a request and returns a response you can time and count. An agent plans, calls tools, loops, and branches — one user request fans out into ten or more internal operations, and [as the OpenObserve and oneuptime guides both put it](https://oneuptime.com/blog/post/2026-03-14-how-to-monitor-ai-agents-in-production/view), logs alone can't show you which of those steps is slow, failing, or burning your token budget. This is the live half of [evaluation](/en/news/2026-08-27-how-to-evaluate-ai-agents/): offline evals prove the agent works on what you tested, monitoring proves it still works on what you didn't.
+
+## Traces, not logs: the unit that matters
+
+The right unit of observation is the **trace** — the full tree of steps behind one agent run — broken into **spans**, one per model call or tool call. The good news is you no longer have to invent that schema. [OpenTelemetry's GenAI semantic conventions](https://github.com/open-telemetry/semantic-conventions/blob/main/docs/gen-ai/gen-ai-spans.md), a vendor-neutral standard backed by the CNCF, now define standard attributes for exactly this: `gen_ai.agent.name` for the agent, `gen_ai.usage.input_tokens` and `gen_ai.usage.output_tokens` for cost, and `gen_ai.response.finish_reasons` for why a model call stopped. [OpenTelemetry's own write-up on GenAI observability](https://opentelemetry.io/blog/2026/genai-observability/) makes the case for instrumenting against this standard so your traces aren't locked to one vendor's dashboard.
+
+Why this matters at a desk, not just at scale: when the [Gmail triage agent in Issue #001](/en/posts/2026-05-13-gmail-ai-agent/) mislabels an email, "the agent got it wrong" is useless. The trace tells you whether it read the wrong field, called the wrong tool, or the model itself made a bad call on good inputs — three different fixes.
+
+## What to actually watch
+
+Not everything is worth a metric. The short list, drawn from [Galileo's rundown of production agent-monitoring tools](https://galileo.ai/blog/best-agent-monitoring-tools-production):
+
+- **Latency per run and per step** — a single request can hide 10–50+ decision points; you want the slow one, not just the slow total.
+- **Token cost per run** — the direct line to your [monthly bill](/en/news/2026-08-24-how-much-do-ai-agents-cost/). A trajectory that loops is expensive before it is wrong.
+- **Tool errors and retries** — the tool layer is where agents fail most quietly, still returning something that *looks* fine.
+- **Quality signals** — faithfulness (is the output grounded, or hallucinated?), answer relevancy, and task progression, scored on live runs, not just offline.
+- **Escalation and failure rate** — how often the agent hands off to a human or gives up. A rising rate is the earliest sign of drift.
+
+The final answer tells you *what* went wrong; these tell you *where* and *how much*.
+
+## An open-source starting stack
+
+You don't need an enterprise contract to begin. [Langfuse](https://github.com/langfuse/langfuse) is an open-source, self-hostable observability platform — end-to-end tracing, an agent-graph view, tool-call analytics, and evaluation on top of the captured data — and it [ingests OpenTelemetry data and integrates with LangChain and the OpenAI SDK](https://langfuse.com/docs/observability/overview), so instrumenting against the standard above wires it up in a few lines. Arize Phoenix and MLflow occupy the same self-hostable niche. Because they all speak OpenTelemetry, the instrumentation you write is portable — you can move dashboards later without re-instrumenting the agent.
+
+The discipline is more important than the tool: log every run before you trust the agent with anything that [writes or sends](/en/news/2026-08-25-ai-agent-security-risks/), then keep a weekly review of a sample of real transcripts. That is how the drift you didn't test for shows up while it's still cheap to fix.
+
+## Start narrow, watch closely
+
+The easiest agent to observe is the same one that's [easiest to evaluate and safest to deploy](/en/news/2026-08-26-how-to-deploy-ai-agents-in-production/): one narrow job, on inputs you have history for, producing an output you can check. Instrument it with the standard, watch the five signals above, and let the traces — not a clean demo — tell you when it has earned more rope.
+
+## FAQ
+
+**How do I monitor an AI agent in production?**
+Capture a trace of every run — each model call and tool call as a span, with latency, token cost, and errors attached — rather than relying on flat logs. Start with distributed tracing, because [one request fans out into ten or more internal steps](https://oneuptime.com/blog/post/2026-03-14-how-to-monitor-ai-agents-in-production/view) and you need to see which one is slow or failing. Instrument against [OpenTelemetry's GenAI conventions](https://github.com/open-telemetry/semantic-conventions/blob/main/docs/gen-ai/gen-ai-spans.md) so the data isn't locked to one vendor.
+
+**What's the difference between observability and evaluation?**
+[Evaluation](/en/news/2026-08-27-how-to-evaluate-ai-agents/) grades whether the agent is right; observability shows you what it actually did, step by step. In practice they merge in production: you run quality checks (faithfulness, task progression) *on live traces*, so monitoring is the continuous, live version of the eval you first ran offline.
+
+**What metrics should I track for an AI agent?**
+Latency per run and per step, token cost per run, tool errors and retries, quality signals like faithfulness and task progression, and the escalation/failure rate. [Galileo's monitoring guide](https://galileo.ai/blog/best-agent-monitoring-tools-production) frames the same short list — the point is to catch the wrong or wasteful *step*, not just a bad final answer.
+
+**Do I need a paid platform to start?**
+No. [Langfuse](https://github.com/langfuse/langfuse), Arize Phoenix, and MLflow are open-source and self-hostable, and because they all ingest [OpenTelemetry](https://opentelemetry.io/blog/2026/genai-observability/) data, the instrumentation you write is portable across them. Begin by logging every run of one narrow agent; add a dashboard once you know what you're looking for.
+
+**Why can't I just use my existing app monitoring?**
+Because it was built for request-response services. An agent makes unpredictable decisions at runtime across branching, looping, multi-step workflows, so you need session-level traces that capture the whole path — not a single latency number for a call that internally did ten different things.
+
+---
+
+Every agent in this series is watched, not just launched — logged, traced, and reviewed against real runs. Want the exact signals each professional watches and the step that first tripped their agent? [Subscribe free](/en/) and get each week's build in your inbox.

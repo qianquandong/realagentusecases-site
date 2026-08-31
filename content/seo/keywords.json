@@ -742,9 +742,9 @@
       "funnel": "MOFU",
       "cluster": "tool-stack",
       "locale": "both",
-      "status": "new",
+      "status": "used",
       "addedAt": "2026-08-30",
-      "note": "Sunday feed research 2026-08-30. The after-launch companion to evaluate-agents (08-27, offline test) and deploy-in-production (08-26): once an agent is live, how you watch it — traces of every tool call, per-step latency and token cost, failure/loop detection. Sourceable this run — LangSmith (LangChain-native tracing/eval), Langfuse (self-host, ClickHouse), MLflow (open-source), OpenTelemetry GenAI semantic conventions, OpenAI Agents SDK tracing. See-the-path framing reuses the answer-vs-trajectory lens from the evaluate article. Clusters with evaluate-agents, deploy-in-production, human-in-the-loop, governance."
+      "note": "Sunday feed research 2026-08-30. The after-launch companion to evaluate-agents (08-27, offline test) and deploy-in-production (08-26): once an agent is live, how you watch it — traces of every tool call, per-step latency and token cost, failure/loop detection. Sourceable this run — LangSmith (LangChain-native tracing/eval), Langfuse (self-host, ClickHouse), MLflow (open-source), OpenTelemetry GenAI semantic conventions, OpenAI Agents SDK tracing. See-the-path framing reuses the answer-vs-trajectory lens from the evaluate article. Clusters with evaluate-agents, deploy-in-production, human-in-the-loop, governance. Used 2026-08-31 → content/news/2026-08-31-ai-agent-observability-en.mdx (+zh). Traces-not-logs + five-signals framing; sources: OpenTelemetry GenAI semantic conventions, Langfuse (OSS self-host), Galileo monitoring guide, oneuptime distributed-tracing how-to, Issue #001."
     },
     {
       "term": "AI agent workflow templates",

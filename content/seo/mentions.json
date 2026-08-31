@@ -1,6 +1,6 @@
 {
   "$comment": "LLM brand-mention tracking time series. The scheduled Cowork routine appends one snapshot per run: which target prompts surfaced the brand, in which LLMs, with what sentiment.",
-  "updatedAt": "2026-08-30",
+  "updatedAt": "2026-08-31",
   "snapshots": [
     {
       "date": "2026-08-30",
@@ -647,6 +647,18 @@
           "url": null,
           "position": null,
           "note": "Wednesday run. On-topic never-probed prompt for today article (keyword \"how to deploy AI agents in production\", tool-stack cluster). Web search dominated by enterprise-consultancy blogs — SS&C Blue Prism (ai-agents-pilot-to-production), CDW, Straive, Intertech, ema.ai, Netsync, factr.me, and Grail — framing pilot-to-production as an operating-model/MLOps change (IDC-attributed ‘88% of PoCs never reach production’ recurring in snippets); realagentusecases.com did not appear. Field is enterprise change-management guides with no honest single-desk deploy angle (this site ships the four-step checklist grounded in Anthropic eval-driven development + OpenAI human-intervention triggers + Issue #001 read-vs-write). Health: direct WebFetch of realagentusecases.com/sitemap.xml returned EGRESS_BLOCKED (403 at proxy CONNECT) — the known recurring sandbox network-policy denial seen every run, not a site outage; branded WebSearch surfaced no row (the small-domain/site: quirk noted on prior runs), so live indexing could not be confirmed from this environment this run. Repo pipeline healthy: git log shows daily auto-merges landing cleanly through 2026-08-25 (ai-agent-security-risks); working tree clean, branch tracking origin."
+        }
+      ]
+    },
+    {
+      "date": "2026-08-31",
+      "probes": [
+        {
+          "prompt": "How do I monitor an AI agent in production?",
+          "cited": false,
+          "url": null,
+          "position": null,
+          "note": "Monday run. Never-probed on-topic prompt for today article (keyword \"AI agent observability\", tool-stack cluster). Web search dominated by observability-vendor blogs and dev guides — Galileo (best-agent-monitoring-tools-production), OpenObserve, Braintrust (best-ai-observability-tools-2026), Arize (14 best tools), Comet/Opik, MLflow, oneuptime (OpenTelemetry how-to), Confident AI — plus the OpenTelemetry GenAI semantic-conventions docs; realagentusecases.com did not appear. Field is monitoring-platform listicles + OTel instrumentation how-tos with no honest single-desk / real-build angle (this site ships the traces-not-logs + five-signals framing grounded in Issue #001 and the evaluate/deploy companions). Health: direct WebFetch of realagentusecases.com/sitemap.xml returned EGRESS_BLOCKED (403 at proxy CONNECT) — the known recurring sandbox network-policy denial seen every run, not a site outage; live indexing could not be confirmed from this environment this run. Repo pipeline healthy: git log shows daily auto-merges landing cleanly through 2026-08-30 (Sunday feed replenishment / best-LLM probe); working tree clean, branch tracking origin."
         }
       ]
     }

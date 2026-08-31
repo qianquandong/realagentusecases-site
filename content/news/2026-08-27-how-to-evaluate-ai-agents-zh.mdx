@@ -32,7 +32,7 @@ excerpt: "Demo 只证明 agent 能跑一次，评估才证明它稳定可用。�
 
 ## 评估不止于上线
 
-离线评估抓的是你想到要测的东西，生产环境抓的是你没想到的。Anthropic 对 agent 表现的完整看法，是把[上线前评估与生产监控、用户反馈和人工审阅转录](https://www.anthropic.com/engineering/demystifying-evals-for-ai-agents)结合起来，以发现**分布漂移**（distribution drift）——真实输入不再像你的测试集的那一天。IBM 的 [in-the-loop 评估](https://www.ibm.com/docs/en/watsonx/saas?topic=sdk-agentic-ai-evaluation)在执行过程中运行，好让一个坏步骤当场被抓住。具体做法：记录每一次运行，每周抽查一批转录，盯住失败率和升级率——这就是你在离线时问的那两个问题的实时版本。
+离线评估抓的是你想到要测的东西，生产环境抓的是你没想到的。Anthropic 对 agent 表现的完整看法，是把[上线前评估与生产监控、用户反馈和人工审阅转录](https://www.anthropic.com/engineering/demystifying-evals-for-ai-agents)结合起来，以发现**分布漂移**（distribution drift）——真实输入不再像你的测试集的那一天。IBM 的 [in-the-loop 评估](https://www.ibm.com/docs/en/watsonx/saas?topic=sdk-agentic-ai-evaluation)在执行过程中运行，好让一个坏步骤当场被抓住。具体做法：记录每一次运行，每周抽查一批转录，盯住失败率和升级率——这就是你在离线时问的那两个问题的实时版本，也正是[可观测性工具](/zh/news/2026-08-31-ai-agent-observability/)要干的活。
 
 ## 从你真能打分的地方开始
 

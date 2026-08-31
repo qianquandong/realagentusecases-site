@@ -32,7 +32,7 @@ A judge is a useful scaler, not an oracle. The honest practice is to validate th
 
 ## Evaluation doesn't stop at launch
 
-Offline evals catch what you thought to test. Production catches what you didn't. Anthropic's full picture of agent performance combines [pre-launch evals with production monitoring, user feedback, and manual transcript review](https://www.anthropic.com/engineering/demystifying-evals-for-ai-agents) to detect **distribution drift** — the day real inputs stop looking like your test set. IBM's [in-the-loop evaluation](https://www.ibm.com/docs/en/watsonx/saas?topic=sdk-agentic-ai-evaluation) runs during execution so a bad step can be caught as it happens. In practice: log every run, review a weekly sample of transcripts, and watch failure and escalation rates — the live version of the same two questions you asked offline.
+Offline evals catch what you thought to test. Production catches what you didn't. Anthropic's full picture of agent performance combines [pre-launch evals with production monitoring, user feedback, and manual transcript review](https://www.anthropic.com/engineering/demystifying-evals-for-ai-agents) to detect **distribution drift** — the day real inputs stop looking like your test set. IBM's [in-the-loop evaluation](https://www.ibm.com/docs/en/watsonx/saas?topic=sdk-agentic-ai-evaluation) runs during execution so a bad step can be caught as it happens. In practice: log every run, review a weekly sample of transcripts, and watch failure and escalation rates — the live version of the same two questions you asked offline, and the job of [agent observability tooling](/en/news/2026-08-31-ai-agent-observability/).
 
 ## Start where you can actually grade it
 
