@@ -1,0 +1,56 @@
+---
+title: "How to Build an AI Agent: A Practical Starter Guide"
+date: "2026-09-01"
+excerpt: "Building an AI agent is less about the model than picking one real job, wiring good tools, and gating risky actions. Here is the honest starter path."
+---
+
+Building an AI agent means giving a language model a clear job, the tools to do it, and guardrails on the risky parts — then testing it against real examples before you trust it. Start with the simplest version that works, keep the scope to one workflow, and add autonomy only when a simpler design falls short.
+
+Most "how to build an AI agent" guides jump straight to frameworks and multi-agent diagrams. The teams whose agents actually survive contact with real work do the opposite: they pick one narrow task, wire good tools, guard the edges, and measure everything. This guide is that path — grounded in the two best primary sources on the subject and one real build from this site.
+
+## First, decide whether you even need an agent
+
+The most useful advice in [Anthropic's *Building Effective Agents*](https://www.anthropic.com/engineering/building-effective-agents) is a warning: find the simplest solution possible, and only increase complexity when needed. Anthropic draws a sharp line between a **workflow** — an LLM and tools orchestrated through predefined code paths — and an **agent**, where the LLM dynamically directs its own process and tool use. Agents trade latency and cost for flexibility, so you should reach for one only when the task genuinely needs model-driven decisions at each step. A fixed sequence of steps is a workflow, and a workflow is cheaper, faster, and easier to debug. If a hard-coded pipeline solves your problem, build that instead.
+
+## The four parts of any agent
+
+OpenAI's [*A Practical Guide to Building Agents*](https://openai.com/business/guides-and-resources/a-practical-guide-to-building-ai-agents/) reduces an agent to three core pieces you configure: the **model** (the LLM doing the reasoning), the **tools** (the APIs and functions it can call to act), and the **instructions** (explicit guidelines and guardrails for how it behaves). In practice a fourth part matters just as much — **memory**, or what the agent carries between steps and runs. Get these four right for one task and you have a working agent; most "it doesn't work" problems trace back to vague instructions or a missing tool, not the model.
+
+## A build path that actually ships
+
+Here is the order that keeps you out of trouble.
+
+**1. Write the job in one sentence.** Not "an agent for email" but "an agent that drafts replies to shipping-status questions and leaves everything else alone." A tight scope is what makes every later step — evals, guardrails, monitoring — possible. The [Gmail triage agent in Issue #001](/en/posts/2026-05-13-gmail-ai-agent/) is exactly this: one bounded job, built by a real person on a real inbox.
+
+**2. Pick the smallest stack that does it.** You don't need a framework to start. If you can write basic Python, a single model call in a loop with two or three tools is a working agent. If you can't, a [no-code builder](/en/news/2026-07-08-no-code-ai-agent-tools/) gets you the same four parts through a drag-and-drop UI. Anthropic's own guidance is that the most successful implementations use simple, composable patterns rather than complex frameworks — so add abstraction only when a concrete pain forces it.
+
+**3. Give it real tools, described clearly.** An agent is only as capable as the tools you hand it, and only as reliable as their descriptions. Spend the same care on a tool's name, inputs, and docstring that you'd spend on a prompt — the model reads them to decide what to call. Connect the minimum set the one job needs; every extra tool is another way to go wrong.
+
+**4. Gate the irreversible actions.** OpenAI describes guardrails as a [layered defense](https://openai.com/business/guides-and-resources/a-practical-guide-to-building-ai-agents/) — you stack relevance filters, safety classifiers, and access controls rather than trusting any single check. And it names two clear triggers for [human intervention](https://developers.openai.com/api/docs/guides/agents/guardrails-approvals): the agent exceeding a failure or retry limit, and any high-risk, sensitive, or irreversible action. Anything that sends, pays, publishes, or deletes stays behind a human gate until the agent has earned trust on that specific action — the core idea behind [agent guardrails for business](/en/news/2026-08-29-ai-agent-guardrails-for-business/).
+
+**5. Test against real examples before you trust it.** Collect 20–50 real past cases with known-good outcomes and run the agent against them every time you change a prompt or a tool. This is how you catch the "small tweak" that quietly broke a case that used to work — the full method is in [how to evaluate an AI agent](/en/news/2026-08-27-how-to-evaluate-ai-agents/). Passing evals is also your signal that the agent is ready to [move from a demo to production](/en/news/2026-08-26-how-to-deploy-ai-agents-in-production/).
+
+## Start where a mistake is cheap
+
+The safest first agent is one that *drafts* rather than sends, *suggests* rather than acts, *flags* rather than deletes. You get real inputs and a transcript history to build trust — without any single failure costing you a customer. As the evals hold and the transcripts stay clean, you widen the scope one action at a time. Only when a single agent genuinely outgrows one job do you look at [splitting the work across several](/en/news/2026-08-15-ai-agent-orchestration/) — never on day one.
+
+## FAQ
+
+**How do I build an AI agent as a beginner?**
+Start with one clearly defined task, not a general assistant. Give a model the two or three tools that task needs, write plain instructions and guardrails, and put a human gate on anything irreversible. Test it against 20–50 real examples before trusting it. If you can't code, a [no-code builder](/en/news/2026-07-08-no-code-ai-agent-tools/) gives you the same parts through a visual UI.
+
+**Do I need a framework like LangChain or CrewAI to build an agent?**
+Not to start. [Anthropic's guidance](https://www.anthropic.com/engineering/building-effective-agents) is that the most successful implementations use simple, composable patterns rather than complex frameworks. A single model call in a loop with a few well-described tools is a real agent. Add a framework only when a concrete need — not a tutorial — forces it.
+
+**What's the difference between an AI agent and a workflow?**
+[Anthropic](https://www.anthropic.com/engineering/building-effective-agents) defines a workflow as an LLM and tools orchestrated through predefined code paths, and an agent as a system where the LLM dynamically directs its own process and tool use. Workflows are more predictable and cheaper; agents are more flexible. Use the simpler one your task allows.
+
+**What are the core components of an AI agent?**
+[OpenAI's guide](https://openai.com/business/guides-and-resources/a-practical-guide-to-building-ai-agents/) names three you configure: the model (reasoning), tools (how it acts), and instructions (how it behaves, including guardrails). In practice memory — what it carries between steps — is a fourth. Most failures trace back to vague instructions or a missing tool, not the model.
+
+**How do I keep an AI agent from doing something dangerous?**
+Layer your guardrails and gate irreversible actions. [OpenAI](https://developers.openai.com/api/docs/guides/agents/guardrails-approvals) recommends stacking relevance filters, safety classifiers, and access controls, and escalating to a human when the agent exceeds a retry limit or hits any high-risk, sensitive, or irreversible action. Keep anything that sends, pays, publishes, or deletes behind a human until it has earned that specific autonomy.
+
+---
+
+Every agent in this series was built the same way: one narrow job, gated writes, and a human who watches the transcripts until the agent earns more rope. Want the real builds — the exact scope each professional shipped, the tools they wired, and what they still approve by hand? [Subscribe free](/en/) and get each week's build in your inbox.

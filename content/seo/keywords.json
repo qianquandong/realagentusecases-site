@@ -1,6 +1,6 @@
 {
   "$comment": "SEO keyword feed — a living file. The scheduled Cowork routine ideates entries; scripts/seo/feeds.mjs persists them (dedupe + status + timestamps). intent: informational|commercial|transactional. funnel: TOFU|MOFU|BOFU. cluster: use-case|template|comparison|industry|tool-stack. status: new|used.",
-  "updatedAt": "2026-08-30",
+  "updatedAt": "2026-09-01",
   "keywords": [
     {
       "term": "AI agent use cases",
@@ -38,9 +38,9 @@
       "funnel": "MOFU",
       "cluster": "tool-stack",
       "locale": "both",
-      "status": "new",
+      "status": "used",
       "addedAt": "2026-05-14",
-      "note": "Core seed keyword; high competition — pair with a strong real build."
+      "note": "Published content/news/2026-09-01-how-to-build-an-ai-agent-{en,zh}.mdx — job-first starter guide grounded in Anthropic Building Effective Agents + OpenAI practical guide + Issue #001."
     },
     {
       "term": "how to build an AI agent without code",
