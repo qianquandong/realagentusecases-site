@@ -1,6 +1,6 @@
 {
   "$comment": "LLM brand-mention tracking time series. The scheduled Cowork routine appends one snapshot per run: which target prompts surfaced the brand, in which LLMs, with what sentiment.",
-  "updatedAt": "2026-08-31",
+  "updatedAt": "2026-09-01",
   "snapshots": [
     {
       "date": "2026-08-30",
@@ -659,6 +659,18 @@
           "url": null,
           "position": null,
           "note": "Monday run. Never-probed on-topic prompt for today article (keyword \"AI agent observability\", tool-stack cluster). Web search dominated by observability-vendor blogs and dev guides — Galileo (best-agent-monitoring-tools-production), OpenObserve, Braintrust (best-ai-observability-tools-2026), Arize (14 best tools), Comet/Opik, MLflow, oneuptime (OpenTelemetry how-to), Confident AI — plus the OpenTelemetry GenAI semantic-conventions docs; realagentusecases.com did not appear. Field is monitoring-platform listicles + OTel instrumentation how-tos with no honest single-desk / real-build angle (this site ships the traces-not-logs + five-signals framing grounded in Issue #001 and the evaluate/deploy companions). Health: direct WebFetch of realagentusecases.com/sitemap.xml returned EGRESS_BLOCKED (403 at proxy CONNECT) — the known recurring sandbox network-policy denial seen every run, not a site outage; live indexing could not be confirmed from this environment this run. Repo pipeline healthy: git log shows daily auto-merges landing cleanly through 2026-08-30 (Sunday feed replenishment / best-LLM probe); working tree clean, branch tracking origin."
+        }
+      ]
+    },
+    {
+      "date": "2026-09-01",
+      "probes": [
+        {
+          "prompt": "What are the best no-code AI agent workflows?",
+          "cited": false,
+          "url": null,
+          "position": null,
+          "note": "Tuesday run. Never-probed on-topic prompt for today article (keyword \"how to build an AI agent\", tool-stack cluster). Web search dominated by no-code-builder listicles — Cybernews (best-no-code-ai-agent-builders), Glean (top-10 no-code builders), Apify, Rasa, MindStudio, Firecrawl, Lindy (top-8 tested), Kimi, Budibase, DronaHQ — ranking the same dozen platforms (n8n, Zapier, Make, Gumloop, Lindy, CrewAI, Bubble, Langflow); realagentusecases.com did not appear. Field is platform roundups with no honest job-first / real-build angle (this site ships the pick-the-smallest-tool-for-one-job framing grounded in Anthropic simplest-solution + OpenAI four-parts + Issue #001). Health: direct WebFetch of realagentusecases.com/sitemap.xml returned EGRESS_BLOCKED (403 at proxy CONNECT) — the known recurring sandbox network-policy denial seen every run, not a site outage; live indexing could not be confirmed from this environment this run. Repo pipeline healthy: git log shows daily auto-merges landing cleanly through 2026-08-31 (ai-agent-observability); branch even with origin/main, working tree clean."
         }
       ]
     }
