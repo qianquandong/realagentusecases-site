@@ -1,0 +1,59 @@
+---
+title: "Agentic Commerce: When Your Agent Can Pay"
+date: "2026-09-02"
+excerpt: "Agentic commerce is AI agents that discover, decide, and pay for you. Here is what it actually is in 2026 — and the one step that stays yours: the payment."
+---
+
+Agentic commerce is online shopping where an AI agent does the work — it discovers products, compares options, and can complete the purchase on your behalf. In 2026 it went live inside ChatGPT and across the card networks. The agent handles discovery and checkout; you keep spend authority. The payment is the gate.
+
+The phrase sounds like a demo, but the plumbing is real and shipping. What matters for anyone running agents at a desk isn't the hype — it's the same question this site asks of every agent: which steps does it do on its own, and which one stays yours? For agentic commerce that line is unusually sharp, because the step in question is money leaving your account.
+
+## What agentic commerce actually is
+
+Agentic commerce is a shopping model where an AI agent acts on a person's behalf — researching products, comparing options, building a cart, and sometimes completing the purchase — rather than just recommending and leaving you to click. [Stripe's guide](https://stripe.com/guides/agentic-commerce) frames it as commerce that happens where you're already talking to an agent, and [Mastercard's explainer](https://www.mastercard.com/us/en/news-and-trends/stories/2025/agentic-commerce-explainer.html) is blunt about the mechanic: you tell an agent what you want, it evaluates the options and presents them, and once you approve, it completes the purchase. It's the buying edge of the same shift that separates [an agent from a chatbot](/en/news/2026-08-12-ai-agent-vs-chatbot/) — a chatbot answers "what should I buy?"; an agent can go and buy it.
+
+## What actually went live in 2026
+
+This stopped being theoretical when the checkout itself became agent-ready.
+
+**Inside ChatGPT.** OpenAI launched [Instant Checkout in ChatGPT](https://openai.com/index/buy-it-in-chatgpt/) — US shoppers can buy from US Etsy sellers and, rolling out, from over a million Shopify merchants (Glossier, Vuori, SKIMS, Spanx) directly in the chat. It runs on the [Agentic Commerce Protocol](https://stripe.com/newsroom/news/stripe-openai-instant-checkout), an open standard OpenAI co-developed with Stripe so any business can make its checkout agent-ready. The payment piece is a **Shared Payment Token** — per [Stripe](https://stripe.com/newsroom/news/stripe-openai-instant-checkout), a primitive that lets an app like ChatGPT initiate a charge *without* being handed your raw card credentials.
+
+**On the card rails.** The networks are building the layer underneath. Visa's [Intelligent Commerce](https://investor.visa.com/news/news-details/2026/Visa-Announces-New-AI-Stablecoin-and-Token-Innovations-to-Power-Intelligent-Programmable-Commerce-at-Visa-Payments-Forum/default.aspx) issues tokenized credentials to AI agents with scoped permissions and spend controls, and Visa [announced a collaboration with OpenAI](https://www.digitalcommerce360.com/2026/06/12/visa-openai-agent-led-payments/) to support agent-led payments. Mastercard's Agent Pay does the parallel thing with agentic tokens that bind a credential to a specific agent and scope. The point of all of it: a way to prove *this* agent was authorized to spend, up to *this* limit, at *these* merchants.
+
+## The one step that stays yours: the payment
+
+Everything up to the purchase is reversible or harmless — a wrong recommendation costs you nothing. The purchase is not: money moves, and clawing it back is work. That makes agentic commerce the textbook case for the rule this site keeps returning to — [gate the irreversible, let the reversible run](/en/news/2026-08-13-human-in-the-loop-ai-agents/).
+
+The serious players design exactly this way. [Mastercard](https://www.mastercard.com/us/en/news-and-trends/stories/2025/agentic-commerce-explainer.html) says you decide the level of autonomy you grant — whether the agent can buy outright or must ask before each purchase. [Adyen](https://www.adyen.com/knowledge-hub/agentic-commerce-control) describes the control layer as signed *mandates* that record what the user authorized — spend limits, merchant permissions, usage constraints — and routes any action above a spending threshold to a human before it executes. That's a [human-in-the-loop gate](/en/news/2026-08-13-human-in-the-loop-ai-agents/) with a wallet attached.
+
+It's also why the [security risks of AI agents](/en/news/2026-08-25-ai-agent-security-risks/) get sharper here. An agent that can pay is the definition of high agency, so the two things that make any agent dangerous — untrusted input and the power to act — now end in a transaction. A prompt-injected shopping agent with an unbounded budget is a real threat model, not a hypothetical; the spend cap and the consent scope are what contain it.
+
+## Two jobs, one gate
+
+The clean way to think about a shopping agent is the same two-jobs split every use-case guide on this site draws — the one behind [Issue #001's Gmail agent](/en/posts/2026-05-13-gmail-ai-agent/), which sorts and drafts all day but lets a human press send:
+
+- **Job 1 — surface and compare.** Find the options, check prices and stock, build the cart, explain the trade-offs. Reversible, low-stakes, safe to automate fully.
+- **Job 2 — pay.** Move the money. Irreversible, high-stakes — the step that keeps a human, a spend limit, or an explicit per-purchase approval in front of it.
+
+For consequential or one-off buys, keep Job 2 behind your approval. For genuinely routine, low-value, repeat purchases — the household re-order — a bounded budget and a tight merchant scope can let the agent complete it, with the mandate as your audit trail. The dial is yours; the design principle is that the size of the gate should match the size of the mistake.
+
+## FAQ
+
+**What is agentic commerce?**
+It's online shopping where an AI agent acts for you — discovering products, comparing options, building a cart, and sometimes completing the purchase — instead of just recommending. [Stripe](https://stripe.com/guides/agentic-commerce) and [Mastercard](https://www.mastercard.com/us/en/news-and-trends/stories/2025/agentic-commerce-explainer.html) describe the same flow: the agent does the legwork and, once you approve, checks out on your behalf.
+
+**Can an AI agent actually buy things for me?**
+Yes. [OpenAI's Instant Checkout](https://openai.com/index/buy-it-in-chatgpt/) lets ChatGPT complete purchases from Etsy sellers and Shopify merchants in the chat, and Visa's [Intelligent Commerce](https://investor.visa.com/news/news-details/2026/Visa-Announces-New-AI-Stablecoin-and-Token-Innovations-to-Power-Intelligent-Programmable-Commerce-at-Visa-Payments-Forum/default.aspx) and Mastercard's Agent Pay issue the payment credentials that let a verified agent transact under set limits. You choose whether it buys outright or asks first.
+
+**Is it safe to let an AI agent pay for things?**
+It can be, if the payment stays bounded. The rule is a [human-in-the-loop gate](/en/news/2026-08-13-human-in-the-loop-ai-agents/) on the irreversible step: a spend limit, a merchant scope, and per-purchase approval for anything consequential. [Adyen](https://www.adyen.com/knowledge-hub/agentic-commerce-control) builds this as signed mandates that cap spend and route large actions to a human. An unbounded budget on an agent that reads untrusted input is the real [security risk](/en/news/2026-08-25-ai-agent-security-risks/).
+
+**How does an agent pay without exposing my card number?**
+Through tokenized credentials. OpenAI and Stripe use a [Shared Payment Token](https://stripe.com/newsroom/news/stripe-openai-instant-checkout) that lets the agent initiate a charge without seeing your raw card details, and the card networks issue scoped agent tokens that work only within the limits you set. The credential proves the agent was authorized without handing it your account.
+
+**What's the Agentic Commerce Protocol?**
+It's the open standard [OpenAI co-developed with Stripe](https://stripe.com/newsroom/news/stripe-openai-instant-checkout) that defines how agents, buyers, and businesses exchange the steps of a purchase, so any merchant can make its checkout "agent-ready" rather than each AI platform building a bespoke integration. It's the commerce equivalent of a shared connector standard.
+
+---
+
+Every agent worth running follows the same discipline: it does the work and stops before the step you can't take back. Want the real builds — the exact jobs each professional automates and the ones they still approve by hand? [Subscribe free](/en/) and get each week's build in your inbox.

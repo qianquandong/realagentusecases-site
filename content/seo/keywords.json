@@ -1,6 +1,6 @@
 {
   "$comment": "SEO keyword feed — a living file. The scheduled Cowork routine ideates entries; scripts/seo/feeds.mjs persists them (dedupe + status + timestamps). intent: informational|commercial|transactional. funnel: TOFU|MOFU|BOFU. cluster: use-case|template|comparison|industry|tool-stack. status: new|used.",
-  "updatedAt": "2026-09-01",
+  "updatedAt": "2026-09-02",
   "keywords": [
     {
       "term": "AI agent use cases",
@@ -712,9 +712,9 @@
       "funnel": "TOFU",
       "cluster": "comparison",
       "locale": "both",
-      "status": "new",
+      "status": "used",
       "addedAt": "2026-08-30",
-      "note": "Sunday feed research 2026-08-30. THE new 2026 category: AI agents that discover, decide, and pay on a person's behalf. Strong primary/reporting sources verified this run — Visa + OpenAI tokenized agent-led payments inside ChatGPT and Codex (announced Jun 10 2026, digitalcommerce360.com/2026/06/12/visa-openai-agent-led-payments), Mastercard Agent Pay + Agentic Tokens (tokenized credential bound to agent/merchant/consent scope, Apr 2025), OpenAI ChatGPT Instant Checkout on the open Agentic Commerce Protocol built with Stripe (1M+ Shopify merchants live; Walmart/Target announced), Amazon 'Buy for Me'. Explainer/comparison angle for professionals: what agentic checkout actually is + the human-stays line (spend authority / consent scope / the irreversible payment = the gate). Head term over the new e-commerce cluster; clusters with human-in-the-loop (the gate on payments), ai-agent-vs-chatbot (act-not-talk), and security-risks (agent with a wallet)."
+      "note": "Used 2026-09-02 → content/news/2026-09-02-agentic-commerce (en+zh), title \"Agentic Commerce: When Your Agent Can Pay\". Explainer/comparison head over the new e-commerce cluster: what agentic checkout is + the two-jobs split (surface-and-compare = automate; pay = the irreversible gate). Grounded in OpenAI Instant Checkout + Agentic Commerce Protocol (Stripe Shared Payment Token, 1M+ Shopify merchants + Etsy), Visa Intelligent Commerce (tokenized agent credentials + spend controls) + Visa×OpenAI agent-led payments (digitalcommerce360), Mastercard agentic-commerce explainer/Agent Pay, and Adyen mandates/spend-limit control. Wove a reciprocal link in from the human-in-the-loop guide (en+zh). GEO-probed same day (prompt \"What is agentic commerce and can AI agents buy things for me?\"): not cited."
     },
     {
       "term": "AI shopping agents",
