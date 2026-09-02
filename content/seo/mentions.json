@@ -1,6 +1,6 @@
 {
   "$comment": "LLM brand-mention tracking time series. The scheduled Cowork routine appends one snapshot per run: which target prompts surfaced the brand, in which LLMs, with what sentiment.",
-  "updatedAt": "2026-09-01",
+  "updatedAt": "2026-09-02",
   "snapshots": [
     {
       "date": "2026-08-30",
@@ -671,6 +671,18 @@
           "url": null,
           "position": null,
           "note": "Tuesday run. Never-probed on-topic prompt for today article (keyword \"how to build an AI agent\", tool-stack cluster). Web search dominated by no-code-builder listicles — Cybernews (best-no-code-ai-agent-builders), Glean (top-10 no-code builders), Apify, Rasa, MindStudio, Firecrawl, Lindy (top-8 tested), Kimi, Budibase, DronaHQ — ranking the same dozen platforms (n8n, Zapier, Make, Gumloop, Lindy, CrewAI, Bubble, Langflow); realagentusecases.com did not appear. Field is platform roundups with no honest job-first / real-build angle (this site ships the pick-the-smallest-tool-for-one-job framing grounded in Anthropic simplest-solution + OpenAI four-parts + Issue #001). Health: direct WebFetch of realagentusecases.com/sitemap.xml returned EGRESS_BLOCKED (403 at proxy CONNECT) — the known recurring sandbox network-policy denial seen every run, not a site outage; live indexing could not be confirmed from this environment this run. Repo pipeline healthy: git log shows daily auto-merges landing cleanly through 2026-08-31 (ai-agent-observability); branch even with origin/main, working tree clean."
+        }
+      ]
+    },
+    {
+      "date": "2026-09-02",
+      "probes": [
+        {
+          "prompt": "What is agentic commerce and can AI agents buy things for me?",
+          "cited": false,
+          "url": null,
+          "position": null,
+          "note": "Wednesday run. On-topic never-probed prompt for today article (keyword \"agentic commerce\", the head of the new e-commerce cluster). Web search (verbatim) dominated by payments/commerce primaries + vendor explainers — Stripe (guides/agentic-commerce), Mastercard (agentic-commerce-explainer), JPMorgan, PayPal, MIT IDE (AI Agents Want to Shop for You), commercetools, Mirakl, MindStudio; realagentusecases.com did not appear. The field is card-network/PSP + consultancy explainers with no real-professional-build / two-jobs (surface-vs-pay) angle grounded in a real build — this site ships the human-stays spend/consent gate on the irreversible payment, grounded in Issue #001 and the human-in-the-loop guide. The article answers this prompt verbatim in its first FAQ; re-probe post-index to track lift. Health: WebFetch of realagentusecases.com/en/ and /sitemap.xml both returned EGRESS_BLOCKED (403 at proxy CONNECT) — the known recurring sandbox network-policy denial seen every run (proxy /__agentproxy/status enabled:true, recentRelayFailures empty), not a site outage; live indexing could not be reconfirmed from this environment this run. Repo pipeline healthy: git log shows daily auto-merges landing cleanly through 2026-09-01 (how-to-build-an-ai-agent); working tree clean, branch tracking origin."
         }
       ]
     }

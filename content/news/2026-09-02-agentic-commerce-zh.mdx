@@ -1,0 +1,59 @@
+---
+title: "Agentic Commerce：当 agent 能替你付款"
+date: "2026-09-02"
+excerpt: "Agentic commerce 就是能替你挑选、决策、付款的 AI agent。这篇讲清楚它在 2026 年到底是什么，以及唯一必须留给你自己的那一步：付款。"
+---
+
+Agentic commerce（代理式消费）指的是：AI agent 替你干活的网购——它发现商品、比较选项，还能代你完成购买。2026 年，它已经在 ChatGPT 里、在各大卡组织的支付网络上真正上线。发现和结账交给 agent，花钱的权力留给你。付款，就是那道关卡。
+
+这个词听起来像 demo，但底层的管道是真实的，而且已经在跑。对任何在自己桌面上跑 agent 的人来说，重点不是炒作，而是本站对每个 agent 都会问的那个问题：哪些步骤它自己做，哪一步留给你？对 agentic commerce 来说，这条线格外清晰——因为那一步，是钱离开你的账户。
+
+## Agentic commerce 到底是什么
+
+Agentic commerce 是一种购物模式：AI agent 代表一个人去干活——研究商品、比较选项、装购物车，有时还直接完成购买——而不只是给个推荐、剩下的你自己点。[Stripe 的指南](https://stripe.com/guides/agentic-commerce)把它描述成「发生在你已经在和 agent 对话的地方」的消费，[Mastercard 的解释](https://www.mastercard.com/us/en/news-and-trends/stories/2025/agentic-commerce-explainer.html)则把机制说得很直白：你告诉 agent 你想要什么，它评估选项并呈现给你，一旦你批准，它就代你完成购买。这正是 [agent 和 chatbot 的区别](/zh/news/2026-08-12-ai-agent-vs-chatbot/)的购买那一端——chatbot 回答「我该买什么」，agent 能直接去买。
+
+## 2026 年到底上线了什么
+
+当结账本身变得「agent-ready」，这件事就不再是纸上谈兵。
+
+**在 ChatGPT 里。** OpenAI 推出了 [ChatGPT 的 Instant Checkout](https://openai.com/index/buy-it-in-chatgpt/)——美国用户可以直接在对话里向美国 Etsy 卖家、以及正在铺开的一百多万家 Shopify 商户（Glossier、Vuori、SKIMS、Spanx）下单。它跑在 [Agentic Commerce Protocol](https://stripe.com/newsroom/news/stripe-openai-instant-checkout) 上——这是 OpenAI 与 Stripe 联合开发的开放标准，让任何商家都能把结账做成 agent 可用。支付那一块靠的是 **Shared Payment Token**：据 [Stripe](https://stripe.com/newsroom/news/stripe-openai-instant-checkout)，这是一种让 ChatGPT 这类应用发起扣款、却*不*拿到你原始卡号的支付原语。
+
+**在卡组织的网络上。** 各大网络在铺底层。Visa 的 [Intelligent Commerce](https://investor.visa.com/news/news-details/2026/Visa-Announces-New-AI-Stablecoin-and-Token-Innovations-to-Power-Intelligent-Programmable-Commerce-at-Visa-Payments-Forum/default.aspx) 向 AI agent 发放带权限范围和额度控制的令牌化凭证，Visa 还[宣布与 OpenAI 合作](https://www.digitalcommerce360.com/2026/06/12/visa-openai-agent-led-payments/)支持 agent 发起的支付。Mastercard 的 Agent Pay 用「代理令牌」做同样的事——把凭证绑定到特定 agent 和特定范围上。所有这些的目的只有一个：证明*这个* agent 被授权花钱，额度是*这么多*，只能在*这些*商户。
+
+## 唯一留给你自己的一步：付款
+
+购买之前的一切都是可逆或无害的——推荐错了，你一分钱都没损失。购买不是：钱动了，追回来得费力。这让 agentic commerce 成为本站反复强调那条规则的教科书案例——[给不可逆的动作加关卡，可逆的放行](/zh/news/2026-08-13-human-in-the-loop-ai-agents/)。
+
+认真做这件事的玩家正是这么设计的。[Mastercard](https://www.mastercard.com/us/en/news-and-trends/stories/2025/agentic-commerce-explainer.html) 说，你来决定授予多大的自主权——agent 是能直接买，还是每次购买前都得先问你。[Adyen](https://www.adyen.com/knowledge-hub/agentic-commerce-control) 把这套控制层描述为「签名的授权凭据（mandates）」，记录用户到底授权了什么——额度、商户权限、使用约束——并把任何超过额度阈值的动作在执行前先转给人。那就是一个带钱包的[人在回路关卡](/zh/news/2026-08-13-human-in-the-loop-ai-agents/)。
+
+这也是为什么 [AI agent 的安全风险](/zh/news/2026-08-25-ai-agent-security-risks/)在这里更尖锐。一个能付款的 agent，就是高自主权的定义——于是让任何 agent 变危险的那两样东西（读取不可信输入 + 能动手），如今终点变成了一笔交易。一个被提示注入、又没有预算上限的购物 agent，是真实的威胁模型，不是假想；额度上限和授权范围，正是把它关住的东西。
+
+## 两份活，一道关卡
+
+想清楚一个购物 agent，最干净的办法还是本站每篇用例都在画的那个「两份活」拆分——就是 [Issue #001 的 Gmail agent](/zh/posts/2026-05-13-gmail-ai-agent/) 背后那条：它整天分拣、起草，但让人来按下发送键：
+
+- **活儿一——发现与比较。** 找选项、查价格和库存、装购物车、讲清取舍。可逆、低风险，可以完全自动化。
+- **活儿二——付款。** 把钱动了。不可逆、高风险——这一步前面要留一个人、一个额度上限，或者一次明确的逐笔批准。
+
+对有后果的、一次性的购买，把活儿二留在你的批准后面。对真正日常、低价、重复的采购——比如家用品补货——一个有上限的预算加一个收紧的商户范围，可以让 agent 直接完成，授权凭据就是你的审计记录。旋钮握在你手里；设计原则是：关卡的大小，要配得上出错的代价。
+
+## FAQ
+
+**什么是 agentic commerce？**
+就是 AI agent 替你操作的网购——发现商品、比较选项、装购物车，有时直接完成购买，而不只是给推荐。[Stripe](https://stripe.com/guides/agentic-commerce) 和 [Mastercard](https://www.mastercard.com/us/en/news-and-trends/stories/2025/agentic-commerce-explainer.html) 描述的是同一套流程：agent 干跑腿的活，一旦你批准，就代你结账。
+
+**AI agent 真的能替我买东西吗？**
+能。[OpenAI 的 Instant Checkout](https://openai.com/index/buy-it-in-chatgpt/) 让 ChatGPT 直接在对话里从 Etsy 卖家和 Shopify 商户完成购买，Visa 的 [Intelligent Commerce](https://investor.visa.com/news/news-details/2026/Visa-Announces-New-AI-Stablecoin-and-Token-Innovations-to-Power-Intelligent-Programmable-Commerce-at-Visa-Payments-Forum/default.aspx) 和 Mastercard 的 Agent Pay 则发放支付凭证，让经过验证的 agent 在设定额度内交易。是直接买还是先问你，由你决定。
+
+**让 AI agent 付款安全吗？**
+只要付款被限定住，就可以。规则是在不可逆那一步加[人在回路关卡](/zh/news/2026-08-13-human-in-the-loop-ai-agents/)：一个额度上限、一个商户范围，以及对任何有后果的购买做逐笔批准。[Adyen](https://www.adyen.com/knowledge-hub/agentic-commerce-control) 就是用签名的授权凭据来做这件事——封顶额度、把大额动作转给人。给一个会读取不可信输入的 agent 配上没有上限的预算，才是真正的[安全风险](/zh/news/2026-08-25-ai-agent-security-risks/)。
+
+**agent 怎么在不暴露我卡号的情况下付款？**
+靠令牌化凭证。OpenAI 和 Stripe 用 [Shared Payment Token](https://stripe.com/newsroom/news/stripe-openai-instant-checkout)，让 agent 发起扣款而看不到你的原始卡信息；卡组织则发放带范围限制的 agent 令牌，只在你设定的额度内有效。凭证证明 agent 被授权，而不用把你的账户交给它。
+
+**Agentic Commerce Protocol 是什么？**
+它是 [OpenAI 与 Stripe 联合开发](https://stripe.com/newsroom/news/stripe-openai-instant-checkout)的开放标准，定义 agent、买家和商家之间如何交换一笔购买的各个步骤，让任何商家都能把结账做成「agent 可用」，而不必为每个 AI 平台各做一套对接。它相当于消费领域的一个通用连接标准。
+
+---
+
+每个值得跑的 agent 都遵循同一条纪律：把活儿干完，在你收不回来的那一步之前停下。想看真实的搭建——每位专业人士到底把哪些活儿自动化、哪些还留着自己手动批准？[免费订阅](/zh/)，每周把一个真实搭建送进你的收件箱。
