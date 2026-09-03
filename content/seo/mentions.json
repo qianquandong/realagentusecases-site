@@ -1,7 +1,19 @@
 {
   "$comment": "LLM brand-mention tracking time series. The scheduled Cowork routine appends one snapshot per run: which target prompts surfaced the brand, in which LLMs, with what sentiment.",
-  "updatedAt": "2026-09-02",
+  "updatedAt": "2026-09-03",
   "snapshots": [
+    {
+      "date": "2026-09-03",
+      "probes": [
+        {
+          "prompt": "What AI agents can help an online store?",
+          "cited": false,
+          "url": null,
+          "position": null,
+          "note": "Thursday run. On-topic commerce-cluster probe the day the buyer-side 'AI shopping agents' article ships (keyword 'AI shopping agents', recommend-vs-buy). This never-probed e-commerce prompt is merchant-leaning while today's article is buyer-side, but both sit in the agentic-commerce cluster; picked as the least-recently-probed commerce prompt (the buyer-side 'What is agentic commerce and can AI agents buy things for me?' was probed 09-02). Web search (verbatim) dominated by constructor.com (AI Shopping Agent), chatbot.com (AI Agent for Ecommerce), hellorep.ai (AI Shopping Agents 2026 guide), NVIDIA blog (Nemotron — how AI agents enhance online shopping), eesel.ai (5 best shopping-assistant platforms), CBS News (AI agents can do your shopping — should you let them?), Cognigy, BigCommerce; realagentusecases.com did not appear — the field is ecommerce-CX vendors + shopping-assistant listicles with no independent recommend-vs-buy / keep-the-buy-gated angle grounded in a real build, this site's gap to own. Source-research gate passed with 5 reliable sources + Issue #001: OpenAI's Buy-it-in-ChatGPT page (openai.com/index/buy-it-in-chatgpt), CNBC on Amazon's Rufus→Alexa-for-Shopping agent + Buy for Me (cnbc.com/2026/05/13), 9to5Google on Google's 'Buy for me' agentic checkout + Google Pay + Shopping Graph (9to5google.com/2025/11/13/google-agentic-shopping), CNBC on Perplexity Buy with Pro (cnbc.com/2025/11/19), CBS News consumer-consent framing. Health: WebFetch of realagentusecases.com/en/ and /sitemap.xml both returned EGRESS_BLOCKED (403 at proxy CONNECT) — the known recurring sandbox network-policy denial seen every run, not a site outage; live indexing could not be reconfirmed from this environment this run (prior runs confirmed a live indexed page at /en/news/2026-05-14-claude-system-prompt-email-triage/, cited ~position 6 for the inbox-triage prompt on 08-17 — a standing GEO win). Repo pipeline healthy: local HEAD carries daily content through 09-02 (agentic-commerce); working tree clean, committing today's pair + feed updates on the designated branch for the auto-merge bot. Today's article is the consumer-facing use-case under the agentic-commerce head (09-02) — wove an upward link into its 'Two jobs, one gate' section (en+zh); clusters with human-in-the-loop (08-13), security-risks (08-25), agent-vs-chatbot (08-12)."
+        }
+      ]
+    },
     {
       "date": "2026-08-30",
       "probes": [
