@@ -1,0 +1,59 @@
+---
+title: "AI Shopping Agents: Recommend vs. Buy"
+date: "2026-09-03"
+excerpt: "AI shopping agents — ChatGPT, Amazon, Google, Perplexity — research and compare, and some can buy for you. Which does what, and the step to keep yours."
+---
+
+An AI shopping agent researches products, compares prices and options, and — with some — completes the purchase for you. In 2026 the mainstream ones are ChatGPT, Amazon's shopping assistant, Google's Gemini, and Perplexity. They split into two jobs: surfacing and comparing, which is safe to automate, and paying, which is the step to keep yours.
+
+This is the consumer-facing side of the shift covered in [agentic commerce](/en/news/2026-09-02-agentic-commerce/) — that guide is about the payment plumbing; this one is about the agents a shopper can actually open today, what each does, and how to use one without handing it your wallet. The dividing line is the same one this site draws for every agent: which steps it does on its own, and which one it has to ask you about first.
+
+## What an AI shopping agent actually does
+
+A shopping agent does two jobs, and they carry very different stakes:
+
+- **Surface and compare.** Understand what you're looking for in plain language, search across stores, check prices and stock, and lay out the trade-offs. A wrong recommendation costs you nothing — you just don't click. Safe to automate fully.
+- **Buy.** Add to cart, enter payment, place the order. Money moves and clawing it back is work. This is the irreversible step, and the one where a good agent keeps a human, a spend limit, or an explicit approval in front of it.
+
+That's the same split behind [an agent versus a chatbot](/en/news/2026-08-12-ai-agent-vs-chatbot/) — a chatbot answers "what should I buy?"; an agent can go and buy it. Everything below sorts each product into those two buckets.
+
+## The agents you can actually use in 2026
+
+**ChatGPT.** OpenAI's [Instant Checkout in ChatGPT](https://openai.com/index/buy-it-in-chatgpt/) lets US shoppers find products in the conversation and, for participating US Etsy sellers and Shopify merchants, complete the purchase without leaving the chat. The discovery and comparison run automatically; the buy is a confirmed step, and the payment is handled through a tokenized credential so ChatGPT never sees your raw card number (the plumbing is in the [agentic commerce guide](/en/news/2026-09-02-agentic-commerce/)).
+
+**Amazon.** Amazon folded its Rufus shopping assistant into a broader agentic shopping experience that, per [CNBC](https://www.cnbc.com/2026/05/13/amazon-ditches-rufus-ai-chatbot-in-favor-of-alexa-shopping-agent.html), can search, track prices, schedule recurring orders, and — through a "Buy for Me" feature — complete checkouts on other retailers' sites, with payment and returns routed back through your Amazon account. It's the most autonomous of the mainstream consumer agents, which is exactly why the spend and scope settings matter most here.
+
+**Google.** Google's Gemini and AI Mode surface products from Google's Shopping Graph and add an agentic checkout on top. As [9to5Google](https://9to5google.com/2025/11/13/google-agentic-shopping/) describes it, you can set a price to track, and when it drops Google shows a "Buy for me" button that adds the item to your cart on the merchant's own site and completes checkout with Google Pay — after you confirm the purchase details. Discovery is automatic; the buy waits for your tap.
+
+**Perplexity.** Perplexity's "Buy with Pro" lets Pro subscribers research and purchase in one place: the agent recommends products and, for merchant partners, offers one-click checkout using saved shipping and billing details, per [CNBC](https://www.cnbc.com/2025/11/19/perplexity-ai-online-shopping-paypal.html). Where instant checkout isn't available, it hands you off to the retailer's own site — a reminder that "shopping agent" today spans a spectrum from pure recommender to full buyer.
+
+Notice the pattern: every serious one automates the research and puts a confirmation, a saved-details step, or a price condition in front of the actual purchase. None of them just spends your money silently — and the ones that come closest (Amazon's autonomous reorders) are the ones that lean hardest on spend limits and account-level controls.
+
+## The one step to keep yours: the buy
+
+The reason the buy stays gated isn't caution for its own sake — it's that the purchase is the only irreversible action in the whole flow. This is the textbook case for the rule this site keeps returning to: [gate the irreversible, let the reversible run](/en/news/2026-08-13-human-in-the-loop-ai-agents/). Let the agent do all the searching and comparing it wants; keep a hand on the part where money leaves your account.
+
+Two settings do most of the work: a **spend limit** (the agent can't commit more than you allow) and a **scope** (which merchants and what kinds of purchase it's cleared for). For a one-off or expensive item, keep per-purchase approval on. For a genuinely routine, low-value repeat — the household re-order — a bounded budget and a tight merchant scope can let it run, with the order history as your audit trail. As [CBS News](https://www.cbsnews.com/news/ai-agentic-artificial-inteligence-what-is-it/) put it in weighing whether to let agents shop for you, the convenience is real but so is the loss of a deliberate "am I sure?" moment — the gate is how you put that moment back where it matters.
+
+It's also why the [security risks of an AI agent](/en/news/2026-08-25-ai-agent-security-risks/) get sharper the moment one can pay. An agent that reads untrusted input (product pages, reviews, seller messages) *and* can spend is high agency by definition, so a hidden instruction on a page becomes a real unauthorized purchase. The spend cap and merchant scope aren't just budgeting — they're what contains a prompt-injected shopping agent.
+
+## FAQ
+
+**What is an AI shopping agent?**
+It's an AI assistant that shops for you — it understands what you want in plain language, searches across stores, compares prices and options, and (with some) completes the purchase. The mainstream 2026 ones are ChatGPT's [Instant Checkout](https://openai.com/index/buy-it-in-chatgpt/), Amazon's shopping assistant, Google's Gemini, and Perplexity's Buy with Pro. They differ mostly in how far they go past recommending.
+
+**Can an AI agent actually buy things for me?**
+Yes. [Amazon's "Buy for Me"](https://www.cnbc.com/2026/05/13/amazon-ditches-rufus-ai-chatbot-in-favor-of-alexa-shopping-agent.html) completes checkouts on other retailers' sites, [Google's "Buy for me"](https://9to5google.com/2025/11/13/google-agentic-shopping/) adds an item to your cart and pays with Google Pay after you confirm, and ChatGPT and Perplexity offer in-app checkout with participating merchants. Most keep a confirmation or a saved-details step in front of the actual charge.
+
+**Is it safe to let an AI agent shop for me?**
+The research is safe; the buy is where to be careful. Keep the purchase behind a [human-in-the-loop gate](/en/news/2026-08-13-human-in-the-loop-ai-agents/) — a spend limit, a merchant scope, and per-purchase approval for anything consequential. An agent that can spend and also reads untrusted product pages is a real [security risk](/en/news/2026-08-25-ai-agent-security-risks/) without those bounds.
+
+**Which AI shopping agent should I use?**
+Match it to how much autonomy you actually want. For guided discovery inside a tool you already use, ChatGPT, Gemini, or Perplexity recommend well and let you confirm the buy. For hands-off reordering and price-watching, Amazon's agent goes furthest — so set its spend limits first. There's no single best; there's the one whose gate matches your comfort with it spending.
+
+**How is this different from agentic commerce?**
+"[Agentic commerce](/en/news/2026-09-02-agentic-commerce/)" is the whole system — the checkout protocols and payment credentials that make agent-driven buying possible. An AI shopping agent is the consumer-facing tool you actually use on top of it. This guide is about the tools; that one is about the plumbing underneath them.
+
+---
+
+Every agent worth running follows the same discipline: it does the work and stops before the step you can't take back — here, the buy. Want the real builds, the exact jobs each professional automates and the ones they still approve by hand? [Subscribe free](/en/) and get each week's build in your inbox.

@@ -1,6 +1,6 @@
 {
   "$comment": "SEO keyword feed — a living file. The scheduled Cowork routine ideates entries; scripts/seo/feeds.mjs persists them (dedupe + status + timestamps). intent: informational|commercial|transactional. funnel: TOFU|MOFU|BOFU. cluster: use-case|template|comparison|industry|tool-stack. status: new|used.",
-  "updatedAt": "2026-09-02",
+  "updatedAt": "2026-09-03",
   "keywords": [
     {
       "term": "AI agent use cases",
@@ -722,9 +722,9 @@
       "funnel": "TOFU",
       "cluster": "use-case",
       "locale": "both",
-      "status": "new",
+      "status": "used",
       "addedAt": "2026-08-30",
-      "note": "Sunday feed research 2026-08-30. Consumer-facing sibling of agentic-commerce: the agent that browses, compares, and (optionally) buys for a shopper. Sourceable this run — OpenAI ChatGPT Shopping / Instant Checkout (1M+ Shopify merchants), Amazon 'Buy for Me', Visa Intelligent Commerce + Mastercard Agent Pay as the payment rails. Recommend-vs-buy framing mirrors the site's two-jobs pattern (draft-vs-pay, score-vs-engage): Job 1 = surface and compare options a human confirms; Job 2 = the autonomous purchase, which is irreversible and needs the consent/spend gate. Clusters with agentic-commerce, e-commerce hub, human-in-the-loop."
+      "note": "Sunday feed research 2026-08-30. Consumer-facing sibling of agentic-commerce: the agent that browses, compares, and (optionally) buys for a shopper. Recommend-vs-buy framing mirrors the site's two-jobs pattern (draft-vs-pay, score-vs-engage): Job 1 = surface and compare options a human confirms; Job 2 = the autonomous purchase, which is irreversible and needs the consent/spend gate. Used 2026-09-03 → content/news/2026-09-03-ai-shopping-agents-{en,zh}.mdx (title 'AI Shopping Agents: Recommend vs. Buy'). The consumer-facing use-case under the agentic-commerce head (09-02): the four named agents a shopper can open today — ChatGPT Instant Checkout (openai.com/index/buy-it-in-chatgpt), Amazon's Rufus→Alexa-for-Shopping agent + 'Buy for Me' third-party checkout (CNBC cnbc.com/2026/05/13/amazon-ditches-rufus-ai-chatbot-in-favor-of-alexa-shopping-agent.html), Google Gemini/AI Mode 'Buy for me' via Shopping Graph + Google Pay (9to5Google 9to5google.com/2025/11/13/google-agentic-shopping), Perplexity 'Buy with Pro' one-click checkout (CNBC cnbc.com/2025/11/19/perplexity-ai-online-shopping-paypal.html) — each sorted into surface-and-compare (automate) vs buy (gate), with the consent-gate framing anchored on CBS News (cbsnews.com/news/ai-agentic-artificial-inteligence-what-is-it). Wove an upward link into the agentic-commerce 'Two jobs, one gate' section (en+zh). Clusters with human-in-the-loop (08-13), security-risks (08-25), agent-vs-chatbot (08-12), Issue #001. Buyer-side flip of the still-new merchant e-commerce hub. GEO-probed on-topic prompt 'What AI agents can help an online store?' this run (not cited)."
     },
     {
       "term": "AI agents for e-commerce",

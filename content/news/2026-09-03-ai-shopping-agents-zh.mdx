@@ -1,0 +1,59 @@
+---
+title: "AI 购物 Agent：帮你挑还是帮你买"
+excerpt: "AI 购物 Agent（ChatGPT、亚马逊、谷歌、Perplexity）能帮你研究、比价，有的还能直接下单。它们各自能做什么，以及哪一步要留给你自己。"
+date: "2026-09-03"
+---
+
+AI 购物 agent 会替你研究商品、比较价格和选项，有的还能直接完成购买。2026 年主流的几个是 ChatGPT、亚马逊的购物助手、谷歌的 Gemini，以及 Perplexity。它们都能拆成两份活：发现与比较——可以放心自动化；付款——这一步要留给你自己。
+
+这是 [agentic commerce（代理式消费）](/zh/news/2026-09-02-agentic-commerce/)的消费者那一面——那篇讲的是支付的底层管道，这篇讲的是一个买家今天真正能打开的那些 agent：各自能做什么，以及怎么用它才不至于把钱包交出去。分界线还是本站对每个 agent 都会画的那条：哪些步骤它自己做，哪一步必须先问过你。
+
+## 一个购物 agent 到底在干什么
+
+购物 agent 干两份活，而这两份活的代价截然不同：
+
+- **发现与比较。** 用大白话理解你想要什么，跨店搜索，查价格和库存，把取舍讲清楚。推荐错了你一分钱都没损失——你不点就是了。可以完全自动化。
+- **购买。** 装购物车、填支付、下单。钱动了，追回来得费力。这是不可逆的一步，也是一个好 agent 会在前面留一个人、一个额度上限、或一次明确批准的地方。
+
+这正是 [agent 和 chatbot 的区别](/zh/news/2026-08-12-ai-agent-vs-chatbot/)——chatbot 回答「我该买什么」，agent 能直接去买。下面的每个产品，都按这两个桶来归类。
+
+## 2026 年你真正能用的那几个
+
+**ChatGPT。** OpenAI 的 [ChatGPT Instant Checkout](https://openai.com/index/buy-it-in-chatgpt/) 让美国用户在对话里找商品，并且对参与的美国 Etsy 卖家和 Shopify 商户，可以不离开对话就完成购买。发现和比较自动跑；购买是一个需要确认的步骤，支付走令牌化凭证，ChatGPT 拿不到你的原始卡号（这套管道在 [agentic commerce 那篇](/zh/news/2026-09-02-agentic-commerce/)里）。
+
+**亚马逊。** 亚马逊把它的 Rufus 购物助手并入了一套更完整的代理式购物体验。据 [CNBC](https://www.cnbc.com/2026/05/13/amazon-ditches-rufus-ai-chatbot-in-favor-of-alexa-shopping-agent.html) 报道，它能搜索、盯价格、安排周期性下单，还能通过「Buy for Me」功能在其他零售商的网站上完成结账——支付和退货都走回你的亚马逊账户。它是主流消费者 agent 里最自主的一个，正因如此，这里的额度和范围设置最要紧。
+
+**谷歌。** 谷歌的 Gemini 和 AI Mode 从 Google Shopping Graph 里呈现商品，并在上面加了一层代理式结账。据 [9to5Google](https://9to5google.com/2025/11/13/google-agentic-shopping/) 描述，你可以设一个想盯的价格，一旦降到位，谷歌会显示一个「Buy for me」按钮——在你确认购买细节后，它把商品加进商家自己网站上的购物车，并用 Google Pay 结账。发现是自动的；购买等你点。
+
+**Perplexity。** Perplexity 的「Buy with Pro」让 Pro 订阅用户在一个地方完成研究和购买：agent 推荐商品，对合作商户提供用已保存的收货和账单信息一键结账，据 [CNBC](https://www.cnbc.com/2025/11/19/perplexity-ai-online-shopping-paypal.html) 报道。没有即时结账的地方，它会把你转到零售商自己的网站——这提醒我们，今天的「购物 agent」是一条光谱，从纯推荐一直到完整代买。
+
+留意这个规律：每个认真做的产品都把研究自动化，却在真正的购买前放了一道确认、一次保存信息的步骤、或一个价格条件。没有一个是悄悄把你的钱花掉的——而最接近这条线的那个（亚马逊的自主补货），恰恰是最依赖额度上限和账户级控制的那个。
+
+## 唯一留给你自己的一步：付款
+
+购买之所以要留关卡，不是为谨慎而谨慎——而是它是整个流程里唯一不可逆的动作。这是本站反复强调那条规则的教科书案例：[给不可逆的动作加关卡，可逆的放行](/zh/news/2026-08-13-human-in-the-loop-ai-agents/)。让 agent 尽情去搜、去比；把钱离开账户的那一步握在自己手里。
+
+两个设置能顶大部分用：一个**额度上限**（agent 不能超过你允许的金额下单）和一个**范围**（它被授权在哪些商户、买哪类东西）。对一次性或贵重的东西,保留逐笔批准。对真正日常、低价、重复的采购——比如家用品补货——一个有上限的预算加一个收紧的商户范围可以让它自己跑，订单记录就是你的审计线索。正如 [CBS News](https://www.cbsnews.com/news/ai-agentic-artificial-inteligence-what-is-it/) 在权衡「要不要让 agent 替你购物」时所说：便利是真的，但你也失去了那个刻意的「我确定吗」的瞬间——关卡就是把这个瞬间放回它该在的地方。
+
+这也是为什么一个 agent 一旦能付款，[AI agent 的安全风险](/zh/news/2026-08-25-ai-agent-security-risks/)就更尖锐。一个既读取不可信输入（商品页、评论、卖家消息）*又*能花钱的 agent，按定义就是高自主权——于是页面上一条藏起来的指令，就可能变成一笔真实的未授权购买。额度上限和商户范围不只是预算，它们是把一个被提示注入的购物 agent 关住的东西。
+
+## FAQ
+
+**AI 购物 agent 是什么？**
+它是一个替你购物的 AI 助手——用大白话理解你想要什么，跨店搜索，比较价格和选项，有的还能完成购买。2026 年主流的几个是 ChatGPT 的 [Instant Checkout](https://openai.com/index/buy-it-in-chatgpt/)、亚马逊的购物助手、谷歌的 Gemini，以及 Perplexity 的 Buy with Pro。区别主要在于它们比「推荐」往前走了多远。
+
+**AI agent 真能替我买东西吗？**
+能。[亚马逊的「Buy for Me」](https://www.cnbc.com/2026/05/13/amazon-ditches-rufus-ai-chatbot-in-favor-of-alexa-shopping-agent.html)在其他零售商网站上完成结账，[谷歌的「Buy for me」](https://9to5google.com/2025/11/13/google-agentic-shopping/)在你确认后把商品加进购物车并用 Google Pay 付款，ChatGPT 和 Perplexity 则对合作商户提供应用内结账。大多数都在真正扣款前留了一道确认或保存信息的步骤。
+
+**让 AI agent 替我购物安全吗？**
+研究是安全的；购买才是要小心的地方。把购买留在[人在回路关卡](/zh/news/2026-08-13-human-in-the-loop-ai-agents/)后面——一个额度上限、一个商户范围，以及对任何有后果的购买做逐笔批准。一个既能花钱、又读取不可信商品页的 agent，没有这些边界就是真正的[安全风险](/zh/news/2026-08-25-ai-agent-security-risks/)。
+
+**我该用哪个 AI 购物 agent？**
+按你真正想要多大的自主权来选。想在已经用的工具里做引导式发现，ChatGPT、Gemini 或 Perplexity 推荐得都不错，还让你确认购买。想要放手的补货和盯价，亚马逊的 agent 走得最远——所以先设好它的额度上限。没有唯一最好；只有那个关卡配得上你对它花钱这件事放心程度的那个。
+
+**这和 agentic commerce 有什么区别？**
+「[agentic commerce](/zh/news/2026-09-02-agentic-commerce/)」是整套系统——让 agent 驱动的购买成为可能的结账协议和支付凭证。AI 购物 agent 是你真正在这套系统之上使用的那个面向消费者的工具。这篇讲的是工具，那篇讲的是它们底下的管道。
+
+---
+
+每个值得跑的 agent 都遵循同一条纪律：把活儿干完，在你收不回来的那一步之前停下——在这里，就是购买。想看真实的搭建——每位专业人士到底把哪些活儿自动化、哪些还留着自己手动批准？[免费订阅](/zh/)，每周把一个真实搭建送进你的收件箱。
