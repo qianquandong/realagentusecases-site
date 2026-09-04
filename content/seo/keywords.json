@@ -1,6 +1,6 @@
 {
   "$comment": "SEO keyword feed — a living file. The scheduled Cowork routine ideates entries; scripts/seo/feeds.mjs persists them (dedupe + status + timestamps). intent: informational|commercial|transactional. funnel: TOFU|MOFU|BOFU. cluster: use-case|template|comparison|industry|tool-stack. status: new|used.",
-  "updatedAt": "2026-09-03",
+  "updatedAt": "2026-09-04",
   "keywords": [
     {
       "term": "AI agent use cases",
@@ -732,9 +732,9 @@
       "funnel": "TOFU",
       "cluster": "industry",
       "locale": "both",
-      "status": "new",
+      "status": "used",
       "addedAt": "2026-08-30",
-      "note": "Sunday feed research 2026-08-30. Merchant-side industry hub (the flip of AI-shopping-agents, which is buyer-side): agents across the store loop — merchandising, support, order/returns, and now agent-readable storefronts. Sourceable — Shopify live on ChatGPT Shopping (Agentic Commerce Protocol + Stripe, 1M+ merchants), Zendesk/Intercom for CX (already on-site), the Walmart/Target ChatGPT partnerships. Automate-the-work-not-the-decision frame (pricing/policy stays human). Sibling of the recruiters/accountants/realtors/customer-service hubs; parent over the still-new customer-service hub for the support slice."
+      "note": "Sunday feed research 2026-08-30. Merchant-side industry hub (the flip of AI-shopping-agents, which is buyer-side): agents across the store loop — merchandising, support, order/returns, and now agent-readable storefronts. Sourceable — Shopify live on ChatGPT Shopping (Agentic Commerce Protocol + Stripe, 1M+ merchants), Zendesk/Intercom for CX (already on-site), the Walmart/Target ChatGPT partnerships. Automate-the-work-not-the-decision frame (pricing/policy stays human). Sibling of the recruiters/accountants/realtors/customer-service hubs; parent over the still-new customer-service hub for the support slice. Used 2026-09-04 → content/news/2026-09-04-ai-agents-for-ecommerce (en+zh), title \"AI Agents for E-Commerce: The Merchant's Side\". Merchant-side hub / flip of buyer-side shopping-agents: the store loop an agent takes on (get found via Shopify Agentic Storefronts; take the order via the Agentic Commerce Protocol/Stripe; support+returns via Zendesk/Intercom Fin) with pricing/policy/exception left human. Wove a reciprocal link in from 2026-09-03-ai-shopping-agents (en+zh). Sources: Shopify blog how-agentic-commerce-works, Modern Retail, Stripe open-standard blog, Zendesk e-commerce AI agents, Intercom Fin + Issue #001."
     },
     {
       "term": "AI agent observability",

@@ -1,0 +1,65 @@
+---
+title: "电商的 AI Agent：商家这一侧"
+excerpt: "AI agent 已经在替网店跑一部分活——被购物 agent 找到、接下 agent 的订单、处理客服和退货。各自能做什么，以及哪些决定要留给人。"
+date: "2026-09-04"
+---
+
+AI agent 能在四条线上帮一家网店：让商品目录被购物 agent 发现、接下 agent 发起的结账、自动化客服和退货、盯住订单里的问题。2026 年，这些都跑在真实的基础设施上——Shopify 的 Agentic Storefronts、Agentic Commerce Protocol，以及像 Zendesk、Intercom 这样的客服 agent。定价和政策，仍然是人来拍板。
+
+这是本站一直从买家视角讲的那场转变的商家这一侧。[AI 购物 agent](/zh/news/2026-09-03-ai-shopping-agents/) 讲的是买家为了下单而打开的工具，这篇讲的是一家店为了卖货而跑的东西——而两者在中间相遇，就在让 agent 和店铺完成交易的 [agentic commerce（代理式消费）](/zh/news/2026-09-02-agentic-commerce/) 管道处。分界线还是本站对每个 agent 都会画的那条：哪些步骤它自己跑，哪一步还得有人签字。
+
+## 一家店里 agent 能接下的那圈活
+
+一家店的一天，能拆成 agent 能扛的活，和只能你来拍的板：
+
+- **被找到。** 让你的商品目录能被买家如今使用的购物 agent 读懂。可逆——某个商品呈现错了，改数据源就是了。可以自动化。
+- **接下订单。** 按你的条件，接下一个由 agent 发起的结账。钱是真的动了，但每一单仍由你接受或拒绝——这是一个受控的步骤，不是盲接。
+- **客服与退货。** 回答「我的订单到哪了」、发起退货、查退款进度。量大、大多可逆，是 agent 的教科书场景——退款的决定要留关卡。
+- **拍板。** 定价、写政策、批准例外。这是判断题，留给人。
+
+下面把店里的活按这几个桶来归类。留意哪一个从不被自动化。
+
+## 被找到：agentic storefronts
+
+第一份活不是回答顾客，而是被顾客如今借以购物的那些 agent 看见。Shopify 把这做进了后台，叫 **Agentic Storefronts**——一个销售渠道，让商家的目录在 AI 助手里可被发现、可被购买，而不用为每个平台单独做一个 app，据 [Shopify 自己的指南](https://www.shopify.com/blog/how-agentic-commerce-works)和 [Modern Retail](https://www.modernretail.co/technology/shopify-says-purchases-are-coming-inside-chatgpt-through-agentic-storefronts-as-openai-retreats-on-instant-checkout/) 的报道。商家在后台开关 AI 渠道，而不用手动接线每个平台。
+
+对店主的实际含义：你的商品数据——标题、价格、库存、描述——如今成了别人购物 agent 的输入，就像当年它成了谷歌搜索索引的输入。干净、结构化的商品信息，是让你的目录被准确呈现的东西；一份乱糟糟的数据源，则会被跳过或被引述错。这正是买家在[购物 agent 那篇](/zh/news/2026-09-03-ai-shopping-agents/)里看到的商家侧镜像——他们的 agent 只能推荐你的店面让它读懂的东西。
+
+## 接下订单：按你的条件让 agent 结账
+
+当买家的 agent 完成一次购买，店铺仍要接下它。这个交接跑在 **Agentic Commerce Protocol** 上——OpenAI 与 Stripe 共同制定的开放标准，规定 agent、商家、支付方之间如何交换订单和支付信息，见 [Stripe 的说明](https://stripe.com/blog/developing-an-open-standard-for-agentic-commerce)。其中两点对商家要紧。第一，店铺仍然接受或拒绝每一单、扣款、算税、处理履约和退货，一如既往——agent 提议，店铺定夺。第二，支付走令牌化凭证（Stripe 的 Shared Payment Token），agent 拿不到原始卡数据。完整的管道——以及给它加关卡的买家侧控制——在 [agentic commerce 那篇](/zh/news/2026-09-02-agentic-commerce/)里。
+
+所以「agent 能从我店里买」不等于失去对这笔生意的控制。它意味着一个新的订单来源，到手时已经结构化，你按对待任何其他渠道一样的条件批准它。
+
+## 客服与退货：量最大的那个收益
+
+购前购后的客服，是电商 agent 最快见效的地方，因为问题重复，且大多数回答可逆。[Zendesk](https://www.zendesk.com/service/ai/top-ai-agent-tools-for-e-commerce/) 描述的 AI agent 会做实时的订单动作——查配送状态、改订单、发起退货或退款——并把它解决不了的转给人。Intercom 的 Fin 在 Shopify 客服场景里同理运作，处理购前购后问题、把复杂的升级出去，据 [Fin 自己的指南](https://fin.ai/learn/best-ai-agents-shopify)。
+
+这和[客服分诊](/zh/news/2026-07-15-ai-agent-customer-support-triage/)那套搭建是同一条纪律：让 agent 去分类、查询、起草；把会花钱或会破例的决定留给人。「我的订单到哪了」是 agent 该完全接手的查询。「我想在退货窗口之外退款」是判断题——agent 可以把订单、物流、政策都汇总好，但由人来决定要不要开这个例外。
+
+## 那些留给你自己的决定
+
+上面每条线都有一件 agent 不该独自做的事。被找到是安全的；定价不是。接单是安全的；写退货政策不是。回答「订单到哪了」是安全的；批准政策外的退款不是。这个分法就是本站反复强调的那条规则：[给不可逆的动作加关卡，可逆的放行](/zh/news/2026-08-13-human-in-the-loop-ai-agents/)。对一家店，不可逆、塑造品牌的步骤是定价、政策和例外——一个错误的自主决定会真花掉钱、或搭进一段客户关系的地方。
+
+要照抄的范式，就是本站自己第一个搭建里的那个。在 [Issue #001](/zh/posts/2026-05-13-gmail-ai-agent/) 里，一个 Gmail agent 读取并起草，但由人批准发送——agent 干活，人握住那个不可逆的步骤。商家版本形状一模一样：agent 处理查询、起草、常规退货；店主批准退款例外、折扣、政策改动。把活儿自动化，别把决定自动化。
+
+## FAQ
+
+**AI agent 到底能为一家网店做什么？**
+四件事：让你的目录被购物 agent 发现（Shopify 的 [Agentic Storefronts](https://www.shopify.com/blog/how-agentic-commerce-works)）、按你的条件接下 agent 发起的结账（[Agentic Commerce Protocol](https://stripe.com/blog/developing-an-open-standard-for-agentic-commerce)）、自动化购后客服和退货（[Zendesk](https://www.zendesk.com/service/ai/top-ai-agent-tools-for-e-commerce/)、Intercom 的 Fin）、盯住订单里的问题。定价、政策和例外，留给人。
+
+**让 agent 从我店里买，会不会失去对定价和订单的控制？**
+不会。在 [Agentic Commerce Protocol](https://stripe.com/blog/developing-an-open-standard-for-agentic-commerce) 下，你的店铺仍然接受或拒绝每一单、扣款、算税、处理履约——agent 提议购买，你批准。价格你定；agent 只是转述你店面公布的东西。
+
+**电商该从哪个 AI agent 开始？**
+从量最大、犯错最便宜的地方开始：购后客服。一个回答订单状态、发起常规退货的 agent（[Zendesk](https://www.zendesk.com/service/ai/top-ai-agent-tools-for-e-commerce/)、[Intercom 的 Fin](https://fin.ai/learn/best-ai-agents-shopify)）见效快，因为问题重复、大多数回答可逆。接着再把发现和 agent 结账做对。
+
+**商家侧和 AI 购物 agent 有什么区别？**
+[AI 购物 agent](/zh/news/2026-09-03-ai-shopping-agents/) 是买家的工具——一个买家为研究和购买而打开的东西。商家侧是一家店为被找到、接单、售后而跑的东西。两者在让双方交易的 [agentic commerce](/zh/news/2026-09-02-agentic-commerce/) 结账层相遇。
+
+**哪些应该留作人的决定？**
+不可逆、塑造品牌的那些：定价、写退货和退款政策、批准任何政策例外。agent 可以把做这些决定所需的一切都汇总好——订单历史、物流、政策原文——但应由人来做，正如 [Issue #001](/zh/posts/2026-05-13-gmail-ai-agent/) 里由人批准发送。
+
+---
+
+每个值得跑的 agent 都遵循同一条纪律：把活儿干完，在你收不回来的那一步之前停下——在这里，就是价格、政策、例外。想看真实的搭建——每位专业人士到底把哪些活儿自动化、哪些还留着自己手动批准？[免费订阅](/zh/)，每周把一个真实搭建送进你的收件箱。

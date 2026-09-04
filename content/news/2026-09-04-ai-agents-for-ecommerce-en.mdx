@@ -1,0 +1,65 @@
+---
+title: "AI Agents for E-Commerce: The Merchant's Side"
+date: "2026-09-04"
+excerpt: "AI agents now run parts of an online store — getting found by shopping agents, taking agent orders, handling support and returns. The calls that stay human."
+---
+
+AI agents help an online store on four fronts: making the catalog discoverable to shopping agents, accepting agent-driven checkout, automating support and returns, and watching orders for problems. In 2026 that runs on real infrastructure — Shopify's Agentic Storefronts, the Agentic Commerce Protocol, and support agents like Zendesk and Intercom. Pricing and policy stay a human's call.
+
+This is the merchant's side of the shift this site has been covering from the buyer's seat. [AI shopping agents](/en/news/2026-09-03-ai-shopping-agents/) is about the tools a shopper opens to buy; this one is about what a store runs to sell — and the two meet in the middle, at the [agentic commerce](/en/news/2026-09-02-agentic-commerce/) plumbing that lets an agent and a store transact. The dividing line is the same one this site draws for every agent: which steps it runs on its own, and which one a person still signs off on.
+
+## The store loop an agent can take on
+
+A store's day splits into work an agent can carry and calls that stay yours:
+
+- **Get found.** Make your catalog readable to the shopping agents buyers now use. Reversible — if a product surfaces wrong, you fix the feed. Safe to automate.
+- **Take the order.** Accept a checkout an agent initiated, on your terms. The money movement is real, but you still accept or decline each order — a controlled step, not a blind one.
+- **Support and returns.** Answer "where's my order," start a return, check a refund's status. High volume, mostly reversible, and the textbook place for an agent — with the refund decision gated.
+- **Decide.** Set the price, write the policy, approve the exception. This is the judgment call, and it stays human.
+
+Everything below sorts the store's work into those buckets. Notice which one never gets automated.
+
+## Get found: agentic storefronts
+
+The first job isn't answering customers — it's being visible to the agents customers now shop through. Shopify built this into the admin as **Agentic Storefronts**, a sales channel that makes a merchant's catalog discoverable and buyable inside AI assistants without building a custom app for each one, per [Shopify's own guide](https://www.shopify.com/blog/how-agentic-commerce-works) and reporting from [Modern Retail](https://www.modernretail.co/technology/shopify-says-purchases-are-coming-inside-chatgpt-through-agentic-storefronts-as-openai-retreats-on-instant-checkout/). Merchants toggle AI channels on or off from Admin rather than wiring each platform by hand.
+
+The practical read for a store owner: your product data — titles, prices, stock, descriptions — is now an input to someone else's shopping agent, the same way it once became an input to Google's search index. Clean, structured product information is what gets your catalog surfaced accurately; a messy feed is what gets it skipped or misquoted. This is the merchant-side mirror of what buyers see in the [shopping-agent guide](/en/news/2026-09-03-ai-shopping-agents/) — their agent can only recommend what your storefront makes legible.
+
+## Take the order: agent checkout on your terms
+
+When a buyer's agent completes a purchase, the store still has to accept it. That handoff runs on the **Agentic Commerce Protocol**, the open standard OpenAI co-developed with Stripe for how an agent, a merchant, and a payment provider exchange order and payment details, described in [Stripe's write-up](https://stripe.com/blog/developing-an-open-standard-for-agentic-commerce). Two things in it matter to a merchant. First, the store still accepts or declines each order, charges the payment method, calculates tax, and handles fulfillment and returns as it always did — the agent proposes, the store disposes. Second, payment moves through a tokenized credential (Stripe's Shared Payment Token) so the agent never touches raw card data. The full plumbing — and the buyer-side controls that gate it — is in the [agentic commerce explainer](/en/news/2026-09-02-agentic-commerce/).
+
+So "an agent can buy from my store" doesn't mean losing control of the sale. It means a new order source that arrives pre-structured, which you approve on the same terms as any other channel.
+
+## Support and returns: the highest-volume win
+
+Post-purchase support is where an e-commerce agent earns its keep fastest, because the questions repeat and most answers are reversible. [Zendesk](https://www.zendesk.com/service/ai/top-ai-agent-tools-for-e-commerce/) describes AI agents that take live order actions — checking delivery status, updating an order, starting a return or a refund — and route anything they can't resolve to a person. Intercom's Fin works the same way inside a Shopify support setup, handling pre- and post-sale questions and escalating the complex ones, per [Fin's own guide](https://fin.ai/learn/best-ai-agents-shopify).
+
+This is the same discipline as the [customer-support triage](/en/news/2026-07-15-ai-agent-customer-support-triage/) build: let the agent sort, look up, and draft; keep a human on the decision that costs money or bends policy. "Where's my order?" is a lookup an agent should own outright. "I want a refund outside the return window" is a judgment call — the agent can gather the order, the tracking, and the policy, but a person decides whether to make the exception.
+
+## The decisions that stay yours
+
+Every front above has one thing an agent shouldn't do alone. Getting found is safe; setting the price isn't. Taking orders is safe; writing the return policy isn't. Answering "where's my order" is safe; approving a refund outside policy isn't. That split is the site's recurring rule: [gate the irreversible, let the reversible run](/en/news/2026-08-13-human-in-the-loop-ai-agents/). For a store, the irreversible, brand-shaping steps are pricing, policy, and the exception — the places a wrong autonomous call costs real money or a customer relationship.
+
+The pattern to copy is the one in this site's own first build. In [Issue #001](/en/posts/2026-05-13-gmail-ai-agent/), a Gmail agent reads and drafts, but the human approves the send — the agent does the work, a person owns the irreversible step. The merchant version is identical in shape: the agent handles the lookup, the draft, the routine return; the owner approves the refund exception, the discount, the policy change. Automate the work, not the decision.
+
+## FAQ
+
+**What can an AI agent actually do for an online store?**
+Four things: make your catalog discoverable to shopping agents (Shopify's [Agentic Storefronts](https://www.shopify.com/blog/how-agentic-commerce-works)), accept agent-initiated checkout on your terms (the [Agentic Commerce Protocol](https://stripe.com/blog/developing-an-open-standard-for-agentic-commerce)), automate post-purchase support and returns ([Zendesk](https://www.zendesk.com/service/ai/top-ai-agent-tools-for-e-commerce/), Intercom's Fin), and watch orders for problems. Pricing, policy, and exceptions stay human.
+
+**Does letting agents buy from my store mean losing control of pricing and orders?**
+No. Under the [Agentic Commerce Protocol](https://stripe.com/blog/developing-an-open-standard-for-agentic-commerce), your store still accepts or declines each order, charges the payment method, calculates tax, and handles fulfillment — the agent proposes the purchase, you approve it. You set the prices; the agent only relays what your storefront publishes.
+
+**Which AI agent should an e-commerce business start with?**
+Start where volume is highest and mistakes are cheapest: post-purchase support. An agent that answers order-status questions and starts routine returns ([Zendesk](https://www.zendesk.com/service/ai/top-ai-agent-tools-for-e-commerce/), [Intercom's Fin](https://fin.ai/learn/best-ai-agents-shopify)) pays off fast because the questions repeat and most answers are reversible. Get discovery and agent checkout right next.
+
+**How is the merchant side different from AI shopping agents?**
+[AI shopping agents](/en/news/2026-09-03-ai-shopping-agents/) are the buyer's tools — what a shopper opens to research and buy. The merchant side is what a store runs to be found, take the order, and support it after. They meet at the [agentic commerce](/en/news/2026-09-02-agentic-commerce/) checkout layer that lets the two transact.
+
+**What should stay a human decision?**
+The irreversible, brand-shaping calls: setting prices, writing the return and refund policy, and approving any exception to it. An agent can gather everything needed to make those calls — order history, tracking, the policy text — but a person should make them, exactly as the human approves the send in [Issue #001](/en/posts/2026-05-13-gmail-ai-agent/).
+
+---
+
+Every agent worth running follows the same discipline: it does the work and stops before the step you can't take back — here, the price, the policy, the exception. Want the real builds, the exact jobs each professional automates and the ones they still approve by hand? [Subscribe free](/en/) and get each week's build in your inbox.
