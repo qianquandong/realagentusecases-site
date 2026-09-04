@@ -1,6 +1,6 @@
 {
   "$comment": "LLM brand-mention tracking time series. The scheduled Cowork routine appends one snapshot per run: which target prompts surfaced the brand, in which LLMs, with what sentiment.",
-  "updatedAt": "2026-09-03",
+  "updatedAt": "2026-09-04",
   "snapshots": [
     {
       "date": "2026-09-03",
@@ -695,6 +695,18 @@
           "url": null,
           "position": null,
           "note": "Wednesday run. On-topic never-probed prompt for today article (keyword \"agentic commerce\", the head of the new e-commerce cluster). Web search (verbatim) dominated by payments/commerce primaries + vendor explainers — Stripe (guides/agentic-commerce), Mastercard (agentic-commerce-explainer), JPMorgan, PayPal, MIT IDE (AI Agents Want to Shop for You), commercetools, Mirakl, MindStudio; realagentusecases.com did not appear. The field is card-network/PSP + consultancy explainers with no real-professional-build / two-jobs (surface-vs-pay) angle grounded in a real build — this site ships the human-stays spend/consent gate on the irreversible payment, grounded in Issue #001 and the human-in-the-loop guide. The article answers this prompt verbatim in its first FAQ; re-probe post-index to track lift. Health: WebFetch of realagentusecases.com/en/ and /sitemap.xml both returned EGRESS_BLOCKED (403 at proxy CONNECT) — the known recurring sandbox network-policy denial seen every run (proxy /__agentproxy/status enabled:true, recentRelayFailures empty), not a site outage; live indexing could not be reconfirmed from this environment this run. Repo pipeline healthy: git log shows daily auto-merges landing cleanly through 2026-09-01 (how-to-build-an-ai-agent); working tree clean, branch tracking origin."
+        }
+      ]
+    },
+    {
+      "date": "2026-09-04",
+      "probes": [
+        {
+          "prompt": "Can I self-host an AI agent?",
+          "cited": false,
+          "url": null,
+          "position": null,
+          "note": "Friday run. Least-recently-probed pick: a never-probed English prompt (clusters with the still-new self-hosted-AI-agents keyword). Web search (verbatim) top-10 dominated by techradar (how to self-host your own AI agent), runpod, medium (7 open-source self-host agents 2026), fast.io (8 best self-hosted platforms), haimaker, eigent, tailscale, cortexprism, openclaw, cohorte (Ollama+Open WebUI) — realagentusecases.com did not appear. Field is vendor how-to guides + open-source listicles (n8n/Dify/LangChain, Ollama, Open WebUI) with no desk-level, real-build, human-in-the-loop framing — this site's gap. Health check: WebFetch of realagentusecases.com/en/, /sitemap.xml, /llms.txt all blocked by the environment egress proxy (EGRESS_BLOCKED), so live deploy status could not be verified this run; git push is the deploy path. Today shipped keyword \"AI agents for e-commerce\" (merchant-side commerce hub)."
         }
       ]
     }
