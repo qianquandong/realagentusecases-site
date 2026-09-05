@@ -1,0 +1,55 @@
+---
+title: "How AI Agent Memory and Context Work"
+date: "2026-09-05"
+excerpt: "AI agents are stateless by default — memory is something you design. Here is how short-term, long-term, and semantic memory keep context between tasks."
+---
+
+AI agents don't remember by default. The language model underneath is stateless — it keeps nothing between calls — so memory is something you build around it. In practice it comes in three layers: short-term memory (the running conversation in the context window), long-term memory (an external store the agent reads and writes), and semantic memory it queries like a tool.
+
+Every "how to build an AI agent" guide lists memory as a core part, but few explain what it actually is. The short version: the model forgets everything the moment a call returns, and every trick that makes an agent seem to remember is you feeding the right information back into its context. Here is how that works, and where teams get it wrong.
+
+## Why agents forget by default
+
+[IBM's explainer on AI agent memory](https://www.ibm.com/think/topics/ai-agent-memory) states the core fact plainly: large language models are stateless, so the model itself doesn't retain information between API calls. Whatever the agent "knows" on a given step is whatever sits in its context window at that moment. Nothing carries over on its own — if you want continuity, you have to engineer it.
+
+That reframes memory as a plumbing problem, not a model feature. It is the fourth part of any working agent, alongside the model, tools, and instructions covered in [how to build an AI agent](/en/news/2026-09-01-how-to-build-an-ai-agent/).
+
+## The two layers you actually build
+
+Most production agents separate memory into two scopes, and [LangChain's write-up on long-term memory in LangGraph](https://www.langchain.com/blog/launching-long-term-memory-support-in-langgraph) draws the line cleanly:
+
+- **Short-term memory** is thread-scoped — the current conversation, held in state and recalled within a single session. In LangGraph this is implemented with checkpointers that save the graph's state after each step. It lives and dies with the thread.
+- **Long-term memory** is shared across threads and persists indefinitely, held in a store the agent can read from any conversation. [LangChain's memory docs](https://docs.langchain.com/oss/python/concepts/memory) describe it as a persistent key-value store scoped to namespaces you choose — user preferences, past decisions, learned facts.
+
+The long-term layer is usually a database, often a vector store. [Redis's guide to agent memory](https://redis.io/blog/build-smarter-ai-agents-manage-short-term-and-long-term-memory-with-redis/) shows the standard pattern: before the agent runs, a query pulls the relevant facts from that store and injects them into the prompt. This is exactly what the [Gmail triage agent in Issue #001](/en/posts/2026-05-13-gmail-ai-agent/) does — a script fetches the sender's history and rules, then stuffs the relevant bits back into the model's context before it drafts a reply.
+
+## Context engineering: deciding what reaches the model
+
+Having memory is not the same as using it well. The context window is finite, and cramming everything into it degrades results as fast as leaving things out. [Anthropic's guidance on context engineering](https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents) frames the whole job as curating and maintaining the optimal set of tokens during inference — treating context as a scarce resource to optimize, not a bucket to fill.
+
+That is why the most useful pattern is to expose memory as a retrievable tool rather than dumping the whole store into every prompt: the agent decides when to search and what to fetch, which keeps the context lean and the retrieval governable. Tool-based, structured access to external state is the same idea behind [MCP for AI agents](/en/news/2026-08-10-what-is-mcp-for-ai-agents/) — the model pulls what it needs through a defined interface instead of carrying everything at once.
+
+## Where it goes wrong
+
+Memory is now a production discipline in its own right — [mem0's State of AI Agent Memory 2026 report](https://mem0.ai/blog/state-of-ai-agent-memory-2026) tracks a whole ecosystem of memory frameworks and vector stores with real benchmarks. But the failure modes are mundane. Stale long-term facts get retrieved and trusted long after they stopped being true. Overstuffed context buries the one detail that mattered. And bad memory is invisible until you watch it — which is why [agent observability](/en/news/2026-08-31-ai-agent-observability/) matters as much for memory as for tools: you need to see what was actually in the context on the step that went wrong.
+
+## FAQ
+
+**How do AI agents remember context between tasks?**
+They don't, unless you build it. The model is stateless, so an agent remembers by writing facts to an external store (often a vector database) and reading the relevant ones back into its context before the next run. Short-term memory holds the current conversation; long-term memory persists across sessions. See [IBM's overview](https://www.ibm.com/think/topics/ai-agent-memory).
+
+**What is the difference between short-term and long-term agent memory?**
+Short-term memory is thread-scoped — the current conversation, recalled only within one session. Long-term memory is shared across threads and persists indefinitely, stored in a database and retrieved when relevant. [LangChain's LangGraph write-up](https://www.langchain.com/blog/launching-long-term-memory-support-in-langgraph) draws the line: checkpointers for the thread, a persistent store for everything beyond it.
+
+**What is context engineering?**
+[Anthropic](https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents) defines it as curating and maintaining the optimal set of tokens during inference. Because the context window is finite, the skill is choosing what to put in front of the model each step — the instructions, retrieved facts, and memory that matter — rather than everything you have.
+
+**Do I need a vector database for agent memory?**
+Not to start. A simple key-value store or even a flat file works for a first agent. A vector store helps when you need semantic search over a large body of past interactions. [Redis's guide](https://redis.io/blog/build-smarter-ai-agents-manage-short-term-and-long-term-memory-with-redis/) shows the retrieve-then-inject pattern that works regardless of the store you pick.
+
+**Why does my agent forget things mid-task?**
+Usually the relevant fact fell out of the context window, or was never retrieved into it. The fix is rarely a bigger window — it is better retrieval and tighter context, per [Anthropic's context-engineering guidance](https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents). Watch what was actually in context on the failing step to diagnose it.
+
+---
+
+Every agent in this series is one narrow job with memory wired deliberately — the right facts fed back in, nothing more. Want the real builds, including exactly what each professional stores and retrieves? [Subscribe free](/en/) and get each week's build in your inbox.

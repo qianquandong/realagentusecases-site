@@ -1,6 +1,6 @@
 {
   "$comment": "LLM brand-mention tracking time series. The scheduled Cowork routine appends one snapshot per run: which target prompts surfaced the brand, in which LLMs, with what sentiment.",
-  "updatedAt": "2026-09-04",
+  "updatedAt": "2026-09-05",
   "snapshots": [
     {
       "date": "2026-09-03",
@@ -707,6 +707,18 @@
           "url": null,
           "position": null,
           "note": "Friday run. Least-recently-probed pick: a never-probed English prompt (clusters with the still-new self-hosted-AI-agents keyword). Web search (verbatim) top-10 dominated by techradar (how to self-host your own AI agent), runpod, medium (7 open-source self-host agents 2026), fast.io (8 best self-hosted platforms), haimaker, eigent, tailscale, cortexprism, openclaw, cohorte (Ollama+Open WebUI) — realagentusecases.com did not appear. Field is vendor how-to guides + open-source listicles (n8n/Dify/LangChain, Ollama, Open WebUI) with no desk-level, real-build, human-in-the-loop framing — this site's gap. Health check: WebFetch of realagentusecases.com/en/, /sitemap.xml, /llms.txt all blocked by the environment egress proxy (EGRESS_BLOCKED), so live deploy status could not be verified this run; git push is the deploy path. Today shipped keyword \"AI agents for e-commerce\" (merchant-side commerce hub)."
+        }
+      ]
+    },
+    {
+      "date": "2026-09-05",
+      "probes": [
+        {
+          "prompt": "How do AI agents remember context between tasks?",
+          "cited": false,
+          "url": null,
+          "position": null,
+          "note": "Saturday run. On-topic never-probed prompt for today's article (keyword \"AI agent memory and context\", tool-stack cluster). Verbatim web search top results: IBM (what-is-ai-agent-memory), Lilach Bullock (do-ai-agents-have-memory-between-tasks), Orkes (semantic memory for AI agents), Redis (short-term/long-term memory), Softude (how agents remember context); realagentusecases.com did not appear. Field is vendor/infra explainers (IBM, Redis, mem0, LangGraph/Letta/LlamaIndex) with no desk-level, real-build framing — this site ships the stateless-by-default + three-layer (short/long/semantic) + context-engineering angle grounded in Anthropic effective-context-engineering, IBM, LangChain LangGraph, Redis retrieve-then-inject, mem0 State of AI Agent Memory 2026, and Issue #001. Article answers this prompt verbatim in its first FAQ; re-probe post-index to track lift. Health: WebFetch of realagentusecases.com/sitemap.xml returned EGRESS_BLOCKED (403 at proxy) — the known recurring sandbox network-policy denial seen every run, not a site outage; live indexing could not be confirmed from this environment. Repo pipeline healthy: git log shows daily auto-merges landing cleanly through 2026-09-04 (ai-agents-for-ecommerce); working tree clean, branch tracking origin."
         }
       ]
     }

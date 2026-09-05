@@ -1,0 +1,55 @@
+---
+title: "AI Agent 的记忆与上下文怎么工作"
+date: "2026-09-05"
+excerpt: "AI agent 默认没有记忆——记忆是你设计出来的。这篇讲清短期、长期、语义记忆如何在任务之间保住上下文。"
+---
+
+AI agent 默认不会记事。底层的语言模型是无状态的——每次调用之间什么都不留——所以记忆是你在它周围搭出来的东西。实践中它分三层：短期记忆（上下文窗口里正在进行的对话）、长期记忆（agent 读写的一个外部存储）、以及它像调工具一样去查询的语义记忆。
+
+几乎每篇「怎么搭 AI agent」的教程都把记忆列为核心部件，却少有讲清它到底是什么。一句话：模型在一次调用返回的那一刻就忘光了一切，所有让 agent 看起来「记得住」的把戏，本质都是你把对的信息重新喂回它的上下文。下面讲清这是怎么回事，以及团队常在哪里翻车。
+
+## 为什么 agent 默认会忘
+
+[IBM 关于 AI agent 记忆的解释](https://www.ibm.com/think/topics/ai-agent-memory)把核心事实说得很直白：大语言模型是无状态的，模型本身不会在 API 调用之间保留信息。agent 在某一步「知道」的，就是那一刻它上下文窗口里装着的东西。什么都不会自动带过去——想要连续性，就得自己把它工程化出来。
+
+这就把记忆从「模型的功能」变成了「管道问题」。它是任何能跑的 agent 的第四个部件，和[怎么搭一个 AI agent](/zh/news/2026-09-01-how-to-build-an-ai-agent/)里讲的模型、工具、指令并列。
+
+## 你真正要搭的两层
+
+大多数生产级 agent 把记忆分成两个作用域，[LangChain 关于 LangGraph 长期记忆的文章](https://www.langchain.com/blog/launching-long-term-memory-support-in-langgraph)把这条线画得很清楚：
+
+- **短期记忆**是线程作用域的——当前这段对话，存在 state 里、只在单次会话内被调回。在 LangGraph 里这靠 checkpointer 实现，每一步之后都保存图的状态。它随线程而生，随线程而灭。
+- **长期记忆**跨线程共享、可无限期保留，存在一个 agent 从任何对话都能读到的 store 里。[LangChain 的记忆文档](https://docs.langchain.com/oss/python/concepts/memory)把它描述成一个持久化的键值存储，按你选定的命名空间划分——用户偏好、过往决策、学到的事实。
+
+长期这一层通常是数据库，往往是向量库。[Redis 的 agent 记忆指南](https://redis.io/blog/build-smarter-ai-agents-manage-short-term-and-long-term-memory-with-redis/)展示了标准套路：agent 跑之前，先用一次查询从存储里捞出相关事实，注入到 prompt 里。这正是[第 001 期的 Gmail 分拣 agent](/zh/posts/2026-05-13-gmail-ai-agent/)在做的——一个脚本取出发件人的历史和规则，在起草回复前把相关的那几条塞回模型的上下文。
+
+## 上下文工程：决定什么进到模型面前
+
+有记忆，不等于会用记忆。上下文窗口是有限的，什么都往里塞，和什么都不放一样会拖垮结果。[Anthropic 关于上下文工程的指引](https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents)把整件事定义为：在推理时精心策划并维护那组最优的 token——把上下文当成一种要优化的稀缺资源，而不是一个往里灌的桶。
+
+所以最有用的模式，是把记忆做成一个可检索的工具，而不是每次都把整个存储倒进 prompt：agent 自己决定何时去搜、搜什么，这样上下文才精简、检索才可治理。这种基于工具、结构化地访问外部状态的思路，和 [MCP for AI agents](/zh/news/2026-08-10-what-is-mcp-for-ai-agents/) 背后是同一个——模型通过一个定义好的接口去取它需要的，而不是把一切都随身带着。
+
+## 常在哪里翻车
+
+记忆如今本身就是一门生产学科——[mem0 的《State of AI Agent Memory 2026》报告](https://mem0.ai/blog/state-of-ai-agent-memory-2026)追踪了一整套带真实基准的记忆框架和向量库生态。但翻车方式都很朴素：过时的长期事实被检索出来、在早已不成立之后仍被当真；塞爆的上下文把唯一重要的那条细节埋掉了。而糟糕的记忆在你去看之前是隐形的——这就是为什么 [agent 可观测性](/zh/news/2026-08-31-ai-agent-observability/)对记忆和对工具一样重要：你得看到出错那一步，上下文里到底装了什么。
+
+## FAQ
+
+**AI agent 是怎么在任务之间记住上下文的？**
+它不会，除非你搭出来。模型是无状态的，所以 agent 靠把事实写进一个外部存储（常是向量数据库）、在下次运行前再把相关的读回上下文来「记事」。短期记忆装当前对话，长期记忆跨会话保留。参见 [IBM 的概述](https://www.ibm.com/think/topics/ai-agent-memory)。
+
+**短期记忆和长期记忆有什么区别？**
+短期记忆是线程作用域的——当前对话，只在单次会话内被调回。长期记忆跨线程共享、可无限期保留，存在数据库里、相关时才检索。[LangChain 的 LangGraph 文章](https://www.langchain.com/blog/launching-long-term-memory-support-in-langgraph)画出了这条线：线程内用 checkpointer，线程之外用持久化 store。
+
+**什么是上下文工程？**
+[Anthropic](https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents) 把它定义为：在推理时策划并维护那组最优的 token。因为上下文窗口有限，真正的功夫是每一步选好放到模型面前的东西——重要的指令、检索到的事实、记忆——而不是把你手上有的全放进去。
+
+**agent 记忆一定要用向量数据库吗？**
+起步不用。第一个 agent 用一个简单的键值存储、甚至一个平面文件都行。当你需要在大量过往交互上做语义搜索时，向量库才帮得上忙。[Redis 的指南](https://redis.io/blog/build-smarter-ai-agents-manage-short-term-and-long-term-memory-with-redis/)展示的「先检索再注入」套路，不管你选哪种存储都适用。
+
+**我的 agent 为什么会在任务中途忘事？**
+通常是那条相关事实掉出了上下文窗口，或者压根没被检索进去。解法很少是换更大的窗口——而是更好的检索和更精简的上下文，正如 [Anthropic 的上下文工程指引](https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents)所说。去看出错那一步上下文里到底有什么，才能诊断它。
+
+---
+
+这个系列里的每一个 agent 都是一个窄任务，记忆都是刻意搭的——把对的事实喂回去，别的都不塞。想看真实的搭建、包括每位专业人士到底存什么、取什么？[免费订阅](/zh/)，每周的搭建实录直接进你的邮箱。
