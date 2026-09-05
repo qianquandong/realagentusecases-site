@@ -483,8 +483,8 @@
       "funnel": "MOFU",
       "cluster": "tool-stack",
       "locale": "both",
-      "status": "new",
-      "note": "How agents remember across tasks/sessions — persistent memory is a headline 2026 shift (n8n/Zapier agent-node era). Clusters with orchestration + what-is-MCP. Added 2026-08-09 (Sunday ideation).",
+      "status": "used",
+      "note": "Published 2026-09-05 as content/news/2026-09-05-ai-agent-memory-and-context (en+zh). Three-layer framing (short-term/long-term/semantic) + context engineering, grounded in Anthropic effective-context-engineering, IBM AI-agent-memory, LangChain LangGraph long-term memory + memory docs, Redis retrieve-then-inject, mem0 State of AI Agent Memory 2026, and Issue #001. Clusters with how-to-build (wove the memory link in), what-is-MCP, observability. Added 2026-08-09 (Sunday ideation).",
       "addedAt": "2026-08-09"
     },
     {
