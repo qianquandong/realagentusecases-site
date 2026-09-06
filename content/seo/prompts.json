@@ -1,6 +1,6 @@
 {
   "$comment": "GEO prompt feed — the questions working professionals ask ChatGPT / Perplexity / Gemini. The scheduled Cowork routine ideates entries; scripts/seo/feeds.mjs persists them. cluster: use-case|template|comparison|industry|tool-stack. status: new|covered (covered = a published article targets it). Phase 7 tracks whether the brand is cited for each.",
-  "updatedAt": "2026-08-30",
+  "updatedAt": "2026-09-06",
   "prompts": [
     {
       "prompt": "What are real examples of AI agents at work?",
@@ -490,6 +490,46 @@
       "status": "new",
       "addedAt": "2026-08-30",
       "note": "Sunday feed research 2026-08-30. ZH pair for the e-commerce industry hub; keeps the ZH prompt feed growing alongside EN. Same merchant-side scope as the EN 'online store' prompt."
+    },
+    {
+      "prompt": "What is the A2A protocol and how is it different from MCP?",
+      "cluster": "tool-stack",
+      "locale": "en",
+      "status": "new",
+      "addedAt": "2026-09-06",
+      "note": "Sunday feed research 2026-09-06. Pairs with the new 'Agent2Agent A2A protocol' keyword; the MCP-vs-A2A (agent-to-tools vs agent-to-agent) distinction buyers keep asking. Grounded in the Linux Foundation A2A project + Google Developers donation blog + Axios Agentic AI Foundation."
+    },
+    {
+      "prompt": "What are Claude Agent Skills and how do I use them?",
+      "cluster": "tool-stack",
+      "locale": "en",
+      "status": "new",
+      "addedAt": "2026-09-06",
+      "note": "Sunday feed research 2026-09-06. Pairs with the new 'Claude Agent Skills' keyword; Skills-vs-prompts-vs-MCP. Grounded in Anthropic platform Agent Skills docs + Journal of Accountancy reusable-Skills guide."
+    },
+    {
+      "prompt": "Do AI agents charge per seat, per resolution, or per token?",
+      "cluster": "comparison",
+      "locale": "en",
+      "status": "new",
+      "addedAt": "2026-09-06",
+      "note": "Sunday feed research 2026-09-06. Pairs with the new 'AI agent pricing models' keyword; the pricing-model comparison (distinct from the sticker-cost prompt). Grounded in Intercom Fin $0.99/resolution, HubSpot $0.50/resolved conversation, Agentforce ~$2/action, Anthropic per-token."
+    },
+    {
+      "prompt": "What AI agents can help a security operations team?",
+      "cluster": "industry",
+      "locale": "en",
+      "status": "new",
+      "addedAt": "2026-09-06",
+      "note": "Sunday feed research 2026-09-06. Pairs with the new 'AI agents for security operations' keyword; triage-vs-respond. Grounded in Proofpoint SOC Analyst Agent, CrowdStrike agentic-enterprise, Microsoft Security Copilot agents."
+    },
+    {
+      "prompt": "AI agent 一般怎么收费？",
+      "cluster": "comparison",
+      "locale": "zh",
+      "status": "new",
+      "addedAt": "2026-09-06",
+      "note": "Sunday feed research 2026-09-06. ZH pair for the pricing-models keyword; keeps the ZH prompt feed growing alongside EN. 按席位/按解决数/按 token 三种收费模式。"
     }
   ]
 }
