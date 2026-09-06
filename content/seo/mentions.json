@@ -1,7 +1,19 @@
 {
   "$comment": "LLM brand-mention tracking time series. The scheduled Cowork routine appends one snapshot per run: which target prompts surfaced the brand, in which LLMs, with what sentiment.",
-  "updatedAt": "2026-09-05",
+  "updatedAt": "2026-09-06",
   "snapshots": [
+    {
+      "date": "2026-09-06",
+      "probes": [
+        {
+          "prompt": "How do I monitor an AI agent in production?",
+          "cited": false,
+          "url": null,
+          "position": null,
+          "note": "Sunday run (feed-replenishment day, no article). Never-probed prompt, an exact on-topic match for the just-shipped AI-agent-observability article (08-31) — baselines citation on that page's core query. Web search (verbatim) dominated by observability/monitoring vendors + dev guides: LangChain (blog/production-monitoring), oneuptime (Monitor AI Agents with OpenTelemetry), OpenObserve, noveum.ai (Complete Guide), difinity.ai, Oracle Fusion AI docs (Monitor and Evaluate AI Agents); realagentusecases.com did not appear — the field is monitoring-tool vendors + how-to guides with no real-professional-build / traces-not-logs angle grounded in a real desk-level build, this site's gap to own. Notably the same SERP independently states the article's own thesis (distributed tracing over logs; capture the goal + each model call + each tool invocation + result + next step per run; don't log full prompts in prod) — corroboration for the shipped article, not fabrication. Re-probe post-index to track lift. Health: WebFetch of realagentusecases.com/en/ and /sitemap.xml both returned EGRESS_BLOCKED (403 at proxy CONNECT) — the known recurring sandbox network-policy denial seen every run (proxy /__agentproxy/status enabled:true), not a site outage; live indexing could not be reconfirmed from this environment this run (prior runs confirmed a live indexed page at /en/news/2026-05-14-claude-system-prompt-email-triage/, cited ~position 6 for the inbox-triage prompt on 08-17 — a standing GEO win). Repo pipeline healthy: local HEAD == origin/main (810cc12, daily auto-merges landing cleanly through 09-05 ai-agent-memory-and-context); working tree clean, committing this Sunday's content/seo feed changes on the designated branch for the auto-merge bot. Sunday feed replenishment this run added 7 keywords (Agent2Agent-A2A-protocol, Claude-Agent-Skills, AI-agent-pricing-models, AI-agents-for-security-operations, AI-copilot-vs-AI-agent, agentic-RAG, AI-agents-for-IT-helpdesk) and 5 GEO prompts (incl. one ZH pricing prompt), sourced from this week's competitor sweep + trend signals: the agent-interoperability standards wave (Google's Agent2Agent A2A donated to the Linux Foundation, moved to the new Agentic AI Foundation Aug 2026 with 150+ supporting orgs, per linuxfoundation.org + developers.googleblog.com + Axios), Anthropic Claude Agent Skills as an open standard (Oct 2025, adopted by OpenAI/Google/GitHub/Cursor, per platform.claude.com docs + Journal of Accountancy), the outcome-based pricing shift (Intercom Fin $0.99/resolution + Salesforce acquisition ~$3.6B signed Jun 2026, HubSpot $0.50/resolved conversation, Agentforce ~$2/action), the SecOps agent surge (Proofpoint SOC Analyst Agent Sep 2026, CrowdStrike agentic-enterprise), Zapier's AI-by-Zapier absorption + Pods/BYOM/Guardrails (~9,000 apps), and the IDC ~80%-copilots-in-enterprise-apps-by-2026 signal."
+        }
+      ]
+    },
     {
       "date": "2026-09-03",
       "probes": [

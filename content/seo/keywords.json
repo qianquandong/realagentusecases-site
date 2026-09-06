@@ -1,6 +1,6 @@
 {
   "$comment": "SEO keyword feed — a living file. The scheduled Cowork routine ideates entries; scripts/seo/feeds.mjs persists them (dedupe + status + timestamps). intent: informational|commercial|transactional. funnel: TOFU|MOFU|BOFU. cluster: use-case|template|comparison|industry|tool-stack. status: new|used.",
-  "updatedAt": "2026-09-04",
+  "updatedAt": "2026-09-06",
   "keywords": [
     {
       "term": "AI agent use cases",
@@ -765,6 +765,76 @@
       "status": "new",
       "addedAt": "2026-08-30",
       "note": "Sunday ideation 2026-08-30. Industry-hub expansion beyond the office-ops roles: the PM loop — research/synthesis (feedback + interviews), spec/PRD drafting, and roadmap/standup follow-up. Sourceable at write time via already-cited tools (meeting-notes agents, market-research/competitive-analysis agents, project-management follow-up). Automate-the-work-not-the-prioritization-call frame; sibling of the consultants/marketers/sales-teams hubs. Reuses the site's existing use-case children (meeting-notes 08-05, market-research 08-07, competitive-analysis 08-06, project-management still-new) as its body."
+    },
+    {
+      "term": "Agent2Agent A2A protocol",
+      "intent": "informational",
+      "funnel": "TOFU",
+      "cluster": "tool-stack",
+      "locale": "both",
+      "status": "new",
+      "addedAt": "2026-09-06",
+      "note": "Sunday feed research 2026-09-06. The agent-interoperability standard that sits beside MCP (MCP = agent-to-tools; A2A = agent-to-agent). Sourceable: Linux Foundation press release launching the Agent2Agent Protocol Project (linuxfoundation.org/press), Google Developers Blog on donating A2A to the Linux Foundation (developers.googleblog.com/en/google-cloud-donates-a2a-to-linux-foundation), and Axios on A2A moving to the new Agentic AI Foundation (Aug 2026; 150+ supporting orgs by Apr 2026). Primitives: Agent Cards (advertise capabilities) / Tasks (the work exchanged) / HTTP+SSE+JSON-RPC 2.0 transport. Explainer angle: when you actually need agents to talk to each other, and how it complements rather than replaces MCP. Clusters with what-is-mcp (08-10), best-mcp-servers (08-11), orchestration (08-15), multi-agent-systems (08-19)."
+    },
+    {
+      "term": "Claude Agent Skills",
+      "intent": "informational",
+      "funnel": "MOFU",
+      "cluster": "tool-stack",
+      "locale": "both",
+      "status": "new",
+      "addedAt": "2026-09-06",
+      "note": "Sunday feed research 2026-09-06. Reusable filesystem folders (a SKILL.md plus optional scripts/templates) an agent loads on demand via progressive disclosure — turns a general agent into a specialist without re-explaining the procedure each session; correct it once and the fix compounds. Sourceable: Anthropic platform docs Agent Skills overview (platform.claude.com/docs/en/agents-and-tools/agent-skills/overview), Journal of Accountancy 'How to build reusable Skills in Anthropic's Claude AI' (Jun 2026). Launched as an open standard Oct 2025; format since adopted by OpenAI/Google/GitHub/Cursor tooling. Skills-vs-prompts-vs-MCP framing (prompts = one-off, Skills = saved procedure, MCP = tool access). Clusters with how-to-build (09-01), what-is-mcp (08-10), prompt-template, workflow-templates."
+    },
+    {
+      "term": "AI agent pricing models",
+      "intent": "commercial",
+      "funnel": "BOFU",
+      "cluster": "comparison",
+      "locale": "both",
+      "status": "new",
+      "addedAt": "2026-09-06",
+      "note": "Sunday feed research 2026-09-06. Distinct from 'how much do AI agents cost' (08-24, the sticker/three-answers): this is the pricing-MODEL comparison — per-seat vs per-resolution/outcome vs per-token — and why the same unit of value ranges ~4x across vendors. Sourceable: Intercom Fin outcome-based at $0.99/resolution (intercom.com learning-center pricing comparison; Fin runs standalone on Salesforce/HubSpot/Freshworks/Zoho, no seats), HubSpot Customer Agent $0.50/resolved conversation (Apr 2026, down from $1.00), Salesforce Agentforce ~$2/action, plus Anthropic per-M-token pricing already on-site. Note the Salesforce->Intercom/Fin acquisition (signed Jun 2026, ~$3.6B) at write time. Match-the-model-to-your-volume angle. Clusters with how-much-cost (08-24), measure-ROI (08-21), customer-service."
+    },
+    {
+      "term": "AI agents for security operations",
+      "intent": "informational",
+      "funnel": "TOFU",
+      "cluster": "industry",
+      "locale": "both",
+      "status": "new",
+      "addedAt": "2026-09-06",
+      "note": "Sunday feed research 2026-09-06 (competitor/trend sweep). SecOps is a fast-moving 2026 agent vertical: Proofpoint SOC Analyst Agent (Sep 2026, turns natural-language questions into structured, traceable investigation findings, built on OpenAI models), CrowdStrike's 'agentic enterprise' partner specialization, Microsoft Security Copilot agents. Triage-vs-respond framing (an agent triages/investigates alerts; containment/response stays human-gated) mirrors support-triage sort-vs-resolve. Human-stays line = the block/quarantine/isolate-host decision. Verify each vendor claim against its own product page at write time. Clusters with security-risks (08-25), guardrails (08-29), customer-service."
+    },
+    {
+      "term": "AI copilot vs AI agent",
+      "intent": "informational",
+      "funnel": "TOFU",
+      "cluster": "comparison",
+      "locale": "both",
+      "status": "new",
+      "addedAt": "2026-09-06",
+      "note": "Sunday feed research 2026-09-06. Assist-vs-act distinction, sibling of agent-vs-chatbot (08-12) and agentic-vs-generative (08-17): a copilot suggests inside an app while you stay in the driver's seat; an agent takes the multi-step action itself. Timely — IDC expects AI copilots embedded in ~80% of enterprise workplace apps by 2026 (via the Sep-2026 enterprise-trends roundups), so buyers keep conflating the two. Sourceable at write time: Microsoft 365 Copilot product pages (already on-site), the IDC 80% figure via a reliable secondary report, Anthropic Building Effective Agents (autonomy spectrum). Clusters with agent-vs-chatbot, agentic-vs-generative, ai-agents-for-work."
+    },
+    {
+      "term": "agentic RAG",
+      "intent": "informational",
+      "funnel": "MOFU",
+      "cluster": "tool-stack",
+      "locale": "both",
+      "status": "new",
+      "addedAt": "2026-09-06",
+      "note": "Sunday ideation 2026-09-06. The retrieval side of the memory/context story (09-05): classic RAG retrieves once then answers; agentic RAG lets the agent decide when and what to retrieve, reformulate the query, and iterate across sources. Sourceable at write time via primary docs only (LangChain/LangGraph agentic-RAG tutorials, IBM and AWS agentic-RAG explainers, Anthropic contextual-retrieval) — confirm 3+ real sources before writing, skip otherwise. Clusters with memory-and-context (09-05), what-is-mcp (08-10, retrieval as a tool/resource), how-to-build (09-01)."
+    },
+    {
+      "term": "AI agents for IT helpdesk",
+      "intent": "informational",
+      "funnel": "TOFU",
+      "cluster": "industry",
+      "locale": "both",
+      "status": "new",
+      "addedAt": "2026-09-06",
+      "note": "Sunday feed research 2026-09-06. Internal-support sibling of the customer-service hub (external-facing): password resets, access requests, device/onboarding tickets, knowledge-base deflection. Signal: Ema's new hub to deploy 'AI employees' across HR/IT/Finance departments (Sep 2026). Sourceable at write time: ServiceNow AI Agents / Now Assist, Atlassian Rovo, Moveworks (internal helpdesk), plus the same Zendesk/Intercom triage discipline already on-site. Deflect-vs-resolve framing; the access-grant/provisioning decision stays human-gated (ties to least-privilege in security-risks 08-25). Clusters with customer-service, HR-teams, guardrails."
     }
   ]
 }
