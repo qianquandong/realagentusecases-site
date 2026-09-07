@@ -1,0 +1,68 @@
+---
+title: "Claude Agent Skills：把流程存下来，别每次重讲"
+date: "2026-09-07"
+excerpt: "Claude Agent Skills 是可复用的文件夹，把一套流程教给 agent 一次，之后不用每次重讲。本文讲清它怎么工作、和 prompt 与 MCP 的区别。"
+---
+
+Claude Agent Skills 是一批装着指令、脚本和资源的文件夹，Claude 会按需加载它们，用同一套方式去做某个专门的任务。Anthropic 在 2025 年 10 月推出，之后把这套格式做成了开放标准。一个 Skill 把流程存一次——你就不用在每条 prompt 里重讲一遍，而且你改一次，之后每次运行都自动继承这个改动。
+
+如果你曾经第十次把「我们的报告要这样排版」那三段话粘进一个新对话，Skills 就是解药。这篇讲清楚：一个 Skill 到底是什么、为什么装一堆也不费上下文、它和 prompt 以及 MCP 有什么区别，以及今天怎么用起来。
+
+## 一个 Skill 到底是什么
+
+一个 Skill 就是一个文件夹。按 [Anthropic 的 Agent Skills 文档](https://platform.claude.com/docs/en/agents-and-tools/agent-skills/overview)，唯一必需的文件是 `SKILL.md`——一个带简短 frontmatter（一个名字和一句描述）的 Markdown 文件，后面跟着 Claude 该遵循的指令。文件夹里还可以选配 `scripts/`（agent 会运行的辅助代码）、`references/`（只在需要时才读的长文档）、`assets/`（模板或素材文件）。Anthropic 的[公开仓库 `anthropics/skills`](https://github.com/anthropics/skills) 用真实例子展示了这个结构，可以直接读。
+
+这套格式的意义，Anthropic 自己一句话说清了：一个 Skill 教 Claude *怎么*用可复用的方式完成一个具体任务——用公司的品牌风格做文档、用团队特定的方法分析数据、按你的流程填一张表。它是存到磁盘上的流程性知识，任务一匹配，agent 就自动拿来用。
+
+## 渐进式披露：为什么装一堆也不费上下文
+
+巧妙之处在于：在真正需要之前，Skills 一直不占地方。Anthropic 把这叫[渐进式披露（progressive disclosure）](https://platform.claude.com/docs/en/agents-and-tools/agent-skills/overview)：agent 默认只把每个已装 Skill 的*名字和描述*——一两行——预载进上下文。当你的请求匹配上，它才去读完整的 `SKILL.md`；如果那份指令又指向一份更长的参考文件，它也只打开任务真正需要的那一份，其余都留在磁盘上。
+
+这正是你能同时装很多 Skill 却不塞爆上下文窗口的原因——和 [agent 记忆与上下文怎么工作](/zh/news/2026-09-05-ai-agent-memory-and-context/)背后那套「有限窗口」的纪律是一回事。你粘进去的 prompt 每次都要花掉它那份 token；而一个 Skill 的详细指令，在真正相关那一刻之前，一分不花。
+
+## Skill、prompt、MCP 三者的区别
+
+这三个很容易混，这里给个干净的切分：
+
+- **prompt** 是这一次对话的一次性指令。关掉对话就没了。
+- **Skill** 是存下来的*流程*——那份可复用的「这个任务我们怎么做」，也就是你以前反复粘贴的那段。存一次、改一次，之后每次运行都继承。
+- **[MCP](/zh/news/2026-08-10-what-is-mcp-for-ai-agents/)** 是*连接*——那套开放标准，让 agent 能接上某个工具或数据源（你的日历、一个数据库、GitHub）。
+
+Anthropic 自己的说法是：Skills 和 MCP 是[互补的两层](https://claude.com/blog/extending-claude-capabilities-with-skills-mcp-servers)，不是对手——MCP 提供实时访问，Skill 提供用好它的领域逻辑。说白了：MCP 给 agent 一样新的东西去够到；Skill 教它怎么把这份「够到」用在你的具体活儿上。大多数真实搭建两者都用。
+
+## 今天怎么用起来
+
+你不用自己写就能开始。Anthropic 内置了[常见文档任务的现成 Skill](https://platform.claude.com/docs/en/build-with-claude/skills-guide)——PowerPoint、Excel、Word、PDF——请求需要时 Claude 会自动调用。除此之外，按你在哪里跑 Claude，有三条路：
+
+- **在 Claude 应用里**，匹配到的 Skill 会被自动使用；团队和企业管理员还能上传自定义 Skill。
+- **在 Claude Code 里**，你把一个 Skill（或一整个市场）作为插件装上，然后只要提到那个任务，Claude 合适时就会加载它。
+- **在 API 里**，按 [Agent Skills API 指南](https://platform.claude.com/docs/en/build-with-claude/skills-guide)，你通过请求的 `container` 挂上 Skill，引用现成的 `skill_id`（`pptx`、`xlsx`、`docx`、`pdf`），或用 `/v1/skills` 接口上传自己的，每次请求最多可带 20 个 Skill。
+
+因为这套格式是[开放标准](https://siliconangle.com/2025/12/18/anthropic-makes-agent-skills-open-standard/)，而不是 Claude 专属的小把戏，你写的 Skill 是一份可移植的资产——Anthropic 上线时就带了一个合作方 Skill 目录，包含 Canva、Notion、Figma 等公司，其他 agent 工具也采用了同样的 `SKILL.md` 结构。
+
+## 它在真实搭建里落在哪
+
+Skills 对本站这些搭建之所以重要，是因为一个好 agent *本身就是*一套流程。[Issue #001 里的 Gmail 分拣 agent](/zh/posts/2026-05-13-gmail-ai-agent/) 就是一组范围很窄的规则，讲清怎么给邮件分桶、定优先级——这正是那种「我们怎么做」，该放进 `SKILL.md`，而不是一段你反复粘的 prompt。哪天漏了一个边界情况，你不用把整套流程重讲一遍；改那一行，下一次运行就继承了。
+
+如果你还在拼第一个 agent，Skills 不是第一步——它是让一个能跑的 agent *变得可复用*的那一步。先把 [agent 的四个部件弄对](/zh/news/2026-09-01-how-to-build-an-ai-agent/)，再把稳定、反复用到的指令挪进一个 Skill，别再靠手工一遍遍重搭。完全是新手？从 [Agent 101](/zh/agent-101/) 开始。
+
+## FAQ
+
+**Claude Agent Skills 是什么，我怎么用？**
+Skill 是文件夹——一个必需的 `SKILL.md` 加上可选的脚本和参考文件——用可复用的方式教 Claude 怎么做某个具体任务，见 [Anthropic 文档](https://platform.claude.com/docs/en/agents-and-tools/agent-skills/overview)。请求匹配上时 Claude 会自动加载。你可以零配置用 Anthropic 内置的文档 Skill（PowerPoint、Excel、Word、PDF），在 Claude Code 里装自定义的，或通过 API 挂上。
+
+**Skill 和 prompt 有什么区别？**
+prompt 是一次性指令，对话结束就没了。Skill 是存下来的流程——就是你本来每次都要重粘的那份「怎么做」——存在磁盘上、自动复用。实际好处是：你改一次 Skill，之后每次运行都继承这个改动，不用每次重新教一遍。
+
+**Skill 和 MCP 有什么不同？**
+[MCP](/zh/news/2026-08-10-what-is-mcp-for-ai-agents/) 把 agent 接上某个工具或数据源；Skill 教它用这份访问的流程。Anthropic 把两者定位为[互补](https://claude.com/blog/extending-claude-capabilities-with-skills-mcp-servers)——MCP 是连接，Skill 是方法——大多数真实搭建两者都用。
+
+**Skill 会拖慢 agent 或吃掉上下文吗？**
+不会，这正是它的设计目标。通过[渐进式披露](https://platform.claude.com/docs/en/agents-and-tools/agent-skills/overview)，默认只有 Skill 的名字和描述在上下文里；完整指令只在任务匹配时才加载，更长的参考文件也只在那个任务需要时才读。你可以装很多 Skill 而不塞满窗口。
+
+**做一个 Skill 需要会写代码吗？**
+不需要。一个 Skill 可以只是一份纯指令的 `SKILL.md`，完全没有脚本——[`anthropics/skills` 仓库](https://github.com/anthropics/skills)里有例子。脚本和参考文件都是可选的，只在某个任务用代码更可靠、或太长不适合内联时才用。
+
+---
+
+这个系列里的每一个 agent，其实都是有人反复打磨、直到在真实工作里扛得住的一套流程——正是 Skill 用来存起来的那种东西。想看真实的搭建：每位专业人士到底写了哪些规则、接了哪些工具、还有哪些是他们仍要亲手批的？[免费订阅](/zh/)，每周的搭建实录直接进你的邮箱。
