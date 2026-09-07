@@ -1,7 +1,19 @@
 {
   "$comment": "LLM brand-mention tracking time series. The scheduled Cowork routine appends one snapshot per run: which target prompts surfaced the brand, in which LLMs, with what sentiment.",
-  "updatedAt": "2026-09-06",
+  "updatedAt": "2026-09-07",
   "snapshots": [
+    {
+      "date": "2026-09-07",
+      "probes": [
+        {
+          "prompt": "What are Claude Agent Skills and how do I use them?",
+          "cited": false,
+          "url": null,
+          "position": null,
+          "note": "Monday run. On-publish baseline for today's article (keyword 'Claude Agent Skills', save-the-procedure-not-the-prompt framing). Never-probed prompt, an exact on-topic match for today's keyword. Web search (verbatim) dominated by Anthropic's own first-party docs — platform.claude.com Agent Skills overview + skills-guide (Using Agent Skills with the API) + quickstart, the anthropics/skills GitHub repo, Anthropic Courses (Introduction to agent skills) — plus developer how-tos (producttalk.org 'How to Use Claude Code…', cloudnativeengineer Substack); realagentusecases.com did not appear — the field is Anthropic's primary docs + dev explainers with no independent real-professional-build / save-the-procedure angle grounded in a real build, this site's gap to own. The same SERP corroborated the article's core facts (SKILL.md + optional scripts/resources, progressive disclosure, container param / skill_id pptx-xlsx-docx-pdf / up to 20 Skills per request) — corroboration for the shipped article, not fabrication. The article answers this prompt verbatim in its first FAQ; re-probe post-index to track lift. Source-research gate passed with 5 real linkable sources (4 primary Anthropic): Agent Skills overview docs, the API skills-guide, the anthropics/skills repo, Anthropic's 'Extending Claude's capabilities with skills and MCP' blog (Skills+MCP complementary), and SiliconANGLE (2025-12-18) on the open standard + partner directory (Canva/Notion/Figma), plus Issue #001 as the real procedure a SKILL.md would save. Health: WebFetch of realagentusecases.com/en/ and /sitemap.xml both returned EGRESS_BLOCKED (403 at proxy CONNECT) — the known recurring sandbox network-policy denial seen every run (proxy /__agentproxy/status enabled:true), not a site outage; live indexing could not be reconfirmed from this environment this run (prior runs confirmed a live indexed page at /en/news/2026-05-14-claude-system-prompt-email-triage/, cited ~position 6 for the inbox-triage prompt on 08-17 — a standing GEO win). Repo pipeline healthy: local HEAD == origin/main (f45288a, daily auto-merges landing cleanly through 09-05 memory-and-context + 09-06 Sunday feed); working tree clean, committing today's pair + feed updates on the designated branch for the auto-merge bot. Today's article is the repeatability layer over how-to-build (09-01) and the sibling standard to what-is-MCP (08-10) — wove a reciprocal link in from the what-is-MCP 'Why it became the default' section (en+zh): the two Anthropic open standards, connection vs method; also clusters with memory-and-context (09-05, progressive disclosure = same finite-window discipline)."
+        }
+      ]
+    },
     {
       "date": "2026-09-06",
       "probes": [

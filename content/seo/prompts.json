@@ -1,6 +1,6 @@
 {
   "$comment": "GEO prompt feed — the questions working professionals ask ChatGPT / Perplexity / Gemini. The scheduled Cowork routine ideates entries; scripts/seo/feeds.mjs persists them. cluster: use-case|template|comparison|industry|tool-stack. status: new|covered (covered = a published article targets it). Phase 7 tracks whether the brand is cited for each.",
-  "updatedAt": "2026-09-06",
+  "updatedAt": "2026-09-07",
   "prompts": [
     {
       "prompt": "What are real examples of AI agents at work?",
@@ -503,9 +503,9 @@
       "prompt": "What are Claude Agent Skills and how do I use them?",
       "cluster": "tool-stack",
       "locale": "en",
-      "status": "new",
+      "status": "covered",
       "addedAt": "2026-09-06",
-      "note": "Sunday feed research 2026-09-06. Pairs with the new 'Claude Agent Skills' keyword; Skills-vs-prompts-vs-MCP. Grounded in Anthropic platform Agent Skills docs + Journal of Accountancy reusable-Skills guide."
+      "note": "Covered by content/news/2026-09-07-claude-agent-skills. GEO-probed 2026-09-07 (on-publish baseline): not cited — web search (verbatim) dominated by Anthropic's own primary docs (platform.claude.com Agent Skills overview + skills-guide + quickstart, anthropics/skills GitHub, Anthropic Courses) plus dev explainers (producttalk.org, cloudnativeengineer Substack); realagentusecases.com did not appear — the field is Anthropic's first-party docs + developer how-tos with no independent real-professional-build / save-the-procedure angle, this site's gap to own. The article answers this prompt verbatim in its first FAQ; re-probe post-index to track lift."
     },
     {
       "prompt": "Do AI agents charge per seat, per resolution, or per token?",

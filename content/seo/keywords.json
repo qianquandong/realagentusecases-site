@@ -1,6 +1,6 @@
 {
   "$comment": "SEO keyword feed — a living file. The scheduled Cowork routine ideates entries; scripts/seo/feeds.mjs persists them (dedupe + status + timestamps). intent: informational|commercial|transactional. funnel: TOFU|MOFU|BOFU. cluster: use-case|template|comparison|industry|tool-stack. status: new|used.",
-  "updatedAt": "2026-09-06",
+  "updatedAt": "2026-09-07",
   "keywords": [
     {
       "term": "AI agent use cases",
@@ -782,9 +782,9 @@
       "funnel": "MOFU",
       "cluster": "tool-stack",
       "locale": "both",
-      "status": "new",
+      "status": "used",
       "addedAt": "2026-09-06",
-      "note": "Sunday feed research 2026-09-06. Reusable filesystem folders (a SKILL.md plus optional scripts/templates) an agent loads on demand via progressive disclosure — turns a general agent into a specialist without re-explaining the procedure each session; correct it once and the fix compounds. Sourceable: Anthropic platform docs Agent Skills overview (platform.claude.com/docs/en/agents-and-tools/agent-skills/overview), Journal of Accountancy 'How to build reusable Skills in Anthropic's Claude AI' (Jun 2026). Launched as an open standard Oct 2025; format since adopted by OpenAI/Google/GitHub/Cursor tooling. Skills-vs-prompts-vs-MCP framing (prompts = one-off, Skills = saved procedure, MCP = tool access). Clusters with how-to-build (09-01), what-is-mcp (08-10), prompt-template, workflow-templates."
+      "note": "Used 2026-09-07 → content/news/2026-09-07-claude-agent-skills-{en,zh}.mdx (title 'Claude Agent Skills: Save the Procedure, Not the Prompt'). Save-the-procedure-not-the-prompt framing + the clean three-way split (prompt = one-off; Skill = saved reusable procedure, correct-once-inherit-forever; MCP = the connection). Sources: Anthropic Agent Skills overview docs (platform.claude.com/docs/en/agents-and-tools/agent-skills/overview — SKILL.md required + optional scripts/references/assets, progressive disclosure), Anthropic API guide (platform.claude.com/docs/en/build-with-claude/skills-guide — container param, skill_id pptx/xlsx/docx/pdf, /v1/skills, up to 20 per request), anthropics/skills GitHub repo, Anthropic 'Extending Claude's capabilities with skills and MCP' blog (claude.com/blog — Skills+MCP complementary layers), SiliconANGLE 2025-12-18 open-standard (partner directory Canva/Notion/Figma). Introduced Oct 2025. Grounded in Issue #001's email-triage rules as a real procedure a SKILL.md would save. Wove a reciprocal link in from the what-is-MCP article (08-10) 'Why it became the default' section (en+zh) — the two Anthropic open standards, connection vs method. Clusters with how-to-build (09-01, the repeatability layer over it), what-is-mcp (08-10), memory-and-context (09-05, progressive disclosure = same finite-window discipline). Answers GEO prompt 'What are Claude Agent Skills and how do I use them?' verbatim in its first FAQ (probed this run, not cited)."
     },
     {
       "term": "AI agent pricing models",

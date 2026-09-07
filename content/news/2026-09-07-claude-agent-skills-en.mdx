@@ -1,0 +1,68 @@
+---
+title: "Claude Agent Skills: Save the Procedure, Not the Prompt"
+date: "2026-09-07"
+excerpt: "Claude Agent Skills are reusable folders that teach an agent a procedure once, so you stop re-explaining it every session. Here's how they work."
+---
+
+Claude Agent Skills are folders of instructions, scripts, and resources that Claude loads on demand to do a specialized task the same way every time. Anthropic introduced them in October 2025 and later made the format an open standard. A Skill saves a procedure once — so you stop re-explaining it in every prompt, and a fix you make once compounds across every future run.
+
+If you've ever pasted the same three paragraphs of "here's how we format a report" into a fresh chat for the tenth time, Skills are the fix. This is the plain-English version: what a Skill actually is, why a stack of them stays cheap, how it differs from a prompt and from MCP, and how to use one today.
+
+## What a Skill actually is
+
+A Skill is just a folder. Per [Anthropic's Agent Skills docs](https://platform.claude.com/docs/en/agents-and-tools/agent-skills/overview), the one required file is `SKILL.md` — a Markdown file with a short frontmatter block (a name and a description) followed by the instructions Claude should follow. Optionally, the folder can also carry `scripts/` (helper code the agent runs), `references/` (longer docs it reads only when needed), and `assets/` (templates or files it uses). Anthropic's [public `anthropics/skills` repository](https://github.com/anthropics/skills) shows the shape with real examples you can read.
+
+The point of the format is captured in Anthropic's own framing: a Skill teaches Claude *how* to complete a specific task in a repeatable way — creating documents in your company's brand style, analyzing data with your team's exact method, filling a form the way your process requires. It's procedural knowledge, saved to disk, that the agent picks up automatically when a task matches.
+
+## Progressive disclosure: why a stack of them stays cheap
+
+The clever part is how Skills stay out of the way until they're needed. Anthropic calls this [progressive disclosure](https://platform.claude.com/docs/en/agents-and-tools/agent-skills/overview): the agent pre-loads only each installed Skill's *name and description* — a line or two — into its context. When your request matches, it reads the full `SKILL.md`. If those instructions point to a longer reference file, it opens only the one the task actually needs and leaves the rest on disk.
+
+That's what lets you keep many Skills on hand without clogging the context window — the same finite-window discipline behind [how agent memory and context work](/en/news/2026-09-05-ai-agent-memory-and-context/). A prompt you paste in full costs its tokens every single time; a Skill's detailed instructions cost nothing until the moment they're relevant.
+
+## Skill vs. prompt vs. MCP
+
+These three get muddled, so here's the clean split:
+
+- **A prompt** is a one-off instruction for this conversation. Close the chat and it's gone.
+- **A Skill** is a saved *procedure* — the reusable "how we do this task" that used to live in a prompt you kept re-pasting. Save it once, correct it once, and every future run inherits the fix.
+- **[MCP](/en/news/2026-08-10-what-is-mcp-for-ai-agents/)** is the *connection* — the open standard that gives an agent access to a tool or data source (your calendar, a database, GitHub).
+
+Anthropic's own guidance is that Skills and MCP are [complementary layers](https://claude.com/blog/extending-claude-capabilities-with-skills-mcp-servers), not competitors: MCP supplies the live access, and a Skill supplies the domain logic for using it well. In plain terms — MCP gives the agent something new to reach; a Skill teaches it how to use that reach for your particular job. Most real setups use both.
+
+## How to use one today
+
+You don't have to author anything to start. Anthropic ships [pre-built Skills for common document tasks](https://platform.claude.com/docs/en/build-with-claude/skills-guide) — PowerPoint, Excel, Word, and PDF — and Claude invokes them automatically when a request calls for one. Beyond that, there are three routes depending on where you run Claude:
+
+- **In the Claude apps,** matching Skills are used automatically; team and enterprise admins can also upload custom ones.
+- **In Claude Code,** you install a Skill (or a marketplace of them) as a plugin, then just mention the task — Claude loads the Skill when it fits.
+- **In the API,** per the [Agent Skills API guide](https://platform.claude.com/docs/en/build-with-claude/skills-guide), you attach Skills through the request's `container`, reference a pre-built `skill_id` (`pptx`, `xlsx`, `docx`, `pdf`) or upload your own via the `/v1/skills` endpoints, and can include up to 20 Skills per request.
+
+Because the format is an [open standard](https://siliconangle.com/2025/12/18/anthropic-makes-agent-skills-open-standard/) rather than a Claude-only trick, a Skill you write is a portable asset — Anthropic launched it with a directory of partner Skills from companies including Canva, Notion, and Figma, and other agent tools have adopted the same `SKILL.md` shape.
+
+## Where this fits a real build
+
+The reason Skills matter for the builds on this site is that a good agent *is* a procedure. The [Gmail triage agent in Issue #001](/en/posts/2026-05-13-gmail-ai-agent/) is a tightly-scoped set of rules for how to bucket and prioritize mail — exactly the kind of "how we do this" that belongs in a `SKILL.md` instead of a prompt you re-paste. When one edge case slips through, you don't re-explain the whole procedure; you correct the one line, and the next run inherits it.
+
+If you're still assembling your first agent, Skills aren't step one — they're the step that makes a working agent *repeatable*. Get the [four parts of an agent right first](/en/news/2026-09-01-how-to-build-an-ai-agent/), then move the stable, oft-repeated instructions into a Skill so you stop rebuilding them by hand. New to all of this? Start at [Agent 101](/en/agent-101/).
+
+## FAQ
+
+**What are Claude Agent Skills and how do I use them?**
+Skills are folders — a required `SKILL.md` plus optional scripts and reference files — that teach Claude how to do a specific task in a repeatable way, per [Anthropic's docs](https://platform.claude.com/docs/en/agents-and-tools/agent-skills/overview). Claude loads a Skill automatically when your request matches. You can use Anthropic's pre-built document Skills (PowerPoint, Excel, Word, PDF) with no setup, install custom ones in Claude Code, or attach them through the API.
+
+**What's the difference between a Skill and a prompt?**
+A prompt is a one-off instruction that disappears when the chat ends. A Skill is a saved procedure — the same "how to do this" you'd otherwise re-paste every session — stored on disk and reused automatically. The practical payoff: you correct a Skill once and every later run inherits the fix, instead of re-teaching the agent each time.
+
+**How are Skills different from MCP?**
+[MCP](/en/news/2026-08-10-what-is-mcp-for-ai-agents/) connects an agent to a tool or data source; a Skill teaches it the procedure for using that access. Anthropic frames them as [complementary](https://claude.com/blog/extending-claude-capabilities-with-skills-mcp-servers) — MCP is the connection, a Skill is the method — and most real setups use both.
+
+**Do Skills slow the agent down or eat context?**
+No, that's the design goal. Through [progressive disclosure](https://platform.claude.com/docs/en/agents-and-tools/agent-skills/overview), only a Skill's name and description sit in context by default; the full instructions load only when a task matches, and longer reference files only if that task needs them. You can keep many Skills installed without filling the window.
+
+**Do I need to code to make a Skill?**
+No. A Skill can be a single `SKILL.md` file of plain instructions with no scripts at all — the [`anthropics/skills` repo](https://github.com/anthropics/skills) shows examples. Scripts and reference files are optional, for when a task is more reliable as code or too long to inline.
+
+---
+
+Every agent in this series is really a procedure someone tightened until it held up on real work — the kind of thing a Skill is built to save. Want the actual builds: the exact rules each professional wrote, the tools they wired, and what they still approve by hand? [Subscribe free](/en/) and get each week's build in your inbox.
