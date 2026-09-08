@@ -1,0 +1,62 @@
+---
+title: "What Is the A2A Protocol? Agents Talking to Agents"
+date: "2026-09-08"
+excerpt: "A2A is the open standard that lets AI agents from different vendors discover and delegate work to each other — the agent-to-agent layer that sits beside MCP."
+---
+
+A2A — the Agent2Agent protocol — is an open standard for how one AI agent finds another and hands it work, even when the two were built by different vendors on different frameworks. Google launched it in April 2025 and donated it to the Linux Foundation in June 2025. Where MCP connects an agent to *tools*, A2A connects an agent to *other agents*.
+
+If you've read our [plain-English MCP guide](/en/news/2026-08-10-what-is-mcp-for-ai-agents/), A2A is the other half of the same 2026 story: the industry agreeing on shared plumbing so agents stop being walled gardens. This is what A2A actually is, the problem it solves, the pieces it defines, and — honestly — when you do and don't need it.
+
+## What A2A actually is
+
+A2A is a standard for how two agents talk to each other over the open web. The [official A2A specification](https://a2a-protocol.org/latest/specification/) describes agents as "opaque" — an agent can call another agent and get work done without either side exposing its internal memory, tools, or reasoning. You interact with a capability, not a codebase. That's the same instinct behind MCP, pointed one level up: instead of standardizing how a model reaches a tool, A2A standardizes how an agent reaches another agent.
+
+Google framed it that way from the start. In its [post donating A2A to the Linux Foundation](https://developers.googleblog.com/en/google-cloud-donates-a2a-to-linux-foundation/), Google described the protocol as letting autonomous agents "discover one another, exchange information securely and collaborate across systems" regardless of platform, vendor, or framework — the point being to break the silos that keep an agent from one company from working with an agent from another.
+
+## The pieces it defines
+
+The [A2A spec](https://a2a-protocol.org/latest/specification/) is deliberately built on boring, proven web technology — HTTP(S), JSON-RPC 2.0, and Server-Sent Events (SSE) — so it drops into existing infrastructure. Three concepts do most of the work:
+
+- **Agent Card** — a small JSON document an agent publishes (by convention at `/.well-known/agent.json`) advertising its identity, its skills, where to reach it, and how to authenticate. It's how one agent *discovers* what another can do before delegating anything.
+- **Message** — one turn of the conversation, tagged with a role (`user` or `agent`) and carrying one or more parts (text, files, structured data).
+- **Task** — the unit of work. A client agent submits a task via JSON-RPC, subscribes to progress over SSE for long-running jobs, and collects the finished result. Discover, delegate, stream updates, collect the artifact.
+
+If MCP is the ["USB-C port for AI"](/en/news/2026-08-10-what-is-mcp-for-ai-agents/) — one plug between a model and its tools — A2A is closer to a shared protocol two independent services agree to speak so they can hand each other jobs.
+
+## Why it stopped being a Google thing
+
+A2A follows almost exactly the path MCP took. Google launched it in April 2025 with more than 50 launch partners, then in June 2025 transferred the specification, its SDKs, and developer tooling to the [Linux Foundation's new Agent2Agent Protocol Project](https://www.linuxfoundation.org/press/linux-foundation-launches-the-agent2agent-protocol-project-to-enable-secure-intelligent-communication-between-ai-agents), with AWS, Cisco, Google, Microsoft, Salesforce, SAP, and ServiceNow as founding members and more than 100 companies backing it. In August 2026 A2A [moved again, into the Agentic AI Foundation](https://www.axios.com/2026/08/17/a2a-agentic-ai-foundation-open-ai-standards) — the same neutral, Linux Foundation–hosted home where [Anthropic placed MCP](/en/news/2026-08-10-what-is-mcp-for-ai-agents/) in December 2025. By its one-year mark the Linux Foundation reported A2A had passed [150 supporting organizations](https://www.linuxfoundation.org/press/a2a-protocol-surpasses-150-organizations-lands-in-major-cloud-platforms-and-sees-enterprise-production-use-in-first-year) with integration across Google, Microsoft, and AWS platforms. When both major agent standards live under one vendor-neutral foundation, "can these two agents work together?" stops being a procurement fight.
+
+## A2A and MCP are not rivals
+
+This is the confusion worth clearing up, because it's the question everyone asks. MCP and A2A solve different layers and are designed to compose. MCP is *vertical*: it connects one agent down to its tools and data. A2A is *horizontal*: it connects one agent across to another agent. A single agentic app can use both at once — speak A2A to delegate a sub-task to a specialist agent, while that agent internally uses MCP to reach the databases and APIs it needs. The [A2A spec itself treats MCP as complementary](https://a2a-protocol.org/latest/specification/), not competing.
+
+That maps cleanly onto the coordination shapes we broke down in [multi-agent systems for business](/en/news/2026-08-19-multi-agent-systems-for-business/) and [AI agent orchestration](/en/news/2026-08-15-ai-agent-orchestration/). When a lead agent hands a slice of work to a specialist — especially one built by someone else — A2A is the language that handoff could speak.
+
+## What this means for you at your desk
+
+Here's the honest part. Most real, useful builds this site documents don't need A2A yet. [Issue #001's Gmail triage agent](/en/posts/2026-05-13-gmail-ai-agent/) is one agent doing one bounded job — it reaches its tools through connectors (that's the MCP layer), and there's no second agent for it to talk to. A2A earns its keep when you have *multiple* independent agents, usually from *different* vendors, that genuinely need to coordinate — the same "only when the task has real structure" test we applied to [multi-agent systems](/en/news/2026-08-19-multi-agent-systems-for-business/).
+
+So treat A2A as the standard that makes tomorrow's cross-vendor agent teams possible, not a box to check today. The safety rules don't change: an agent delegating to another agent is still taking autonomous steps, so keep a [human on the irreversible ones](/en/news/2026-08-13-human-in-the-loop-ai-agents/). New to the ground floor? Start at [Agent 101](/en/agent-101/), then see [what MCP is](/en/news/2026-08-10-what-is-mcp-for-ai-agents/) — the layer you'll actually use first.
+
+## FAQ
+
+**What is the A2A protocol, and how is it different from MCP?**
+A2A (Agent2Agent) is an open standard for how AI agents from different vendors discover and delegate work to each other. MCP connects an agent *down* to its tools and data; A2A connects an agent *across* to another agent. They're complementary layers, and the [A2A spec](https://a2a-protocol.org/latest/specification/) is explicit that an app can use both — A2A between agents, MCP inside each agent for its tools.
+
+**Who created A2A and who controls it now?**
+Google launched A2A in April 2025 and donated it to the Linux Foundation in June 2025 as the [Agent2Agent Protocol Project](https://www.linuxfoundation.org/press/linux-foundation-launches-the-agent2agent-protocol-project-to-enable-secure-intelligent-communication-between-ai-agents), with AWS, Cisco, Microsoft, Salesforce, SAP, and ServiceNow among founding members. In August 2026 it [joined the Agentic AI Foundation](https://www.axios.com/2026/08/17/a2a-agentic-ai-foundation-open-ai-standards), the same neutral home as MCP.
+
+**How does A2A actually work?**
+Each agent publishes an [Agent Card](https://a2a-protocol.org/latest/specification/) — a JSON document advertising its skills, endpoint, and authentication. A client agent reads that card, submits a task over JSON-RPC, streams progress via Server-Sent Events for long jobs, and collects the result. It runs on plain HTTP(S), so it fits existing web infrastructure.
+
+**Do I need A2A to build an AI agent?**
+No. A single agent doing one job — like [Issue #001's inbox triage build](/en/posts/2026-05-13-gmail-ai-agent/) — reaches its tools through connectors (MCP) and has no other agent to coordinate with. A2A matters once you run multiple independent agents, often from different vendors, that need to hand each other work. Most desks aren't there yet.
+
+**Is A2A replacing MCP?**
+No. They solve different problems and are built to work together. As [our MCP guide](/en/news/2026-08-10-what-is-mcp-for-ai-agents/) explains, MCP is the connection between an agent and its tools; A2A is the connection between two agents. Both now sit under the same vendor-neutral foundation.
+
+---
+
+Want the field notes on real agents professionals actually run — the exact setups, costs, and failure modes? [Subscribe free](/en/) and get each week's build in your inbox.

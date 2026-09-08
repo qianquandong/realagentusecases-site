@@ -1,0 +1,62 @@
+---
+title: "A2A 协议是什么？智能体之间怎么协作"
+date: "2026-09-08"
+excerpt: "A2A 是让不同厂商的 AI agent 互相发现、彼此委派任务的开放标准——MCP 管 agent 连工具，A2A 管 agent 连 agent。"
+---
+
+A2A——Agent2Agent 协议——是一套开放标准，规定一个 AI agent 如何找到另一个 agent 并把工作交给它，哪怕两者出自不同厂商、不同框架。Google 于 2025 年 4 月发布，2025 年 6 月捐给 Linux 基金会。MCP 把 agent 连到*工具*，而 A2A 把 agent 连到*别的 agent*。
+
+如果你读过我们的 [MCP 大白话指南](/zh/news/2026-08-10-what-is-mcp-for-ai-agents/)，A2A 就是同一个 2026 故事的另一半：行业约定一套共用管道，让 agent 不再各自为政。下面讲清楚 A2A 到底是什么、解决什么问题、定义了哪些部件，以及——说实话——你什么时候需要、什么时候用不上。
+
+## A2A 到底是什么
+
+A2A 是两个 agent 之间通过开放网络对话的标准。[A2A 官方规范](https://a2a-protocol.org/latest/specification/)把 agent 描述为"不透明的"（opaque）——一个 agent 可以调用另一个 agent 完成工作，而双方都不必暴露各自的内部记忆、工具或推理过程。你面对的是一种能力，而不是一份代码。这跟 MCP 的思路一样，只是往上抬了一层：MCP 标准化模型如何够到工具，A2A 标准化一个 agent 如何够到另一个 agent。
+
+Google 从一开始就是这么定位的。在[把 A2A 捐给 Linux 基金会的博文](https://developers.googleblog.com/en/google-cloud-donates-a2a-to-linux-foundation/)里，Google 说这套协议让自主 agent 能"互相发现、安全交换信息、跨系统协作"，不受平台、厂商或框架限制——目的就是打破那些让一家公司的 agent 无法跟另一家的 agent 协作的孤岛。
+
+## 它定义了哪些部件
+
+[A2A 规范](https://a2a-protocol.org/latest/specification/)刻意建立在成熟、朴实的 Web 技术之上——HTTP(S)、JSON-RPC 2.0、Server-Sent Events（SSE）——因此能直接嵌进现有基础设施。三个概念承担了大部分工作：
+
+- **Agent Card（能力名片）**——一份 agent 对外发布的小 JSON 文档（惯例放在 `/.well-known/agent.json`），声明它的身份、技能、访问地址和认证方式。这是一个 agent 在委派任务前*发现*另一个 agent 能做什么的方式。
+- **Message（消息）**——一轮对话，带 `user` 或 `agent` 角色标签，携带一个或多个部分（文本、文件、结构化数据）。
+- **Task（任务）**——工作的单位。客户端 agent 通过 JSON-RPC 提交任务，长任务通过 SSE 订阅进度，最后收取成品。发现、委派、流式回传进度、收取产物。
+
+如果说 MCP 是 ["AI 的 USB-C 接口"](/zh/news/2026-08-10-what-is-mcp-for-ai-agents/)——模型和工具之间的一个插口——那 A2A 更像两个独立服务约定共说的一套协议，好互相派活。
+
+## 它为什么不再只是 Google 的东西
+
+A2A 几乎照着 MCP 的路走了一遍。Google 于 2025 年 4 月发布，带着 50 多家首发伙伴；2025 年 6 月把规范、SDK 和开发者工具转交给 [Linux 基金会新设的 Agent2Agent 协议项目](https://www.linuxfoundation.org/press/linux-foundation-launches-the-agent2agent-protocol-project-to-enable-secure-intelligent-communication-between-ai-agents)，AWS、Cisco、Google、Microsoft、Salesforce、SAP、ServiceNow 为创始成员，逾 100 家公司支持。2026 年 8 月，A2A [又并入了 Agentic AI Foundation](https://www.axios.com/2026/08/17/a2a-agentic-ai-foundation-open-ai-standards)——正是 [Anthropic 在 2025 年 12 月安置 MCP](/zh/news/2026-08-10-what-is-mcp-for-ai-agents/) 的那个 Linux 基金会旗下的中立之家。到一周年时，Linux 基金会称 A2A 已有[超过 150 家支持机构](https://www.linuxfoundation.org/press/a2a-protocol-surpasses-150-organizations-lands-in-major-cloud-platforms-and-sees-enterprise-production-use-in-first-year)，并在 Google、Microsoft、AWS 各平台落地。当两大 agent 标准都归于同一个厂商中立的基金会，"这两个 agent 能不能协作"就不再是一场采购博弈。
+
+## A2A 和 MCP 不是对手
+
+这是最该讲清的误会，因为几乎人人都问。MCP 和 A2A 解决的是不同层，而且天生就是拿来搭配的。MCP 是*纵向*的：把一个 agent 往下连到它的工具和数据。A2A 是*横向*的：把一个 agent 横着连到另一个 agent。一个 agent 应用可以同时用两者——用 A2A 把子任务委派给一个专精 agent，而那个 agent 内部再用 MCP 去够它需要的数据库和 API。[A2A 规范本身就把 MCP 当作互补](https://a2a-protocol.org/latest/specification/)，而非竞争。
+
+这正好对应我们在[企业多智能体系统](/zh/news/2026-08-19-multi-agent-systems-for-business/)和 [AI agent 编排](/zh/news/2026-08-15-ai-agent-orchestration/)里拆过的协作形态。当一个牵头 agent 把一块工作交给专精 agent——尤其是别人做的那种——A2A 就是这次交接可以说的语言。
+
+## 这对你的工位意味着什么
+
+说实话的部分来了。本站记录的大多数真实、有用的搭建，眼下都还用不上 A2A。[Issue #001 的 Gmail 分拣 agent](/zh/posts/2026-05-13-gmail-ai-agent/) 是一个 agent 干一件有边界的活——它通过连接器够到工具（那是 MCP 那层），根本没有第二个 agent 可以对话。A2A 真正派上用场，是当你有*多个*独立 agent，通常还来自*不同*厂商，且确实需要协调时——跟我们对[多智能体系统](/zh/news/2026-08-19-multi-agent-systems-for-business/)用的"只有当任务真有结构时才上"是同一个判断。
+
+所以把 A2A 当作让明天的跨厂商 agent 团队成为可能的标准，而不是今天要打的勾。安全规则不变：一个 agent 把活交给另一个 agent，仍然是在自主行动，所以在不可逆的那几步上[留一个人把关](/zh/news/2026-08-13-human-in-the-loop-ai-agents/)。刚入门？先看 [Agent 101](/zh/agent-101/)，再看 [MCP 是什么](/zh/news/2026-08-10-what-is-mcp-for-ai-agents/)——那才是你会最先用到的一层。
+
+## FAQ
+
+**A2A 协议是什么，和 MCP 有什么区别？**
+A2A（Agent2Agent）是一套开放标准，规定不同厂商的 AI agent 如何互相发现、彼此委派工作。MCP 把 agent 往*下*连到工具和数据；A2A 把 agent 横着连到另一个 agent。两者互补，[A2A 规范](https://a2a-protocol.org/latest/specification/)明确说一个应用可以两者都用——agent 之间走 A2A，每个 agent 内部用 MCP 够工具。
+
+**A2A 是谁做的，现在归谁管？**
+Google 于 2025 年 4 月发布 A2A，2025 年 6 月捐给 Linux 基金会，成立 [Agent2Agent 协议项目](https://www.linuxfoundation.org/press/linux-foundation-launches-the-agent2agent-protocol-project-to-enable-secure-intelligent-communication-between-ai-agents)，AWS、Cisco、Microsoft、Salesforce、SAP、ServiceNow 均为创始成员。2026 年 8 月它[并入 Agentic AI Foundation](https://www.axios.com/2026/08/17/a2a-agentic-ai-foundation-open-ai-standards)，与 MCP 同处一个中立之家。
+
+**A2A 具体怎么运作？**
+每个 agent 发布一张 [Agent Card](https://a2a-protocol.org/latest/specification/)——一份声明技能、访问地址和认证方式的 JSON 文档。客户端 agent 读到这张名片，通过 JSON-RPC 提交任务，长任务用 Server-Sent Events 流式接收进度，最后收取结果。它跑在普通的 HTTP(S) 上，因此契合现有 Web 基础设施。
+
+**搭一个 AI agent 需要 A2A 吗？**
+不需要。一个 agent 干一件活——比如 [Issue #001 的收件箱分拣](/zh/posts/2026-05-13-gmail-ai-agent/)——通过连接器（MCP）够到工具，没有别的 agent 要协调。A2A 是当你运行多个独立 agent、往往还来自不同厂商、需要互相交接时才用得上。大多数工位还没到那一步。
+
+**A2A 会取代 MCP 吗？**
+不会。它们解决不同问题，天生拿来搭配。正如[我们的 MCP 指南](/zh/news/2026-08-10-what-is-mcp-for-ai-agents/)所讲，MCP 是 agent 和工具之间的连接，A2A 是两个 agent 之间的连接。如今两者都归于同一个厂商中立的基金会。
+
+---
+
+想看职场人真正在跑的 agent 的实战笔记——具体配置、成本和翻车点？[免费订阅](/zh/)，每周的搭建直接进你收件箱。

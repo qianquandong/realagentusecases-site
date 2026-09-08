@@ -1,6 +1,6 @@
 {
   "$comment": "SEO keyword feed — a living file. The scheduled Cowork routine ideates entries; scripts/seo/feeds.mjs persists them (dedupe + status + timestamps). intent: informational|commercial|transactional. funnel: TOFU|MOFU|BOFU. cluster: use-case|template|comparison|industry|tool-stack. status: new|used.",
-  "updatedAt": "2026-09-07",
+  "updatedAt": "2026-09-08",
   "keywords": [
     {
       "term": "AI agent use cases",
@@ -772,9 +772,9 @@
       "funnel": "TOFU",
       "cluster": "tool-stack",
       "locale": "both",
-      "status": "new",
+      "status": "used",
       "addedAt": "2026-09-06",
-      "note": "Sunday feed research 2026-09-06. The agent-interoperability standard that sits beside MCP (MCP = agent-to-tools; A2A = agent-to-agent). Sourceable: Linux Foundation press release launching the Agent2Agent Protocol Project (linuxfoundation.org/press), Google Developers Blog on donating A2A to the Linux Foundation (developers.googleblog.com/en/google-cloud-donates-a2a-to-linux-foundation), and Axios on A2A moving to the new Agentic AI Foundation (Aug 2026; 150+ supporting orgs by Apr 2026). Primitives: Agent Cards (advertise capabilities) / Tasks (the work exchanged) / HTTP+SSE+JSON-RPC 2.0 transport. Explainer angle: when you actually need agents to talk to each other, and how it complements rather than replaces MCP. Clusters with what-is-mcp (08-10), best-mcp-servers (08-11), orchestration (08-15), multi-agent-systems (08-19)."
+      "note": "Used 2026-09-08 → content/news/2026-09-08-agent2agent-a2a-protocol-{en,zh}.mdx (title 'What Is the A2A Protocol? Agents Talking to Agents'). Agent-to-agent-vs-agent-to-tools framing beside MCP; honest desk-level line = most single-agent builds (Issue #001) don't need A2A yet, it earns its keep only across multiple independent, often cross-vendor agents that must coordinate. Sources: A2A official spec (a2a-protocol.org/latest/specification — Agent Card at /.well-known/agent.json, Message, Task; HTTP+JSON-RPC 2.0+SSE; MCP treated as complementary), Google Developers Blog donation post, Linux Foundation launch press (June 2025; founders AWS/Cisco/Google/Microsoft/Salesforce/SAP/ServiceNow, 100+ backers), Linux Foundation 'A2A surpasses 150 organizations' one-year press, Axios on A2A joining the Agentic AI Foundation (Aug 2026 — same neutral home as MCP, per the on-site what-is-mcp article), + Issue #001. Wove a link into multi-agent-systems (08-19) handoffs bullet (en+zh); clusters with what-is-mcp (08-10, reciprocal MCP-vs-A2A), orchestration (08-15), human-in-the-loop (08-13). Answers GEO prompt 'What is the A2A protocol and how is it different from MCP?' verbatim in its first FAQ (probed 2026-09-08 on-publish, not cited). | Original ideation note: Sunday feed research 2026-09-06. The agent-interoperability standard that sits beside MCP (MCP = agent-to-tools; A2A = agent-to-agent). Sourceable: Linux Foundation press release launching the Agent2Agent Protocol Project (linuxfoundation.org/press), Google Developers Blog on donating A2A to the Linux Foundation (developers.googleblog.com/en/google-cloud-donates-a2a-to-linux-foundation), and Axios on A2A moving to the new Agentic AI Foundation (Aug 2026; 150+ supporting orgs by Apr 2026). Primitives: Agent Cards (advertise capabilities) / Tasks (the work exchanged) / HTTP+SSE+JSON-RPC 2.0 transport. Explainer angle: when you actually need agents to talk to each other, and how it complements rather than replaces MCP. Clusters with what-is-mcp (08-10), best-mcp-servers (08-11), orchestration (08-15), multi-agent-systems (08-19)."
     },
     {
       "term": "Claude Agent Skills",
