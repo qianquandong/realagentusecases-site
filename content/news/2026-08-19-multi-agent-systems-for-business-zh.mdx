@@ -19,7 +19,7 @@ excerpt: "Gartner 预测到 2026 年底 40% 的企业应用会内嵌 AI agent，
 两种协作形态覆盖了多数真实的搭建：
 
 - **编排者—工作者（orchestrator–workers）**——一个主 agent 规划任务，派生专职子 agent 并行处理各部分，再汇总结果。这套机制我们在 [AI agent 编排](/zh/news/2026-08-15-ai-agent-orchestration/)一文中拆解过。
-- **交接（handoffs）**——agent 之间按能力把控制权传递给对方，各管一段。微软的 [AutoGen 文档记录了 handoff 模式](https://microsoft.github.io/autogen/dev/user-guide/core-user-guide/design-patterns/handoffs.html)（由 OpenAI 的 Swarm 带火）：用一个特殊的工具调用把任务转交给更合适的 agent，比如一个分诊 agent 把工单路由给账单或技术。
+- **交接（handoffs）**——agent 之间按能力把控制权传递给对方，各管一段。微软的 [AutoGen 文档记录了 handoff 模式](https://microsoft.github.io/autogen/dev/user-guide/core-user-guide/design-patterns/handoffs.html)（由 OpenAI 的 Swarm 带火）：用一个特殊的工具调用把任务转交给更合适的 agent，比如一个分诊 agent 把工单路由给账单或技术。当交接双方来自不同厂商时，这次对话可以说的开放标准就是 [A2A（Agent2Agent）协议](/zh/news/2026-09-08-agent2agent-a2a-protocol/)。
 
 最清晰的公开例子是 [Anthropic 自己的多智能体研究系统](https://www.anthropic.com/engineering/multi-agent-research-system)：主研究 agent 拆解问题，并行运行各带独立上下文窗口的子 agent。Anthropic 报告，多智能体设计在一项广度优先的研究评测中比单 agent 基线高出 **90.2%**，但它用掉了约为普通对话 **15 倍**的 token，且 token 用量解释了大部分性能差距。这一个数据点就说清了全部权衡：多智能体买来的是广度和并行，而你要为此付费。
 

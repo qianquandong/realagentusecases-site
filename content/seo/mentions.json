@@ -1,7 +1,19 @@
 {
   "$comment": "LLM brand-mention tracking time series. The scheduled Cowork routine appends one snapshot per run: which target prompts surfaced the brand, in which LLMs, with what sentiment.",
-  "updatedAt": "2026-09-07",
+  "updatedAt": "2026-09-08",
   "snapshots": [
+    {
+      "date": "2026-09-08",
+      "probes": [
+        {
+          "prompt": "What is the A2A protocol and how is it different from MCP?",
+          "cited": false,
+          "url": null,
+          "position": null,
+          "note": "Tuesday run. On-publish baseline for today's article (keyword 'Agent2Agent A2A protocol', agent-to-agent-vs-agent-to-tools framing). Never-probed prompt, an exact on-topic match for today's keyword and its paired GEO prompt. Web search (verbatim) dominated by API/integration-vendor and dev explainers comparing the two protocols: truefoundry (MCP vs A2A), onereach.ai, atlan (MCP vs A2A architecture), descope (A2A vs MCP), merge.dev (how they overlap and differ), DigitalOcean (a2a-vs-mcp tutorial), plus a2a-protocol.org's own 'A2A and MCP' topic page; realagentusecases.com did not appear — the field is protocol-comparison explainers from integration/API vendors + the spec's own docs, with no independent real-professional-build / honest-when-you-don't-need-it-yet angle grounded in a real desk build, this site's gap to own. Notably the same SERP independently states the article's own thesis — MCP = vertical (agent-to-tool), A2A = horizontal (agent-to-agent), complementary and composable not competing — corroboration for the shipped article, not fabrication. The article answers this prompt verbatim in its first FAQ; re-probe post-index to track lift. Source-research gate passed with 5+ real linkable sources (mostly primary): the A2A official specification (a2a-protocol.org/latest/specification — Agent Card at /.well-known/agent.json, Message, Task; HTTP(S)+JSON-RPC 2.0+SSE; MCP treated as complementary), Google Developers Blog 'Google Cloud donates A2A to Linux Foundation', the Linux Foundation launch press release (June 23 2025 at OSS NA; founders AWS/Cisco/Google/Microsoft/Salesforce/SAP/ServiceNow, 100+ backers, Google seeded spec+SDKs+tooling), the Linux Foundation 'A2A surpasses 150 organizations' one-year press, and Axios (2026-08-17) on A2A joining the Agentic AI Foundation — the same neutral Linux-Foundation-hosted home where the on-site what-is-mcp article records MCP landing in Dec 2025 — plus Issue #001 as the real single-agent build that doesn't need A2A yet. Health: WebFetch of realagentusecases.com/sitemap.xml AND a2a-protocol.org both returned EGRESS_BLOCKED (403 at proxy CONNECT) — the known recurring sandbox network-policy denial seen every run (proxy /__agentproxy/status enabled:true), not a site outage; sources confirmed via WebSearch snippets on the named primary pages; live indexing could not be reconfirmed from this environment this run (prior runs confirmed a live indexed page at /en/news/2026-05-14-claude-system-prompt-email-triage/, cited ~position 6 for the inbox-triage prompt on 08-17 — a standing GEO win). Repo pipeline healthy: local HEAD == origin/main (281e8f7, daily auto-merges landing cleanly through 09-07 claude-agent-skills + its Sunday feed); working tree clean, committing today's pair + feed updates on the designated branch for the auto-merge bot. Today's article is the agent-to-agent sibling standard to what-is-MCP (08-10) — wove a link into the multi-agent-systems (08-19) handoffs bullet (en+zh); clusters with orchestration (08-15), multi-agent-systems (08-19), human-in-the-loop (08-13)."
+        }
+      ]
+    },
     {
       "date": "2026-09-07",
       "probes": [
