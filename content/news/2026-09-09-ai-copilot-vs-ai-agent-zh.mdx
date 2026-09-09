@@ -1,0 +1,59 @@
+---
+title: "AI Copilot 与 AI Agent：辅助还是执行"
+date: "2026-09-09"
+excerpt: "Copilot 在应用里辅助你，AI agent 自己完成多步骤任务。真正的区别是自主性——教你分清两者，并挑对该用哪个。"
+---
+
+Copilot 和 AI agent 跑在同一批模型上，做的却是两种活。Copilot 在应用里辅助你——建议、起草、摘要，而方向盘始终在你手上。Agent 自己去做那件多步骤的事，跨你的工具去追一个目标。分界线是自主性：辅助，还是执行。
+
+这两个词在销售话术里被混着用，所以买家总在问自己到底该要哪个。老实说，它们只是坐在同一条光谱的不同位置上，挑哪个取决于任务本身——而不是哪个听起来更高级。
+
+## 同样的模型，唯一的区别
+
+同时卖这两样的微软，把这条线画得很清楚。在它的 [AI agents 页面](https://www.microsoft.com/en-us/microsoft-365-copilot/agents)上它这样说：「传统 AI 模型帮个人更高效。而 AI agent 能执行业务流程。」Copilot 让*你*把一件事做得更快；agent 直接把这件事做掉。这正是我们在 [AI agent 和聊天机器人](/zh/news/2026-08-12-ai-agent-vs-chatbot/) 之间画过的那条线——回应还是行动——套用到你早就在付费的生产力工具上。
+
+## Copilot 在做什么
+
+Copilot 是嵌在应用里的助手，帮你更快，但不把你赶下驾驶座。微软把 [Microsoft 365 Copilot](https://www.microsoft.com/en-us/microsoft-365-copilot) 定位为「为工作而生的 AI」，在「你早已熟悉的应用里」把数据变成洞察——Word、Excel、Outlook、Teams。它在*你开口时*起草、摘要、调出数据，而每一份产出在流向任何地方之前都由你审。GitHub Copilot 提示下一行代码也是同一形状：它提议，你接受或拒绝。人守在每一次敲键上。
+
+对于临时的、一次性的、需要判断的活——一封草稿邮件、一份初稿分析、一个棘手的函数——这正是你要的。Copilot 加速思考；决定和动作仍归你。
+
+## Agent 多了什么
+
+Agent 把同一个模型放进一个能自己规划和行动的循环。微软说 agent [跨度](https://www.microsoft.com/en-us/microsoft-365-copilot/agents)「从简单的『提问—回应』型 agent，到能从头到尾跑完整个工作流的高级全自主 agent」。在它自己的[大白话解释](https://www.microsoft.com/en-us/microsoft-copilot/copilot-101/ai-agents-types-and-uses)里，它把 agent 称作「代表个人、团队或整个组织工作的虚拟队友」，被造来「独立行动」，而自主那一类能「用目标、数据和上下文自己做决定、自己采取行动，不需要每一步都有人介入」。
+
+举个例子：收件箱里的 copilot 在你打开一封邮件时帮你起草回复。而 agent 会读完整个收件箱，判断哪些邮件需要回，逐封起草，再在你确认后发出——这就是 [Issue #001 的 Gmail 分拣 agent](/zh/posts/2026-05-13-gmail-ai-agent/) 背后「感知→决策→行动」的循环。Copilot 帮你清收件箱；agent 把收件箱清掉。
+
+## 这是一条光谱，不是一堵墙
+
+因为 agent 就是 copilot 底层那个模型被给了更多自主权，两者活在同一条渐变线上，而不是两个盒子里。[Anthropic 的工程指南](https://www.anthropic.com/engineering/building-effective-agents)直接点出这个轴：固定工作流和自主 agent 之间的差别，就是「自主程度」。而自主性更高并不自动更好——Anthropic 建议找「最简单可行的方案」，因为多出来的自主权带来成本、延迟和新的失败方式。这和 [Agentic AI 与生成式 AI](/zh/news/2026-08-17-agentic-ai-vs-generative-ai/) 是同一个教训：听起来更强的那个，往往不该是默认项。
+
+## 你到底需要哪个
+
+按任务挑工具，别按噱头：
+
+- **选 copilot**——当活是临时的、需要判断的，或者本来你就打算审一遍的：起草、分析、你会先读再跑的代码。你要的是速度，手还在方向盘上。
+- **选 agent**——当活是重复的、量大的、跨多个步骤或工具的：分拣、跟进、数据录入——并且你愿意在[会发送、付款、删除的步骤上加一道人工确认闸门](/zh/news/2026-08-13-human-in-the-loop-ai-agents/)。
+
+大多数工位两个都需要：用 copilot 做思考，用 agent 做杂活。刚入门？从 [Agent 101](/zh/agent-101/) 开始，再看[职场里真正立得住的五种 agent 模式](/zh/news/2026-08-04-ai-agents-for-work/)。
+
+## FAQ
+
+**AI copilot 和 AI agent 有什么区别？**
+Copilot 在应用里辅助你——它建议、起草、摘要，而你守在方向盘上、审阅每份产出。Agent 自己朝一个目标采取多步骤行动，跨你的工具。微软把它框成[帮你更高效 vs. 执行流程](https://www.microsoft.com/en-us/microsoft-365-copilot/agents)：copilot 让你更快，agent 把事做掉。
+
+**Microsoft 365 Copilot 是 agent 吗？**
+默认不是——[Microsoft 365 Copilot](https://www.microsoft.com/en-us/microsoft-365-copilot) 是在你应用里工作、在你开口时行动的助手。微软另有的 [agents](https://www.microsoft.com/en-us/microsoft-365-copilot/agents) 能「从头到尾」跑工作流，有些还是全自主的。Copilot 是辅助层；agent 是建在同一平台上的执行层。
+
+**Copilot 比 agent 更安全吗？**
+Copilot 的操作风险更低，因为任何事发生前都有人审每份产出。Agent 在真实系统上行动，风险因此转向错误的*动作*，而不只是错误的答案——所以发送/付款/删除这些步骤应当留在[一道人工确认闸门](/zh/news/2026-08-13-human-in-the-loop-ai-agents/)之后。
+
+**我需要 agent，还是 copilot 就够？**
+如果任务是「产出一个我会审的东西」，copilot 就是全部答案，而且更可预测。如果是「跨我的工具完成一件重复的多步骤活」，agent 才值回票价——并在不可逆的步骤上加闸门。[Anthropic 建议](https://www.anthropic.com/engineering/building-effective-agents)用最简单可行的方案，所以 copilot 能解决时别去搬 agent。
+
+**「Copilot」只是同一样东西的营销词吗？**
+确实有重叠——两者都建在同一批模型上，标签也在模糊——但好用的判据是自主性。如果它等你、每步都要你确认，它在扮 copilot；如果它自己跨步骤规划并执行，它在扮 agent。和[聊天机器人 vs. agent](/zh/news/2026-08-12-ai-agent-vs-chatbot/) 是同一条「回应 vs. 行动」的线。
+
+---
+
+想看职场人真正在跑的 agent 现场笔记——具体配置、成本和翻车点？[免费订阅](/zh/)，每周的搭建直接发到你的收件箱。

@@ -1,6 +1,6 @@
 {
   "$comment": "SEO keyword feed — a living file. The scheduled Cowork routine ideates entries; scripts/seo/feeds.mjs persists them (dedupe + status + timestamps). intent: informational|commercial|transactional. funnel: TOFU|MOFU|BOFU. cluster: use-case|template|comparison|industry|tool-stack. status: new|used.",
-  "updatedAt": "2026-09-08",
+  "updatedAt": "2026-09-09",
   "keywords": [
     {
       "term": "AI agent use cases",
@@ -812,9 +812,9 @@
       "funnel": "TOFU",
       "cluster": "comparison",
       "locale": "both",
-      "status": "new",
+      "status": "used",
       "addedAt": "2026-09-06",
-      "note": "Sunday feed research 2026-09-06. Assist-vs-act distinction, sibling of agent-vs-chatbot (08-12) and agentic-vs-generative (08-17): a copilot suggests inside an app while you stay in the driver's seat; an agent takes the multi-step action itself. Timely — IDC expects AI copilots embedded in ~80% of enterprise workplace apps by 2026 (via the Sep-2026 enterprise-trends roundups), so buyers keep conflating the two. Sourceable at write time: Microsoft 365 Copilot product pages (already on-site), the IDC 80% figure via a reliable secondary report, Anthropic Building Effective Agents (autonomy spectrum). Clusters with agent-vs-chatbot, agentic-vs-generative, ai-agents-for-work."
+      "note": "Sunday feed research 2026-09-06. Assist-vs-act distinction, sibling of agent-vs-chatbot (08-12) and agentic-vs-generative (08-17): a copilot suggests inside an app while you stay in the driver's seat; an agent takes the multi-step action itself. Timely — IDC expects AI copilots embedded in ~80% of enterprise workplace apps by 2026 (via the Sep-2026 enterprise-trends roundups), so buyers keep conflating the two. Sourceable at write time: Microsoft 365 Copilot product pages (already on-site), the IDC 80% figure via a reliable secondary report, Anthropic Building Effective Agents (autonomy spectrum). Clusters with agent-vs-chatbot, agentic-vs-generative, ai-agents-for-work. | Used 2026-09-09 → content/news/2026-09-09-ai-copilot-vs-ai-agent-{en,zh}.mdx (title 'AI Copilot vs AI Agent: Assist or Act?'). Assist-vs-act framing, sibling of agent-vs-chatbot (08-12) and agentic-vs-generative (08-17). Copilot = assistant embedded in an app, you stay in control (Microsoft 365 Copilot 'AI built for work' in the apps you already know; GitHub Copilot propose/accept); agent = takes the multi-step action itself. Microsoft's own line: 'Traditional AI models help individuals be more efficient. AI agents, however, can execute business processes'; agents range 'from simple prompt-and-response agents to advanced, fully autonomous agents that can complete entire workflows from start to finish' + copilot-101 'virtual teammates' that 'act independently'. Spectrum framing from Anthropic Building Effective Agents ('degree of autonomy', simplest solution). Dropped the IDC 80% figure — only in secondary blogs, no primary IDC source. Wove an assist-vs-act link into agent-vs-chatbot (en+zh) gray-zone section. Grounded in Issue #001's send-with-approval loop."
     },
     {
       "term": "agentic RAG",

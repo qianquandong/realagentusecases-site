@@ -1,0 +1,59 @@
+---
+title: "AI Copilot vs AI Agent: Assist or Act?"
+date: "2026-09-09"
+excerpt: "A copilot assists you inside an app; an AI agent takes the multi-step action itself. The real difference is autonomy — how to tell them apart and pick."
+---
+
+A copilot and an AI agent run on the same models but do different jobs. A copilot assists you inside an app — suggesting, drafting, summarizing while you stay in control. An agent takes the multi-step action itself, working toward a goal across your tools. The dividing line is autonomy: assist versus act.
+
+The two words get used interchangeably in sales decks, which is why buyers keep asking which one they actually need. The honest answer is that they sit at different points on one spectrum, and picking the right point depends on the task — not on which sounds more advanced.
+
+## Same models, one real difference
+
+Microsoft, which ships both, draws the line cleanly. On its [AI agents page](https://www.microsoft.com/en-us/microsoft-365-copilot/agents), it puts it this way: "Traditional AI models help individuals be more efficient. AI agents, however, can execute business processes." A copilot makes *you* faster at a task; an agent does the task. That's the same split we drew between [an AI agent and a chatbot](/en/news/2026-08-12-ai-agent-vs-chatbot/) — respond versus act — applied to the productivity tools you already pay for.
+
+## What a copilot does
+
+A copilot is an assistant embedded in an app that helps you work faster without leaving the driver's seat. Microsoft brands [Microsoft 365 Copilot](https://www.microsoft.com/en-us/microsoft-365-copilot) as "AI built for work" that turns data into insights "in the apps you already know" — Word, Excel, Outlook, Teams. It drafts, summarizes, and surfaces data *when you ask*, and you review every output before it goes anywhere. GitHub Copilot suggesting the next line of code is the same shape: it proposes, you accept or reject. The human stays on every keystroke.
+
+That's exactly what you want for work that's ad hoc, one-off, or high-judgment — a draft email, a first-pass analysis, a tricky function. The copilot speeds up the thinking; the decision and the action stay yours.
+
+## What an agent adds
+
+An agent puts that same model inside a loop that can plan and act on its own. Microsoft describes agents as [ranging](https://www.microsoft.com/en-us/microsoft-365-copilot/agents) "from simple prompt-and-response agents to advanced, fully autonomous agents that can complete entire workflows from start to finish." In its own [plain-English explainer](https://www.microsoft.com/en-us/microsoft-copilot/copilot-101/ai-agents-types-and-uses), it calls agents "virtual teammates that work on behalf of a person, team, or entire organization," built to "act independently" and — for the autonomous kind — to "make decisions and take action on their own using goals, data, and context, without needing human input at every step."
+
+Concrete: a copilot in your inbox drafts a reply when you open a message. An agent reads the whole inbox, decides which messages need a response, drafts each one, and — with your approval — sends them: the sense→decide→act loop behind [Issue #001's Gmail triage agent](/en/posts/2026-05-13-gmail-ai-agent/). The copilot helps you clear the inbox; the agent clears it.
+
+## It's a spectrum, not a wall
+
+Because an agent is a copilot's underlying model given more autonomy, the two live on one gradient rather than in separate boxes. [Anthropic's engineering guidance](https://www.anthropic.com/engineering/building-effective-agents) names the axis directly: the difference between a fixed workflow and an autonomous agent is "the degree of autonomy." And more autonomy isn't automatically better — Anthropic recommends finding "the simplest solution possible," because added agency brings added cost, latency, and new ways to fail. This is the same lesson as [agentic AI vs generative AI](/en/news/2026-08-17-agentic-ai-vs-generative-ai/): the capable-sounding option is often the wrong default.
+
+## Which one do you need?
+
+Match the tool to the task, not the hype:
+
+- **Reach for a copilot** when the work is ad hoc, high-judgment, or something you want to review anyway — drafting, analysis, code you'll read before you run. You want speed with your hand on the wheel.
+- **Reach for an agent** when the work is repetitive, high-volume, and spans multiple steps or tools — triage, follow-ups, data entry — and you're willing to put [a human approval gate on the steps that send, pay, or delete](/en/news/2026-08-13-human-in-the-loop-ai-agents/).
+
+Most desks need both: a copilot for the thinking, an agent for the busywork. New to this? Start at [Agent 101](/en/agent-101/), then see the [five agent patterns that hold up at work](/en/news/2026-08-04-ai-agents-for-work/).
+
+## FAQ
+
+**What is the difference between an AI copilot and an AI agent?**
+A copilot assists you inside an app — it suggests, drafts, and summarizes while you stay in control and review each output. An agent takes multi-step action toward a goal on its own, across your tools. Microsoft frames it as [help you be efficient versus execute the process](https://www.microsoft.com/en-us/microsoft-365-copilot/agents): a copilot makes you faster, an agent does the task.
+
+**Is Microsoft 365 Copilot an agent?**
+Not by default — [Microsoft 365 Copilot](https://www.microsoft.com/en-us/microsoft-365-copilot) is an assistant that works inside your apps and acts when you ask. Microsoft's separate [agents](https://www.microsoft.com/en-us/microsoft-365-copilot/agents) can run workflows "from start to finish," some fully autonomously. Copilot is the assist layer; agents are the act layer built on the same platform.
+
+**Is a copilot safer than an agent?**
+A copilot carries less operational risk because a human reviews every output before anything happens. An agent acts on live systems, so the risk shifts to wrong *actions*, not just wrong answers — which is why the send/pay/delete steps should stay behind [a human-in-the-loop gate](/en/news/2026-08-13-human-in-the-loop-ai-agents/).
+
+**Do I need an agent, or is a copilot enough?**
+If the task is "produce something I'll review," a copilot is the whole answer and it's more predictable. If it's "complete a repetitive multi-step job across my tools," an agent earns its keep — with a gate on the irreversible steps. [Anthropic recommends](https://www.anthropic.com/engineering/building-effective-agents) the simplest solution that works, so don't reach for an agent when a copilot will do.
+
+**Is "copilot" just marketing for the same thing?**
+There's real overlap — both are built on the same models and the labels blur — but the useful test is autonomy. If it waits for you and you approve each step, it's acting as a copilot; if it plans and executes across steps on its own, it's acting as an agent. Same [respond-versus-act line as chatbot versus agent](/en/news/2026-08-12-ai-agent-vs-chatbot/).
+
+---
+
+Want the field notes on real agents professionals actually run — the exact setups, costs, and failure modes? [Subscribe free](/en/) and get each week's build in your inbox.
