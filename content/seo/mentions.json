@@ -1,7 +1,19 @@
 {
   "$comment": "LLM brand-mention tracking time series. The scheduled Cowork routine appends one snapshot per run: which target prompts surfaced the brand, in which LLMs, with what sentiment.",
-  "updatedAt": "2026-09-09",
+  "updatedAt": "2026-09-10",
   "snapshots": [
+    {
+      "date": "2026-09-10",
+      "probes": [
+        {
+          "prompt": "Can ChatGPT read my Gmail and make a to-do list?",
+          "cited": false,
+          "url": null,
+          "position": null,
+          "note": "Thursday run. Least-recently-probed prompt (last seen 2026-07-07, status new). Web search (verbatim) surfaced OpenAI Help Center (scheduled tasks in ChatGPT), MindStudio (ChatGPT Gmail connector), TechRadar, Medium (emails to tasks with Mem), usecarly (can ChatGPT read emails / ChatGPT+Gmail integration), Tom's Guide (reminders + to-do prompts), and the Google Workspace Marketplace ChatGPT-for-Gmail app; realagentusecases.com did not appear. The field is vendor-connector explainers and productivity listicles with no real desk-level build behind them — Issue #001 (a Gmail agent that actually triages an inbox) is the site's uncontested angle here, still not surfacing for this exact-match consumer prompt."
+        }
+      ]
+    },
     {
       "date": "2026-09-08",
       "probes": [
