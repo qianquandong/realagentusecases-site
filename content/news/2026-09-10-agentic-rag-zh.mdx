@@ -1,0 +1,51 @@
+---
+title: "Agentic RAG：让 agent 自己决定检索"
+date: "2026-09-10"
+excerpt: "经典 RAG 检索一次就作答；agentic RAG 让 agent 自己决定何时去搜、评判取回的内容、必要时重试。这篇讲清它怎么工作、什么时候真的需要。"
+---
+
+Agentic RAG 是一种检索增强生成（RAG）——由一个 agent 来决定怎么去取知识，而不是走一条固定管线。经典 RAG 检索一次就作答。agentic RAG 让模型自己判断要不要搜、改写查询、给取回的内容打分、必要时换个源重试，直到上下文足够好、能回答为止。
+
+如果你读过[AI agent 的记忆与上下文怎么工作](/zh/news/2026-09-05-ai-agent-memory-and-context/)，这就是那个故事的检索一面。记忆是 agent 存什么、读回什么；agentic RAG 是**决定**何时去读、取什么、结果够不够好这门功夫。下面讲清：当检索不再是一个固定步骤、而变成一个决策时，会发生什么变化。
+
+## 从固定管线到一个决策
+
+经典 RAG 走一条路：把问题向量化、从向量库里捞出最匹配的几块、塞进 prompt、作答。[IBM 关于 agentic RAG 的解释](https://www.ibm.com/think/topics/agentic-rag)把局限说得很直白——传统 RAG 的静态工作流和有限的适应性，很难应付动态的、多步的推理。它不管检索有没有用都会检索，也从不检查捞回来的东西到底好不好。
+
+agentic RAG 把这件事交给一个 agent 来管。按 IBM 的说法，它「引入了能做动态决策、迭代推理和自适应检索策略的自主 agent」。[NVIDIA 的文章](https://developer.nvidia.com/blog/traditional-rag-vs-agentic-rag-why-ai-agents-need-dynamic-knowledge-to-get-smarter/)画出同一条线：传统 RAG 是固定的「检索—作答」回路，而 agentic RAG 加了一个推理层，去决定下一步做什么。有从业者一句话总结：传统 RAG 回答问题，agentic RAG 支撑工作。
+
+## 那个回路：决定、检索、打分、重试
+
+具体形状在 [LangChain 官方给 LangGraph 的 agentic-RAG 指南](https://docs.langchain.com/oss/python/langgraph/agentic-rag)里看得很清楚：它搭了一个检索 agent，自己决定何时去搜向量库、何时直接作答。这个套路里有一个 router 决定某个查询到底要不要检索、一个 retriever 去取文档、一个 grader 评判这些文档相不相关——如果不相关，agent 就改写查询再试一次。
+
+这个「打分再重试」的回路才是真正的区别。一个简单问题（「Python 是什么？」）直接跳过检索；一个含糊的问题会先被改写再来第二遍；一个跨两个系统的查询会触发两次检索。这和把记忆做成一个模型按需调用的工具是同一个直觉——[agent 记忆怎么工作](/zh/news/2026-09-05-ai-agent-memory-and-context/)和 [MCP for AI agents](/zh/news/2026-08-10-what-is-mcp-for-ai-agents/)里都讲过：模型通过一个定义好的接口去取它需要的，而不是每次都被塞一坨固定内容。
+
+## 检索质量仍然决定答案
+
+让 agent 掌控**何时**检索，并不能解决**检索到什么**。那是另一个问题，也是很多 agentic RAG 悄悄翻车的地方。[Anthropic 的 contextual retrieval 工作](https://www.anthropic.com/engineering/contextual-retrieval)量化过：给每一块内容配上一小段模型写的、说明它在文档里位置的描述，把失败的检索减少了 35%；把 contextual embeddings 和 BM25 关键词搜索结合，减少了 49%——再加一个重排（reranking）步骤后达到 67%。在糟糕的检索之上做更好的决策，只会更快地返回糟糕的内容。
+
+想看更大的图景——单 agent、多 agent、基于图的各种设计的分类——[2026 年 arXiv 关于 agentic RAG 的综述](https://arxiv.org/abs/2501.09136)是那张参考地图。在你定架构之前值得翻一翻，因为大部分复杂度其实是可选的。
+
+## 什么时候不需要它
+
+agentic RAG 不是免费升级。agent 每多做一个决策，就多一次模型调用——更多延迟、更多成本、更大的调试面。如果你的场景是「从一个结构良好的知识库里答问题」，经典 RAG 通常就够了，诚实的做法是先把那个发出去。当查询确实跨多个源、当单次检索经常漏、当任务需要先走几步推理才能回答时，再上 agentic RAG。
+
+而正因为这些多出来的活动部件恰恰是会悄无声息坏掉的部分，要把评测和可观测性当成搭建的一部分，而不是事后补——就是[怎么评测 AI agent](/zh/news/2026-08-27-how-to-evaluate-ai-agents/)和 [AI agent 可观测性](/zh/news/2026-08-31-ai-agent-observability/)里讲的那套功夫。你得看到哪些检索触发了、它们返回了什么、grader 判得对不对。
+
+## FAQ
+
+**什么是 agentic RAG？**
+Agentic RAG 是检索增强生成，但回路里有一个 agent 来决定怎么取知识，而不是走固定管线。[IBM](https://www.ibm.com/think/topics/agentic-rag) 把它描述为加入了能做动态决策、迭代推理和自适应检索的自主 agent——于是模型可以选择要不要搜、改写查询、评判结果、必要时重试。
+
+**agentic RAG 和传统 RAG 有什么区别？**
+传统 RAG 走一条固定路：检索出最匹配的几块，然后作答。agentic RAG 让 agent 决定要不要检索、给取回的文档打分看相不相关、不行就改写查询再试。[LangChain 的 agentic-RAG 指南](https://docs.langchain.com/oss/python/langgraph/agentic-rag)实现的正是这个 router-retrieve-grade 回路。
+
+**agentic RAG 能提升准确率吗？**
+它能改善**如何决定**检索，但检索**质量**是另一根杠杆。[Anthropic 的 contextual retrieval](https://www.anthropic.com/engineering/contextual-retrieval) 用 contextual embeddings 把失败检索减少了 35%、结合 BM25 到 49%（加重排 67%）——这些收益来自更好的分块，不是来自 agent 回路。两件事都做，并用[agent 评测](/zh/news/2026-08-27-how-to-evaluate-ai-agents/)去量。
+
+**什么时候不该用 agentic RAG？**
+当一个结构良好的知识库就能答问题时，经典 RAG 通常就够了——agentic RAG 会加延迟、成本和调试面。只有当查询跨多个源、单次检索经常漏、或任务需要先做多步推理时，再上它。
+
+---
+
+这个系列里的每一个搭建都是一个窄任务、都是刻意接线的——包括 agent 去哪儿查资料、以及它怎么知道答案够好。想每周把真实的、桌面级的搭建实录收进邮箱？[免费订阅](/zh/)。

@@ -1,0 +1,51 @@
+---
+title: "Agentic RAG: When the Agent Decides to Retrieve"
+date: "2026-09-10"
+excerpt: "Classic RAG retrieves once, then answers. Agentic RAG lets the agent decide when to search, judge what comes back, and retry — here is how it works."
+---
+
+Agentic RAG is retrieval-augmented generation where an agent decides how to fetch knowledge, instead of following a fixed pipeline. Classic RAG retrieves once and answers. Agentic RAG lets the model judge whether to search at all, reformulate the query, grade what comes back, and retry across sources until the context is good enough to answer.
+
+If you have read [how AI agent memory and context work](/en/news/2026-09-05-ai-agent-memory-and-context/), this is the retrieval side of that story. Memory is what an agent stores and reads back; agentic RAG is the discipline of *deciding* when to go read, what to fetch, and whether the result is good enough. Here is what changes when retrieval stops being a fixed step and becomes a decision.
+
+## From a fixed pipeline to a decision
+
+Classic RAG runs one path: embed the question, pull the top matching chunks from a vector store, stuff them into the prompt, answer. [IBM's explainer on agentic RAG](https://www.ibm.com/think/topics/agentic-rag) describes the limit plainly — traditional RAG's static workflows and limited adaptability struggle with dynamic, multi-step reasoning. It retrieves whether or not retrieval helps, and it never checks whether what it pulled was any good.
+
+Agentic RAG puts an agent in charge of that. Per IBM, it "incorporates autonomous agents capable of dynamic decision-making, iterative reasoning, and adaptive retrieval strategies." [NVIDIA's write-up](https://developer.nvidia.com/blog/traditional-rag-vs-agentic-rag-why-ai-agents-need-dynamic-knowledge-to-get-smarter/) draws the same line: traditional RAG is a fixed retrieve-then-respond loop, while agentic RAG adds a reasoning layer that decides what to do next. The one-line version some practitioners use: traditional RAG answers questions; agentic RAG supports work.
+
+## The loop: decide, retrieve, grade, retry
+
+The concrete shape shows up in [LangChain's official agentic-RAG guide for LangGraph](https://docs.langchain.com/oss/python/langgraph/agentic-rag), which builds a retrieval agent that decides when to search a vector store versus answering directly. The pattern has a router that decides whether a query needs retrieval at all, a retriever that fetches documents, and a grader that evaluates whether those documents are relevant — and if they are not, the agent rewrites the query and tries again.
+
+That grade-and-retry loop is the real difference. A simple question ("What is Python?") skips retrieval entirely; a vague one gets reformulated before a second pass; a query that spans two systems triggers two retrievals. It is the same instinct behind exposing memory as a tool the model calls on demand — the point made in [how agent memory works](/en/news/2026-09-05-ai-agent-memory-and-context/) and in [what MCP is for AI agents](/en/news/2026-08-10-what-is-mcp-for-ai-agents/): the model pulls what it needs through a defined interface, rather than being handed a fixed blob every time.
+
+## Retrieval quality still decides the answer
+
+Giving the agent control over *when* to retrieve does not fix *what* it retrieves. That is a separate problem, and it is where a lot of agentic RAG quietly fails. [Anthropic's contextual retrieval work](https://www.anthropic.com/engineering/contextual-retrieval) measured it: embedding each chunk together with a short model-written description of where it sits in the document reduced failed retrievals by 35%, and combining contextual embeddings with BM25 keyword search cut them by 49% — 67% once a reranking step was added. Better decisions on top of bad retrieval still return bad chunks, faster.
+
+For the wider landscape — the taxonomy of single-agent, multi-agent, and graph-based designs — the [2026 arXiv survey on agentic RAG](https://arxiv.org/abs/2501.09136) is the reference map. It is worth skimming before you commit to an architecture, because most of the complexity is optional.
+
+## When you don't need it
+
+Agentic RAG is not a free upgrade. Every extra decision the agent makes is another model call — more latency, more cost, more surface area to debug. If your use case is "answer questions from one well-structured knowledge base," classic RAG is usually enough, and the honest move is to ship that first. Reach for agentic RAG when queries genuinely span multiple sources, when a single retrieval routinely misses, or when the task needs several reasoning steps before it can answer.
+
+And because the added moving parts are exactly what breaks silently, treat evaluation and observability as part of the build, not an afterthought — the same discipline covered in [how to evaluate AI agents](/en/news/2026-08-27-how-to-evaluate-ai-agents/) and [AI agent observability](/en/news/2026-08-31-ai-agent-observability/). You need to see which retrievals fired, what they returned, and whether the grader was right.
+
+## FAQ
+
+**What is agentic RAG?**
+Agentic RAG is retrieval-augmented generation with an agent in the loop that decides how to fetch knowledge rather than following a fixed pipeline. [IBM](https://www.ibm.com/think/topics/agentic-rag) describes it as adding autonomous agents capable of dynamic decision-making, iterative reasoning, and adaptive retrieval — so the model can choose whether to search, reformulate the query, judge the results, and retry.
+
+**How is agentic RAG different from traditional RAG?**
+Traditional RAG follows one fixed path: retrieve the top matches, then answer. Agentic RAG lets the agent decide whether to retrieve at all, grade whether the retrieved documents are relevant, and rewrite the query and try again if not. [LangChain's agentic-RAG guide](https://docs.langchain.com/oss/python/langgraph/agentic-rag) implements exactly that router-retrieve-grade loop.
+
+**Does agentic RAG improve accuracy?**
+It can improve *how* retrieval is decided, but retrieval *quality* is a separate lever. [Anthropic's contextual retrieval](https://www.anthropic.com/engineering/contextual-retrieval) reduced failed retrievals by 35% with contextual embeddings and 49% combined with BM25 (67% with reranking) — gains that come from better chunks, not from the agent loop. Do both, and measure with [agent evaluation](/en/news/2026-08-27-how-to-evaluate-ai-agents/).
+
+**When should I not use agentic RAG?**
+When one well-structured knowledge base answers the question, classic RAG is usually enough — agentic RAG adds latency, cost, and debugging surface. Reach for it when queries span multiple sources, single retrievals routinely miss, or the task needs multi-step reasoning first.
+
+---
+
+Every build in this series is one narrow job, wired deliberately — including where the agent goes to look things up and how it knows the answer was good. Want the real desk-level builds in your inbox each week? [Subscribe free](/en/).
