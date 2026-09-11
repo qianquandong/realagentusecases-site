@@ -469,7 +469,7 @@
         <li><strong>300 members</strong> in an internal AI community with biweekly sessions</li>
       </ul>
       <div class="hero-cta">
-        <a href="#builds" class="btn btn-primary">View three case studies →</a>
+        <a href="#builds" class="btn btn-primary">View four case studies →</a>
         <a href="/Jack_Qian_Resume.pdf" class="btn btn-outline" download>Download resume (PDF)</a>
       </div>
       <div class="contact-row">
@@ -529,9 +529,9 @@
 
 <section class="section" id="builds">
   <p class="sec-label">Selected case studies</p>
-  <h2 class="sec-h2">Three examples of how I work as an FDE.</h2>
+  <h2 class="sec-h2">Four examples of how I work as an FDE.</h2>
   <div class="sec-body">
-    <p>These span a live AI support agent for external users, internal enterprise delivery, and hands-on deployment with nontechnical users. Each starts with a concrete problem and keeps human judgment and failure boundaries explicit.</p>
+    <p>These span a live AI support agent for external users, a scheduling system an outside business runs every week, internal enterprise delivery, and hands-on deployment with nontechnical users. Each starts with a concrete problem and keeps human judgment and failure boundaries explicit.</p>
   </div>
   <div class="case-list">
     <article class="case-card">
@@ -546,7 +546,17 @@
       <div class="case-links"><a class="text-link" href="sms:+14694254142?body=Hi%2C%20what%20can%20you%20help%20with%3F">Try it by SMS →</a><a class="text-link" href="/en/agent-101/live-01/">See the live demo →</a></div>
     </article>
     <article class="case-card">
-      <div class="case-top"><span class="case-tag">02 · Internal enterprise · Daily use</span><span class="case-status">In daily use by planners across 13 groups</span></div>
+      <div class="case-top"><span class="case-tag">02 · Ops automation · In production</span><span class="case-status">Saves the ops lead ~4 hours a week</span></div>
+      <h3 class="case-title">Weekly host scheduling system for a TikTok Shop live-commerce agency</h3>
+      <div class="case-grid">
+        <div><span class="case-k">Problem</span><p class="case-v">Every week the ops lead collected hosts' and operators' availability by chat, hand-dragged the schedule across several live rooms in a Lark sheet, and hand-wrote a per-host plan every day. Conflicts between the schedule and people's real availability were caught by eye.</p></div>
+        <div><span class="case-k">Delivered</span><p class="case-v">Hosts submit next-week availability through signed per-person links. A Cloudflare Worker (KV + cron) reads scores, pair compatibility, hour limits, and room requirements from Lark Sheets, runs a constraint solver, and writes the draft schedule plus an explicit gap list back to Lark. An admin panel shows who has submitted and the state of the draft.</p></div>
+        <div><span class="case-k">Guardrails</span><p class="case-v">The system only drafts; the ops lead reviews and publishes. Sessions are never shorter than two hours; slots nobody can cover are left empty and listed as gaps instead of force-filled. No personal Lark identities, no messages sent by the machine, secrets only in Cloudflare.</p></div>
+        <div class="case-wide"><span class="case-k">Architecture &amp; trade-offs</span><p class="case-v">Runs entirely on Cloudflare (Worker + KV + cron) with Lark app credentials, so it depends on nobody's laptop. Lark stays the system of record: submissions land in a Lark Base, the draft lands in a Lark sheet, and the ops lead keeps editing where she already works. Each submission link carries an HMAC signature for the person and the week, so stale links cannot submit. 21 regression tests cover the solver and link signing, CI/CD deploys on push, and a handoff doc lets the next maintainer run it without me.</p></div>
+      </div>
+    </article>
+    <article class="case-card">
+      <div class="case-top"><span class="case-tag">03 · Internal enterprise · Daily use</span><span class="case-status">In daily use by planners across 13 groups</span></div>
       <h3 class="case-title">Supply-chain operations automation at Texas Instruments</h3>
       <div class="case-grid">
         <div><span class="case-k">Problem</span><p class="case-v">Scheduling, sales-order corrections, supply gaps, and recurring reviews required repeated reconciliation across SAP, Spotfire, Excel, and internal forms.</p></div>
@@ -555,7 +565,7 @@
       </div>
     </article>
     <article class="case-card">
-      <div class="case-top"><span class="case-tag">03 · Live users · Bilingual delivery</span><span class="case-status">5 events · 246 attendees</span></div>
+      <div class="case-top"><span class="case-tag">04 · Live users · Bilingual delivery</span><span class="case-status">5 events · 246 attendees</span></div>
       <h3 class="case-title">Agent 101: helping nontechnical users build a first agent live</h3>
       <div class="case-grid">
         <div><span class="case-k">Problem</span><p class="case-v">The room spans banking, accounting, law, real estate, restaurants, and software, with a wide range of AI experience. One workshop has to get everyone building.</p></div>

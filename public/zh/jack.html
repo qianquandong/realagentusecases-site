@@ -469,7 +469,7 @@
         <li><strong>300 人</strong>的公司内部 AI 社群，每两周分享一次</li>
       </ul>
       <div class="hero-cta">
-        <a href="#builds" class="btn btn-primary">看三个代表案例 →</a>
+        <a href="#builds" class="btn btn-primary">看四个代表案例 →</a>
         <a href="/Jack_Qian_Resume.pdf" class="btn btn-outline" download>下载简历 PDF</a>
       </div>
       <div class="contact-row">
@@ -529,9 +529,9 @@
 
 <section class="section" id="builds">
   <p class="sec-label">代表案例</p>
-  <h2 class="sec-h2">三件事，说明我怎么做 FDE。</h2>
+  <h2 class="sec-h2">四件事，说明我怎么做 FDE。</h2>
   <div class="sec-body">
-    <p>这三项分别对应线上运行的 AI 客服、企业内部交付，以及非技术用户现场落地。每项都从具体问题开始，也都保留了人工判断和失败边界。</p>
+    <p>这四项分别对应线上运行的 AI 客服、外部公司每周在用的排班系统、企业内部交付，以及非技术用户现场落地。每项都从具体问题开始，也都保留了人工判断和失败边界。</p>
   </div>
   <div class="case-list">
     <article class="case-card">
@@ -546,7 +546,17 @@
       <div class="case-links"><a class="text-link" href="sms:+14694254142">发短信体验 →</a><a class="text-link" href="/agent-101/live-01/">查看现场演示 →</a></div>
     </article>
     <article class="case-card">
-      <div class="case-top"><span class="case-tag">02 · 企业内部 · 每日使用</span><span class="case-status">13 个组的 planner 日常使用</span></div>
+      <div class="case-top"><span class="case-tag">02 · 运营自动化 · 线上运行</span><span class="case-status">运营负责人每周省下约 4 小时</span></div>
+      <h3 class="case-title">TikTok Shop 直播代运营公司的每周主播排班系统</h3>
+      <div class="case-grid">
+        <div><span class="case-k">问题</span><p class="case-v">运营负责人每周在群里收主播和运营的可播时间，在 Lark 表格里一格一格拖出几个直播间的班表，还要每天手写一份每人的计划。班表和大家真实可播时间的冲突，全靠肉眼核对。</p></div>
+        <div><span class="case-k">交付</span><p class="case-v">主播通过带签名的专属链接提交下周可播时间。Cloudflare Worker（KV + cron）从 Lark 表格读取评分、搭档限制、工时上下限和直播间要求，跑约束求解，把排班草案和明确的缺口清单写回 Lark。Admin 面板能看到谁交了、草案到哪一步。</p></div>
+        <div><span class="case-k">边界</span><p class="case-v">系统只出草案，审核和发布都由运营负责人完成。单场不少于两小时；没人能顶的时段留空并列进缺口清单，不硬塞。不用任何人的个人 Lark 身份，机器不发消息，密钥只放在 Cloudflare。</p></div>
+        <div class="case-wide"><span class="case-k">架构与取舍</span><p class="case-v">整套跑在 Cloudflare 上（Worker + KV + cron），用 Lark 应用凭证读写，不依赖任何人的电脑。Lark 仍是唯一数据源：提交记录进 Lark Base，草案进 Lark 表格，运营负责人还在她熟悉的地方改。每个提交链接带姓名和周次的 HMAC 签名，过期链接交不了。21 个回归测试覆盖求解器和链接签名，push 即部署，交接文档让下一个维护者不靠我也能跑。</p></div>
+      </div>
+    </article>
+    <article class="case-card">
+      <div class="case-top"><span class="case-tag">03 · 企业内部 · 每日使用</span><span class="case-status">13 个组的 planner 日常使用</span></div>
       <h3 class="case-title">Texas Instruments 供应链运营自动化</h3>
       <div class="case-grid">
         <div><span class="case-k">问题</span><p class="case-v">排产、销售订单修正、供应缺口和周期报告，需要反复跨 SAP、Spotfire、Excel 与内部表单核对。</p></div>
@@ -555,7 +565,7 @@
       </div>
     </article>
     <article class="case-card">
-      <div class="case-top"><span class="case-tag">03 · 用户现场 · 双语教学</span><span class="case-status">5 场活动 · 246 人次</span></div>
+      <div class="case-top"><span class="case-tag">04 · 用户现场 · 双语教学</span><span class="case-status">5 场活动 · 246 人次</span></div>
       <h3 class="case-title">Agent 101：让非技术用户现场搭出第一个 agent</h3>
       <div class="case-grid">
         <div><span class="case-k">问题</span><p class="case-v">听众来自银行、会计、法律、地产、餐饮和软件行业，AI 熟练度差异很大，需要同一套课程让所有人都能动手。</p></div>
