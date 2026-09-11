@@ -6,14 +6,14 @@ Source of public/Jack_Qian_Resume.pdf. Regenerate (one page, US Letter):
 -->
 <html lang="en"><head><meta charset="utf-8"><title>Quandong (Jack) Qian — Résumé</title>
 <style>
-@page{size:Letter;margin:0.38in 0.5in}
+@page{size:Letter;margin:0.35in 0.45in}
 html,body{background:#fff;margin:0}
-body{font:9.3pt/1.22 -apple-system,"Helvetica Neue",Helvetica,Arial,sans-serif;color:#111}
+body{font:9pt/1.2 -apple-system,"Helvetica Neue",Helvetica,Arial,sans-serif;color:#111}
 h1{font-size:21pt;margin:0 0 2pt;letter-spacing:-.01em}
 .meta{color:#333;margin:0 0 3pt}
 .target{margin:0 0 8pt}
-h2{font-size:9.6pt;letter-spacing:.14em;text-transform:uppercase;border-bottom:1px solid #bbb;margin:6pt 0 2pt;padding-bottom:2pt}
-.role{display:flex;justify-content:space-between;align-items:baseline;margin:4pt 0 1pt}
+h2{font-size:9.6pt;letter-spacing:.14em;text-transform:uppercase;border-bottom:1px solid #bbb;margin:5pt 0 2pt;padding-bottom:2pt}
+.role{display:flex;justify-content:space-between;align-items:baseline;margin:3pt 0 1pt}
 .role b{font-size:10.6pt}.role span{color:#444}.role .d{color:#555;font-size:9.4pt;white-space:nowrap;margin-left:12pt}
 ul{margin:0;padding-left:13pt}li{margin:0 0 1pt}
 a{color:inherit;text-decoration:none}
@@ -27,28 +27,44 @@ a{color:inherit;text-decoration:none}
 <ul>
 <li>Automated recurring scheduling, order-correction, and reconciliation work (~5 hours/week of manual checking); reports and tools now used daily by planners across 13 groups, with their feedback driving each iteration.</li>
 <li>Scripted SAP GUI with Python (win32com): sales-order scheduling, corrections, and release run end to end in an isolated session, dry-run by default, never touching the live user session.</li>
-<li>Built Selenium form-fillers for 12+ internal approval and request types; each form is left open for human review — nothing auto-submits.</li>
-<li>Replaced manual SAP / Spotfire / Excel cross-referencing with direct SQL against a data-virtualization layer: supply-gap portfolio reports, a scheduled weekly risk email, and quarterly review decks generated straight from data.</li>
+<li>Built Selenium form-fillers for 12+ internal request types; each form is left open for human review — nothing auto-submits.</li>
+<li>Replaced manual SAP / Spotfire / Excel cross-referencing with direct SQL against a data-virtualization layer: supply-gap reports, a weekly risk email, and quarterly review decks generated from data.</li>
 <li>Founded a 300-member internal AI community; present these automation playbooks every two weeks.</li>
 </ul>
 <div class="role"><div><b>Industrial Engineer</b> <span>— Texas Instruments</span></div><div class="d">Aug 2023 – Apr 2026</div></div>
 <ul>
-<li>Built an internal knowledge-base chatbot for night-shift operators at the Sherman fab: Vectara retrieval over MES troubleshooting docs, delivered inside Webex, so operators get step-by-step fixes for MES issues without waiting for day-shift support.</li>
+<li>Joined the Sherman fab build-out from day one and wrote its real-time dispatching (RTD) logic from zero, balancing throughput, cost, cycle time, and on-time delivery.</li>
+<li>Designed the lithography scheduling logic, including load-port and expression-based constraints earlier logic ignored.</li>
+<li>Automated reticle scheduling and reticle handling, cutting reticle wait time in the fab by 80%.</li>
+<li>Built a knowledge-base chatbot for night-shift operators: Vectara retrieval over MES troubleshooting docs, delivered in Webex, so operators get step-by-step MES fixes without waiting for day shift.</li>
 <li>Modified MES message structures and reports for integrated load/unload; resolved data mapping across 4,802 variations.</li>
-<li>Authored real-time dispatching rules balancing throughput, cost, cycle time, and on-time delivery.</li>
-<li>Automated the daily dispatch-metrics email, reticle-delivery ETL analysis, and file-version checks and dispatch-job migration across redundant servers.</li>
+<li>Automated the daily dispatch-metrics email, reticle-delivery ETL, file-version checks, and dispatch-job migration across servers.</li>
 </ul>
 <div class="role"><div><b>Founder &amp; Lead Organizer</b> <span>— Dallas Chinese AI Community · Real Agent Use Cases (side project)</span></div><div class="d">2026 – Present</div></div>
 <ul>
-<li>Founded Dallas's first Chinese AI community (700+ members); 5 live events Apr–Aug 2026, 246 cumulative attendees, 70 at the largest.</li>
-<li>Designed and taught Agent 101, a bilingual course and hands-on workshop where nontechnical attendees build a working Gmail agent live from a template.</li>
+<li>Founded Dallas's first Chinese AI community (700+ members); 7 events Apr–Sep 2026, 246 cumulative attendees, 70 at the largest.</li>
+<li>Led a 40-person hands-on workshop: attendees built and ran their own email daily-brief workflow (inbox → prioritized to-do), then demoed their automations.</li>
+<li>Ran a 59-person beginner workshop for students and parents: turn a vague idea into a clear task, then finish a first project with ChatGPT.</li>
+<li>Organized a community hackathon and two OpenClaw agent meetups (40 and 70 attendees) on multi-agent workflows with Claude Code.</li>
+<li>Designed and taught Agent 101, a bilingual course where nontechnical attendees build a working Gmail agent from a template.</li>
 </ul>
 
 <h2>Selected Projects</h2>
+<div class="role"><div><b>Live-stream host scheduling system</b> <span>— US TikTok Shop live-commerce agency (in production)</span></div><div class="d">Aug 2026 – Present</div></div>
 <ul>
-<li><b>Live-stream host scheduling system (in production)</b> — US TikTok Shop live-commerce agency. Replaced hand-dragged Lark spreadsheets and daily hand-written per-host plans. Hosts submit next-week availability via signed per-person links; a Cloudflare Worker (KV + cron) reads scores, pair compatibility, hour limits, and room requirements from Lark Sheets, runs a constraint solver, and writes a draft schedule plus an explicit gap list back to Lark. The ops lead reviews and publishes; the system never publishes on its own. Admin panel, 21 regression tests, CI/CD, handoff doc for the next maintainer.</li>
-<li><b>AI receptionist, voice + SMS (live)</b> — aimanjack.com. An OpenAI Realtime voice line and an SMS agent share one tool set (check availability, create / find / reschedule / cancel booking) against a booking API on Cloudflare Pages Functions + Supabase Postgres; double-booking is blocked in the database, and every write texts a confirmation to both customer and owner. English, Spanish, Chinese; quotes only approved prices and hands off the rest. Same SMS pattern live at a DFW car dealership. Shipped with a public landing page, self-serve booking page, and a demo line anyone can call.</li>
-<li><b>Open-source agent workflows &amp; content site</b> — github.com/qianquandong: real-agent-workflows (Obsidian content OS, 6 workflows), track-ai-visibility, booking-research-agent; all with human gates on send/publish actions. realagentusecases.com: bilingual Next.js static site on Cloudflare Workers with automated publishing gates.</li>
+<li>Replaced hand-dragged Lark spreadsheets and hand-written per-host plans; hosts submit availability via signed per-person links.</li>
+<li>Cloudflare Worker (KV + cron) reads scores, pair compatibility, hour limits, and room requirements from Lark Sheets, runs a constraint solver, and writes a draft schedule plus an explicit gap list back to Lark.</li>
+<li>The ops lead reviews and publishes; the system never publishes on its own. Admin panel, 21 regression tests, CI/CD, and a handoff doc for the next maintainer.</li>
+</ul>
+<div class="role"><div><b>AI receptionist, voice + SMS</b> <span>— aimanjack.com (live)</span></div><div class="d">Jul 2026 – Present</div></div>
+<ul>
+<li>OpenAI Realtime voice line and SMS agent share one tool set (check availability, create / find / reschedule / cancel booking) against a booking API on Cloudflare Pages Functions + Supabase Postgres.</li>
+<li>Double-booking is blocked in the database; every write texts a confirmation to both customer and owner. Answers in English, Spanish, and Chinese; quotes only approved prices and hands off the rest.</li>
+<li>Shipped with a public landing page, self-serve booking page, and a demo line anyone can call; the same SMS pattern is live at a DFW car dealership.</li>
+</ul>
+<div class="role"><div><b>Open-source agent workflows &amp; content site</b> <span>— github.com/qianquandong · realagentusecases.com</span></div><div class="d">2026</div></div>
+<ul>
+<li>real-agent-workflows (Obsidian content OS, 6 workflows), track-ai-visibility, booking-research-agent, all with human gates on send/publish; bilingual Next.js static site on Cloudflare Workers with automated publishing gates.</li>
 </ul>
 
 <h2>Education</h2>
@@ -56,7 +72,7 @@ a{color:inherit;text-decoration:none}
 
 <h2>Skills</h2>
 <ul>
-<li>Python, JavaScript / Node, SQL (Postgres / Supabase), Selenium, SAP GUI scripting (win32com), shell scripting, ETL, Cloudflare Workers / Pages / KV / D1, Next.js</li>
-<li>OpenAI &amp; Claude APIs (function calling, Realtime), Claude Code, MCP connectors, Vectara (RAG), Webex bots, Twilio, Lark / Feishu and Notion APIs; agent design with dry-run defaults, human-in-the-loop gates, failure boundaries, run logs · English, Mandarin Chinese</li>
+<li>Python, JavaScript / Node, SQL (Postgres / Supabase), Selenium, SAP GUI scripting (win32com), ETL, Cloudflare Workers / Pages / KV / D1, Next.js</li>
+<li>OpenAI &amp; Claude APIs (function calling, Realtime), Claude Code, MCP connectors, Vectara (RAG), Webex bots, Twilio, Lark / Feishu and Notion APIs; agent design with dry-run defaults, human-in-the-loop gates, failure boundaries · English, Mandarin Chinese</li>
 </ul>
 </body></html>
