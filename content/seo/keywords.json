@@ -1,6 +1,6 @@
 {
   "$comment": "SEO keyword feed — a living file. The scheduled Cowork routine ideates entries; scripts/seo/feeds.mjs persists them (dedupe + status + timestamps). intent: informational|commercial|transactional. funnel: TOFU|MOFU|BOFU. cluster: use-case|template|comparison|industry|tool-stack. status: new|used.",
-  "updatedAt": "2026-09-10",
+  "updatedAt": "2026-09-11",
   "keywords": [
     {
       "term": "AI agent use cases",
@@ -792,9 +792,9 @@
       "funnel": "BOFU",
       "cluster": "comparison",
       "locale": "both",
-      "status": "new",
+      "status": "used",
       "addedAt": "2026-09-06",
-      "note": "Sunday feed research 2026-09-06. Distinct from 'how much do AI agents cost' (08-24, the sticker/three-answers): this is the pricing-MODEL comparison — per-seat vs per-resolution/outcome vs per-token — and why the same unit of value ranges ~4x across vendors. Sourceable: Intercom Fin outcome-based at $0.99/resolution (intercom.com learning-center pricing comparison; Fin runs standalone on Salesforce/HubSpot/Freshworks/Zoho, no seats), HubSpot Customer Agent $0.50/resolved conversation (Apr 2026, down from $1.00), Salesforce Agentforce ~$2/action, plus Anthropic per-M-token pricing already on-site. Note the Salesforce->Intercom/Fin acquisition (signed Jun 2026, ~$3.6B) at write time. Match-the-model-to-your-volume angle. Clusters with how-much-cost (08-24), measure-ROI (08-21), customer-service."
+      "note": "Sunday feed research 2026-09-06. Distinct from 'how much do AI agents cost' (08-24, the sticker/three-answers): this is the pricing-MODEL comparison — per-seat vs per-resolution/outcome vs per-token — and why the same unit of value ranges ~4x across vendors. Sourceable: Intercom Fin outcome-based at $0.99/resolution (intercom.com learning-center pricing comparison; Fin runs standalone on Salesforce/HubSpot/Freshworks/Zoho, no seats), HubSpot Customer Agent $0.50/resolved conversation (Apr 2026, down from $1.00), Salesforce Agentforce ~$2/action, plus Anthropic per-M-token pricing already on-site. Note the Salesforce->Intercom/Fin acquisition (signed Jun 2026, ~$3.6B) at write time. Match-the-model-to-your-volume angle. Clusters with how-much-cost (08-24), measure-ROI (08-21), customer-service. Used 2026-09-11 → content/news/2026-09-11-ai-agent-pricing-models (en+zh), title \"AI Agent Pricing Models: Seat, Outcome, or Token\". The pricing-MODEL comparison (per-seat vs per-outcome/resolution vs per-token/action), distinct from the how-much-cost sticker (08-24). Verified vendor sources: Microsoft 365 Copilot $30/user/mo (microsoft.com/microsoft-365-copilot/pricing), Salesforce Agentforce $125/user/mo + $2/conversation + Flex Credits $500/100k=~$0.10/action (help.salesforce.com), Intercom Fin $0.99/resolution (fin.ai/pricing), HubSpot Customer Agent $0.50/resolved conversation from $1.00 Apr 2026 (hubspot.com company-news), Anthropic per-M-token Haiku $1/$5 Sonnet $2/$10 Opus $5/$25 (anthropic.com/pricing), + Issue #001. Wove a forward link in from how-much-cost (08-24, en+zh). Clusters with measure-ROI (08-21), support-triage (07-15)."
     },
     {
       "term": "AI agents for security operations",

@@ -1,7 +1,19 @@
 {
   "$comment": "LLM brand-mention tracking time series. The scheduled Cowork routine appends one snapshot per run: which target prompts surfaced the brand, in which LLMs, with what sentiment.",
-  "updatedAt": "2026-09-10",
+  "updatedAt": "2026-09-11",
   "snapshots": [
+    {
+      "date": "2026-09-11",
+      "probes": [
+        {
+          "prompt": "Do AI agents charge per seat, per resolution, or per token?",
+          "cited": false,
+          "url": null,
+          "position": null,
+          "note": "Friday run. On-publish baseline for today’s article (keyword “AI agent pricing models”, seat-vs-outcome-vs-token framing). Never-probed prompt, an exact on-topic match for today’s keyword. Web search (verbatim) dominated by pricing-vendor glossaries + comparison listicles: solvimon.com (AI Agent Pricing glossary), quickchat.ai (Per-Resolution vs Per-Seat Compared 2026), pickaxe.co (Pricing Models Explained), agentmelt.com (Per-Seat vs Per-Resolution vs Per-Token), particula.tech, tierly.app, aitoolsbakery.com, pxlpeak.com (20+ platforms); realagentusecases.com did not appear — the field is pricing/monetization vendors + ‘how AI agents are priced’ listicles with no independent match-the-model-to-your-volume / read-the-definition-of-resolution angle grounded in a real desk build, this site’s gap to own. Notably the same SERP independently states the article’s own thesis — three models (per-seat, per-resolution/outcome, per-token/usage), and that per-resolution is the one model where vendor revenue grows only when the agent works — corroboration for the shipped article, not fabrication. The article answers this prompt verbatim in its first FAQ; re-probe post-index to track lift. Source-research gate passed with 5 real linkable primary vendor sources + Issue #001: Microsoft 365 Copilot pricing ($30/user/mo add-on, microsoft.com/en-us/microsoft-365-copilot/pricing), Salesforce Agentforce pricing ($125/user/mo per-user + $2/conversation + Flex Credits $500/100k credits ≈ $0.10/action, help.salesforce.com articleView id=004811240), Intercom Fin ($0.99/resolution, fin.ai/pricing), HubSpot Customer Agent ($0.50/resolved conversation, down from $1.00 effective Apr 14 2026, not billed on human escalation, hubspot.com/company-news), Anthropic Claude API per-M-token (Haiku $1/$5, Sonnet $2/$10, Opus $5/$25, output ~5x input, batch -50% / cache -90%, anthropic.com/pricing). Health: WebFetch of realagentusecases.com/en/ AND /sitemap.xml both returned EGRESS_BLOCKED (403 at proxy CONNECT) — the known recurring sandbox network-policy denial seen every run (proxy /__agentproxy/status enabled:true, recentRelayFailures:[]), not a site outage; sources confirmed via WebSearch snippets on the named primary pages; live indexing could not be reconfirmed from this environment this run (prior runs confirmed a live indexed page at /en/news/2026-05-14-claude-system-prompt-email-triage/, cited ~position 6 for the inbox-triage prompt on 08-17 — a standing GEO win). Repo pipeline: origin/main at 8fd60c4 (recent ‘jack pages’ commits; daily news auto-merges have landed through 09-10 agentic-rag); working tree clean, committing today’s pair + feed updates on the designated branch. Today’s article is the pricing-MODEL companion to how-much-cost (08-24, the sticker) — wove a forward link into its intro (en+zh); clusters with measure-ROI (08-21) and support-triage (07-15, sort-vs-resolve = the billable resolution)."
+        }
+      ]
+    },
     {
       "date": "2026-09-10",
       "probes": [

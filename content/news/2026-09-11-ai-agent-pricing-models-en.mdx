@@ -1,0 +1,54 @@
+---
+title: "AI Agent Pricing Models: Seat, Outcome, or Token"
+date: "2026-09-11"
+excerpt: "Per-seat, per-resolution, or per-token? The same AI agent can be billed three ways, and the model you pick decides whether cost tracks value or volume."
+---
+
+AI agents are billed three ways. **Per-seat** is a flat monthly fee per user — [Microsoft 365 Copilot](https://www.microsoft.com/en-us/microsoft-365-copilot/pricing) is $30 per user per month. **Per-outcome** charges only when the agent resolves something — [Intercom's Fin](https://fin.ai/pricing) is $0.99 a resolution. **Per-token** meters the model's input and output. Match the model to your volume, not the vendor's pitch.
+
+## Why the model matters more than the sticker price
+
+We already broke down [how much an AI agent costs](/en/news/2026-08-24-how-much-do-ai-agents-cost/) — the sticker range runs from a few dollars a month to six figures. This is the other half of that question. Once you're renting a prebuilt agent, the *pricing model* decides whether your bill tracks the value you get or just the volume you push through it. The same customer-service agent can be sold as a flat monthly fee, a fee per solved ticket, or a fee per word processed — and those three bills diverge fast as the agent gets busy. Here are the three models, with real vendor numbers, and who each one actually favors.
+
+### Per-seat: predictable, but you pay for access, not results
+
+The oldest software model, applied to agents: a flat fee per named user. [Microsoft 365 Copilot](https://www.microsoft.com/en-us/microsoft-365-copilot/pricing) lists **$30 per user per month** (annual) as an add-on on top of a qualifying Microsoft 365 license. [Salesforce Agentforce](https://help.salesforce.com/s/articleView?id=004811240) also offers a per-user edition starting around **$125 per user per month**. On the consumer end, [Issue #001's Gmail agent](/en/posts/2026-05-13-gmail-ai-agent/) runs on nothing but Claude Pro at $20/month — a per-seat plan by another name.
+
+Per-seat is the easy row to budget: one predictable line item, no metering surprises, zero engineering. It favors heavy daily users and teams that want a fixed number. It penalizes the opposite case — a 50-seat license where only twelve people ever open the agent means you paid for 38 seats of nothing. The bill tracks *access*, not work done.
+
+### Per-outcome: the vendor wins only when the agent works
+
+The fastest-moving model in 2026 is outcome-based: you pay only when the agent completes a defined job. [Intercom's Fin](https://fin.ai/pricing) charges **$0.99 per resolution** — a conversation the agent closes without a human stepping in. HubSpot moved its Customer Agent the same direction: [now you pay per resolved conversation, at $0.50](https://www.hubspot.com/company-news/hubspots-customer-agent-and-prospecting-agent-now-you-pay-when-the-task-is-complete) (down from a per-conversation $1.00, effective April 2026), and escalations to a human are not billed. [Salesforce Agentforce](https://help.salesforce.com/s/articleView?id=004811240) offers a **$2 per conversation** option alongside its credit model.
+
+This is the one model where the vendor's revenue only grows when the agent genuinely works — the incentive points the same way you do. It suits customer-facing volume where a "resolution" is clean to define, and it maps directly onto the [sort-vs-resolve line in support triage](/en/news/2026-07-15-ai-agent-customer-support-triage/): you pay for resolutions, not for the sorting. The catch is in the fine print — read the vendor's *definition* of a resolution carefully (Fin, for instance, prices a matched sales lead at a much higher $9.99), because the definition is where the meter really lives.
+
+### Per-token or per-action: you pay for raw work
+
+If you build the agent yourself against a model API, the meter is consumption. [Anthropic's pricing](https://www.anthropic.com/pricing) is per *million* tokens: Claude Haiku at **$1 in / $5 out**, Sonnet at **$2 / $10**, Opus at **$5 / $25** — output runs about 5× input, and batch processing plus prompt caching cut the bill by 50% and up to 90% respectively. No-code platforms meter a coarser unit: [Salesforce's Flex Credits](https://help.salesforce.com/s/articleView?id=004811240) price actions at **$500 per 100,000 credits**, roughly **$0.10 per action** (voice actions cost more).
+
+Per-token is the cheapest floor for a light agent — [Issue #001's API-path Gmail triage](/en/posts/2026-05-13-gmail-ai-agent/) ran about $3/month — and it gives you full control. But you pay for every token whether the run succeeded or not, and a chatty, badly-scoped agent can burn tokens on work that produced nothing useful. Consumption pricing rewards efficient prompting; it punishes sprawl.
+
+## Which model fits your volume
+
+There's no cheapest model in the abstract — only the cheapest for *your* pattern. Building it yourself at low volume, or want maximum control? Per-token. Want one predictable number across a team of steady daily users? Per-seat. Running customer-facing volume where you can define a clean "resolution"? Per-outcome aligns the vendor's incentive with yours. Whichever row you land in, the real number is the running cost including human review, so [measure it against a baseline](/en/news/2026-08-21-how-to-measure-ai-agent-roi/) rather than a launch-day quote — the same discipline we use for [every real build we document](/en/news/2026-08-24-how-much-do-ai-agents-cost/).
+
+## FAQ
+
+**Do AI agents charge per seat, per resolution, or per token?**
+All three, and the same agent can be sold under more than one. Per-seat is a flat fee per user ([Microsoft 365 Copilot](https://www.microsoft.com/en-us/microsoft-365-copilot/pricing), $30/user/month). Per-resolution charges only on a completed job ([Intercom's Fin](https://fin.ai/pricing), $0.99). Per-token meters the model's input and output ([Anthropic's pricing](https://www.anthropic.com/pricing)). Pick by your volume pattern, not the label.
+
+**Which AI agent pricing model is cheapest?**
+It depends entirely on volume. A light, self-built agent is cheapest per-token — a few dollars a month. A team of steady daily users often comes out ahead on a fixed per-seat plan. High-volume customer support is usually cheapest per-resolution, because you stop paying for the conversations a human ends up handling.
+
+**What counts as a "resolution" in outcome-based pricing?**
+The vendor defines it, so read the definition. [HubSpot](https://www.hubspot.com/company-news/hubspots-customer-agent-and-prospecting-agent-now-you-pay-when-the-task-is-complete) counts a conversation as resolved when the agent handled it and it wasn't passed to a human within 72 hours. [Intercom's Fin](https://fin.ai/pricing) counts a resolution when the customer doesn't ask for more help after the agent's answer. Different definitions change the bill even at the same headline price.
+
+**Is per-token pricing only for developers?**
+Mostly, yes — you pay per token when you build against a model API directly. Most no-code platforms hide the tokens behind a coarser unit (an action, a task, a workflow run, or a credit), which is easier to reason about but usually a markup over raw model cost. [Issue #001](/en/posts/2026-05-13-gmail-ai-agent/) shows both paths side by side.
+
+**Why are vendors moving to outcome-based pricing?**
+Because it's the model where the vendor only gets paid when the agent delivers, which is an easy story to sell a skeptical buyer. It also ties the vendor's revenue to the agent actually working — the opposite of a per-seat license that bills whether anyone uses it. The risk sits in the definition of the billable outcome, so that's the clause to negotiate.
+
+---
+
+We document real agents professionals actually run — with the real pricing, not demo-day math. [Subscribe free](/en/) for a new build each week.
