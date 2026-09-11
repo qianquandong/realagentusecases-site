@@ -1,0 +1,54 @@
+---
+title: "AI agent 定价模型：席位、按结果、还是按 token"
+date: "2026-09-11"
+excerpt: "同一个 AI agent 可以按席位、按解决数、或按 token 三种方式计价。选哪种模型，决定了你的账单跟着价值走，还是跟着用量走——附各家真实价格。"
+---
+
+AI agent 有三种计价方式。**按席位**是每个用户每月一笔固定费用——[Microsoft 365 Copilot](https://www.microsoft.com/en-us/microsoft-365-copilot/pricing) 是每人每月 30 美元。**按结果**只在 agent 真正解决了某件事时才收费——[Intercom 的 Fin](https://fin.ai/pricing) 是每次解决 0.99 美元。**按 token** 则计量模型的输入和输出。要按你的用量选模型，而不是听厂商的话术。
+
+## 为什么模型比标价更重要
+
+我们之前拆过 [AI agent 到底要花多少钱](/zh/news/2026-08-24-how-much-do-ai-agents-cost/)——标价区间从每月几美元到六位数。这篇讲的是问题的另一半。一旦你租的是别人搭好的 agent，**计价模型**就决定了你的账单是跟着你拿到的价值走，还是只跟着你灌进去的用量走。同一个客服 agent，可以被卖成一笔固定月费、按每个解决的工单收费、或者按处理的字数收费——随着 agent 变忙，这三种账单会迅速拉开差距。下面是三种模型，配上各家真实数字，以及每一种到底对谁有利。
+
+### 按席位：可预测，但你付的是使用权，不是结果
+
+最老的软件模型，套在 agent 上：按具名用户收固定费。[Microsoft 365 Copilot](https://www.microsoft.com/en-us/microsoft-365-copilot/pricing) 标价为**每人每月 30 美元**（年付），是叠加在合格 Microsoft 365 许可证之上的附加项。[Salesforce Agentforce](https://help.salesforce.com/s/articleView?id=004811240) 也有按用户计的版本，约**每人每月 125 美元**起。在消费端，[Issue #001 的 Gmail agent](/zh/posts/2026-05-13-gmail-ai-agent/) 只靠 Claude Pro 每月 20 美元——换个名字，也是一种按席位。
+
+按席位是最好做预算的一行：一笔可预测的支出，没有计量惊吓，零工程量。它对每天重度使用的人、想要固定数字的团队有利；对相反的情况不利——买了 50 个席位却只有 12 个人真正打开过 agent，你等于为 38 个空席位付了钱。账单跟着**使用权**走，而不是跟着干完的活走。
+
+### 按结果：agent 真正管用时，厂商才赚钱
+
+2026 年动得最快的模型是按结果：只在 agent 完成一个明确定义的任务时才付费。[Intercom 的 Fin](https://fin.ai/pricing) 按**每次解决 0.99 美元**收费——即一次无需人介入、agent 自己关掉的对话。HubSpot 把它的 Customer Agent 转向了同一方向：[现在按解决的对话收费，每次 0.50 美元](https://www.hubspot.com/company-news/hubspots-customer-agent-and-prospecting-agent-now-you-pay-when-the-task-is-complete)（从原先每次对话 1.00 美元下调，2026 年 4 月起生效），转交给人的升级不计费。[Salesforce Agentforce](https://help.salesforce.com/s/articleView?id=004811240) 在积分模型之外还提供**每次对话 2 美元**的选项。
+
+这是唯一一种厂商收入只在 agent 真正管用时才增长的模型——激励方向和你一致。它适合能把"解决"定义清楚的、面向客户的量，也正好对上 [客服分拣里"分拣 vs 解决"的那条线](/zh/news/2026-07-15-ai-agent-customer-support-triage/)：你为解决付费，而不是为分拣付费。要小心的地方在细则——仔细读厂商对"解决"的**定义**（比如 Fin 把一个匹配上的销售线索定价在高得多的 9.99 美元），因为计价表真正藏在定义里。
+
+### 按 token 或按动作：你为原始工作量付费
+
+如果你自己对着模型 API 搭 agent，计价单位就是消耗量。[Anthropic 的定价](https://www.anthropic.com/pricing)按*每百万* token 计：Claude Haiku **进 1 / 出 5 美元**，Sonnet **2 / 10**，Opus **5 / 25**——输出约为输入的 5 倍，而批处理加 prompt 缓存能把账单分别压低 50% 和最多 90%。无代码平台计量的是更粗的单位：[Salesforce 的 Flex 积分](https://help.salesforce.com/s/articleView?id=004811240)把动作定价为**每 10 万积分 500 美元**，约合**每个动作 0.10 美元**（语音动作更贵）。
+
+按 token 是轻量 agent 的最低地板——[Issue #001 走 API 路线的 Gmail 分拣](/zh/posts/2026-05-13-gmail-ai-agent/)每月约 3 美元——而且给你完全的控制权。但无论那次运行成没成功，你都要为每个 token 付费；一个啰嗦、范围没划好的 agent，能把 token 烧在没产出任何有用东西的活上。消耗计价奖励高效的 prompt，惩罚失控的膨胀。
+
+## 哪种模型适合你的用量
+
+抽象地说没有"最便宜"的模型——只有对*你的*用量模式最便宜的那个。自己搭、用量低、或想要最大控制权？按 token。想在一队稳定的日常用户上要一个可预测的数字？按席位。跑面向客户的量、且能把"解决"定义清楚？按结果能让厂商的激励和你对齐。不管落在哪一行，真实的数字是包含人工复核在内的运行成本，所以要 [对着基线衡量](/zh/news/2026-08-21-how-to-measure-ai-agent-roi/)，而不是看上线当天的报价——这也是我们对 [每一个记录在案的真实搭建](/zh/news/2026-08-24-how-much-do-ai-agents-cost/) 用的同一套纪律。
+
+## FAQ
+
+**AI agent 是按席位、按解决数、还是按 token 收费？**
+三种都有，而且同一个 agent 可能同时以不止一种方式出售。按席位是每用户一笔固定费（[Microsoft 365 Copilot](https://www.microsoft.com/en-us/microsoft-365-copilot/pricing)，每人每月 30 美元）。按解决数只在完成任务时收费（[Intercom 的 Fin](https://fin.ai/pricing)，0.99 美元）。按 token 计量模型的输入和输出（[Anthropic 定价](https://www.anthropic.com/pricing)）。按你的用量模式选，而不是按标签选。
+
+**哪种 AI agent 定价模型最便宜？**
+完全取决于用量。轻量、自己搭的 agent 按 token 最便宜——每月几美元。一队稳定的日常用户往往在固定的按席位方案上更划算。高流量的客户支持通常按解决数最便宜，因为最后由人处理的对话你不必付费。
+
+**按结果计价里，什么算一次"解决"？**
+由厂商定义，所以要读定义。[HubSpot](https://www.hubspot.com/company-news/hubspots-customer-agent-and-prospecting-agent-now-you-pay-when-the-task-is-complete) 把一次对话算作已解决的条件是：agent 处理了它，且 72 小时内没有转交给人。[Intercom 的 Fin](https://fin.ai/pricing) 则以客户在 agent 回答后不再要求帮助来算一次解决。定义不同，即使标价一样，账单也会不同。
+
+**按 token 计价只适合开发者吗？**
+大体是的——你直接对着模型 API 搭时才按 token 付费。大多数无代码平台把 token 藏在更粗的单位后面（一个动作、一个任务、一次工作流运行或一个积分），更好理解，但通常是在原始模型成本上加了一层加价。[Issue #001](/zh/posts/2026-05-13-gmail-ai-agent/) 把两条路线并排展示了出来。
+
+**为什么厂商都在转向按结果计价？**
+因为这是唯一一种"agent 交付了厂商才收到钱"的模型，对一个心存怀疑的买家来说是个好讲的故事。它也把厂商收入和 agent 真正管用绑在了一起——正好和"不管有没有人用都收费"的按席位许可相反。风险在计费结果的定义里，所以那条条款才是要去谈的。
+
+---
+
+我们记录职场人真正在跑的 agent——附上真实价格，而不是发布会上的算术。[免费订阅](/zh/)，每周一个新搭建。
