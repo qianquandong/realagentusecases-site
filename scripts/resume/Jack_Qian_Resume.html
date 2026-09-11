@@ -20,51 +20,49 @@ a{color:inherit;text-decoration:none}
 </style></head><body>
 <h1>Quandong (Jack) Qian</h1>
 <p class="meta">Dallas, TX · +1 (832) 888-6016 · jack@aimanjack.com · linkedin.com/in/quandong-qian-156563191 · github.com/qianquandong · realagentusecases.com/jack · US Permanent Resident (no sponsorship needed)</p>
-<p class="target">Target: AI Forward Deployed / Solutions / Operations Engineer — agentic workflows that run on real business systems (ERP, CRM, spreadsheets, Lark, email, SMS, voice) with human checkpoints and explicit failure boundaries.</p>
+<p class="target">Operations engineer who builds AI automations on live business systems and keeps them running. Four years at Texas Instruments automating planning, dispatch, and MES workflows; two agentic systems now in production for outside businesses (a Lark-integrated scheduling pipeline and a voice + SMS booking agent). Every build ships with a dry-run default, a human checkpoint on writes, and a handoff doc.</p>
 
 <h2>Experience</h2>
 <div class="role"><div><b>Business Planner, Supply Chain</b> <span>— Texas Instruments, Dallas, TX</span></div><div class="d">Apr 2026 – Present</div></div>
 <ul>
-<li>Automated recurring scheduling, order-correction, and reconciliation work (~5 hours/week of manual checking); reports and tools now used daily by planners across 13 groups, with their feedback driving each iteration.</li>
-<li>Scripted SAP GUI with Python (win32com): sales-order scheduling, corrections, and release run end to end in an isolated session, dry-run by default, never touching the live user session.</li>
-<li>Built Selenium form-fillers for 12+ internal request types; each form is left open for human review — nothing auto-submits.</li>
-<li>Replaced manual SAP / Spotfire / Excel cross-referencing with direct SQL against a data-virtualization layer: supply-gap reports, a weekly risk email, and quarterly review decks generated from data.</li>
-<li>Founded a 300-member internal AI community; present these automation playbooks every two weeks.</li>
+<li>Automated scheduling, order-correction, and reconciliation workflows now used daily by planners in 13 groups, removing ~5 hours/week of manual checking; each release is driven by planner feedback.</li>
+<li>Scripted SAP GUI end to end (Python / win32com) for sales-order scheduling, correction, and release; runs in an isolated session with a dry-run default so a bad run cannot touch live orders.</li>
+<li>Built Selenium form-fillers for 12+ internal request types with a human-review stop before submit; nothing auto-submits.</li>
+<li>Replaced manual SAP / Spotfire / Excel cross-referencing with direct SQL on a data-virtualization layer, turning supply-gap reports, the weekly risk email, and quarterly review decks into generated outputs.</li>
+<li>Founded and run a 300-member internal AI community; present the automation playbooks every two weeks so planners can reuse them.</li>
 </ul>
-<div class="role"><div><b>Industrial Engineer</b> <span>— Texas Instruments</span></div><div class="d">Aug 2023 – Apr 2026</div></div>
+<div class="role"><div><b>Industrial Engineer</b> <span>— Texas Instruments, Sherman fab</span></div><div class="d">Aug 2023 – Apr 2026</div></div>
 <ul>
-<li>Joined the Sherman fab build-out from day one and wrote its real-time dispatching (RTD) logic from zero, balancing throughput, cost, cycle time, and on-time delivery.</li>
-<li>Designed the lithography scheduling logic, including load-port and expression-based constraints earlier logic ignored.</li>
-<li>Automated reticle scheduling and reticle handling, cutting reticle wait time in the fab by 80%.</li>
-<li>Built a knowledge-base chatbot for night-shift operators: Vectara retrieval over MES troubleshooting docs, delivered in Webex, so operators get step-by-step MES fixes without waiting for day shift.</li>
-<li>Modified MES message structures and reports for integrated load/unload; resolved data mapping across 4,802 variations.</li>
-<li>Automated the daily dispatch-metrics email, reticle-delivery ETL, file-version checks, and dispatch-job migration across servers.</li>
+<li>Cut reticle wait time across the fab by 80% by automating reticle scheduling and handling.</li>
+<li>Wrote the real-time dispatching (RTD) logic for the new Sherman fab from zero as part of the build-out team, balancing throughput, cost, cycle time, and on-time delivery.</li>
+<li>Designed the lithography scheduling logic, adding load-port and expression-based constraints the previous logic missed.</li>
+<li>Shipped a Vectara + Webex knowledge-base chatbot so night-shift operators resolve MES issues from step-by-step guidance instead of waiting for day-shift support.</li>
+<li>Redesigned MES message structures and reports for integrated load/unload, reconciling data mappings across 4,802 variations.</li>
+<li>Automated daily dispatch metrics, reticle-delivery ETL, and version checks; migrated dispatch jobs across redundant servers.</li>
 </ul>
 <div class="role"><div><b>Founder &amp; Lead Organizer</b> <span>— Dallas Chinese AI Community · Real Agent Use Cases (side project)</span></div><div class="d">2026 – Present</div></div>
 <ul>
-<li>Founded Dallas's first Chinese AI community (700+ members); 7 events Apr–Sep 2026, 246 cumulative attendees, 70 at the largest.</li>
-<li>Led a 40-person hands-on workshop: attendees built and ran their own email daily-brief workflow (inbox → prioritized to-do), then demoed their automations.</li>
-<li>Ran a 59-person beginner workshop for students and parents: turn a vague idea into a clear task, then finish a first project with ChatGPT.</li>
-<li>Organized a community hackathon and two OpenClaw agent meetups (40 and 70 attendees) on multi-agent workflows with Claude Code.</li>
-<li>Designed and taught Agent 101, a bilingual course where nontechnical attendees build a working Gmail agent from a template.</li>
+<li>Founded Dallas's first Chinese AI community (700+ members); 7 events in 2026, 246 cumulative attendees, up to 70 per event.</li>
+<li>Ran hands-on workshops (40 and 59 attendees) where nontechnical participants built and ran a working email daily-brief agent from a template, then demoed their own automations; designed the bilingual Agent 101 curriculum behind them.</li>
+<li>Organized a community hackathon and two OpenClaw meetups on multi-agent workflows with Claude Code.</li>
 </ul>
 
 <h2>Selected Projects</h2>
 <div class="role"><div><b>Live-stream host scheduling system</b> <span>— US TikTok Shop live-commerce agency (in production)</span></div><div class="d">Aug 2026 – Present</div></div>
 <ul>
-<li>Replaced hand-dragged Lark spreadsheets and hand-written per-host plans; hosts submit availability via signed per-person links.</li>
-<li>Cloudflare Worker (KV + cron) reads scores, pair compatibility, hour limits, and room requirements from Lark Sheets, runs a constraint solver, and writes a draft schedule plus an explicit gap list back to Lark.</li>
-<li>The ops lead reviews and publishes; the system never publishes on its own. Admin panel, 21 regression tests, CI/CD, and a handoff doc for the next maintainer.</li>
+<li>Built and run the agency's weekly scheduling pipeline: signed per-person links collect host availability; a Cloudflare Worker (KV + cron) reads scores, pair compatibility, hour limits, and room requirements from Lark Sheets, runs a constraint solver, and writes the draft schedule and gap list back to Lark.</li>
+<li>Replaced a hand-dragged spreadsheet and daily hand-written per-host plans. The human checkpoint is deliberate: the ops lead reviews and publishes; the system never publishes on its own.</li>
+<li>Own it in production: admin panel, 21 regression tests, CI/CD, and a handoff doc so the next maintainer can run it without me.</li>
 </ul>
 <div class="role"><div><b>AI receptionist, voice + SMS</b> <span>— aimanjack.com (live)</span></div><div class="d">Jul 2026 – Present</div></div>
 <ul>
-<li>OpenAI Realtime voice line and SMS agent share one tool set (check availability, create / find / reschedule / cancel booking) against a booking API on Cloudflare Pages Functions + Supabase Postgres.</li>
-<li>Double-booking is blocked in the database; every write texts a confirmation to both customer and owner. Answers in English, Spanish, and Chinese; quotes only approved prices and hands off the rest.</li>
-<li>Shipped with a public landing page, self-serve booking page, and a demo line anyone can call; the same SMS pattern is live at a DFW car dealership.</li>
+<li>Built a voice (OpenAI Realtime) and SMS booking agent that share one tool set (availability, create / find / reschedule / cancel) over a booking API on Cloudflare Pages Functions + Supabase Postgres.</li>
+<li>Guardrails: double-booking blocked at the database, confirmation texts to both parties on every write, only approved prices quoted, everything else handed off. English, Spanish, and Chinese.</li>
+<li>Live on a public demo line and self-serve booking page; the same SMS pattern runs for a DFW car dealership.</li>
 </ul>
-<div class="role"><div><b>Open-source agent workflows &amp; content site</b> <span>— github.com/qianquandong · realagentusecases.com</span></div><div class="d">2026</div></div>
+<div class="role"><div><b>Open-source agent workflows &amp; docs</b> <span>— github.com/qianquandong · realagentusecases.com</span></div><div class="d">2026</div></div>
 <ul>
-<li>real-agent-workflows (Obsidian content OS, 6 workflows), track-ai-visibility, booking-research-agent, all with human gates on send/publish; bilingual Next.js static site on Cloudflare Workers with automated publishing gates.</li>
+<li>real-agent-workflows (6 Obsidian workflows), track-ai-visibility, booking-research-agent, a 44-chapter bilingual Google Business Profile guide with installable skill; all with human gates on send/publish. Bilingual Next.js site on Cloudflare Workers with automated publishing gates.</li>
 </ul>
 
 <h2>Education</h2>
@@ -72,7 +70,8 @@ a{color:inherit;text-decoration:none}
 
 <h2>Skills</h2>
 <ul>
-<li>Python, JavaScript / Node, SQL (Postgres / Supabase), Selenium, SAP GUI scripting (win32com), ETL, Cloudflare Workers / Pages / KV / D1, Next.js</li>
-<li>OpenAI &amp; Claude APIs (function calling, Realtime), Claude Code, MCP connectors, Vectara (RAG), Webex bots, Twilio, Lark / Feishu and Notion APIs; agent design with dry-run defaults, human-in-the-loop gates, failure boundaries · English, Mandarin Chinese</li>
+<li><b>Agents &amp; LLMs:</b> Claude API / Claude Code, OpenAI (function calling, Realtime), MCP connectors, Vectara RAG; dry-run defaults, human-in-the-loop gates, failure boundaries, regression tests against real cases</li>
+<li><b>Systems &amp; glue:</b> Python, JavaScript / Node, SQL (Postgres / Supabase), SAP GUI scripting, Selenium, ETL, Cloudflare Workers / Pages / KV / D1, Twilio, Lark / Feishu, Notion, Webex APIs, Next.js</li>
+<li><b>Languages:</b> English, Mandarin Chinese</li>
 </ul>
 </body></html>
