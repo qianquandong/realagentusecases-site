@@ -1,0 +1,64 @@
+---
+title: "AI 编程 Agent：盯着写还是放手交"
+date: "2026-09-12"
+excerpt: "AI 编程 agent 分两种活：在编辑器里你审每处改动的监督型，和你把整件任务交出去的自主型。教你怎么挑，以及哪一步要留给人。"
+---
+
+AI 编程 agent 有两种形态。监督型——Claude Code、Cursor、编辑器里的 GitHub Copilot——提议改动，跑起来之前先由你审。自主型——GitHub 的 coding agent、Devin——接下一整件任务，直接开一个 pull request 给你检查。挑哪个，看你打算审多少，而不是看排行榜第几。
+
+每一份「十大编程 agent」榜单，都是把同一批名字换个顺序排一遍。那是错的问题。有用的区分不是谁在跑分上赢，而是这活你有多少要亲手过一遍。按自主性去分这一片工具，就是那条把任何 copilot 和任何 agent 分开的[辅助 vs. 执行](/zh/news/2026-09-09-ai-copilot-vs-ai-agent/)线——一分，选择就简单多了。
+
+## 监督型：你审每一处改动
+
+监督型编程 agent 在你身边干活，边做边把过程摊开给你看。你描述改动，它改文件、跑命令，而落地之前你先读那份 diff。
+
+- [Claude Code](https://www.anthropic.com/claude-code) 是 Anthropic 的 agentic 编程工具，活在你的终端和 IDE 里，在你项目里改文件、跑命令，而你看着。
+- [Cursor](https://cursor.com) 是一个 AI 原生编辑器，它的 Agent 模式会跨你的代码库规划一处改动，再落地你批准的编辑。
+- [GitHub Copilot](https://github.com/features/copilot) 的编辑器内形态提示下一行或下一块，你接受或拒绝——人守在每一次敲键上。
+
+对需要判断的活，这是对的默认项：一个棘手的函数、一次你得看懂的重构、任何你会先读再跑的东西。你用一点速度，换一份你真审过的 diff——这就是让任何 agent 都不出格的[先读再跑](/zh/posts/2026-05-13-gmail-ai-agent/)纪律。
+
+## 自主型：你审那个 pull request
+
+自主型编程 agent 把一整件任务从你盘子里拿走，回来交给你一个结果去检查，而不是一串敲键去批准。
+
+- 把一个 GitHub issue 指派给 Copilot 的 [coding agent](https://docs.github.com/en/copilot/concepts/agents/cloud-agent/about-cloud-agent)，它会开一个分支和一个 pull request，把工作规划成一份清单，写代码、跑测试，[做完后来请你审](https://github.blog/ai-and-ml/github-copilot/assigning-and-completing-issues-with-coding-agent-in-github-copilot/)。
+- [Devin](https://cognition.com/blog/introducing-devin) 被 Cognition 称作「第一位 AI 软件工程师」，在你已有的代码库和工具里规划、编写、测试并交付代码，把一件任务从头跑到尾。
+
+麻烦和每个 agent 一样：它自己做得越多，风险就越从错误的*答案*转向一个被合进你代码库的错误*动作*。所以审阅从 diff 移到了 pull request——而合并按钮仍是[一道人工确认闸门](/zh/news/2026-08-13-human-in-the-loop-ai-agents/)。自主性只在范围清楚、可测的任务上值回票价——那些一份清爽 PR 就容易判断的活，而不是含糊的那些。
+
+## 别买排行榜的账
+
+厂商会甩出一个 [SWE-bench Verified](https://www.swebench.com/verified.html) 分数——500 个经人工校验的真实 GitHub issue，取自热门 Python 仓库，agent 必须产出一个能让仓库现有测试通过的补丁——好像它就定了名次。它没有。它是在一种语言、一类修 bug 上的方向性信号，替代不了你的代码库、你的审阅习惯，或你对一次错误合并的容忍度。
+
+老实的做法，正是我们对[搭任何 agent](/zh/news/2026-09-01-how-to-build-an-ai-agent/) 的建议：在你自己的任务上测。给两个工具同样三张来自你 backlog 的真实工单，读它们的 diff。这比任何排行榜都告诉你更多。
+
+## 你到底需要哪个
+
+按任务挑工具，别按噱头：
+
+- **选监督型**——当活需要判断，或者你想看懂这处改动：一个隐蔽的 bug、一次重构、你会先读再跑的代码。要速度，手还在方向盘上。
+- **选自主型**——当任务范围清楚、可测：一个有好测试兜底的小功能、一个作为 issue 提交的例行修复——并且你愿意去审那个 pull request，而不是审敲键。
+
+大多数开发者两个都用：监督型做思考，自主型跑杂务。刚入门？从 [Agent 101](/zh/agent-101/) 开始；如果你总在反复交代项目的规范，把它一次性存成一个 [Claude Agent Skill](/zh/news/2026-09-07-claude-agent-skills/)。
+
+## FAQ
+
+**开发者最好用的 AI 编程 agent 是哪个？**
+没有唯一赢家。开发者最常用的监督型工具是编辑器里的 [Claude Code](https://www.anthropic.com/claude-code)、[Cursor](https://cursor.com) 和 [GitHub Copilot](https://github.com/features/copilot)；要自主地干整件活，就看 [GitHub 的 coding agent](https://docs.github.com/en/copilot/concepts/agents/cloud-agent/about-cloud-agent) 和 [Devin](https://cognition.com/blog/introducing-devin)。按你会审多少来挑，而不是按跑分名次。
+
+**监督型和自主型编程 agent 有什么区别？**
+监督型在你身边干活、把改动摊给你看，你在它落地前批准每一处 diff。自主型接下一整件任务再回报——GitHub 的 coding agent 会[开一个 pull request 请你审](https://github.blog/ai-and-ml/github-copilot/assigning-and-completing-issues-with-coding-agent-in-github-copilot/)。分界线是自主性：你是边做边审，还是做完再审。
+
+**AI agent 能自己写代码、开 pull request 吗？**
+能。把一个 GitHub issue 指派给 [Copilot 的 coding agent](https://docs.github.com/en/copilot/concepts/agents/cloud-agent/about-cloud-agent)，它会规划、写代码、跑测试，再请你审。[Devin](https://cognition.com/blog/introducing-devin) 在你的代码库里把任务从头跑到尾。但合并仍归你——把它留在[一道人工闸门](/zh/news/2026-08-13-human-in-the-loop-ai-agents/)之后。
+
+**SWE-bench 分高就代表编程 agent 更好吗？**
+只在方向上。[SWE-bench Verified](https://www.swebench.com/verified.html) 是 500 个真实 Python 修 bug 任务，按现有测试是否通过来判分——有用的信号，但不是你的代码库、也不是你的审阅流程。跑分更高的工具，在你的活上仍可能更差。定下来之前，先拿两个工具在你自己的工单上测。
+
+**让编程 agent 不经审阅就提交，安全吗？**
+把合并当作任何不可逆的动作：加闸门。监督型 agent 本就让你守在每一处 diff 上；自主型的，去审那个 pull request，让测试和一个人的签字挡在 agent 和你的主分支之间——和管住发送、付款、删除的那条[人工确认](/zh/news/2026-08-13-human-in-the-loop-ai-agents/)规则一样。
+
+---
+
+想看职场人真正在跑的 agent 现场笔记——具体配置、成本和翻车点？[免费订阅](/zh/)，每周的搭建直接发到你的收件箱。

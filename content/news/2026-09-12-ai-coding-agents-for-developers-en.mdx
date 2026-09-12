@@ -1,0 +1,64 @@
+---
+title: "AI Coding Agents: Supervised or Autonomous?"
+date: "2026-09-12"
+excerpt: "AI coding agents split into two jobs: supervised tools you review in the editor, and autonomous ones you hand a whole task. How to pick, and what stays human."
+---
+
+AI coding agents come in two shapes. Supervised ones — Claude Code, Cursor, GitHub Copilot in your editor — propose changes you review before anything runs. Autonomous ones — GitHub's coding agent, Devin — take a whole task and open a pull request for you to check. Pick by how much you plan to review, not by leaderboard rank.
+
+Every "10 best coding agents" list ranks the same names in a different order. That's the wrong question. The useful split isn't which tool wins a benchmark — it's how much of the work you keep your hands on. Sort the field by autonomy, the same [assist-versus-act line](/en/news/2026-09-09-ai-copilot-vs-ai-agent/) that separates any copilot from any agent, and the choice gets much simpler.
+
+## Supervised: you review every diff
+
+A supervised coding agent works beside you and shows its work as it goes. You describe the change, it edits files and runs commands, and you read the diff before it lands.
+
+- [Claude Code](https://www.anthropic.com/claude-code) is Anthropic's agentic coding tool that lives in your terminal and IDE, editing files and running commands in your project while you watch.
+- [Cursor](https://cursor.com) is an AI-native editor with an Agent mode that plans a change across your codebase and applies edits you approve.
+- [GitHub Copilot](https://github.com/features/copilot), in its in-editor form, proposes the next line or block and you accept or reject it — the human on every keystroke.
+
+These are the right default for high-judgment work: a tricky function, a refactor you need to understand, anything you'd want to read before you run. You trade a little speed for a diff you actually reviewed — the [read-before-you-run discipline](/en/posts/2026-05-13-gmail-ai-agent/) that keeps any agent honest.
+
+## Autonomous: you review the pull request
+
+An autonomous coding agent takes a whole task off your plate and reports back with a result to check, not keystrokes to approve.
+
+- Assign a GitHub issue to Copilot's [coding agent](https://docs.github.com/en/copilot/concepts/agents/cloud-agent/about-cloud-agent) and it opens a branch and a pull request, plans the work as a checklist, writes the code, runs the tests, and [requests your review when it's done](https://github.blog/ai-and-ml/github-copilot/assigning-and-completing-issues-with-coding-agent-in-github-copilot/).
+- [Devin](https://cognition.com/blog/introducing-devin), billed by Cognition as "the first AI software engineer," plans, writes, tests, and ships code inside your existing codebase and tools, running a task end to end.
+
+The catch is the same one behind every agent: the more it does on its own, the more the risk shifts from a wrong *answer* to a wrong *action* merged into your repo. So the review moves from the diff to the pull request — and the merge button stays [a human-in-the-loop gate](/en/news/2026-08-13-human-in-the-loop-ai-agents/). Autonomy earns its keep on well-scoped, testable tasks where a clear PR is easy to judge, not on the ambiguous ones.
+
+## Don't buy the leaderboard
+
+Vendors quote a [SWE-bench Verified](https://www.swebench.com/verified.html) score — 500 human-validated real GitHub issues from popular Python repos, where the agent must produce a patch that makes the repo's existing tests pass — as if it settled the ranking. It doesn't. It's a directional signal on one language and one style of bug fix, not a stand-in for your codebase, your review habits, or your tolerance for a wrong merge.
+
+The honest move is the one we recommend for [building any agent](/en/news/2026-09-01-how-to-build-an-ai-agent/): measure on your own tasks. Give two tools the same three real tickets from your backlog and read the diffs. That tells you more than any leaderboard.
+
+## Which do you actually need?
+
+Match the tool to the task, not the hype:
+
+- **Reach for a supervised agent** when the work is high-judgment or you want to understand the change — a subtle bug, a refactor, code you'll read before you run. Speed with your hand on the wheel.
+- **Reach for an autonomous agent** when the task is well-scoped and testable — a small feature behind good tests, a routine fix filed as an issue — and you're willing to review the pull request instead of the keystrokes.
+
+Most developers use both: a supervised agent for the thinking, an autonomous one for the errands. New to this? Start at [Agent 101](/en/agent-101/), and if you keep re-explaining your project's conventions, save them once as a [Claude Agent Skill](/en/news/2026-09-07-claude-agent-skills/).
+
+## FAQ
+
+**What are the best AI coding agents for developers?**
+There's no single winner. The supervised tools developers reach for most are [Claude Code](https://www.anthropic.com/claude-code), [Cursor](https://cursor.com), and [GitHub Copilot](https://github.com/features/copilot) in the editor; for autonomous, whole-task work, [GitHub's coding agent](https://docs.github.com/en/copilot/concepts/agents/cloud-agent/about-cloud-agent) and [Devin](https://cognition.com/blog/introducing-devin). Pick by how much you'll review, not by benchmark rank.
+
+**What's the difference between a supervised and an autonomous coding agent?**
+A supervised agent works beside you and shows its edits so you approve each diff before it runs. An autonomous agent takes a whole task and reports back — GitHub's coding agent [opens a pull request for your review](https://github.blog/ai-and-ml/github-copilot/assigning-and-completing-issues-with-coding-agent-in-github-copilot/). The dividing line is autonomy: how much you review as it works versus after.
+
+**Can an AI agent write code on its own and open a pull request?**
+Yes. Assign a GitHub issue to [Copilot's coding agent](https://docs.github.com/en/copilot/concepts/agents/cloud-agent/about-cloud-agent) and it plans the work, writes the code, runs the tests, and requests your review. [Devin](https://cognition.com/blog/introducing-devin) runs tasks end to end inside your codebase. You still own the merge — keep it behind [a human gate](/en/news/2026-08-13-human-in-the-loop-ai-agents/).
+
+**Does a high SWE-bench score mean a coding agent is better?**
+Only directionally. [SWE-bench Verified](https://www.swebench.com/verified.html) is 500 real Python bug-fix tasks graded by whether existing tests pass — useful signal, but not your codebase or your review process. A tool that scores higher on it can still be worse on your work. Test two tools on your own tickets before you commit.
+
+**Is it safe to let a coding agent commit without review?**
+Treat the merge like any irreversible action: gate it. Supervised agents already keep you on every diff; for autonomous ones, review the pull request and let tests and a human sign-off stand between the agent and your main branch, the same [human-in-the-loop](/en/news/2026-08-13-human-in-the-loop-ai-agents/) rule that governs send, pay, and delete.
+
+---
+
+Want the field notes on real agents professionals actually run — the exact setups, costs, and failure modes? [Subscribe free](/en/) and get each week's build in your inbox.
