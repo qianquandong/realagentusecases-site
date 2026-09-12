@@ -433,9 +433,9 @@
       "funnel": "MOFU",
       "cluster": "tool-stack",
       "locale": "both",
-      "status": "new",
+      "status": "used",
       "addedAt": "2026-08-02",
-      "note": "Sunday feed research 2026-08-02. Supervised-vs-autonomous framing for engineers: pair/terminal agents you review (Claude Code, Cursor) vs delegate-a-task cloud agents (Devin, Replit Agent). Grounded in MarkTechPost 'AI Coding Agents 2026' (Atoms/Devin/Windsurf/Cursor/Warp), Vellum '10 Best AI Coding Agents', Medium 'State of AI Coding Agents 2026'. Clusters with founders (solo builder), how-to-build-an-ai-agent, and no-code-tools (the opposite end). Ground the desk-level pattern in Issue #001's supervised-write discipline."
+      "note": "Sunday feed research 2026-08-02. Supervised-vs-autonomous framing for engineers: pair/terminal agents you review (Claude Code, Cursor) vs delegate-a-task cloud agents (Devin, Replit Agent). Grounded in MarkTechPost 'AI Coding Agents 2026' (Atoms/Devin/Windsurf/Cursor/Warp), Vellum '10 Best AI Coding Agents', Medium 'State of AI Coding Agents 2026'. Clusters with founders (solo builder), how-to-build-an-ai-agent, and no-code-tools (the opposite end). Ground the desk-level pattern in Issue #001's supervised-write discipline. | Used 2026-09-12 → content/news/2026-09-12-ai-coding-agents-for-developers. Angle: sort by autonomy not leaderboard — supervised (Claude Code, Cursor, in-editor Copilot; you review every diff) vs autonomous (GitHub Copilot coding agent opens a PR, Cognition Devin runs end-to-end; you review the PR, merge stays a human gate); don't buy the leaderboard — SWE-bench Verified is directional, measure two tools on your own tickets. Sourced to Anthropic Claude Code, Cursor, GitHub Copilot coding-agent docs + github.blog, Cognition's introducing-Devin, SWE-bench verified.html, and Issue #001. Wove a link in from ai-copilot-vs-ai-agent (09-09)."
     },
     {
       "term": "AI agent for data analysis",

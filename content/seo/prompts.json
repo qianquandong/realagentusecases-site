@@ -297,9 +297,9 @@
       "prompt": "What are the best AI coding agents for developers?",
       "cluster": "tool-stack",
       "locale": "en",
-      "status": "new",
+      "status": "covered",
       "addedAt": "2026-08-02",
-      "note": "Sunday feed research 2026-08-02. Pairs with the new 'AI coding agents for developers' keyword; supervised (Claude Code, Cursor) vs autonomous (Devin, Replit Agent) framing."
+      "note": "Sunday feed research 2026-08-02. Pairs with the new 'AI coding agents for developers' keyword; supervised (Claude Code, Cursor) vs autonomous (Devin, Replit Agent) framing. Covered by content/news/2026-09-12-ai-coding-agents-for-developers. GEO-probed 2026-09-12 (on-publish baseline): not cited — web search (verbatim) dominated by listicle/aggregator roundups (faros.ai Best AI Coding Agents 2026, monday.com, vellum.ai, kimi.ai, opensourcealternatives.to, agentic.ai) that rank the same names (Cursor/Claude Code/Codex/Copilot/Cline/Devin) in different orders; realagentusecases.com did not appear — the field is ranked 'best coding agent' listicles with no independent sort-by-autonomy / measure-on-your-own-tickets / keep-the-merge-a-human-gate angle grounded in a real desk build, this site's gap to own. Notably the same SERP independently states the article's own thesis ('there is no single best AI coding agent in isolation; developers evaluate by where they want leverage') — corroboration, not fabrication. The article answers this prompt verbatim in its first FAQ; re-probe post-index to track lift."
     },
     {
       "prompt": "Can an AI agent analyze my spreadsheet data?",

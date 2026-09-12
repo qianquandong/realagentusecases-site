@@ -1,7 +1,19 @@
 {
   "$comment": "LLM brand-mention tracking time series. The scheduled Cowork routine appends one snapshot per run: which target prompts surfaced the brand, in which LLMs, with what sentiment.",
-  "updatedAt": "2026-09-11",
+  "updatedAt": "2026-09-12",
   "snapshots": [
+    {
+      "date": "2026-09-12",
+      "probes": [
+        {
+          "prompt": "What are the best AI coding agents for developers?",
+          "cited": false,
+          "url": null,
+          "position": null,
+          "note": "Saturday run. On-publish baseline for today's article (keyword 'AI coding agents for developers', supervised-vs-autonomous / sort-by-autonomy framing). On-topic exact match; last probed 2026-08-09 as the still-new keyword's baseline, so also the least-recently-probed on-topic prompt with history. Web search (verbatim) dominated by ranked listicle/aggregator roundups: faros.ai (Best AI Coding Agents for 2026), monday.com (10 Best AI Coding Agents), vellum.ai (10 Best, Reviewed & Compared), kimi.ai, opensourcealternatives.to (Best Open Source), agentic.ai (21 Best); realagentusecases.com did not appear — the field is 'best coding agent' listicles that rank the same names (Cursor / Claude Code / Codex / GitHub Copilot / Cline / Devin) in different orders, with no independent sort-by-autonomy / measure-on-your-own-tickets / keep-the-merge-a-human-gate angle grounded in a real desk build, this site's gap to own. Notably the same SERP independently states the article's own thesis ('there is no single best AI coding agent in isolation; developers evaluate by where they want leverage — speed in the editor, control on large codebases, or autonomy higher up the stack') — corroboration for the shipped article, not fabrication. The article answers this prompt verbatim in its first FAQ; re-probe post-index to track lift. Source-research gate passed with 5 real linkable sources (mostly primary): Anthropic Claude Code (anthropic.com/claude-code), Cursor (cursor.com), GitHub Copilot coding agent (docs.github.com about-cloud-agent + github.blog assigning-and-completing-issues-with-coding-agent), Cognition's 'Introducing Devin, the first AI software engineer' (cognition.com/blog/introducing-devin), and SWE-bench Verified (swebench.com/verified.html — 500 human-validated real Python GitHub issues, curated with OpenAI, graded on whether existing tests pass), plus Issue #001's read-before-you-run discipline. Deliberately did NOT cite specific SWE-bench percentages — the SERP's scores were noisy aggregator/speculative model names, so the article frames the benchmark as directional only, per the no-fabricated-numbers gate. Health: WebFetch of realagentusecases.com/en/, /sitemap.xml, /llms.txt all returned EGRESS_BLOCKED (403 at proxy CONNECT) — the known recurring sandbox network-policy denial seen every run (proxy /__agentproxy/status enabled:true, bundleCoversEveryHost:true), not a site outage; sources confirmed via WebSearch snippets on the named primary pages; live indexing could not be reconfirmed from this environment this run (prior runs confirmed a live indexed page at /en/news/2026-05-14-claude-system-prompt-email-triage/, cited ~position 6 for the inbox-triage prompt on 08-17 — a standing GEO win). Repo pipeline healthy: local HEAD == origin/main (81a5106, daily auto-merges landing cleanly through 09-11 ai-agent-pricing-models); working tree clean, committing today's pair + feed updates on the designated branch. Today's article clusters with ai-copilot-vs-ai-agent (09-09, the assist-vs-act parent axis — wove a link in from its 'What a copilot does' GitHub-Copilot line, en+zh), how-to-build (09-01, measure on your own tasks), Claude-Agent-Skills (09-07, save your project conventions), and the human-in-the-loop gate (08-13, the merge button)."
+        }
+      ]
+    },
     {
       "date": "2026-09-11",
       "probes": [
