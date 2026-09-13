@@ -1,6 +1,6 @@
 {
   "$comment": "SEO keyword feed — a living file. The scheduled Cowork routine ideates entries; scripts/seo/feeds.mjs persists them (dedupe + status + timestamps). intent: informational|commercial|transactional. funnel: TOFU|MOFU|BOFU. cluster: use-case|template|comparison|industry|tool-stack. status: new|used.",
-  "updatedAt": "2026-09-11",
+  "updatedAt": "2026-09-13",
   "keywords": [
     {
       "term": "AI agent use cases",
@@ -835,6 +835,76 @@
       "status": "new",
       "addedAt": "2026-09-06",
       "note": "Sunday feed research 2026-09-06. Internal-support sibling of the customer-service hub (external-facing): password resets, access requests, device/onboarding tickets, knowledge-base deflection. Signal: Ema's new hub to deploy 'AI employees' across HR/IT/Finance departments (Sep 2026). Sourceable at write time: ServiceNow AI Agents / Now Assist, Atlassian Rovo, Moveworks (internal helpdesk), plus the same Zendesk/Intercom triage discipline already on-site. Deflect-vs-resolve framing; the access-grant/provisioning decision stays human-gated (ties to least-privilege in security-risks 08-25). Clusters with customer-service, HR-teams, guardrails."
+    },
+    {
+      "term": "AI agents vs workflows",
+      "intent": "informational",
+      "funnel": "MOFU",
+      "cluster": "comparison",
+      "locale": "both",
+      "status": "new",
+      "addedAt": "2026-09-13",
+      "note": "Sunday feed research 2026-09-13. Live 2026 debate: Anthropic's 'building effective agents' / workflow-vs-agent playbook (claude.com blog on common workflow patterns) argues reserve agents for cases you can't hardcode. Decision-guide angle grounded in this site's real desk builds. Clusters with ai-agent-vs-chatbot, ai-agent-vs-rpa, ai-copilot-vs-ai-agent."
+    },
+    {
+      "term": "context engineering for AI agents",
+      "intent": "informational",
+      "funnel": "MOFU",
+      "cluster": "tool-stack",
+      "locale": "both",
+      "status": "new",
+      "addedAt": "2026-09-13",
+      "note": "Sunday feed research 2026-09-13. Successor term to prompt engineering across 2026 agent tooling (Sourcegraph, Elastic, Neo4j, Redis all published context-engineering guides). Covers memory, tool defs, token budget, retrieval. Clusters with ai-agent-memory-and-context, ai-agent-prompt-template."
+    },
+    {
+      "term": "AI agent prompt injection",
+      "intent": "informational",
+      "funnel": "MOFU",
+      "cluster": "tool-stack",
+      "locale": "both",
+      "status": "new",
+      "addedAt": "2026-09-13",
+      "note": "Sunday feed research 2026-09-13. Concrete security sub-topic of the safety hub. Signal: Zapier ships PII + prompt-injection scanning in AI guardrails (2026); n8n rebuilt agent node. More specific/searched than generic 'security risks'. Clusters with ai-agent-security-risks, ai-agent-guardrails, ai-agent-governance."
+    },
+    {
+      "term": "AI agents for healthcare",
+      "intent": "informational",
+      "funnel": "TOFU",
+      "cluster": "industry",
+      "locale": "both",
+      "status": "new",
+      "addedAt": "2026-09-13",
+      "note": "Sunday feed research 2026-09-13. Uncovered major vertical. Write only with real, linkable deployments (health-system/EHR vendor case studies); keep clinical claims sourced and human-gated. Clusters with the industry set."
+    },
+    {
+      "term": "AI agents for supply chain",
+      "intent": "informational",
+      "funnel": "TOFU",
+      "cluster": "industry",
+      "locale": "both",
+      "status": "new",
+      "addedAt": "2026-09-13",
+      "note": "Sunday feed research 2026-09-13. Uncovered vertical (logistics/procurement/inventory). Ground in real ERP/logistics vendor deployments before writing. Clusters with the industry set."
+    },
+    {
+      "term": "vertical AI agents",
+      "intent": "commercial",
+      "funnel": "MOFU",
+      "cluster": "comparison",
+      "locale": "both",
+      "status": "new",
+      "addedAt": "2026-09-13",
+      "note": "Sunday feed research 2026-09-13. Emerging category term (industry-specific agents vs general assistants). Contrast piece tying our industry cluster together. Clusters with comparison + industry sets."
+    },
+    {
+      "term": "AI agents for operations teams",
+      "intent": "informational",
+      "funnel": "TOFU",
+      "cluster": "industry",
+      "locale": "both",
+      "status": "new",
+      "addedAt": "2026-09-13",
+      "note": "Sunday feed research 2026-09-13. Uncovered horizontal-vertical (ops/RevOps/BizOps: reporting, ticket routing, cross-system tasks). Ground in real ops workflows. Clusters with the industry set."
     }
   ]
 }
