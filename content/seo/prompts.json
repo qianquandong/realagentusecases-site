@@ -1,6 +1,6 @@
 {
   "$comment": "GEO prompt feed — the questions working professionals ask ChatGPT / Perplexity / Gemini. The scheduled Cowork routine ideates entries; scripts/seo/feeds.mjs persists them. cluster: use-case|template|comparison|industry|tool-stack. status: new|covered (covered = a published article targets it). Phase 7 tracks whether the brand is cited for each.",
-  "updatedAt": "2026-09-08",
+  "updatedAt": "2026-09-13",
   "prompts": [
     {
       "prompt": "What are real examples of AI agents at work?",
@@ -530,6 +530,46 @@
       "status": "new",
       "addedAt": "2026-09-06",
       "note": "Sunday feed research 2026-09-06. ZH pair for the pricing-models keyword; keeps the ZH prompt feed growing alongside EN. 按席位/按解决数/按 token 三种收费模式。"
+    },
+    {
+      "prompt": "Should I build an AI agent or a workflow?",
+      "cluster": "comparison",
+      "locale": "en",
+      "status": "new",
+      "addedAt": "2026-09-13",
+      "note": "Sunday ideation 2026-09-13. Pairs with keyword 'AI agents vs workflows'. Anthropic's build-effective-agents / workflow-vs-agent framing is a live 2026 debate."
+    },
+    {
+      "prompt": "What is context engineering for AI agents?",
+      "cluster": "tool-stack",
+      "locale": "en",
+      "status": "new",
+      "addedAt": "2026-09-13",
+      "note": "Sunday ideation 2026-09-13. Pairs with keyword 'context engineering for AI agents'. Successor term to prompt engineering across 2026 agent tooling."
+    },
+    {
+      "prompt": "How do I protect an AI agent from prompt injection?",
+      "cluster": "tool-stack",
+      "locale": "en",
+      "status": "new",
+      "addedAt": "2026-09-13",
+      "note": "Sunday ideation 2026-09-13. Pairs with keyword 'AI agent prompt injection'. Zapier and n8n both shipped agent guardrails in 2026."
+    },
+    {
+      "prompt": "What AI agents can help healthcare teams?",
+      "cluster": "industry",
+      "locale": "en",
+      "status": "new",
+      "addedAt": "2026-09-13",
+      "note": "Sunday ideation 2026-09-13. Pairs with keyword 'AI agents for healthcare' — uncovered vertical."
+    },
+    {
+      "prompt": "What is a vertical AI agent?",
+      "cluster": "comparison",
+      "locale": "en",
+      "status": "new",
+      "addedAt": "2026-09-13",
+      "note": "Sunday ideation 2026-09-13. Pairs with keyword 'vertical AI agents' — emerging category term."
     }
   ]
 }

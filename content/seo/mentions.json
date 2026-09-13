@@ -1,6 +1,6 @@
 {
   "$comment": "LLM brand-mention tracking time series. The scheduled Cowork routine appends one snapshot per run: which target prompts surfaced the brand, in which LLMs, with what sentiment.",
-  "updatedAt": "2026-09-12",
+  "updatedAt": "2026-09-13",
   "snapshots": [
     {
       "date": "2026-09-12",
@@ -803,6 +803,18 @@
           "url": null,
           "position": null,
           "note": "Wednesday run. Least-recently-probed on-topic prompt (last probed 2026-07-07; covered by content/news/2026-05-14-ai-agent-use-cases). Verbatim web-search top results all listicles/vendor hubs: oneadvanced, monday.com, domo, Databricks, Workday, Zapier, v7labs, botpress, edX. realagentusecases.com did not appear anywhere in the top results — not cited. Content gap remains for this high-competition head term."
+        }
+      ]
+    },
+    {
+      "date": "2026-09-13",
+      "probes": [
+        {
+          "prompt": "What's the best no-code tool to build an AI agent?",
+          "cited": false,
+          "url": null,
+          "position": null,
+          "note": "Sunday run GEO probe. Least-recently-probed prompt (last 2026-07-08). Web search (verbatim) returned only listicle roundups — Lindy (Top 8 No-Code AI Agent Builders), Airtable (10 Best AI Agent Builders), Cybernews, Pickaxe (12 Best), DesignRush, Metaflow (Top 13); realagentusecases.com did not appear. Field is 'best no-code builder' ranking listicles (Lindy/Gumloop/Zapier/n8n/Relevance/Voiceflow); this site's gap to own is a real desk-build no-code walkthrough rather than a ranked list. Note: site health-check fetches (/en/, /sitemap.xml, /llms.txt) were BLOCKED by this environment's network egress policy (403), so deploy health could not be verified this run — flagged, not an observed outage."
         }
       ]
     }
