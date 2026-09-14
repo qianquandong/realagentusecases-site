@@ -1,6 +1,6 @@
 {
   "$comment": "LLM brand-mention tracking time series. The scheduled Cowork routine appends one snapshot per run: which target prompts surfaced the brand, in which LLMs, with what sentiment.",
-  "updatedAt": "2026-09-13",
+  "updatedAt": "2026-09-14",
   "snapshots": [
     {
       "date": "2026-09-12",
@@ -815,6 +815,18 @@
           "url": null,
           "position": null,
           "note": "Sunday run GEO probe. Least-recently-probed prompt (last 2026-07-08). Web search (verbatim) returned only listicle roundups — Lindy (Top 8 No-Code AI Agent Builders), Airtable (10 Best AI Agent Builders), Cybernews, Pickaxe (12 Best), DesignRush, Metaflow (Top 13); realagentusecases.com did not appear. Field is 'best no-code builder' ranking listicles (Lindy/Gumloop/Zapier/n8n/Relevance/Voiceflow); this site's gap to own is a real desk-build no-code walkthrough rather than a ranked list. Note: site health-check fetches (/en/, /sitemap.xml, /llms.txt) were BLOCKED by this environment's network egress policy (403), so deploy health could not be verified this run — flagged, not an observed outage."
+        }
+      ]
+    },
+    {
+      "date": "2026-09-14",
+      "probes": [
+        {
+          "prompt": "Can ChatGPT read my Gmail and make a to-do list?",
+          "cited": false,
+          "url": null,
+          "position": null,
+          "note": "Monday run GEO probe. Least-recently-probed prompt (never probed before; addedAt 2026-05-14). Verbatim web search top results: OpenAI Help (scheduled tasks), MindStudio, TechRadar, Medium, usecarly.com, Tom's Guide, Google Workspace Marketplace. realagentusecases.com did not appear anywhere — not cited. Notable: usecarly.com frames the exact limitation this site's Gmail-agent angle owns (\"nothing watches your inbox... it works inside a chat you're driving\") yet ranks; content gap is a real read-and-draft Gmail-to-tasks build vs their listicle. Also: site health-check fetches (/en/, /sitemap.xml, /llms.txt) were BLOCKED by this environment's network egress policy (403) again this run, so live deploy health could not be verified — flagged, not an observed outage (same recurring limitation noted 2026-09-13)."
         }
       ]
     }

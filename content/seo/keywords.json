@@ -1,6 +1,6 @@
 {
   "$comment": "SEO keyword feed — a living file. The scheduled Cowork routine ideates entries; scripts/seo/feeds.mjs persists them (dedupe + status + timestamps). intent: informational|commercial|transactional. funnel: TOFU|MOFU|BOFU. cluster: use-case|template|comparison|industry|tool-stack. status: new|used.",
-  "updatedAt": "2026-09-13",
+  "updatedAt": "2026-09-14",
   "keywords": [
     {
       "term": "AI agent use cases",
@@ -702,9 +702,9 @@
       "funnel": "TOFU",
       "cluster": "industry",
       "locale": "both",
-      "status": "new",
+      "status": "used",
       "addedAt": "2026-08-23",
-      "note": "Sunday feed research 2026-08-23. Industry hub parent over the existing support-triage use-case (07-15, sort-vs-resolve): the whole CX loop — deflect, triage, resolve, escalate. Sourceable: Zendesk intelligent triage (official 45 sec/ticket, already on-site), Intercom Fin (per-resolution billing, on-site), EY 2026 note that 59% of agentic-AI adopters target customer-facing ops (via the adoption roundups). Human-stays line = the escalation/refund decision. Sibling of recruiters/accountants/sales-teams hubs."
+      "note": "Sunday feed research 2026-08-23. Industry hub parent over the existing support-triage use-case (07-15, sort-vs-resolve): the whole CX loop — deflect, triage, resolve, escalate. Sourceable: Zendesk intelligent triage (official 45 sec/ticket, already on-site), Intercom Fin (per-resolution billing, on-site), EY 2026 note that 59% of agentic-AI adopters target customer-facing ops (via the adoption roundups). Human-stays line = the escalation/refund decision. Sibling of recruiters/accountants/sales-teams hubs. | Used 2026-09-14: content/news/2026-09-14-ai-agents-for-customer-service (en+zh). Industry hub over the 07-15 support-triage build; sourced to Klarna official press release + OpenAI, the 2025 Klarna reversal (Forbes/CX Dive), and Intercom Fin + Zendesk official docs. Thesis: percent-automated is the wrong metric; resolution quality + a reachable human is the right one."
     },
     {
       "term": "agentic commerce",

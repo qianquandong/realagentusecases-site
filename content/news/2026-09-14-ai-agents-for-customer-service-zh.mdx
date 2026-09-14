@@ -1,0 +1,55 @@
+---
+title: "客服的 AI Agent：2026 现状"
+excerpt: "AI agent 已经在替客服解决真实工单——Klarna、Intercom Fin、Zendesk。真正要看的不是自动化率，还有那条必须留给人工的底线。"
+date: "2026-09-14"
+---
+
+客服的 AI agent 正在解决真实工单量：Klarna 用 OpenAI 搭的助手，上线首月就接下了三分之二的客服对话；Intercom Fin 和 Zendesk 卖的 agent，能自己回答并关掉工单。真正重要的不是它自动化了多少，而是这些「已解决」是否真的解决了，以及客户是否始终能找到一个人。
+
+客服是 2026 年 AI agent 落地最多的岗位，也是公开成绩单最多的一个——赢面和翻车都摆在明处。本站对每个 agent 都画同一条线：哪些步骤它自己跑，哪一步还得有人拍板。而在客服里，这条线格外锋利，因为「分好类」和「真解决」之间隔着的，是一笔退款、一次政策破例，或者一个只想找真人的客户。下面讲清楚：这些 agent 到底做什么、该信哪个指标、以及交接口该放在哪。
+
+## 「客服 AI agent」到底指什么
+
+两家厂商都把它说得很直白，而且说法一致。[Zendesk 的文档](https://support.zendesk.com/hc/en-us/articles/6970583409690-About-AI-agents)把 AI agent 描述为能在消息、邮件、语音上对话，并「在授权系统里自主执行动作」的机器人——把问题解决掉，好让人工去处理复杂的活。它的计分很严格：一次[自动解决](https://support.zendesk.com/hc/en-us/articles/8357756668186-About-automated-resolutions-for-AI-agents)只有在*没有真人介入*的情况下把客户问题解决了才算数，一旦对话被升级给人工，就不再计入。
+
+[Intercom 的 Fin](https://www.intercom.com/help/en/articles/7120684-fin-ai-agent-explained) 跑的是同一套循环，它自己的文档写得很清楚：吸收你的帮助内容、为一个问题检索到正确的段落、生成一个有依据的回答、不确定时就升级。而一次「解决」，按 [Fin 的 outcomes 文档](https://www.intercom.com/help/en/articles/8205718-fin-ai-agent-outcomes)，指的是 Fin 给了回答、客户确认有帮助或直接离开不再追问的那种对话。
+
+把这两个定义放一起，形状就清楚了：客服 agent 是一个带「逃生舱」的检索加执行系统。它从你的知识库里作答、在你的工具里做有边界的动作、力不能及时就交接出去。这跟本站为[客服工单分诊](/zh/news/2026-07-15-ai-agent-customer-support-triage/)拆过的「分类 vs 解决」是同一条分界——靠谱的搭法把逃生舱一开始就接好，而不是事后再补。
+
+## 人人都引用的那个数，和真正重要的那个数
+
+整个品类的头号数据是 Klarna 的。它用 OpenAI 搭的助手 2024 年 2 月上线，**首月接下了 Klarna 三分之二的客服对话——230 万次对话**，干了 700 名全职客服的活，见 [Klarna 自己的新闻稿](https://www.klarna.com/international/press/klarna-ai-assistant-handles-two-thirds-of-customer-service-chats-in-its-first-month/)和 [OpenAI 的说明](https://openai.com/index/klarna/)。同一批来源还称它在客户满意度上与人工持平、把重复咨询砍了 25%、把解决时间从 11 分钟降到 2 分钟以内。这就是每份厂商 PPT 都会引用的那个数。
+
+而他们略过的是另一个数。2025 年 5 月，Klarna 公开掉头。CEO Sebastian Siemiatkowski 对 Bloomberg 说公司「走得太远了」，「太看重成本」，「结果是质量下降」，并开始重新招聘人工客服——见 [Forbes](https://www.forbes.com/sites/quickerbettertech/2025/05/18/business-tech-news-klarna-reverses-on-ai-says-customers-like-talking-to-people/) 和 [Customer Experience Dive](https://www.customerexperiencedive.com/news/klarna-reinvests-human-talent-customer-service-AI-chatbot/747586/) 的报道。Klarna 并没有把 agent 拔掉，而是转向一种混合模式，让客户始终能找到真人。
+
+所以卖动整个品类的那个指标——*自动化了多少比例的量*——并不是能跑好一个客服团队的指标。Zendesk 自己的定义早就点破了原因：一次解决，只有真解决了才算数。建立在单薄回答之上的高自动化率，不过是延迟版的「甩单」，而随之而来的二次工单、流失的客户、受损的品牌，都不会出现在第一个数字里。真正的标尺是**解决质量 + 一个够得着的真人**——正是 Klarna 花钱重新学会的那个平衡。
+
+## 真正在跑的部署长什么样
+
+站得住的 agent 有个共同结构，而且不是「全都自动化」。Fin 那套[有文档记录的循环](https://www.intercom.com/help/en/articles/7120684-fin-ai-agent-explained)让每个回答都锚在你的内容上，置信度低就升级而不是硬猜。Zendesk 的 agent 碰到解决不了的事时，会[带着完整上下文交接给人工](https://support.zendesk.com/hc/en-us/articles/8357756668186-About-automated-resolutions-for-AI-agents)，让交接不必从头再来。两者都是同一条规则的变体：让 agent 掌管可重复的查询，把判断题拦下来。
+
+这正好对应本站[客服分诊搭建](/zh/news/2026-07-15-ai-agent-customer-support-triage/)里的分层。「我的订单在哪？」是 agent 该从头管到尾的查询。「我想在退货期外退款」是判断题——agent 可以把订单、物流、政策条款都收集齐，但由人来决定这个破例。被反噬的团队，往往就是为了让自动化率图表好看，放任 agent 去关掉第二种工单。这就是[聊天机器人 vs agent](/zh/news/2026-08-12-ai-agent-vs-chatbot/) 那条区别加上真金白银的版本：一个能*执行动作*的 agent，必须被治理，而不只是被上线。
+
+## 人工那条线得留在哪
+
+上面每个部署都保留了一件由人来掌管的事，而那些把它去掉的，都付了代价。这是本站反复讲的规则：[把不可逆的拦住，让可逆的跑](/zh/news/2026-08-13-human-in-the-loop-ai-agents/)。在客服里，可逆的活是回答、查询、查状态、常规退货——交给 agent 掌管是安全的。不可逆、影响品牌的判断，是退款破例、政策松动、安抚愤怒客户——那是一个错误的自主决定会赔上真钱或一段关系的地方，也是你该把[给企业的 AI agent 护栏](/zh/news/2026-08-29-ai-agent-guardrails-for-business/)接进来的地方。
+
+可抄的范式，就在本站自己的第一个搭建里。在 [Issue #001](/zh/posts/2026-05-13-gmail-ai-agent/) 中，一个 Gmail agent 读邮件、起草每一封回复，但由人来批准发送——agent 干活，人掌管那一步你收不回来的动作。客服版形状完全一样：agent 处理查询、起草、常规解决；人掌管破例，并且始终一键可及。自动化的是活，不是决定。要是你对这套框架还陌生，[agent 入门](/zh/agent-101/)就从这里讲起。
+
+## FAQ
+
+**AI agent 能帮客服做什么？**
+从你的知识库回答重复问题、在连接的工具里做有边界的动作（查订单、发起退货、更新工单），并把它解决不了的升级给人工、带上完整上下文——见 [Zendesk](https://support.zendesk.com/hc/en-us/articles/6970583409690-About-AI-agents) 和 [Intercom Fin](https://www.intercom.com/help/en/articles/7120684-fin-ai-agent-explained) 自己的文档。不该单独做的：退款破例、政策松动，以及任何会花钱或松动规则的决定。
+
+**AI 到底能自动化客服的多少？**
+Klarna 的助手首月接下了三分之二的对话（[Klarna 新闻稿](https://www.klarna.com/international/press/klarna-ai-assistant-handles-two-thirds-of-customer-service-chats-in-its-first-month/)），Fin 则称解决率随你帮助内容的完整度大幅波动（[Intercom](https://www.intercom.com/help/en/articles/8205718-fin-ai-agent-outcomes)）。但「自动化比例」是错的靶子：一次解决只有真解决了才算数，而 Klarna 在质量下滑后[掉头收回了 AI-only 的推进](https://www.customerexperiencedive.com/news/klarna-reinvests-human-talent-customer-service-AI-chatbot/747586/)。要优化的是解决质量，不是甩单率。
+
+**Klarna 的 AI 客服教训是什么？**
+Klarna 很快把三分之二的客服自动化、省下了真金白银，随后在 2025 年因质量下降部分掉头，其 CEO 说公司「太看重成本」（[Forbes](https://www.forbes.com/sites/quickerbettertech/2025/05/18/business-tech-news-klarna-reverses-on-ai-says-customers-like-talking-to-people/)）。教训不是「别用 agent」——而是留一个够得着的真人，并衡量工单是否真被解决，而不只是被「处理」。
+
+**AI agent 该解决工单，还是只做路由？**
+先从路由和分类开始，等你信得过它了，再让 agent 去解决那些安全、可重复的工单——就是本站拆解的[分类 vs 解决](/zh/news/2026-07-15-ai-agent-customer-support-triage/)。可逆的查询（订单状态、物流、常规退货）从头到尾交给它是安全的；动钱或松动政策的工单，应路由给人，就像 [Issue #001](/zh/posts/2026-05-13-gmail-ai-agent/) 拦住那一步不可逆的发送一样。
+
+---
+
+每个值得跑的 agent 都遵循同一条纪律：它把活干完，然后停在那一步你收不回来的动作之前——在客服里，就是退款、破例、那个需要真人的客户。想看真实的搭建——每种职业到底自动化了哪些活、又有哪些仍靠人工过目？[免费订阅](/zh/)，每周的搭建直接进你的邮箱。
