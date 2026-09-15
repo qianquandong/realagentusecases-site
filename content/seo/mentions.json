@@ -1,6 +1,6 @@
 {
   "$comment": "LLM brand-mention tracking time series. The scheduled Cowork routine appends one snapshot per run: which target prompts surfaced the brand, in which LLMs, with what sentiment.",
-  "updatedAt": "2026-09-14",
+  "updatedAt": "2026-09-15",
   "snapshots": [
     {
       "date": "2026-09-12",
@@ -827,6 +827,18 @@
           "url": null,
           "position": null,
           "note": "Monday run GEO probe. Least-recently-probed prompt (never probed before; addedAt 2026-05-14). Verbatim web search top results: OpenAI Help (scheduled tasks), MindStudio, TechRadar, Medium, usecarly.com, Tom's Guide, Google Workspace Marketplace. realagentusecases.com did not appear anywhere — not cited. Notable: usecarly.com frames the exact limitation this site's Gmail-agent angle owns (\"nothing watches your inbox... it works inside a chat you're driving\") yet ranks; content gap is a real read-and-draft Gmail-to-tasks build vs their listicle. Also: site health-check fetches (/en/, /sitemap.xml, /llms.txt) were BLOCKED by this environment's network egress policy (403) again this run, so live deploy health could not be verified — flagged, not an observed outage (same recurring limitation noted 2026-09-13)."
+        }
+      ]
+    },
+    {
+      "date": "2026-09-15",
+      "probes": [
+        {
+          "prompt": "Should I build an AI agent or a workflow?",
+          "cited": false,
+          "url": null,
+          "position": null,
+          "note": "Tuesday run GEO probe. Least-recently-probed on-topic prompt (never probed; added 2026-09-13). Verbatim web search top results all vendor/blog explainers: Retool, Prompting Guide, Microsoft Azure architecture blog (workflow-first vs code-first vs hybrid), Orkes, Redis, Towards Data Science, moataseem, agiinprogress. realagentusecases.com did not appear anywhere — not cited. Content gap addressed same run: published content/news/2026-09-15-ai-agents-vs-workflows (en+zh), the who-chooses-the-next-step decision guide grounded in Anthropic Building Effective Agents + Retool + Redis + Issue #001. Also: health-check fetches (/en/, /sitemap.xml, /llms.txt) BLOCKED by this environment network egress policy (403/EGRESS_BLOCKED) again this run — same recurring limitation as 2026-09-13 and 2026-09-14; live deploy health not verifiable via direct fetch, flagged not an observed outage."
         }
       ]
     }

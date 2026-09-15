@@ -1,0 +1,61 @@
+---
+title: "AI Agents vs Workflows: When to Build Which"
+date: "2026-09-15"
+excerpt: "A workflow runs fixed steps you define; an agent decides its own. Anthropic says use the simplest option that works — how to pick without overbuilding."
+---
+
+A workflow and an AI agent both use an LLM, but a workflow runs your fixed, predefined steps in order, while an agent decides its own steps at runtime to reach a goal. Choose a workflow when the path is known and repeatable; choose an agent only when the next step genuinely depends on what it finds.
+
+The two words get sold as if "agent" is the upgrade and "workflow" is the old way. It isn't. They're two architectures with different trade-offs, and reaching for the more autonomous one by default is how teams end up with something slower, pricier, and harder to debug than the job needed.
+
+## The one real difference: who chooses the next step
+
+[Anthropic's engineering guidance](https://www.anthropic.com/engineering/building-effective-agents) draws the line precisely. Workflows are "systems where LLMs and tools are orchestrated through predefined code paths." Agents are "systems where LLMs dynamically direct their own processes and tool usage, maintaining control over how they accomplish tasks." In a workflow, *you* wrote the sequence and the model fills in the blanks. In an agent, the model decides the sequence.
+
+That's the same axis behind every comparison in this cluster — [respond versus act for a chatbot](/en/news/2026-08-12-ai-agent-vs-chatbot/), [assist versus act for a copilot](/en/news/2026-09-09-ai-copilot-vs-ai-agent/), [fixed rules versus reasoning for RPA](/en/news/2026-08-18-ai-agent-vs-rpa/). Anthropic frames it as "the degree of autonomy," and is blunt that more isn't better: it recommends finding "the simplest solution possible" and only adding agency when the task demands it, because autonomy buys latency, cost, and new failure modes.
+
+## When a workflow is the right call
+
+If you can write the steps down in advance, a workflow almost always wins. [Retool](https://retool.com/resources/ai-workflows-vs-agents), which ships both, puts it plainly: "Workflows consist of a predefined set of steps with predictable outcomes, while AI agents work autonomously." The payoff of fixing the path is that you get "predictability, auditability, and cost control" — you can trace exactly what ran, reproduce a bug, and know how many model calls each run makes.
+
+Reach for a workflow when the steps are known, repeatable, and low-ambiguity: enrich a lead, format and file a report, route a ticket by rules. It's also the safer choice when accuracy matters most, because a fixed path can't wander. Most of what people call "an AI agent for X" is really a workflow with one LLM step in the middle — and that's a feature, not a shortcoming.
+
+## When you actually need an agent
+
+An agent earns its complexity when the path can't be written down ahead of time. [Retool](https://retool.com/resources/ai-workflows-vs-agents) lists the fit: "open-ended, ambiguous tasks like research, debugging, and collating and summarizing data" from sources that keep changing. If the next useful move depends on what the last step turned up, no predefined path will cover every branch — that's the case for letting the model steer.
+
+[Issue #001's Gmail triage agent](/en/posts/2026-05-13-gmail-ai-agent/) is a real example of the line. Reading each message and deciding whether it needs a reply is agent-shaped — the inbox is different every morning. But the *send* step stays behind [a human approval gate](/en/news/2026-08-13-human-in-the-loop-ai-agents/), and the plumbing around it is plain workflow. The autonomy is spent only where it's needed.
+
+## Most real systems are hybrids
+
+The choice isn't binary. [Retool](https://retool.com/resources/ai-workflows-vs-agents) notes the best production systems "combine both and use deterministic boundaries to contain agent autonomy where it matters" — a workflow calls an agent for the one open-ended step, then takes back control for the deterministic ones. Anthropic's guidance points the same way: start simple, add an agentic loop only around the part that genuinely varies.
+
+A practical way to decide, before you build [anything at all](/en/news/2026-09-01-how-to-build-an-ai-agent/):
+
+- **Can you list the steps in advance?** Yes → workflow. No → the ambiguous part wants an agent.
+- **Does the next step depend on what the last one found?** No → workflow. Yes → agent.
+- **Do you need to reproduce and audit every run cheaply?** That pulls toward a workflow, or toward a tight agent with hard boundaries.
+- **Are there irreversible actions — send, pay, delete?** Gate them either way; autonomy raises the stakes of a wrong move.
+
+New to all this? Start at [Agent 101](/en/agent-101/), then see the [five agent patterns that hold up at work](/en/news/2026-08-04-ai-agents-for-work/) — several are workflows wearing the word "agent," and that's fine.
+
+## FAQ
+
+**What is the difference between an AI agent and a workflow?**
+A workflow runs a predefined set of steps you wrote, with predictable outcomes; an AI agent decides its own steps at runtime to reach a goal. [Anthropic](https://www.anthropic.com/engineering/building-effective-agents) frames it as orchestration through "predefined code paths" versus a model that "dynamically directs its own processes." The dividing line is who chooses the next step — you or the model.
+
+**Is an agent better than a workflow?**
+No — they're different tools. [Anthropic recommends](https://www.anthropic.com/engineering/building-effective-agents) "the simplest solution possible," adding agency only when the task needs it, because autonomy brings more cost, latency, and failure modes. If you can write the steps down, a workflow is usually more predictable, cheaper, and easier to audit.
+
+**When should I use a workflow instead of an agent?**
+Use a workflow when the steps are known, repeatable, and low-ambiguity, and when you need [predictability, auditability, and cost control](https://retool.com/resources/ai-workflows-vs-agents). Enriching a lead, filing a formatted report, or routing a ticket by rules are workflow jobs — a fixed path can't wander off.
+
+**When do I actually need an agent?**
+When the path can't be written down in advance because the next step depends on what the last one found — [open-ended work like research, debugging, or summarizing changing data](https://retool.com/resources/ai-workflows-vs-agents). If a predefined sequence would need a branch for every possibility, let the model steer that part.
+
+**Can I combine a workflow and an agent?**
+Yes, and most real systems do. The pattern is a workflow that hands the one open-ended step to an agent, then resumes deterministic control — [deterministic boundaries containing agent autonomy where it matters](https://retool.com/resources/ai-workflows-vs-agents). Keep [a human gate](/en/news/2026-08-13-human-in-the-loop-ai-agents/) on any step that sends, pays, or deletes.
+
+---
+
+Want the field notes on real agents professionals actually run — the exact setups, costs, and failure modes? [Subscribe free](/en/) and get each week's build in your inbox.

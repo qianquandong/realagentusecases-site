@@ -1,6 +1,6 @@
 {
   "$comment": "SEO keyword feed — a living file. The scheduled Cowork routine ideates entries; scripts/seo/feeds.mjs persists them (dedupe + status + timestamps). intent: informational|commercial|transactional. funnel: TOFU|MOFU|BOFU. cluster: use-case|template|comparison|industry|tool-stack. status: new|used.",
-  "updatedAt": "2026-09-14",
+  "updatedAt": "2026-09-15",
   "keywords": [
     {
       "term": "AI agent use cases",
@@ -842,9 +842,9 @@
       "funnel": "MOFU",
       "cluster": "comparison",
       "locale": "both",
-      "status": "new",
+      "status": "used",
       "addedAt": "2026-09-13",
-      "note": "Sunday feed research 2026-09-13. Live 2026 debate: Anthropic's 'building effective agents' / workflow-vs-agent playbook (claude.com blog on common workflow patterns) argues reserve agents for cases you can't hardcode. Decision-guide angle grounded in this site's real desk builds. Clusters with ai-agent-vs-chatbot, ai-agent-vs-rpa, ai-copilot-vs-ai-agent."
+      "note": "Sunday feed research 2026-09-13. Live 2026 debate: Anthropic's 'building effective agents' / workflow-vs-agent playbook (claude.com blog on common workflow patterns) argues reserve agents for cases you can't hardcode. Decision-guide angle grounded in this site's real desk builds. Clusters with ai-agent-vs-chatbot, ai-agent-vs-rpa, ai-copilot-vs-ai-agent. Used 2026-09-15 → content/news/2026-09-15-ai-agents-vs-workflows (en+zh), title \"AI Agents vs Workflows: When to Build Which\". Who-chooses-the-next-step decision guide: workflow = predefined code paths (you wrote the sequence), agent = model dynamically directs its own process; when-to-use-which checklist + hybrid framing. Grounded in Anthropic Building Effective Agents, Retool ai-workflows-vs-agents, Redis agents-vs-workflows, and Issue #001. Wove a reciprocal link in from the 09-09 ai-copilot-vs-ai-agent article (en+zh). Clusters with ai-agent-vs-chatbot, ai-copilot-vs-ai-agent, ai-agent-vs-rpa."
     },
     {
       "term": "context engineering for AI agents",
