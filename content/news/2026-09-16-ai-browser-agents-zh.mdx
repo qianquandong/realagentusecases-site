@@ -1,0 +1,64 @@
+---
+title: "AI 浏览器 agent：能做什么，风险在哪"
+date: "2026-09-16"
+excerpt: "Comet、ChatGPT Atlas、Claude for Chrome 这类浏览器 agent 能在真实网页上点击、填表、下单。它们擅长什么，最该防的又是什么风险。"
+---
+
+AI 浏览器 agent 是一个内置于（或加装到）浏览器里的助手，它不只回答问题，还会浏览页面、点击、填表，替你在真实网站上完成多步任务。2026 年的主力选手是 Perplexity 的 Comet、OpenAI 的 ChatGPT agent 模式，以及 Anthropic 的 Claude for Chrome。
+
+卖点很诱人：不用再描述你想在网上做什么，让浏览器直接做。但一个能在它读到的任何页面上「动手」的 agent，恰恰是本站反复强调的那个安全权衡最干净的例子。下面讲清楚这些工具到底做什么、真正的选手是谁，以及决定你该不该放手用的那一个风险。
+
+## 浏览器 agent 到底做什么
+
+普通聊天机器人读完页面告诉你内容，浏览器 agent 则读页面、决定下一步点哪里、滚动、填字段、开标签页，最后给你一个做完的结果。Perplexity 把 Comet 的活儿描述为「以思考的速度浏览」——一个住在浏览器里的助手，能「总结邮件和日程、管理标签页、代替用户浏览网页」（[Introducing Comet](https://www.perplexity.ai/hub/blog/introducing-comet)）。
+
+OpenAI 的版本把好处说得更具体。在 [Introducing ChatGPT Atlas](https://openai.com/index/introducing-chatgpt-atlas/) 里，OpenAI 描述 agent 模式跑真实差事：「找一家杂货店、把所有食材加进购物车、下单送到家」，或者「打开并读完过去的团队文档、做新的竞品调研、汇总成一份团队简报」。这就是那个转变——从「回答关于网页的问题」到「在网页上动手」。这正是[区分 copilot 与 agent](/zh/news/2026-09-09-ai-copilot-vs-ai-agent/) 的那条「辅助 vs 动手」的线，现在落到了浏览器本身上。
+
+## 2026 年的主力选手
+
+三款产品定义了这个品类，各走了不同的路：
+
+- **Perplexity Comet。** 2025 年 7 月面向 Max 订阅者推出（[TechCrunch](https://techcrunch.com/2025/07/09/perplexity-launches-comet-an-ai-powered-web-browser/)），基于 Chromium，把 AI 做成原生界面而非附加插件。Perplexity 在 2026 年把 Comet 带上了安卓，称其为为移动端而生的浏览器（[Comet for Android](https://www.perplexity.ai/hub/blog/comet-for-android-is-here)）。
+- **OpenAI ChatGPT Atlas。** 2025 年 10 月 21 日在 macOS 上推出，agent 模式面向 Plus、Pro、Business 用户预览（[OpenAI](https://openai.com/index/introducing-chatgpt-atlas/)）。此后 OpenAI 一直把 Atlas 的能力并入 ChatGPT 主应用和一个 Chrome 扩展，而非独立浏览器（[OpenAI 帮助中心](https://help.openai.com/en/articles/20001371-evolving-atlas-into-chatgpt-for-browser-based-agentic-work)）。
+- **Anthropic Claude for Chrome。** 2025 年 8 月 26 日以「研究预览」形态推出，最初只对 1000 名 Max 用户试点、其余排队等候（[TechCrunch](https://techcrunch.com/2025/08/26/anthropic-launches-a-claude-ai-agent-that-lives-in-chrome/)）。它作为侧边栏运行，保留你浏览器的上下文，并在授权下动手——刻意加了闸门，原因下一节会讲清楚。
+
+名字和可用范围还会不断变，但「一个替你操作浏览器的 agent」这个能力会留下来。
+
+## 定义这个品类的那一个风险
+
+浏览器 agent 一切好处都源于一个事实：agent 读到页面上的任何东西，然后就能动手。这也恰恰是它危险的原因。恶意网页可以把指令藏在内容里，agent 可能照做——这就是**提示注入（prompt injection）**，而浏览器让 agent 直面最不可信的输入：开放的互联网。
+
+Anthropic 直言这不是假想。它关于[缓解浏览器使用中的提示注入](https://www.anthropic.com/research/prompt-injection-defenses)的研究指出，没有缓解措施时，浏览类 agent 会被藏在页面内容里的攻击击中；即便有了防御，这个问题也是被压低而非解决。这就是 Claude for Chrome 会屏蔽某些类别网站、对敏感动作要求确认的原因（[DataCamp 综述](https://www.datacamp.com/tutorial/claude-for-chrome-ai-powered-browser-assistance-automation)）——那些护栏就是产品本身，不是事后补丁。
+
+这与 [AI agent 安全风险](/zh/news/2026-08-25-ai-agent-security-risks/)里的威胁模型完全吻合：浏览器 agent 读不可信输入（任何页面）、能访问敏感数据（你登录的会话）、还能动手（点「购买」、发送、提交）。这三条腿同时齐了。解法和本站别处一样——[有意砍掉其中一条腿](/zh/news/2026-08-29-ai-agent-guardrails-for-business/)。
+
+## 怎么在自己桌前安全地用
+
+你不必回避浏览器 agent，但要给它划边界：
+
+- **不可逆的那一步留给人。** 让 agent 去调研、比较、起草；凡是要付钱、发送、提交的，自己按按钮。这就是本站的铁律——[放开读，闸住写](/zh/news/2026-08-13-human-in-the-loop-ai-agents/)。
+- **别在最敏感的标签页上跑 agent。** 网银、健康门户、后台控制台，是被劫持动作代价最高的地方。Anthropic 自家产品正是为此限制了高风险网站类别。
+- **把每个页面都当不可信。** [Issue #001 的 Gmail 分拣 agent](/zh/posts/2026-05-13-gmail-ai-agent/) 背后那套纪律——自由地读、只经过闸门去动手——在「收件箱」是整个互联网时更要加倍执行。
+
+刚入门？先去 [Agent 101](/zh/agent-101/) 补齐词汇，再回来判断哪款浏览器 agent（如果有的话）值得进你的工作流。
+
+## FAQ
+
+**什么是 AI 浏览器 agent？**
+它是一个替你操作浏览器的 AI 助手——读页面、点击、填表、在真实网站上完成多步任务，而不只是回答关于页面的问题。[Perplexity 的 Comet](https://www.perplexity.ai/hub/blog/introducing-comet) 和 [OpenAI 的 ChatGPT Atlas](https://openai.com/index/introducing-chatgpt-atlas/) 就是两个会替你浏览并动手的例子。
+
+**2026 年最好的 AI 浏览器 agent 有哪些？**
+三款领先选手是 Perplexity Comet、OpenAI 的 ChatGPT agent 模式（源自 [Atlas](https://openai.com/index/introducing-chatgpt-atlas/)）、以及 [Anthropic 的 Claude for Chrome](https://techcrunch.com/2025/08/26/anthropic-launches-a-claude-ai-agent-that-lives-in-chrome/)。它们在平台和权限上不同，但核心能力一致：在真实网页上动手，而非只做总结。
+
+**AI 浏览器 agent 安全吗？**
+它带着一个真实且未解决的风险：提示注入——藏在网页里的指令劫持 agent 的动作。[Anthropic 的研究](https://www.anthropic.com/research/prompt-injection-defenses)表明缓解措施能压低但无法消除它。安全用法是：凡付钱、发送、提交的动作都留人把关，并避开你最敏感的网站。
+
+**浏览器 agent 和 copilot 有什么区别？**
+copilot 给建议、你来动手；浏览器 agent 自己动手——在真实页面上点击、提交。这就是把[「辅助 vs 动手」这条线](/zh/news/2026-09-09-ai-copilot-vs-ai-agent/)从助手与 agent 之别，落到浏览器上。
+
+**浏览器 agent 能替我下单或发邮件吗？**
+能——这正是招牌功能（[OpenAI 的 Atlas 演示](https://openai.com/index/introducing-chatgpt-atlas/)展示了它下单买菜）。但这也是风险最高的动作，所以把下单和发送当成要手动批准的一步，而不是完全自动化。
+
+---
+
+想看职场人真正在跑的 agent 田野笔记——具体怎么搭、成本多少、哪些动作他们仍坚持手动批准？[免费订阅](/zh/)，每周把当期搭建送进你的邮箱。
