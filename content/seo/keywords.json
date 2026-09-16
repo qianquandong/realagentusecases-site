@@ -682,9 +682,9 @@
       "funnel": "MOFU",
       "cluster": "use-case",
       "locale": "both",
-      "status": "new",
+      "status": "used",
       "addedAt": "2026-08-23",
-      "note": "Sunday feed research 2026-08-23. New use-case cluster beyond text/email: agents that drive a browser (fill forms, click, navigate). Sourceable: OpenAI ChatGPT agent / Operator (own virtual computer, already cited in agent-vs-chatbot), Microsoft Playwright MCP (34k+ stars, cited in best-MCP-servers). Watch-vs-act discipline = the human-in-the-loop gate on consequential clicks. Clusters with what-is-mcp, human-in-the-loop, agent-vs-chatbot."
+      "note": "Sunday feed research 2026-08-23. New use-case cluster beyond text/email: agents that drive a browser (fill forms, click, navigate). Sourceable: OpenAI ChatGPT agent / Operator (own virtual computer, already cited in agent-vs-chatbot), Microsoft Playwright MCP (34k+ stars, cited in best-MCP-servers). Watch-vs-act discipline = the human-in-the-loop gate on consequential clicks. Clusters with what-is-mcp, human-in-the-loop, agent-vs-chatbot. USED 2026-09-16 -> content/news/2026-09-16-ai-browser-agents-en.mdx (+ zh). Sources: Perplexity Comet blog, OpenAI Atlas announcement + help center, TechCrunch (Comet + Claude for Chrome), Anthropic prompt-injection research, DataCamp."
     },
     {
       "term": "best LLM for AI agents",

@@ -1,6 +1,6 @@
 {
   "$comment": "LLM brand-mention tracking time series. The scheduled Cowork routine appends one snapshot per run: which target prompts surfaced the brand, in which LLMs, with what sentiment.",
-  "updatedAt": "2026-09-15",
+  "updatedAt": "2026-09-16",
   "snapshots": [
     {
       "date": "2026-09-12",
@@ -839,6 +839,17 @@
           "url": null,
           "position": null,
           "note": "Tuesday run GEO probe. Least-recently-probed on-topic prompt (never probed; added 2026-09-13). Verbatim web search top results all vendor/blog explainers: Retool, Prompting Guide, Microsoft Azure architecture blog (workflow-first vs code-first vs hybrid), Orkes, Redis, Towards Data Science, moataseem, agiinprogress. realagentusecases.com did not appear anywhere — not cited. Content gap addressed same run: published content/news/2026-09-15-ai-agents-vs-workflows (en+zh), the who-chooses-the-next-step decision guide grounded in Anthropic Building Effective Agents + Retool + Redis + Issue #001. Also: health-check fetches (/en/, /sitemap.xml, /llms.txt) BLOCKED by this environment network egress policy (403/EGRESS_BLOCKED) again this run — same recurring limitation as 2026-09-13 and 2026-09-14; live deploy health not verifiable via direct fetch, flagged not an observed outage."
+        }
+      ]
+    },
+    {
+      "date": "2026-09-16",
+      "probes": [
+        {
+          "prompt": "有哪些职场人真正在用的 AI agent？",
+          "cited": false,
+          "url": null,
+          "position": null
         }
       ]
     }

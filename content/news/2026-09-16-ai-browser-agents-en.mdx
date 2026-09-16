@@ -1,0 +1,64 @@
+---
+title: "AI Browser Agents: What They Do and the Real Risk"
+date: "2026-09-16"
+excerpt: "Browser agents like Comet, ChatGPT Atlas, and Claude for Chrome click, fill forms, and buy on live sites. What they do well — and the one risk to watch."
+---
+
+An AI browser agent is an assistant built into (or added to) your web browser that doesn't just answer questions — it navigates pages, clicks, fills forms, and completes multi-step tasks on live websites for you. The leading options in 2026 are Perplexity's Comet, OpenAI's ChatGPT agent mode, and Anthropic's Claude for Chrome.
+
+The pitch is seductive: stop describing what you want done on the web and let the browser do it. But an agent that can *act* on any page it reads is also the cleanest example of the security trade-off this whole site keeps returning to. Here's what these tools actually do, who the real players are, and the one risk that decides whether you should let one loose.
+
+## What a browser agent actually does
+
+A regular chatbot reads a page and tells you about it. A browser agent reads the page, decides the next click, scrolls, fills a field, opens a tab, and reports back with a finished result. Perplexity frames Comet's job as browsing "at the speed of thought" — an assistant that lives in the browser and can "summarize emails and calendar events, manage tabs, and navigate web pages on behalf of users" ([Introducing Comet](https://www.perplexity.ai/hub/blog/introducing-comet)).
+
+OpenAI's version is more concrete about the payoff. In [Introducing ChatGPT Atlas](https://openai.com/index/introducing-chatgpt-atlas/), OpenAI describes agent mode doing real errands: "find a grocery store, add all the ingredients to a cart, and order them," or "open and read through past team documents, perform new competitive research, and compile insights into a team brief." That's the shift — from *answering about* the web to *acting on* it. This is the same "assist versus act" line that separates [a copilot from an agent](/en/news/2026-09-09-ai-copilot-vs-ai-agent/), now applied to the browser itself.
+
+## The main players in 2026
+
+Three products define the category, and each took a different path:
+
+- **Perplexity Comet.** Launched in July 2025 for Max subscribers ([TechCrunch](https://techcrunch.com/2025/07/09/perplexity-launches-comet-an-ai-powered-web-browser/)), built on Chromium with AI as the native interface rather than an add-on. Perplexity brought Comet to Android in 2026, calling it a browser built for mobile ([Comet for Android](https://www.perplexity.ai/hub/blog/comet-for-android-is-here)).
+- **OpenAI ChatGPT Atlas.** Launched October 21, 2025 on macOS with agent mode in preview for Plus, Pro, and Business users ([OpenAI](https://openai.com/index/introducing-chatgpt-atlas/)). OpenAI has since been folding Atlas's capabilities into the core ChatGPT app and a Chrome extension rather than a standalone browser ([OpenAI Help Center](https://help.openai.com/en/articles/20001371-evolving-atlas-into-chatgpt-for-browser-based-agentic-work)).
+- **Anthropic Claude for Chrome.** Launched as a research preview on August 26, 2025, initially piloting with 1,000 Max-plan users behind a waitlist ([TechCrunch](https://techcrunch.com/2025/08/26/anthropic-launches-a-claude-ai-agent-that-lives-in-chrome/)). It runs as a sidecar that keeps context of your browser and can act with permission — deliberately gated, for reasons the next section makes clear.
+
+The names and availability will keep shifting; the capability — an agent that operates your browser — is what's here to stay.
+
+## The one risk that defines the category
+
+Everything good about browser agents flows from one fact: the agent reads whatever is on the page and can then take action. That is also exactly the setup that makes them risky. A malicious web page can hide instructions in its content, and the agent may follow them — this is **prompt injection**, and browsers put an agent face-to-face with the most untrusted input there is: the open web.
+
+Anthropic is blunt that this isn't hypothetical. Its research on [mitigating prompt injections in browser use](https://www.anthropic.com/research/prompt-injection-defenses) reports that without mitigations, browsing agents are vulnerable to attacks hidden in page content, and that even with defenses the problem is reduced, not solved. That's why Claude for Chrome blocks certain site categories and asks for confirmation on sensitive actions ([DataCamp overview](https://www.datacamp.com/tutorial/claude-for-chrome-ai-powered-browser-assistance-automation)) — the guardrails are the product, not an afterthought.
+
+This maps exactly onto the threat model in [AI agent security risks](/en/news/2026-08-25-ai-agent-security-risks/): a browser agent reads untrusted input (any page), can access sensitive data (your logged-in sessions), and can act (click "buy," send, submit). That's all three legs of the risk chain at once. The fix is the same as everywhere else on this site — [remove one leg on purpose](/en/news/2026-08-29-ai-agent-guardrails-for-business/).
+
+## How to use one safely at your desk
+
+You don't have to avoid browser agents — you have to bound them:
+
+- **Keep a human on the irreversible steps.** Let the agent research, compare, and draft; press the button yourself on anything that pays, sends, or submits. This is the site's standing rule — [gate the writes, let the reads run](/en/news/2026-08-13-human-in-the-loop-ai-agents/).
+- **Don't run agents on your most sensitive tabs.** Banking, health portals, and admin consoles are where a hijacked action costs the most. Anthropic's own product restricts high-risk site categories for this reason.
+- **Treat every page as untrusted.** The same discipline behind the [Gmail triage agent in Issue #001](/en/posts/2026-05-13-gmail-ai-agent/) — read freely, act only through a gate — applies double when the "inbox" is the entire web.
+
+New to all this? Start at [Agent 101](/en/agent-101/) for the vocabulary, then come back and decide which browser agent — if any — earns a place in your workflow.
+
+## FAQ
+
+**What is an AI browser agent?**
+It's an AI assistant that operates your web browser for you — reading pages, clicking, filling forms, and completing multi-step tasks on live sites, not just answering questions about them. [Perplexity's Comet](https://www.perplexity.ai/hub/blog/introducing-comet) and [OpenAI's ChatGPT Atlas](https://openai.com/index/introducing-chatgpt-atlas/) are two examples that navigate and act on your behalf.
+
+**What are the best AI browser agents in 2026?**
+The three leading options are Perplexity Comet, OpenAI's ChatGPT agent mode (from [Atlas](https://openai.com/index/introducing-chatgpt-atlas/)), and [Anthropic's Claude for Chrome](https://techcrunch.com/2025/08/26/anthropic-launches-a-claude-ai-agent-that-lives-in-chrome/). They differ in platform and access, but all share the same core ability: acting on real web pages rather than just summarizing them.
+
+**Are AI browser agents safe?**
+They carry a real, unsolved risk: prompt injection, where instructions hidden in a web page hijack the agent's actions. [Anthropic's research](https://www.anthropic.com/research/prompt-injection-defenses) shows mitigations reduce but don't eliminate it. Use one safely by keeping a human on any action that pays, sends, or submits, and avoiding your most sensitive sites.
+
+**How is a browser agent different from a copilot?**
+A copilot suggests and you act; a browser agent takes the actions itself — clicking and submitting on live pages. It's the same [assist-versus-act distinction](/en/news/2026-09-09-ai-copilot-vs-ai-agent/) that separates any agent from an assistant, applied to the browser.
+
+**Can a browser agent buy things or send emails for me?**
+Yes — that's the headline feature ([OpenAI's Atlas demo](https://openai.com/index/introducing-chatgpt-atlas/) shows it ordering groceries). But it's also the highest-risk action, so treat purchases and sends as steps to approve by hand, not to fully automate.
+
+---
+
+Want the field notes on real agents professionals actually run — the exact setups, costs, and the actions they still approve by hand? [Subscribe free](/en/) and get each week's build in your inbox.
