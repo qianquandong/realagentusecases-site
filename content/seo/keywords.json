@@ -1,6 +1,6 @@
 {
   "$comment": "SEO keyword feed — a living file. The scheduled Cowork routine ideates entries; scripts/seo/feeds.mjs persists them (dedupe + status + timestamps). intent: informational|commercial|transactional. funnel: TOFU|MOFU|BOFU. cluster: use-case|template|comparison|industry|tool-stack. status: new|used.",
-  "updatedAt": "2026-09-15",
+  "updatedAt": "2026-09-17",
   "keywords": [
     {
       "term": "AI agent use cases",
@@ -622,8 +622,8 @@
       "funnel": "TOFU",
       "cluster": "industry",
       "locale": "both",
-      "status": "new",
-      "note": "Sales industry hub over lead-qualification + CRM-data-entry + SDR-cold-outreach. Added 2026-08-16 (Sunday ideation).",
+      "status": "used",
+      "note": "Sales industry hub over lead-qualification + CRM-data-entry + SDR-cold-outreach. Added 2026-08-16 (Sunday ideation). Used 2026-09-17 → content/news/2026-09-17-ai-agents-for-sales-teams-{en,zh}.mdx (title 'AI Agents for Sales Teams: Prospect, Qualify, Close'). Industry hub over the sales-family children — maps the pipeline prospect→qualify→engage→log→prep to agents with the automate-the-legwork-not-the-relationship frame, same shape as the recruiters/accountants/consultants/customer-service hubs. Named platform agents: Salesforce Agentforce/Einstein SDR agent (engages+qualifies leads 24/7, books meetings, grounded in CRM+external data, 'so sellers focus on building deeper relationships' — salesforce.com/news/stories/einstein-sales-agents-announcement) + Einstein Sales Coach agent (role-plays a buyer for rep rehearsal, same announcement); HubSpot Breeze Prospecting Agent (researches accounts/contacts, monitors buying signals, drafts personalized outreach — hubspot.com/products/sales/ai-prospecting-agent; April-2026 outcome pricing $1.00/lead recommended for outreach, billed at the qualified-and-handed-to-rep handoff — hubspot.com/company-news/hubspots-customer-agent-and-prospecting-agent-now-you-pay-when-the-task-is-complete). Human-stays line = discovery conversation / negotiation / the close, drawn where both vendors draw it (Salesforce frees reps for relationships; HubSpot stops billing at handoff). Wove an upward hub link into lead-qualification (07-18) 'Which do you actually need?' section (en+zh). Links to lead-qualification, sdr-cold-outreach (08-28), crm-data-entry (07-16), meeting-prep (07-11), meeting-notes (08-05), human-in-the-loop (08-13), pricing-models (09-11, per-conversation), ai-agents-for-work (08-04), Issue #001, agent-101. Answers GEO prompt 'What is a good AI agent workflow for sales?' verbatim in its first FAQ (probed this run, not cited). Grounded in Issue #001's approve-the-send discipline.",
       "addedAt": "2026-08-16"
     },
     {

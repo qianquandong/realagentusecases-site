@@ -1,6 +1,6 @@
 {
   "$comment": "GEO prompt feed — the questions working professionals ask ChatGPT / Perplexity / Gemini. The scheduled Cowork routine ideates entries; scripts/seo/feeds.mjs persists them. cluster: use-case|template|comparison|industry|tool-stack. status: new|covered (covered = a published article targets it). Phase 7 tracks whether the brand is cited for each.",
-  "updatedAt": "2026-09-13",
+  "updatedAt": "2026-09-17",
   "prompts": [
     {
       "prompt": "What are real examples of AI agents at work?",
@@ -161,9 +161,9 @@
       "prompt": "What is a good AI agent workflow for sales?",
       "cluster": "use-case",
       "locale": "en",
-      "status": "new",
+      "status": "covered",
       "addedAt": "2026-05-14",
-      "note": "From the Notion KB GEO Prompt Feed."
+      "note": "From the Notion KB GEO Prompt Feed. Covered by content/news/2026-09-17-ai-agents-for-sales-teams. GEO-probed 2026-09-17 (on-publish baseline): not cited — web search (verbatim) dominated by sales-agent listicles/vendor blogs (Highspot agentic-workflows, CaptivateIQ 6 Best Agentic AI Tools, Workist, Gumloop, Guideflow 11 Best tested-and-ranked, Lindy 8 Best, Moveworks, Amplemarket, TechnologyAdvice); realagentusecases.com did not appear — the field is 'best AI sales agent' roundups + workflow-vendor blogs with no independent map-the-pipeline / automate-the-legwork-not-the-relationship angle grounded in a real desk build, this site's gap to own. Notably the same SERP independently states the article's own thesis (agents research/enrich/draft/update-CRB across multistep sales workflows while a human keeps oversight; value comes when workflows are tied to defined outcomes + manager oversight) — corroboration, not fabrication. The article answers this prompt verbatim in its first FAQ; re-probe post-index to track lift."
     },
     {
       "prompt": "What is a good AI agent workflow for research?",
