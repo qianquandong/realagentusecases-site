@@ -1,0 +1,49 @@
+---
+title: "销售团队的 AI Agent：开发、跟进、成交"
+date: "2026-09-17"
+excerpt: "Salesforce Agentforce 和 HubSpot Breeze 把销售的杂活跑起来：找客、打分、记录。销售自己仍然握着的，是那场对话和最后的成交。"
+---
+
+面向销售团队的 AI agent 如今把销售管线里的杂活跑起来：Salesforce 的 Agentforce SDR agent 全天候地对话并资格判定进来的线索，HubSpot 的 Breeze Prospecting Agent 研究客户、起草外呼。两者都把合格的线索交还给销售——因为那场对话、那段关系、最后的成交，都归人管。
+
+销售是 2026 年被 agent 覆盖最密的岗位之一，也是"帮忙"和"帮倒忙"界线最分明的一个：一条线索打错分只让销售多花五分钟，但一句跑偏的自动消息发给真实潜客，赔的是整单生意。本站已经把销售拆成了几块——[线索资格](/zh/news/2026-07-18-ai-agent-for-lead-qualification/)、[陌生开发](/zh/news/2026-08-28-ai-sdr-agent-cold-outreach/)、[CRM 数据录入](/zh/news/2026-07-16-ai-agent-crm-data-entry/)。这篇是把整条管线映射到 agent 的枢纽，并划出贯穿始终的那条线：把杂活交给 agent，把关系握在自己手里。
+
+## "销售团队的 AI agent"到底指什么
+
+两大 CRM 厂商都出了销售 agent，而它们自己的描述指向同一个形状。Salesforce 的 [Einstein SDR 与 Einstein Sales Coach 发布公告](https://www.salesforce.com/news/stories/einstein-sales-agents-announcement/)把 SDR agent 描述为"全天候与潜客对话"——回答产品问题、处理异议、约上会议——以你的 CRM 和外部数据为依据，明说是为了让销售"专注于经营更深的关系"。HubSpot 的 [Breeze Prospecting Agent](https://www.hubspot.com/products/sales/ai-prospecting-agent) 研究目标客户、找到对的联系人、全天候盯着购买信号、起草个性化外呼，"让整个团队都能像你的头号销售那样开发客户"。
+
+放在一起看，它们就是本站为每一个 agent 划的那个形状：一个负责研究与起草的系统，包下可重复的活儿，停在需要人的那一步。HubSpot 把这条界线写进了定价——2026 年 4 月起，Prospecting Agent [只在线索合格并交给销售时才计费](https://www.hubspot.com/company-news/hubspots-customer-agent-and-prospecting-agent-now-you-pay-when-the-task-is-complete)，每条推荐外呼的线索 1.00 美元。你在交接的那一刻付费，因为交接正是 agent 的活儿结束、销售的活儿开始的地方。
+
+## 把管线映射到 agent
+
+销售团队的漏斗分成几段，每一段都有一个有据可查的 agent——而且每一次都是同一个"只读 vs 动手"的闸门。
+
+- **开发与研究。** 找客户、丰富联系人、盯买入信号，是该由 agent 包下的杂活。HubSpot 的 Breeze Prospecting Agent 就在 CRM 里干这个；在主动出击那一侧，[SDR 陌生开发 agent](/zh/news/2026-08-28-ai-sdr-agent-cold-outreach/) 的研究那一半（Clay 的瀑布式丰富、Lindy 的起草 agent）喂给仍然由人来发送的销售。把研究自动化，把发送留给人。
+- **资格判定与分单。** 按你的标准给进来的线索打分、把热门的放到销售桌上，是资格判定里安全的那一半——本站讲透过的[打分 vs 对话](/zh/news/2026-07-18-ai-agent-for-lead-qualification/)。匹配度分和紧急度分，无非是把 [Issue #001](/zh/posts/2026-05-13-gmail-ai-agent/) 那套 P0/P1/P2 的纪律从收件箱搬到了管线上。
+- **对话与跟进。** 当 agent 直接跟潜客说话——Salesforce 的 Einstein SDR agent 培育一条线索、自主 SDR 催一条沉默的回复——你就从分析师跨到了销售，第一条消息是以你公司的口吻发出去的。诚实的默认做法是草稿模式：让 agent 写好跟进，让人来发送，只在"发错也不心疼"的地方才升到自主。
+- **保持 CRM 干净。** 每一通电话、每一封邮件、每一次会议，都该落到记录上而不用销售重打一遍——这就是 [CRM 数据录入](/zh/news/2026-07-16-ai-agent-crm-data-entry/)里的记录层。自动记录是安全的；让 agent 去改预测字段，才是要设闸门的那一步。
+- **准备与演练。** 通话前，[会前准备 agent](/zh/news/2026-07-11-ai-agent-meeting-prep/) 生成一页纸的简报；通话后，[会议纪要 agent](/zh/news/2026-08-05-ai-agent-for-meeting-notes/) 抓下待办。Salesforce 的 Einstein Sales Coach agent 又加了一步排练：它以真实的成交数据为依据[扮演买家做角色扮演](https://www.salesforce.com/news/stories/einstein-sales-agents-announcement/)，让销售在真正要紧的那场会议之前练异议、拿反馈。
+
+## 人的界线必须留在哪
+
+留意这些 agent 都没做的那件事：成交。两家厂商自己都这么说——Salesforce 把 SDR agent 定位成让销售腾出手去经营关系，HubSpot 则在线索交接的那一刻就停止计费。可逆的活儿是研究、打分、起草、记录、排练——交给 agent 很安全。不可逆、塑造关系的活儿是探需对话、谈判、成交，一步自主走错赔的是一个客户，而不是五分钟。这就是本站一贯的规矩：[不可逆的设闸门，可逆的放它跑](/zh/news/2026-08-13-human-in-the-loop-ai-agents/)。
+
+值得照抄的样板是 [Issue #001](/zh/posts/2026-05-13-gmail-ai-agent/)：agent 读取并起草一切，发送归人。销售 agent 的形状一模一样——它开发、资格判定、起草、记录，而潜客变成一个你正在对话的人的那一刻，归销售。把活儿自动化，别把关系自动化。刚接触这套框架？从 [Agent 101](/zh/agent-101/) 开始，或在 [AI agents for work](/zh/news/2026-08-04-ai-agents-for-work/) 里看整张办公桌的地图。
+
+## FAQ
+
+**销售团队用 AI agent 的好工作流是怎样的？**
+把管线映射清楚，自动化杂活而不是关系：让 agent 开发客户、研究账户（HubSpot 的 [Breeze Prospecting Agent](https://www.hubspot.com/products/sales/ai-prospecting-agent)），给进来的线索打分并分给销售，起草外呼供人发送，把 CRM 记好——而销售自己握着对话和成交。先从安全的只读层（研究、打分、记录）起步，再让任何东西去给潜客发消息。
+
+**Agentforce SDR agent 是什么？**
+Salesforce 的 [Einstein SDR agent](https://www.salesforce.com/news/stories/einstein-sales-agents-announcement/)（属于 Agentforce）全天候对话进来的线索——回答产品问题、处理异议、约会议——以你的 CRM 和外部数据为依据，好让销售专注于关系。它[按对话计费](/zh/news/2026-09-11-ai-agent-pricing-models/)；配套的 Einstein Sales Coach agent 会扮演买家，让销售在真实通话前先排练。
+
+**HubSpot 的 Breeze Prospecting Agent 做什么？**
+它在 HubSpot 里（Sales Hub 专业版或企业版）[研究目标客户、找联系人、盯购买信号、起草个性化外呼](https://www.hubspot.com/products/sales/ai-prospecting-agent)。2026 年 4 月起它[按结果计费](https://www.hubspot.com/company-news/hubspots-customer-agent-and-prospecting-agent-now-you-pay-when-the-task-is-complete)——每条推荐外呼的线索 1.00 美元——也就是说只在潜客合格并交给销售时才付费。
+
+**该让 AI agent 自己去联系潜客吗？**
+默认不要。起草外呼是安全的，发送才是要设闸门的那一步，因为消息是以你的名义发给真实客户的，还会撞上[陌生开发](/zh/news/2026-08-28-ai-sdr-agent-cold-outreach/)里讲的那些规则。让 agent 从草稿模式起步，[把发送留给人](/zh/news/2026-08-13-human-in-the-loop-ai-agents/)，只在"发错也不心疼"的地方才升到自主。
+
+---
+
+每一个值得跑的销售 agent 都守着同一条纪律：它把杂活做完，停在你收不回的那一步之前——对话、关系、成交。想看真实的搭建——每个岗位到底把哪些活儿自动化、又有哪些仍然亲手来做？[免费订阅](/zh/)，每周一个真实的 agent 直接发到你邮箱。
