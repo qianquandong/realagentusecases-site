@@ -1,6 +1,6 @@
 {
   "$comment": "GEO prompt feed — the questions working professionals ask ChatGPT / Perplexity / Gemini. The scheduled Cowork routine ideates entries; scripts/seo/feeds.mjs persists them. cluster: use-case|template|comparison|industry|tool-stack. status: new|covered (covered = a published article targets it). Phase 7 tracks whether the brand is cited for each.",
-  "updatedAt": "2026-09-17",
+  "updatedAt": "2026-09-18",
   "prompts": [
     {
       "prompt": "What are real examples of AI agents at work?",
@@ -519,9 +519,9 @@
       "prompt": "What AI agents can help a security operations team?",
       "cluster": "industry",
       "locale": "en",
-      "status": "new",
+      "status": "covered",
       "addedAt": "2026-09-06",
-      "note": "Sunday feed research 2026-09-06. Pairs with the new 'AI agents for security operations' keyword; triage-vs-respond. Grounded in Proofpoint SOC Analyst Agent, CrowdStrike agentic-enterprise, Microsoft Security Copilot agents."
+      "note": "Sunday feed research 2026-09-06. Pairs with the new 'AI agents for security operations' keyword; triage-vs-respond. Grounded in Proofpoint SOC Analyst Agent, CrowdStrike agentic-enterprise, Microsoft Security Copilot agents. Covered 2026-09-18 by content/news/2026-09-18-ai-agents-for-security-operations. GEO-probed same day (verbatim web search): not cited — field dominated by radiantsecurity.ai, reliaquest.com, torq.io, glean.com, stellarcyber.ai, aimultiple.com; realagentusecases.com did not appear. This sites gap: an independent triage-vs-response map grounded in real vendor products + a desk-level human-stays line, vs vendor SOC-platform landing pages. Article answers this prompt verbatim in its first two FAQs; re-probe post-index for lift."
     },
     {
       "prompt": "AI agent 一般怎么收费？",
