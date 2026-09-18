@@ -1,6 +1,6 @@
 {
   "$comment": "LLM brand-mention tracking time series. The scheduled Cowork routine appends one snapshot per run: which target prompts surfaced the brand, in which LLMs, with what sentiment.",
-  "updatedAt": "2026-09-17",
+  "updatedAt": "2026-09-18",
   "snapshots": [
     {
       "date": "2026-09-17",
@@ -862,6 +862,18 @@
           "cited": false,
           "url": null,
           "position": null
+        }
+      ]
+    },
+    {
+      "date": "2026-09-18",
+      "probes": [
+        {
+          "prompt": "What AI agents can help a security operations team?",
+          "cited": false,
+          "url": null,
+          "position": null,
+          "note": "Friday run. On-publish baseline for todays article (keyword AI agents for security operations, triage-vs-response SecOps hub). Least-recently-probed on-topic match. Web search (verbatim) dominated by SOC-platform vendor pages + listicles: radiantsecurity.ai (AI Agents in the SOC), reliaquest.com (AI SOC Agents / agentic SOC automation), torq.io (AI Agents for the SOC), glean.com (11 AI agents for security operations), stellarcyber.ai (AI SOC Agents), 7ai.com, aimultiple.com (10 agentic-AI cybersecurity use cases); realagentusecases.com did not appear. Field = vendor landing pages + ranked roundups; no independent map-the-loop / automate-the-investigation-not-the-containment angle grounded in real shipped products + a desk-level human-stays line — this sites gap. Source-research gate passed with real linkable PRIMARY sources: Proofpoint SOC Analyst Agent press release (proofpoint.com/us/newsroom/press-releases/proofpoint-soc-analyst-agent-openai-daybreak) + intro blog (Sep 3 2026, OpenAI Daybreak models, natural-language investigation into structured traceable findings, explicitly does NOT independently make account changes / contain threats / initiate remediation, GA end Q3 2026), Microsoft Security Alert Triage Agent + Phishing Triage Agent + deploy-in-Defender docs (learn.microsoft.com/defender-xdr — autonomous triage without step-by-step human input, transparent natural-language rationale, least-privilege admin-configured permissions/authorized actions), CrowdStrike Charlotte AI Detection Triage blog (crowdstrike.com/en-us/blog/agentic-ai-innovation-in-cybersecurity-charlotte-ai-detection-triage — >98% accuracy benchmarked vs Falcon Complete Next-Gen MDR, ~40+ hrs/week saved, outputs verdict+confidence+recommendation+reasoning, separate opt-in Response Agent for remediation), plus sites own children (security-risks 08-25, guardrails 08-29, human-in-the-loop 08-13, customer-service 09-14, evaluate-agents 08-27) and Issue #001. Article answers this prompt verbatim in FAQ 1-2. Health: WebFetch of realagentusecases.com/en/ + /sitemap.xml + /llms.txt all returned EGRESS_BLOCKED (403 at proxy) — the known recurring sandbox network-policy denial seen every run; relied on local build gate for verification. Vendor domains (proofpoint.com, crowdstrike.com) also egress-blocked for direct WebFetch, but WebSearch retrieved+summarized their official pages — sources real and linkable, claims attributed to vendor + linked."
         }
       ]
     }

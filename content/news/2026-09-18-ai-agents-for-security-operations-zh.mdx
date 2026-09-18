@@ -1,0 +1,51 @@
+---
+title: "安全运营的 AI Agent：分诊，不是处置"
+excerpt: "AI agent 已经在给 SOC 告警做分诊和调查——Proofpoint、微软、CrowdStrike 都在卖。它们到底做什么，以及为什么处置那一步得留给人。"
+date: "2026-09-18"
+---
+
+安全运营的 AI agent 做的是分诊和调查告警，而不是执行处置。Proofpoint 的 SOC Analyst Agent、微软 Security Copilot 的分诊 agent、CrowdStrike 的 Charlotte AI，都在把告警洪流变成排好序、给出解释的结论——而遏制的决定（封禁、隔离、把主机断网）仍留在人类分析师手里。
+
+安全运营是 2026 年推进最快的 agent 垂直之一，也是对本站那条老规则的一次干净测试：agent 该掌管可重复的活，停在那一步你收不回来的动作之前。在 SOC 里，这条线格外锋利——可逆的活是读日志、关联信号、把发生了什么写清楚；不可逆的活是把一台机器断网、锁掉一个账号。真正在卖产品的厂商，几乎把这条线画在了同一个地方。下面讲清楚：这些 agent 到底做什么、该信哪个指标、以及交接口该放在哪。
+
+## 「安全运营 AI agent」到底指什么
+
+SOC agent 是一个对准告警的检索加推理系统。它吸收一条检测、收集周边上下文（谁、什么、哪台主机、这个信号通常意味着什么）、在你的工具间做关联、并给出带推理过程的结论——于是分析师是在复核一个结论，而不是从零拼出一个。2026 年最大的三次发布都在描述同一套循环，而且三家都止步于自主处置。
+
+[Proofpoint 的 SOC Analyst Agent](https://www.proofpoint.com/us/newsroom/press-releases/proofpoint-soc-analyst-agent-openai-daybreak) 于 2026 年 9 月 3 日推出，让分析师能用自然语言跨已连接的 Proofpoint 产品调查安全事件，把问题变成「结构化、可追溯的结论和建议的下一步」。按 Proofpoint 自己的[发布博客](https://www.proofpoint.com/us/blog/corporate-news/proofpoint-introduces-soc-analyst-agent-powered-openai-daybreak-models-through)，结论可回溯到底层源数据以便分析师核验，而该 agent「不会自行更改账号、遏制威胁或发起其他有后果的补救动作」——正式上线预计在 2026 年三季度末。
+
+[微软在 Defender 里的 Security Alert Triage Agent](https://learn.microsoft.com/en-us/defender-xdr/security-alert-triage-agent)（与其[钓鱼分诊 agent](https://learn.microsoft.com/en-us/defender-xdr/phishing-triage-agent) 同一引擎）会「无需一步步人工输入」地自主判断一份提交是真威胁还是误报，并为每个判定给出透明的自然语言依据。把这些定义放一起，形状就清楚了：SecOps agent 是一个带逃生舱的调查员，而不是一个自主处置者。
+
+## 真正重要的指标：判定质量，不是关掉了多少告警
+
+每份 SOC PPT 都会引用的是吞吐——agent 清掉了多少告警。[CrowdStrike 称](https://www.crowdstrike.com/en-us/blog/agentic-ai-innovation-in-cybersecurity-charlotte-ai-detection-triage/)，其 Charlotte AI Detection Triage agent 通过自动化端点检测分诊，平均每周为团队省下 40 多个小时。这是卖动品类的那个数，却不是让 SOC 安全的那个数。
+
+真正重要的是判定对不对。在这一点上 CrowdStrike 说得格外具体：它在自己的公告里称，Charlotte AI Detection Triage 对标自家 Falcon Complete Next-Gen MDR 分析师的决定，被测得**超过 98% 的准确率**，且该 agent 给出的是判定、置信度分数、建议和推理解释——而不只是一个「已关闭」标记。这个组合才是重点。建立在未经审视的判定之上的高关闭率，不过是延迟版的甩单：漏掉的真阳性不会出现在吞吐图里，它会在三周后作为一次事件出现。这跟本站为[客服 agent](/zh/news/2026-09-14-ai-agents-for-customer-service/) 点破的「分类 vs 解决」陷阱是同一个——要优化的是决定的质量，不是你清空的队列有多长。
+
+所以 SecOps agent 需要和别的 agent 一样的纪律：信它之前先量它。CrowdStrike 用的「对标你的专家去基准测试」正是本站[评测 AI agent](/zh/news/2026-08-27-how-to-evaluate-ai-agents/) 那篇主张的做法——评判一个 agent 不看它做了多少，而看它对着一个已知正确的基线有多常判对。
+
+## 人工那条线得留在哪
+
+上面每个产品都保留了一件由人来掌管的事：有后果的动作。这是本站反复讲的规则——[把不可逆的拦住，让可逆的跑](/zh/news/2026-08-13-human-in-the-loop-ai-agents/)——而在 SOC 里，这不是建议，就是厂商出货的方式。Proofpoint 的 agent 明确不会自行遏制威胁或更改账号。微软的路子从设计上就是最小权限：按其[在 Defender 部署 agent 的指引](https://learn.microsoft.com/en-us/defender-xdr/security-copilot-agents-defender)，管理员配置该 agent 的身份与权限，从而控制它能触及哪些数据、被授权做哪些动作。CrowdStrike 则把自动化*处置*放进一个单独的、需主动开启的 Response Agent，而不是揉进分诊里。
+
+这条分界，和本站给每个 agent 画的是同一条。调查、富化、关联、写出判定是可逆的——交给 agent 从头管到尾是安全的。遏制——隔离一台主机、封禁一个账号、结束一个进程——是不可逆、有爆炸半径的决定，恰恰是你该留住一个人、并接进[给企业 agent 的护栏](/zh/news/2026-08-29-ai-agent-guardrails-for-business/)的地方。还值得记住的是，SOC agent 自身就是一个对敏感数据有广泛访问权的 agent，所以本站梳理过的[agent 安全风险](/zh/news/2026-08-25-ai-agent-security-risks/)——最小权限、不信任不可信输入——同样适用于防守方自己的工具。
+
+可抄的范式，就在本站第一个真实搭建里。在 [Issue #001](/zh/posts/2026-05-13-gmail-ai-agent/) 中，一个 Gmail agent 读邮件、起草每一封回复，但由人来批准发送。SecOps 版形状完全一样：agent 读告警、收集证据、写出判定；人掌管遏制那一步。自动化的是调查，不是决定。对这套框架还陌生？[agent 入门](/zh/agent-101/)就从这里讲起。
+
+## FAQ
+
+**AI agent 能帮安全运营团队做什么？**
+分诊进来的告警、跨你的安全工具收集并关联上下文、给出带推理的判定，让分析师去复核一个结论而不是从零搭一个。[Proofpoint 的 SOC Analyst Agent](https://www.proofpoint.com/us/newsroom/press-releases/proofpoint-soc-analyst-agent-openai-daybreak) 和[微软的分诊 agent](https://learn.microsoft.com/en-us/defender-xdr/security-alert-triage-agent) 都是这么工作的。它们不该单独做的：遏制威胁、隔离主机、更改账号。
+
+**AI agent 能自己处置威胁吗？**
+2026 年的主要产品都刻意不这么做。Proofpoint 的 SOC Analyst Agent「不会自行更改账号、遏制威胁或发起其他有后果的补救动作」（[Proofpoint](https://www.proofpoint.com/us/blog/corporate-news/proofpoint-introduces-soc-analyst-agent-powered-openai-daybreak-models-through)），CrowdStrike 也把自动化补救放在与其[检测分诊 agent](https://www.crowdstrike.com/en-us/blog/agentic-ai-innovation-in-cybersecurity-charlotte-ai-detection-triage/) 分开的 Response Agent 里。遏制是那一步不可逆、需人工把关的动作。
+
+**AI SOC 分诊 agent 有多准？**
+取决于产品和你的数据，信它之前应先做基准测试。CrowdStrike 称其 Charlotte AI Detection Triage 对标自家 Falcon Complete MDR 分析师被测得超过 98% 的准确率（[CrowdStrike](https://www.crowdstrike.com/en-us/blog/agentic-ai-innovation-in-cybersecurity-charlotte-ai-detection-triage/)）。把厂商数字当起点，用你自己的已知正确案例去做[评测](/zh/news/2026-08-27-how-to-evaluate-ai-agents/)。
+
+**SOC agent 该分诊告警，还是处置告警？**
+先分诊。让 agent 掌管可逆的活——调查、富化、写判定——把不可逆的遏制决定留给人，就像[人在环路](/zh/news/2026-08-13-human-in-the-loop-ai-agents/)的设计和每一家出货的厂商画的那条线。这跟 [Issue #001](/zh/posts/2026-05-13-gmail-ai-agent/) 拦住那一步不可逆的发送，是同一套纪律。
+
+---
+
+每个值得跑的 agent 都遵循同一条纪律：它把活干完，然后停在那一步你收不回来的动作之前——在 SOC 里，就是把主机断网或锁掉一个账号。想看真实的搭建——每种职业到底自动化了哪些活、又有哪些仍靠人工过目？[免费订阅](/zh/)，每周的搭建直接进你的邮箱。

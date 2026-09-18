@@ -1,6 +1,6 @@
 {
   "$comment": "SEO keyword feed — a living file. The scheduled Cowork routine ideates entries; scripts/seo/feeds.mjs persists them (dedupe + status + timestamps). intent: informational|commercial|transactional. funnel: TOFU|MOFU|BOFU. cluster: use-case|template|comparison|industry|tool-stack. status: new|used.",
-  "updatedAt": "2026-09-17",
+  "updatedAt": "2026-09-18",
   "keywords": [
     {
       "term": "AI agent use cases",
@@ -802,9 +802,9 @@
       "funnel": "TOFU",
       "cluster": "industry",
       "locale": "both",
-      "status": "new",
+      "status": "used",
       "addedAt": "2026-09-06",
-      "note": "Sunday feed research 2026-09-06 (competitor/trend sweep). SecOps is a fast-moving 2026 agent vertical: Proofpoint SOC Analyst Agent (Sep 2026, turns natural-language questions into structured, traceable investigation findings, built on OpenAI models), CrowdStrike's 'agentic enterprise' partner specialization, Microsoft Security Copilot agents. Triage-vs-respond framing (an agent triages/investigates alerts; containment/response stays human-gated) mirrors support-triage sort-vs-resolve. Human-stays line = the block/quarantine/isolate-host decision. Verify each vendor claim against its own product page at write time. Clusters with security-risks (08-25), guardrails (08-29), customer-service."
+      "note": "Sunday feed research 2026-09-06 (competitor/trend sweep). SecOps is a fast-moving 2026 agent vertical: Proofpoint SOC Analyst Agent (Sep 2026, turns natural-language questions into structured, traceable investigation findings, built on OpenAI models), CrowdStrike's 'agentic enterprise' partner specialization, Microsoft Security Copilot agents. Triage-vs-respond framing (an agent triages/investigates alerts; containment/response stays human-gated) mirrors support-triage sort-vs-resolve. Human-stays line = the block/quarantine/isolate-host decision. Verify each vendor claim against its own product page at write time. Clusters with security-risks (08-25), guardrails (08-29), customer-service. Used 2026-09-18 → content/news/2026-09-18-ai-agents-for-security-operations (en+zh), title \"AI Agents for Security Operations: Triage, Not Response\". Triage-vs-response framing (agent investigates alerts; containment stays human), grounded in primary sources: Proofpoint SOC Analyst Agent press release + blog (Sep 3 2026, OpenAI Daybreak models, structured traceable findings, explicitly does not contain threats/change accounts, GA end Q3 2026), Microsoft Security Alert/Phishing Triage Agent (learn.microsoft.com, autonomous triage without step-by-step human input, least-privilege admin control), CrowdStrike Charlotte AI Detection Triage blog (>98% accuracy vs Falcon Complete MDR, verdict+confidence+recommendation+reasoning, separate Response Agent). Wove reciprocal link in from ai-agent-security-risks (08-25) en+zh. Clusters with security-risks, guardrails, customer-service, human-in-the-loop, evaluate-agents."
     },
     {
       "term": "AI copilot vs AI agent",
