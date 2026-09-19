@@ -1,0 +1,56 @@
+---
+title: "零代码搭 AI Agent：五步走"
+date: "2026-09-19"
+excerpt: "零代码搭 AI agent 就五步：挑一个活、选一个搭建工具、用大白话把活写清楚、把流程接起来、给危险的那一步设关卡。"
+---
+
+不写一行代码，你也能搭出一个能干活的 AI agent。挑一个重复性任务，选一个零代码搭建工具，比如 [Zapier Agents](https://zapier.com/agents)、[Lindy](https://www.lindy.ai/) 或 [n8n](https://n8n.io/pricing/)，用大白话把活写清楚，接上它要用到的应用，设一个触发器，再让人来审批任何"发出去、花钱、删除"的动作。起步阶段只让它拟稿，别让它自己发。
+
+大多数"零代码 AI agent"教程塞给你一个工具加一个模板，却跳过了真正决定成败的部分：锁定任务范围、给危险动作设关卡。这篇讲的就是那条不踩坑的搭建顺序——和[写代码搭 agent](/zh/news/2026-09-01-how-to-build-an-ai-agent/) 是同一套纪律，只是去掉了代码。
+
+## 零代码到底帮你省了什么（又没省什么）
+
+零代码工具把 OpenAI 说的每个 agent 都需要的三块——模型、工具、指令——用可视化界面而不是键盘配出来。OpenAI 的[《A Practical Guide to Building Agents》](https://openai.com/business/guides-and-resources/a-practical-guide-to-building-ai-agents/)正是把 agent 拆成这三块，零代码平台只是替你把它们配好。但它**没有**替你省掉的是思考。一个可靠 agent 最难的几块——把任务范围锁紧、把工具描述清楚、给不可逆动作设人工关卡——不管你是拖框还是写 Python 都一样。零代码降的是门槛，不是标准。
+
+## 第一步：挑一个"犯错代价很低"的活
+
+不是"一个管我收件箱的 agent"，而是"一个只给物流状态类问题拟回复、其他一概不碰的 agent"。范围锁得紧，后面每一步才做得下去。Anthropic 的[《Building Effective Agents》](https://www.anthropic.com/engineering/building-effective-agents)开篇就有一句值得你在打开任何工具前先记住的提醒：先找尽可能简单的方案，只在必要时才加复杂度。最安全的第一个 agent 是**拟稿**而非发送、**建议**而非执行、**标记**而非删除——这样你还在学着信任它的时候，任何一次失误都不会让你丢掉一个客户。
+
+## 第二步：选能覆盖这活的最小工具
+
+选能干成这活的最小工具，不是最强的那个。完整的取舍——连接器还是平台、托管还是自建——在我们的[零代码 AI agent 工具指南](/zh/news/2026-07-08-no-code-ai-agent-tools/)里；简版是：如果这活只碰一个你本来天天用的应用，你可能根本不需要搭建工具；如果它横跨几个应用、或必须定时跑，那就上平台。[Zapier Agents](https://zapier.com/agents) 最容易交给不懂技术的同事；[n8n](https://n8n.io/pricing/) 可自托管，社区版自己跑是免费的；[Lindy](https://www.lindy.ai/) 主打大白话配置。平台层面的正面对比见 [n8n 对比 Zapier](/zh/news/2026-08-14-n8n-vs-zapier-ai-agents/)。
+
+## 第三步：用大白话把这活写清楚
+
+这一步才配得上"零代码"三个字。在 [Zapier Agents](https://zapier.com/blog/zapier-agents-guide/) 上，你用自然语言写下 agent 该做什么、接上你本来就在用的应用，不用写代码。[Lindy](https://www.lindy.ai/) 的 Agent Builder 也是一样：用自然语言指令、在拖拽式界面里创建 agent，不需要编程技能。把这份指令当成开发者对待提示词那样对待：明确写清什么在范围内、什么在范围外、什么是它绝不能自作主张做的。指令含糊,是零代码 agent 出问题最常见的原因——不是模型。
+
+## 第四步：把触发器、AI 步骤、动作接起来
+
+每个零代码 agent 都是同一个形状：一个**触发器**启动它（一封新邮件、一个定时、一个按钮），一个 **AI 步骤**决定做什么，一个**动作**通过接好的应用把事办了。如果你要它没人盯着也能跑,触发器就必须是定时或事件——靠手动"现在跑一下"，说明你还没真正拥有一个无人值守的 agent。只接这一个活需要的应用；每多接一个，就多一条出错的路。像 [n8n](https://docs.n8n.io/advanced-ai/) 这样的平台甚至能让一个工作流把自己暴露成别的 agent 能调用的工具，但那是后面的事——先从一个触发器、一个决策、一个动作开始。
+
+## 第五步：给不可逆的那一步设人工关卡
+
+这是教程都跳过、却最要命的一步。OpenAI 的指南给出了两个明确的[人工介入](https://openai.com/business/guides-and-resources/a-practical-guide-to-building-ai-agents/)触发条件：agent 超过失败或重试次数上限，以及任何高风险、敏感或不可逆的动作。在零代码工具里，这意味着一个手动审批步骤——agent 把回复拟好、把退款排好队、把帖子备好，由人点"发送"。任何"发出去、花钱、发布、删除"的动作都留在这道关卡后面，直到 agent 在那个具体动作上挣够了信任。这正是[给企业 agent 设护栏](/zh/news/2026-08-29-ai-agent-guardrails-for-business/)的核心思路，而且它是一条工作流规则、不是指令里一句客气话——发送这个动作在有人批准之前根本不可用。
+
+## 一个真实的零代码案例
+
+[Issue #001 里的 Gmail 分拣 agent](/zh/posts/2026-05-13-gmail-ai-agent/) 就是这套模式，且完全不写代码：它每天早上读过去 24 小时的邮件、返回一份按优先级排好的待办清单，跑在 Claude 加 Gmail 连接器上，每月约 20 美元。它**自由地读、通过关卡才动手**——它拟稿，绝不自己发送。正是这一条约束，让一个零代码 agent 敢拿真实工作来跑。这套词还陌生？先看 [Agent 101](/zh/agent-101/)，再回来搭。
+
+## FAQ
+
+**真能一行代码都不写就搭出 AI agent 吗？**
+能。[Zapier Agents](https://zapier.com/agents)、[Lindy](https://www.lindy.ai/)、[n8n](https://n8n.io/pricing/) 这类可视化工具让你在拖拽界面里配好模型、工具、指令。[Issue #001 的 Gmail agent](/zh/posts/2026-05-13-gmail-ai-agent/) 完全跑在 Claude 加连接器上——没有 API key，没有脚本。
+
+**第一个零代码 agent 该搭什么？**
+一个犯错代价很低的窄任务——一个**拟稿**而非发送的 agent。把它锁在单一活上，输入清楚、输出可核对，遵循 Anthropic 的[尽可能简单](https://www.anthropic.com/engineering/building-effective-agents)原则，等它挣够信任再放宽。
+
+**怎么防止零代码 agent 干出危险的事？**
+在任何不可逆动作前加一个人工审批步骤。OpenAI 的指南把[高风险或不可逆动作](https://openai.com/business/guides-and-resources/a-practical-guide-to-building-ai-agents/)列为必须人工复核的硬触发，在零代码工具里那就是一道 agent 跳不过去的手动关卡。
+
+**该选哪个零代码工具？**
+能干成这活的最小那个——单应用用连接器，需要定时或多应用时上 [Zapier 或 n8n](/zh/news/2026-08-14-n8n-vs-zapier-ai-agents/) 这类平台。完整的选择树在我们的[零代码 AI agent 工具指南](/zh/news/2026-07-08-no-code-ai-agent-tools/)里。
+
+**工具是零代码的，我还需要懂 agent 吗？**
+需要。零代码省的是打字，不是设计决策——范围、工具选择、护栏都一样。不依赖工具的基本功在[怎么从零搭一个 AI Agent](/zh/news/2026-09-01-how-to-build-an-ai-agent/)里。
+
+我们每周发一个真实的 AI agent 搭建案例——诚实版，取舍和翻车都写进去。[免费订阅](/zh/)，下一个直接进你邮箱。
