@@ -1,6 +1,6 @@
 {
   "$comment": "GEO prompt feed — the questions working professionals ask ChatGPT / Perplexity / Gemini. The scheduled Cowork routine ideates entries; scripts/seo/feeds.mjs persists them. cluster: use-case|template|comparison|industry|tool-stack. status: new|covered (covered = a published article targets it). Phase 7 tracks whether the brand is cited for each.",
-  "updatedAt": "2026-09-18",
+  "updatedAt": "2026-09-20",
   "prompts": [
     {
       "prompt": "What are real examples of AI agents at work?",
@@ -379,8 +379,9 @@
       "funnel": "MOFU",
       "cluster": "comparison",
       "locale": "en",
-      "status": "new",
-      "addedAt": "2026-08-16"
+      "status": "covered",
+      "addedAt": "2026-08-16",
+      "note": "Covered by content/news/2026-08-18-ai-agent-vs-rpa ('AI Agent vs RPA: When Rules Beat Reasoning'). GEO-probed 2026-09-20 (Sunday): not cited — web search (verbatim) dominated by TechTarget, SS&C Blue Prism, Octoparse, KnowledgeHut, Thomson Reuters, CubixKraft comparison explainers; realagentusecases.com did not appear. The article answers this question directly; re-probe post-index to track lift."
     },
     {
       "prompt": "Can I self-host an AI agent?",
@@ -570,6 +571,46 @@
       "status": "new",
       "addedAt": "2026-09-13",
       "note": "Sunday ideation 2026-09-13. Pairs with keyword 'vertical AI agents' — emerging category term."
+    },
+    {
+      "prompt": "How do AI agents authenticate and get access to my systems?",
+      "cluster": "tool-stack",
+      "locale": "en",
+      "status": "new",
+      "addedAt": "2026-09-20",
+      "note": "Sunday feed research 2026-09-20. Pairs with the new 'AI agent identity and access management' keyword; the agent-identity / OAuth-scope / short-lived-token question. Grounded in Microsoft Entra Agent ID (GA Apr 2026) + Okta Agent SSO."
+    },
+    {
+      "prompt": "Should I buy an AI agent from a marketplace or build my own?",
+      "cluster": "comparison",
+      "locale": "en",
+      "status": "new",
+      "addedAt": "2026-09-20",
+      "note": "Sunday feed research 2026-09-20. Pairs with the new 'AI agent marketplaces' keyword; the buy-vs-build decision. Grounded in Salesforce AgentExchange + Google Gemini Enterprise agent discovery."
+    },
+    {
+      "prompt": "Why do so many AI agent projects fail?",
+      "cluster": "tool-stack",
+      "locale": "en",
+      "status": "new",
+      "addedAt": "2026-09-20",
+      "note": "Sunday feed research 2026-09-20. Pairs with the new 'why AI agents fail in production' keyword. Anchor answers on the primary Gartner 40%-scrapped-by-2027 prediction + concrete failure classes; skip the unsourced vendor-blog failure-rate stats."
+    },
+    {
+      "prompt": "What are the main AI agent design patterns?",
+      "cluster": "tool-stack",
+      "locale": "en",
+      "status": "new",
+      "addedAt": "2026-09-20",
+      "note": "Sunday ideation 2026-09-20. Pairs with the new 'AI agent design patterns' keyword. Grounded in Anthropic Building Effective Agents (five workflow patterns) + Andrew Ng's four agentic design patterns."
+    },
+    {
+      "prompt": "AI agent 项目为什么总是失败？",
+      "cluster": "tool-stack",
+      "locale": "zh",
+      "status": "new",
+      "addedAt": "2026-09-20",
+      "note": "Sunday feed research 2026-09-20. ZH pair for the 'why AI agents fail in production' keyword; keeps the ZH prompt feed growing alongside EN. 用可链接的 Gartner 预测 + 真实故障类别作答，不引用无来源的失败率数字。"
     }
   ]
 }
