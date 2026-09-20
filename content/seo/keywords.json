@@ -1,6 +1,6 @@
 {
   "$comment": "SEO keyword feed — a living file. The scheduled Cowork routine ideates entries; scripts/seo/feeds.mjs persists them (dedupe + status + timestamps). intent: informational|commercial|transactional. funnel: TOFU|MOFU|BOFU. cluster: use-case|template|comparison|industry|tool-stack. status: new|used.",
-  "updatedAt": "2026-09-19",
+  "updatedAt": "2026-09-20",
   "keywords": [
     {
       "term": "AI agent use cases",
@@ -906,6 +906,76 @@
       "status": "new",
       "addedAt": "2026-09-13",
       "note": "Sunday feed research 2026-09-13. Uncovered horizontal-vertical (ops/RevOps/BizOps: reporting, ticket routing, cross-system tasks). Ground in real ops workflows. Clusters with the industry set."
+    },
+    {
+      "term": "AI agent identity and access management",
+      "intent": "informational",
+      "funnel": "MOFU",
+      "cluster": "tool-stack",
+      "locale": "both",
+      "status": "new",
+      "addedAt": "2026-09-20",
+      "note": "Sunday feed research 2026-09-20 (trend sweep). The identity layer for non-human/agent identities — distinct from guardrails (technical safety), security-risks (threat model), and governance (org policy): who the agent IS and what it may touch. THE 2026 IAM story: Microsoft Entra Agent ID reached GA April 2026, giving agents purpose-built identities that authenticate over OAuth 2.0 via federated credentials (no static secrets) and inherit Conditional Access / PIM / Identity Protection (learn.microsoft.com/entra/agent-id/what-is-microsoft-entra-agent-id); Okta's Agent SSO registers an agent as a first-class Universal Directory identity issuing short-lived governed tokens instead of static API keys, plus an Okta MCP server enforcing least-privilege per tool call. Ground each vendor claim in its own product/docs page at write time; keep the desk-level line = least-privilege OAuth scope (ties to google-workspace-mcp 08-08 + security-risks 08-25). Clusters with security-risks, guardrails, governance, best-mcp-servers."
+    },
+    {
+      "term": "AI agent marketplaces",
+      "intent": "commercial",
+      "funnel": "MOFU",
+      "cluster": "comparison",
+      "locale": "both",
+      "status": "new",
+      "addedAt": "2026-09-20",
+      "note": "Sunday feed research 2026-09-20 (competitor/trend sweep). Buy-vs-build-vs-ignore decision as every major cloud shipped an agent store: Salesforce AgentExchange (unified AppExchange + Slack Marketplace + Agentforce, 200+ launch partners incl. Google Cloud/Docusign; agentexchange.salesforce.com), Google folding Agentspace into Gemini Enterprise (native agent discovery), plus AWS/Microsoft. When a pre-built marketplace agent beats a real desk build and when it doesn't (the trust/scope/lock-in questions). Verify each marketplace claim against its own page. Clusters with no-code-tools, best-frameworks, how-much-cost, pricing-models; the buy end of the how-to-build (09-01) build/buy spectrum."
+    },
+    {
+      "term": "why AI agents fail in production",
+      "intent": "informational",
+      "funnel": "MOFU",
+      "cluster": "tool-stack",
+      "locale": "both",
+      "status": "new",
+      "addedAt": "2026-09-20",
+      "note": "Sunday feed research 2026-09-20. The honest failure-modes companion to deploy-in-production (08-26), evaluate (08-27), observability (08-31): passed-every-test-but-broke-in-prod. Sourcing caution — the eye-catching '70-95% fail' / '88% never reach production' figures are vendor-blog numbers; DO NOT cite them as fact. Anchor on the primary, linkable Gartner prediction (40%+ of agentic-AI projects scrapped by end of 2027 on cost / unclear value / weak risk controls — Gartner press release, already referenced on-site) and on concrete, real failure classes (tool/API failures + expired tokens mid-run, unhandled edge cases beyond the happy path, compounding errors in multi-agent chains — the Anthropic multi-agent token/error math already on-site). Skip any stat that can't be linked to a primary source. Clusters with deploy-in-production, evaluate-agents, observability, human-in-the-loop, measure-ROI."
+    },
+    {
+      "term": "AI agent design patterns",
+      "intent": "informational",
+      "funnel": "MOFU",
+      "cluster": "tool-stack",
+      "locale": "both",
+      "status": "new",
+      "addedAt": "2026-09-20",
+      "note": "Sunday ideation 2026-09-20. The named building blocks under how-to-build (09-01): reflection, planning, tool use, and multi-agent collaboration — plus the workflow patterns (prompt chaining, routing, parallelization, orchestrator-workers, evaluator-optimizer). Sourceable via primary docs only: Anthropic 'Building Effective Agents' (the five workflow patterns + the agent loop, already the site's backbone) and Andrew Ng / DeepLearning.AI's four agentic design patterns. Pattern-not-product framing. Clusters with how-to-build (09-01), orchestration (08-15), multi-agent-systems (08-19), agents-vs-workflows (09-15)."
+    },
+    {
+      "term": "computer use agents",
+      "intent": "informational",
+      "funnel": "MOFU",
+      "cluster": "use-case",
+      "locale": "both",
+      "status": "new",
+      "addedAt": "2026-09-20",
+      "note": "Sunday feed research 2026-09-20. Broader sibling of browser-agents (09-16, browser only): agents that see the screen and drive the whole desktop UI via clicks/keystrokes when there's no API. Sourceable: Anthropic computer use (Claude reads screenshots, moves cursor, clicks, types — docs.claude.com/build-with-claude/computer-use) + OpenAI Operator/ChatGPT-agent virtual computer (already cited in browser-agents + agent-vs-chatbot). Same watch-vs-act gate on consequential clicks (human-in-the-loop 08-13). Note the reliability caveat (screen-driving is slower/more brittle than an API) — ties to why-agents-fail. Clusters with browser-agents (09-16), agent-vs-chatbot (08-12), human-in-the-loop; distinguish clearly from browser-agents to avoid overlap."
+    },
+    {
+      "term": "AI agent tool calling",
+      "intent": "informational",
+      "funnel": "MOFU",
+      "cluster": "tool-stack",
+      "locale": "both",
+      "status": "new",
+      "addedAt": "2026-09-20",
+      "note": "Sunday ideation 2026-09-20. The mechanism under everything the site describes: how a model actually invokes a tool (function/tool calling) — the model emits a structured call, your code runs it, the result goes back in context. Distinct from what-is-MCP (08-10, the connection STANDARD) — this is the CALL itself. Sourceable via primary docs: Anthropic tool use / function calling (docs.claude.com/build-with-claude/tool-use) + OpenAI function calling. Plain-English how-it-works; the n8n rebuilt AI Agent node's 'structured tool calling that prevents infinite loops' (competitor sweep) is a real product anchor. Clusters with what-is-mcp (08-10), how-to-build (09-01), design-patterns (new), memory-and-context (09-05)."
+    },
+    {
+      "term": "AI agent benchmarks",
+      "intent": "commercial",
+      "funnel": "MOFU",
+      "cluster": "comparison",
+      "locale": "both",
+      "status": "new",
+      "addedAt": "2026-09-20",
+      "note": "Sunday ideation 2026-09-20. How to read agent leaderboards without being fooled — the measure-on-your-own-tasks thesis the coding-agents article (09-12) already sketched, made its own page. Sourceable via primary benchmark pages: SWE-bench Verified (500 human-validated GitHub issues, swebench.com/verified.html, already on-site), tau-bench / GAIA (real-world tool-use tasks), plus the honest caveat that public benchmarks are directional and contamination-prone. Read-the-benchmark-then-test-your-own-tickets framing. Clusters with coding-agents (09-12), best-LLM-for-agents (new), evaluate-agents (08-27), best-frameworks (new)."
     }
   ]
 }
