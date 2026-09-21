@@ -1,6 +1,6 @@
 {
   "$comment": "SEO keyword feed — a living file. The scheduled Cowork routine ideates entries; scripts/seo/feeds.mjs persists them (dedupe + status + timestamps). intent: informational|commercial|transactional. funnel: TOFU|MOFU|BOFU. cluster: use-case|template|comparison|industry|tool-stack. status: new|used.",
-  "updatedAt": "2026-09-20",
+  "updatedAt": "2026-09-21",
   "keywords": [
     {
       "term": "AI agent use cases",
@@ -943,9 +943,9 @@
       "funnel": "MOFU",
       "cluster": "tool-stack",
       "locale": "both",
-      "status": "new",
+      "status": "used",
       "addedAt": "2026-09-20",
-      "note": "Sunday ideation 2026-09-20. The named building blocks under how-to-build (09-01): reflection, planning, tool use, and multi-agent collaboration — plus the workflow patterns (prompt chaining, routing, parallelization, orchestrator-workers, evaluator-optimizer). Sourceable via primary docs only: Anthropic 'Building Effective Agents' (the five workflow patterns + the agent loop, already the site's backbone) and Andrew Ng / DeepLearning.AI's four agentic design patterns. Pattern-not-product framing. Clusters with how-to-build (09-01), orchestration (08-15), multi-agent-systems (08-19), agents-vs-workflows (09-15)."
+      "note": "Sunday ideation 2026-09-20. The named building blocks under how-to-build (09-01): reflection, planning, tool use, and multi-agent collaboration — plus the workflow patterns (prompt chaining, routing, parallelization, orchestrator-workers, evaluator-optimizer). Sourceable via primary docs only: Anthropic 'Building Effective Agents' (the five workflow patterns + the agent loop, already the site's backbone) and Andrew Ng / DeepLearning.AI's four agentic design patterns. Pattern-not-product framing. Clusters with how-to-build (09-01), orchestration (08-15), multi-agent-systems (08-19), agents-vs-workflows (09-15). | Used 2026-09-21 → content/news/2026-09-21-ai-agent-design-patterns-{en,zh}.mdx (title 'AI Agent Design Patterns: The Building Blocks'). Two-catalogs framing: Anthropic's five workflow patterns (wire the steps) beside Andrew Ng's four agentic patterns (what one agent does per step), with tool use appearing in both; pattern-not-product, start-simplest thesis (most first agents = tool use + maybe reflection in a prompt chain or router). Sources: Anthropic Building Effective Agents (anthropic.com/engineering/building-effective-agents — the five patterns + workflow-vs-agent + 'simple composable patterns rather than complex frameworks'), Andrew Ng's Agentic Design Patterns in DeepLearning.AI's The Batch (deeplearning.ai/courses/agentic-ai + the-batch/agentic-design-patterns-part-2-reflection / part-3-tool-use / part-4-planning — reflection quick-to-implement, tool-use+reflection the two reliable today, planning 'less mature'), and Issue #001 as the real one-or-two-pattern build. Wove an upward link into how-to-build (09-01) 'simple, composable patterns' line (en+zh). Answers GEO prompt 'What are the main AI agent design patterns?' verbatim in its first FAQ (probed 2026-09-21 on-publish, not cited). Appended to public/llms.txt as evergreen. Clusters with how-to-build (09-01), orchestration (08-15), multi-agent-systems (08-19), agents-vs-workflows (09-15), tool-calling (new), memory-and-context (09-05)."
     },
     {
       "term": "computer use agents",

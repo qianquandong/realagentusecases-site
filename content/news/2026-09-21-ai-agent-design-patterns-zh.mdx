@@ -1,0 +1,72 @@
+---
+title: "AI Agent 设计模式：认识搭建积木"
+date: "2026-09-21"
+excerpt: "AI agent 背后可复用的搭建积木——Anthropic 的五种工作流模式和吴恩达的四种 agent 模式——以及怎么挑出你的任务真正需要的那一种。"
+---
+
+AI agent 设计模式，是安排模型、工具和检查的一种可复用套路——不是一个你去买的产品。有两套目录占主流：Anthropic 的五种工作流模式（提示链、路由、并行、编排器-工人、评估器-优化器），以及吴恩达（Andrew Ng）的四种 agent 模式（反思、工具使用、规划、多智能体协作）。大多数真实的搭建只需要其中一两种。
+
+「设计模式」听起来像只有工程师才用得上。并不是。模式不过是给「一个 agent 的各个部件怎么拼在一起」起的名字——知道这些名字，能让你不必重新发明（或过度搭建）一个。下面两套目录几乎覆盖了所有被当作「AI agent」来卖的东西，而且它们的共识远多于分歧。
+
+## 两套目录，一个想法
+
+名字来自两个一手来源。[Anthropic 的《Building Effective Agents》](https://www.anthropic.com/engineering/building-effective-agents)描述了它的团队在生产中反复见到的五种**工作流模式**。[吴恩达在 DeepLearning.AI 的《The Batch》里](https://www.deeplearning.ai/courses/agentic-ai)命名了他认为会「带来显著进展」的四种**agent 模式**。它们是同一套工具箱的两个视角：Anthropic 的目录讲的是你怎么*把步骤接起来*，吴恩达的讲的是*单个 agent 在每一步做什么*。你是把它们组合起来用，很少只挑一种。
+
+两者都从同一句警告出发。Anthropic 直言，最成功的实现用的是「简单、可组合的模式，而不是复杂的框架」——模式是一个可以伸手去拿的形状，不是一个要安装的产品。
+
+## Anthropic 的五种工作流模式
+
+当你*能*提前把路径写下来时，这些是安排 LLM 调用的方式——[是工作流，而不是完整的 agent](/zh/news/2026-09-15-ai-agents-vs-workflows/)。直接来自 [Anthropic](https://www.anthropic.com/engineering/building-effective-agents)：
+
+- **提示链（Prompt chaining）**——把任务拆成固定顺序的几步，每一步喂给下一步，中间夹一道程序化检查。当任务能干净地分成几个阶段时好用（列提纲 → 起草 → 润色）。
+- **路由（Routing）**——先给输入分类，再送到专门的提示。一条客服消息进退款路径或操作指引路径；每个处理器都很简单，因为它只看到自己那一类输入。
+- **并行（Parallelization）**——同时跑多个调用再合并。Anthropic 把它分成*分节*（独立子任务并行）和*投票*（同一任务跑多次再汇总，换取可靠性）。
+- **编排器-工人（Orchestrator-workers）**——一个主导模型在*运行时*把任务拆成子任务，交给工人调用。与并行不同，这些子任务事先并不知道。
+- **评估器-优化器（Evaluator-optimizer）**——一个调用生成，另一个调用批评，循环到输出过了质量线为止。当你有明确标准、且「再改一版」确实有帮助时好用。
+
+重点不是背下这五个名字——而是要看出，大多数「agent」其实就是它们中的某一种，中间夹了一次模型调用，这是好事。
+
+## 吴恩达的四种 agent 模式
+
+吴恩达的目录讲的是，什么让单个 agent 的这一轮比一次性生成更好。与其直接向模型要最终答案，[一个 agent 式工作流](https://www.deeplearning.ai/courses/agentic-ai)会反复提示它，让它一步步往更高质量搭：
+
+- **反思（Reflection）**——模型审查并批评自己的输出，再修订。吴恩达称它[「实现起来相对快」](https://www.deeplearning.ai/the-batch/agentic-design-patterns-part-2-reflection)，收益却出奇地大——是这份清单里最便宜的升级。
+- **工具使用（Tool use）**——模型调用外部函数和 API，去拿它权重里没有的东西：实时数据、代码执行、你的系统。吴恩达指出，[工具使用和反思](https://www.deeplearning.ai/the-batch/agentic-design-patterns-part-3-tool-use)是他今天能可靠跑通的两个。
+- **规划（Planning）**——模型把大任务拆成子目标并排好顺序。吴恩达坦言，[规划](https://www.deeplearning.ai/the-batch/agentic-design-patterns-part-4-planning)是「一项还不太成熟的技术」，结果不那么可预测——强大，但不是你的起点。
+- **多智能体协作（Multi-agent collaboration）**——几个各有角色和工具的专门 agent，一起干一件单个 agent 干不动的活。这就是[多智能体的地盘](/zh/news/2026-08-19-multi-agent-systems-for-business/)——也是最容易被过早伸手去拿的那个。
+
+注意工具使用在两套目录里都出现了。这不是巧合：给模型配上真正的工具，是把一个聊天机器人变成能行动的东西的那一个动作。
+
+## 你的任务需要哪种模式
+
+从两位作者共同指向的地方起步：能解决问题的最简方案。实际上，第一个 agent 通常是**工具使用**加上也许**反思**，套在一条**提示链或一个路由**里——没有编排器，没有 agent 群。[Issue #001 的 Gmail 分流 agent](/zh/posts/2026-05-13-gmail-ai-agent/) 正是如此：它读每封邮件（工具使用），分类（路由），在任何东西发送前停在[人工审批闸门](/zh/news/2026-08-13-human-in-the-loop-ai-agents/)。一两种模式，干一件有边界的活。
+
+只有当具体的痛点逼着你时，才往清单上方走：
+
+- 一个提示在试图干太多互不相关的事 → 加**路由**。
+- 输出质量接近但不稳定 → 加**反思**或**评估器-优化器**。
+- 子任务要等模型看到输入才知道 → **编排器-工人**。
+- 单个 agent 真的干不下一个角色了 → 再看[编排和多智能体](/zh/news/2026-08-15-ai-agent-orchestration/)，绝不在第一天。
+
+如果你还在决定到底要不要 agent，先从[如何搭一个 AI agent](/zh/news/2026-09-01-how-to-build-an-ai-agent/) 或最基础的 [Agent 101](/zh/agent-101/) 开始——模式是你挑好一件真实的活*之后*才伸手去拿的东西，不是之前。
+
+## FAQ
+
+**AI agent 主要有哪些设计模式？**
+两套一手目录覆盖了大部分。[Anthropic](https://www.anthropic.com/engineering/building-effective-agents) 命名了五种工作流模式——提示链、路由、并行、编排器-工人、评估器-优化器。[吴恩达](https://www.deeplearning.ai/courses/agentic-ai) 命名了四种 agent 模式——反思、工具使用、规划、多智能体协作。它们有重叠（工具使用两边都有），而且是组合着用，不是只挑一种。
+
+**工作流模式和 agent 模式有什么区别？**
+[Anthropic 的](https://www.anthropic.com/engineering/building-effective-agents)工作流模式讲的是，你怎么把多次 LLM 调用沿着*你*定义的路径接起来。[吴恩达的](https://www.deeplearning.ai/courses/agentic-ai) agent 模式讲的是，单个 agent 在一步之内做什么——反思、用工具、规划。一个讲管道，另一个讲动作。真实系统两者都用。
+
+**我该从哪种模式起步？**
+能解决问题的最简那种。[Anthropic 建议](https://www.anthropic.com/engineering/building-effective-agents)用简单、可组合的模式，而不是复杂的框架。大多数第一个 agent 是工具使用加上也许反思，套在一条提示链或路由里——吴恩达指出[工具使用和反思](https://www.deeplearning.ai/the-batch/agentic-design-patterns-part-3-tool-use)是今天最可靠的两个。只有具体需求逼着你时，才加规划或多智能体。
+
+**我需要多智能体协作吗？**
+起步时通常不需要。它是最容易被过早伸手去拿的模式。一个配了好工具的单 agent 能应付大多数有边界的活；只有当一个 agent 真的干不下它的角色时，才把工作拆给[多个 agent](/zh/news/2026-08-19-multi-agent-systems-for-business/)。吴恩达也提醒规划「还不太成熟」——越自主的模式，越是用可预测性换能力。
+
+**这些模式绑定某个框架或厂商吗？**
+不。它们是架构形状，不是产品。[Anthropic](https://www.anthropic.com/engineering/building-effective-agents) 明确偏好可组合的模式而非框架，DeepLearning.AI 也用纯 Python 教它们。任何一种，你都能用一个循环里的单次模型调用加上几个描述清楚的工具实现出来。
+
+---
+
+这个系列里的每个 agent，都是这些模式中的一两种在干一件真实的活——没有 agent 群，没有魔法。想看职场人真正在跑的一手笔记——具体配置、他们接的工具、以及还留着手动审批的部分？[免费订阅](/zh/)，每周的搭建直接送到你邮箱。

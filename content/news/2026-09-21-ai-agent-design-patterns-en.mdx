@@ -1,0 +1,72 @@
+---
+title: "AI Agent Design Patterns: The Building Blocks"
+date: "2026-09-21"
+excerpt: "The reusable building blocks behind AI agents — Anthropic's five workflow patterns and Andrew Ng's four agentic ones — and how to pick what your task needs."
+---
+
+An AI agent design pattern is a reusable way to arrange a model, its tools, and its checks — not a product you buy. Two catalogs dominate: Anthropic's five workflow patterns (prompt chaining, routing, parallelization, orchestrator-workers, evaluator-optimizer) and Andrew Ng's four agentic patterns (reflection, tool use, planning, multi-agent collaboration). Most real builds need just one or two.
+
+"Design pattern" sounds like something only an engineer needs. It isn't. A pattern is just a named shape for how the pieces of an agent fit together — and knowing the names saves you from reinventing (or over-building) one. The two catalogs below cover almost everything you'll see marketed as "an AI agent," and they agree more than they differ.
+
+## Two catalogs, one idea
+
+The names come from two primary sources. [Anthropic's *Building Effective Agents*](https://www.anthropic.com/engineering/building-effective-agents) describes five **workflow patterns** its teams saw repeatedly in production. [Andrew Ng, writing in DeepLearning.AI's *The Batch*](https://www.deeplearning.ai/courses/agentic-ai), named four **agentic patterns** he expected to "drive significant progress." They're two angles on the same toolkit: Anthropic's catalog is about how you *wire the steps*, Ng's is about what a *single agent does on each step*. You compose them; you rarely pick just one.
+
+Both start from the same warning. Anthropic is blunt that the most successful implementations use "simple, composable patterns rather than complex frameworks" — the pattern is a shape to reach for, not a product to install.
+
+## Anthropic's five workflow patterns
+
+These are ways to arrange LLM calls when you *can* write the path down in advance — [a workflow, not a full agent](/en/news/2026-09-15-ai-agents-vs-workflows/). Straight from [Anthropic](https://www.anthropic.com/engineering/building-effective-agents):
+
+- **Prompt chaining** — split a task into a fixed sequence of steps, each feeding the next, with a programmatic check between them. Good when the job breaks cleanly into stages (outline → draft → edit).
+- **Routing** — classify the input first, then send it to a specialized prompt. A support message goes to the refund path or the how-to path; each handler stays simple because it only sees its own kind of input.
+- **Parallelization** — run several calls at once and combine them. Anthropic splits this into *sectioning* (independent subtasks in parallel) and *voting* (the same task run several times, then aggregated for reliability).
+- **Orchestrator-workers** — a lead model breaks the task into subtasks *at runtime* and hands them to worker calls. Unlike parallelization, the subtasks aren't known in advance.
+- **Evaluator-optimizer** — one call generates, a second call critiques, and they loop until the output passes a quality bar. Useful when you have clear criteria and "one more revision" reliably helps.
+
+The point isn't to memorize five names — it's to notice that most "agents" are one of these with a single model call in the middle, and that's a good thing.
+
+## Andrew Ng's four agentic patterns
+
+Ng's catalog describes what makes a single agent's turn better than one-shot generation. Instead of asking the model for a final answer directly, [an agentic workflow](https://www.deeplearning.ai/courses/agentic-ai) prompts it repeatedly so it can build toward higher quality:
+
+- **Reflection** — the model reviews and critiques its own output, then revises it. Ng calls this ["relatively quick to implement"](https://www.deeplearning.ai/the-batch/agentic-design-patterns-part-2-reflection) with surprisingly large gains — the cheapest upgrade on the list.
+- **Tool use** — the model calls external functions and APIs for what isn't in its weights: live data, code execution, your systems. Ng notes [tool use and reflection](https://www.deeplearning.ai/the-batch/agentic-design-patterns-part-3-tool-use) are the two he can get working reliably today.
+- **Planning** — the model decomposes a big task into subgoals and sequences them. Ng is candid that [planning](https://www.deeplearning.ai/the-batch/agentic-design-patterns-part-4-planning) is "a less mature technology" with less predictable results — powerful, but not where you start.
+- **Multi-agent collaboration** — several specialized agents, each with its own role and tools, work together on a job too big for one. This is the [multi-agent territory](/en/news/2026-08-19-multi-agent-systems-for-business/) — and the one most likely to be reached for too early.
+
+Notice tool use appears in both catalogs. That's not a coincidence: giving a model real tools is the single move that turns a chatbot into something that can act.
+
+## Which pattern does your job need?
+
+Start where both authors point: the simplest thing that works. In practice, a first agent is usually **tool use** plus maybe **reflection**, wrapped in a **prompt chain or a router** — no orchestrator, no agent swarm. The [Gmail triage agent in Issue #001](/en/posts/2026-05-13-gmail-ai-agent/) is exactly that: it reads each message (tool use), sorts it (routing), and stops at a [human approval gate](/en/news/2026-08-13-human-in-the-loop-ai-agents/) before anything sends. One or two patterns, doing one bounded job.
+
+You move up the list only when a concrete pain forces it:
+
+- One prompt is trying to do too many unrelated things → add **routing**.
+- Output quality is close but inconsistent → add **reflection** or **evaluator-optimizer**.
+- The subtasks can't be known until the model sees the input → **orchestrator-workers**.
+- A single agent genuinely outgrows one role → look at [orchestration and multi-agent](/en/news/2026-08-15-ai-agent-orchestration/), never on day one.
+
+If you're still deciding whether you need an agent at all, start with [how to build an AI agent](/en/news/2026-09-01-how-to-build-an-ai-agent/) or the ground-level [Agent 101](/en/agent-101/) — the patterns are what you reach for *after* you've picked one real job, not before.
+
+## FAQ
+
+**What are the main AI agent design patterns?**
+Two primary catalogs cover most of them. [Anthropic](https://www.anthropic.com/engineering/building-effective-agents) names five workflow patterns — prompt chaining, routing, parallelization, orchestrator-workers, and evaluator-optimizer. [Andrew Ng](https://www.deeplearning.ai/courses/agentic-ai) names four agentic patterns — reflection, tool use, planning, and multi-agent collaboration. They overlap (tool use appears in both) and you compose them rather than choosing one.
+
+**What's the difference between a workflow pattern and an agentic pattern?**
+[Anthropic's](https://www.anthropic.com/engineering/building-effective-agents) workflow patterns describe how you wire multiple LLM calls along a path *you* define. [Ng's](https://www.deeplearning.ai/courses/agentic-ai) agentic patterns describe what a single agent does within a step — reflecting, using tools, planning. One is about the pipeline; the other is about the move. Real systems use both.
+
+**Which design pattern should I start with?**
+The simplest that works. [Anthropic recommends](https://www.anthropic.com/engineering/building-effective-agents) simple, composable patterns over complex frameworks. Most first agents are tool use plus maybe reflection, arranged in a prompt chain or router — Ng notes [tool use and reflection](https://www.deeplearning.ai/the-batch/agentic-design-patterns-part-3-tool-use) are the two that work most reliably today. Add planning or multi-agent only when a concrete need forces it.
+
+**Do I need multi-agent collaboration?**
+Usually not to start. It's the pattern most reached for too early. A single agent with good tools handles most bounded jobs; you split work across [several agents](/en/news/2026-08-19-multi-agent-systems-for-business/) only when one genuinely outgrows its role. Ng also flags planning as "less mature" — the more autonomous patterns trade predictability for power.
+
+**Are these patterns tied to a specific framework or vendor?**
+No. They're architectural shapes, not products. [Anthropic](https://www.anthropic.com/engineering/building-effective-agents) explicitly favors composable patterns over frameworks, and DeepLearning.AI teaches them in plain Python. You can implement any of them with a single model call in a loop and a few well-described tools.
+
+---
+
+Every agent in this series is one or two of these patterns doing one real job — no swarms, no magic. Want the field notes on the exact setups professionals actually run, the tools they wired, and what they still approve by hand? [Subscribe free](/en/) and get each week's build in your inbox.
