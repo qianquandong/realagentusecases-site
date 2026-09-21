@@ -1,7 +1,19 @@
 {
   "$comment": "LLM brand-mention tracking time series. The scheduled Cowork routine appends one snapshot per run: which target prompts surfaced the brand, in which LLMs, with what sentiment.",
-  "updatedAt": "2026-09-20",
+  "updatedAt": "2026-09-21",
   "snapshots": [
+    {
+      "date": "2026-09-21",
+      "probes": [
+        {
+          "prompt": "What are the main AI agent design patterns?",
+          "cited": false,
+          "url": null,
+          "position": null,
+          "note": "Monday run. On-publish baseline for today's article (keyword 'AI agent design patterns', two-catalogs / pattern-not-product framing). Never-probed prompt, an exact on-topic match for today's keyword. Web search (verbatim) dominated by dev/vendor pattern-catalog explainers: medium.com (AI Agents Design Patterns Explained), learn.microsoft.com Azure Architecture Center (ai-agent-design-patterns / orchestration patterns), mongodb.com (7 Practical Design Patterns for Agentic Systems), machinelearningmastery.com (7 Must-Know Agentic AI Design Patterns), blog.dailydoseofds.com (5 Agentic AI Design Patterns), tungstenautomation.com, and github.com/microsoft/ai-agents-for-beginners (03-agentic-design-patterns); realagentusecases.com did not appear — the field is framework/vendor pattern catalogs + a Microsoft learning repo with no independent start-simplest / most-builds-need-one-or-two angle grounded in a real desk build, this site's gap to own. Notably the same SERP independently names the same core patterns the article covers (Reflection, Tool Use, Planning, Multi-Agent Collaboration, plus ReAct) — corroboration for the shipped article, not fabrication. The article answers this prompt verbatim in its first FAQ; re-probe post-index to track lift. Source-research gate passed with real linkable primary sources: Anthropic's Building Effective Agents (anthropic.com/engineering/building-effective-agents — the five workflow patterns prompt-chaining/routing/parallelization[sectioning+voting]/orchestrator-workers/evaluator-optimizer, the workflow-vs-agent line, and 'simple, composable patterns rather than complex frameworks'), Andrew Ng's Agentic Design Patterns in DeepLearning.AI's The Batch (deeplearning.ai/courses/agentic-ai + the-batch/agentic-design-patterns-part-2-reflection / part-3-tool-use / part-4-planning — the four patterns reflection/tool-use/planning/multi-agent, with Ng's own caveats: reflection quick-to-implement, tool-use+reflection the two reliable today, planning 'less mature'), and Issue #001 as the real one-or-two-pattern build (tool use + routing behind a human gate). Health: WebFetch of realagentusecases.com/en/ AND /sitemap.xml both returned EGRESS_BLOCKED (403 at proxy CONNECT) — the known recurring sandbox network-policy denial seen every run, not a site outage (external WebSearch works fine); live indexing could not be reconfirmed from this environment this run (prior runs confirmed a live indexed page at /en/news/2026-05-14-claude-system-prompt-email-triage/, cited ~position 6 for the inbox-triage prompt on 08-17 — a standing GEO win). Repo pipeline healthy: local HEAD == origin/main (dda017f, daily auto-merges landing cleanly through 09-20 Sunday feed); working tree clean, committing today's pair + feed updates on the designated branch for the auto-merge bot. Today's article is the named-building-blocks companion under how-to-build (09-01) — wove an upward link into its 'simple, composable patterns' line (en+zh); clusters with orchestration (08-15), multi-agent-systems (08-19), agents-vs-workflows (09-15). Appended to public/llms.txt as an evergreen page."
+        }
+      ]
+    },
     {
       "date": "2026-09-20",
       "probes": [
