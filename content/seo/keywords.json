@@ -1,6 +1,6 @@
 {
   "$comment": "SEO keyword feed — a living file. The scheduled Cowork routine ideates entries; scripts/seo/feeds.mjs persists them (dedupe + status + timestamps). intent: informational|commercial|transactional. funnel: TOFU|MOFU|BOFU. cluster: use-case|template|comparison|industry|tool-stack. status: new|used.",
-  "updatedAt": "2026-09-21",
+  "updatedAt": "2026-09-22",
   "keywords": [
     {
       "term": "AI agent use cases",
@@ -853,9 +853,9 @@
       "funnel": "MOFU",
       "cluster": "tool-stack",
       "locale": "both",
-      "status": "new",
+      "status": "used",
       "addedAt": "2026-09-13",
-      "note": "Sunday feed research 2026-09-13. Successor term to prompt engineering across 2026 agent tooling (Sourcegraph, Elastic, Neo4j, Redis all published context-engineering guides). Covers memory, tool defs, token budget, retrieval. Clusters with ai-agent-memory-and-context, ai-agent-prompt-template."
+      "note": "Sunday feed research 2026-09-13. Successor term to prompt engineering across 2026 agent tooling (Sourcegraph, Elastic, Neo4j, Redis all published context-engineering guides). Covers memory, tool defs, token budget, retrieval. Clusters with ai-agent-memory-and-context, ai-agent-prompt-template. Used 2026-09-22 → content/news/2026-09-22-context-engineering-for-ai-agents (en+zh), title \"Context Engineering for AI Agents Explained\". Frames it as the discipline over the finite window: LangChain's write/select/compress/isolate + Anthropic's compaction/note-taking/sub-agents, grounded in Anthropic effective-context-engineering, LangChain context-engineering-for-agents, Chroma Context Rot research (18 frontier models degrade as input grows), Manus lessons, and Issue #001. Wove a reciprocal link in from the 09-05 ai-agent-memory-and-context article (en+zh)."
     },
     {
       "term": "AI agent prompt injection",

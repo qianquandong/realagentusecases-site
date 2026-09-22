@@ -1,0 +1,61 @@
+---
+title: "Context Engineering for AI Agents Explained"
+date: "2026-09-22"
+excerpt: "Context engineering is curating the smallest set of high-signal tokens an agent needs each step — the discipline that keeps a finite window working, not full."
+---
+
+Context engineering is the practice of deciding what goes into an AI agent's context window at each step — and, just as importantly, what stays out. It treats the window as a finite, contested resource and curates the smallest set of high-signal tokens the model needs, because piling in more usually makes an agent *worse*, not better.
+
+Prompt engineering was step one: write a good instruction and get a good answer. But an agent isn't one prompt — it's a loop that accumulates tool results, retrieved documents, past turns, and its own notes over dozens of steps. Deciding what that growing pile should contain at each turn is a different, systems-level job. [Anthropic frames context engineering](https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents) as the natural next stage: prompt engineering asks "what do I write," context engineering asks "what should be in the window right now."
+
+## Why a bigger window isn't the fix
+
+The obvious move — just use a model with a million-token window and stuff everything in — backfires. [Chroma's Context Rot research](https://www.trychroma.com/research/context-rot) tested 18 frontier models (including GPT-4.1, Claude 4, Gemini 2.5, and Qwen3) on retrieval tasks with inputs from 1K up to 1M tokens, and found that every model's accuracy degrades as the input grows — often well before the window is anywhere near full. The window is a budget with diminishing returns, not free storage.
+
+That's why [Anthropic](https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents) defines the goal as "finding the smallest possible set of high-signal tokens that maximize the likelihood of some desired outcome." Irrelevant context doesn't just waste tokens — it actively buries the one detail that mattered and pulls the model off course. Getting this wrong is a leading reason agents that demo well fall apart [in production](/en/news/2026-08-26-how-to-deploy-ai-agents-in-production/).
+
+## The four moves: write, select, compress, isolate
+
+[LangChain groups the tactics into four categories](https://www.langchain.com/blog/context-engineering-for-agents) that work in any agent framework, not just theirs:
+
+- **Write** — save context *outside* the window so you don't repeat it every turn. The classic example is a scratchpad or plan the agent writes once and refers back to.
+- **Select** — pull only the relevant context *into* the window when it's needed. This is where retrieval lives; letting the agent decide when and what to fetch is the whole idea behind [agentic RAG](/en/news/2026-09-10-agentic-rag/).
+- **Compress** — keep only the tokens still required for the task, summarizing or trimming the rest.
+- **Isolate** — split context across boundaries so each part stays focused, for example by handing a sub-task to a separate agent with its own clean window.
+
+These aren't exotic. Most are the same [design patterns](/en/news/2026-09-21-ai-agent-design-patterns/) you'd reach for anyway, applied to the question of what the model can see.
+
+## Anthropic's playbook for long-running agents
+
+For agents that run over many steps, [Anthropic](https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents) names three concrete techniques:
+
+- **Compaction** — when the conversation nears the window limit, summarize it and restart from the summary, so the agent keeps its thread without carrying every raw token. Anthropic pairs this with a progress file the agent re-reads to recover what's done, in progress, and blocked.
+- **Structured note-taking** — the agent writes durable notes to external storage (a `NOTES.md`-style file) and reads them back later, tracking progress across a long task without holding it all in active context.
+- **Sub-agent architectures** — give each sub-task its own agent and its own window, so a narrow job isn't diluted by everything else in play. This is the "isolate" move at architecture scale.
+
+Practitioners building real products land in the same place. The team behind [Manus wrote that context design — not model choice — was their main performance lever](https://manus.im/blog/Context-Engineering-for-AI-Agents-Lessons-from-Building-Manus), and that they treat the file system as externalized, effectively unlimited memory the agent reads and writes on demand. It's the same insight from a different seat: don't cram, curate.
+
+## At a real desk, it's small
+
+You don't need a research budget to do this. [Issue #001's Gmail agent](/en/posts/2026-05-13-gmail-ai-agent/) is context engineering in miniature: it fetches only the recent thread it needs (select), works from a short rules block instead of a bloated prompt, and stops at a human gate rather than trying to hold the whole inbox in its head. The broader plumbing — short-term thread state, a long-term store, retrieval as a tool — is covered in [how AI agent memory and context work](/en/news/2026-09-05-ai-agent-memory-and-context/); context engineering is the discipline that decides what actually reaches the model from all of it.
+
+## FAQ
+
+**What is context engineering for AI agents?**
+It's the practice of curating what fills an agent's context window at each step — the instructions, tool results, retrieved data, and history the model sees. [Anthropic](https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents) describes the goal as finding the smallest set of high-signal tokens that get the job done, because the window is a finite resource where extra noise hurts.
+
+**How is context engineering different from prompt engineering?**
+Prompt engineering is writing one good instruction for one response. Context engineering manages the whole evolving window across an agent's many steps — what to keep, fetch, summarize, or drop. [Anthropic frames it](https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents) as the natural progression once you move from a single prompt to a running agent.
+
+**Doesn't a larger context window solve this?**
+No. [Chroma's Context Rot study](https://www.trychroma.com/research/context-rot) found all 18 frontier models it tested lose accuracy as input grows, often long before the window fills. A bigger window raises the ceiling but doesn't remove the need to curate what's in it.
+
+**What are the main techniques?**
+[LangChain](https://www.langchain.com/blog/context-engineering-for-agents) groups them as write (save context outside the window), select (retrieve only what's relevant), compress (summarize or trim), and isolate (split across sub-agents). [Anthropic](https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents) adds compaction, structured note-taking, and sub-agent architectures for long-running work.
+
+**Is context engineering the same as RAG or memory?**
+They're pieces of it. Retrieval (RAG) is the "select" move and [memory](/en/news/2026-09-05-ai-agent-memory-and-context/) is where context is stored between turns, but context engineering is the wider discipline of deciding what from all those sources actually reaches the model on a given step.
+
+---
+
+Every agent we document is really an exercise in showing the model just enough — no swarms, no million-token dumps. Want the field notes on the exact setups professionals run, the context they feed, and what they still approve by hand? [Subscribe free](/en/) and get each week's build in your inbox.

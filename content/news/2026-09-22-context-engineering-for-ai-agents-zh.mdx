@@ -1,0 +1,61 @@
+---
+title: "AI Agent 的上下文工程是什么"
+date: "2026-09-22"
+excerpt: "上下文工程，就是每一步只把 agent 真正需要的高信号 token 放进上下文窗口——让有限的窗口保持好用，而不是塞满。"
+---
+
+上下文工程（context engineering），就是在每一步决定 AI agent 的上下文窗口里放什么——同样重要的是，决定不放什么。它把窗口当成一种有限、需要争夺的资源，只挑出模型真正需要的、最小的一组高信号 token，因为塞得越多，agent 往往表现越*差*，而不是越好。
+
+提示工程只是第一步：写一条好指令，得到一个好回答。但 agent 不是一条提示——它是一个循环，会在几十步里不断累积工具结果、检索到的文档、过往对话，以及它自己记的笔记。决定这堆越滚越大的东西每一步该包含什么，是一件完全不同的、系统层面的工作。[Anthropic 把上下文工程](https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents)定义为提示工程的自然延续：提示工程问「我该写什么」，上下文工程问「此刻窗口里该有什么」。
+
+## 更大的窗口并不能解决问题
+
+最直觉的做法——换一个百万 token 窗口的模型，把所有东西都塞进去——会适得其反。[Chroma 的 Context Rot 研究](https://www.trychroma.com/research/context-rot)测了 18 个前沿模型（包括 GPT-4.1、Claude 4、Gemini 2.5 和 Qwen3），输入从 1K 一直到 1M token，发现每一个模型的准确率都会随输入变长而下降——而且往往在窗口远没被填满时就开始了。窗口是一份边际收益递减的预算，不是免费仓库。
+
+所以 [Anthropic](https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents) 把目标定为「找出能最大化理想结果概率的、最小的一组高信号 token」。无关的上下文不只是浪费 token——它会实实在在地把那个真正重要的细节埋掉，把模型带偏。这一步没做好，正是那些演示时很漂亮的 agent 一到[生产环境](/zh/news/2026-08-26-how-to-deploy-ai-agents-in-production/)就散架的主要原因之一。
+
+## 四个动作：写出、挑选、压缩、隔离
+
+[LangChain 把这些手法归成四类](https://www.langchain.com/blog/context-engineering-for-agents)，它们在任何 agent 框架里都成立，不只限于它自己：
+
+- **写出（Write）**——把上下文存到窗口*之外*，这样就不用每一步都重复它。经典例子是一块草稿纸或一份计划，agent 写一次，之后回头引用。
+- **挑选（Select）**——只在需要时把相关上下文*拉进*窗口。检索就活在这里；让 agent 自己决定何时、拿什么，正是 [agentic RAG](/zh/news/2026-09-10-agentic-rag/) 的核心想法。
+- **压缩（Compress）**——只保留任务当下还需要的 token，其余的做摘要或裁掉。
+- **隔离（Isolate）**——沿边界把上下文切开，让每一部分都保持聚焦，比如把一个子任务交给一个拥有自己干净窗口的独立 agent。
+
+这些都不玄。大多数就是你本来就会用的[设计模式](/zh/news/2026-09-21-ai-agent-design-patterns/)，只不过用来回答「模型能看到什么」这个问题。
+
+## Anthropic 面向长时运行 agent 的打法
+
+对于要跑很多步的 agent，[Anthropic](https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents) 点名了三种具体技术：
+
+- **压紧（Compaction）**——当对话接近窗口上限时，把它做成摘要再从摘要重启，让 agent 保住主线，而不用背着每一个原始 token。Anthropic 会搭配一份进度文件，让 agent 重读，恢复出「哪些做完了、哪些在做、哪些被卡住」。
+- **结构化记笔记**——agent 把持久的笔记写到外部存储（类似 `NOTES.md` 的文件），之后再读回来，从而在一个长任务里追踪进度，而不必把它全部留在活动上下文里。
+- **子 agent 架构**——给每个子任务配一个自己的 agent、一个自己的窗口，让一件窄活儿不被场上其余一切稀释。这就是架构层面的「隔离」动作。
+
+真正做产品的人也落到同一处。[做 Manus 的团队写道，上下文设计——而非选哪个模型——才是他们最主要的性能杠杆](https://manus.im/blog/Context-Engineering-for-AI-Agents-Lessons-from-Building-Manus)，他们把文件系统当作外置的、近乎无限的内存，让 agent 按需读写。这是从另一个位置得出的同一条洞见：别硬塞，要精挑。
+
+## 落到真实的办公桌上，其实很小
+
+你不需要一笔研究预算就能做这件事。[Issue #001 的 Gmail agent](/zh/posts/2026-05-13-gmail-ai-agent/) 就是缩小版的上下文工程：它只取它需要的那段近期邮件线程（挑选），用一小段规则而不是臃肿的提示来工作，并且停在一个人工闸门前，而不是想把整个收件箱都装进脑子里。更完整的底层管线——短期线程状态、长期存储、把检索当成一个工具——在[AI agent 的记忆与上下文怎么工作](/zh/news/2026-09-05-ai-agent-memory-and-context/)里讲过；上下文工程，就是从这一切里决定到底有什么真正抵达模型的那门功夫。
+
+## FAQ
+
+**AI agent 的上下文工程是什么？**
+它是在每一步精挑填进 agent 上下文窗口的东西——模型看到的指令、工具结果、检索数据和历史。[Anthropic](https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents) 把目标描述为「找出能把活儿干成的、最小的一组高信号 token」，因为窗口是有限资源，多余的噪声只会帮倒忙。
+
+**上下文工程和提示工程有什么不同？**
+提示工程是为一次回答写一条好指令。上下文工程管理的是 agent 许多步里不断变化的整个窗口——留什么、取什么、摘要什么、丢什么。[Anthropic 把它](https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents)看作从单条提示走向运行中的 agent 之后的自然延续。
+
+**换一个更大的上下文窗口不就解决了？**
+不能。[Chroma 的 Context Rot 研究](https://www.trychroma.com/research/context-rot)发现，它测的全部 18 个前沿模型都会随输入变长而丢准确率，往往在窗口填满之前就开始了。更大的窗口抬高了天花板，却没有免除你精挑窗口里内容的必要。
+
+**主要的技术有哪些？**
+[LangChain](https://www.langchain.com/blog/context-engineering-for-agents) 把它们归为写出（存到窗口外）、挑选（只检索相关的）、压缩（摘要或裁剪）和隔离（切给多个子 agent）。[Anthropic](https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents) 面向长时运行的活儿又补上了压紧、结构化记笔记和子 agent 架构。
+
+**上下文工程等于 RAG 或记忆吗？**
+它们是其中的零件。检索（RAG）是「挑选」这个动作，[记忆](/zh/news/2026-09-05-ai-agent-memory-and-context/)是上下文在两轮之间存放的地方，而上下文工程是更宽的那门功夫：决定这些来源里的东西，哪些在某一步真正抵达模型。
+
+---
+
+我们记录的每一个 agent，本质上都是在练习「只给模型刚好够用的东西」——没有智能体大军，也没有百万 token 的一股脑倾倒。想看专业人士到底怎么搭、喂进什么上下文、又把什么留给自己手动确认的实战笔记吗？[免费订阅](/zh/)，每周的搭建过程直接送到你的邮箱。
