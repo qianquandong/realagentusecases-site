@@ -1,6 +1,6 @@
 {
   "$comment": "GEO prompt feed — the questions working professionals ask ChatGPT / Perplexity / Gemini. The scheduled Cowork routine ideates entries; scripts/seo/feeds.mjs persists them. cluster: use-case|template|comparison|industry|tool-stack. status: new|covered (covered = a published article targets it). Phase 7 tracks whether the brand is cited for each.",
-  "updatedAt": "2026-09-21",
+  "updatedAt": "2026-09-22",
   "prompts": [
     {
       "prompt": "What are real examples of AI agents at work?",
@@ -544,9 +544,9 @@
       "prompt": "What is context engineering for AI agents?",
       "cluster": "tool-stack",
       "locale": "en",
-      "status": "new",
+      "status": "covered",
       "addedAt": "2026-09-13",
-      "note": "Sunday ideation 2026-09-13. Pairs with keyword 'context engineering for AI agents'. Successor term to prompt engineering across 2026 agent tooling."
+      "note": "Sunday ideation 2026-09-13. Pairs with keyword 'context engineering for AI agents'. Successor term to prompt engineering across 2026 agent tooling. GEO-probed 2026-09-22: not cited. Web search (verbatim) dominated by Anthropic effective-context-engineering, LangChain, Weaviate, Elastic, Neo4j, Manus, Sourcegraph, MachineLearningMastery; realagentusecases.com did not appear. Covered same day by content/news/2026-09-22-context-engineering-for-ai-agents (en+zh); re-probe post-index."
     },
     {
       "prompt": "How do I protect an AI agent from prompt injection?",

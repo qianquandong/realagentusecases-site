@@ -1,6 +1,6 @@
 {
   "$comment": "LLM brand-mention tracking time series. The scheduled Cowork routine appends one snapshot per run: which target prompts surfaced the brand, in which LLMs, with what sentiment.",
-  "updatedAt": "2026-09-21",
+  "updatedAt": "2026-09-22",
   "snapshots": [
     {
       "date": "2026-09-21",
@@ -910,6 +910,18 @@
           "url": null,
           "position": null,
           "note": "Saturday run. Least-recently-probed prompt overall (last seen 2026-07-09); re-probed to track whether Issue #001 (the site's flagship real Gmail build) has gained any LLM/SERP citation. Web search (verbatim) still dominated by vendor tutorials and listicles: arcade.dev (build-an-ai-agent-for-gmail guide + app), relevanceai.com (Gmail agent templates), manus.im (email-agent tutorial), aimaker.substack.com, vijaykumarkartha.medium.com (LangChain Gmail agent), drew.tech (gmail-agent), solidaitech.com (n8n Gmail tutorial), developers.google.com/workspace/gmail; realagentusecases.com did not appear. Gap persists: the field is how-to-wire-it tutorials with no independent real-desk build documenting the read-freely / act-through-a-gate discipline that Issue #001 owns. Today shipped keyword 'how to build an AI agent without code' (no-code build-order how-to) which links to Issue #001; re-probe post-index."
+        }
+      ]
+    },
+    {
+      "date": "2026-09-22",
+      "probes": [
+        {
+          "prompt": "What is context engineering for AI agents?",
+          "cited": false,
+          "url": null,
+          "position": null,
+          "note": "Least-recently-probed on-topic prompt (never probed; added 2026-09-13). Web search (verbatim) dominated by Anthropic effective-context-engineering, LangChain context-engineering-for-agents, Weaviate, Elastic, Neo4j what-is-context-engineering, Manus lessons, and Sourcegraph/MachineLearningMastery guides; realagentusecases.com did not appear at any position. Gap: the SERP/LLM answer is all vendor and framework explainers with no independent real-desk build showing the discipline at work. Shipped same day: keyword context-engineering-for-ai-agents → content/news/2026-09-22-context-engineering-for-ai-agents (en+zh), which grounds the four moves in Issue #001 and links from the memory-and-context deep-dive. Re-probe after indexing."
         }
       ]
     }
