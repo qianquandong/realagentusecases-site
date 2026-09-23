@@ -36,7 +36,7 @@ Demo 只跑一次，用你挑的输入，你在旁边盯着。生产环境跑几
 把它当成一次运营方式的改变，而不是模型升级。把 agent 收窄到一个定义清楚的工作流，建一套它必须通过的真实例子[评测](https://www.anthropic.com/engineering/demystifying-evals-for-ai-agents)，给任何不可逆动作设[人工关卡](/zh/news/2026-08-13-human-in-the-loop-ai-agents/)，再加上生产监控。然后随着 agent 赢得信任，逐步放宽范围——[OpenAI](https://openai.com/business/guides-and-resources/a-practical-guide-to-building-ai-agents/) 称之为「从小处起步，用真实用户验证，再逐步扩大能力」。
 
 **为什么这么多 agent 试点从没进入生产？**
-通常是模型行、但运营机制不行。Demo 跳过了那些不光鲜的部分——评测、护栏、监控、权限、升级路径——而这些恰恰是生产所必需的。解法不是换个更好的模型，而是围绕一个你刻意保持很小的范围，把这套脚手架搭起来。
+通常是模型行、但运营机制不行。Demo 跳过了那些不光鲜的部分——评测、护栏、监控、权限、升级路径——而这些恰恰是生产所必需的。解法不是换个更好的模型，而是围绕一个你刻意保持很小的范围，把这套脚手架搭起来。（[AI Agent 为什么在生产环境失败](/zh/news/2026-09-23-why-ai-agents-fail-in-production/) 拆解了这些失败模式，以及活下来的都做对了什么。）
 
 **agent 上线后我该监控什么？**
 记录每一次运行，每周抽查一批对话记录。跟踪失败率和升级率，留意[分布漂移](https://www.anthropic.com/engineering/demystifying-evals-for-ai-agents)（真实输入开始不再像你的测试集），并监控每个任务的 token [成本](/zh/news/2026-08-24-how-much-do-ai-agents-cost/)，别让打转的 agent 悄悄把账单跑高。
