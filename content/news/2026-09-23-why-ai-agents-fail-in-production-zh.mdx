@@ -1,0 +1,60 @@
+---
+title: "AI Agent 为什么在生产环境失败"
+date: "2026-09-23"
+excerpt: "Gartner 预计到 2027 年超四成 agent 项目被砍——而问题很少出在模型。真正的失败点是范围、集成、评测和关卡。"
+---
+
+AI agent 在生产环境失败，很少是因为模型太弱。它们失败，是因为模型*周围*那套东西被跳过了——没有清晰的成功定义、没有拿真实数据做评测、没有真正接进任务所触及的系统、也没有对高风险动作设人工关卡。Gartner 预计到 2027 年底，超过 40% 的 agentic AI 项目会被取消。
+
+失败率是真的，但流行的解释是错的。翻任何一篇「AI agent 为什么失败」的清单文，你都会看到同一批扎眼的数字——「88% 从没上线」「70–95% 失败」——几乎没有一个链到你能核查的研究。诚实的图景来自两个原始来源，而它们都没有怪模型。
+
+## 几乎从来不是模型的错
+
+MIT 的 Project NANDA 在其 2025 年报告 [*The GenAI Divide: State of AI in Business 2025*](https://mlq.ai/media/quarterly_decks/v0.1_State_of_AI_in_Business_2025_Report.pdf) 中研究了企业 AI——52 场高管访谈、153 位负责人问卷、300 个公开部署分析。核心结论：约 **95% 的生成式 AI 试点没有带来可衡量的盈亏回报**。但它点名的原因不是模型质量，而是「学习鸿沟」——通用工具不接进工作流、不适应它、也不保留上下文。赢的那 5% 都是挑一个痛点、把它做好、并深深嵌进工作真正的流动方式里。
+
+[Gartner](https://www.gartner.com/en/newsroom/press-releases/2025-06-25-gartner-predicts-over-40-percent-of-agentic-ai-projects-will-be-canceled-by-end-of-2027) 从买方一侧得出同样的结论：到 2027 年底，超过 40% 的 agentic AI 项目会被取消，原因是「成本攀升、商业价值不清、或风险管控不足」。成本、价值、管控——都是运营问题,不是智力问题。Gartner 还点出了「agent 洗白」（agent washing）：在成千上万家卖「agentic AI」的厂商里，它估计只有约 **130 家是真的**——其余都是被重新贴牌的聊天机器人、助手和 [RPA](/zh/news/2026-08-18-ai-agent-vs-rpa/)。
+
+两项发现指向同一处。模型是大体上能用的那部分。会坏的，是你必须围绕它搭起来的一切。
+
+## 真正搞垮 agent 的那些失败模式
+
+下面这些反复出现——每一条都附上解法，以及本站在哪里深入讲过。
+
+**1. 没有「跑得好」的定义。**如果你说不出成功用哪个数字衡量，就分不清 agent 到底有没有帮上忙。靠感觉上线的项目，也会被感觉砍掉。动手前先修好：[先给任务打基线，再在之后衡量同一个指标](/zh/news/2026-08-21-how-to-measure-ai-agent-roi/)——把 agent 增加的人工复核时间也算进去。
+
+**2. 一上来就贪多。**最常见的自伤，是为一份两步工作流就能搞定的活，去建一个自主的多步 agent。[Anthropic](https://www.anthropic.com/engineering/building-effective-agents) 说得直白：先找能跑通的最简单方案，只有当它「切实改善了结果」时才加复杂度。大多数真实搭建只需要[一两个设计模式](/zh/news/2026-09-21-ai-agent-design-patterns/)，而不是一群 agent——而且往往[需要的是工作流，根本不是 agent](/zh/news/2026-09-15-ai-agents-vs-workflows/)。
+
+**3. 它从没被评测过。**Demo 只证明 agent 在你挑的一个输入上能跑一次。没有[拿真实、乱糟糟的例子做评测](/zh/news/2026-08-27-how-to-evaluate-ai-agents/)，你永远不会知道它对某一个供应商的发票有 3% 的概率出错——直到它在规模上出错。收集 20–50 个有已知正确结果的真实历史案例，每次改动都跑一遍。
+
+**4. 对写操作没有关卡。**一个能发送、付款、发布、删除却没有检查点的 agent，离一次糟糕的推理就差一步——也是通往「风险管控不足」最快的路。对不可逆动作[保留人工关卡](/zh/news/2026-08-13-human-in-the-loop-ai-agents/)，用[写在工作流里、而不只写在提示词里的护栏](/zh/news/2026-08-29-ai-agent-guardrails-for-business/)去强制执行，并把这份新权限当成它本身就是的[安全面](/zh/news/2026-08-25-ai-agent-security-risks/)来对待。
+
+**5. 账永远算不平。**一个能干活、却比它替代的工作还贵的 agent，会被砍掉——这就是 Gartner「成本攀升」的现实版。一个反复重读同样上下文、原地打转的 agent，烧 token 很快。在扩量之前、而不是之后，先搞清[一个 agent 到底要花多少钱](/zh/news/2026-08-24-how-much-do-ai-agents-cost/)、以及[你用的是哪种计费模式](/zh/news/2026-09-11-ai-agent-pricing-models/)。
+
+**6. 你买到的是贴牌聊天机器人。**Gartner 的「agent 洗白」是一个你在采购环节就能避开的失败模式。如果一个「销售 agent」只会回答问题、从不采取多步动作，那它是[聊天机器人](/zh/news/2026-08-12-ai-agent-vs-chatbot/)；如果它只是对结构化数据跑固定规则，那它是 [RPA](/zh/news/2026-08-18-ai-agent-vs-rpa/)。两者本身都没错——但如果你以为买的是 agent，那份落差就会被读成「AI agent 不管用」。
+
+## 活下来的都做对了什么
+
+注意，这六条里没有一条是「换个更聪明的模型」。挺到日常使用的 agent 都有同一个形状：一份收窄的真实工作；与这份工作所触及系统的深度集成；拿真实数据做的评测；对写操作的关卡；以及算得平的成本。[Issue #001 里的 Gmail 分拣 agent](/zh/posts/2026-05-13-gmail-ai-agent/) 就是这个形状的缩影——它读并分拣一个收件箱，在任何东西发出去之前停在人工关卡前，每月成本大约等于一杯咖啡。
+
+这也是那段部署坡：[从试点推到生产](/zh/news/2026-08-26-how-to-deploy-ai-agents-in-production/)，靠的是收窄范围、加评测和监控、并在记录保持干净的前提下一次放宽一个动作的自主度。在生产环境失败，不是模型的判决——而是你跳过的一张清单。如果你刚起步，[如何搭建一个 AI agent](/zh/news/2026-09-01-how-to-build-an-ai-agent/) 和入门的 [Agent 101](/zh/agent-101/) 会带你走完最初几步。
+
+## FAQ
+
+**AI agent 项目为什么总是失败？**
+很少是因为模型太弱。[Gartner](https://www.gartner.com/en/newsroom/press-releases/2025-06-25-gartner-predicts-over-40-percent-of-agentic-ai-projects-will-be-canceled-by-end-of-2027) 预计到 2027 年底超过 40% 的 agentic AI 项目会因成本、价值不清和管控薄弱被取消，[MIT 的 NANDA 报告](https://mlq.ai/media/quarterly_decks/v0.1_State_of_AI_in_Business_2025_Report.pdf)发现约 95% 的生成式 AI 试点没有可衡量的回报——因为工具不接进工作流。失败都是运营层面的：范围、集成、评测、关卡和成本。
+
+**是因为模型还不够好吗？**
+不是。两项原始研究都指向模型质量之外。MIT NANDA 归因于「学习鸿沟」——工具不适应、也不接进真实工作——Gartner 点的是成本、价值和风险管控。更好的模型修不了一个没定义的成功指标，也修不了一道缺失的人工关卡。
+
+**最大的单一原因是什么？**
+没有唯一答案，但「没有『跑得好』的定义」处在大多数原因的上游。如果你从没[给任务打基线、挑一个指标](/zh/news/2026-08-21-how-to-measure-ai-agent-roi/)，你就建不了评测、证不了价值、也分不清真实的性能回退和状态不好的一天——于是项目一路漂移，直到有人把它砍掉。
+
+**什么是「agent 洗白」？**
+这是 Gartner 的说法，指厂商把[聊天机器人](/zh/news/2026-08-12-ai-agent-vs-chatbot/)、助手和 [RPA](/zh/news/2026-08-18-ai-agent-vs-rpa/) 重新贴牌成「agentic AI」，却没有真正的 agent 能力——它估计成千上万家厂商里只有约 130 家是真的。买了这种再指望自主，就是给失望埋雷；在你把它叫作 agent 之前，先看它到底会不会采取多步动作。
+
+**怎么让我的 agent 不在生产环境失败？**
+挑一份收窄的工作、[把它深度集成](/zh/news/2026-08-26-how-to-deploy-ai-agents-in-production/)、把成功定义成一个数字、建[拿真实案例做的评测](/zh/news/2026-08-27-how-to-evaluate-ai-agents/)、给每个不可逆动作设[人工关卡](/zh/news/2026-08-13-human-in-the-loop-ai-agents/)，并确认[成本](/zh/news/2026-08-24-how-much-do-ai-agents-cost/)算得平。然后一次放宽一个动作的自主度。
+
+---
+
+这个系列里每一个搭建，都是那种*没有*失败的：一份收窄的工作，接进了系统，加了关卡，也便宜到能一直跑。想看职场人真正交付的搭建、他们保持的确切范围、以及哪些他们仍靠手动确认？[免费订阅](/zh/)，每周的实战搭建直接送到你邮箱。

@@ -1,6 +1,6 @@
 {
   "$comment": "GEO prompt feed — the questions working professionals ask ChatGPT / Perplexity / Gemini. The scheduled Cowork routine ideates entries; scripts/seo/feeds.mjs persists them. cluster: use-case|template|comparison|industry|tool-stack. status: new|covered (covered = a published article targets it). Phase 7 tracks whether the brand is cited for each.",
-  "updatedAt": "2026-09-22",
+  "updatedAt": "2026-09-23",
   "prompts": [
     {
       "prompt": "What are real examples of AI agents at work?",
@@ -592,9 +592,9 @@
       "prompt": "Why do so many AI agent projects fail?",
       "cluster": "tool-stack",
       "locale": "en",
-      "status": "new",
+      "status": "covered",
       "addedAt": "2026-09-20",
-      "note": "Sunday feed research 2026-09-20. Pairs with the new 'why AI agents fail in production' keyword. Anchor answers on the primary Gartner 40%-scrapped-by-2027 prediction + concrete failure classes; skip the unsourced vendor-blog failure-rate stats."
+      "note": "Sunday feed research 2026-09-20. Pairs with the 'why AI agents fail in production' keyword. Anchor answers on the primary Gartner 40%-scrapped-by-2027 prediction + concrete failure classes; skip the unsourced vendor-blog failure-rate stats. Covered 2026-09-23 by content/news/2026-09-23-why-ai-agents-fail-in-production. GEO-probed 2026-09-23 (on-publish baseline, verbatim web search): not cited — SERP dominated by vendor blogs (gruve.ai, towardsdatascience.com, fiddler.ai, hypersense-software.com, whitebeardstrategies.com, digitalapplied.com, creativebitsai.com, Forbes council) recycling the unsourced 88% / 70-95% failure numbers with no primary-sourced / it's-not-the-model angle grounded in a real desk build, this site's gap to own. The same SERP independently corroborates the article's thesis (failures are operational — scope/integration/unclear success criteria/economics, not model quality) and surfaces the same primary anchors (Gartner 40%-by-2027, MIT NANDA 95%). The article answers this prompt verbatim in its first FAQ; re-probe post-index to track lift."
     },
     {
       "prompt": "What are the main AI agent design patterns?",
