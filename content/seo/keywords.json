@@ -863,9 +863,10 @@
       "funnel": "MOFU",
       "cluster": "tool-stack",
       "locale": "both",
-      "status": "new",
+      "status": "used",
       "addedAt": "2026-09-13",
-      "note": "Sunday feed research 2026-09-13. Concrete security sub-topic of the safety hub. Signal: Zapier ships PII + prompt-injection scanning in AI guardrails (2026); n8n rebuilt agent node. More specific/searched than generic 'security risks'. Clusters with ai-agent-security-risks, ai-agent-guardrails, ai-agent-governance."
+      "note": "Sunday feed research 2026-09-13. Concrete security sub-topic of the safety hub. Signal: Zapier ships PII + prompt-injection scanning in AI guardrails (2026); n8n rebuilt agent node. More specific/searched than generic 'security risks'. Clusters with ai-agent-security-risks, ai-agent-guardrails, ai-agent-governance. Used 2026-09-24 → content/news/2026-09-24-ai-agent-prompt-injection (en+zh): defense playbook — OWASP LLM01, direct vs indirect, Willison lethal trifecta, layered defenses (least privilege + human gate, model robustness/classifiers, CaMeL dual-LLM). Wove link from security-risks hub (08-25).",
+      "usedAt": "2026-09-24"
     },
     {
       "term": "AI agents for healthcare",
