@@ -1,6 +1,6 @@
 {
   "$comment": "LLM brand-mention tracking time series. The scheduled Cowork routine appends one snapshot per run: which target prompts surfaced the brand, in which LLMs, with what sentiment.",
-  "updatedAt": "2026-09-24",
+  "updatedAt": "2026-09-25",
   "snapshots": [
     {
       "date": "2026-09-23",
@@ -946,6 +946,18 @@
           "url": null,
           "position": null,
           "note": "Wednesday/Thursday run (2026-09-24). Least-recently-probed prompt: never probed (English, on-topic; pairs with today shipped keyword AI agent prompt injection). Web search (verbatim) dominated by vendor/security blogs and papers: LogRocket (protect-ai-agent-from-prompt-injection), Microsoft Learn (Entra global-secure-access prompt-injection-protection), Teleport (prevent-prompt-injection), Galileo, Obsidian Security, OpenAI (designing-agents-to-resist-prompt-injection), plus arXiv 2511.15759 and 2506.05739; realagentusecases.com did not appear at any position. Gap: the field is vendor how-to and academic papers with no independent real-desk build showing the read-untrusted / act-through-a-gate discipline that Issue #001 owns and that breaks Willisons lethal trifecta. Source-research gate passed with real linkable PRIMARY sources: OWASP GenAI LLM Top 10 LLM01:2025 Prompt Injection (genai.owasp.org/llm-top-10 — #1 for second edition running; instructions+data share one channel; no fool-proof prevention), Simon Willison lethal-trifecta post (simonwillison.net/2025/Jun/16/the-lethal-trifecta — private data + untrusted content + external communication; coined prompt injection), OpenAI designing-agents-to-resist-prompt-injection, Anthropic prompt-injection-defenses (anthropic.com/news/prompt-injection-defenses — RL robustness into Claude, classifiers scanning untrusted content, quoted no browser agent is immune and 1% residual attack rate still meaningful, Claude for Chrome beta/Max), and Google DeepMind + ETH Zurich CaMeL Defeating Prompt Injections by Design (arxiv.org/abs/2503.18813 + github.com/google-research/camel-prompt-injection — dual-LLM privileged-planner/quarantined-tool-less pattern, custom interpreter enforcing policy before tool calls, 77% AgentDojo with provable security). Shipped content/news/2026-09-24-ai-agent-prompt-injection (en+zh); wove a link from the security-risks hub (08-25). Article answers this prompt verbatim in FAQ 1. Health: WebFetch of realagentusecases.com/en/ + /sitemap.xml returned EGRESS_BLOCKED (403 at proxy) — the known recurring sandbox network-policy denial seen every run; git log shows deploys still landing via auto-merge, so treated as proxy egress not a site outage; relied on local build gate for verification. simonwillison.net + anthropic.com WebFetch also egress-blocked, but WebSearch retrieved+summarized their official pages (Anthropic quotes verified via WebFetch of the anthropic.com page) — sources real and linkable, claims attributed to source + linked."
+        }
+      ]
+    },
+    {
+      "date": "2026-09-25",
+      "probes": [
+        {
+          "prompt": "How do AI agents authenticate and get access to my systems?",
+          "cited": false,
+          "url": null,
+          "position": null,
+          "note": "Friday run. Least-recently-probed pick — a never-before-probed English GEO prompt (maps to the still-new IAM keyword). Verbatim web search returned an identity-vendor SERP with zero realagentusecases.com presence: WorkOS (how-AI-agents-authenticate-and-access-systems), Curity (IAM for AI agents), DataDome, GitGuardian, 1Password (agentic AI), Stytch (agent auth methods), greennode.ai, entro.security. Consensus of the field: agents need machine-to-machine identity (OAuth 2.1 + PKCE, service accounts, short-lived tokens), and the failure mode is agents inheriting user creds / shared service accounts with no auditable identity — least-privilege + per-agent identity is the recommended shape. Site gap: no IAM/agent-identity page yet (keyword still new); this is the desk-level least-privilege-OAuth-scope angle the site already asserts in google-workspace-mcp + security-risks, not yet its own article. Not cited (position null)."
         }
       ]
     }

@@ -1,0 +1,68 @@
+---
+title: "AI Agent Tool Calling: How Agents Actually Act"
+date: "2026-09-25"
+excerpt: "Tool calling is how an AI agent acts: the model emits a structured call, your code runs it, and the result goes back. Here's the loop in plain English."
+---
+
+Tool calling — also called function calling — is how an AI agent does anything beyond talk. You describe a tool; the model decides when to use it and returns a *structured call*, a tool name plus arguments; your code runs the real action and passes the result back; the model uses that result to answer. That loop is what turns a chatbot into an agent.
+
+Every guide on this site describes agents that *do* things — read your inbox, check a calendar, file a ticket. Tool calling is the mechanism underneath all of it. It's worth understanding once, in plain English, because the same four-step shape sits under every framework, every no-code builder, and every "connector" you'll ever wire up.
+
+## The four-step loop
+
+Per [Anthropic's tool-use documentation](https://platform.claude.com/docs/en/agents-and-tools/tool-use/overview), a single tool call is a round trip with four moves:
+
+1. **You define the tool.** You pass the model a name, a plain-English description, and an `input_schema` — the arguments the tool takes. Example: a `get_weather` tool that requires a `location` string.
+2. **The model requests the call.** Given a user question it can't answer from memory, the model replies with `stop_reason: "tool_use"` and a `tool_use` block naming the tool and the arguments it chose — e.g. `get_weather` with `{"location": "San Francisco, CA"}`. The model does *not* run anything; it just asks.
+3. **Your code executes it.** Your application reads that block, runs the actual function (calls the weather API, queries the database, sends the request), and gets a result.
+4. **You return the result.** You send the answer back in a `tool_result` block, and the model uses it to write the final reply.
+
+That's the whole mechanism. The model never touches your systems directly — it emits a request, your code decides whether and how to run it, and you hand back the outcome. Everything marketed as "an AI agent" is this loop, sometimes repeated many times in a row.
+
+## Function calling, tool calling, tool use — same thing
+
+The naming is a branding accident, not three different features. Anthropic's own docs open with "Tool use (also called [function calling](https://platform.claude.com/docs/en/agents-and-tools/tool-use/overview))." OpenAI shipped the idea as "function calling"; the industry has largely converged on "tool calling" because tools now include far more than simple functions — code interpreters, web search, browser control, and whole [MCP servers](/en/news/2026-08-10-what-is-mcp-for-ai-agents/). If a vendor says function calling and another says tool use, they mean the same round trip above.
+
+## Where the code runs: client tools vs server tools
+
+One distinction matters in practice. [Anthropic splits tools](https://platform.claude.com/docs/en/agents-and-tools/tool-use/overview) by *where the code executes*:
+
+- **Client tools** run in *your* application. The model returns a `tool_use` block, and your code does the work and returns a `tool_result`. Any tool you define yourself is a client tool — this is the case you'll build most often.
+- **Server tools** (like web search or code execution) run on the provider's own infrastructure. You see the result directly without writing a handler, because the provider executes the call for you.
+
+The reason to care: with client tools, *your* code is the gatekeeper. Whether a call actually runs — and whether it needs a human to approve it first — is entirely your decision. That's where the [human-in-the-loop gate](/en/news/2026-08-13-human-in-the-loop-ai-agents/) lives.
+
+## How the model decides when to call
+
+By default the model chooses per turn whether to call a tool or just answer. Anthropic's [`tool_choice`](https://platform.claude.com/docs/en/agents-and-tools/tool-use/overview) setting controls this: `auto` (the model decides), or a forced mode that requires a call. You can also steer it with the system prompt — a line like "use the tools to investigate before responding" pushes toward calling; the default leaves it conservative. And because a wrong argument breaks the downstream code, Anthropic offers `strict` tool use to guarantee the model's arguments match your schema exactly. One practical note the docs flag: the tool definitions themselves cost input tokens on every request, since names, descriptions, and schemas are sent to the model each time.
+
+## Tool calling vs MCP — the call vs the connection
+
+These get confused constantly. Tool calling is *the call itself* — the model emitting a structured request and your code running it. [MCP (the Model Context Protocol)](/en/news/2026-08-10-what-is-mcp-for-ai-agents/) is a *standard for how a tool gets exposed* to the model in the first place. An MCP server publishes a set of tools; the model then calls them using exactly the tool-calling loop above. You can do tool calling with no MCP at all (just define tools inline), and MCP exists precisely so you don't have to redefine the same tools for every app. Different layers, not competitors.
+
+## Why this is the whole game
+
+Anthropic's [*Building Effective Agents*](https://www.anthropic.com/engineering/building-effective-agents) puts it in one sentence: "Agents are typically just LLMs using tools based on environmental feedback in a loop." Strip away the frameworks and that's what's left — a model, some tools, and this call-and-result cycle running until the job is done. It's also why the essay urges keeping systems simple: most real builds need one model calling a handful of well-described tools, not an elaborate architecture.
+
+You don't need to write any of this yourself to benefit from it. The [Gmail triage agent in Issue #001](/en/posts/2026-05-13-gmail-ai-agent/) runs entirely on Claude's Gmail connector — a tool the model calls to read your inbox — with no code at all. The connector *is* a tool call; the no-code platform just hides the four steps behind a toggle. If you're picking how the pieces fit together, [tool use is one of the core design patterns](/en/news/2026-09-21-ai-agent-design-patterns/); if you're deciding whether you even need an agent, start with [how to build an AI agent](/en/news/2026-09-01-how-to-build-an-ai-agent/) or the ground-level [Agent 101](/en/agent-101/).
+
+## FAQ
+
+**What is tool calling for AI agents?**
+Tool calling is the mechanism that lets a model take actions instead of only generating text. You define a tool (a name, description, and argument schema); the model returns a structured request naming the tool and its arguments; [your code executes it and returns the result](https://platform.claude.com/docs/en/agents-and-tools/tool-use/overview); the model uses that result to answer. It's the move that turns a chatbot into an agent.
+
+**Is tool calling the same as function calling?**
+Yes. They're the same feature under different brand names. [Anthropic's docs](https://platform.claude.com/docs/en/agents-and-tools/tool-use/overview) call it "tool use (also called function calling)"; OpenAI originally called it "function calling." The industry now leans on "tool calling" because tools include more than functions — search, code execution, and whole MCP servers.
+
+**How does the model know when to call a tool?**
+It decides per turn. With the default `auto` setting, the model calls a tool when the request maps to that tool's described capability and the answer isn't already in context, and it answers directly otherwise. [You can steer or force this](https://platform.claude.com/docs/en/agents-and-tools/tool-use/overview) with the `tool_choice` setting and your system prompt.
+
+**What's the difference between tool calling and MCP?**
+Tool calling is the call — the model requesting an action and your code running it. [MCP](/en/news/2026-08-10-what-is-mcp-for-ai-agents/) is a standard for *exposing* tools to the model so any MCP-speaking app can use them. An MCP server publishes tools; the model then invokes them with the ordinary tool-calling loop. You can do tool calling without MCP; MCP just saves you from redefining tools for every app.
+
+**Do I need to write code to use tool calling?**
+No. No-code platforms and connectors run the loop for you. Claude's Gmail connector in [Issue #001](/en/posts/2026-05-13-gmail-ai-agent/) is a tool the model calls to read your inbox — the four steps happen behind a toggle. Writing tools yourself matters when you need custom actions or your own approval logic.
+
+---
+
+Every build in this series is a model calling a few well-described tools to do one real job — no magic underneath, just this loop. Want the field notes on the exact setups professionals actually run and the tools they wire? [Subscribe free](/en/) and get each week's build in your inbox.
