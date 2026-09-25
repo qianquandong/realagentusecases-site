@@ -18,7 +18,7 @@ MCP 是一套规定「AI 应用如何与外部世界对话」的标准。按[官
 
 ## MCP 服务器暴露的是什么
 
-MCP 服务器不只是把原始数据递出来——它暴露的是结构化能力。[规范](https://modelcontextprotocol.io/)定义了服务器可提供的三大基本构件：**工具（tools）**（agent 可调用的函数——「搜邮件」「建日程」）、**资源（resources）**（agent 可读的数据——一个文件、一行数据库记录）、以及**提示（prompts）**（可复用模板）。agent「看你的日历」时，调的就是某个 MCP 服务器注册的 `calendar` 工具——和 [Issue #001 的 Gmail 三筛 agent](/zh/posts/2026-05-13-gmail-ai-agent/) 是同一套感知→判断→行动的循环。想要指向 Gmail、云端硬盘、日历的具体版本，那就是一个 [Google Workspace MCP 服务器](/zh/news/2026-08-08-google-workspace-mcp-server/)。搞懂之后想知道到底该跑哪些服务器？看[最值得先上手的 MCP 服务器](/zh/news/2026-08-11-best-mcp-servers-for-ai-agents/)。
+MCP 服务器不只是把原始数据递出来——它暴露的是结构化能力。[规范](https://modelcontextprotocol.io/)定义了服务器可提供的三大基本构件：**工具（tools）**（[agent 可调用的函数](/zh/news/2026-09-25-ai-agent-tool-calling/)——「搜邮件」「建日程」）、**资源（resources）**（agent 可读的数据——一个文件、一行数据库记录）、以及**提示（prompts）**（可复用模板）。agent「看你的日历」时，调的就是某个 MCP 服务器注册的 `calendar` 工具——和 [Issue #001 的 Gmail 三筛 agent](/zh/posts/2026-05-13-gmail-ai-agent/) 是同一套感知→判断→行动的循环。想要指向 Gmail、云端硬盘、日历的具体版本，那就是一个 [Google Workspace MCP 服务器](/zh/news/2026-08-08-google-workspace-mcp-server/)。搞懂之后想知道到底该跑哪些服务器？看[最值得先上手的 MCP 服务器](/zh/news/2026-08-11-best-mcp-servers-for-ai-agents/)。
 
 ## 它为什么成了默认
 

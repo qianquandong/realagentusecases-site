@@ -1,0 +1,68 @@
+---
+title: "AI Agent 工具调用：agent 如何行动"
+date: "2026-09-25"
+excerpt: "工具调用是 AI agent 行动的方式：模型发出一个结构化调用，你的代码去执行，结果再回传给模型。这篇用大白话讲清这个循环。"
+---
+
+工具调用（tool calling，也叫函数调用 function calling）是 AI agent 除了说话之外能做任何事的方式。你描述一个工具；模型决定何时用它，并返回一个*结构化调用*——一个工具名加上参数；你的代码去执行真正的动作，把结果传回；模型再用这个结果来回答。这个循环，就是把聊天机器人变成 agent 的那一步。
+
+本站每一篇讲的 agent 都在*做*事——读你的收件箱、查日历、开工单。工具调用是这一切底下的机制。值得用大白话弄懂一次：同样这四步的形状，垫在每一个框架、每一个无代码搭建工具、以及你以后会接的每一个「连接器」下面。
+
+## 四步循环
+
+按 [Anthropic 的工具使用文档](https://platform.claude.com/docs/en/agents-and-tools/tool-use/overview)，一次工具调用是一个四步的往返：
+
+1. **你定义工具。** 你给模型一个名字、一句大白话描述、以及一个 `input_schema`——工具接受的参数。例如一个 `get_weather` 工具，要求一个 `location` 字符串。
+2. **模型请求调用。** 遇到一个它凭记忆答不出的问题，模型会回复 `stop_reason: "tool_use"`，附一个 `tool_use` 块，写明工具名和它选好的参数——比如 `get_weather` 配 `{"location": "San Francisco, CA"}`。模型*不会*真去执行；它只是发出请求。
+3. **你的代码执行它。** 你的应用读到这个块，运行真正的函数（调天气 API、查数据库、发请求），拿到结果。
+4. **你把结果回传。** 你用一个 `tool_result` 块把答案送回去，模型用它写出最终回复。
+
+整个机制就这些。模型从不直接碰你的系统——它发出一个请求，你的代码决定是否、以及如何执行，你再把结果递回去。所有被当成「AI agent」卖的东西，都是这个循环，有时连着重复很多遍。
+
+## 函数调用、工具调用、tool use——同一件事
+
+这套命名是品牌造成的意外，不是三个不同功能。Anthropic 自己的文档开头就写「Tool use（也叫[函数调用 function calling](https://platform.claude.com/docs/en/agents-and-tools/tool-use/overview)）」。OpenAI 当初以「function calling」推出这个想法；行业现在大多收敛到「tool calling」，因为工具早已不只是简单函数——还有代码解释器、网页搜索、浏览器操控，以及整套 [MCP 服务器](/zh/news/2026-08-10-what-is-mcp-for-ai-agents/)。一家说函数调用、另一家说 tool use，指的都是上面那个往返。
+
+## 代码在哪跑：客户端工具 vs 服务器工具
+
+实践中有一个区别要紧。[Anthropic 按*代码在哪执行*](https://platform.claude.com/docs/en/agents-and-tools/tool-use/overview)把工具分成两类：
+
+- **客户端工具**在*你的*应用里跑。模型返回一个 `tool_use` 块，你的代码干活并返回 `tool_result`。任何你自己定义的工具都是客户端工具——这也是你最常搭的情形。
+- **服务器工具**（比如网页搜索、代码执行）在服务商自己的基础设施上跑。你直接看到结果，不用写处理逻辑，因为服务商替你执行了这次调用。
+
+为什么要在意：用客户端工具时，*你的*代码是守门人。一次调用到底跑不跑、要不要先经人批准，完全由你决定。这正是[人在环中的确认关卡](/zh/news/2026-08-13-human-in-the-loop-ai-agents/)所在。
+
+## 模型怎么知道何时该调用
+
+默认情况下，模型每一轮自己决定是调工具还是直接回答。Anthropic 的 [`tool_choice`](https://platform.claude.com/docs/en/agents-and-tools/tool-use/overview) 设置控制这一点：`auto`（模型自己决定），或一个强制模式（要求必须调用）。你也能用系统提示去引导——一句「先用工具调查再回答」会把它推向调用；默认则保守。而且因为一个参数填错就会弄坏下游代码，Anthropic 提供了 `strict` 严格模式，保证模型给的参数与你的 schema 精确匹配。文档还点出一个实用细节：工具定义本身每次请求都要消耗输入 token，因为工具名、描述和 schema 每次都会发给模型。
+
+## 工具调用 vs MCP——调用 vs 连接
+
+这俩老被搞混。工具调用是*调用本身*——模型发出结构化请求、你的代码去执行。[MCP（模型上下文协议）](/zh/news/2026-08-10-what-is-mcp-for-ai-agents/)是*一个工具最初如何被暴露给模型*的标准。一个 MCP 服务器发布一组工具；模型随后就用上面那个工具调用循环去调它们。你完全可以不用 MCP 做工具调用（直接内联定义工具就行），而 MCP 存在的意义，恰恰是让你不必为每个应用重新定义同一批工具。是不同的层，不是对手。
+
+## 为什么这就是全部
+
+Anthropic 的 [*Building Effective Agents*](https://www.anthropic.com/engineering/building-effective-agents) 一句话点破：「Agent 通常就是 LLM 在一个循环里，根据环境反馈使用工具。」把框架剥掉，剩下的就是这个——一个模型、几个工具、以及这个调用-返回的循环，一直跑到活干完。这也是那篇文章为什么劝你保持系统简单：多数真实搭建只需要一个模型去调几个描述清楚的工具，而不是一套复杂架构。
+
+你不用亲手写这些也能享受它。[Issue #001 里的 Gmail 三筛 agent](/zh/posts/2026-05-13-gmail-ai-agent/) 完全跑在 Claude 的 Gmail 连接器上——一个模型调来读你收件箱的工具——一行代码都不用写。连接器*就是*一次工具调用；无代码平台只是把这四步藏在一个开关背后。如果你在琢磨这些部件怎么拼，[工具使用是核心设计模式之一](/zh/news/2026-09-21-ai-agent-design-patterns/)；如果你还在判断到底要不要 agent，先看[如何搭一个 AI agent](/zh/news/2026-09-01-how-to-build-an-ai-agent/) 或最基础的 [Agent 101](/zh/agent-101/)。
+
+## FAQ
+
+**什么是 AI agent 的工具调用？**
+工具调用是让模型能采取行动、而不只是生成文字的机制。你定义一个工具（名字、描述、参数 schema）；模型返回一个结构化请求，写明工具和参数；[你的代码执行它并返回结果](https://platform.claude.com/docs/en/agents-and-tools/tool-use/overview)；模型用这个结果来回答。这就是把聊天机器人变成 agent 的那一步。
+
+**工具调用和函数调用是一回事吗？**
+是的。它们是同一个功能的不同品牌叫法。[Anthropic 的文档](https://platform.claude.com/docs/en/agents-and-tools/tool-use/overview)称之为「tool use（也叫函数调用）」；OpenAI 最初叫它「function calling」。行业现在更常用「工具调用」，因为工具已不止函数——还有搜索、代码执行和整套 MCP 服务器。
+
+**模型怎么知道何时该调用工具？**
+它每一轮自己判断。在默认的 `auto` 设置下，当请求对上某个工具描述的能力、而答案又不在上下文里时，模型就调那个工具，否则直接回答。[你可以用 `tool_choice` 设置和系统提示](https://platform.claude.com/docs/en/agents-and-tools/tool-use/overview)去引导或强制它。
+
+**工具调用和 MCP 有什么区别？**
+工具调用是那次调用——模型请求一个动作、你的代码去执行。[MCP](/zh/news/2026-08-10-what-is-mcp-for-ai-agents/) 是把工具*暴露*给模型的标准，好让任何讲 MCP 的应用都能用。一个 MCP 服务器发布工具；模型随后用普通的工具调用循环去调它们。不用 MCP 也能做工具调用；MCP 只是让你不必为每个应用重新定义工具。
+
+**用工具调用一定要写代码吗？**
+不用。无代码平台和连接器替你跑这个循环。[Issue #001](/zh/posts/2026-05-13-gmail-ai-agent/) 里 Claude 的 Gmail 连接器，就是一个模型调来读你收件箱的工具——那四步都发生在一个开关背后。自己写工具，是在你需要自定义动作或自己的审批逻辑时才要紧。
+
+---
+
+这个系列里的每一篇，都是一个模型调用几个描述清楚的工具去做一件真实的事——底下没有魔法，只有这个循环。想要职场人真正在跑的搭建实录、以及他们接的那些工具？[免费订阅](/zh/)，每周的搭建直接进你邮箱。
