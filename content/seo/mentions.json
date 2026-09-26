@@ -1,6 +1,6 @@
 {
   "$comment": "LLM brand-mention tracking time series. The scheduled Cowork routine appends one snapshot per run: which target prompts surfaced the brand, in which LLMs, with what sentiment.",
-  "updatedAt": "2026-09-25",
+  "updatedAt": "2026-09-26",
   "snapshots": [
     {
       "date": "2026-09-23",
@@ -958,6 +958,18 @@
           "url": null,
           "position": null,
           "note": "Friday run. Least-recently-probed pick — a never-before-probed English GEO prompt (maps to the still-new IAM keyword). Verbatim web search returned an identity-vendor SERP with zero realagentusecases.com presence: WorkOS (how-AI-agents-authenticate-and-access-systems), Curity (IAM for AI agents), DataDome, GitGuardian, 1Password (agentic AI), Stytch (agent auth methods), greennode.ai, entro.security. Consensus of the field: agents need machine-to-machine identity (OAuth 2.1 + PKCE, service accounts, short-lived tokens), and the failure mode is agents inheriting user creds / shared service accounts with no auditable identity — least-privilege + per-agent identity is the recommended shape. Site gap: no IAM/agent-identity page yet (keyword still new); this is the desk-level least-privilege-OAuth-scope angle the site already asserts in google-workspace-mcp + security-risks, not yet its own article. Not cited (position null)."
+        }
+      ]
+    },
+    {
+      "date": "2026-09-26",
+      "probes": [
+        {
+          "prompt": "How do I use ChatGPT or Claude as a work assistant?",
+          "cited": false,
+          "url": null,
+          "position": null,
+          "note": "Saturday run. Least-recently-probed pick — English GEO prompt last probed 2026-07-11 (status new, work-assistant cluster). Verbatim web search returned a how-to / integrations SERP with zero realagentusecases.com presence: Teamwork Desk (use Claude/ChatGPT via MCP), Jobber help, wondertools Substack (AI headquarters/connectors), Fast Company (connect apps to ChatGPT and Claude), the-ai-corner (power-user setup 2026), aizolo (use ChatGPT in Claude Code / both at once), pypi gpt-command-line, gpt-cli GitHub. Field consensus: set up Projects/custom instructions + connect Google Drive/Gmail/Calendar/Notion via built-in connectors or MCP, and pair the two models by strength. Site gap: no first-person work-assistant setup page yet; the ground-level angle sits in agent-101 and the Gmail Issue #001 build, not its own how-to. Not cited (position null). Today published content/news/2026-09-26-best-tools-to-build-ai-agents (en+zh) on the separate tool-stack keyword."
         }
       ]
     }

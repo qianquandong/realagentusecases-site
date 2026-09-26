@@ -1,0 +1,68 @@
+---
+title: "搭建 AI Agent 的最佳工具怎么选"
+date: "2026-09-26"
+excerpt: "搭建 AI Agent 的最佳工具取决于要干的活，不是排行榜。本文把工具分成代码框架、零代码搭建器和托管平台三档，讲清各自适合谁、怎么按任务选。"
+---
+
+搭建 AI Agent 的最佳工具取决于要干的活，不是排行榜。大致分三档：面向开发者、追求控制力的代码框架，比如 [LangGraph](https://www.langchain.com/langgraph) 和 [OpenAI Agents SDK](https://openai.github.io/openai-agents-python/)；快速搭工作流的零代码可视化搭建器，比如 [n8n](https://n8n.io/)；以及不想自己运维的团队用的托管平台和连接器。正确的选择，是能干完你那件真实活儿的、最简单的那一档。
+
+几乎每份「最佳 AI Agent 工具」清单都在把同一批框架互相 PK，好像你必须选个赢家。你不必。这些工具解决的是不同层级、不同投入下的不同问题；「我该用哪个」的诚实答案，起点是关于*你*的问题，而不是工具本身。本文把版图分成三档，告诉你哪一档适合哪种情况。
+
+## 先想想是不是根本不需要框架
+
+挑框架之前，先确认你是否真需要它。Anthropic 在 [*Building Effective Agents*](https://www.anthropic.com/engineering/building-effective-agents) 里说，它最成功的 Agent 实现「并没有用复杂的框架或专门的库」，而是用「简单、可组合的模式」搭出来的。文章的建议很直白：先直接调用大模型 API，因为框架「往往会加上额外的抽象层，遮住底层的 prompt 和响应」，等接近生产时再减少抽象。
+
+这很关键，因为第一个真正的决策根本不是选工具——而是你的任务到底需要 Agent，还是一条固定的[工作流](/zh/news/2026-09-15-ai-agents-vs-workflows/)。很多活儿就是一串可预测的步骤，从不需要模型自己决定下一步做什么。[Issue #001 的 Gmail 分拣 Agent](/zh/posts/2026-05-13-gmail-ai-agent/) 是*零*代码跑在连接器上的——完全没用框架。只有在确认任务确实需要之后，再去拿搭建工具。
+
+## AI Agent 工具的三个档次
+
+- **代码框架**——你写 Python 或 TypeScript，框架负责 Agent 循环、工具调用和记忆。控制力最大，责任也最大。
+- **零代码 / 可视化搭建器**——你在画布上拖节点，平台替你跑循环。上线快、可自托管，但处理边缘情况不够灵活。
+- **托管平台与连接器**——厂商全包，你只做配置并把它指向你的数据。投入最少，但对内部机制的控制也最少。
+
+你属于哪一档，主要由三点决定：有没有工程师、要不要自托管、逻辑有多定制——而不是哪个框架在跑分榜上排第一。
+
+## 代码框架：控制力，但有代价
+
+如果你有开发者、需要定制逻辑，这一档就是归宿。[LangChain](https://www.langchain.com/resources/ai-agent-frameworks) 是采用最广的开源生态，它的 [LangGraph](https://www.langchain.com/langgraph) 库把 Agent 建模成一张由你显式控制的步骤图——需要分支、循环和人工检查点时很有用。[OpenAI Agents SDK](https://openai.github.io/openai-agents-python/) 更轻量：[文档](https://github.com/openai/openai-agents-python)说它与厂商无关（支持 100+ 模型，不只是 OpenAI 的），自带 tracing、会话和 [MCP](/zh/news/2026-08-10-what-is-mcp-for-ai-agents/) 支持。做多智能体，[CrewAI](https://docs.crewai.com/) 把 Agent 组织成基于角色的「crew」，微软的 [AutoGen](https://microsoft.github.io/autogen/) 则把它们看作通过对话协作解决任务的 Agent。
+
+代价是实打实的：DataCamp 的 [2026 对比](https://www.datacamp.com/blog/best-ai-agents) 指出，这些框架给你代码级控制，但部署、可观测性和成本管理都得你自己扛。这也正是[为什么 AI Agent 在生产环境翻车](/zh/news/2026-09-23-why-ai-agents-fail-in-production/)背后的那份运维重量——框架反而是最容易的部分。
+
+## 零代码与可视化搭建器
+
+如果你这周就想要一个能跑的 Agent，又不想管一套代码库，可视化搭建器合适。[n8n](https://n8n.io/) 是可自托管的 source-available 工作流工具，把 AI 步骤和你其他应用一起接进节点图；[Dify](https://dify.ai/) 是通过可视化界面搭 LLM 应用和 Agent 的开源平台。它们用一点灵活性换速度，让非工程师也能上线。我们在[如何零代码搭建 AI Agent](/zh/news/2026-09-19-how-to-build-ai-agent-no-code/) 里详细讲过这套路子，[n8n 对比 Zapier](/zh/news/2026-08-14-n8n-vs-zapier-ai-agents/) 则说明了可视化搭建器什么时候胜过纯自动化工具。
+
+## 托管平台与连接器
+
+投入最低的一档，恰恰是多数职场人真正的起点：一个托管助手加连接器。你不搭 Agent——你把一个现成的 Agent 指向你的数据，让它去调工具。[Issue #001](/zh/posts/2026-05-13-gmail-ai-agent/) 里 Claude 的 Gmail 连接器就是这样：模型通过连接器读取并分拣收件箱，没有框架，也没有服务器要运维。DataCamp 的[盘点](https://www.datacamp.com/blog/best-ai-agents)把道理说得很白——合适的平台「更多取决于你现有的技术栈，而不是功能对比」。一个已经泡在 Salesforce、Google Workspace 或 Slack 里的团队，把助手指向这些系统，通常比从头立一个框架走得更远。
+
+## 到底怎么选
+
+从上往下走，不是从下往上。先从托管档开始，只有在它干不了活时才降到更低的抽象层：
+
+1. **托管助手 + 连接器能搞定吗？** 能就到此为止——这就是 [Gmail 那套](/zh/posts/2026-05-13-gmail-ai-agent/)。
+2. **要定制步骤但没工程师？** 用 [n8n](https://n8n.io/) 或 [Dify](https://dify.ai/) 这类可视化搭建器。
+3. **要完全控制且有开发者？** 用代码框架——[LangGraph](https://www.langchain.com/langgraph)、[OpenAI Agents SDK](https://openai.github.io/openai-agents-python/)，多智能体则用 [CrewAI](https://docs.crewai.com/)。
+
+无论落在哪一档，底层形状都是同样几个[设计模式](/zh/news/2026-09-21-ai-agent-design-patterns/)——一个模型在循环里调用工具。对整件事还陌生？先看 [Agent 101](/zh/agent-101/) 或[如何搭建 AI Agent](/zh/news/2026-09-01-how-to-build-an-ai-agent/)。
+
+## FAQ
+
+**搭建 AI Agent 最好的工具是哪个？**
+没有唯一答案——取决于你有没有工程师、要不要自托管、逻辑有多定制。追求控制力的开发者用 [LangGraph](https://www.langchain.com/langgraph) 或 [OpenAI Agents SDK](https://openai.github.io/openai-agents-python/) 这类代码框架；求快的团队用 [n8n](https://n8n.io/) 或 [Dify](https://dify.ai/) 这类可视化搭建器；多数职场人从托管助手加连接器起步，根本不写代码。
+
+**搭 AI Agent 一定要用框架吗？**
+往往不用。[Anthropic 的建议](https://www.anthropic.com/engineering/building-effective-agents)是先直接调用大模型 API，需要时再加框架，因为框架的抽象会遮住真实的 prompt 和响应。[Issue #001 的 Gmail Agent](/zh/posts/2026-05-13-gmail-ai-agent/) 完全没用框架。
+
+**LangGraph 和 OpenAI Agents SDK 有什么区别？**
+两者都是代码框架。[LangGraph](https://www.langchain.com/langgraph) 把 Agent 建成一张显式的步骤图，对分支和循环有细粒度控制；[OpenAI Agents SDK](https://openai.github.io/openai-agents-python/) 更轻量、与厂商无关，自带 tracing 和会话。LangGraph 适合复杂、有状态的流程；Agents SDK 适合快速跑起一个直接的 Agent。
+
+**零代码搭建器够用在生产环境吗？**
+对很多工作流是够的。[n8n](https://n8n.io/) 这类工具可自托管、也用于生产，但用灵活性换了速度——定制的边缘情况比写代码更难处理。哪里是分界线，见[如何零代码搭建 AI Agent](/zh/news/2026-09-19-how-to-build-ai-agent-no-code/)。
+
+**这么多工具到底怎么挑？**
+从投入最小往最大走：先试托管助手加连接器；需要定制步骤又没工程师，就用可视化搭建器；只有需要完全控制且有开发者时，才选代码框架。DataCamp 的[对比](https://www.datacamp.com/blog/best-ai-agents)说得好——合适的平台更多取决于你现有的技术栈，而不是功能清单。
+
+---
+
+工具从来不是有意思的地方——活儿才是。本系列每周记录职场人真正在跑的搭建方案，工具细节全都写进去。[免费订阅](/zh/)，每期直达你的邮箱。

@@ -1,0 +1,68 @@
+---
+title: "Best Tools to Build AI Agents: How to Choose"
+date: "2026-09-26"
+excerpt: "The best tool to build an AI agent depends on the job, not a leaderboard. Here's how code frameworks, no-code builders, and platforms actually differ."
+---
+
+The best tool to build an AI agent depends on the job, not a leaderboard. There are roughly three tiers: code frameworks like [LangGraph](https://www.langchain.com/langgraph) and the [OpenAI Agents SDK](https://openai.github.io/openai-agents-python/) for developers who want control, no-code visual builders like [n8n](https://n8n.io/) for fast workflows, and managed platforms and connectors for teams that don't want to run infrastructure. The right pick is the simplest one that does your actual job.
+
+Every "best AI agent tools" list ranks the same frameworks against each other as if you had to pick a winner. You don't. The tools solve different problems at different levels of effort, and the honest answer to "which should I use" starts with a question about *you*, not the tool. This guide sorts the landscape into three tiers and tells you which tier fits which situation.
+
+## Start simpler than you think
+
+Before you pick a framework, check whether you need one. In [*Building Effective Agents*](https://www.anthropic.com/engineering/building-effective-agents), Anthropic reports that its most successful agent implementations "weren't using complex frameworks or specialized libraries" — they were built "with simple, composable patterns." The essay's advice is blunt: start by using the LLM APIs directly, because frameworks "often create extra layers of abstraction that can obscure the underlying prompts and responses," and reduce abstraction as you move toward production.
+
+That matters because the first real decision isn't a tool at all — it's whether your task even needs an agent versus a fixed [workflow](/en/news/2026-09-15-ai-agents-vs-workflows/). Plenty of jobs are a predictable sequence of steps and never need the model to decide what to do next. The [Gmail triage agent in Issue #001](/en/posts/2026-05-13-gmail-ai-agent/) runs with *zero* code on a connector — no framework was involved at all. Reach for a build tool only once you've confirmed the job needs one.
+
+## The three tiers of agent tools
+
+- **Code frameworks** — you write Python or TypeScript; the framework handles the agent loop, tool calls, and memory. Maximum control, maximum responsibility.
+- **No-code / visual builders** — you drag nodes on a canvas; the platform runs the loop for you. Fast to ship, self-hostable, less flexible for edge cases.
+- **Managed platforms and connectors** — the vendor runs everything; you configure and point it at your data. Least effort, least control over internals.
+
+Which tier you belong in is set mostly by whether you have engineers, whether you need to self-host, and how custom the logic is — not by which framework tops a benchmark.
+
+## Code frameworks: control at a cost
+
+If you have developers and need custom logic, this tier is home. [LangChain](https://www.langchain.com/resources/ai-agent-frameworks) is the most widely adopted open-source ecosystem, and its [LangGraph](https://www.langchain.com/langgraph) library models an agent as a graph of steps you control explicitly — useful when you need branching, loops, and human checkpoints. The [OpenAI Agents SDK](https://openai.github.io/openai-agents-python/) is a lighter option: its [docs](https://github.com/openai/openai-agents-python) describe it as provider-agnostic (it works with 100+ models, not just OpenAI's), with built-in tracing, sessions, and [MCP](/en/news/2026-08-10-what-is-mcp-for-ai-agents/) support. For multi-agent setups, [CrewAI](https://docs.crewai.com/) organizes agents into role-based "crews," and Microsoft's [AutoGen](https://microsoft.github.io/autogen/) frames them as agents that converse to solve a task.
+
+The tradeoff is real: DataCamp's [2026 comparison](https://www.datacamp.com/blog/best-ai-agents) notes these give code-level control but require you to own deployment, observability, and cost management yourself. That's the same operational weight behind why [agents fail in production](/en/news/2026-09-23-why-ai-agents-fail-in-production/) — the framework is the easy part.
+
+## No-code and visual builders
+
+If you want a working agent this week and don't want to manage a codebase, visual builders fit. [n8n](https://n8n.io/) is a source-available workflow tool you can self-host, wiring AI steps into a node graph alongside your other apps; [Dify](https://dify.ai/) is an open-source platform for building LLM apps and agents through a visual interface. These trade some flexibility for speed and let non-engineers ship. We covered the pattern in depth in [how to build an AI agent with no code](/en/news/2026-09-19-how-to-build-ai-agent-no-code/), and the [n8n-vs-Zapier comparison](/en/news/2026-08-14-n8n-vs-zapier-ai-agents/) walks through when a visual builder beats a pure automation tool.
+
+## Managed platforms and connectors
+
+The lowest-effort tier is the one most professionals actually start with: a hosted assistant plus connectors. You don't build the agent — you point an existing one at your data and let it call tools. Claude's Gmail connector in [Issue #001](/en/posts/2026-05-13-gmail-ai-agent/) is exactly this: the model reads and triages an inbox through a connector, with no framework and no server to run. DataCamp's [roundup](https://www.datacamp.com/blog/best-ai-agents) makes the general point plainly — the right platform "depends more on your existing tech stack than on feature comparisons." A team already living in Salesforce, Google Workspace, or Slack usually gets further pointing an assistant at those systems than standing up a framework.
+
+## How to actually choose
+
+Work down, not up. Start at the managed tier and only drop to a lower level of abstraction when it can't do the job:
+
+1. **Can a hosted assistant + connectors do it?** If yes, stop there — that's the [Gmail build](/en/posts/2026-05-13-gmail-ai-agent/).
+2. **Need custom steps but no engineers?** A visual builder like [n8n](https://n8n.io/) or [Dify](https://dify.ai/).
+3. **Need full control and have developers?** A code framework — [LangGraph](https://www.langchain.com/langgraph), the [OpenAI Agents SDK](https://openai.github.io/openai-agents-python/), or [CrewAI](https://docs.crewai.com/) for multi-agent work.
+
+Whatever tier you land in, the underlying shape is the same handful of [design patterns](/en/news/2026-09-21-ai-agent-design-patterns/) — a model calling tools in a loop. New to the whole idea? Start with [Agent 101](/en/agent-101/) or [how to build an AI agent](/en/news/2026-09-01-how-to-build-an-ai-agent/).
+
+## FAQ
+
+**What is the best tool to build an AI agent?**
+There isn't one — it depends on whether you have engineers, need to self-host, and how custom the logic is. Developers who want control use code frameworks like [LangGraph](https://www.langchain.com/langgraph) or the [OpenAI Agents SDK](https://openai.github.io/openai-agents-python/); teams wanting speed use visual builders like [n8n](https://n8n.io/) or [Dify](https://dify.ai/); most professionals start with a hosted assistant and connectors and never write code.
+
+**Do I need a framework to build an AI agent?**
+Often no. [Anthropic's guidance](https://www.anthropic.com/engineering/building-effective-agents) is to start by calling the LLM APIs directly and only add a framework when you need it, because frameworks add abstraction that can hide the actual prompts and responses. The [Gmail agent in Issue #001](/en/posts/2026-05-13-gmail-ai-agent/) uses no framework at all.
+
+**What's the difference between LangGraph and the OpenAI Agents SDK?**
+Both are code frameworks. [LangGraph](https://www.langchain.com/langgraph) models an agent as an explicit graph of steps for fine-grained control over branching and loops; the [OpenAI Agents SDK](https://openai.github.io/openai-agents-python/) is a lighter, provider-agnostic library with built-in tracing and sessions. LangGraph suits complex, stateful flows; the Agents SDK suits getting a straightforward agent running quickly.
+
+**Are no-code agent builders good enough for production?**
+For many workflows, yes. Tools like [n8n](https://n8n.io/) are self-hostable and used in production, but they trade flexibility for speed — custom edge cases are harder than in code. See [how to build an AI agent with no code](/en/news/2026-09-19-how-to-build-ai-agent-no-code/) for where the line sits.
+
+**How do I choose between all these tools?**
+Work from least effort to most: try a managed assistant with connectors first, drop to a visual builder if you need custom steps without engineers, and only pick a code framework when you need full control and have developers. DataCamp's [comparison](https://www.datacamp.com/blog/best-ai-agents) puts it well — the right platform depends more on your existing stack than on feature checklists.
+
+---
+
+The tool is never the interesting part — the job is. Every week this series documents the exact setups professionals actually run, tools and all. [Subscribe free](/en/) and get each build in your inbox.
