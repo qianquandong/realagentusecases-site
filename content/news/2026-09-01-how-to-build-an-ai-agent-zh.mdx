@@ -40,7 +40,7 @@ OpenAI 的[《A Practical Guide to Building Agents》](https://openai.com/busine
 从一个定义清晰的任务起步，而不是一个万能助手。给模型这个任务需要的两三个工具，写清楚指令和护栏，给任何不可逆的动作加上人工关卡，信它之前先用 20–50 个真实例子测过。不会写代码，就用[无代码搭建工具](/zh/news/2026-07-08-no-code-ai-agent-tools/)，用可视化界面拿到同样的几部分。
 
 **搭 agent 是不是必须用 LangChain、CrewAI 这类框架？**
-起步不需要。[Anthropic 的建议](https://www.anthropic.com/engineering/building-effective-agents)是：最成功的实现用的是简单、可组合的模式，而不是复杂框架。一个模型调用套在循环里、配几个描述清楚的工具，就是一个真 agent。只在具体需求——而不是某个教程——逼你时，才加框架。
+起步不需要。[Anthropic 的建议](https://www.anthropic.com/engineering/building-effective-agents)是：最成功的实现用的是简单、可组合的模式，而不是复杂框架。一个模型调用套在循环里、配几个描述清楚的工具，就是一个真 agent。只在具体需求——而不是某个教程——逼你时，才加框架。真要选的时候，[搭建 AI Agent 的最佳工具怎么选](/zh/news/2026-09-26-best-tools-to-build-ai-agents/)按适合的活儿把框架、零代码搭建器和平台分了档。
 
 **AI agent 和工作流有什么区别？**
 [Anthropic](https://www.anthropic.com/engineering/building-effective-agents) 把工作流定义为「LLM 和工具按预先写死的代码路径编排」，把 agent 定义为「LLM 自己动态决定流程和工具调用的系统」。工作流更可预测、更便宜；agent 更灵活。任务允许的话，用更简单的那个。
