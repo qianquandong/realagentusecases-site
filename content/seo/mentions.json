@@ -1,7 +1,19 @@
 {
   "$comment": "LLM brand-mention tracking time series. The scheduled Cowork routine appends one snapshot per run: which target prompts surfaced the brand, in which LLMs, with what sentiment.",
-  "updatedAt": "2026-09-26",
+  "updatedAt": "2026-09-27",
   "snapshots": [
+    {
+      "date": "2026-09-27",
+      "probes": [
+        {
+          "prompt": "What are the best MCP servers for AI agents?",
+          "cited": false,
+          "url": null,
+          "position": null,
+          "note": "Sunday run (feed-replenishment day, no article). Least-recently-probed on-topic prompt: NEVER probed before (added 2026-08-09), and the site already covers the topic (content/news/2026-08-11-best-mcp-servers-for-ai-agents, 'Best MCP Servers for AI Agents: Where to Start'), so this baselines citation on an existing page's core query. Web search (verbatim) dominated by ranked listicles/aggregators + server directories: toloka.ai (Best MCP servers for AI agents 2026), accuwebhosting.com (Top 10), mixpeek.com (Tested & Ranked), mcpservers.org (Awesome MCP Servers directory), composio.dev (8 best for OpenAI Agent Builder), proxidize.com, heym.run (10 Best Ranked), capsolver.com, dev.to; realagentusecases.com did not appear — the field is 'best MCP server' roundups + server directories with no independent match-the-tools-not-chase-count / who-maintains-it-least-scope angle grounded in a real desk build, this site's gap to own. The 08-11 article answers this prompt directly (curation-not-listicle thesis); re-probe post-index to track lift. Marked this prompt 'covered' in prompts.json this run (a published article targets it). Health: WebFetch of realagentusecases.com/sitemap.xml returned EGRESS_BLOCKED (403 at proxy CONNECT) — the known recurring sandbox network-policy denial seen every run, not a site outage (external WebSearch works fine); live indexing could not be reconfirmed from this environment this run (prior runs confirmed a live indexed page at /en/news/2026-05-14-claude-system-prompt-email-triage/, cited ~position 6 for the inbox-triage prompt on 08-17 — a standing GEO win). Repo pipeline healthy: local HEAD == origin/claude/adoring-mccarthy-9xlno6 (cc8922f), ahead of origin/main (3f0201a) by the 09-24→09-26 dailies still propagating through the auto-merge bot; working tree clean, committing this Sunday's content/seo feed changes on the designated branch for the auto-merge bot. Sunday feed replenishment this run added 6 keywords (AI-agent-runtime-platforms, AI-employees, AG-UI-protocol, AI-agent-code-execution, AI-agents-for-ERP-systems, AI-agents-for-enterprise-search) and 5 GEO prompts (incl. one ZH AI-employee prompt), sourced from this week's competitor sweep + trend signals: the agent-runtime/hosting layer maturing (Amazon Bedrock AgentCore Runtime GA + rebuilt runtime Sep 2026 — serverless microVM, session isolation, elastic pay-for-usage memory, consistent cold starts, aws.amazon.com/about-aws/whats-new/2026/09/new-agentcore-runtime-generally-available; Runtime instances persistent compute on own EC2 GA Aug 2026; AG-UI protocol support Mar 2026; sandboxed shell/code execution), the 'AI employee / digital worker' framing crossing into the mainstream (Microsoft 2026 Work Trend Index 'Agents, human agency, and the opportunity'; Lindy/Ema/11x digital-worker platforms), and the no-code layer consolidating as agent orchestrators (n8n 2.0 Jan 2026 rebuilt AI Agent node across 6 LLM providers + instance-level MCP server public preview Apr 2026; Zapier Agents 80+ ready-made free agents + AI Guardrails + BYOM + persistent memory Feb 2026; Make's Maia natural-language scenario builder + Make Grid). Gartner Sep-2026 forecast: AI agents & assistants $29.2B in 2026 (wider agent-software market $206.5B 2026 → $376.3B 2027) — linkable, not fabricated."
+        }
+      ]
+    },
     {
       "date": "2026-09-23",
       "probes": [
