@@ -1,6 +1,6 @@
 {
   "$comment": "SEO keyword feed — a living file. The scheduled Cowork routine ideates entries; scripts/seo/feeds.mjs persists them (dedupe + status + timestamps). intent: informational|commercial|transactional. funnel: TOFU|MOFU|BOFU. cluster: use-case|template|comparison|industry|tool-stack. status: new|used.",
-  "updatedAt": "2026-09-26",
+  "updatedAt": "2026-09-27",
   "keywords": [
     {
       "term": "AI agent use cases",
@@ -978,6 +978,66 @@
       "status": "new",
       "addedAt": "2026-09-20",
       "note": "Sunday ideation 2026-09-20. How to read agent leaderboards without being fooled — the measure-on-your-own-tasks thesis the coding-agents article (09-12) already sketched, made its own page. Sourceable via primary benchmark pages: SWE-bench Verified (500 human-validated GitHub issues, swebench.com/verified.html, already on-site), tau-bench / GAIA (real-world tool-use tasks), plus the honest caveat that public benchmarks are directional and contamination-prone. Read-the-benchmark-then-test-your-own-tickets framing. Clusters with coding-agents (09-12), best-LLM-for-agents (new), evaluate-agents (08-27), best-frameworks (new)."
+    },
+    {
+      "term": "AI agent runtime platforms",
+      "intent": "commercial",
+      "funnel": "MOFU",
+      "cluster": "tool-stack",
+      "locale": "both",
+      "status": "new",
+      "addedAt": "2026-09-27",
+      "note": "Sunday feed research 2026-09-27 (trend sweep, sources in hand this run). The where-does-my-agent-actually-run layer — managed/serverless compute for agents in production, distinct from deploy-in-production (08-26, the how-to process) and marketplaces (09-20, the pre-built agent). THE 2026 signal: Amazon Bedrock AgentCore Runtime reached GA and shipped a rebuilt runtime in Sep 2026 (aws.amazon.com/about-aws/whats-new/2026/09/new-agentcore-runtime-generally-available/ — serverless microVM, session isolation, elastic memory that reclaims unused memory so you pay for actual usage not peak, consistent cold starts), plus Runtime instances GA Aug 2026 for persistent compute on your own EC2 (aws.amazon.com/blogs/aws/runtime-instances-persistent-compute-for-production-ai-agents-on-amazon-bedrock-agentcore/). Compare to any-framework hosting. Verify each vendor claim against its own AWS page at write time. Clusters with deploy-in-production (08-26), marketplaces (09-20), observability (08-31), how-much-cost (08-24)."
+    },
+    {
+      "term": "AI employees",
+      "intent": "informational",
+      "funnel": "TOFU",
+      "cluster": "comparison",
+      "locale": "both",
+      "status": "new",
+      "addedAt": "2026-09-27",
+      "note": "Sunday feed research 2026-09-27 (sources in hand this run). The 2026 marketing term buyers keep meeting — 'AI employee' / 'digital worker' / 'digital coworker' — and the honest question of what it actually is beyond a rebranded agent. Same term-vs-capability honesty as agent-vs-chatbot (08-12) and copilot-vs-agent (09-09). Groundable: Microsoft 2026 Work Trend Index 'Agents, human agency, and the opportunity' (microsoft.com/worklab/work-trend-index), Lindy 'What is an AI employee?' guide (lindy.ai/blog/ai-employee), Ema's enterprise 'AI Employee' platform, 11x's named digital workers (Alice the SDR / Julian the inbound phone agent — already cited on-site in sdr-cold-outreach 08-28). Frame: it's an agent wrapped in a role + authority boundaries, not a new capability; the human-stays line and the scoping discipline still apply. Clusters with agent-vs-chatbot, copilot-vs-agent, ai-agents-for-work (08-04), the industry hubs."
+    },
+    {
+      "term": "AG-UI protocol",
+      "intent": "informational",
+      "funnel": "TOFU",
+      "cluster": "tool-stack",
+      "locale": "both",
+      "status": "new",
+      "addedAt": "2026-09-27",
+      "note": "Sunday feed research 2026-09-27 (signal in hand this run). The third open protocol beside MCP (08-10, agent-to-tools) and A2A (09-08, agent-to-agent): AG-UI is agent-to-user-interface — how a running agent streams its steps/state to a front-end in real time. Completes the on-site protocol family. Signal: Amazon Bedrock AgentCore Runtime added AG-UI support Mar 2026 (aws.amazon.com/about-aws/whats-new/2026/03/amazon-bedrock-agentcore-runtime-ag-ui-protocol/ — deploy AG-UI servers for responsive real-time agent experiences; runtime handles auth/session isolation/scaling). Verify at write time against the AG-UI spec (ag-ui.com / the CopilotKit-originated project) and a second primary source before writing; skip if <3 real sources. Explainer angle: the three protocols and what each connects (tools / agents / users). Clusters with what-is-mcp (08-10), a2a-protocol (09-08), orchestration (08-15)."
+    },
+    {
+      "term": "AI agent code execution",
+      "intent": "informational",
+      "funnel": "MOFU",
+      "cluster": "tool-stack",
+      "locale": "both",
+      "status": "new",
+      "addedAt": "2026-09-27",
+      "note": "Sunday feed research 2026-09-27. When an agent writes and runs its own code, where does it run — and why a sandbox is the control. The 2026 signal: AgentCore Runtime shipped shell command execution in a sandboxed microVM (aws.amazon.com/about-aws/whats-new/2026/03/bedrock-agentcore-runtime-shell-command). Verify at write time against primary docs (Anthropic code execution / code interpreter tool, AWS AgentCore Code Interpreter, E2B/Modal sandboxes) — confirm 3+ real linkable sources before writing, skip otherwise. Ties the isolate-untrusted-work discipline to security-risks (08-25) and the tool-calling mechanism (09-25, running the call). Clusters with tool-calling (09-25), security-risks (08-25), runtime-platforms (new), computer-use-agents (new)."
+    },
+    {
+      "term": "AI agents for ERP systems",
+      "intent": "informational",
+      "funnel": "TOFU",
+      "cluster": "industry",
+      "locale": "both",
+      "status": "new",
+      "addedAt": "2026-09-27",
+      "note": "Sunday feed research 2026-09-27. The 'digital coworkers inside the system of record' vertical — agents embedded in ERP/HCM suites (order-to-cash, procure-to-pay, close, HR ops). Signal: erp.today 'AI Agents as Digital Coworkers: What ERP, HCM Buyers Must Prepare for by 2026'. Verify at write time against primary vendor pages (SAP Joule agents, Oracle Fusion AI agents, Microsoft Dynamics 365 agents, Workday Illuminate/Role agents) — confirm 3+ real linkable deployments before writing; keep the record-vs-approve human gate (ties to accountants 07-28, invoice-processing 07-20). Sibling of the accountants/sales-teams/customer-service industry hubs; the enterprise-suite flip of the desk-level builds."
+    },
+    {
+      "term": "AI agents for enterprise search",
+      "intent": "informational",
+      "funnel": "MOFU",
+      "cluster": "use-case",
+      "locale": "both",
+      "status": "new",
+      "addedAt": "2026-09-27",
+      "note": "Sunday feed research 2026-09-27. Agentic enterprise search / 'ask across all your work apps' — an agent that retrieves and synthesizes across Slack/Drive/email/tickets rather than returning a link list. Distinct from agentic-RAG (09-10, the retrieval mechanism) and market-research (08-07, external gathering): this is internal, cross-app knowledge retrieval. Verify at write time against primary pages (Glean, Google Gemini Enterprise / former Agentspace, Microsoft 365 Copilot search, Dropbox Dash) — confirm 3+ real linkable sources before writing. Retrieve-vs-decide framing reuses the answer-vs-trajectory lens. Clusters with agentic-rag (09-10), memory-and-context (09-05), what-is-mcp (08-10), knowledge-worker use-cases."
     }
   ]
 }

@@ -1,6 +1,6 @@
 {
   "$comment": "GEO prompt feed — the questions working professionals ask ChatGPT / Perplexity / Gemini. The scheduled Cowork routine ideates entries; scripts/seo/feeds.mjs persists them. cluster: use-case|template|comparison|industry|tool-stack. status: new|covered (covered = a published article targets it). Phase 7 tracks whether the brand is cited for each.",
-  "updatedAt": "2026-09-23",
+  "updatedAt": "2026-09-27",
   "prompts": [
     {
       "prompt": "What are real examples of AI agents at work?",
@@ -361,8 +361,9 @@
       "funnel": "MOFU",
       "cluster": "tool-stack",
       "locale": "en",
-      "status": "new",
-      "addedAt": "2026-08-09"
+      "status": "covered",
+      "addedAt": "2026-08-09",
+      "note": "Covered by content/news/2026-08-11-best-mcp-servers-for-ai-agents. GEO-probed 2026-09-27 (Sunday, least-recently-probed on-topic prompt = never probed before, and the site already targets it — baselines citation on that page's core query): not cited. Web search (verbatim) dominated by listicle/aggregator + directory pages: toloka.ai (Best MCP servers for AI agents 2026), accuwebhosting.com (Top 10), mixpeek.com (Tested & Ranked), mcpservers.org (Awesome MCP Servers directory), composio.dev (8 best for OpenAI Agent Builder), proxidize.com, heym.run (10 Best Ranked), capsolver.com; realagentusecases.com did not appear — the field is ranked 'best MCP server' roundups + server directories with no independent match-the-tools-not-chase-count / who-maintains-it-least-scope angle grounded in a real desk build, this site's gap to own. The 08-11 article answers this prompt directly (its curation-not-listicle thesis); re-probe post-index to track lift. Marked 'covered' this run."
     },
     {
       "prompt": "AI agent 怎么在多个任务之间记住上下文？",
@@ -611,6 +612,46 @@
       "status": "new",
       "addedAt": "2026-09-20",
       "note": "Sunday feed research 2026-09-20. ZH pair for the 'why AI agents fail in production' keyword; keeps the ZH prompt feed growing alongside EN. 用可链接的 Gartner 预测 + 真实故障类别作答，不引用无来源的失败率数字。"
+    },
+    {
+      "prompt": "Where does an AI agent actually run in production?",
+      "cluster": "tool-stack",
+      "locale": "en",
+      "status": "new",
+      "addedAt": "2026-09-27",
+      "note": "Sunday feed research 2026-09-27. Pairs with the new 'AI agent runtime platforms' keyword; the where-does-it-run / managed-serverless-compute question distinct from the how-to-deploy process. Grounded in Amazon Bedrock AgentCore Runtime (GA + rebuilt runtime Sep 2026; serverless microVM, session isolation, elastic pay-for-usage memory) + Runtime instances (persistent compute on your own EC2, GA Aug 2026)."
+    },
+    {
+      "prompt": "What is the difference between an AI employee and an AI agent?",
+      "cluster": "comparison",
+      "locale": "en",
+      "status": "new",
+      "addedAt": "2026-09-27",
+      "note": "Sunday feed research 2026-09-27. Pairs with the new 'AI employees' keyword; the term-vs-capability honesty question (is a 'digital worker' a new thing or a rebranded agent?). Grounded in Microsoft 2026 Work Trend Index, Lindy 'What is an AI employee?', Ema, 11x (Alice/Julian)."
+    },
+    {
+      "prompt": "What are MCP, A2A, and AG-UI protocols?",
+      "cluster": "tool-stack",
+      "locale": "en",
+      "status": "new",
+      "addedAt": "2026-09-27",
+      "note": "Sunday feed research 2026-09-27. Pairs with the new 'AG-UI protocol' keyword; the three open protocols and what each connects (agent-to-tools / agent-to-agent / agent-to-UI). Ties the on-site what-is-mcp (08-10) + a2a-protocol (09-08) into the full picture. Grounded in AWS AgentCore AG-UI support (Mar 2026) + the AG-UI spec (ag-ui.com), verify at write time."
+    },
+    {
+      "prompt": "Can an AI agent write and run its own code safely?",
+      "cluster": "tool-stack",
+      "locale": "en",
+      "status": "new",
+      "addedAt": "2026-09-27",
+      "note": "Sunday feed research 2026-09-27. Pairs with the new 'AI agent code execution' keyword; the sandbox-is-the-control answer. Grounded in AgentCore Runtime shell/code execution in a sandboxed microVM, Anthropic code execution tool, E2B-style sandboxes; ties to security-risks (08-25). Verify 3+ primary sources at write time."
+    },
+    {
+      "prompt": "AI 员工和 AI agent 有什么区别？",
+      "cluster": "comparison",
+      "locale": "zh",
+      "status": "new",
+      "addedAt": "2026-09-27",
+      "note": "Sunday feed research 2026-09-27. ZH pair for the 'AI employees' keyword; keeps the ZH prompt feed growing alongside EN. AI 员工/数字员工是不是只是 agent 的营销包装——能力没变，只是加了角色和权限边界。"
     }
   ]
 }
