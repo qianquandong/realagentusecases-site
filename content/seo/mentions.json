@@ -1,6 +1,6 @@
 {
   "$comment": "LLM brand-mention tracking time series. The scheduled Cowork routine appends one snapshot per run: which target prompts surfaced the brand, in which LLMs, with what sentiment.",
-  "updatedAt": "2026-09-27",
+  "updatedAt": "2026-09-28",
   "snapshots": [
     {
       "date": "2026-09-27",
@@ -982,6 +982,18 @@
           "url": null,
           "position": null,
           "note": "Saturday run. Least-recently-probed pick — English GEO prompt last probed 2026-07-11 (status new, work-assistant cluster). Verbatim web search returned a how-to / integrations SERP with zero realagentusecases.com presence: Teamwork Desk (use Claude/ChatGPT via MCP), Jobber help, wondertools Substack (AI headquarters/connectors), Fast Company (connect apps to ChatGPT and Claude), the-ai-corner (power-user setup 2026), aizolo (use ChatGPT in Claude Code / both at once), pypi gpt-command-line, gpt-cli GitHub. Field consensus: set up Projects/custom instructions + connect Google Drive/Gmail/Calendar/Notion via built-in connectors or MCP, and pair the two models by strength. Site gap: no first-person work-assistant setup page yet; the ground-level angle sits in agent-101 and the Gmail Issue #001 build, not its own how-to. Not cited (position null). Today published content/news/2026-09-26-best-tools-to-build-ai-agents (en+zh) on the separate tool-stack keyword."
+        }
+      ]
+    },
+    {
+      "date": "2026-09-28",
+      "probes": [
+        {
+          "prompt": "What is the difference between an AI employee and an AI agent?",
+          "cited": false,
+          "url": null,
+          "position": null,
+          "note": "Monday run. Never-probed EN prompt (cluster: comparison), chosen to baseline the AI-employees term cluster the day that article ships. Verbatim web search returned only third-party explainers — atomicwork.com (AI agents vs AI coworkers), eigent.ai, shockwavesolutionsllc.com, knowlee.ai, teamday.ai, crevio.co, blog.aiwork.app, rejoicehub.com, phoebezhang.substack.com; realagentusecases.com did not appear. Gap: the SERP is vendor term-definition posts with no independent real-desk take framing 'AI employee' = agent + role + persistence + authority limits. Today shipped content/news/2026-09-28-ai-employees (en+zh) targeting exactly this; re-probe post-index."
         }
       ]
     }

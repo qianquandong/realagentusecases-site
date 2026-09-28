@@ -1,0 +1,58 @@
+---
+title: "AI 员工是什么？和 AI agent 有何不同"
+date: "2026-09-28"
+excerpt: "「AI 员工」是 2026 年最响的标签。剥掉包装，它就是被赋予了角色、记忆和权限边界的 AI agent——不是一种新的智能。这篇讲清标签和能力的区别。"
+---
+
+「AI 员工」是给「放进了某个明确角色里的 AI agent」起的一个营销名字。它拥有一条工作流、跨会话保留记忆、有自己的收件箱或任务队列让工作自动流向它、按计划自动运行而不是干等你的指令。底层的模型还是同一个——多出来的只是角色、持久性和权限边界。
+
+整个 2026 年，厂商都在把 agent 重新包装成「AI 员工」「数字员工」「AI 同事」。词是新的，技术大多不是。看懂到底变了什么、又没变什么，是「招到一个有用的队友」和「买了个换皮产品」之间的区别。本文把标签和能力分开来讲。
+
+## 同一个模型，换了一份岗位说明
+
+「AI 员工」里的智能，和任何 [AI agent](/zh/news/2026-08-12-ai-agent-vs-chatbot/) 是同一类模型：一个会规划步骤、调用工具的大语言模型。Anthropic 在 [*Building Effective Agents*](https://www.anthropic.com/engineering/building-effective-agents) 里把 agent 定义为「模型动态主导自己的流程和工具使用」的系统。「员工」这个标签丝毫改变不了这个引擎。变的是包装——就像[copilot 和 agent 跑在同一批模型上，干的却是不同的活](/zh/news/2026-09-09-ai-copilot-vs-ai-agent/)。
+
+Lindy 的 [AI 员工指南](https://www.lindy.ai/blog/ai-employee) 划了一条有用的线，用来区分它和老式自动化：基于规则的 RPA「数字员工」按固定步骤走，一遇到意外就断；而 AI 员工建在大模型之上，能在自己角色范围内用判断力处理变化。那份判断力，就是 agent 的部分；而「员工」，是包在它外面的一切。
+
+## 真正加上去的：角色、记忆和一个「地址」
+
+三样东西，把一个光秃秃的 agent 变成了人们口中的「员工」：
+
+- **一个角色。** 它有明确的岗位——SDR、客服分拣、记账员——配一条工作流、预期的输入、完成的定义，以及一位复核人。让它像「一次招聘」的是范围，不是新智能。
+- **持久性。** 它[跨会话保留记忆和上下文](/zh/news/2026-09-05-ai-agent-memory-and-context/)，而不是每次 prompt 后就忘光；它按计划或事件触发运行，而不是只在你开口时才动。
+- **一个地址。** 它有了收件箱、@ 提及或任务队列，工作可以直接流向*它*，不必先经过你——这是从「转交任务」到「真正委派」的转变。
+
+这些都不是模型层面的突破。它们是叠在 agent 之上的产品与流程选择——这也正是为什么[同样的翻车模式依然成立](/zh/news/2026-09-23-why-ai-agents-fail-in-production/)。
+
+## 谁在卖「AI 员工」
+
+作为一个市场，这个品类是真实存在的，尽管术语很松。[11x](https://www.11x.ai/blog/meet-alice-the-first-true-digital-worker-in-sales) 把 Alice 定位成「销售领域第一个真正的数字员工」——一个以具名角色跑外呼开发的 agent，我们在 [AI SDR 冷启动外呼搭建](/zh/news/2026-08-28-ai-sdr-agent-cold-outreach/) 里拆解过。[Lindy](https://www.lindy.ai/blog/ai-employee) 卖的是覆盖邮件、会议、客服和销售的零代码「AI 员工」。[Ema](https://www.ema.ai/) 这类企业平台，主打把「AI 员工」部署到 HR、IT 和财务部门。模式是一致的：一个 agent，被安上一个角色名，在组织里给它一个位子。
+
+## 数据到底说明了什么
+
+这个转变是可衡量的，但要仔细读。微软的 [2026 Work Trend Index](https://www.microsoft.com/en-us/worklab/work-trend-index/agents-human-agency-and-the-opportunity-for-every-organization)——基于对 10 个国家 20,000 名员工的调查加上 Microsoft 365 使用信号——报告称 Microsoft 365 中活跃的 agent **同比增长 15 倍**（大型企业为 18 倍）。但同一份报告也直言，随着 agent 铺开，人的能动性并没有消失：下降的是一步步的战术执行，上升的是人来「设定清晰意图」、定义标准、评估结果的那份工作。换句话说，招一个「AI 员工」增加的是一份管理者的工作量，而不是一个撒手不管的名额。这和[五种在工作中真正站得住的 agent 模式](/zh/news/2026-08-04-ai-agents-for-work/)一致：每一种自动化的是活儿，不是问责。
+
+## 「聘用」之前的诚实测试
+
+因为 AI 员工底层就是 agent，纪律也一样。Anthropic [建议](https://www.anthropic.com/engineering/building-effective-agents)用能解决问题的最简单方案，加上护栏、人工检查点和停止条件——这套建议不会因为你把 agent 叫成同事就变。会发送、付款、删除的步骤，依然要留在[人在环中的闸门](/zh/news/2026-08-13-human-in-the-loop-ai-agents/)后面。真正该问的不是「我该不该招个 AI 员工」，而是「这件具体的活儿需要 agent 吗，我愿意给它多大权限」。我们的旗舰案例 [Issue #001 的 Gmail 分拣搭建](/zh/posts/2026-05-13-gmail-ai-agent/) 是个好标尺：它自由地读、通过闸门去做——一个有范围的角色，而不是一张空白支票式的员工。
+
+## FAQ
+
+**AI 员工是什么？**
+AI 员工是被放进某个明确业务角色里的 AI agent——配有工作流、跨会话的记忆、自己的收件箱或队列，以及运行计划——因此它像一个持久的队友，而不是一次性的工具。[Lindy](https://www.lindy.ai/blog/ai-employee) 把它描述为一个会采取行动、保留记忆的大模型 agent，区别于基于规则的自动化。它的智能就是一个标准的 [AI agent](/zh/news/2026-08-12-ai-agent-vs-chatbot/)，「员工」是包在外面的角色和结构。
+
+**AI 员工和 AI agent 有什么区别？**
+底层模型通常没有区别——两者跑的都是同一类大模型。区别在包装：agent 是被调用时完成一个任务，而「AI 员工」加上了明确的角色、持久的记忆、工作流向的地址，以及常驻规则。这和 [copilot 与 agent 的区别](/zh/news/2026-09-09-ai-copilot-vs-ai-agent/)是一回事——是自主度和结构上的光谱，不是一种新能力。
+
+**AI 员工和 RPA、数字员工是一回事吗？**
+不是。按 [Lindy 的拆解](https://www.lindy.ai/blog/ai-employee)，传统 RPA「数字员工」按固定规则走，遇到意外就断；而 AI 员工建在大模型上，能在角色范围内用判断力处理变化——更接近 agent 而不是宏。有些厂商仍把大模型 agent 叫「数字员工」，所以要看标签底下到底是什么。
+
+**AI 员工会取代人类的工作吗？**
+证据更多指向重塑而非取代。微软 [2026 Work Trend Index](https://www.microsoft.com/en-us/worklab/work-trend-index/agents-human-agency-and-the-opportunity-for-every-organization) 发现，随着 agent 使用上升，人的工作从一步步执行，转向设定意图、定义标准和复核结果。一个「AI 员工」仍然需要有人给它划范围、给风险动作上闸门、检查它的成果。
+
+**我需要的是「AI 员工」还是就一个 agent？**
+从活儿出发，别从标签出发。如果你要的是把一件重复的、多步骤的任务可靠地干完，一个有范围的 [agent](/zh/news/2026-08-04-ai-agents-for-work/) 加上[人工闸门](/zh/news/2026-08-13-human-in-the-loop-ai-agents/)通常就是全部答案。只有当工作是持续的、会从别人那里流向它、值得设一个常驻岗位时，「员工」这个框架才配得上它的名字——否则就是个你可以跳过的换皮。
+
+---
+
+想看专业人士真正在跑的 agent 实录——具体配置、成本和翻车点？[免费订阅](/zh/)，每周的搭建直接送到你邮箱。
