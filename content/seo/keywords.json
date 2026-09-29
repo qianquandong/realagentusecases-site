@@ -196,8 +196,9 @@
       "funnel": "TOFU",
       "cluster": "industry",
       "locale": "both",
-      "status": "new",
-      "addedAt": "2026-05-14"
+      "status": "used",
+      "addedAt": "2026-05-14",
+      "note": "Used 2026-09-29 → content/news/2026-09-29-ai-agents-for-founders-{en,zh}.mdx (title 'AI Agents for Founders: Which Hats to Delegate'). Industry TOFU hub over the solo-operator's many hats, mapped to scoped named agents behind a review step: sell = HubSpot Breeze Prospecting Agent (research-vs-send, outcome-priced ~$1/lead) linking down to sdr-cold-outreach (08-28) + lead-qualification (07-18); support = Intercom Fin ($0.99/resolution, ~76% avg resolution across 12,000+ customers, resolve-vs-escalate) → customer-service (09-14); market = content-repurposing (07-24, draft-vs-publish); run-the-day = Issue #001 Gmail triage + meeting-notes (08-05). Human-stays line = judgment (vision/fundraising/hiring/pricing/promises) behind the human-in-the-loop gate (08-13), with the limits grounded in Fortune 2026-05-18 (solo founders doing the work of whole teams, but with limits) + why-agents-fail (09-23) + Anthropic Building Effective Agents (simplest solution, tight scope). Same automate-the-work-not-the-judgment frame as marketers/recruiters/consultants/realtors hubs; wove an inbound link from the marketers hub (07-27) FAQ 'Where should a solo marketer or founder begin?' (en+zh). Answers the GEO prompt 'What AI agents can help founders?' verbatim in its first FAQ (probed this run, not cited). Appended to public/llms.txt as an evergreen page."
     },
     {
       "term": "AI agent for calendar scheduling",
