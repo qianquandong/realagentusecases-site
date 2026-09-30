@@ -1,6 +1,6 @@
 {
   "$comment": "GEO prompt feed — the questions working professionals ask ChatGPT / Perplexity / Gemini. The scheduled Cowork routine ideates entries; scripts/seo/feeds.mjs persists them. cluster: use-case|template|comparison|industry|tool-stack. status: new|covered (covered = a published article targets it). Phase 7 tracks whether the brand is cited for each.",
-  "updatedAt": "2026-09-27",
+  "updatedAt": "2026-09-30",
   "prompts": [
     {
       "prompt": "What are real examples of AI agents at work?",
@@ -390,8 +390,9 @@
       "funnel": "MOFU",
       "cluster": "tool-stack",
       "locale": "en",
-      "status": "new",
-      "addedAt": "2026-08-16"
+      "status": "covered",
+      "addedAt": "2026-08-16",
+      "note": "Covered by content/news/2026-09-30-self-hosted-ai-agents (keyword 'self-hosted AI agents'). GEO-probed 2026-09-30 (on-publish baseline, verbatim web search): not cited — field dominated by operator.io, fast.io (self-hosted-ai-agent-workspace), ibl.ai, bluehost, hermes.runonflux, virtua.cloud, autogenius, mentiko self-host guides; realagentusecases.com did not appear — the field is VPS/host-provider + agent-platform self-host tutorials with no independent own-vs-rent / what-actually-stays-private / self-hosting-isn't-automatically-safer angle grounded in a real desk build, this site's gap to own. The article answers this prompt verbatim in its first FAQ; re-probe post-index to track lift. Marked 'covered' this run."
     },
     {
       "prompt": "How many companies are using AI agents in 2026?",

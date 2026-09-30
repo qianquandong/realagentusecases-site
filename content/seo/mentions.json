@@ -1,7 +1,19 @@
 {
   "$comment": "LLM brand-mention tracking time series. The scheduled Cowork routine appends one snapshot per run: which target prompts surfaced the brand, in which LLMs, with what sentiment.",
-  "updatedAt": "2026-09-29",
+  "updatedAt": "2026-09-30",
   "snapshots": [
+    {
+      "date": "2026-09-30",
+      "probes": [
+        {
+          "prompt": "Can I self-host an AI agent?",
+          "cited": false,
+          "url": null,
+          "position": null,
+          "note": "Wednesday run. On-publish baseline for today's article (keyword 'self-hosted AI agents', own-vs-rent framing). Never-probed prompt (added 2026-08-16), an exact on-topic match for today's keyword and its paired GEO prompt. Web search (verbatim) dominated by VPS/host-provider + agent-platform self-host tutorials: operator.io (Operator.io vs self hosting your own AI agent), fast.io (self-hosted-ai-agent-workspace), ibl.ai (self-hosted ai agent platform you own), bluehost (Self-Hosting Hermes Agent vs Managed), hermes.runonflux, virtua.cloud (Self-Host AI Agents on a VPS), new.autogenius.io, mentiko.com (self-hosted ai agents 2026 guide); realagentusecases.com did not appear — the field is host-provider marketing + generic 'how to self-host' guides with no independent own-vs-rent / what-actually-stays-private / self-hosting-isn't-automatically-safer angle grounded in a real desk build, this site's gap to own. Notably the same SERP independently states parts of the article's own thesis (self-hosting = control/predictable-cost/privacy but front-loads DevOps; needs ops capacity or a managed platform is better) — corroboration for the shipped article, not fabrication. The article answers this prompt verbatim in its first FAQ; re-probe post-index to track lift. Marked the prompt 'covered' in prompts.json this run. Source-research gate passed with real linkable PRIMARY sources: n8n hosting docs (docs.n8n.io/hosting) + Sustainable Use License (docs.n8n.io/sustainable-use-license) + self-hosted AI Starter Kit repo (github.com/n8n-io/self-hosted-ai-starter-kit — Docker Compose bundling n8n + local model runner + vector DB, confirmed in search), Dify repo (github.com/langgenius/dify — open-source LLM app platform, CE via docker compose), Flowise repo (github.com/FlowiseAI/Flowise — open-source visual builder), LangGraph Platform deployment-options (docs.langchain.com/langgraph-platform/deployment-options — self-hosted Full Platform / Data Plane Only behind Enterprise, library itself free), Ollama (ollama.com — open models locally, OpenAI-compatible API), + Issue #001 as the managed ~$20/mo contrast. Deliberately kept hardware framing qualitative (no fabricated RAM/perf numbers — the '8GB min / Raspberry Pi 4' figures surfaced only in tutorials, not primary), per the no-fabricated-numbers gate. Health: WebFetch of realagentusecases.com/en/ AND /sitemap.xml both returned EGRESS_BLOCKED (403 at proxy CONNECT) — the known recurring sandbox network-policy denial seen every run, not a site outage (external WebSearch works fine); live indexing could not be reconfirmed from this environment this run (prior runs confirmed a live indexed page at /en/news/2026-05-14-claude-system-prompt-email-triage/, cited ~position 6 for the inbox-triage prompt on 08-17 — a standing GEO win). Repo pipeline healthy: HEAD on the designated branch (claude/adoring-mccarthy-i62nry) in sync with origin, daily auto-merges landing cleanly through 09-29 ai-agents-for-founders; working tree clean before this run, committing today's pair + feed updates on the designated branch for the auto-merge bot. Today's article is the ownership deep-dive under best-tools (09-26, which already names self-hostable n8n + open-source Dify) — wove an inbound link from n8n-vs-zapier (08-14) 'Ownership: rent it or run it' section (en+zh); clusters with no-code-ai-agent-tools (07-08), how-to-build (09-01), security-risks (08-25), guardrails (08-29), human-in-the-loop (08-13). Appended to public/llms.txt as an evergreen page."
+        }
+      ]
+    },
     {
       "date": "2026-09-29",
       "probes": [
