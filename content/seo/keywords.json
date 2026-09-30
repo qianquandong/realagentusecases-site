@@ -1,6 +1,6 @@
 {
   "$comment": "SEO keyword feed — a living file. The scheduled Cowork routine ideates entries; scripts/seo/feeds.mjs persists them (dedupe + status + timestamps). intent: informational|commercial|transactional. funnel: TOFU|MOFU|BOFU. cluster: use-case|template|comparison|industry|tool-stack. status: new|used.",
-  "updatedAt": "2026-09-27",
+  "updatedAt": "2026-09-30",
   "keywords": [
     {
       "term": "AI agent use cases",
@@ -576,8 +576,8 @@
       "funnel": "MOFU",
       "cluster": "tool-stack",
       "locale": "both",
-      "status": "new",
-      "note": "n8n's self-host + AI-agent-node momentum (blog.n8n.io 2026 coverage). Clusters with no-code-ai-agent-tools + n8n-vs-zapier. Added 2026-08-16 (Sunday ideation).",
+      "status": "used",
+      "note": "Used 2026-09-30 → content/news/2026-09-30-self-hosted-ai-agents-{en,zh}.mdx (title 'Self-Hosted AI Agents: Own It or Rent It'). Own-vs-rent framing: an agent's two hostable parts (orchestration vs model) and two routes — Route A self-hosts the orchestration on a free open platform (n8n Community Edition + fair-code Sustainable Use License + self-hosted AI Starter Kit Docker Compose, Dify CE via docker compose, Flowise) and rents a hosted model with your key (system+data stores stay in-house, prompt content still travels to the provider); Route B also runs the model locally with Ollama (nothing leaves the network, at the cost of smaller models + hardware). Honest caveat: self-hosting isn't automatically safer (moves patching/TLS/auth/backups/monitoring to you, agent risk surface unchanged, keep guardrails-in-workflow + human gate) + the license nuance (open-source library ≠ free self-hosted platform: LangGraph Platform self-hosted is Enterprise though the LangGraph library is free). Which-do-you-need ladder starts managed (Issue #001 ~$20/mo). Sources (all primary/linkable): n8n hosting docs (docs.n8n.io/hosting) + Sustainable Use License + self-hosted-ai-starter-kit GitHub, Dify repo (github.com/langgenius/dify), Flowise repo (github.com/FlowiseAI/Flowise), LangGraph Platform deployment-options (docs.langchain.com), Ollama (ollama.com), + Issue #001. No fabricated numbers (kept hardware framing qualitative). Wove an inbound link from n8n-vs-zapier (08-14) 'Ownership: rent it or run it' section (en+zh). Answers the GEO prompt 'Can I self-host an AI agent?' verbatim in its first FAQ (probed this run 2026-09-30, not cited). Clusters with best-tools (09-26, which already names self-hostable n8n + open-source Dify), no-code-ai-agent-tools (07-08), n8n-vs-zapier (08-14), how-to-build (09-01), security-risks (08-25), guardrails (08-29), human-in-the-loop (08-13). Appended to public/llms.txt as an evergreen page. Original: n8n self-host + AI-agent-node momentum (blog.n8n.io 2026). Added 2026-08-16 (Sunday ideation).",
       "addedAt": "2026-08-16"
     },
     {

@@ -1,0 +1,71 @@
+---
+title: "Self-Hosted AI Agents: Own It or Rent It"
+date: "2026-09-30"
+excerpt: "Self-host an AI agent to control your data and cost: run n8n, Dify, or Flowise on your own server, with a hosted model or a fully local one via Ollama."
+---
+
+Yes, you can self-host an AI agent: run the orchestration on your own server with an open platform like [n8n](https://docs.n8n.io/hosting/), [Dify](https://github.com/langgenius/dify), or [Flowise](https://github.com/FlowiseAI/Flowise), then either call a hosted model with your own API key or run a local model with [Ollama](https://ollama.com). You trade a vendor's convenience for control over your data — and you take on the ops and security yourself.
+
+That last clause is the whole decision. "Self-hosted" sounds like a privacy setting you flip on, but it's really a swap: you stop renting someone else's running system and start operating your own. This guide covers the two real routes to a self-hosted agent, what each one actually keeps private, and the honest reasons to pick it — or not. It's the ownership deep-dive under our [guide to choosing the best tools to build an agent](/en/news/2026-09-26-best-tools-to-build-ai-agents/).
+
+## What "self-hosted" actually means
+
+An agent has two moving parts you can host separately: the **orchestration** (the workflow logic, the tool connections, the memory store, the logs) and the **model** (the LLM doing the reasoning). Most people mean the first when they say "self-hosted" — running the agent platform on hardware they control instead of a vendor's cloud.
+
+The open platforms make that free to do:
+
+- **n8n** ships a LangChain-based AI Agent node and is [source-available and self-hostable](https://n8n.io/pricing/); its Community Edition runs free on your own server under a [fair-code Sustainable Use License](https://docs.n8n.io/sustainable-use-license/). n8n even publishes a [self-hosted AI Starter Kit](https://github.com/n8n-io/self-hosted-ai-starter-kit) — a Docker Compose template that bundles n8n with a local model runner and a vector database in one command.
+- **Dify** is an open-source LLM app platform whose [Community Edition self-hosts via Docker Compose](https://github.com/langgenius/dify), with workflows, a RAG knowledge base, and agent tools built in.
+- **Flowise** is an [open-source visual builder](https://github.com/FlowiseAI/Flowise) for LLM and agent flows you run on your own machine.
+
+One caveat worth stating plainly: an open-source *library* is not always a free self-hosted *platform*. LangChain's [LangGraph Platform](https://docs.langchain.com/langgraph-platform/deployment-options), for example, offers a fully self-hosted deployment, but that managed control plane sits behind an Enterprise plan — even though the underlying LangGraph library is free. Read the license for the piece you're actually running, not the umbrella name.
+
+## Route A — self-host the orchestration, rent the model
+
+The common middle path: run the agent platform yourself and point it at a hosted model API (Anthropic, OpenAI, or another) with your own key.
+
+What this keeps on your box: the workflow logic, the tool credentials, the memory and vector stores, and the run logs. What still leaves: the prompt content — the actual text of each request — travels to the model provider to be answered. That's usually fine (major providers don't train on business API traffic by default), but it means "self-hosted" here is about **owning the system and the data stores**, not about nothing leaving your network.
+
+This route is the sweet spot for most teams that want control without a hardware project: you avoid per-task metering, keep your data and logs in-house, and can drop into custom logic — while still using a frontier model. It's the deeper end of the [n8n vs Zapier tradeoff](/en/news/2026-08-14-n8n-vs-zapier-ai-agents/), where one is an engine you own and the other a service you rent.
+
+## Route B — self-host everything, including the model
+
+If nothing can leave your network — regulated data, an air-gapped environment, a strict residency rule — you run the model locally too. [Ollama](https://ollama.com) is the simplest way: it runs open models (Llama, Mistral, and others) on your own hardware and exposes an OpenAI-compatible API, so an agent platform can call it exactly like a cloud model. n8n's [Starter Kit](https://github.com/n8n-io/self-hosted-ai-starter-kit) wires this up out of the box.
+
+The cost is real and worth naming: local open models are generally smaller and less capable than the top hosted frontier models, and running one well needs a machine that can hold it in memory. You buy true data isolation with capability and hardware. For a triage-and-draft agent that doesn't need frontier reasoning, that trade is often worth it; for hard multi-step work, it may not be.
+
+## The honest caveat: self-hosting isn't automatically safer
+
+The biggest misconception is that self-hosting hardens an agent by default. It moves the responsibility to you — it doesn't remove it. When you run the box, you own the patching, the TLS certificates, the authentication, the backups, and the monitoring. A misconfigured self-hosted instance exposed to the internet is *less* safe than a well-run managed one.
+
+Self-hosting changes where your data lives; it does nothing about the agent's own risk surface. The [agent security threat model](/en/news/2026-08-25-ai-agent-security-risks/) — an agent that can act, reading untrusted input, holding real credentials — is identical whether you host it or a vendor does. So the same discipline applies: enforce [guardrails in the workflow, not just the prompt](/en/news/2026-08-29-ai-agent-guardrails-for-business/), and keep a [human gate on anything that sends, pays, or deletes](/en/news/2026-08-13-human-in-the-loop-ai-agents/). Owning the server doesn't retire the review step.
+
+## Which do you actually need?
+
+- **Start managed.** If you have no ops capacity, a managed assistant plus connectors is the fastest honest start — our [Gmail triage build (Issue #001)](/en/posts/2026-05-13-gmail-ai-agent/) runs a real agent for about $20/month with zero infrastructure.
+- **Self-host the orchestration (Route A)** when data residency, avoiding per-task metering, or custom logic matters — and you have someone to keep a server running.
+- **Self-host everything (Route B)** only when a hard rule says no data may leave your network, and you can accept smaller local models and the hardware to run them.
+- **Don't self-host** if nobody on the team owns infrastructure. A relabeled convenience becomes a liability the first time a certificate expires unnoticed.
+
+The pattern is the same one that runs through every build on this site: match the tool to the job, and keep a hand on the irreversible step. Self-hosting is a control decision, not a shortcut — start where a mistake is cheap, as in our [how-to-build starter guide](/en/news/2026-09-01-how-to-build-an-ai-agent/), and only take on the server when the job genuinely needs it.
+
+## FAQ
+
+**Can I self-host an AI agent?**
+Yes. Run an open orchestration platform — [n8n](https://docs.n8n.io/hosting/) Community Edition, [Dify](https://github.com/langgenius/dify), or [Flowise](https://github.com/FlowiseAI/Flowise) — on your own server via Docker, then either call a hosted model with your API key or run a local model with [Ollama](https://ollama.com). The software is free; the real cost is the server and the ops time to keep it running.
+
+**Does self-hosting keep my data private?**
+Only fully if you also run the model locally. If you self-host the platform but call a hosted model (the common Route A), your workflow logic, credentials, and stored data stay on your box, but the prompt content still travels to the model provider. For zero data leaving your network, run the model locally too with [Ollama](https://ollama.com).
+
+**Is a self-hosted agent more secure than a managed one?**
+Not by default. Self-hosting moves the security work to you — patching, TLS, authentication, backups, monitoring — rather than removing it. The [agent's own risk surface](/en/news/2026-08-25-ai-agent-security-risks/) is the same either way, so keep [guardrails](/en/news/2026-08-29-ai-agent-guardrails-for-business/) and a [human gate](/en/news/2026-08-13-human-in-the-loop-ai-agents/) on irreversible actions regardless of where it runs.
+
+**What's the cheapest way to self-host an AI agent?**
+The open platforms are free: n8n's [self-hosted AI Starter Kit](https://github.com/n8n-io/self-hosted-ai-starter-kit) bundles n8n, a local model runner, and a vector database in one Docker Compose file. Pair it with a small local model via [Ollama](https://ollama.com) and there are no per-token bills — but you pay in hardware and the hours to operate it.
+
+**When should I not self-host?**
+When no one on the team owns infrastructure. If keeping a server patched, backed up, and monitored isn't a job someone will actually do, a [managed assistant with connectors](/en/news/2026-07-08-no-code-ai-agent-tools/) is safer and faster — like Issue #001's ~$20/month Gmail agent with no server to babysit.
+
+---
+
+Want the field notes on real agents professionals actually run — the exact setups, costs, and failure modes? [Subscribe free](/en/) and get each week's build in your inbox.
