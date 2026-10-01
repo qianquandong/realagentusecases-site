@@ -1,0 +1,73 @@
+---
+title: "AI Agent Identity and Access: Its Own Login"
+date: "2026-10-01"
+excerpt: "Don't give an AI agent your password or a static API key. Give each one its own identity, least-privilege scope, and short-lived tokens — here's how."
+---
+
+An AI agent authenticates and gets access the same way any software does — but it should do so as itself, not as you. Instead of a borrowed password or a shared API key, give the agent its own identity (an OAuth client or service account), scope it to the least access the task needs, and issue short-lived, revocable tokens.
+
+That one shift — *its own login, not yours* — is the whole discipline of AI agent identity and access management (IAM). It's the layer underneath the [agent security threat model](/en/news/2026-08-25-ai-agent-security-risks/): before you can limit what an agent may touch, the system has to know *which* agent is touching it. In 2026 the major identity vendors made this a first-class problem, and the desk-level version is something you can get right on your own connectors today.
+
+## Two questions: who the agent is, and what it may touch
+
+Every access decision splits into two:
+
+- **Authentication** — *who is this?* The agent proves its identity.
+- **Authorization** — *what is it allowed to do?* The system checks that identity against a policy.
+
+Most "agent access" trouble is really one of these two being skipped. The common bad default is to hand the agent a human's login or a single static API key with broad scope. Now the agent is indistinguishable from you, carries all your permissions, and leaves an audit trail with your name on it. Okta describes this plainly: most agents today reach enterprise data through static keys and one-off OAuth grants, so they "operate as anonymous traffic with no owner, no policy, and no audit trail" ([Okta, Agent SSO announcement](https://www.okta.com/newsroom/press-releases/okta-brings-first-class-identity-to-ai-agents-with-agent-sso/)). Fixing that starts with giving the agent an identity of its own.
+
+## How an agent actually authenticates
+
+The mechanics aren't exotic — they're the same machine-to-machine methods other software uses. WorkOS lays out the common ones ([how AI agents authenticate and access systems](https://workos.com/blog/how-ai-agents-authenticate-and-access-systems)):
+
+- **API keys** — the simplest, and the riskiest if they're long-lived and broadly scoped.
+- **OAuth client credentials** — the standard machine-to-machine flow, where the agent gets a scoped, expiring token instead of a standing secret.
+- **Service accounts** — a dedicated non-human identity for the workload.
+- **Mutual TLS and signed requests** — certificates and signatures that prove the caller cryptographically.
+- **Identity-aware proxies and ephemeral compute** — the runtime itself carries the identity, so there's no secret to leak.
+
+The direction of travel is the point: away from a static secret the agent holds forever, toward its own governed identity that gets a short-lived token for each job and can be revoked without changing anyone's password.
+
+## 2026: agents get first-class identities
+
+Both big identity platforms shipped purpose-built agent identities this year, and they agree on the shape.
+
+**Microsoft Entra Agent ID** is now generally available. It registers agents as directory identities — a special kind of service principal created from an agent blueprint, not a reused user account — and extends the controls you already apply to people: OAuth flows, Conditional Access, sign-in logs, and lifecycle governance, so an agent can be reviewed and retired like any other identity ([Microsoft, What's new in Agent ID](https://learn.microsoft.com/en-us/entra/agent-id/whats-new-agent-id)).
+
+**Okta Agent SSO** reached general availability in August 2026, built on the open Cross App Access (XAA) standard. It replaces hardcoded credentials and broad OAuth grants with identity-governed, short-lived tokens, registers each agent as a first-class identity in its directory, and enforces least privilege so an agent connects only to sanctioned apps, APIs, tools, and [MCP servers](/en/news/2026-08-10-what-is-mcp-for-ai-agents/) ([Okta](https://www.okta.com/newsroom/press-releases/okta-brings-first-class-identity-to-ai-agents-with-agent-sso/)).
+
+Strip the branding and it's the same four rules: the agent gets its own identity (not a human's), scoped to the least it needs, with tokens that are short-lived and revocable, and everything it does is logged under that identity.
+
+## Where MCP fits
+
+If your agent reaches tools over the [Model Context Protocol](/en/news/2026-08-10-what-is-mcp-for-ai-agents/), this is built into the standard. A protected MCP server acts as an OAuth 2.1 resource server: the client presents a bearer access token, and the server validates it and checks that it was issued for that server specifically as the intended audience ([MCP authorization spec](https://modelcontextprotocol.io/specification/latest/basic/authorization)). In other words, the connection an agent uses to touch your data already speaks the language of scoped, audience-bound tokens — the same OAuth dial you set when you [connect an agent to Google Workspace](/en/news/2026-08-08-google-workspace-mcp-server/).
+
+## At your desk: the least-privilege version
+
+You don't need Entra or Okta to do this right for one person. The OAuth scopes on a connector *are* identity and access management at your scale — the same lever the [security threat model](/en/news/2026-08-25-ai-agent-security-risks/) calls the highest-leverage move against excessive agency: grant read-only where you can, a single mailbox instead of the whole domain, one project instead of all of them.
+
+Our [Gmail triage agent in Issue #001](/en/posts/2026-05-13-gmail-ai-agent/) is this in miniature. It connects through a scoped OAuth grant that belongs to the agent, not a password you typed in — so it reads the one inbox it needs, you can see exactly what it was granted, and you can revoke that grant in one click without touching your own account. Identity is upstream of the gate: scoping limits what the agent *can* do, and a [human gate on anything that sends, pays, or deletes](/en/news/2026-08-13-human-in-the-loop-ai-agents/) covers what it shouldn't do unattended. The two together are the whole safe-agent recipe.
+
+The rule is the same one that runs through every build on this site: match the identity to the job. Its own login, the least scope the task needs, tokens that expire, and a log with the agent's name on it — not yours.
+
+## FAQ
+
+**How do AI agents authenticate and get access to my systems?**
+The same way other software does — ideally as themselves, not as you. Rather than a borrowed password or a broad static API key, give the agent its own identity (an OAuth client or a service account), scope it to the least access the task needs, and have it use short-lived, revocable tokens. WorkOS catalogs the common methods — [API keys, OAuth client credentials, service accounts, mutual TLS, identity-aware proxies](https://workos.com/blog/how-ai-agents-authenticate-and-access-systems) — but the goal is always a scoped, governed identity, not a standing secret.
+
+**Should an AI agent use my login?**
+No. If it uses your credentials it inherits all your permissions and every action it takes is logged under your name, so you can't tell your work from the agent's and can't revoke it without changing your own password. Give the agent its own identity — [Microsoft Entra Agent ID](https://learn.microsoft.com/en-us/entra/agent-id/whats-new-agent-id) and [Okta Agent SSO](https://www.okta.com/newsroom/press-releases/okta-brings-first-class-identity-to-ai-agents-with-agent-sso/) exist to do exactly this at enterprise scale, and at a single desk the connector's own OAuth grant does it.
+
+**What's the difference between authentication and authorization for an agent?**
+Authentication answers *who is this agent* (it proves its identity); authorization answers *what is it allowed to do* (the system checks that identity against a policy). You need both: an identity with no scope is dangerous, and a scope with no identity has nothing to attach to. IAM is the practice of getting the pair right.
+
+**Do I need Entra or Okta to manage an AI agent's access?**
+Not for a single-person build. Those platforms solve identity for fleets of agents across an organization. For one agent on your own tools, the [OAuth scopes you grant a connector](/en/news/2026-08-08-google-workspace-mcp-server/) are the same least-privilege control at your scale — read-only where possible, the narrowest resource, and a grant you can revoke. Scale up to a managed identity platform when you have many agents and need central policy and audit.
+
+**Why are short-lived tokens safer than API keys?**
+A static API key is a standing secret: if it leaks, it works until someone notices and rotates it everywhere. A short-lived token expires on its own and is issued per session against a governed identity, so a leak has a small blast radius and revoking one agent's access doesn't disrupt anyone else. It's the token equivalent of [least privilege](/en/news/2026-08-25-ai-agent-security-risks/) — the less standing power sitting around, the less there is to steal.
+
+---
+
+The agents in this series earn their access the same way: their own scoped login, and a human on the irreversible step. Want the real setups — the exact permissions each professional grants and the actions they still approve by hand? [Subscribe free](/en/) and get each week's build in your inbox.
