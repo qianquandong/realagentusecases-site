@@ -1,6 +1,6 @@
 {
   "$comment": "GEO prompt feed — the questions working professionals ask ChatGPT / Perplexity / Gemini. The scheduled Cowork routine ideates entries; scripts/seo/feeds.mjs persists them. cluster: use-case|template|comparison|industry|tool-stack. status: new|covered (covered = a published article targets it). Phase 7 tracks whether the brand is cited for each.",
-  "updatedAt": "2026-09-30",
+  "updatedAt": "2026-10-01",
   "prompts": [
     {
       "prompt": "What are real examples of AI agents at work?",
@@ -578,9 +578,9 @@
       "prompt": "How do AI agents authenticate and get access to my systems?",
       "cluster": "tool-stack",
       "locale": "en",
-      "status": "new",
+      "status": "covered",
       "addedAt": "2026-09-20",
-      "note": "Sunday feed research 2026-09-20. Pairs with the new 'AI agent identity and access management' keyword; the agent-identity / OAuth-scope / short-lived-token question. Grounded in Microsoft Entra Agent ID (GA Apr 2026) + Okta Agent SSO."
+      "note": "Sunday feed research 2026-09-20. Pairs with the 'AI agent identity and access management' keyword; the agent-identity / OAuth-scope / short-lived-token question. Covered 2026-10-01 by content/news/2026-10-01-ai-agent-identity-access-management. GEO-probed 2026-10-01 (on-publish baseline, verbatim web search): not cited — SERP dominated by WorkOS (how-ai-agents-authenticate-and-access-systems), guptadeepak.com, mojoauth (9 AI Agent Authentication Methods), bigid (authentication vs authorization), vouched.id, securityboulevard, clickup; realagentusecases.com did not appear — the field is identity/auth-vendor explainers + method listicles with no independent its-own-login / least-privilege-at-your-desk angle grounded in a real build, this site's gap to own. The article answers this prompt verbatim in its first FAQ; re-probe post-index to track lift."
     },
     {
       "prompt": "Should I buy an AI agent from a marketplace or build my own?",

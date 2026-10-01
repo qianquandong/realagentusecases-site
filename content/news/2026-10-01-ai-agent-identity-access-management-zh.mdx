@@ -1,0 +1,73 @@
+---
+title: "AI Agent 身份与访问：给它自己的身份"
+date: "2026-10-01"
+excerpt: "别把你的密码或一个静态 API key 交给 AI agent。给每个 agent 自己的身份、最小权限范围和短时令牌——这篇讲清怎么做。"
+---
+
+AI agent 认证和获取访问权的方式，和其他软件没什么不同——但它应当以**自己**的身份去做，而不是以你的身份。与其借用一个密码或共享一个静态 API key，不如给 agent 它自己的身份（一个 OAuth 客户端或服务账号），把权限收到任务真正需要的最小范围，并发放短时、可吊销的令牌。
+
+这一个转变——*用它自己的登录，而不是你的*——就是 AI agent 身份与访问管理（IAM）的全部纪律。它是 [agent 安全威胁模型](/zh/news/2026-08-25-ai-agent-security-risks/)底下的那一层：在你能限制一个 agent 可以碰什么之前，系统得先知道到底是*哪个* agent 在碰。2026 年，主流身份厂商把这件事做成了头等问题，而工位级别的版本，你今天就能在自己的连接器上做对。
+
+## 两个问题：agent 是谁，以及它能碰什么
+
+每一个访问决定都拆成两半：
+
+- **认证（Authentication）**——*这是谁？* agent 证明自己的身份。
+- **授权（Authorization）**——*它被允许做什么？* 系统拿这个身份去对照策略。
+
+多数「agent 访问」的麻烦，其实是这两者之一被跳过了。最常见的坏默认，是把一个人的登录、或一个范围宽泛的静态 API key 交给 agent。于是 agent 和你再也分不开，带着你的全部权限，留下的审计记录上写的是你的名字。Okta 把这点说得很直白：今天多数 agent 通过静态 key 和一次性 OAuth 授权去够企业数据，于是它们「像匿名流量一样运作，没有归属、没有策略、没有审计记录」（[Okta，Agent SSO 公告](https://www.okta.com/newsroom/press-releases/okta-brings-first-class-identity-to-ai-agents-with-agent-sso/)）。修它，从给 agent 一个属于它自己的身份开始。
+
+## agent 到底怎么认证
+
+机制并不玄——就是其他软件用的那套机器对机器方法。WorkOS 列出了常见的几种（[AI agent 如何认证并访问系统](https://workos.com/blog/how-ai-agents-authenticate-and-access-systems)）：
+
+- **API key**——最简单，但如果长期有效、范围又宽，也最危险。
+- **OAuth 客户端凭据**——标准的机器对机器流程，agent 拿到的是一个限定范围、会过期的令牌，而不是一个常驻密钥。
+- **服务账号**——为这个工作负载专设的一个非人身份。
+- **双向 TLS 和签名请求**——用证书和签名在密码学上证明调用方。
+- **身份感知代理和临时计算环境**——运行时本身携带身份，于是没有可泄露的密钥。
+
+方向才是重点：从一个 agent 永久持有的静态密钥，走向它自己的受治理身份——每个任务领一个短时令牌，不改任何人的密码就能把它吊销。
+
+## 2026：agent 有了头等身份
+
+今年两大身份平台都推出了专为 agent 设计的身份，而且它们对形态的看法一致。
+
+**Microsoft Entra Agent ID** 现已正式可用（GA）。它把 agent 注册为目录身份——一种从 agent 蓝图创建的特殊服务主体，而不是复用某个用户账号——并把你早已用在人身上的那些控制延伸过来：OAuth 流程、条件访问（Conditional Access）、登录日志、生命周期治理，于是一个 agent 可以像任何其他身份一样被复核和退役（[Microsoft，Agent ID 更新](https://learn.microsoft.com/en-us/entra/agent-id/whats-new-agent-id)）。
+
+**Okta Agent SSO** 于 2026 年 8 月正式可用，建立在开放的 Cross App Access（XAA）标准之上。它用受身份治理的短时令牌，取代硬编码凭据和宽泛的 OAuth 授权，把每个 agent 注册为其目录里的头等身份，并强制最小权限——让 agent 只连到获批的应用、API、工具和 [MCP 服务器](/zh/news/2026-08-10-what-is-mcp-for-ai-agents/)（[Okta](https://www.okta.com/newsroom/press-releases/okta-brings-first-class-identity-to-ai-agents-with-agent-sso/)）。
+
+剥掉品牌名，是同样的四条规则：agent 拿到它自己的身份（不是某个人的），收到任务真正需要的最小范围，令牌短时且可吊销，而它做的一切都记在这个身份名下。
+
+## MCP 在哪一环
+
+如果你的 agent 通过 [Model Context Protocol](/zh/news/2026-08-10-what-is-mcp-for-ai-agents/) 够到工具，这一套已经写进了标准。一个受保护的 MCP 服务器扮演 OAuth 2.1 的资源服务器：客户端出示一个 bearer 访问令牌，服务器校验它、并确认这个令牌正是签发给自己、以自己为预期受众的（[MCP 授权规范](https://modelcontextprotocol.io/specification/latest/basic/authorization)）。换句话说，agent 用来碰你数据的那条连接，本身就讲「限定范围、受众绑定的令牌」这门语言——和你[把 agent 连到 Google Workspace](/zh/news/2026-08-08-google-workspace-mcp-server/) 时拧的是同一个 OAuth 旋钮。
+
+## 在你的工位上：最小权限版本
+
+对一个人来说，不需要 Entra 或 Okta 也能把这件事做对。连接器上的 OAuth 授权范围，*就是*你这个尺度上的身份与访问管理——也正是[安全威胁模型](/zh/news/2026-08-25-ai-agent-security-risks/)所说对付过度代理杠杆最高的那一招：能只读就只读，给单个邮箱而不是整个域，给一个项目而不是全部。
+
+我们 [Issue #001 里的 Gmail 分拣 agent](/zh/posts/2026-05-13-gmail-ai-agent/) 就是这件事的缩影。它通过一个属于 agent、而非你手输密码的限定范围 OAuth 授权连接——于是它只读它需要的那一个收件箱，你能看清它到底被授了什么权，并且一键就能吊销这个授权，完全不碰你自己的账号。身份在关卡的上游：收范围限定的是 agent *能*做什么，而[在任何会发送、付款、删除的动作上的人工关卡](/zh/news/2026-08-13-human-in-the-loop-ai-agents/)，管的是它不该无人看守地做什么。两者合起来，就是安全 agent 的全部配方。
+
+这条规则和本站每一篇搭建贯穿的一致：把身份对上任务。用它自己的登录、任务所需的最小范围、会过期的令牌，和一份写着 agent 名字——而不是你名字——的日志。
+
+## FAQ
+
+**AI agent 怎么认证并获取对我系统的访问权？**
+和其他软件一样——最好是以它自己的身份，而不是你的。与其借用密码或一个宽泛的静态 API key，不如给 agent 它自己的身份（一个 OAuth 客户端或服务账号），把权限收到任务所需的最小范围，并让它使用短时、可吊销的令牌。WorkOS 列举了常见方法——[API key、OAuth 客户端凭据、服务账号、双向 TLS、身份感知代理](https://workos.com/blog/how-ai-agents-authenticate-and-access-systems)——但目标始终是一个限定范围、受治理的身份，而不是一个常驻密钥。
+
+**AI agent 该用我的登录吗？**
+不该。如果它用你的凭据，它就继承了你的全部权限，而它做的每个动作都记在你名下，于是你分不清哪些是你的活、哪些是 agent 的，也没法在不改自己密码的情况下吊销它。给 agent 它自己的身份——[Microsoft Entra Agent ID](https://learn.microsoft.com/en-us/entra/agent-id/whats-new-agent-id) 和 [Okta Agent SSO](https://www.okta.com/newsroom/press-releases/okta-brings-first-class-identity-to-ai-agents-with-agent-sso/) 正是为在企业尺度上做这件事而生，而在单个工位上，连接器自己的 OAuth 授权就做到了。
+
+**对 agent 来说，认证和授权有什么区别？**
+认证回答*这是哪个 agent*（它证明身份）；授权回答*它被允许做什么*（系统拿身份去对照策略）。两者都要：有身份却没范围很危险，有范围却没身份则无处依附。IAM 就是把这一对都做对的实践。
+
+**管理 AI agent 的访问，一定要 Entra 或 Okta 吗？**
+对单人搭建不需要。那些平台解决的是一整支 agent 队伍在组织范围内的身份问题。对你自己工具上的一个 agent，你[授给连接器的 OAuth 范围](/zh/news/2026-08-08-google-workspace-mcp-server/)就是你这个尺度上同样的最小权限控制——能只读就只读、给最窄的资源、授权可随时吊销。当你有很多 agent、需要集中的策略和审计时，再升级到托管身份平台。
+
+**为什么短时令牌比 API key 更安全？**
+静态 API key 是一个常驻密钥：一旦泄露，它会一直有效，直到有人发现并到处轮换它。短时令牌会自己过期、按会话针对一个受治理身份签发，所以一次泄露的爆炸半径很小，吊销某一个 agent 的访问也不会影响别人。它是令牌版的[最小权限](/zh/news/2026-08-25-ai-agent-security-risks/)——常驻的权力越少，可被偷走的就越少。
+
+---
+
+这个系列里的 agent 都用同样的方式挣到访问权：自己的限定范围登录，加上在不可逆那一步上的一个人。想看真实的搭建——每位职场人各自授了什么权、又把哪些动作留着亲手批准？[免费订阅](/zh/)，每周把一个搭建送到你邮箱。

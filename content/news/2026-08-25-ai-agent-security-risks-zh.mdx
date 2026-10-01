@@ -34,7 +34,7 @@ excerpt: "多数 AI agent 安全风险，都源自同一件事：给了它太多
 
 在自己工位上跑一个安全的 agent，不需要一整套企业级安全方案。你需要的是：有意识地，从攻击链上拆掉一条腿。
 
-- **最小权限——杠杆最高的一招。** 只给 agent 任务真正需要的最窄访问权，多一分都不给。当你把 agent 连到 Google Workspace 或任何工具时，[OAuth 授权范围就是那个旋钮](/zh/news/2026-08-08-google-workspace-mcp-server/)：能只读就只读，给单个邮箱而不是整个域，给一个项目而不是全部。[OWASP AI Agent 安全速查表](https://cheatsheetseries.owasp.org/cheatsheets/AI_Agent_Security_Cheat_Sheet.html)把「限定范围的权限」和「最小权限身份」列为第一线控制。
+- **最小权限——杠杆最高的一招。** 只给 agent 任务真正需要的最窄访问权，多一分都不给。最小权限从身份开始：[给每个 agent 它自己的登录，而不是某个人的](/zh/news/2026-10-01-ai-agent-identity-access-management/)，这样范围才附着在一个你看得见、记得下、吊销得掉的东西上。当你把 agent 连到 Google Workspace 或任何工具时，[OAuth 授权范围就是那个旋钮](/zh/news/2026-08-08-google-workspace-mcp-server/)：能只读就只读，给单个邮箱而不是整个域，给一个项目而不是全部。[OWASP AI Agent 安全速查表](https://cheatsheetseries.owasp.org/cheatsheets/AI_Agent_Security_Cheat_Sheet.html)把「限定范围的权限」和「最小权限身份」列为第一线控制。
 - **给不可逆的动作加关卡。** 在任何会发送、付款、发布、删除的动作上都保留[人在回路](/zh/news/2026-08-13-human-in-the-loop-ai-agents/)——而且要在工作流里强制执行，不能只在提示词里请求。这就为那些真正带风险的动作拆掉了第 3 条，同时让可逆的活儿照跑。
 - **隔离并不信任不可信输入。** 把 agent 从外部世界读到的一切都当成潜在的敌意内容。别把一个会吞公开网页或进站邮件的 agent，直接接到一个不经审核就能动手的工具上。Anthropic 之所以在模型之上叠加[检测提示词注入的分类器](https://platform.claude.com/docs/en/test-and-evaluate/strengthen-guardrails/mitigate-jailbreaks)，正是为了这个——但纵深防御的分类器是兜底，不是「不给 agent 凑齐三条腿」的替代品。
 - **审查你接进来的工具。** agent 的可信度，取决于它最弱的那个 MCP 服务器或集成。优先选[第一方、维护良好、范围最小的服务器](/zh/news/2026-08-11-best-mcp-servers-for-ai-agents/)，而不是一个权限宽泛的随手社区连接器。
