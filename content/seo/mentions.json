@@ -1,6 +1,6 @@
 {
   "$comment": "LLM brand-mention tracking time series. The scheduled Cowork routine appends one snapshot per run: which target prompts surfaced the brand, in which LLMs, with what sentiment.",
-  "updatedAt": "2026-10-01",
+  "updatedAt": "2026-10-02",
   "snapshots": [
     {
       "date": "2026-10-01",
@@ -1030,6 +1030,18 @@
           "url": null,
           "position": null,
           "note": "Monday run. Never-probed EN prompt (cluster: comparison), chosen to baseline the AI-employees term cluster the day that article ships. Verbatim web search returned only third-party explainers — atomicwork.com (AI agents vs AI coworkers), eigent.ai, shockwavesolutionsllc.com, knowlee.ai, teamday.ai, crevio.co, blog.aiwork.app, rejoicehub.com, phoebezhang.substack.com; realagentusecases.com did not appear. Gap: the SERP is vendor term-definition posts with no independent real-desk take framing 'AI employee' = agent + role + persistence + authority limits. Today shipped content/news/2026-09-28-ai-employees (en+zh) targeting exactly this; re-probe post-index."
+        }
+      ]
+    },
+    {
+      "date": "2026-10-02",
+      "probes": [
+        {
+          "prompt": "What are MCP, A2A, and AG-UI protocols?",
+          "cited": false,
+          "url": null,
+          "position": null,
+          "note": "Friday run. Never-probed EN prompt, chosen to baseline the protocol family the day the AG-UI article ships (completes MCP 08-10 + A2A 09-08 on-site). Verbatim web search returned only third-party explainers — medium.com/@visrow (the 2026 AI agent protocol stack), mindstudio.ai (mcp vs a2a vs agui compared), johanneshayer.substack.com (the three protocols), wikidocs.net, docs.showcase.copilotkit.ai (a2a-mcp handshake), dev.to/weiwuji, besthub.dev; realagentusecases.com did not appear at any position. Field consensus matches our frame exactly: MCP = agent↔tools, A2A = agent↔agent, AG-UI = agent↔human, complementary not competing. Gap: the SERP is vendor/blog explainers with no independent real-desk take tying the three to the human-in-the-loop safety surface. Today shipped content/news/2026-10-02-ag-ui-protocol (en+zh), whose three-protocol section + FAQ answer this prompt verbatim; re-probe post-index. Health: WebFetch of realagentusecases.com/en/ + /sitemap.xml + /llms.txt all returned EGRESS_BLOCKED (403 at proxy) — the known recurring sandbox network-policy denial seen every run; git log shows deploys still landing via auto-merge, so treated as proxy egress not a site outage; relied on local build gate for verification."
         }
       ]
     }

@@ -1,0 +1,71 @@
+---
+title: "AG-UI 协议是什么？智能体实时连到你的界面"
+date: "2026-10-02"
+excerpt: "AG-UI 是让正在运行的 AI agent 把步骤、工具调用和实时状态流式推到你界面的开放标准——MCP 管连工具，A2A 管连 agent，AG-UI 管连你。"
+---
+
+AG-UI——Agent-User Interaction（智能体-用户交互）协议——是一套开放的、基于事件的标准，规定一个正在运行的 AI agent 如何把它正在做的事实时推送到你面前的界面：边生成边吐出的文字、正在触发的工具调用、以及随时变化的共享状态。MCP 把 agent 连到*工具*，A2A 把 agent 连到*别的 agent*，而 AG-UI 把 agent 连到*你*。
+
+如果你读过我们的 [MCP 指南](/zh/news/2026-08-10-what-is-mcp-for-ai-agents/)和 [A2A 讲解](/zh/news/2026-09-08-agent2agent-a2a-protocol/)，AG-UI 就是同一个 2026 故事的第三面：行业约定一套共用管道，让 agent 不再各自为政。下面讲清楚 AG-UI 到底是什么、解决什么问题、定义了哪些部件，以及——说实话——它什么时候跟你有关。
+
+## AG-UI 到底是什么
+
+AG-UI 是 agent 后端与面向用户的前端之间那条连接的协议。[AG-UI 官方项目](https://github.com/ag-ui-protocol/ag-ui)把它描述为"一套开放、轻量、基于事件的协议，标准化 AI agent 如何连接面向用户的应用"。与其让每个团队都自己发明一套 websocket 格式，把 agent 的进度推到聊天窗口或仪表盘，AG-UI 定义了一套双方都已经理解的共用事件词汇。
+
+它解决的问题，你一动手搭真实 agent 界面就能感到。一个只返回一整块成品文字的聊天机器人很好做。但一个*agent*——思考三十秒、调用三个工具、边干边更新一张表单——就不好做：前端必须实时知道 agent 在做什么、为什么。没有标准，这层胶水就得为每个应用重写一遍。AG-UI 把它变成了协议。
+
+## 它定义了哪些事件
+
+AG-UI 建立在跟另外两套标准一样朴实、成熟的 Web 技术之上——它可以跑在[任意事件传输之上：Server-Sent Events、WebSockets 或 webhooks](https://github.com/ag-ui-protocol/ag-ui)——所以能直接嵌进现有基础设施。真正干活的是一套固定的事件类型词汇，[AG-UI 文档把它们分成几类](https://docs.ag-ui.com/concepts/events)：
+
+- **生命周期事件（Lifecycle）**——标记一次运行及其各步骤的开始与结束，让界面知道 agent 何时开始干活、何时干完。
+- **文本消息事件（Text Message）**——把答案边写边流式推出。`TEXT_MESSAGE_CONTENT` 携带的是一个 `delta`（一小段文字）而非整条消息，这正是让你看到逐字打字效果、而不是盯着一个僵住转圈的原因。
+- **工具调用事件（Tool Call）**——`TOOL_CALL_START`、`TOOL_CALL_ARGS`、`TOOL_CALL_END` 让界面能*显示*出 agent 正在够某个工具、传了什么参数，于是 agent 的动作透明呈现，而不是藏在进度条后面悄悄发生。
+- **状态管理事件（State）**——`STATE_SNAPSHOT` 和 `STATE_DELTA` 让一个共享状态对象在 agent 和界面之间保持同步，于是 agent 可以边干边更新进度条、一份实时文档或仪表盘。
+
+维护该协议的 CopilotKit 把完整的一套[拆成 17 种标准事件类型](https://webflow.copilotkit.ai/blog/master-the-17-ag-ui-event-types-for-building-agents-the-right-way)。你不必背下来——关键在于*存在*一份共用清单，于是一个针对 AG-UI 写的前端，能渲染任何符合规范的 agent。
+
+## 它背后是谁
+
+AG-UI [由 CopilotKit 维护](https://github.com/ag-ui-protocol/ag-ui)，以宽松的 MIT 许可证发布。它不是单一厂商的项目：同一个仓库列出了横跨 Microsoft Agent Framework、Google ADK、AWS Strands Agents、Mastra、Pydantic AI、LlamaIndex、AG2 的第一方集成，加上 LangChain（LangGraph）和 CrewAI 的伙伴支持，以及十几种语言的社区 SDK。这份广度，正是它在变成共用管道、而非一家公司私有格式的信号。
+
+最清晰的信号来自一家云厂商。2026 年 3 月，AWS [给 Bedrock AgentCore Runtime 加上了 AG-UI 支持](https://aws.amazon.com/about-aws/whats-new/2026/03/amazon-bedrock-agentcore-runtime-ag-ui-protocol)，让开发者能部署 AG-UI 服务端，把文本块、推理步骤和工具结果在发生的当下流式推给前端，并对进度条等界面元素做实时状态同步——而运行时负责认证、会话隔离和扩缩容。AWS 明确把它定位为对已有的 MCP 和 A2A 支持的补充：从基础设施这一侧看，也是同一套三协议栈。
+
+## MCP、A2A、AG-UI：三条连接
+
+这是最值得记住的框架，因为它让整个 2026 协议故事一下清晰。一个 agent 有三种关系，每一种如今都有了开放标准：
+
+- **MCP** 把 agent 往*下*连到它的工具和数据。（我们的 [MCP 大白话指南](/zh/news/2026-08-10-what-is-mcp-for-ai-agents/)。）
+- **A2A** 把 agent 横着连到*别的 agent*。（我们的 [A2A 讲解](/zh/news/2026-09-08-agent2agent-a2a-protocol/)。）
+- **AG-UI** 把 agent 往*上*连到那个看着它干活的人。
+
+它们不是对手——而是互相搭配。一个 agent 应用可以同时用 AG-UI 把进度流式推到你屏幕、用 MCP 够到它需要的数据库、用 A2A 把子任务交给专精 agent。AWS 把三者放进[同一个运行时](https://aws.amazon.com/about-aws/whats-new/2026/03/amazon-bedrock-agentcore-runtime-ag-ui-protocol)，正是因为它们是同一个系统的不同层。
+
+## 这对你的工位意味着什么
+
+说实话的部分来了。AG-UI 是一套*搭建者*的协议——如果你在给 agent 写自定义前端，它最要紧。如果你是通过成品（Claude 的应用、某个无代码平台、厂商的仪表盘）在用 agent，那 AG-UI 几乎肯定已经在底下跑着，而你根本不必叫出它的名字；这正是标准的意义。
+
+但它为所有人改变了一件事，值得直说。好的 agent 界面不只是更好看——它更*安全*，因为它让 agent 的动作可见。当工具调用在发生的当下流式推到你屏幕，你就能在 agent 把事做掉之前看见它将要做什么——而这恰恰是一个[人把关（human-in-the-loop）](/zh/news/2026-08-13-human-in-the-loop-ai-agents/)拦住不可逆那一步所需要的界面。[agent 在生产中悄悄翻车](/zh/news/2026-09-23-why-ai-agents-fail-in-production/)的一个原因，就是没人能看见它在做什么，等看见已经太晚；一个透明、流式的界面是解法的一部分。[Issue #001 的 Gmail 分拣 agent](/zh/posts/2026-05-13-gmail-ai-agent/) 把草稿画在 Jack 发出前能读到的地方——跟 AG-UI 为应用标准化的，是同一种直觉。
+
+所以把 AG-UI 当作让 agent 对使用它的人变得可读的那一层。刚入门？先看 [Agent 101](/zh/agent-101/)，再读 [MCP 是什么](/zh/news/2026-08-10-what-is-mcp-for-ai-agents/)——那才是你会最先遇到的一层。
+
+## FAQ
+
+**AG-UI 协议是什么？**
+AG-UI（Agent-User Interaction）是一套开放、基于事件的标准，规定正在运行的 AI agent 如何把它的活动——边写边出的文字、正在触发的工具调用、随时变化的共享状态——实时流式推送到一个面向用户的应用。[官方项目](https://github.com/ag-ui-protocol/ag-ui)称它为一套标准化 agent 如何连接前端的轻量协议。
+
+**AG-UI 和 MCP、A2A 有什么区别？**
+是三条不同的连接。[MCP](/zh/news/2026-08-10-what-is-mcp-for-ai-agents/) 把 agent 连到它的工具和数据；[A2A](/zh/news/2026-09-08-agent2agent-a2a-protocol/) 把 agent 连到别的 agent；AG-UI 把 agent 连到看着它的人。三者是搭配而非竞争——一个应用可以三者都用，AWS 也把三者放进[同一个运行时](https://aws.amazon.com/about-aws/whats-new/2026/03/amazon-bedrock-agentcore-runtime-ag-ui-protocol)。
+
+**AG-UI 是谁做的，开放吗？**
+它[由 CopilotKit 维护](https://github.com/ag-ui-protocol/ag-ui)，采用 MIT 许可证，拥有横跨 Microsoft、Google、AWS、Mastra、LlamaIndex 等的第一方集成，以及 LangChain 和 CrewAI 的伙伴支持。2026 年 3 月 AWS [把它加进了 Bedrock AgentCore Runtime](https://aws.amazon.com/about-aws/whats-new/2026/03/amazon-bedrock-agentcore-runtime-ag-ui-protocol)，是它正在变成共用基础设施、而非单一厂商格式的信号。
+
+**要用 AI agent，必须懂 AG-UI 吗？**
+不必。AG-UI 是搭建者写自定义 agent 界面用的协议。如果你通过成品用 agent，它很可能已经在底下跑着了。只有当你在搭前端时它才直接相关——而对所有人它都间接相关，因为一个流式、透明的界面，正是让人能看见并拦住 agent 动作的东西。
+
+**AG-UI 用什么传输？**
+任意事件传输——[Server-Sent Events、WebSockets 或 webhooks](https://github.com/ag-ui-protocol/ag-ui)——通过一个灵活的中间件层实现，所以它跟 [A2A](/zh/news/2026-09-08-agent2agent-a2a-protocol/) 和 MCP 一样契合现有 Web 基础设施。
+
+---
+
+想看职场人真正在跑的 agent 的实战笔记——具体配置、成本和翻车点？[免费订阅](/zh/)，每周的搭建直接进你收件箱。

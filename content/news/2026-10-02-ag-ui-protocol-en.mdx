@@ -1,0 +1,71 @@
+---
+title: "What Is the AG-UI Protocol? Agents Talking to You"
+date: "2026-10-02"
+excerpt: "AG-UI is the open standard for how a running AI agent streams its steps, tool calls, and live state to your screen — the agent-to-user layer beside MCP and A2A."
+---
+
+AG-UI — the Agent-User Interaction protocol — is an open, event-based standard for how a running AI agent streams what it's doing to the interface in front of you: tokens as they generate, tool calls as they fire, and shared state as it changes. Where MCP connects an agent to *tools* and A2A connects an agent to *other agents*, AG-UI connects an agent to *you*.
+
+If you've read our [MCP guide](/en/news/2026-08-10-what-is-mcp-for-ai-agents/) and our [A2A explainer](/en/news/2026-09-08-agent2agent-a2a-protocol/), AG-UI is the third side of the same 2026 story: the industry agreeing on shared plumbing so agents stop being walled gardens. This is what AG-UI actually is, the problem it solves, the pieces it defines, and — honestly — when it matters to you.
+
+## What AG-UI actually is
+
+AG-UI is a protocol for the connection between an agent backend and a user-facing front-end. The [official AG-UI project](https://github.com/ag-ui-protocol/ag-ui) describes it as "an open, lightweight, event-based protocol that standardizes how AI agents connect to user-facing applications." Instead of every team inventing its own websocket format to push an agent's progress to a chat window or a dashboard, AG-UI defines a shared vocabulary of events both sides already understand.
+
+The problem it solves is the one you feel the moment you try to build a real agent UI. A chatbot that only returns a finished block of text is easy. An *agent* that thinks for thirty seconds, calls three tools, and updates a form while it works is not — the front-end has to know, in real time, what the agent is doing and why. Without a standard, that glue is bespoke for every app. AG-UI makes it a protocol.
+
+## The events it defines
+
+AG-UI is built on the same boring, proven web technology as the other two standards — it runs over [any event transport: Server-Sent Events, WebSockets, or webhooks](https://github.com/ag-ui-protocol/ag-ui) — so it drops into existing infrastructure. The work is done by a fixed vocabulary of event types that the [AG-UI docs group into a few categories](https://docs.ag-ui.com/concepts/events):
+
+- **Lifecycle events** — mark the start and end of a run and its steps, so the UI knows when the agent began working and when it's done.
+- **Text message events** — stream the answer as it's written. `TEXT_MESSAGE_CONTENT` carries a `delta` (a chunk of text) rather than the whole message, which is what gives you the token-by-token typing effect instead of a frozen spinner.
+- **Tool call events** — `TOOL_CALL_START`, `TOOL_CALL_ARGS`, and `TOOL_CALL_END` let the UI *show* the agent reaching for a tool and what it passed, so an agent's actions render transparently rather than happening invisibly behind a loading bar.
+- **State management events** — `STATE_SNAPSHOT` and `STATE_DELTA` keep a shared state object in sync between agent and UI, so the agent can update a progress bar, a live document, or a dashboard as it works.
+
+CopilotKit, which maintains the protocol, [breaks the full set into 17 standard event types](https://webflow.copilotkit.ai/blog/master-the-17-ag-ui-event-types-for-building-agents-the-right-way). You don't need to memorize them — the point is that there *is* a shared list, so a front-end built against AG-UI can render any compliant agent.
+
+## Who's behind it
+
+AG-UI is [maintained by CopilotKit](https://github.com/ag-ui-protocol/ag-ui) and released under the permissive MIT license. It's not a one-vendor effort: the same repo lists first-party integrations across Microsoft's Agent Framework, Google's ADK, AWS's Strands Agents, Mastra, Pydantic AI, LlamaIndex, and AG2, with partner support from LangChain (LangGraph) and CrewAI and community SDKs in a dozen languages. That breadth is the tell that it's becoming shared plumbing rather than one company's house format.
+
+The clearest signal came from a cloud provider. In March 2026, AWS [added AG-UI support to Bedrock AgentCore Runtime](https://aws.amazon.com/about-aws/whats-new/2026/03/amazon-bedrock-agentcore-runtime-ag-ui-protocol), letting developers deploy AG-UI servers that stream text chunks, reasoning steps, and tool results to a front-end as they happen, with real-time state sync for UI elements like progress bars — while the runtime handles authentication, session isolation, and scaling. AWS framed it explicitly as complementing its existing MCP and A2A support: the same three-protocol stack, from the infrastructure side.
+
+## MCP, A2A, AG-UI: the three connections
+
+This is the frame worth keeping, because it makes the whole 2026 protocol story click. An agent has three relationships, and each now has an open standard:
+
+- **MCP** connects an agent *down* to its tools and data. (Our [plain-English MCP guide](/en/news/2026-08-10-what-is-mcp-for-ai-agents/).)
+- **A2A** connects an agent *across* to other agents. (Our [A2A explainer](/en/news/2026-09-08-agent2agent-a2a-protocol/).)
+- **AG-UI** connects an agent *up* to the human watching it work.
+
+They don't compete — they compose. A single agentic app can speak AG-UI to stream its progress to your screen, use MCP to reach the databases it needs, and use A2A to hand a sub-task to a specialist agent, all at once. AWS ships all three in [the same runtime](https://aws.amazon.com/about-aws/whats-new/2026/03/amazon-bedrock-agentcore-runtime-ag-ui-protocol) precisely because they're different layers of one system.
+
+## What this means for you at your desk
+
+Here's the honest part. AG-UI is a *builder's* protocol — it matters most if you're writing a custom front-end for an agent. If you use agents through a finished product (Claude's apps, a no-code platform, a vendor's dashboard), AG-UI is almost certainly running underneath without you ever naming it; that's the point of a standard.
+
+But it changes one thing for everyone, and it's worth saying plainly. A good agent UI isn't just prettier — it's *safer*, because it makes the agent's actions visible. When tool calls stream to your screen as they happen, you can see the agent about to do something before it's done, which is exactly the surface a [human-in-the-loop gate](/en/news/2026-08-13-human-in-the-loop-ai-agents/) needs to catch an irreversible step. One reason [agents fail quietly in production](/en/news/2026-09-23-why-ai-agents-fail-in-production/) is that nobody could see what they were doing until it was too late; a transparent, streaming UI is part of the fix. [Issue #001's Gmail triage agent](/en/posts/2026-05-13-gmail-ai-agent/) draws its drafts where Jack can read them before anything sends — the same instinct AG-UI standardizes for apps.
+
+So treat AG-UI as the layer that makes agents legible to the people using them. New to the ground floor? Start at [Agent 101](/en/agent-101/), then read [what MCP is](/en/news/2026-08-10-what-is-mcp-for-ai-agents/) — the layer you'll meet first.
+
+## FAQ
+
+**What is the AG-UI protocol?**
+AG-UI (Agent-User Interaction) is an open, event-based standard for how a running AI agent streams its activity — text as it's written, tool calls as they fire, and shared state as it changes — to a user-facing application in real time. The [official project](https://github.com/ag-ui-protocol/ag-ui) calls it a lightweight protocol that standardizes how agents connect to front-ends.
+
+**How is AG-UI different from MCP and A2A?**
+They're three different connections. [MCP](/en/news/2026-08-10-what-is-mcp-for-ai-agents/) links an agent to its tools and data; [A2A](/en/news/2026-09-08-agent2agent-a2a-protocol/) links an agent to other agents; AG-UI links an agent to the human watching it. They compose rather than compete — one app can use all three, and AWS ships all three in [the same runtime](https://aws.amazon.com/about-aws/whats-new/2026/03/amazon-bedrock-agentcore-runtime-ag-ui-protocol).
+
+**Who created AG-UI and is it open?**
+It's [maintained by CopilotKit](https://github.com/ag-ui-protocol/ag-ui) under the MIT license, with first-party integrations across Microsoft, Google, AWS, Mastra, LlamaIndex, and others and partner support from LangChain and CrewAI. In March 2026 AWS [added it to Bedrock AgentCore Runtime](https://aws.amazon.com/about-aws/whats-new/2026/03/amazon-bedrock-agentcore-runtime-ag-ui-protocol), a sign it's becoming shared infrastructure rather than one vendor's format.
+
+**Do I need to know AG-UI to use AI agents?**
+No. AG-UI is a builder's protocol for writing custom agent interfaces. If you use agents through a finished product, it's likely running underneath already. It matters directly when you're building the front-end — and indirectly for everyone, because a streaming, transparent UI is what lets a human see and catch an agent's actions.
+
+**What transport does AG-UI use?**
+Any event transport — [Server-Sent Events, WebSockets, or webhooks](https://github.com/ag-ui-protocol/ag-ui) — through a flexible middleware layer, so it fits existing web infrastructure the same way [A2A](/en/news/2026-09-08-agent2agent-a2a-protocol/) and MCP do.
+
+---
+
+Want the field notes on real agents professionals actually run — the exact setups, costs, and failure modes? [Subscribe free](/en/) and get each week's build in your inbox.
