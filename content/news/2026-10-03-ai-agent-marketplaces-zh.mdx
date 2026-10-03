@@ -1,0 +1,57 @@
+---
+title: "AI agent 市场：该买、自建还是跳过"
+date: "2026-10-03"
+excerpt: "四大云厂商都上线了 AI agent 市场——Salesforce、微软、AWS、谷歌。什么时候直接买现成 agent 比自己搭更划算，什么时候不划算。"
+---
+
+AI agent 市场是一个商店，你在里面直接买或安装现成的 agent，而不用自己搭。Salesforce、微软、AWS、谷歌现在都开了一家。常见、成熟的活儿买现成的更划算；只有当这个 agent 就是你的核心竞争力时才值得自建。无论哪种，范围、权限和审批关口始终得你自己管。
+
+2025 年各大云厂商纷纷上线 agent 商店，职场人问的问题也从"怎么搭一个 agent"变成了"能不能直接买一个"。这篇梳理四大市场，再给你一条诚实的判断准则：什么时候买现成的比自建强，什么时候不是。
+
+## 每家云现在都有一个 agent 商店
+
+- **Salesforce AgentExchange。** 2025 年 3 月上线，是 [Agentforce](/zh/news/2026-09-11-ai-agent-pricing-models/) 的市场，建在 AppExchange 的基础上。Salesforce 的[发布公告](https://investor.salesforce.com/news/news-details/2025/Salesforce-Launches-AgentExchange-the-Trusted-Marketplace-for-Agentforce/default.aspx)称首发就有 200 多家合作伙伴——包括 Google Cloud、Docusign、Box、Workday——以及数百个通过了安全与客户审核的现成动作、主题和提示词模板。
+- **微软 Agent Store。** [2025 年 5 月](https://devblogs.microsoft.com/microsoft365dev/introducing-the-agent-store-build-publish-and-discover-agents-in-microsoft-365-copilot/)上线，是 Microsoft 365 Copilot 内部的一个精选市场，用户可以浏览、安装、试用由微软、合作伙伴和客户构建的 agent，并用 Copilot Studio 自己构建和发布。
+- **AWS Marketplace —— AI Agents and Tools。** 2025 年 7 月 16 日在纽约 AWS 峰会[发布](https://aws.amazon.com/about-aws/whats-new/2025/07/ai-agents-tools-aws-marketplace)，首发 900 多个条目，供应商包括 Anthropic、Salesforce、IBM、PwC、Stripe、Perplexity。条目支持 [MCP](/zh/news/2026-08-10-what-is-mcp-for-ai-agents/) 和 [A2A](/zh/news/2026-09-08-agent2agent-a2a-protocol/) 协议，可通过 Amazon Bedrock AgentCore 部署。
+- **谷歌 Gemini Enterprise。** 谷歌的 [Agent Gallery](https://cloud.google.com/gemini-enterprise) 是发现 agent 的中枢，涵盖谷歌、你自己组织以及合作伙伴构建的 agent，合作伙伴的 agent 经审核后通过 Google Cloud Marketplace 发布。采购与使用权限分开：计费管理员在 Marketplace 购买，管理员注册已批准的 agent，用户再使用。
+
+四家的套路一致：一个精选目录、合作伙伴构建的 agent、一道审核关、以及一条在你已付费的工具内部部署的路径。
+
+## 你买到的是什么——又不是什么
+
+市场里的 agent 是现成的*能力*，但它不是一个关于你业务的成品决策。安装之后，有三样东西商店给不了你，仍得你自己管：**范围**（它能碰哪些客户、邮箱、记录）、**权限**（一个限定范围的登录，而不是一把常开的钥匙——见 [agent 身份与访问](/zh/news/2026-10-01-ai-agent-identity-access-management/)），以及它写出或发出任何有后果的东西时那道**审批关口**。无论买的还是自建的，这些控制才决定一个 agent 是否安全——这也是为什么[人在回路中](/zh/news/2026-08-13-human-in-the-loop-ai-agents/)比 agent 的来源更重要。
+
+## 什么时候买比自建强
+
+对常见、成熟的活儿——客服、IT 工单、标准财务流程——一个经过审核的市场 agent 通常比从零自建强，因为最难的部分别人已经做好并在维护了。证据也指向同一方向。MIT 的 NANDA 项目在 [《The GenAI Divide：2025 企业 AI 现状》](https://mlq.ai/media/quarterly_decks/v0.1_State_of_AI_in_Business_2025_Report.pdf) 中发现，从专业供应商处购买的 AI 工具成功率约为 67%，而企业自建工具的成功率只有大约前者的三分之一（[《财富》](https://fortune.com/2025/08/18/mit-report-95-percent-generative-ai-pilots-at-companies-failing-cfo/)报道了同一组对比）。自建是对工程和维护的真实投入，多数团队都低估了它——框架本身才是最简单的部分，这一点我们在[为什么 agent 在生产中失败](/zh/news/2026-09-23-why-ai-agents-fail-in-production/)里讲过。
+
+## 什么时候自建——或者干脆不进商店
+
+当这个 agent *就是*你的竞争优势时自建：一套专有工作流、一批你不愿经过供应商的敏感数据，或者具体到没有任何目录 agent 能套用的逻辑。那是[搭 AI agent 的最佳工具](/zh/news/2026-09-26-best-tools-to-build-ai-agents/)这篇讲的深水区；如果驱动因素是控制权和隐私，也一并掂量下[自托管](/zh/news/2026-09-30-self-hosted-ai-agents/)。
+
+而有时候诚实的答案是：既不买也不从市场装。[第 001 期里的 Gmail 分拣 agent](/zh/posts/2026-05-13-gmail-ai-agent/) 跑在一个普通连接器上——没有商店、没有框架、没有代码——因为把一个托管助手指向正确的数据就已经把活儿干了。进商店之前，先确认你不能[用简单方式搭出来](/zh/news/2026-09-01-how-to-build-an-ai-agent/)。
+
+## 点"安装"之前要问的几个问题
+
+市场降低的是起步的成本，不是跑好的成本。加一个 agent 之前先问：它拿到哪些数据和动作，我能不能把它们缩小？谁来维护它，如果这家合作伙伴消失了会怎样？它怎么收费——按席位、按解决数，还是按 token（见 [AI agent 收费模式](/zh/news/2026-09-11-ai-agent-pricing-models/) 和 [agent 到底多少钱](/zh/news/2026-08-24-how-much-do-ai-agents-cost/)）？它会不会把我的数据或工作流锁进某一家厂商的体系？Gartner 预测[到 2027 年底超过 40% 的 agentic AI 项目会被取消](https://www.gartner.com/en/newsroom/press-releases/2025-06-25-gartner-predicts-over-40-percent-of-agentic-ai-projects-will-be-canceled-by-end-of-2027)，原因是成本失控、价值不清、风险管控薄弱——市场只是让你更快启动一个可能落进那 40% 的项目，把关这件事仍落在你身上。
+
+## FAQ
+
+**什么是 AI agent 市场？**
+它是一个精选商店，你在里面发现、购买、安装现成的 AI agent，而不用自己搭。Salesforce AgentExchange、微软 Agent Store、AWS Marketplace 的 AI agents 分类、谷歌 Gemini Enterprise 里的 Agent Gallery 是四家大的，每家都提供合作伙伴构建、可在你已用工具内部署的 agent。
+
+**我该买一个 AI agent 还是自己搭？**
+常见、成熟、已有现成 agent 的活儿就买；当 agent 是核心差异化能力、或涉及你不愿经过供应商的数据时就自建。MIT 的 NANDA 研究发现，购买的工具[成功率远高于自建](https://mlq.ai/media/quarterly_decks/v0.1_State_of_AI_in_Business_2025_Report.pdf)——约 67% 对上大约只有其三分之一——所以举证责任在"自建"这一边。
+
+**哪些公司有 AI agent 市场？**
+到 2025 年，四大云都有：[Salesforce AgentExchange](https://investor.salesforce.com/news/news-details/2025/Salesforce-Launches-AgentExchange-the-Trusted-Marketplace-for-Agentforce/default.aspx)（2025 年 3 月）、[微软 Agent Store](https://devblogs.microsoft.com/microsoft365dev/introducing-the-agent-store-build-publish-and-discover-agents-in-microsoft-365-copilot/)（2025 年 5 月）、[AWS Marketplace 的 AI Agents and Tools](https://aws.amazon.com/about-aws/whats-new/2025/07/ai-agents-tools-aws-marketplace)（2025 年 7 月），以及 Gemini Enterprise 里的[谷歌 Agent Gallery](https://cloud.google.com/gemini-enterprise)。
+
+**市场里的 agent 用在公司数据上安全吗？**
+可以安全，但装一个并不免除你的责任。它拿到哪些数据和动作仍由你控制，所以把权限缩到最小，并对它写出或发出的任何东西保留一道[人工审批关口](/zh/news/2026-08-13-human-in-the-loop-ai-agents/)。市场的审核把的是条目的关，不是你配置的关。
+
+**市场里的 agent 比自建贵吗？**
+取决于用量和收费模式。市场 agent 前期几乎没成本，但有按席位、按解决数或按 token 的持续费用；自建前期工程成本高，但规模上来后边际成本可能更低。用 [AI agent 收费模式](/zh/news/2026-09-11-ai-agent-pricing-models/) 和 [agent 到底多少钱](/zh/news/2026-08-24-how-much-do-ai-agents-cost/) 把账算清楚。
+
+---
+
+商店是最简单的部分；范围、数据和那道关口仍是你的。这个系列每周记录职场人真正在跑的 agent——买来的和自建的都有。[免费订阅](/zh/)，每一个都送到你邮箱。

@@ -1,6 +1,6 @@
 {
   "$comment": "SEO keyword feed — a living file. The scheduled Cowork routine ideates entries; scripts/seo/feeds.mjs persists them (dedupe + status + timestamps). intent: informational|commercial|transactional. funnel: TOFU|MOFU|BOFU. cluster: use-case|template|comparison|industry|tool-stack. status: new|used.",
-  "updatedAt": "2026-10-01",
+  "updatedAt": "2026-10-03",
   "keywords": [
     {
       "term": "AI agent use cases",
@@ -927,9 +927,9 @@
       "funnel": "MOFU",
       "cluster": "comparison",
       "locale": "both",
-      "status": "new",
+      "status": "used",
       "addedAt": "2026-09-20",
-      "note": "Sunday feed research 2026-09-20 (competitor/trend sweep). Buy-vs-build-vs-ignore decision as every major cloud shipped an agent store: Salesforce AgentExchange (unified AppExchange + Slack Marketplace + Agentforce, 200+ launch partners incl. Google Cloud/Docusign; agentexchange.salesforce.com), Google folding Agentspace into Gemini Enterprise (native agent discovery), plus AWS/Microsoft. When a pre-built marketplace agent beats a real desk build and when it doesn't (the trust/scope/lock-in questions). Verify each marketplace claim against its own page. Clusters with no-code-tools, best-frameworks, how-much-cost, pricing-models; the buy end of the how-to-build (09-01) build/buy spectrum."
+      "note": "Sunday feed research 2026-09-20 (competitor/trend sweep). Buy-vs-build-vs-ignore decision as every major cloud shipped an agent store. | Used 2026-10-03 → content/news/2026-10-03-ai-agent-marketplaces-{en,zh}.mdx (title 'AI Agent Marketplaces: Buy, Build, or Skip'). Buy-vs-build-vs-skip framing with the site's own-the-scope/permissions/gate line. Four marketplaces mapped from their own pages: Salesforce AgentExchange (launched March 2025 on the AppExchange foundation, 200+ partners incl. Google Cloud/Docusign/Box/Workday + hundreds of vetted actions/topics/prompt templates — investor.salesforce.com press release), Microsoft Agent Store (May 2025, curated marketplace inside M365 Copilot, build/publish via Copilot Studio — devblogs.microsoft.com), AWS Marketplace AI Agents and Tools (announced July 16 2025 at AWS Summit NYC, 900+ listings from Anthropic/Salesforce/IBM/PwC/Stripe/Perplexity, MCP+A2A support, deploy via Bedrock AgentCore — aws.amazon.com whats-new), Google Agent Gallery in Gemini Enterprise (partner agents via Google Cloud Marketplace, purchasing split from access — cloud.google.com/gemini-enterprise). When-buy-beats-build grounded in MIT NANDA GenAI Divide (purchased vendor tools ~67% success vs about a third as often for internal builds — mlq.ai PDF + Fortune) under Gartner's 40%-canceled-by-2027 caution (same primary sources the site already uses in why-agents-fail 09-23). Skip-the-store case = Issue #001's plain-connector Gmail agent (no store/framework/code). Deliberately dropped the keyword note's unverified 'Agentspace folded into Gemini Enterprise / 1,000+ partner use cases' precise claims — kept Google qualitative and linked the product page, per the no-fabricated-specifics gate. Wove an inbound link from best-tools-to-build (09-26) 'How to actually choose' section (en+zh) as the fourth option = don't build at all. Answers GEO prompt 'Should I buy an AI agent from a marketplace or build my own?' verbatim in its second FAQ (probed 2026-10-03 on-publish, not cited). Appended to public/llms.txt as evergreen. Clusters with best-tools (09-26), self-hosted (09-30), how-to-build (09-01), pricing-models (09-11), how-much-cost (08-24), why-agents-fail (09-23), human-in-the-loop (08-13), identity-access (10-01)."
     },
     {
       "term": "why AI agents fail in production",
