@@ -1,0 +1,57 @@
+---
+title: "AI Agent Marketplaces: Buy, Build, or Skip"
+date: "2026-10-03"
+excerpt: "Every major cloud now runs an agent store — Salesforce, Microsoft, AWS, Google. Here's when a marketplace agent beats building your own, and when it doesn't."
+---
+
+An AI agent marketplace is a store where you buy or install ready-made agents instead of building one. Salesforce, Microsoft, AWS, and Google all run one now. Buying wins for common, well-understood jobs; building wins when the agent is your edge. Either way, you still own scope, permissions, and the approval gate.
+
+In 2025 every major cloud shipped an agent store, and the question professionals keep asking shifted from "how do I build an agent" to "should I just buy one?" This guide maps the four big marketplaces, then gives you an honest rule for when the store beats a build — and when it doesn't.
+
+## Every cloud now has an agent store
+
+- **Salesforce AgentExchange.** Launched March 2025 as a marketplace for [Agentforce](/en/news/2026-09-11-ai-agent-pricing-models/), built on the foundation of AppExchange. Salesforce's [launch announcement](https://investor.salesforce.com/news/news-details/2025/Salesforce-Launches-AgentExchange-the-Trusted-Marketplace-for-Agentforce/default.aspx) says it debuted with more than 200 partners — including Google Cloud, Docusign, Box, and Workday — and "hundreds of ready-to-use actions, topics, and prompt templates" that passed security and customer reviews.
+- **Microsoft Agent Store.** Introduced in [May 2025](https://devblogs.microsoft.com/microsoft365dev/introducing-the-agent-store-build-publish-and-discover-agents-in-microsoft-365-copilot/) as a curated marketplace inside Microsoft 365 Copilot where users browse, install, and try agents built by Microsoft, partners, and customers. You build and publish your own with Copilot Studio.
+- **AWS Marketplace — AI Agents and Tools.** [Announced](https://aws.amazon.com/about-aws/whats-new/2025/07/ai-agents-tools-aws-marketplace) at the AWS Summit in New York on July 16, 2025, with 900+ listings from providers including Anthropic, Salesforce, IBM, PwC, Stripe, and Perplexity. Listings support the [MCP](/en/news/2026-08-10-what-is-mcp-for-ai-agents/) and [A2A](/en/news/2026-09-08-agent2agent-a2a-protocol/) protocols and deploy through Amazon Bedrock AgentCore.
+- **Google Gemini Enterprise.** Google's [Agent Gallery](https://cloud.google.com/gemini-enterprise) is the hub for discovering agents made by Google, your organization, and partners, with partner-built agents published through Google Cloud Marketplace once approved. Purchasing is split from access: a billing admin buys through Marketplace, an admin registers approved agents, and users run them.
+
+The pattern is consistent across all four: a curated catalog, partner-built agents, a review step, and a path to deploy inside tools you already pay for.
+
+## What you're actually buying — and what you're not
+
+A marketplace agent is pre-built *capability*. What it is not is a finished decision about your business. When you install one, you still own three things the store can't hand you: the **scope** (which accounts, inboxes, or records it can touch), the **permissions** (a scoped login, not a standing key — see [agent identity and access](/en/news/2026-10-01-ai-agent-identity-access-management/)), and the **approval gate** on anything consequential it writes or sends. Those are the same controls that decide whether any agent is safe, bought or built, which is why a [human in the loop](/en/news/2026-08-13-human-in-the-loop-ai-agents/) matters more than where the agent came from.
+
+## When buying beats building
+
+For common, well-understood jobs — customer support, IT tickets, standard finance flows — a vetted marketplace agent usually beats a from-scratch build, because the hard parts are already solved and maintained. The evidence points the same way. MIT's NANDA initiative, in [*The GenAI Divide: State of AI in Business 2025*](https://mlq.ai/media/quarterly_decks/v0.1_State_of_AI_in_Business_2025_Report.pdf), found that AI tools bought from specialized vendors reached success about 67% of the time, while internally built tools succeeded only about a third as often ([Fortune](https://fortune.com/2025/08/18/mit-report-95-percent-generative-ai-pilots-at-companies-failing-cfo/) covered the same split). Building your own is a real commitment of engineering and maintenance that most teams underestimate — the framework is the easy part, as our [why agents fail in production](/en/news/2026-09-23-why-ai-agents-fail-in-production/) piece lays out.
+
+## When to build — or skip the store entirely
+
+Build when the agent *is* your edge: a proprietary workflow, sensitive data you won't route through a vendor, or logic so specific no catalog agent fits. That's the deep end of the [best tools to build AI agents](/en/news/2026-09-26-best-tools-to-build-ai-agents/) guide, and if control and privacy are the drivers, weigh [self-hosting](/en/news/2026-09-30-self-hosted-ai-agents/) too.
+
+And sometimes the honest answer is neither buy nor build a marketplace listing. The [Gmail triage agent in Issue #001](/en/posts/2026-05-13-gmail-ai-agent/) runs on a plain connector — no store, no framework, no code — because a hosted assistant pointed at the right data already did the job. Before you shop, confirm you can't [build it simply](/en/news/2026-09-01-how-to-build-an-ai-agent/) first.
+
+## The questions to ask before you click "install"
+
+A marketplace lowers the effort to start, not the effort to run well. Before adding an agent, ask: What data and actions does it get, and can I scope them down? Who maintains it, and what happens if the partner disappears? How is it priced — per seat, per resolution, or per token (see [AI agent pricing models](/en/news/2026-09-11-ai-agent-pricing-models/) and [how much agents cost](/en/news/2026-08-24-how-much-do-ai-agents-cost/))? And does it lock my data or workflow into one vendor's stack? Gartner predicts that [over 40% of agentic AI projects will be canceled by the end of 2027](https://www.gartner.com/en/newsroom/press-releases/2025-06-25-gartner-predicts-over-40-percent-of-agentic-ai-projects-will-be-canceled-by-end-of-2027), citing escalating costs, unclear value, and weak risk controls — a marketplace makes it faster to start a project that lands in that 40%, so the vetting still falls to you.
+
+## FAQ
+
+**What is an AI agent marketplace?**
+It's a curated store where you discover, buy, and install ready-made AI agents instead of building them. Salesforce AgentExchange, the Microsoft Agent Store, AWS Marketplace's AI agents category, and Google's Agent Gallery in Gemini Enterprise are the four big ones, each offering partner-built agents that deploy inside tools you already use.
+
+**Should I buy an AI agent or build my own?**
+Buy for common, well-understood jobs where mature agents already exist; build when the agent is a core differentiator or touches data you won't route through a vendor. MIT's NANDA research found purchased tools [succeeded far more often than internal builds](https://mlq.ai/media/quarterly_decks/v0.1_State_of_AI_in_Business_2025_Report.pdf) — roughly 67% versus about a third as often — so the burden of proof is on building.
+
+**Which companies have an AI agent marketplace?**
+As of 2025, all four major clouds: [Salesforce AgentExchange](https://investor.salesforce.com/news/news-details/2025/Salesforce-Launches-AgentExchange-the-Trusted-Marketplace-for-Agentforce/default.aspx) (March 2025), the [Microsoft Agent Store](https://devblogs.microsoft.com/microsoft365dev/introducing-the-agent-store-build-publish-and-discover-agents-in-microsoft-365-copilot/) (May 2025), [AWS Marketplace's AI Agents and Tools](https://aws.amazon.com/about-aws/whats-new/2025/07/ai-agents-tools-aws-marketplace) (July 2025), and [Google's Agent Gallery](https://cloud.google.com/gemini-enterprise) in Gemini Enterprise.
+
+**Are marketplace agents safe to use with company data?**
+They can be, but installing one doesn't remove your responsibility. You still control what data and actions the agent gets, so scope its permissions down to the minimum and keep a [human approval gate](/en/news/2026-08-13-human-in-the-loop-ai-agents/) on anything it writes or sends. The marketplace's review step vets the listing, not your configuration.
+
+**Do marketplace agents cost more than building?**
+It depends on volume and pricing model. A marketplace agent has little upfront cost but recurring per-seat, per-resolution, or per-token fees; a build has high upfront engineering cost but potentially lower marginal cost at scale. Work the math with [AI agent pricing models](/en/news/2026-09-11-ai-agent-pricing-models/) and [how much AI agents cost](/en/news/2026-08-24-how-much-do-ai-agents-cost/).
+
+---
+
+The store is the easy part; the scope, the data, and the gate are still yours. Every week this series documents the exact agents professionals actually run — bought and built. [Subscribe free](/en/) and get each one in your inbox.

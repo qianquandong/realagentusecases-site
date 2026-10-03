@@ -1,6 +1,6 @@
 {
   "$comment": "GEO prompt feed — the questions working professionals ask ChatGPT / Perplexity / Gemini. The scheduled Cowork routine ideates entries; scripts/seo/feeds.mjs persists them. cluster: use-case|template|comparison|industry|tool-stack. status: new|covered (covered = a published article targets it). Phase 7 tracks whether the brand is cited for each.",
-  "updatedAt": "2026-10-01",
+  "updatedAt": "2026-10-03",
   "prompts": [
     {
       "prompt": "What are real examples of AI agents at work?",
@@ -586,9 +586,9 @@
       "prompt": "Should I buy an AI agent from a marketplace or build my own?",
       "cluster": "comparison",
       "locale": "en",
-      "status": "new",
+      "status": "covered",
       "addedAt": "2026-09-20",
-      "note": "Sunday feed research 2026-09-20. Pairs with the new 'AI agent marketplaces' keyword; the buy-vs-build decision. Grounded in Salesforce AgentExchange + Google Gemini Enterprise agent discovery."
+      "note": "Sunday feed research 2026-09-20. Pairs with the 'AI agent marketplaces' keyword; the buy-vs-build decision. Covered 2026-10-03 by content/news/2026-10-03-ai-agent-marketplaces. GEO-probed 2026-10-03 (on-publish baseline, verbatim web search): not cited — SERP dominated by build-vs-buy vendor whitepapers/quizzes (asapp.com, pickaxe.co, cxnetwork.com, digitalgenius.com, gaas.it.com, revolgy.com, outreach.ai); realagentusecases.com did not appear — the field is CX/agent-platform vendors' build-vs-buy whitepapers with no independent buy-vs-build-vs-skip / own-the-scope-permissions-gate angle grounded in a real desk build, this site's gap to own. Notably the same SERP independently states the article's own thesis (no universal answer; buy for common well-understood workflows, build when the agent is a core differentiator; MIT found purchased tools more successful than internal builds; Gartner 40%-canceled-by-2027) — corroboration for the shipped article, not fabrication. The article answers this prompt verbatim in its second FAQ; re-probe post-index to track lift. Marked 'covered' this run."
     },
     {
       "prompt": "Why do so many AI agent projects fail?",
