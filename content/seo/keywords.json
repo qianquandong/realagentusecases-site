@@ -1,6 +1,6 @@
 {
   "$comment": "SEO keyword feed — a living file. The scheduled Cowork routine ideates entries; scripts/seo/feeds.mjs persists them (dedupe + status + timestamps). intent: informational|commercial|transactional. funnel: TOFU|MOFU|BOFU. cluster: use-case|template|comparison|industry|tool-stack. status: new|used.",
-  "updatedAt": "2026-10-03",
+  "updatedAt": "2026-10-04",
   "keywords": [
     {
       "term": "AI agent use cases",
@@ -1040,6 +1040,86 @@
       "status": "new",
       "addedAt": "2026-09-27",
       "note": "Sunday feed research 2026-09-27. Agentic enterprise search / 'ask across all your work apps' — an agent that retrieves and synthesizes across Slack/Drive/email/tickets rather than returning a link list. Distinct from agentic-RAG (09-10, the retrieval mechanism) and market-research (08-07, external gathering): this is internal, cross-app knowledge retrieval. Verify at write time against primary pages (Glean, Google Gemini Enterprise / former Agentspace, Microsoft 365 Copilot search, Dropbox Dash) — confirm 3+ real linkable sources before writing. Retrieve-vs-decide framing reuses the answer-vs-trajectory lens. Clusters with agentic-rag (09-10), memory-and-context (09-05), what-is-mcp (08-10), knowledge-worker use-cases."
+    },
+    {
+      "term": "OpenAI AgentKit",
+      "intent": "informational",
+      "funnel": "MOFU",
+      "cluster": "tool-stack",
+      "locale": "both",
+      "status": "new",
+      "addedAt": "2026-10-04",
+      "note": "Sunday feed research 2026-10-04. OpenAI's agent-building bundle announced at DevDay (openai.com/index/introducing-agentkit): Agents SDK + Responses API + ChatKit + Agent Builder (visual drag-and-drop canvas). The honest real-desk angle: OpenAI is winding down Agent Builder + Evals (unavailable after 2026-11-30), steering code workflows to the Agents SDK — so build on the durable primitive (SDK/API), not the no-code canvas. Verify at write time against OpenAI's own announcement + docs and the wind-down notice. Clusters with best-ai-agent-frameworks, no-code-ai-agent-tools (07-08), ai-agent-orchestration, best-llm-for-ai-agents."
+    },
+    {
+      "term": "small language models for AI agents",
+      "intent": "informational",
+      "funnel": "MOFU",
+      "cluster": "tool-stack",
+      "locale": "both",
+      "status": "new",
+      "addedAt": "2026-10-04",
+      "note": "Sunday feed research 2026-10-04. NVIDIA Research position paper 'Small Language Models are the Future of Agentic AI' (arxiv.org/abs/2506.02153): SLMs under ~10B are sufficient, 10-30x cheaper, and lower-latency for the repetitive, constrained subtasks agents actually run; call a big LLM only for hard reasoning. Ties cost/latency to how-much-do-ai-agents-cost and best-llm-for-ai-agents. Verify at write time against the paper and the model claims it cites (Phi, Salesforce xLAM tool-calling). Clusters with best-llm-for-ai-agents, ai-agent-pricing-models, runtime-platforms, ai-agent-code-execution."
+    },
+    {
+      "term": "LangGraph vs CrewAI",
+      "intent": "commercial",
+      "funnel": "MOFU",
+      "cluster": "comparison",
+      "locale": "both",
+      "status": "new",
+      "addedAt": "2026-10-04",
+      "note": "Sunday feed research 2026-10-04. The concrete head-to-head the 'best frameworks' keyword abstracts over: LangGraph (graph runtime, explicit control flow, checkpointing/human-in-the-loop) vs CrewAI (role-based multi-agent, fastest prototype) vs OpenAI Agents SDK (thin primitives). Verify at write time against each project's own docs + repo (langchain-ai/langgraph, crewAIInc/crewAI, openai/openai-agents-python) — cite live download/star figures from the source, not a blog. Clusters with best-ai-agent-frameworks, ai-agent-orchestration, multi-agent-systems-for-business, human-in-the-loop."
+    },
+    {
+      "term": "agentic browser security",
+      "intent": "informational",
+      "funnel": "TOFU",
+      "cluster": "comparison",
+      "locale": "both",
+      "status": "new",
+      "addedAt": "2026-10-04",
+      "note": "Sunday feed research 2026-10-04. The security reality of agentic browsers (ChatGPT Atlas, Perplexity Comet, Gemini-in-Chrome) acting on logged-in sessions: prompt injection hidden in page content/comments/images can hijack the agent. Brave's Comet disclosure and documented Atlas attacks within hours of launch are the linkable anchors. Extends ai-browser-agents (the capability) into the risk surface; reuses the prompt-injection + human-in-the-loop frame. Verify at write time against Brave's security blog, OpenAI's Atlas safety page, and researcher write-ups. Clusters with ai-browser-agents, ai-agent-prompt-injection (09-24), ai-agent-security-risks (08-25), computer-use-agents."
+    },
+    {
+      "term": "AI agent payment protocols",
+      "intent": "informational",
+      "funnel": "MOFU",
+      "cluster": "tool-stack",
+      "locale": "both",
+      "status": "new",
+      "addedAt": "2026-10-04",
+      "note": "Sunday feed research 2026-10-04. How agents are given authority to pay: Google's Agent Payments Protocol (AP2 — cryptographically-signed intent + cart mandates, 60+ to 100+ partners incl. Mastercard/PayPal) and Stripe/OpenAI's Agentic Commerce Protocol (ACP). The human-authorization-as-mandate design is the story; note honestly that consumer-facing implementations are still early. Completes the protocol family on-site (MCP 08-10, A2A 09-08, AG-UI 10-02). Verify at write time against Google's AP2 spec/announcement and Stripe's ACP docs. Clusters with agentic-commerce, ai-shopping-agents, agent2agent-a2a-protocol, what-is-mcp."
+    },
+    {
+      "term": "spec-driven development for AI agents",
+      "intent": "informational",
+      "funnel": "MOFU",
+      "cluster": "tool-stack",
+      "locale": "both",
+      "status": "new",
+      "addedAt": "2026-10-04",
+      "note": "Sunday feed research 2026-10-04. GitHub Spec Kit and the Spec->Plan->Tasks->Implement loop: write a spec + constitution.md of constraints first, let the coding agent build against it instead of ad-hoc prompting (github.github.com/spec-kit, repo github/spec-kit). The 'give the agent structured context' discipline mirrors our context-engineering + why-agents-fail themes. Verify at write time against the Spec Kit docs/repo and Visual Studio Magazine's launch coverage. Clusters with ai-coding-agents-for-developers, context-engineering-for-ai-agents (09-22), ai-agent-design-patterns, why-ai-agents-fail-in-production."
+    },
+    {
+      "term": "EU AI Act for AI agents",
+      "intent": "informational",
+      "funnel": "TOFU",
+      "cluster": "tool-stack",
+      "locale": "both",
+      "status": "new",
+      "addedAt": "2026-10-04",
+      "note": "Sunday feed research 2026-10-04. What the EU AI Act requires of agent deployers now that the Aug 2026 high-risk/GPAI obligations have landed: transparency (users told they're talking to AI, AI output labeled), risk-tier classification (hiring/credit/medical = high-risk), continuous logging + human oversight you can evidence at any time. 'Compliance is continuous' extends ai-agent-governance beyond generic policy into the named regime. Verify at write time against the EU AI Act text / official implementation timeline and reputable law-firm summaries. Clusters with ai-agent-governance-for-enterprises, human-in-the-loop, ai-agent-identity-and-access-management (10-01), ai-agent-security-risks."
+    },
+    {
+      "term": "AI agent reliability",
+      "intent": "informational",
+      "funnel": "MOFU",
+      "cluster": "tool-stack",
+      "locale": "both",
+      "status": "new",
+      "addedAt": "2026-10-04",
+      "note": "Sunday feed research 2026-10-04. The demo-to-production reliability gap, distinct from why-agents-fail (failure modes) and how-to-evaluate (test method): the engineering of making a 90%-in-demo agent dependable — benchmark-vs-production drop, tool-calling error rates, state drift, and the eval/SLA layers that catch them. Anchor to reliability resources (e.g. Arize) and reported eval-gap figures, attributing each to its source, never 'studies show'. Frame as the fix (reliability engineering), not the autopsy, to avoid cannibalizing why-agents-fail. Clusters with how-to-evaluate-ai-agents, ai-agent-observability, ai-agent-benchmarks, why-ai-agents-fail-in-production."
     }
   ]
 }

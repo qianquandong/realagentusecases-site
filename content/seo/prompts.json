@@ -1,6 +1,6 @@
 {
   "$comment": "GEO prompt feed — the questions working professionals ask ChatGPT / Perplexity / Gemini. The scheduled Cowork routine ideates entries; scripts/seo/feeds.mjs persists them. cluster: use-case|template|comparison|industry|tool-stack. status: new|covered (covered = a published article targets it). Phase 7 tracks whether the brand is cited for each.",
-  "updatedAt": "2026-10-03",
+  "updatedAt": "2026-10-04",
   "prompts": [
     {
       "prompt": "What are real examples of AI agents at work?",
@@ -653,6 +653,46 @@
       "status": "new",
       "addedAt": "2026-09-27",
       "note": "Sunday feed research 2026-09-27. ZH pair for the 'AI employees' keyword; keeps the ZH prompt feed growing alongside EN. AI 员工/数字员工是不是只是 agent 的营销包装——能力没变，只是加了角色和权限边界。"
+    },
+    {
+      "prompt": "Which AI agent framework should I use — LangGraph, CrewAI, or OpenAI Agents SDK?",
+      "cluster": "comparison",
+      "locale": "en",
+      "status": "new",
+      "addedAt": "2026-10-04",
+      "note": "Sunday feed research 2026-10-04. Pairs with the 'LangGraph vs CrewAI' keyword; the pick-by-need answer (control/persistence -> LangGraph, fast role-based prototype -> CrewAI, thin OpenAI-native -> Agents SDK). Ground in each project's own docs at write time."
+    },
+    {
+      "prompt": "Can small language models run AI agents, or do I need a frontier model?",
+      "cluster": "tool-stack",
+      "locale": "en",
+      "status": "new",
+      "addedAt": "2026-10-04",
+      "note": "Sunday feed research 2026-10-04. Pairs with 'small language models for AI agents'. The SLM-for-subtasks, big-LLM-for-hard-reasoning answer from NVIDIA's position paper. Ground in arxiv.org/abs/2506.02153 at write time."
+    },
+    {
+      "prompt": "Is it safe to let an AI browser agent shop or log into my accounts?",
+      "cluster": "comparison",
+      "locale": "en",
+      "status": "new",
+      "addedAt": "2026-10-04",
+      "note": "Sunday feed research 2026-10-04. Pairs with 'agentic browser security'. Prompt-injection on authenticated sessions is the honest answer; cite Brave's Comet disclosure + the Atlas attacks. Ground in primary security write-ups at write time."
+    },
+    {
+      "prompt": "AI agent 开发用 LangGraph 还是 CrewAI？",
+      "cluster": "comparison",
+      "locale": "zh",
+      "status": "new",
+      "addedAt": "2026-10-04",
+      "note": "Sunday feed research 2026-10-04. ZH pair for the framework-comparison keyword; grows the underweight ZH prompt feed (68 EN / 12 ZH). 按需求选：要精细状态控制和断点续跑选 LangGraph，要最快搭多智能体原型选 CrewAI。"
+    },
+    {
+      "prompt": "企业用 AI agent 要满足哪些合规要求（欧盟 AI 法案）？",
+      "cluster": "tool-stack",
+      "locale": "zh",
+      "status": "new",
+      "addedAt": "2026-10-04",
+      "note": "Sunday feed research 2026-10-04. ZH pair for 'EU AI Act for AI agents'; grows the ZH feed. 透明告知、风险分级、可随时举证的日志与人工监督。写作时以欧盟 AI 法案原文与实施时间线为准。"
     }
   ]
 }
