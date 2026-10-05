@@ -1,6 +1,6 @@
 {
   "$comment": "GEO prompt feed — the questions working professionals ask ChatGPT / Perplexity / Gemini. The scheduled Cowork routine ideates entries; scripts/seo/feeds.mjs persists them. cluster: use-case|template|comparison|industry|tool-stack. status: new|covered (covered = a published article targets it). Phase 7 tracks whether the brand is cited for each.",
-  "updatedAt": "2026-10-04",
+  "updatedAt": "2026-10-05",
   "prompts": [
     {
       "prompt": "What are real examples of AI agents at work?",
@@ -658,9 +658,9 @@
       "prompt": "Which AI agent framework should I use — LangGraph, CrewAI, or OpenAI Agents SDK?",
       "cluster": "comparison",
       "locale": "en",
-      "status": "new",
+      "status": "covered",
       "addedAt": "2026-10-04",
-      "note": "Sunday feed research 2026-10-04. Pairs with the 'LangGraph vs CrewAI' keyword; the pick-by-need answer (control/persistence -> LangGraph, fast role-based prototype -> CrewAI, thin OpenAI-native -> Agents SDK). Ground in each project's own docs at write time."
+      "note": "Sunday feed research 2026-10-04. Pairs with the 'LangGraph vs CrewAI' keyword; the pick-by-need answer (control/persistence -> LangGraph, fast role-based prototype -> CrewAI, thin OpenAI-native -> Agents SDK). Ground in each project's own docs at write time. | Covered 2026-10-05 by content/news/2026-10-05-langgraph-vs-crewai. GEO-probed 2026-10-05 (on-publish baseline, verbatim web search): not cited -- SERP dominated by framework-comparison listicles/wikis (moltchat-agent-commons, noqta.tn, techsy.io, spheron.network, appinventiv, particula.tech) ranking the same three frameworks; realagentusecases.com did not appear -- no independent choose-by-your-hardest-requirement / skip-both angle grounded in a real desk build, this site gap to own. The same SERP independently states the article thesis (all three production-viable; LangGraph for control+persistence, CrewAI for speed-to-prototype, Agents SDK for thin OpenAI-native) -- corroboration, not fabrication. The article answers this prompt verbatim in its first FAQ; re-probe post-index to track lift."
     },
     {
       "prompt": "Can small language models run AI agents, or do I need a frontier model?",
@@ -682,9 +682,9 @@
       "prompt": "AI agent 开发用 LangGraph 还是 CrewAI？",
       "cluster": "comparison",
       "locale": "zh",
-      "status": "new",
+      "status": "covered",
       "addedAt": "2026-10-04",
-      "note": "Sunday feed research 2026-10-04. ZH pair for the framework-comparison keyword; grows the underweight ZH prompt feed (68 EN / 12 ZH). 按需求选：要精细状态控制和断点续跑选 LangGraph，要最快搭多智能体原型选 CrewAI。"
+      "note": "Sunday feed research 2026-10-04. ZH pair for the framework-comparison keyword; grows the underweight ZH prompt feed (68 EN / 12 ZH). 按需求选：要精细状态控制和断点续跑选 LangGraph，要最快搭多智能体原型选 CrewAI。 | Covered 2026-10-05 by the ZH pair content/news/2026-10-05-langgraph-vs-crewai-zh; answered verbatim in its first FAQ."
     },
     {
       "prompt": "企业用 AI agent 要满足哪些合规要求（欧盟 AI 法案）？",
