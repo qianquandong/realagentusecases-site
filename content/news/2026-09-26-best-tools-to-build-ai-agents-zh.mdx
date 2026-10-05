@@ -24,7 +24,7 @@ excerpt: "搭建 AI Agent 的最佳工具取决于要干的活，不是排行榜
 
 ## 代码框架：控制力，但有代价
 
-如果你有开发者、需要定制逻辑，这一档就是归宿。[LangChain](https://www.langchain.com/resources/ai-agent-frameworks) 是采用最广的开源生态，它的 [LangGraph](https://www.langchain.com/langgraph) 库把 Agent 建模成一张由你显式控制的步骤图——需要分支、循环和人工检查点时很有用。[OpenAI Agents SDK](https://openai.github.io/openai-agents-python/) 更轻量：[文档](https://github.com/openai/openai-agents-python)说它与厂商无关（支持 100+ 模型，不只是 OpenAI 的），自带 tracing、会话和 [MCP](/zh/news/2026-08-10-what-is-mcp-for-ai-agents/) 支持。做多智能体，[CrewAI](https://docs.crewai.com/) 把 Agent 组织成基于角色的「crew」，微软的 [AutoGen](https://microsoft.github.io/autogen/) 则把它们看作通过对话协作解决任务的 Agent。
+如果你有开发者、需要定制逻辑，这一档就是归宿。[LangChain](https://www.langchain.com/resources/ai-agent-frameworks) 是采用最广的开源生态，它的 [LangGraph](https://www.langchain.com/langgraph) 库把 Agent 建模成一张由你显式控制的步骤图——需要分支、循环和人工检查点时很有用。[OpenAI Agents SDK](https://openai.github.io/openai-agents-python/) 更轻量：[文档](https://github.com/openai/openai-agents-python)说它与厂商无关（支持 100+ 模型，不只是 OpenAI 的），自带 tracing、会话和 [MCP](/zh/news/2026-08-10-what-is-mcp-for-ai-agents/) 支持。做多智能体，[CrewAI](https://docs.crewai.com/) 把 Agent 组织成基于角色的「crew」，微软的 [AutoGen](https://microsoft.github.io/autogen/) 则把它们看作通过对话协作解决任务的 Agent。要在最常见的两个选项之间权衡，见 [LangGraph 对比 CrewAI](/zh/news/2026-10-05-langgraph-vs-crewai/)——控制与速度的正面对决。
 
 代价是实打实的：DataCamp 的 [2026 对比](https://www.datacamp.com/blog/best-ai-agents) 指出，这些框架给你代码级控制，但部署、可观测性和成本管理都得你自己扛。这也正是[为什么 AI Agent 在生产环境翻车](/zh/news/2026-09-23-why-ai-agents-fail-in-production/)背后的那份运维重量——框架反而是最容易的部分。
 

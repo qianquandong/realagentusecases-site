@@ -1,0 +1,63 @@
+---
+title: "LangGraph vs CrewAI: Control vs Speed"
+date: "2026-10-05"
+excerpt: "LangGraph gives you explicit control, state, and checkpointing; CrewAI gets a role-based prototype running fast. How to pick — and when to skip both."
+---
+
+LangGraph and CrewAI solve the same problem from opposite ends. [LangGraph](https://www.langchain.com/langgraph) models an agent as an explicit graph of steps you control, with built-in persistence so runs can pause and resume. [CrewAI](https://docs.crewai.com/en/introduction) organizes agents into role-based "crews" that collaborate on tasks, so you get a working multi-agent prototype fast. Pick by how much control you need — or skip both.
+
+Every "best framework" roundup ranks these side by side as if one wins. The honest answer is that they're built on different mental models, and the right one depends on your workload, not a leaderboard. This is the concrete head-to-head behind the broader [best tools to build an AI agent](/en/news/2026-09-26-best-tools-to-build-ai-agents/) guide — one layer down, for the moment you've already decided you need a code framework.
+
+## First: do you even need a framework?
+
+Before comparing the two, confirm you need either. In [*Building Effective Agents*](https://www.anthropic.com/engineering/building-effective-agents), Anthropic reports that its most successful agent builds "weren't using complex frameworks or specialized libraries" — they used "simple, composable patterns," and the essay recommends starting by calling the LLM APIs directly, because frameworks "often create extra layers of abstraction that can obscure the underlying prompts and responses."
+
+That's not an argument against frameworks; it's an argument for reaching for one only when the job earns it. If your task is a predictable sequence of steps, you may want a plain [workflow](/en/news/2026-09-15-ai-agents-vs-workflows/), not an agent at all. The [Gmail triage agent in Issue #001](/en/posts/2026-05-13-gmail-ai-agent/) runs on a connector with zero framework code. Compare LangGraph and CrewAI once you've confirmed you're building something that needs orchestration in code.
+
+## LangGraph: an explicit graph you control
+
+LangGraph treats an agent as a state machine. You define nodes (steps), edges (transitions), and a shared state object, and every transition is code you wrote. Its distinguishing feature is [persistence](https://docs.langchain.com/oss/python/langgraph/persistence): when you compile a graph with a checkpointer, LangGraph saves a snapshot of the graph state at every step, organized into threads.
+
+Those checkpoints are what make three things native rather than bolt-on. They let a run survive a crash and resume from its last step (durable execution); they let you rewind to an earlier state and re-run from there ("time travel" debugging); and they power [human-in-the-loop](/en/news/2026-08-13-human-in-the-loop-ai-agents/) gates, because a person can inspect, interrupt, and approve a step, and the graph resumes after the state is updated. The docs ship an `InMemorySaver` for development and a `PostgresSaver` for production. The cost of that control is a steeper mental model — the graph/state-machine way of thinking isn't how most people first sketch a task.
+
+## CrewAI: role-based teams, fast
+
+CrewAI starts from a team metaphor instead of a graph. Per its [docs](https://docs.crewai.com/en/introduction), you build with two pieces: **Crews** are "teams of autonomous agents" with roles and goals that collaborate to solve tasks, and **Flows** are "structured, event-driven workflows that manage state and control execution." The pitch is that you combine "the collaborative intelligence of Crews with the precise control of Flows."
+
+The reason teams reach for CrewAI first is that the role metaphor — a Researcher, a Writer, a Reviewer, each with a task — maps to how people already think about delegating work, so the path from idea to a running multi-agent prototype is short. The tradeoff is the mirror image of LangGraph's: when you later need conditional branching, exact state rollback, and resume-from-a-precise-point recovery, those are things CrewAI's Flows add on top rather than its core primitive. If precise recovery is a day-one requirement, that's LangGraph's home turf.
+
+## The third option: OpenAI Agents SDK
+
+The question people actually type is usually three-way, because the [OpenAI Agents SDK](https://openai.github.io/openai-agents-python/) sits between them. It's a deliberately thin library — a small set of primitives (Agents, Handoffs, Guardrails, Sessions, and built-in Tracing) "without heavy abstractions," per its docs. It's the lightest lift if you want a straightforward agent running quickly and don't need LangGraph's checkpointed state machine or CrewAI's role orchestration. It supports [MCP](/en/news/2026-08-10-what-is-mcp-for-ai-agents/) and works across many model providers, so "OpenAI" in the name isn't a lock-in.
+
+## How to actually choose
+
+Match the framework to the hardest requirement in your build, not to its benchmark score:
+
+- **Need to pause for approval, survive restarts, and resume from an exact point?** LangGraph — persistence is its core API, not an add-on.
+- **Want the fastest path to a working multi-agent prototype?** CrewAI — the role metaphor gets a crew running quickly.
+- **Want the thinnest possible library around a single capable agent?** The OpenAI Agents SDK.
+- **Not sure the job needs code at all?** Go back up a level to [how to build an AI agent](/en/news/2026-09-01-how-to-build-an-ai-agent/) and the [best-tools](/en/news/2026-09-26-best-tools-to-build-ai-agents/) guide first.
+
+Whichever you pick, the framework is the easy part. The operational weight — deployment, observability, cost — is the same in all three, and it's the same weight behind [why so many agents fail in production](/en/news/2026-09-23-why-ai-agents-fail-in-production/). New to the whole idea? Start with [Agent 101](/en/agent-101/).
+
+## FAQ
+
+**Which AI agent framework should I use — LangGraph, CrewAI, or OpenAI Agents SDK?**
+Pick by your hardest requirement. Choose [LangGraph](https://www.langchain.com/langgraph) when you need fine-grained control flow and [persistence](https://docs.langchain.com/oss/python/langgraph/persistence) — checkpointing, resume-after-crash, and human approval gates. Choose [CrewAI](https://docs.crewai.com/en/introduction) when you want the fastest path to a role-based multi-agent prototype. Choose the [OpenAI Agents SDK](https://openai.github.io/openai-agents-python/) when you want a thin, low-overhead library around a single agent. None is "best" in the abstract.
+
+**What's the core difference between LangGraph and CrewAI?**
+The mental model. [LangGraph](https://docs.langchain.com/oss/python/langgraph/persistence) models execution as an explicit graph of nodes and edges with checkpointed state, giving you precise control and recovery. [CrewAI](https://docs.crewai.com/en/introduction) models it as a team of role-based agents collaborating on tasks, giving you speed to prototype. One optimizes for control, the other for how fast you can express a multi-agent idea.
+
+**Does CrewAI support human-in-the-loop and recovery like LangGraph?**
+CrewAI's Flows add structured control and state management on top of crews, but resume-from-an-exact-checkpoint recovery is LangGraph's native primitive, not CrewAI's. If pausing for [human approval](/en/news/2026-08-13-human-in-the-loop-ai-agents/) and surviving restarts is a core requirement, LangGraph's [persistence](https://docs.langchain.com/oss/python/langgraph/persistence) is the more direct fit.
+
+**Do I need any of these frameworks at all?**
+Often no. [Anthropic's guidance](https://www.anthropic.com/engineering/building-effective-agents) is to start by calling the LLM APIs directly and add a framework only when the job demands it, because frameworks add abstraction that can hide the actual prompts and responses. The [Gmail agent in Issue #001](/en/posts/2026-05-13-gmail-ai-agent/) uses no framework at all.
+
+**Is the OpenAI Agents SDK locked to OpenAI models?**
+No. Its [docs](https://openai.github.io/openai-agents-python/) describe it as a provider-agnostic library with built-in tracing, sessions, and [MCP](/en/news/2026-08-10-what-is-mcp-for-ai-agents/) support that works across many model providers — the name reflects its origin, not a lock-in.
+
+---
+
+The framework is never the interesting part — the job is. Every week this series documents the exact setups professionals actually run, tools and all. [Subscribe free](/en/) and get each build in your inbox.

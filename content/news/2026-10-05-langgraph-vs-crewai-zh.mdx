@@ -1,0 +1,63 @@
+---
+title: "LangGraph 对比 CrewAI：控制还是快"
+date: "2026-10-05"
+excerpt: "LangGraph 给你显式控制、状态和断点续跑；CrewAI 让基于角色的多智能体原型最快跑起来。怎么按需求选——以及什么时候两个都不用。"
+---
+
+LangGraph 和 CrewAI 从相反的两端解决同一个问题。[LangGraph](https://www.langchain.com/langgraph) 把 Agent 建模成一张你显式控制的步骤图，自带持久化，运行可以暂停、再续跑。[CrewAI](https://docs.crewai.com/en/introduction) 把 Agent 组织成基于角色的「crew」协作完成任务，让多智能体原型最快跑起来。按你需要多少控制力来选——或者两个都跳过。
+
+几乎每份「最佳框架」盘点都把这两个并排打分，好像总有一个赢。诚实的答案是：它们建立在不同的心智模型上，选哪个取决于你的工作负载，不是排行榜。这是[搭建 AI Agent 的最佳工具](/zh/news/2026-09-26-best-tools-to-build-ai-agents/)那篇背后的具体对决——往下一层，针对你已经决定要用代码框架的那一刻。
+
+## 先问：你到底需不需要框架？
+
+在比较两者之前，先确认你是否需要任何一个。Anthropic 在 [*Building Effective Agents*](https://www.anthropic.com/engineering/building-effective-agents) 里说，它最成功的 Agent 实现「并没有用复杂的框架或专门的库」，而是用「简单、可组合的模式」；文章建议先直接调用大模型 API，因为框架「往往会加上额外的抽象层，遮住底层的 prompt 和响应」。
+
+这不是反对框架，而是说只有在任务配得上时才去拿。如果你的任务就是一串可预测的步骤，你可能需要的是一条固定[工作流](/zh/news/2026-09-15-ai-agents-vs-workflows/)，根本不是 Agent。[Issue #001 的 Gmail 分拣 Agent](/zh/posts/2026-05-13-gmail-ai-agent/) 跑在连接器上，零框架代码。确认你搭的东西确实需要代码级编排之后，再来比 LangGraph 和 CrewAI。
+
+## LangGraph：一张你控制的显式图
+
+LangGraph 把 Agent 当成状态机。你定义节点（步骤）、边（转移）和一个共享状态对象，每一次转移都是你写的代码。它最鲜明的特性是[持久化](https://docs.langchain.com/oss/python/langgraph/persistence)：当你用 checkpointer 编译图时，LangGraph 会在每一步保存图状态的快照，并按线程（thread）组织。
+
+正是这些检查点让三件事成为原生能力、而不是外挂：让一次运行能挺过崩溃、从上一步续跑（durable execution）；让你回退到更早的状态、从那里重跑（「时间旅行」式调试）；以及支撑[人在环中](/zh/news/2026-08-13-human-in-the-loop-ai-agents/)的审批闸门——人可以检查、打断、批准某一步，状态更新后图继续执行。文档为开发提供 `InMemorySaver`、为生产提供 `PostgresSaver`。这份控制力的代价是更陡的心智模型——图/状态机那套思路，并不是大多数人最初勾画任务的方式。
+
+## CrewAI：基于角色的团队，够快
+
+CrewAI 的起点是团队隐喻，而非图。按它的[文档](https://docs.crewai.com/en/introduction)，你用两块东西搭：**Crew** 是「一队自治的 Agent」，带角色和目标，协作解决任务；**Flow** 是「管理状态、控制执行的结构化、事件驱动工作流」。它的主张是把「Crew 的协作智能」与「Flow 的精确控制」结合起来。
+
+团队之所以先拿 CrewAI，是因为角色隐喻——一个 Researcher、一个 Writer、一个 Reviewer，各领一项任务——正好对应人本来就有的分工直觉，从想法到一个能跑的多智能体原型路径很短。代价是 LangGraph 的镜像：当你后来需要条件分支、精确的状态回滚、从某一精确点恢复时，这些是 CrewAI 用 Flow 在上层加出来的，而不是它的核心原语。如果精确恢复是第一天就要的硬需求，那是 LangGraph 的主场。
+
+## 第三个选项：OpenAI Agents SDK
+
+人们真正输入的问题通常是三选一，因为 [OpenAI Agents SDK](https://openai.github.io/openai-agents-python/) 夹在两者之间。它是一个刻意做薄的库——一小组原语（Agents、Handoffs、Guardrails、Sessions 和自带的 Tracing），按其文档的说法「没有沉重的抽象」。如果你想快速跑起一个直接的 Agent，又不需要 LangGraph 的检查点状态机或 CrewAI 的角色编排，它是最轻的那条路。它支持 [MCP](/zh/news/2026-08-10-what-is-mcp-for-ai-agents/)、也兼容多家模型厂商，所以名字里的「OpenAI」并不意味着锁定。
+
+## 到底怎么选
+
+把框架对准你这次搭建里最硬的那条需求，而不是它的跑分：
+
+- **需要为审批暂停、挺过重启、从精确点续跑？** 选 LangGraph——持久化是它的核心 API，不是外挂。
+- **想用最快的路径做出能跑的多智能体原型？** 选 CrewAI——角色隐喻让一支 crew 很快跑起来。
+- **想要围绕单个有能力的 Agent 的、尽可能薄的库？** 选 OpenAI Agents SDK。
+- **不确定这活儿要不要写代码？** 先回到上一层，看[如何搭建 AI Agent](/zh/news/2026-09-01-how-to-build-an-ai-agent/) 和[最佳工具](/zh/news/2026-09-26-best-tools-to-build-ai-agents/)那篇。
+
+无论选哪个，框架都是最容易的部分。运维的重量——部署、可观测性、成本——三者一样重，也正是[为什么这么多 Agent 在生产环境翻车](/zh/news/2026-09-23-why-ai-agents-fail-in-production/)背后的那份重量。对整件事还陌生？先看 [Agent 101](/zh/agent-101/)。
+
+## FAQ
+
+**AI agent 开发用 LangGraph 还是 CrewAI？**
+按你最硬的需求选。需要细粒度控制流和[持久化](https://docs.langchain.com/oss/python/langgraph/persistence)（检查点、崩溃续跑、人工审批闸门）时选 [LangGraph](https://www.langchain.com/langgraph)；想用最快路径做出基于角色的多智能体原型时选 [CrewAI](https://docs.crewai.com/en/introduction)；想要围绕单个 Agent 的、低开销的薄库时选 [OpenAI Agents SDK](https://openai.github.io/openai-agents-python/)。抽象地说没有谁「最好」。
+
+**LangGraph 和 CrewAI 的核心区别是什么？**
+是心智模型。[LangGraph](https://docs.langchain.com/oss/python/langgraph/persistence) 把执行建模成由节点和边组成、带检查点状态的显式图，给你精确的控制和恢复；[CrewAI](https://docs.crewai.com/en/introduction) 把它建模成一队基于角色的 Agent 协作完成任务，给你出原型的速度。一个为控制力优化，一个为「多快能把多智能体想法表达出来」优化。
+
+**CrewAI 像 LangGraph 一样支持人在环中和恢复吗？**
+CrewAI 的 Flow 在 crew 之上加了结构化控制和状态管理，但「从某个精确检查点恢复」是 LangGraph 的原生原语，不是 CrewAI 的。如果为[人工审批](/zh/news/2026-08-13-human-in-the-loop-ai-agents/)暂停、挺过重启是核心需求，LangGraph 的[持久化](https://docs.langchain.com/oss/python/langgraph/persistence)更对口。
+
+**这些框架我一个都需要吗？**
+往往不需要。[Anthropic 的建议](https://www.anthropic.com/engineering/building-effective-agents)是先直接调用大模型 API，需要时再加框架，因为框架的抽象会遮住真实的 prompt 和响应。[Issue #001 的 Gmail Agent](/zh/posts/2026-05-13-gmail-ai-agent/) 完全没用框架。
+
+**OpenAI Agents SDK 只能配 OpenAI 的模型吗？**
+不是。它的[文档](https://openai.github.io/openai-agents-python/)说这是一个与厂商无关的库，自带 tracing、会话和 [MCP](/zh/news/2026-08-10-what-is-mcp-for-ai-agents/) 支持，兼容多家模型厂商——名字只反映出身，不是锁定。
+
+---
+
+框架从来不是有意思的地方——活儿才是。本系列每周记录职场人真正在跑的搭建方案，工具细节全都写进去。[免费订阅](/zh/)，每期直达你的邮箱。
