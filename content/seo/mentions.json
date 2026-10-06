@@ -1,6 +1,6 @@
 {
   "$comment": "LLM brand-mention tracking time series. The scheduled Cowork routine appends one snapshot per run: which target prompts surfaced the brand, in which LLMs, with what sentiment.",
-  "updatedAt": "2026-10-05",
+  "updatedAt": "2026-10-06",
   "snapshots": [
     {
       "date": "2026-10-05",
@@ -1078,6 +1078,18 @@
           "url": null,
           "position": null,
           "note": "Sunday run. Least-recently-probed EN prompt (never probed, added 09-27; ties to the new vertical-AI-agents keyword) — baselined before any vertical-agents article ships. Verbatim web search returned only vendor/VC/blog explainers: fast.io, crv.com, nexos.ai, monday.com/blog, salesforce.com/agentforce, domo, botpress.com, makinarocks.ai; realagentusecases.com did not appear at any position. Field consensus matches our industry-hub framing (depth over breadth, domain data + tools + regulation). Gap: the SERP is vendor pages selling platforms, no independent real-desk which-vertical-is-worth-it take tying it to our occupation builds. Health: WebFetch of realagentusecases.com/sitemap.xml returned EGRESS_BLOCKED (403 at proxy) — the known recurring sandbox network-policy denial seen every run; git log shows deploys still landing via auto-merge, treated as proxy egress not a site outage. Sunday = feed day, no article; +8 keywords, +5 GEO prompts added to the feeds."
+        }
+      ]
+    },
+    {
+      "date": "2026-10-06",
+      "probes": [
+        {
+          "prompt": "Is it safe to let an AI browser agent shop or log into my accounts?",
+          "cited": false,
+          "url": null,
+          "position": null,
+          "note": "Tuesday run. Least-recently-probed pick — a never-before-probed EN GEO prompt (added in the 10-04 Sunday ideation batch; maps to the agentic-browser-security keyword shipped today). Verbatim web search returned a vendor/security-blog + mainstream SERP with ZERO realagentusecases.com presence: University of Sydney (Atlas safety risks), educatedguesswork.org, Panda Security (why AI browsers put your money at risk), browserless.io (browser agent security risk), memx.app, thesolocreators.com; plus for the twin verbatim probe on Comet: Brave (brave.com/blog/comet-prompt-injection — PRIMARY), The Register, Simon Willison, Decrypt, ppc.land. Field consensus matches our frame exactly: do not let an AI browser drive a session logged into your bank/payments, keep a separate clean browser for money, run logged-out for low-stakes, gate the irreversible. Gap: the SERP is vendor warnings and news with no independent real-desk read-freely/act-through-a-gate take tying it to a documented build. Not cited (position null). Source-research gate passed with 6 real linkable sources (Brave Comet disclosure Aug 20 2025 w/ Reddit-comment PoC + white-on-white payloads stealing creds/OTPs; The Register coverage; Fortune Oct 23 2025 on Atlas attacks within hours of the Oct 21 launch — clipboard hijack, settings-manipulation via a Google Doc, invisible phishing; Simon Willison documenting OpenAI CISO Dane Stuckey calling prompt injection a frontier unsolved problem + logged-out mode; OWASP LLM01:2025; Issue #001). Shipped content/news/2026-10-06-agentic-browser-security (en+zh); article answers this prompt verbatim in FAQ 1; wove inbound link from ai-browser-agents (09-16, en+zh). Health: WebFetch of realagentusecases.com/en/ + /sitemap.xml + /llms.txt all returned EGRESS_BLOCKED (403 at proxy) — the known recurring sandbox network-policy denial seen every run; git log shows deploys still landing via auto-merge to main (latest 60e2470), so treated as proxy egress not a site outage; relied on local build gate for verification. brave.com + simonwillison.net WebFetch also egress-blocked, but WebSearch retrieved + summarized their pages (quotes verified in search results) — sources real, linkable, attributed."
         }
       ]
     }
