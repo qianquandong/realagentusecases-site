@@ -1,0 +1,66 @@
+---
+title: "Agentic Browser Security: Can You Trust It?"
+date: "2026-10-06"
+excerpt: "Agentic browsers like Comet and ChatGPT Atlas act inside your logged-in sessions, so a hidden page instruction can hijack them. The real risks and safe rules."
+---
+
+Letting an AI browser agent shop or log into your accounts is risky because it acts inside your signed-in sessions, and a hidden instruction on any page it reads can hijack it — a flaw vendors themselves call unsolved. Use one for low-stakes research; keep a human on anything that pays, sends, or submits.
+
+An [AI browser agent](/en/news/2026-09-16-ai-browser-agents/) is seductive precisely because it does the thing a chatbot can't: it reads a live page, decides the next click, fills a field, and finishes a multi-step errand for you. The catch is that the same agent runs with your cookies, your sessions, and your logins — so the question isn't "what can it do?" but "what happens when a page tells it to do something you didn't ask for?" In 2026 that stopped being hypothetical. Here are the documented attacks, why this category is the worst case for [prompt injection](/en/news/2026-09-24-ai-agent-prompt-injection/), and the rules that actually hold up.
+
+## What actually happened: the disclosed attacks
+
+The security problem here isn't a prediction. It has already been demonstrated against shipping products, by the vendors' own rivals and by independent researchers.
+
+**Perplexity Comet (August 2025).** Brave's security team published [Agentic Browser Security: Indirect Prompt Injection in Perplexity Comet](https://brave.com/blog/comet-prompt-injection/), the first post in a series on the category. Their finding: when a user asked Comet to "summarize this webpage," the browser fed page content straight to its model without separating the user's instruction from the untrusted text on the page. In a proof of concept, Brave hid instructions inside a Reddit comment — using tricks like near-invisible text — and when Comet summarized the thread, it didn't just summarize; it followed the hidden commands, which Brave showed could reach a user's logged-in accounts and exfiltrate data such as one-time passwords. [The Register](https://www.theregister.com/2025/08/20/perplexity_comet_browser_prompt_injection/) covered the disclosure the same day, noting Comet "naively processed pages with evil instructions." Brave added that because Comet isn't open source, they couldn't confirm every injection path was closed even after a fix.
+
+**OpenAI ChatGPT Atlas (October 2025).** Atlas [launched on October 21, 2025](/en/news/2026-09-16-ai-browser-agents/) with an agent mode that can do real errands — including shopping and filling forms. Within hours of launch, researchers demonstrated working attacks: [Fortune reported](https://www.fortune.com/2025/10/23/cybersecurity-vulnerabilities-openai-chatgpt-atlas-ai-browser-leak-user-data-malware-prompt-injection) clipboard hijacking, browser-setting manipulation planted via a Google Doc, and invisible instructions set up for phishing. The pattern is identical to Comet's: the agent reads attacker-controlled content and treats it as a command.
+
+The two most-watched agentic browsers of 2026 were both compromised through the same mechanism, in public, soon after shipping. That's the signal to take seriously.
+
+## Why agentic browsers are the worst case
+
+Prompt injection is structural, not a bug waiting for a patch. OWASP ranks it [LLM01:2025](https://genai.owasp.org/llm-top-10/) — the #1 LLM risk — because a model reads instructions and data through the same channel and can't reliably tell "your task" from "a page that says ignore your task." OWASP states plainly it's unclear whether any fool-proof prevention exists.
+
+A browser agent takes that structural flaw and points it at the most hostile input there is. Three things line up at once — the exact chain from the [agent security risks](/en/news/2026-08-25-ai-agent-security-risks/) threat model:
+
+- **Untrusted input** — the open web, where anyone can plant a payload in a comment, a product review, a shared doc, or white-on-white text.
+- **Sensitive access** — your live sessions: email, bank, cloud storage, shopping carts with a saved card.
+- **Ability to act** — clicking, submitting, and buying on your behalf.
+
+Remove any one leg and a successful injection can't do much. Leave all three connected — which is exactly what "let the agent shop while I'm logged in" does — and a hidden instruction becomes a real unauthorized action.
+
+The vendors do not dispute this. OpenAI's own CISO, Dane Stuckey, called prompt injection "a frontier, unsolved security problem," as [documented by Simon Willison](https://simonwillison.net/2025/Oct/22/openai-ciso-on-atlas/), and pointed to mitigations like red-teaming, rapid response, and a logged-out mode where the agent works without your live sessions. Mitigations, not a cure. When the team shipping the browser tells you the core problem is unsolved, believe them.
+
+## Can you trust it to shop or log in? The rules that hold
+
+You don't need to avoid agentic browsers — you need to deny an injected instruction anything worth stealing. The discipline is the same one Issue #001's [Gmail agent](/en/posts/2026-05-13-gmail-ai-agent/) uses: let the agent read freely, but make it act only through a gate a human controls.
+
+1. **Keep money and identity out of the agent's reach.** Don't drive your bank, payment processor, or primary email from an agentic browser. Keep a separate, clean browser with no agent for anything financial — the single highest-value rule.
+2. **Default to logged out.** For research and reading, run the agent without your live sessions, as OpenAI's own guidance suggests. An agent with no credentials can be hijacked and still reach nothing.
+3. **Put a [human in the loop](/en/news/2026-08-13-human-in-the-loop-ai-agents/) on anything irreversible.** Make it ask before it pays, sends, submits, or changes a setting. Watch what it does rather than walking away.
+4. **Scope it to low stakes.** Summarizing an article, comparing products, pulling data into a doc — fine. Checking out a cart with a saved card, logging into a brokerage — not fine.
+5. **Treat every page as untrusted.** The attack lives in content the agent reads, so the riskier the site, the less authority the agent should carry while reading it. This is [prompt-injection defense](/en/news/2026-09-24-ai-agent-prompt-injection/) applied to the browser: minimize access, distrust content, gate the irreversible.
+
+None of this makes injection impossible. It makes a successful injection boring — the worst case becomes a draft you decline or a task that stalls asking for permission, not a drained account.
+
+## FAQ
+
+**Is it safe to let an AI browser agent shop or log into my accounts?**
+Not for anything that moves money or exposes identity. Agentic browsers act inside your signed-in sessions, and a hidden instruction on any page they read can hijack them — a flaw vendors call unsolved. Use them for low-stakes research, keep a separate clean browser for banking and payments, and require human confirmation before the agent pays, sends, or submits.
+
+**What is the actual vulnerability in agentic browsers?**
+Indirect prompt injection. The agent reads a web page and can't reliably separate your instruction from text on the page, so an attacker who plants hidden instructions — in a comment, a review, or invisible text — can make the agent follow them. [Brave demonstrated this against Perplexity Comet](https://brave.com/blog/comet-prompt-injection/) and researchers demonstrated it against [ChatGPT Atlas](https://www.fortune.com/2025/10/23/cybersecurity-vulnerabilities-openai-chatgpt-atlas-ai-browser-leak-user-data-malware-prompt-injection) within hours of launch.
+
+**Will a patch fix this?**
+No single patch will. OWASP ranks prompt injection the [#1 LLM risk](https://genai.owasp.org/llm-top-10/) and says it's unclear whether fool-proof prevention exists, and OpenAI's CISO [called it an unsolved problem](https://simonwillison.net/2025/Oct/22/openai-ciso-on-atlas/). Vendors reduce the risk with model training, classifiers, and logged-out modes, but the realistic goal is an architecture where a successful injection can't reach anything valuable.
+
+**What can I safely use an agentic browser for?**
+Low-stakes, read-mostly work: summarizing pages, comparing options, gathering research into a document. Keep it logged out when you can, and keep a human gate on anything that pays, sends, submits, or changes account settings — the same [human-in-the-loop](/en/news/2026-08-13-human-in-the-loop-ai-agents/) discipline that makes any agent safe to run.
+
+**How is this different from a regular browser extension?**
+A normal extension does a fixed job you installed it to do. An agentic browser decides its own next action based on what it reads — so untrusted page content becomes a potential source of commands. That's the whole difference between [a tool and an agent](/en/news/2026-09-16-ai-browser-agents/), and it's why the open web is such a dangerous input for one.
+
+---
+
+Every build we document follows the same rule the safe-browser rules above come from: let the agent read freely, but gate every action that can't be undone. [Subscribe](/en/) for the weekly breakdown of real agents professionals actually run — what works, what broke, and the exact guardrails that kept it safe.

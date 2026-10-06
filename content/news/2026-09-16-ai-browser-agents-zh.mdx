@@ -28,7 +28,7 @@ OpenAI 的版本把好处说得更具体。在 [Introducing ChatGPT Atlas](https
 
 浏览器 agent 一切好处都源于一个事实：agent 读到页面上的任何东西，然后就能动手。这也恰恰是它危险的原因。恶意网页可以把指令藏在内容里，agent 可能照做——这就是**提示注入（prompt injection）**，而浏览器让 agent 直面最不可信的输入：开放的互联网。
 
-Anthropic 直言这不是假想。它关于[缓解浏览器使用中的提示注入](https://www.anthropic.com/research/prompt-injection-defenses)的研究指出，没有缓解措施时，浏览类 agent 会被藏在页面内容里的攻击击中；即便有了防御，这个问题也是被压低而非解决。这就是 Claude for Chrome 会屏蔽某些类别网站、对敏感动作要求确认的原因（[DataCamp 综述](https://www.datacamp.com/tutorial/claude-for-chrome-ai-powered-browser-assistance-automation)）——那些护栏就是产品本身，不是事后补丁。
+Anthropic 直言这不是假想。它关于[缓解浏览器使用中的提示注入](https://www.anthropic.com/research/prompt-injection-defenses)的研究指出，没有缓解措施时，浏览类 agent 会被藏在页面内容里的攻击击中；即便有了防御，这个问题也是被压低而非解决。这就是 Claude for Chrome 会屏蔽某些类别网站、对敏感动作要求确认的原因（[DataCamp 综述](https://www.datacamp.com/tutorial/claude-for-chrome-ai-powered-browser-assistance-automation)）——那些护栏就是产品本身，不是事后补丁。而且这不只是实验室里的担忧：在这个品类问世的头一年里，Comet 和 ChatGPT Atlas 都被页面里植入的指令劫持过——被披露的攻击和真正站得住脚的规则，见[智能体浏览器安全](/zh/news/2026-10-06-agentic-browser-security/)。
 
 这与 [AI agent 安全风险](/zh/news/2026-08-25-ai-agent-security-risks/)里的威胁模型完全吻合：浏览器 agent 读不可信输入（任何页面）、能访问敏感数据（你登录的会话）、还能动手（点「购买」、发送、提交）。这三条腿同时齐了。解法和本站别处一样——[有意砍掉其中一条腿](/zh/news/2026-08-29-ai-agent-guardrails-for-business/)。
 

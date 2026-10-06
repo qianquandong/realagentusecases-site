@@ -1,6 +1,6 @@
 {
   "$comment": "SEO keyword feed — a living file. The scheduled Cowork routine ideates entries; scripts/seo/feeds.mjs persists them (dedupe + status + timestamps). intent: informational|commercial|transactional. funnel: TOFU|MOFU|BOFU. cluster: use-case|template|comparison|industry|tool-stack. status: new|used.",
-  "updatedAt": "2026-10-05",
+  "updatedAt": "2026-10-06",
   "keywords": [
     {
       "term": "AI agent use cases",
@@ -1077,9 +1077,9 @@
       "funnel": "TOFU",
       "cluster": "comparison",
       "locale": "both",
-      "status": "new",
+      "status": "used",
       "addedAt": "2026-10-04",
-      "note": "Sunday feed research 2026-10-04. The security reality of agentic browsers (ChatGPT Atlas, Perplexity Comet, Gemini-in-Chrome) acting on logged-in sessions: prompt injection hidden in page content/comments/images can hijack the agent. Brave's Comet disclosure and documented Atlas attacks within hours of launch are the linkable anchors. Extends ai-browser-agents (the capability) into the risk surface; reuses the prompt-injection + human-in-the-loop frame. Verify at write time against Brave's security blog, OpenAI's Atlas safety page, and researcher write-ups. Clusters with ai-browser-agents, ai-agent-prompt-injection (09-24), ai-agent-security-risks (08-25), computer-use-agents."
+      "note": "Sunday feed research 2026-10-04. The security reality of agentic browsers (ChatGPT Atlas, Perplexity Comet, Gemini-in-Chrome) acting on logged-in sessions: prompt injection hidden in page content/comments/images can hijack the agent. Brave's Comet disclosure and documented Atlas attacks within hours of launch are the linkable anchors. Extends ai-browser-agents (the capability) into the risk surface; reuses the prompt-injection + human-in-the-loop frame. Verify at write time against Brave's security blog, OpenAI's Atlas safety page, and researcher write-ups. Clusters with ai-browser-agents, ai-agent-prompt-injection (09-24), ai-agent-security-risks (08-25), computer-use-agents. Used 2026-10-06 → content/news/2026-10-06-agentic-browser-security (en+zh), title \"Agentic Browser Security: Can You Trust It?\". The risk-surface deep-dive of ai-browser-agents (09-16): the disclosed Comet (Brave, Aug 2025) + ChatGPT Atlas (Fortune, Oct 2025) prompt-injection attacks, the three-leg risk chain applied to a logged-in browser, and the shop/login rules that hold. Grounded in Brave comet-prompt-injection, The Register, Fortune Atlas coverage, Simon Willison on OpenAI CISO Dane Stuckey (prompt injection \"a frontier, unsolved security problem\"), OWASP LLM01, and Issue #001. Wove an inbound link from ai-browser-agents (en+zh)."
     },
     {
       "term": "AI agent payment protocols",
