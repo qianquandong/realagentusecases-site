@@ -1,6 +1,6 @@
 {
   "$comment": "SEO keyword feed — a living file. The scheduled Cowork routine ideates entries; scripts/seo/feeds.mjs persists them (dedupe + status + timestamps). intent: informational|commercial|transactional. funnel: TOFU|MOFU|BOFU. cluster: use-case|template|comparison|industry|tool-stack. status: new|used.",
-  "updatedAt": "2026-10-06",
+  "updatedAt": "2026-10-07",
   "keywords": [
     {
       "term": "AI agent use cases",
@@ -1087,9 +1087,9 @@
       "funnel": "MOFU",
       "cluster": "tool-stack",
       "locale": "both",
-      "status": "new",
+      "status": "used",
       "addedAt": "2026-10-04",
-      "note": "Sunday feed research 2026-10-04. How agents are given authority to pay: Google's Agent Payments Protocol (AP2 — cryptographically-signed intent + cart mandates, 60+ to 100+ partners incl. Mastercard/PayPal) and Stripe/OpenAI's Agentic Commerce Protocol (ACP). The human-authorization-as-mandate design is the story; note honestly that consumer-facing implementations are still early. Completes the protocol family on-site (MCP 08-10, A2A 09-08, AG-UI 10-02). Verify at write time against Google's AP2 spec/announcement and Stripe's ACP docs. Clusters with agentic-commerce, ai-shopping-agents, agent2agent-a2a-protocol, what-is-mcp."
+      "note": "Sunday feed research 2026-10-04. How agents are given authority to pay: Google's Agent Payments Protocol (AP2 — cryptographically-signed intent + cart mandates, 60+ to 100+ partners incl. Mastercard/PayPal) and Stripe/OpenAI's Agentic Commerce Protocol (ACP). The human-authorization-as-mandate design is the story; note honestly that consumer-facing implementations are still early. Completes the protocol family on-site (MCP 08-10, A2A 09-08, AG-UI 10-02). Verify at write time against Google's AP2 spec/announcement and Stripe's ACP docs. Clusters with agentic-commerce, ai-shopping-agents, agent2agent-a2a-protocol, what-is-mcp. Used 2026-10-07 → content/news/2026-10-07-ai-agent-payment-protocols (en+zh), title \"AI Agent Payment Protocols: AP2 vs ACP\". Compares Google AP2 (Sept 16 2025, 60+ partners, signed intent→cart→payment mandate chain, Apache-2.0, ap2-protocol.org / github google-agentic-commerce/ap2) vs OpenAI+Stripe ACP (powers ChatGPT Instant Checkout, Shared Payment Token, agenticcommerce.dev). Completes the protocol family (MCP/A2A/AG-UI) + sits beside agentic-commerce (09-02); wove reciprocal link in from agentic-commerce en+zh."
     },
     {
       "term": "spec-driven development for AI agents",

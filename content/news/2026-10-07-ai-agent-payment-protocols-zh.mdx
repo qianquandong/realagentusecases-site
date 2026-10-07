@@ -1,0 +1,77 @@
+---
+title: "AI 智能体支付协议：AP2 与 ACP"
+date: "2026-10-07"
+excerpt: "AP2（谷歌）与 ACP（OpenAI 和 Stripe）是让 AI 智能体付款的开放标准——用加密签名的凭证，证明这笔支出确实经你授权。"
+---
+
+AI 智能体支付协议是一类开放标准，让 AI 智能体在向商家付款时，附带一份无法篡改的凭证，证明这笔交易经你授权。2026 年有两套领先：谷歌的智能体支付协议（AP2），建立在加密签名的授权书之上；以及由 OpenAI 和 Stripe 共同开发、驱动 ChatGPT「即时结账」的智能体商务协议（ACP）。两者都不暴露你的卡号，也都把支出限定在额度内。
+
+如果你一直在读本站的 2026 协议系列——连接工具的 [MCP](/zh/news/2026-08-10-what-is-mcp-for-ai-agents/)、智能体之间的 [A2A](/zh/news/2026-09-08-agent2agent-a2a-protocol/)、智能体对你的 [AG-UI](/zh/news/2026-10-02-ag-ui-protocol/)——支付就是所有这些最终触及你钱包的那一层。我们的[智能体商务指南](/zh/news/2026-09-02-agentic-commerce/)讲的是「你的智能体能付款」这件事；本文讲的是它「如何证明自己获准付款」的底层管道。
+
+## 支付协议到底解决了什么
+
+让智能体买东西，带来一个棘手问题：当一笔扣款发生时，谁能证明是人类真的授权了「这一笔」购买、以「这个」价格、从「这个」商家？把原始卡号直接交给智能体回答不了这些——那只是制造了一份可能被盗用的凭据。支付协议用两样东西取而代之：一份**限定范围的令牌化凭证**，让智能体永远看不到你的卡；一份**你意图的签名记录**，让每一笔扣款都能追溯到一份具体授权。下面两套协议，正是针对这件事的两种不同设计。
+
+## AP2：谷歌的授权书链条
+
+谷歌于 2025 年 9 月 16 日发布[智能体支付协议（AP2）](https://cloud.google.com/blog/products/ai-machine-learning/announcing-agents-to-payments-ap2-protocol)，有 60 多家机构参与，其中包括万事达、PayPal、美国运通、Coinbase、Adyen、Worldpay、Intuit、Salesforce 和 ServiceNow。它是一套开放的、[采用 Apache-2.0 许可的协议](https://github.com/google-agentic-commerce/ap2)，附带 Python SDK 和参考样例；规范和文档在 [ap2-protocol.org](https://ap2-protocol.org)。
+
+AP2 的核心是一条由三份加密签名的**授权书（mandate）**组成的链条——无法篡改的数字合约。据[谷歌](https://cloud.google.com/blog/products/ai-machine-learning/announcing-agents-to-payments-ap2-protocol)说，它们从请求到扣款构建出一条「不可抵赖的审计链」：
+
+- **意图授权书（Intent Mandate）**——记录你要什么以及条款（如支出上限），为整笔交易提供可审计的背景。对于委托任务，它还能授权智能体在你离线时行动。
+- **购物车授权书（Cart Mandate）**——在智能体凑齐确切的商品和价格后签署，形成「一份安全、不可更改的记录，确保你看到的就是你支付的」。
+- **支付授权书（Payment Mandate）**——把你的支付方式与已核验的购物车绑定，完成从意图、到购物车、再到支付的全过程。
+
+设计要点在于：每一步都经过签名，商家或银行日后都能证明，智能体确实获准为这个购物车、在这个额度内付款。AP2 被明确设计为 [A2A 和 MCP](https://cloud.google.com/blog/products/ai-machine-learning/announcing-agents-to-payments-ap2-protocol) 的扩展——它是加装在你已熟悉的连接标准之上的支付层。
+
+## ACP：ChatGPT 结账背后的协议
+
+[智能体商务协议（ACP）](https://www.agenticcommerce.dev/)是由 OpenAI 和 Stripe 共同开发、采用 Apache-2.0 许可的开放标准。与作为宽泛支付行业框架发布的 AP2 不同，ACP 一上来就嵌在一款你今天就能用的产品里：它是 [ChatGPT「即时结账」](https://openai.com/index/buy-it-in-chatgpt/)的骨架——让美国用户无需离开对话，就能向 Etsy 卖家、以及正在陆续接入的上百万 Shopify 商家（Glossier、SKIMS、Vuori）下单。
+
+ACP 刻意做得极简。它为智能体驱动的一次购买定义了几块可组合的基本构件——一个智能体结账流程（创建、更新、完成结账会话）、一份购物车与商品清单、**委托支付**，以及通过 OAuth 2.0 的**委托认证**。支付那一块是一枚[共享支付令牌（Shared Payment Token）](https://stripe.com/newsroom/news/stripe-openai-instant-checkout)：据 Stripe 说，这是一种原语，让 ChatGPT 这样的应用能发起扣款，却*始终*拿不到你的原始卡号。任何商家都可以实现这套规范，让自己的结账「可供智能体使用」，而不必为每个 AI 平台单独做集成。
+
+## AP2 与 ACP：区别在哪
+
+它们从相反的两端解决同一个问题，而且并不互斥。
+
+- **出身与范围。** AP2 是一套[支付行业联盟标准](https://cloud.google.com/blog/products/ai-machine-learning/announcing-agents-to-payments-ap2-protocol)——与支付方式无关，设计上能同时垫在信用卡、银行转账和加密货币之下。ACP 是一套[面向商家与平台的标准](https://www.agenticcommerce.dev/)，靠驱动 ChatGPT 率先拿到了真实的分发。
+- **核心原语。** AP2 以签名的[授权书链条](https://github.com/google-agentic-commerce/ap2)（意图 → 购物车 → 支付）作为授权证明。ACP 则以[委托支付令牌](https://stripe.com/newsroom/news/stripe-openai-instant-checkout)和一小组结账接口为核心。
+- **共同的本能。** 两者都把你的卡藏在令牌之后，也都把一笔扣款绑定到一份明确的授权上。它们都不要求你把账户托付给智能体，而是让你去信任一份经过签名、限定范围的凭证——这和给智能体[自己的身份与短时令牌](/zh/news/2026-10-01-ai-agent-identity-access-management/)、而不是给它你的密码，是同一套纪律。
+
+要说句实话：这还很早期。两套协议都才问世几个月，面向消费者的实现仍在陆续铺开，两个阵营未来可能融合、也可能竞争。把这些名字当作一个流动领域此刻的形状，而不是一套已成定局的技术栈。
+
+## 它在协议家族里的位置
+
+支付是智能体需要的第四种连接，与本站已梳理过的三种并列：
+
+- **[MCP](/zh/news/2026-08-10-what-is-mcp-for-ai-agents/)** 向下连接智能体与它的工具和数据。
+- **[A2A](/zh/news/2026-09-08-agent2agent-a2a-protocol/)** 横向连接智能体与其他智能体。
+- **[AG-UI](/zh/news/2026-10-02-ag-ui-protocol/)** 向上连接智能体与盯着它干活的人。
+- **AP2 / ACP** 向外连接智能体与支付通道——而 [AP2 被设计成 A2A 和 MCP 的扩展](https://cloud.google.com/blog/products/ai-machine-learning/announcing-agents-to-payments-ap2-protocol)，并非偶然。它们相互组合，而非相互竞争。
+
+## 落到你桌面上意味着什么
+
+你几乎不会亲手去实现一套支付协议。真正要紧的，是它们编码进去的那条设计原则——也是本站反复回到的那条：**为不可逆的那一步设门。** 一份签名授权书或一枚限定范围的令牌，不过是一道机器可读的支出上限——智能体可以自行发现、比较、凑好购物车，但那笔扣款被绑死在*你*授权的范围内。这正是 [Issue #001 的 Gmail 智能体](/zh/posts/2026-05-13-gmail-ai-agent/)背后的同一条分界：它整天起草，却把「发送」留给人按下；也是每个安全的智能体在其最重后果动作前都保留的那道[人在回路之中](/zh/news/2026-08-13-human-in-the-loop-ai-agents/)的门。
+
+所以当你评估一个购物或采购智能体时，别问「它能付款吗？」要问「这笔扣款带着什么证明，又被什么设了上限？」如果答案是一份签名授权书或一枚令牌化、限定范围的凭证——底层是 AP2 或 ACP——那设计就靠谱。如果答案是「它拿着我的卡」，走开就是。刚入门？先从 [Agent 101](/zh/agent-101/) 开始，再读[智能体商务指南](/zh/news/2026-09-02-agentic-commerce/)了解消费者视角的全貌。
+
+## FAQ
+
+**什么是 AI 智能体支付协议？**
+它是一类开放标准，让 AI 智能体在向商家付款时附带一份无法篡改的证明，表明你授权了这笔购买，同时不暴露你的原始卡号。2026 年领先的两套是谷歌的[智能体支付协议（AP2）](https://cloud.google.com/blog/products/ai-machine-learning/announcing-agents-to-payments-ap2-protocol)，以及 OpenAI 和 Stripe 的[智能体商务协议（ACP）](https://www.agenticcommerce.dev/)。
+
+**AP2 和 ACP 有什么区别？**
+AP2 是一套[支付行业框架](https://cloud.google.com/blog/products/ai-machine-learning/announcing-agents-to-payments-ap2-protocol)，围绕一条签名授权书链条（意图 → 购物车 → 支付）构建，设计上能适配任何支付方式。ACP 是一套更精简的[商家/平台标准](https://www.agenticcommerce.dev/)，由 OpenAI 和 Stripe 共同开发，已经驱动着 [ChatGPT 的「即时结账」](https://openai.com/index/buy-it-in-chatgpt/)。两者都把你的卡令牌化，并把每笔扣款绑定到一份明确授权上。
+
+**智能体怎么在看不到我卡号的情况下付款？**
+靠令牌化凭证。ACP 用一枚[共享支付令牌](https://stripe.com/newsroom/news/stripe-openai-instant-checkout)，让 ChatGPT 这类应用能发起扣款却拿不到你的原始卡号；AP2 的[支付授权书](https://cloud.google.com/blog/products/ai-machine-learning/announcing-agents-to-payments-ap2-protocol)则把你的支付方式绑定到一个已核验的购物车，而非暴露账户。这和给智能体[自己的限定身份](/zh/news/2026-10-01-ai-agent-identity-access-management/)是同一个本能。
+
+**让智能体付款安全吗？**
+如果支出被限定住，是可以的。这些协议的设计让每笔扣款都带着授权证明和一个范围——支出上限、具体的购物车、一组商家。规则是在不可逆的那一步设一道[人在回路之中](/zh/news/2026-08-13-human-in-the-loop-ai-agents/)的门；授权书或令牌就是用代码写出来的那道门。一个拿着你无上限的卡、又没有范围约束的智能体，才是真正的[安全风险](/zh/news/2026-08-25-ai-agent-security-risks/)。
+
+**AP2 和 ACP 是竞争关系吗？**
+目前它们有重叠，但出身不同——AP2 来自[支付行业](https://cloud.google.com/blog/products/ai-machine-learning/announcing-agents-to-payments-ap2-protocol)（谷歌牵头、60 多家伙伴），ACP 来自 [OpenAI 和 Stripe](https://www.agenticcommerce.dev/)，并率先在 ChatGPT 内拿到分发。两者都是 Apache-2.0 开放标准，而 AP2 又被设计成 A2A 和 MCP 的扩展，因此未来可能融合。现在还早，把这片格局当作仍在成形来看待。
+
+---
+
+每个值得一跑的智能体都遵循同一条规则：它把活干完，却在你无法撤销的那一步前停下。想看真实的搭建——每位专业人士究竟把哪些活自动化、又把哪一步留给自己亲手批准？[免费订阅](/zh/)，每周的实操笔记直达你的邮箱。

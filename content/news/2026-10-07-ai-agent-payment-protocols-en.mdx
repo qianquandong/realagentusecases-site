@@ -1,0 +1,77 @@
+---
+title: "AI Agent Payment Protocols: AP2 vs ACP"
+date: "2026-10-07"
+excerpt: "AP2 (Google) and ACP (OpenAI + Stripe) are the open standards that let an AI agent pay — on cryptographically signed proof that you authorized the spend."
+---
+
+AI agent payment protocols are open standards that let an AI agent pay a merchant with tamper-proof evidence that you authorized it. Two lead in 2026: Google's Agent Payments Protocol (AP2), built on cryptographically signed mandates, and the Agentic Commerce Protocol (ACP) from OpenAI and Stripe, which powers ChatGPT's Instant Checkout. Both keep your card hidden and the spend bounded.
+
+If you've followed the 2026 protocol story on this site — [MCP](/en/news/2026-08-10-what-is-mcp-for-ai-agents/) for tools, [A2A](/en/news/2026-09-08-agent2agent-a2a-protocol/) for agent-to-agent, [AG-UI](/en/news/2026-10-02-ag-ui-protocol/) for agent-to-you — payment is the layer where all of it finally touches your money. Our [agentic commerce guide](/en/news/2026-09-02-agentic-commerce/) covered *that your agent can pay*; this is the plumbing of *how it proves it was allowed to*.
+
+## What a payment protocol actually solves
+
+Letting an agent buy things raises one hard question: when a charge lands, how does anyone prove the human actually authorized *this* purchase, at *this* price, from *this* merchant? Handing the agent your raw card number answers none of that — it just creates a credential that can be stolen or misused. A payment protocol replaces that with two things: a **scoped, tokenized credential** so the agent never sees your card, and a **signed record of your intent** so every charge traces back to a specific authorization. The protocols below are two different designs for exactly that.
+
+## AP2: Google's mandate chain
+
+Google announced the [Agent Payments Protocol (AP2)](https://cloud.google.com/blog/products/ai-machine-learning/announcing-agents-to-payments-ap2-protocol) on September 16, 2025, with more than 60 collaborating organizations — Mastercard, PayPal, American Express, Coinbase, Adyen, Worldpay, Intuit, Salesforce, and ServiceNow among them. It's an open, [Apache-2.0-licensed protocol](https://github.com/google-agentic-commerce/ap2) with a Python SDK and reference samples; the spec and docs live at [ap2-protocol.org](https://ap2-protocol.org).
+
+AP2's core idea is a chain of three cryptographically signed **mandates** — tamper-proof digital contracts that, per [Google](https://cloud.google.com/blog/products/ai-machine-learning/announcing-agents-to-payments-ap2-protocol), build a "non-repudiable audit trail" from request to charge:
+
+- **Intent Mandate** — captures what you asked for and the terms (e.g. a spending ceiling), giving auditable context for the whole transaction. For a delegated task, it can authorize the agent to act while you're offline.
+- **Cart Mandate** — signed once the agent has assembled the exact items and price, creating "a secure, unchangeable record of the exact items and price, ensuring what you see is what you pay for."
+- **Payment Mandate** — links your payment method to the verified cart, completing the sequence from intent, to cart, to payment.
+
+The design point: each step is signed, so a merchant or bank can later prove the agent was authorized, for this cart, up to this limit. AP2 is explicitly built as an extension of [A2A and MCP](https://cloud.google.com/blog/products/ai-machine-learning/announcing-agents-to-payments-ap2-protocol) — the payment layer that bolts onto the connection standards you already know.
+
+## ACP: the protocol behind ChatGPT checkout
+
+The [Agentic Commerce Protocol (ACP)](https://www.agenticcommerce.dev/) is an open, Apache-2.0 standard co-developed by OpenAI and Stripe. Where AP2 launched as a broad payments-industry framework, ACP shipped inside a product you can use today: it's the backbone of [Instant Checkout in ChatGPT](https://openai.com/index/buy-it-in-chatgpt/), which lets US shoppers buy from Etsy sellers and, rolling out, over a million Shopify merchants (Glossier, SKIMS, Vuori) without leaving the chat.
+
+ACP is deliberately minimal. It defines composable building blocks for an agent-driven purchase — an agentic checkout (create, update, and complete a checkout session), a cart and product feed, **delegate payment**, and **delegate authentication** via OAuth 2.0. The payment piece is a [Shared Payment Token](https://stripe.com/newsroom/news/stripe-openai-instant-checkout): per Stripe, a primitive that lets an app like ChatGPT initiate a charge *without* ever being handed your raw card credentials. Any business can implement the spec to make its checkout "agent-ready" rather than building a bespoke integration for each AI platform.
+
+## AP2 vs ACP: how they differ
+
+They solve the same problem from opposite ends, and they are not mutually exclusive.
+
+- **Origin and scope.** AP2 is a [payments-industry consortium standard](https://cloud.google.com/blog/products/ai-machine-learning/announcing-agents-to-payments-ap2-protocol) — payment-method-agnostic, designed to sit under cards, bank transfers, and crypto alike. ACP is a [merchant-and-platform standard](https://www.agenticcommerce.dev/) that got real distribution first by powering ChatGPT.
+- **The core primitive.** AP2 centers on the signed [mandate chain](https://github.com/google-agentic-commerce/ap2) (intent → cart → payment) as proof of authorization. ACP centers on the [delegated payment token](https://stripe.com/newsroom/news/stripe-openai-instant-checkout) and a tiny set of checkout endpoints.
+- **The shared instinct.** Both hide your card behind a token, and both bind a charge to an explicit authorization. Neither asks you to trust the agent with your account — they ask you to trust a signed, scoped credential instead, which is the same discipline as giving an agent [its own identity and short-lived tokens](/en/news/2026-10-01-ai-agent-identity-access-management/) rather than your password.
+
+The honest caveat: this is early. Both protocols are months old, consumer-facing implementations are still rolling out, and the two camps may converge or compete. Treat the names as the current shape of a moving space, not a finished stack.
+
+## Where this fits: the protocol family
+
+Payment is the fourth connection an agent needs, beside the three this site has already mapped:
+
+- **[MCP](/en/news/2026-08-10-what-is-mcp-for-ai-agents/)** connects an agent down to its tools and data.
+- **[A2A](/en/news/2026-09-08-agent2agent-a2a-protocol/)** connects an agent across to other agents.
+- **[AG-UI](/en/news/2026-10-02-ag-ui-protocol/)** connects an agent up to the human watching it.
+- **AP2 / ACP** connect an agent out to the payment rails — and it's no accident [AP2 is built as an extension of A2A and MCP](https://cloud.google.com/blog/products/ai-machine-learning/announcing-agents-to-payments-ap2-protocol). They compose rather than compete.
+
+## What it means at your desk
+
+You almost certainly won't implement a payment protocol by hand. What matters is the design principle they encode, which is the one this whole site keeps returning to: **gate the irreversible step.** A signed mandate or a scoped token is just a machine-readable spend limit — the agent can discover, compare, and build the cart on its own, but the charge is bound to what *you* authorized. That's the same split behind [Issue #001's Gmail agent](/en/posts/2026-05-13-gmail-ai-agent/), which drafts all day but lets a human press send, and the same [human-in-the-loop gate](/en/news/2026-08-13-human-in-the-loop-ai-agents/) every safe agent keeps on its most consequential action.
+
+So when you evaluate a shopping or procurement agent, don't ask "can it pay?" Ask "what proof does the charge carry, and what caps it?" If the answer is a signed mandate or a tokenized, scoped credential — AP2 or ACP under the hood — the design is sound. If the answer is "it has my card," walk away. New to this? Start at [Agent 101](/en/agent-101/), then read the [agentic commerce guide](/en/news/2026-09-02-agentic-commerce/) for the consumer picture.
+
+## FAQ
+
+**What is an AI agent payment protocol?**
+It's an open standard that lets an AI agent pay a merchant with tamper-proof evidence that you authorized the purchase, and without exposing your raw card number. The two leading ones in 2026 are Google's [Agent Payments Protocol (AP2)](https://cloud.google.com/blog/products/ai-machine-learning/announcing-agents-to-payments-ap2-protocol) and the [Agentic Commerce Protocol (ACP)](https://www.agenticcommerce.dev/) from OpenAI and Stripe.
+
+**What's the difference between AP2 and ACP?**
+AP2 is a [payment-industry framework](https://cloud.google.com/blog/products/ai-machine-learning/announcing-agents-to-payments-ap2-protocol) built around a chain of signed mandates (intent → cart → payment) and designed to work across any payment method. ACP is a [leaner merchant/platform standard](https://www.agenticcommerce.dev/) co-developed by OpenAI and Stripe that already powers [ChatGPT's Instant Checkout](https://openai.com/index/buy-it-in-chatgpt/). Both tokenize your card and bind each charge to an explicit authorization.
+
+**How does an agent pay without seeing my card number?**
+Through a tokenized credential. ACP uses a [Shared Payment Token](https://stripe.com/newsroom/news/stripe-openai-instant-checkout) that lets an app like ChatGPT initiate a charge without being handed your raw card details, and AP2's [Payment Mandate](https://cloud.google.com/blog/products/ai-machine-learning/announcing-agents-to-payments-ap2-protocol) links your payment method to a verified cart rather than exposing the account. It's the same instinct as giving an agent [its own scoped identity](/en/news/2026-10-01-ai-agent-identity-access-management/).
+
+**Is it safe to let an agent pay?**
+It can be, if the spend stays bounded. The protocols are built so a charge carries proof of authorization and a scope — a spending ceiling, a specific cart, a set of merchants. The rule is a [human-in-the-loop gate](/en/news/2026-08-13-human-in-the-loop-ai-agents/) on the irreversible step; the mandate or token is that gate written in code. An agent with your unbounded card and no scope is the real [security risk](/en/news/2026-08-25-ai-agent-security-risks/).
+
+**Do AP2 and ACP compete?**
+For now they overlap but came from different places — AP2 from the [payments industry](https://cloud.google.com/blog/products/ai-machine-learning/announcing-agents-to-payments-ap2-protocol) (60+ partners led by Google), ACP from [OpenAI and Stripe](https://www.agenticcommerce.dev/) with first distribution inside ChatGPT. Both are Apache-2.0 open standards and AP2 is designed to extend A2A and MCP, so they may converge. It's early; treat the landscape as still forming.
+
+---
+
+Every agent worth running follows the same rule: it does the work and stops before the step you can't take back. Want the real builds — the exact jobs each professional automates and the one they still approve by hand? [Subscribe free](/en/) and get each week's field notes in your inbox.
