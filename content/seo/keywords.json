@@ -1,6 +1,6 @@
 {
   "$comment": "SEO keyword feed — a living file. The scheduled Cowork routine ideates entries; scripts/seo/feeds.mjs persists them (dedupe + status + timestamps). intent: informational|commercial|transactional. funnel: TOFU|MOFU|BOFU. cluster: use-case|template|comparison|industry|tool-stack. status: new|used.",
-  "updatedAt": "2026-10-07",
+  "updatedAt": "2026-10-08",
   "keywords": [
     {
       "term": "AI agent use cases",
@@ -1017,9 +1017,9 @@
       "funnel": "MOFU",
       "cluster": "tool-stack",
       "locale": "both",
-      "status": "new",
+      "status": "used",
       "addedAt": "2026-09-27",
-      "note": "Sunday feed research 2026-09-27. When an agent writes and runs its own code, where does it run — and why a sandbox is the control. The 2026 signal: AgentCore Runtime shipped shell command execution in a sandboxed microVM (aws.amazon.com/about-aws/whats-new/2026/03/bedrock-agentcore-runtime-shell-command). Verify at write time against primary docs (Anthropic code execution / code interpreter tool, AWS AgentCore Code Interpreter, E2B/Modal sandboxes) — confirm 3+ real linkable sources before writing, skip otherwise. Ties the isolate-untrusted-work discipline to security-risks (08-25) and the tool-calling mechanism (09-25, running the call). Clusters with tool-calling (09-25), security-risks (08-25), runtime-platforms (new), computer-use-agents (new)."
+      "note": "Shipped 2026-10-08: content/news/2026-10-08-ai-agent-code-execution (en+zh). Thesis: when an agent writes AND runs its own code, the sandbox — not the model's intent — is the safety control. Verified primary sources at write time (>=3 gate passed with 7 external + Issue #001): Anthropic Code execution with MCP (Nov 4 2025, 150k->2k tokens/98.7%, caveat requires secure execution env + resource limits + monitoring), Claude Code sandbox docs (bubblewrap/Seatbelt, OS-enforced, shell-only not file tools/MCP), AWS Bedrock AgentCore Code Interpreter launch blog (isolated sandbox per execution), Kubernetes SIG Agent Sandbox code-execution use case, E2B/Firecracker, gVisor, OWASP LLM01:2025, and Unit 42's since-remediated DNS-tunneling bypass of AWS isolation mode. Wove inbound link from tool-calling (09-25 en+zh). Added to llms.txt. Clusters with tool-calling (09-25), security-risks (08-25), prompt-injection (09-24), identity-and-access (10-01), self-hosted (09-30)."
     },
     {
       "term": "AI agents for ERP systems",

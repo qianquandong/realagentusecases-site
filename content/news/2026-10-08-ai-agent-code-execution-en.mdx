@@ -1,0 +1,58 @@
+---
+title: "AI Agent Code Execution: Where It Runs, Safely"
+date: "2026-10-08"
+excerpt: "When an AI agent writes and runs its own code, it should run in a disposable sandbox — not on your machine. Why isolation, not the model, is the real control."
+---
+
+When an AI agent writes and runs its own code, that code should execute inside a disposable, isolated sandbox — a container, microVM, or user-space kernel — not directly on your machine. The sandbox, not the model's good intentions, is the safety control: it caps the damage when generated code does the wrong thing, whether by accident or because the agent was tricked.
+
+Letting an agent write *and run* code is now a mainstream pattern, not an edge case. Anthropic's [*Code execution with MCP*](https://www.anthropic.com/engineering/code-execution-with-mcp) (Nov 4, 2025) argues that having agents write code to call tools — instead of loading every tool definition into context — cut one benchmark workflow "from 150,000 tokens to 2,000 tokens," a 98.7% reduction. That efficiency is why the pattern is spreading. But the same post is blunt about the cost: code execution "introduces its own complexity," and running agent-written code "requires secure execution environments, resource limits, and monitoring." The upside buys you a new attack surface.
+
+## Why agent-written code is untrusted by default
+
+Treat code an agent generates the way you'd treat code from an anonymous pull request: as untrusted input. Two failure modes make this non-negotiable.
+
+The first is honest error. A model can emit reasonable-looking code that still reaches for files or network access it shouldn't — the problem isn't malice, it's that the code does more than you expected. The second is deliberate: **prompt injection.** A web page, email, or document the agent reads can carry instructions the agent then follows, and OWASP ranks this as [LLM01:2025 Prompt Injection](https://genai.owasp.org/llmrisk/llm01-prompt-injection/) — the number-one risk in its GenAI Top 10. If an agent can be steered by the content it processes, then "the agent writes the code" and "an attacker writes the code" are closer than they look. This is the same threat model behind [AI agent prompt injection](/en/news/2026-09-24-ai-agent-prompt-injection/) and the broader lesson in [why agents fail in production](/en/news/2026-09-23-why-ai-agents-fail-in-production/).
+
+## The sandbox is the boundary
+
+The fix is to make the *environment* enforce limits the agent can't talk its way out of. The industry has converged on a few isolation technologies, strongest first:
+
+- **MicroVMs** give each workload its own kernel. [E2B](https://e2b.dev/), for example, runs agent code in [Firecracker](https://firecracker-microvm.github.io/) microVMs — the same lightweight virtualization AWS built for Lambda — and tears the environment down afterward.
+- **User-space kernels** like Google's [gVisor](https://gvisor.dev/) intercept an application's system calls and act as a guest kernel, so the code never talks to the host kernel directly.
+- **Plain containers** share the host kernel, which makes them the weakest boundary for *untrusted* code: a single kernel vulnerability can cross it. They're fine with extra hardening, risky on their own.
+
+The open-source [Kubernetes SIG Agent Sandbox](https://agent-sandbox.sigs.k8s.io/docs/use-cases/code-execution/) project frames the goal plainly: isolated environments where agents run generated code and get results back, with no access to the host or other tenants. The lifecycle is the point — request an environment, run code, return the result, discard everything.
+
+Managed services fold this in. AWS's [Amazon Bedrock AgentCore Code Interpreter](https://aws.amazon.com/blogs/machine-learning/introducing-the-amazon-bedrock-agentcore-code-interpreter/) runs each execution in an isolated sandbox session; Anthropic's own [Claude Code sandbox](https://code.claude.com/docs/en/sandboxing) takes the local-tool angle, using bubblewrap on Linux and Seatbelt on macOS to put an OS-enforced boundary around shell commands so approved code can run without a prompt for every line. Note Claude Code's own caveat: that sandbox covers shell commands only — file tools, MCP servers, and hooks run outside it under the permission layer. Knowing what a given sandbox does *not* cover is part of using it safely.
+
+## Isolation alone is not enough
+
+Walling off the kernel is necessary, not sufficient. Three controls do the rest:
+
+1. **Default-deny network and filesystem.** Block outbound traffic by default and allow only the domains the task needs; mount only the files it needs, read-only where possible. And treat "isolated" as a claim to verify, not a guarantee: Palo Alto Networks' Unit 42 documented a [DNS-tunneling bypass of AWS's sandbox network-isolation mode](https://unit42.paloaltonetworks.com/bypass-of-aws-sandbox-network-isolation-mode/), since remediated by AWS. Egress control is a moving target.
+2. **Keep credentials out of the sandbox.** Compute isolation does nothing if the agent holds broad keys. Scope access to specific actions and inject secrets server-side through a broker, so generated code never sees them — the discipline behind [AI agent identity and access management](/en/news/2026-10-01-ai-agent-identity-access-management/).
+3. **Gate the irreversible.** Payments, deletions, and permission changes should wait for a person, not run unattended. That [human-in-the-loop](/en/news/2026-08-13-human-in-the-loop-ai-agents/) gate is where code execution and judgment meet.
+
+Code execution is really the sharpest version of [tool calling](/en/news/2026-09-25-ai-agent-tool-calling/): instead of the model emitting one structured call at a time, it writes a program that calls many. More power per step, so more to contain per step. Our own [Gmail triage agent in Issue #001](/en/posts/2026-05-13-gmail-ai-agent/) sidesteps the whole question by running on a connector with no code-execution tool at all — the cheapest way to stay safe is to not grant a capability you don't need. If you're building where you *do* need it, the deployment weight lands in the same place as [self-hosted agents](/en/news/2026-09-30-self-hosted-ai-agents/).
+
+## FAQ
+
+**Can an AI agent write and run its own code safely?**
+Yes, but only with containment. The safety comes from the environment, not the model: run generated code in an isolated, disposable sandbox (a [microVM](https://firecracker-microvm.github.io/), a [gVisor](https://gvisor.dev/) user-space kernel, or a hardened container) with default-deny network and filesystem access and no live credentials, and require human approval for anything irreversible. Treat the code itself as untrusted input.
+
+**Why can't I just trust the model to write safe code?**
+Because the failure modes don't depend on the model's intent. Code can accidentally reach for resources it shouldn't, and the agent can be hijacked by [prompt injection](/en/news/2026-09-24-ai-agent-prompt-injection/) — content it reads that smuggles in instructions, [ranked #1 by OWASP](https://genai.owasp.org/llmrisk/llm01-prompt-injection/). A sandbox limits damage regardless of why the code misbehaves; trust in the model does not.
+
+**What's the difference between a container and a microVM for this?**
+A standard container shares the host's kernel, so one kernel vulnerability can let code escape — weak isolation for untrusted work. A microVM (like [Firecracker](https://firecracker-microvm.github.io/), used by [E2B](https://e2b.dev/)) gives each workload its own kernel, and a user-space kernel like [gVisor](https://gvisor.dev/) intercepts system calls before they reach the host. For agent-written code, prefer the stronger boundary.
+
+**Do managed platforms handle this for me?**
+Partly. Services like [AWS Bedrock AgentCore Code Interpreter](https://aws.amazon.com/blogs/machine-learning/introducing-the-amazon-bedrock-agentcore-code-interpreter/) run each execution in an isolated session, and [Claude Code's sandbox](https://code.claude.com/docs/en/sandboxing) boundaries shell commands on your own machine. But you still own credential scoping, egress rules, and approval gates — and you must know what a given sandbox does *not* cover (Claude Code's, for instance, doesn't wrap file tools or MCP).
+
+**Is code execution worth the risk?**
+It can be. Anthropic reports [code execution with MCP](https://www.anthropic.com/engineering/code-execution-with-mcp) cutting a workflow from 150,000 to 2,000 tokens. The honest framing: the efficiency is real, and so is the new attack surface. Grant the capability only when the job needs it, and contain it when you do.
+
+---
+
+The interesting part of an agent is never the sandbox — it's the job it gets done inside one. Every week this series documents the exact setups professionals actually run, containment and all. [Subscribe free](/en/) and get each build in your inbox.
