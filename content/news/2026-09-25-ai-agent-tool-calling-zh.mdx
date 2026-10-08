@@ -52,7 +52,7 @@ Anthropic 的 [*Building Effective Agents*](https://www.anthropic.com/engineerin
 工具调用是让模型能采取行动、而不只是生成文字的机制。你定义一个工具（名字、描述、参数 schema）；模型返回一个结构化请求，写明工具和参数；[你的代码执行它并返回结果](https://platform.claude.com/docs/en/agents-and-tools/tool-use/overview)；模型用这个结果来回答。这就是把聊天机器人变成 agent 的那一步。
 
 **工具调用和函数调用是一回事吗？**
-是的。它们是同一个功能的不同品牌叫法。[Anthropic 的文档](https://platform.claude.com/docs/en/agents-and-tools/tool-use/overview)称之为「tool use（也叫函数调用）」；OpenAI 最初叫它「function calling」。行业现在更常用「工具调用」，因为工具已不止函数——还有搜索、代码执行和整套 MCP 服务器。
+是的。它们是同一个功能的不同品牌叫法。[Anthropic 的文档](https://platform.claude.com/docs/en/agents-and-tools/tool-use/overview)称之为「tool use（也叫函数调用）」；OpenAI 最初叫它「function calling」。行业现在更常用「工具调用」，因为工具已不止函数——还有搜索、[代码执行](/zh/news/2026-10-08-ai-agent-code-execution/)和整套 MCP 服务器。
 
 **模型怎么知道何时该调用工具？**
 它每一轮自己判断。在默认的 `auto` 设置下，当请求对上某个工具描述的能力、而答案又不在上下文里时，模型就调那个工具，否则直接回答。[你可以用 `tool_choice` 设置和系统提示](https://platform.claude.com/docs/en/agents-and-tools/tool-use/overview)去引导或强制它。

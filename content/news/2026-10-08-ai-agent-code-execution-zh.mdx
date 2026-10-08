@@ -1,0 +1,58 @@
+---
+title: "AI Agent 代码执行：在哪跑才安全"
+date: "2026-10-08"
+excerpt: "当 AI Agent 自己写代码、自己跑，它应该跑在一个用完即弃的隔离沙箱里，而不是你的机器上。为什么真正的安全控制是隔离，而不是模型本身。"
+---
+
+当 AI Agent 自己写代码、自己运行时，这段代码应该在一个用完即弃的隔离沙箱里执行——容器、microVM，或用户态内核——而不是直接跑在你的机器上。真正的安全控制是沙箱，不是模型的善意：当生成的代码做错事时——不管是失误还是 Agent 被骗——沙箱负责把损失封死在里面。
+
+让 Agent 既写代码又**运行**代码，如今已是主流做法，不是边角情况。Anthropic 的 [*Code execution with MCP*](https://www.anthropic.com/engineering/code-execution-with-mcp)（2025 年 11 月 4 日）指出，让 Agent 写代码去调工具——而不是把每个工具定义都塞进上下文——把一个基准工作流「从 150,000 token 降到 2,000 token」，减少 98.7%。效率就是这个模式扩散的原因。但同一篇文章也直言代价：代码执行「引入了它自己的复杂度」，运行 Agent 写的代码「需要安全的执行环境、资源限制和监控」。好处的另一面，是一块新的攻击面。
+
+## 为什么 Agent 写的代码默认是「不可信」的
+
+把 Agent 生成的代码，当成一个匿名 PR 里的代码来对待：当作不可信输入。两种失效模式让这一点没有商量余地。
+
+第一种是无心之失。模型可能生成看起来很合理的代码，却去碰它本不该碰的文件或网络——问题不在恶意，而在于代码做得比你预期的多。第二种是蓄意的：**提示注入（prompt injection）。** Agent 读到的网页、邮件或文档里，可能藏着它随后就照做的指令，OWASP 把它列为 [LLM01:2025 提示注入](https://genai.owasp.org/llmrisk/llm01-prompt-injection/)——GenAI Top 10 里的头号风险。如果 Agent 能被它处理的内容牵着走，那么「Agent 写代码」和「攻击者写代码」之间的距离，比看起来要近得多。这正是 [AI agent 提示注入](/zh/news/2026-09-24-ai-agent-prompt-injection/) 背后、以及 [Agent 为什么在生产环境里翻车](/zh/news/2026-09-23-why-ai-agents-fail-in-production/) 里那条更大教训的同一套威胁模型。
+
+## 沙箱就是那条边界
+
+正解是：让**环境**来强制执行 Agent 没法靠「说服」绕过的限制。行业已经收敛到几种隔离技术，由强到弱：
+
+- **microVM** 让每个工作负载拥有自己的内核。比如 [E2B](https://e2b.dev/) 把 Agent 代码跑在 [Firecracker](https://firecracker-microvm.github.io/) microVM 里——就是 AWS 为 Lambda 造的那套轻量虚拟化——用完即销毁环境。
+- **用户态内核**，如 Google 的 [gVisor](https://gvisor.dev/)，拦截应用的系统调用、充当一个客户机内核，让代码永远不直接和宿主内核对话。
+- **普通容器**共享宿主内核，对**不可信**代码来说是最弱的边界：一个内核漏洞就能穿过去。额外加固后可用，单靠它则有风险。
+
+开源的 [Kubernetes SIG Agent Sandbox](https://agent-sandbox.sigs.k8s.io/docs/use-cases/code-execution/) 项目把目标说得很直白：隔离环境里让 Agent 跑生成的代码、拿回结果，不接触宿主机或其他租户。关键在生命周期——申请环境、运行代码、返回结果、销毁一切。
+
+托管服务把这套能力内建了进去。AWS 的 [Amazon Bedrock AgentCore Code Interpreter](https://aws.amazon.com/blogs/machine-learning/introducing-the-amazon-bedrock-agentcore-code-interpreter/) 把每次执行都放进一个隔离的沙箱会话；Anthropic 自己的 [Claude Code 沙箱](https://code.claude.com/docs/en/sandboxing) 走的是本地工具这条路，在 Linux 上用 bubblewrap、macOS 上用 Seatbelt，给 shell 命令套一圈由操作系统强制的边界，让获批的代码不必每一行都弹窗确认。注意 Claude Code 自己的提醒：这个沙箱只管 shell 命令——文件工具、MCP server 和 hook 都在它之外、由权限层管。知道某个沙箱**不**覆盖什么，是安全使用它的一部分。
+
+## 光有隔离还不够
+
+把内核隔离开是必要的，但不充分。剩下的靠三条控制补齐：
+
+1. **默认拒绝网络和文件系统。** 默认屏蔽出站流量，只放行任务需要的域名；只挂载需要的文件，能只读就只读。而且把「隔离」当成一个需要验证的说法，而非保证：Palo Alto Networks 的 Unit 42 就记录过一次对 [AWS 沙箱网络隔离模式的 DNS 隧道绕过](https://unit42.paloaltonetworks.com/bypass-of-aws-sandbox-network-isolation-mode/)，AWS 随后已修复。出口管控是个移动靶。
+2. **把凭证挡在沙箱外。** 如果 Agent 手里握着大权限的密钥，算力隔离就形同虚设。把访问权限收窄到具体动作，密钥通过一个 broker 在服务端注入，让生成的代码永远看不到它们——这正是 [AI agent 身份与访问管理](/zh/news/2026-10-01-ai-agent-identity-access-management/) 背后的纪律。
+3. **不可逆的动作要设闸。** 付款、删除、改权限，应该等一个人点头，而不是无人值守地跑掉。那道 [human-in-the-loop](/zh/news/2026-08-13-human-in-the-loop-ai-agents/) 闸门，就是代码执行和人类判断相交的地方。
+
+代码执行其实是 [工具调用](/zh/news/2026-09-25-ai-agent-tool-calling/) 最锋利的一种形态：模型不再一次吐一个结构化调用，而是写一段程序去调很多个。每一步的能力更强，每一步要封住的东西也更多。我们自己的 [Issue #001 里的 Gmail 分拣 Agent](/zh/posts/2026-05-13-gmail-ai-agent/) 干脆绕开了整个问题——它跑在连接器上，根本没有代码执行这个工具。最省事的安全，就是不授予你用不上的能力。如果你真的需要它，那份部署重量，会落在和 [自托管 Agent](/zh/news/2026-09-30-self-hosted-ai-agents/) 同一个地方。
+
+## FAQ
+
+**AI agent 能安全地自己写、自己跑代码吗？**
+能，但必须有「封闭」。安全来自环境，不是模型：把生成的代码跑在一个隔离、用完即弃的沙箱里（[microVM](https://firecracker-microvm.github.io/)、[gVisor](https://gvisor.dev/) 用户态内核，或加固过的容器），默认拒绝网络和文件系统访问、不带实时凭证，任何不可逆动作都要人工批准。把代码本身当成不可信输入看待。
+
+**为什么不能直接信任模型写出安全的代码？**
+因为失效模式跟模型的意图无关。代码可能无意中去碰不该碰的资源，而 Agent 也可能被 [提示注入](/zh/news/2026-09-24-ai-agent-prompt-injection/) 劫持——它读到的内容里夹带了指令，[被 OWASP 列为头号风险](https://genai.owasp.org/llmrisk/llm01-prompt-injection/)。不管代码为什么出问题，沙箱都能限制损失；对模型的信任做不到这点。
+
+**容器和 microVM 在这件事上有什么区别？**
+普通容器共享宿主内核，一个内核漏洞就可能让代码逃出去——对不可信工作是弱隔离。microVM（如 [E2B](https://e2b.dev/) 用的 [Firecracker](https://firecracker-microvm.github.io/)）给每个工作负载独立内核，而 [gVisor](https://gvisor.dev/) 这类用户态内核会在系统调用抵达宿主前就拦下。对 Agent 写的代码，选更强的那条边界。
+
+**托管平台能帮我把这些都搞定吗？**
+一部分。像 [AWS Bedrock AgentCore Code Interpreter](https://aws.amazon.com/blogs/machine-learning/introducing-the-amazon-bedrock-agentcore-code-interpreter/) 把每次执行放进隔离会话，[Claude Code 沙箱](https://code.claude.com/docs/en/sandboxing) 给你本机的 shell 命令划边界。但凭证收窄、出口规则、审批闸门，仍然得你自己管——而且你得知道某个沙箱**不**覆盖什么（比如 Claude Code 的沙箱就不管文件工具和 MCP）。
+
+**代码执行值得冒这个险吗？**
+可以值得。Anthropic 报告 [code execution with MCP](https://www.anthropic.com/engineering/code-execution-with-mcp) 把一个工作流从 150,000 token 降到 2,000 token。诚实的说法是：效率是真的，新攻击面也是真的。只在任务确实需要时才授予这个能力，授予了就把它封好。
+
+---
+
+Agent 里有意思的从来不是沙箱，而是它在沙箱里把活干成了什么。这个系列每周记录职场人真正在跑的搭建，连怎么封闭都写进去。[免费订阅](/zh/)，每一期直接进你的收件箱。

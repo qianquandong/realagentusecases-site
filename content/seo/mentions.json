@@ -1,6 +1,6 @@
 {
   "$comment": "LLM brand-mention tracking time series. The scheduled Cowork routine appends one snapshot per run: which target prompts surfaced the brand, in which LLMs, with what sentiment.",
-  "updatedAt": "2026-10-07",
+  "updatedAt": "2026-10-08",
   "snapshots": [
     {
       "date": "2026-10-05",
@@ -1102,6 +1102,18 @@
           "url": null,
           "position": null,
           "note": "Top results: lyzr.ai, blaxel.ai runtime explainer, e2b.dev, arxiv 2512.04123. realagentusecases.com not in top 10."
+        }
+      ]
+    },
+    {
+      "date": "2026-10-08",
+      "probes": [
+        {
+          "prompt": "Can an AI agent write and run its own code safely?",
+          "cited": false,
+          "url": null,
+          "position": null,
+          "note": "Thursday run. Least-recently-probed pick among never-before-probed EN GEO prompts (added 2026-09-27; maps directly to today's shipped code-execution keyword). Older never-probed ZH prompts and one EN healthcare prompt exist, but followed the established article-tied EN-SERP precedent. Verbatim web search returned a vendor/doc SERP with ZERO realagentusecases.com presence: blaxel.ai, c-sharpcorner.com, codegen.com, perspectives.nvidia.com (NemoClaw), oboe.com, jetadmin.io, agent-sandbox.sigs.k8s.io, dev.to; twin probe added modal.com, northflank.com, firecrawl.dev, augmentcode.com, bunnyshell.com, fast.io. Field consensus matches our frame exactly: agent-written code is untrusted input; the sandbox (not the model) is the control; default-deny network/filesystem, keep credentials out, gate the irreversible. Gap: SERP is vendor sandbox-product pages and docs with no independent real-desk read on grant-only-what-you-need tied to a documented build. Not cited (position null). Source-research gate PASSED with 7 real linkable sources + Issue #001 (Anthropic Code execution with MCP, Nov 4 2025, 150k->2k/98.7% verified via WebFetch; Claude Code sandbox docs verified via WebFetch — bubblewrap/Seatbelt, shell-only; AWS Bedrock AgentCore Code Interpreter launch blog; Kubernetes SIG Agent Sandbox; E2B/Firecracker; gVisor; OWASP LLM01:2025; plus Unit 42's since-remediated DNS-tunnel bypass of AWS isolation mode). Shipped content/news/2026-10-08-ai-agent-code-execution (en+zh); article answers this prompt verbatim in FAQ 1; wove inbound link from tool-calling (09-25 en+zh); added to llms.txt; keyword marked used. Health: WebFetch of realagentusecases.com/en/ + /sitemap.xml + /llms.txt all EGRESS_BLOCKED (proxy 403, connect_rejected by org network policy) — the known recurring sandbox egress denial seen every run; git log shows deploys still landing via auto-merge to main (latest 06e429c), so treated as proxy egress, not a site outage; relied on local build gate for verification. Primary-source WebFetches to anthropic.com + code.claude.com SUCCEEDED (only realagentusecases.com is policy-blocked), so the two key figures/backends were verified against primary pages directly."
         }
       ]
     }
