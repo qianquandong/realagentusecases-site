@@ -1,0 +1,56 @@
+---
+title: "OpenAI AgentKit：押 SDK，别押画布"
+date: "2026-10-09"
+excerpt: "AgentKit 打包了 Agent Builder、ChatKit 和 Agents SDK，但 Agent Builder 将于 2026 年 11 月 30 日停用。押 SDK，别押可视化画布。"
+---
+
+OpenAI 的 AgentKit 是一套搭 Agent 的打包工具：**Agent Builder**（拖拽式可视化画布）、**ChatKit**（可嵌入的聊天 UI）、一个 **Connector Registry**，以及 **Agents SDK**（代码）。多数盘点都略过的关键一点：OpenAI 正在把 Agent Builder 和 Evals 产品下线，截止 2026 年 11 月 30 日，并把开发者引向 Agents SDK。押那个耐用的底层原语，别押画布。
+
+## AgentKit 里到底有什么
+
+OpenAI 在 [2025 年 10 月 6 日的 DevDay](https://openai.com/index/introducing-agentkit/) 发布了 AgentKit，定位是把 Agent「从原型推到生产」。最抢眼的是 **Agent Builder**——一张可视化画布，你拖拽节点（逻辑、分支、工具调用）就能拼出一个 Agent，不用自己写编排（[VentureBeat 的发布报道](https://venturebeat.com/orchestration/openai-unveils-agentkit-that-lets-developers-drag-and-drop-to-build-ai)描述了这种拖拽模式）。同台的还有：把 Agent 聊天嵌进自家应用（含跑在 ChatGPT 里的应用）的 **ChatKit**，在治理控制下把 Agent 接到内部与第三方系统的 **Connector Registry**，以及给 Agent 运行打分的增强版 **Evals**。
+
+而这一切底下坐着的是 **[Agents SDK](https://openai.github.io/openai-agents-python/)**——可视化工具生成的代码就是冲着它去的。这个先后顺序，正是下面那道选择题的关键。
+
+## 关键一点：Agent Builder 已经在下线
+
+「拖拽就能搭 Agent」这种标题埋掉了一件事。OpenAI 自己的 [AgentKit 发布页](https://openai.com/index/introducing-agentkit/)现在挂着一条 2026 年 6 月 3 日的更新：Agent Builder 和 Evals 产品将从 **2026 年 11 月 30 日**起在 OpenAI 平台上不再可用。可嵌入的 ChatKit 和 Agents SDK **不**在这次下线之列——它们留着。
+
+OpenAI 给出的迁移路径很说明问题：Agent Builder 用户被引向 **Agents SDK** 做代码级工作流（无代码需求则引向 ChatGPT 里的自然语言 Agent 设置）。换句话说，可视化画布是被证明临时的那一层；SDK 才是留下来的那一层。
+
+短命不是丑闻，而是教训——OpenAI 迭代很快，收回一个可视化构建器比收回一个 API 轻得多。但这恰恰是[为什么那么多 Agent 过了 demo 就卡住](/zh/news/2026-09-23-why-ai-agents-fail-in-production/)：团队押在最好看的那层表面，而不是最耐用的那层。如果你在 Agent Builder 里做了原型，现在就把它导出成 Agents SDK 代码，别等到截止日——导出给的是代码，所以要规划一次重建加测试，而不是一键搬家。
+
+## 押耐用的底层原语：Agents SDK
+
+[Agents SDK](https://openai.github.io/openai-agents-python/) 是刻意做薄的。它的文档描述了一小组原语——**Agents、Handoffs、Guardrails、Sessions 和自带的 Tracing**——「没有沉重的抽象」。它提供 Python（`pip install openai-agents`）和 TypeScript（`@openai/agents`）版本，支持 [MCP](/zh/news/2026-08-10-what-is-mcp-for-ai-agents/)，并兼容多家模型厂商，所以名字里的「OpenAI」是出身、不是锁定。Tracing 默认开启——等 Agent 真正上线，你会在意的正是这一点。
+
+这跟 [OpenAI Agents SDK 对 LangGraph 和 CrewAI](/zh/news/2026-10-05-langgraph-vs-crewai/) 下的是同一个薄库赌注：在你和 prompt 之间少放几层抽象。也和 [Anthropic 在 *Building Effective Agents* 里的建议](https://www.anthropic.com/engineering/building-effective-agents)一致——先直接调用模型 API，「只有在任务配得上时」再加框架，因为多余的抽象层「会遮住底层的 prompt 和响应」。可视化画布是最厚的那层抽象；SDK 是朝 prompt 退回的一步。
+
+## 这对你的搭建意味着什么
+
+- **已经在用 Agent Builder？** 在 2026 年 11 月 30 日前导出成 Agents SDK 代码，并预留时间重新填凭据、重新测分支——导出给你的是代码，不是成品 Agent。
+- **从零开始、想写代码？** 直接上 Agents SDK，或者按你最硬的需求对比 [LangGraph 和 CrewAI](/zh/news/2026-10-05-langgraph-vs-crewai/)。更全的地图在[搭建 AI Agent 的最佳工具](/zh/news/2026-09-26-best-tools-to-build-ai-agents/)。
+- **想要无代码、又不想一年后重做？** 绑死在一家厂商路线图上的可视化画布是脆弱的那条路。掂量那些[拥有自己工作流的无代码 AI agent 工具](/zh/news/2026-07-08-no-code-ai-agent-tools/)，也别忘了最简单的活儿可能[根本不需要框架](/zh/posts/2026-05-13-gmail-ai-agent/)。
+
+三条路的共同模式：挑那个厂商发下一个东西时你不必抛弃的层。对整件事还陌生？先看 [Agent 101](/zh/agent-101/)。
+
+## FAQ
+
+**OpenAI AgentKit 是什么？**
+它是 OpenAI 搭建和交付 Agent 的打包工具，[在 2025 年 10 月 6 日的 DevDay 发布](https://openai.com/index/introducing-agentkit/)。它包含 Agent Builder（拖拽式可视化画布）、ChatKit（可嵌入聊天 UI）、Connector Registry、Evals 套件，以及底层的 [Agents SDK](https://openai.github.io/openai-agents-python/)。
+
+**OpenAI Agent Builder 要停掉了吗？**
+是的。OpenAI 的 [AgentKit 页面](https://openai.com/index/introducing-agentkit/)挂着一条 2026 年 6 月 3 日的更新：Agent Builder 和 Evals 产品将从 2026 年 11 月 30 日起在 OpenAI 平台上不再可用。ChatKit 和 Agents SDK 不受影响。
+
+**Agent Builder 的工作流该迁到哪？**
+OpenAI 把 Agent Builder 用户引向 [Agents SDK](https://openai.github.io/openai-agents-python/) 做代码级工作流。导出给的是 Agents SDK 代码、不是转换好的图，所以把迁移当成一次重建加测试：重新填凭据、重建分支和审批逻辑，在截止日前跑一遍对拍。
+
+**OpenAI Agents SDK 只能配 OpenAI 的模型吗？**
+不是。它的[文档](https://openai.github.io/openai-agents-python/)说这是一个与厂商无关的库，自带 tracing、会话和 [MCP](/zh/news/2026-08-10-what-is-mcp-for-ai-agents/) 支持，兼容多家模型厂商。名字只反映出身，不是锁定。
+
+**搭 Agent 一定要用 AgentKit 吗？**
+不用。AgentKit 只是一家厂商的打包工具。很多真实搭建用一个连接器、完全不用框架——[Issue #001 的 Gmail 分拣 Agent](/zh/posts/2026-05-13-gmail-ai-agent/) 就是一个。只有在任务配得上时，才去拿框架。
+
+---
+
+工具包从来不是有意思的地方——活儿才是。本系列每周记录职场人真正在跑的搭建方案，工具细节全都写进去。[免费订阅](/zh/)，每期直达你的邮箱。

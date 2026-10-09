@@ -1,6 +1,6 @@
 {
   "$comment": "SEO keyword feed — a living file. The scheduled Cowork routine ideates entries; scripts/seo/feeds.mjs persists them (dedupe + status + timestamps). intent: informational|commercial|transactional. funnel: TOFU|MOFU|BOFU. cluster: use-case|template|comparison|industry|tool-stack. status: new|used.",
-  "updatedAt": "2026-10-08",
+  "updatedAt": "2026-10-09",
   "keywords": [
     {
       "term": "AI agent use cases",
@@ -1047,9 +1047,9 @@
       "funnel": "MOFU",
       "cluster": "tool-stack",
       "locale": "both",
-      "status": "new",
+      "status": "used",
       "addedAt": "2026-10-04",
-      "note": "Sunday feed research 2026-10-04. OpenAI's agent-building bundle announced at DevDay (openai.com/index/introducing-agentkit): Agents SDK + Responses API + ChatKit + Agent Builder (visual drag-and-drop canvas). The honest real-desk angle: OpenAI is winding down Agent Builder + Evals (unavailable after 2026-11-30), steering code workflows to the Agents SDK — so build on the durable primitive (SDK/API), not the no-code canvas. Verify at write time against OpenAI's own announcement + docs and the wind-down notice. Clusters with best-ai-agent-frameworks, no-code-ai-agent-tools (07-08), ai-agent-orchestration, best-llm-for-ai-agents."
+      "note": "Sunday feed research 2026-10-04. OpenAI's agent-building bundle announced at DevDay (openai.com/index/introducing-agentkit): Agents SDK + Responses API + ChatKit + Agent Builder (visual drag-and-drop canvas). The honest real-desk angle: OpenAI is winding down Agent Builder + Evals (unavailable after 2026-11-30), steering code workflows to the Agents SDK — so build on the durable primitive (SDK/API), not the no-code canvas. Verify at write time against OpenAI's own announcement + docs and the wind-down notice. Clusters with best-ai-agent-frameworks, no-code-ai-agent-tools (07-08), ai-agent-orchestration, best-llm-for-ai-agents. Used 2026-10-09 → content/news/2026-10-09-openai-agentkit (en+zh), title \"OpenAI AgentKit: Build on the SDK, Not the Canvas\". Honest angle: build on the durable Agents SDK, not Agent Builder (the drag-and-drop canvas OpenAI is winding down Nov 30 2026 per its own AgentKit page). Grounded in OpenAI announcement + wind-down note, Agents SDK docs, VentureBeat, Anthropic Building Effective Agents, Issue #001. Wove reciprocal inbound link from 2026-10-05-langgraph-vs-crewai (en+zh)."
     },
     {
       "term": "small language models for AI agents",

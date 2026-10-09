@@ -1,0 +1,56 @@
+---
+title: "OpenAI AgentKit: Build on the SDK, Not the Canvas"
+date: "2026-10-09"
+excerpt: "OpenAI's AgentKit bundles Agent Builder, ChatKit, and the Agents SDK — but Agent Builder is winding down by Nov 30, 2026. Build on the SDK, not the canvas."
+---
+
+OpenAI's AgentKit is a bundle for building agents: **Agent Builder** (a drag-and-drop visual canvas), **ChatKit** (an embeddable chat UI), a **Connector Registry**, and the **Agents SDK** (code). The catch most roundups skip: OpenAI is winding down Agent Builder and Evals by November 30, 2026, steering developers to the Agents SDK. Build on that durable primitive, not the canvas.
+
+## What's actually in AgentKit
+
+OpenAI announced AgentKit at its [DevDay on October 6, 2025](https://openai.com/index/introducing-agentkit/), framing it as a way to take agents "from prototype to production." The headline piece was **Agent Builder**, a visual canvas where you drag and drop nodes — logic, branching, tool calls — to assemble an agent without writing the orchestration yourself ([VentureBeat's launch coverage](https://venturebeat.com/orchestration/openai-unveils-agentkit-that-lets-developers-drag-and-drop-to-build-ai) describes the drag-and-drop model). Alongside it: **ChatKit** for embedding agent chat into your own app (including apps that run inside ChatGPT), a **Connector Registry** to wire agents to internal and third-party systems under governance controls, and an enhanced **Evals** suite for scoring agent runs.
+
+Underneath all of that sits the **[Agents SDK](https://openai.github.io/openai-agents-python/)** — the code library the visual tools generate against. That ordering matters for the decision below.
+
+## The catch: Agent Builder is already winding down
+
+Here's what a "drag-and-drop to build agents" headline buries. OpenAI's own [AgentKit announcement page](https://openai.com/index/introducing-agentkit/) now carries a June 3, 2026 update stating that Agent Builder and the Evals product will no longer be available on the OpenAI platform from **November 30, 2026**. The embeddable ChatKit toolkit and the Agents SDK are **not** part of that wind-down — they stay.
+
+The migration path OpenAI points to is telling: Agent Builder users are steered to the **Agents SDK** for code-based workflows (and to natural-language agent setup in ChatGPT for no-code needs). In other words, the visual canvas was the layer that proved temporary; the SDK is the layer that stuck.
+
+The short lifespan is the lesson, not a scandal — OpenAI iterates fast, and a visual builder is a thinner commitment to walk back than an API. But it's exactly why [so many agents stall after the demo](/en/news/2026-09-23-why-ai-agents-fail-in-production/): teams build on the most impressive-looking surface instead of the most durable one. If you prototyped a workflow in Agent Builder, export it to Agents SDK code now rather than at the deadline — the export produces code, so plan a rebuild-and-test pass, not a one-click move.
+
+## Build on the durable primitive: the Agents SDK
+
+The [Agents SDK](https://openai.github.io/openai-agents-python/) is deliberately thin. Its docs describe a small set of primitives — **Agents, Handoffs, Guardrails, Sessions, and built-in Tracing** — "without heavy abstractions." It ships for Python (`pip install openai-agents`) and TypeScript (`@openai/agents`), supports [MCP](/en/news/2026-08-10-what-is-mcp-for-ai-agents/), and works across many model providers, so "OpenAI" in the name is its origin, not a lock-in. Tracing is on by default, which is the part you'll actually care about once the agent is live.
+
+This is the same thin-library bet the [OpenAI Agents SDK makes against LangGraph and CrewAI](/en/news/2026-10-05-langgraph-vs-crewai/): fewer abstractions between you and the prompts. And it lines up with [Anthropic's guidance in *Building Effective Agents*](https://www.anthropic.com/engineering/building-effective-agents) — start by calling the model APIs directly and add a framework "only when the job demands it," because extra abstraction layers "can obscure the underlying prompts and responses." A visual canvas is the thickest abstraction of all; the SDK is a step back toward the prompts.
+
+## What this means for your build
+
+- **Already in Agent Builder?** Export to Agents SDK code before November 30, 2026, and budget time to re-enter credentials and re-test branching — the export gives you code, not a finished agent.
+- **Starting fresh and want code?** Go straight to the Agents SDK, or compare it against [LangGraph and CrewAI](/en/news/2026-10-05-langgraph-vs-crewai/) by your hardest requirement. The broader map is in [best tools to build an AI agent](/en/news/2026-09-26-best-tools-to-build-ai-agents/).
+- **Want no-code and don't want to rebuild in a year?** A visual canvas tied to one vendor's roadmap is the fragile choice. Weigh the [no-code AI agent tools](/en/news/2026-07-08-no-code-ai-agent-tools/) that own their workflows, and remember the simplest job may need [no framework at all](/en/posts/2026-05-13-gmail-ai-agent/).
+
+The pattern across all three: pick the layer you won't have to abandon when the vendor ships the next thing. New to the whole idea? Start with [Agent 101](/en/agent-101/).
+
+## FAQ
+
+**What is OpenAI AgentKit?**
+It's OpenAI's bundle for building and shipping agents, [announced at DevDay on October 6, 2025](https://openai.com/index/introducing-agentkit/). It includes Agent Builder (a drag-and-drop visual canvas), ChatKit (an embeddable chat UI), a Connector Registry, an Evals suite, and the underlying [Agents SDK](https://openai.github.io/openai-agents-python/).
+
+**Is OpenAI Agent Builder being discontinued?**
+Yes. OpenAI's [AgentKit page](https://openai.com/index/introducing-agentkit/) carries a June 3, 2026 update stating that Agent Builder and the Evals product will no longer be available on the OpenAI platform from November 30, 2026. ChatKit and the Agents SDK are not affected.
+
+**What should I migrate Agent Builder workflows to?**
+OpenAI points Agent Builder users to the [Agents SDK](https://openai.github.io/openai-agents-python/) for code-based workflows. The export produces Agents SDK code rather than a converted graph, so treat migration as a rebuild-and-test pass — re-enter credentials, rebuild branching and approval logic, and run a parity check before the deadline.
+
+**Is the OpenAI Agents SDK locked to OpenAI models?**
+No. Its [docs](https://openai.github.io/openai-agents-python/) describe a provider-agnostic library with built-in tracing, sessions, and [MCP](/en/news/2026-08-10-what-is-mcp-for-ai-agents/) support that works across many model providers. The name reflects its origin, not a lock-in.
+
+**Do I need AgentKit to build an agent?**
+No. AgentKit is one vendor's bundle. Plenty of real builds use a plain connector with no framework at all — the [Gmail triage agent in Issue #001](/en/posts/2026-05-13-gmail-ai-agent/) is one. Reach for a framework only when the job earns it.
+
+---
+
+The tool bundle is never the interesting part — the job is. Every week this series documents the exact setups professionals actually run, tools and all. [Subscribe free](/en/) and get each build in your inbox.
