@@ -1,6 +1,6 @@
 {
   "$comment": "GEO prompt feed — the questions working professionals ask ChatGPT / Perplexity / Gemini. The scheduled Cowork routine ideates entries; scripts/seo/feeds.mjs persists them. cluster: use-case|template|comparison|industry|tool-stack. status: new|covered (covered = a published article targets it). Phase 7 tracks whether the brand is cited for each.",
-  "updatedAt": "2026-10-05",
+  "updatedAt": "2026-10-10",
   "prompts": [
     {
       "prompt": "What are real examples of AI agents at work?",
@@ -666,9 +666,9 @@
       "prompt": "Can small language models run AI agents, or do I need a frontier model?",
       "cluster": "tool-stack",
       "locale": "en",
-      "status": "new",
+      "status": "covered",
       "addedAt": "2026-10-04",
-      "note": "Sunday feed research 2026-10-04. Pairs with 'small language models for AI agents'. The SLM-for-subtasks, big-LLM-for-hard-reasoning answer from NVIDIA's position paper. Ground in arxiv.org/abs/2506.02153 at write time."
+      "note": "Covered 2026-10-10 by content/news/2026-10-10-small-language-models-for-ai-agents. GEO-probed 2026-10-10 (on-publish baseline, verbatim web search): not cited — SERP dominated by udemy, decagon.ai (what-is-a-small-language-model), kdnuggets (5 Ways SLMs Are Powering Next-Gen Agents), towardsdatascience, hackernoon, govinfosecurity, benchmarklist, jobsbyculture; realagentusecases.com did not appear — the field is vendor glossaries + 'SLM vs frontier' course/listicle content with no independent match-the-model-to-the-job / grounded-in-a-real-build angle, this site's gap to own. Notably the same SERP independently states the article's own thesis (small models suffice for narrow repetitive subtasks; frontier models still win on long-horizon planning; the common recommendation is a hybrid) — corroboration, not fabrication. The article answers this prompt verbatim in its first FAQ; re-probe post-index to track lift."
     },
     {
       "prompt": "Is it safe to let an AI browser agent shop or log into my accounts?",
