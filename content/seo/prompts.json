@@ -1,6 +1,6 @@
 {
   "$comment": "GEO prompt feed — the questions working professionals ask ChatGPT / Perplexity / Gemini. The scheduled Cowork routine ideates entries; scripts/seo/feeds.mjs persists them. cluster: use-case|template|comparison|industry|tool-stack. status: new|covered (covered = a published article targets it). Phase 7 tracks whether the brand is cited for each.",
-  "updatedAt": "2026-10-05",
+  "updatedAt": "2026-10-11",
   "prompts": [
     {
       "prompt": "What are real examples of AI agents at work?",
@@ -693,6 +693,46 @@
       "status": "new",
       "addedAt": "2026-10-04",
       "note": "Sunday feed research 2026-10-04. ZH pair for 'EU AI Act for AI agents'; grows the ZH feed. 透明告知、风险分级、可随时举证的日志与人工监督。写作时以欧盟 AI 法案原文与实施时间线为准。"
+    },
+    {
+      "prompt": "What is the Microsoft Agent Framework and how is it different from AutoGen and Semantic Kernel?",
+      "cluster": "comparison",
+      "locale": "en",
+      "status": "new",
+      "addedAt": "2026-10-11",
+      "note": "Ideated 2026-10-11. Pairs with the 'Microsoft Agent Framework' keyword; existing framework-choice prompt names LangGraph/CrewAI/OpenAI only."
+    },
+    {
+      "prompt": "Which enterprise AI agent platform should I choose — Microsoft Agent 365, Google Gemini Enterprise, or Amazon Bedrock AgentCore?",
+      "cluster": "comparison",
+      "locale": "en",
+      "status": "new",
+      "addedAt": "2026-10-11",
+      "note": "Ideated 2026-10-11. Decision query for the enterprise-platforms comparison hub."
+    },
+    {
+      "prompt": "What is Google's Agent Development Kit (ADK) and when should I use it?",
+      "cluster": "comparison",
+      "locale": "en",
+      "status": "new",
+      "addedAt": "2026-10-11",
+      "note": "Ideated 2026-10-11. Pairs with the 'Google Agent Development Kit' keyword."
+    },
+    {
+      "prompt": "Which tools can I use to evaluate and monitor an AI agent — LangSmith, Braintrust, or Arize Phoenix?",
+      "cluster": "comparison",
+      "locale": "en",
+      "status": "new",
+      "addedAt": "2026-10-11",
+      "note": "Ideated 2026-10-11. Pairs with 'AI agent evaluation platforms'; complements existing monitor/evaluate prompts with a specific tool comparison."
+    },
+    {
+      "prompt": "企业该选哪个 AI agent 平台——微软 Agent 365、谷歌 Gemini Enterprise 还是亚马逊 Bedrock AgentCore？",
+      "cluster": "comparison",
+      "locale": "zh",
+      "status": "new",
+      "addedAt": "2026-10-11",
+      "note": "Ideated 2026-10-11. ZH mirror of the enterprise-platforms decision query."
     }
   ]
 }

@@ -1,6 +1,6 @@
 {
   "$comment": "SEO keyword feed — a living file. The scheduled Cowork routine ideates entries; scripts/seo/feeds.mjs persists them (dedupe + status + timestamps). intent: informational|commercial|transactional. funnel: TOFU|MOFU|BOFU. cluster: use-case|template|comparison|industry|tool-stack. status: new|used.",
-  "updatedAt": "2026-10-09",
+  "updatedAt": "2026-10-11",
   "keywords": [
     {
       "term": "AI agent use cases",
@@ -1120,6 +1120,76 @@
       "status": "new",
       "addedAt": "2026-10-04",
       "note": "Sunday feed research 2026-10-04. The demo-to-production reliability gap, distinct from why-agents-fail (failure modes) and how-to-evaluate (test method): the engineering of making a 90%-in-demo agent dependable — benchmark-vs-production drop, tool-calling error rates, state drift, and the eval/SLA layers that catch them. Anchor to reliability resources (e.g. Arize) and reported eval-gap figures, attributing each to its source, never 'studies show'. Frame as the fix (reliability engineering), not the autopsy, to avoid cannibalizing why-agents-fail. Clusters with how-to-evaluate-ai-agents, ai-agent-observability, ai-agent-benchmarks, why-ai-agents-fail-in-production."
+    },
+    {
+      "term": "Microsoft Agent Framework",
+      "intent": "informational",
+      "funnel": "MOFU",
+      "cluster": "comparison",
+      "locale": "both",
+      "status": "new",
+      "addedAt": "2026-10-11",
+      "note": "Ideated 2026-10-11 (Sunday feed). Microsoft's open-source SDK unifying AutoGen + Semantic Kernel into one production path; reported GA ~2026-04 (Python/.NET). Clusters with 'best ai agent frameworks' and 'langgraph vs crewai'. Verify against Microsoft Learn docs before writing."
+    },
+    {
+      "term": "Microsoft Agent 365",
+      "intent": "commercial",
+      "funnel": "MOFU",
+      "cluster": "tool-stack",
+      "locale": "both",
+      "status": "new",
+      "addedAt": "2026-10-11",
+      "note": "Ideated 2026-10-11. Microsoft's control plane for governing/observing agents (distinct from Microsoft 365 Agents and from Agent Framework). Clusters with 'ai agent governance for enterprises' and 'ai agent observability'. Confirm pricing/scope on Microsoft's own pages (third-party figures conflict)."
+    },
+    {
+      "term": "Google Agent Development Kit",
+      "intent": "informational",
+      "funnel": "MOFU",
+      "cluster": "comparison",
+      "locale": "both",
+      "status": "new",
+      "addedAt": "2026-10-11",
+      "note": "Ideated 2026-10-11. Google ADK — open-source framework (Python/TS/Go/Java, Apache 2.0) for building/evaluating/deploying agents on Vertex AI / Gemini Enterprise; Thoughtworks Radar 'Trial' Apr 2026. Clusters with 'best ai agent frameworks'."
+    },
+    {
+      "term": "Amazon Bedrock AgentCore",
+      "intent": "informational",
+      "funnel": "MOFU",
+      "cluster": "tool-stack",
+      "locale": "both",
+      "status": "new",
+      "addedAt": "2026-10-11",
+      "note": "Ideated 2026-10-11. AWS runtime for production agents (Runtime/Gateway/Identity/Memory); platform GA ~Oct 2025, components GA through 2026. Clusters with 'ai agent runtime platforms' and 'how to deploy ai agents in production'. Use AWS docs/release notes as source."
+    },
+    {
+      "term": "Gemini Enterprise agent platform",
+      "intent": "commercial",
+      "funnel": "MOFU",
+      "cluster": "tool-stack",
+      "locale": "both",
+      "status": "new",
+      "addedAt": "2026-10-11",
+      "note": "Ideated 2026-10-11. Google's Cloud Next '26 (Apr 2026) rebrand/consolidation of Vertex AI + Agentspace into Gemini Enterprise; Model Garden 200+ models incl. Claude. Clusters with 'ai agent runtime platforms'. Pairs into an enterprise-platforms comparison hub."
+    },
+    {
+      "term": "AI agent evaluation platforms",
+      "intent": "commercial",
+      "funnel": "MOFU",
+      "cluster": "comparison",
+      "locale": "both",
+      "status": "new",
+      "addedAt": "2026-10-11",
+      "note": "Ideated 2026-10-11. Tool comparison (LangSmith / Braintrust / Arize Phoenix / Langfuse); 2026 shift from scoring single outputs to multi-step trajectories. Distinct from existing 'how to evaluate ai agents' (how-to) and 'ai agent observability'. Note category churn (several vendors acquired/shut 2025-26)."
+    },
+    {
+      "term": "enterprise AI agent platforms",
+      "intent": "commercial",
+      "funnel": "MOFU",
+      "cluster": "comparison",
+      "locale": "both",
+      "status": "new",
+      "addedAt": "2026-10-11",
+      "note": "Ideated 2026-10-11. Hub comparing the big-three enterprise stacks (Microsoft Agent 365, Google Gemini Enterprise, Amazon Bedrock AgentCore). Ties together the five vendor keywords added this week for internal linking; BOFU-adjacent decision query."
     }
   ]
 }
