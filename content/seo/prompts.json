@@ -1,6 +1,6 @@
 {
   "$comment": "GEO prompt feed — the questions working professionals ask ChatGPT / Perplexity / Gemini. The scheduled Cowork routine ideates entries; scripts/seo/feeds.mjs persists them. cluster: use-case|template|comparison|industry|tool-stack. status: new|covered (covered = a published article targets it). Phase 7 tracks whether the brand is cited for each.",
-  "updatedAt": "2026-10-05",
+  "updatedAt": "2026-10-12",
   "prompts": [
     {
       "prompt": "What are real examples of AI agents at work?",
@@ -107,7 +107,7 @@
       "locale": "en",
       "status": "new",
       "addedAt": "2026-05-14",
-      "note": "From the Notion KB GEO Prompt Feed."
+      "note": "From the Notion KB GEO Prompt Feed. GEO-probed 2026-10-12: not cited -- verbatim SERP dominated by vendor/agency use-case listicles (vendasta, snowflake, featurebase, gamut.so, instantdm, osher, neurond, unity-connect, lifeinside); realagentusecases.com did not appear for its own namesake query. Baseline for the site's core term; re-probe post-index."
     },
     {
       "prompt": "What are the best no-code AI agent workflows?",

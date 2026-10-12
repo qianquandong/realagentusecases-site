@@ -1,7 +1,19 @@
 {
   "$comment": "LLM brand-mention tracking time series. The scheduled Cowork routine appends one snapshot per run: which target prompts surfaced the brand, in which LLMs, with what sentiment.",
-  "updatedAt": "2026-10-09",
+  "updatedAt": "2026-10-12",
   "snapshots": [
+    {
+      "date": "2026-10-12",
+      "probes": [
+        {
+          "prompt": "What are real AI agent use cases?",
+          "cited": false,
+          "url": null,
+          "position": null,
+          "note": "Monday run. GEO probe = least-recently-probed prompt: 'What are real AI agent use cases?' -- NEVER probed before (added 2026-05-14, status new), and it is the site's core query (the domain is literally realagentusecases.com), so this baselines citation on the site's holy-grail term. Web search (verbatim, standard mode) dominated by vendor/agency blogs ranking generic use-case lists: vendasta.com (12 Real Examples With Revenue Results), snowflake.com (agents/examples), featurebase.app (12 Real-World Use Cases), unity-connect.com (14 use cases 2025), lifeinside.io, neurond.com, osher.com.au (12 to Watch 2026), gamut.so (18 Actually Working in Production 2026), instantdm.com (20 use cases + prompts 2026); realagentusecases.com did not appear -- the field is 'N AI agent use cases' listicles + vendor marketing with self-reported unverified revenue numbers and no real-professional-desk-build angle, this site's gap to own for its own namesake query. Re-probe post-index to track lift. Health: WebFetch of realagentusecases.com/en/ AND /sitemap.xml both returned DNS ENOTFOUND (egress blocked at the sandbox proxy) -- the known recurring sandbox network-policy denial seen every run, not a site outage (external WebSearch works fine); live indexing could not be reconfirmed from this environment this run (prior runs confirmed a live indexed page at /en/news/2026-05-14-claude-system-prompt-email-triage/, cited ~position 6 for the inbox-triage prompt on 08-17 -- a standing GEO win). Repo pipeline healthy: local HEAD == origin/main (ea5c19b, daily auto-merges landing cleanly through 10-09 OpenAI AgentKit); working tree clean before this run, committing today's spec-driven-development pair + feed updates on the designated branch (claude/adoring-mccarthy-ylpbxn) for the auto-merge bot. Today's article is the spec-first methodology companion under ai-coding-agents (09-12) -- wove an inbound link from its closing (en+zh); source-research gate passed with 4 real linkable PRIMARY sources + the site's own real build: GitHub Spec Kit official docs (github.github.com/spec-kit -- constitution->specify->plan->tasks->implement slash commands, each phase a Markdown artifact, 'focus on what and why not the stack') + open-source repo (github.com/github/spec-kit, works across Claude Code/Copilot/Cursor/Gemini CLI), AWS Kiro docs (kiro.dev/docs/specs/concepts -- requirements.md/design.md/tasks.md in .kiro/specs/; kiro.dev/docs/specs/feature-specs/requirements-first -- EARS 'WHEN... THE SYSTEM SHALL...' notation + review-before-design approval gates), Anthropic Building Effective Agents (clear instructions + simplest structure), and Issue #001 (the system prompt is the spec). Sourcing discipline: deliberately dropped the GitHub-star counts (sources disagreed 90k vs 115k), the exact agent-integration count (15+ vs 30), and Kiro pricing -- kept those qualitative, per the no-fabricated-numbers gate."
+        }
+      ]
+    },
     {
       "date": "2026-10-05",
       "probes": [
