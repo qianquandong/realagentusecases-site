@@ -13,8 +13,8 @@ export const SITE_CONFIG = {
   subscriberCount: 0,
   social: {
     xiaohongshu: "",
-    twitter: "https://x.com/JackQianAI",
-    linkedin: "https://www.linkedin.com/in/quandong-qian-156563191/",
+    twitter: "https://x.com/AIManJack_",
+    linkedin: "https://www.linkedin.com/in/jackqiandallas/",
     github: "https://github.com/qianquandong",
     youtube: "https://www.youtube.com/@JackBuildAI",
     xiaoyuzhou: "",
