@@ -1,0 +1,65 @@
+---
+title: "Small Language Models for AI Agents: When Small Wins"
+date: "2026-10-10"
+excerpt: "Most agent steps are narrow and repetitive — exactly what small language models do well. When a frontier model earns its cost, and when it doesn't."
+---
+
+You don't need a frontier model for every step of an agent. Most agent subtasks — classifying an email, extracting a field, routing a request, calling a tool with a fixed schema — are narrow and repetitive, which is exactly what small language models handle well. The honest rule is to match the model to the job and escalate to a big model only for the hard reasoning.
+
+Most "which model?" advice assumes the answer is "the biggest one you can afford." That's the wrong default for agents, where the model is called over and over on small, structured tasks. This is the model-choice layer under [how to build an AI agent](/en/news/2026-09-01-how-to-build-an-ai-agent/) — the part most guides wave past with "pick a capable LLM."
+
+## What counts as a "small" model
+
+There's no hard line. A useful working definition comes from NVIDIA Research's position paper [*Small Language Models are the Future of Agentic AI*](https://arxiv.org/abs/2506.02153) (with Georgia Tech co-authors): a small language model (SLM) is one that fits on a common consumer device and serves a single user with practical latency — in 2025 terms, often something in the low single-digit to ~10-billion-parameter range, though the boundary keeps moving up. The paper's full argument is summarized on [NVIDIA's project page](https://research.nvidia.com/labs/lpr/slm-agents/).
+
+Concrete examples you can actually download and run:
+
+- **[Microsoft Phi-4](https://huggingface.co/microsoft/phi-4)** — a 14-billion-parameter open-weight model built specifically for reasoning, with smaller variants in the Phi family aimed at laptops and phones.
+- **[Hugging Face SmolLM](https://huggingface.co/blog/smollm)** — a family that runs in the browser or on a phone, released under a permissive Apache-2.0 license.
+- **[Google Gemma](https://ai.google.dev/gemma)** — open models sized to run on a single GPU, and in its smallest forms, on-device.
+
+You can run any of these locally with a tool like [Ollama](https://ollama.com/), which is part of why "small" and "self-hostable" tend to travel together.
+
+## Why small models fit most agent work
+
+The NVIDIA paper's core claim is a direct challenge to the default: "the majority of agentic subtasks in deployed agentic systems are repetitive, scoped, and non-conversational. In this context, SLMs not only suffice, but are often preferable." The reasoning is structural — an agent doesn't hold one open-ended conversation; it performs the same few narrow operations thousands of times, and each operation has a tightly defined input and output.
+
+Look at a real build through that lens. The [Gmail triage agent in Issue #001](/en/posts/2026-05-13-gmail-ai-agent/) spends most of its calls doing one thing: reading an email and sorting it into a bucket with a priority. That's classification against a fixed schema — the textbook case the paper describes. A small model does it faster and cheaper, and because the task is narrow, there's little the extra capacity of a frontier model would add.
+
+The payoff is cost and latency. The paper frames SLMs as "necessarily more economical" for the high-frequency calls that make up most of an agent's work — and cost is the line item that quietly sinks agents in production, as the [cost breakdown](/en/news/2026-08-24-how-much-do-ai-agents-cost/) shows: a per-token model called in a loop is where the bill actually comes from.
+
+## Where a frontier model still earns its cost
+
+Small isn't a universal win, and the same paper is explicit about it. It recommends *heterogeneous* systems — agents that call more than one model — using small models for the routine, scoped steps and reserving larger models for genuine reasoning. The place a frontier model earns its price is the hard step: open-ended planning over many moves, ambiguous judgment, or synthesis where a shallow answer is worse than none.
+
+That maps cleanly onto the two-jobs pattern this site keeps finding. In the Gmail agent, sorting the inbox is the narrow, high-volume job a small model owns; deciding *what to actually do* about a sensitive message — and any irreversible write, like sending a reply — is the judgment that stays behind a [human gate](/en/news/2026-08-13-human-in-the-loop-ai-agents/). Matching a cheaper model to the volume work doesn't mean lowering the bar on the one step that needs a bigger brain. Picking small *everywhere* is just the mirror image of the frontier-model-everywhere mistake — and over-reaching on model capability is one more way agents [fail in production](/en/news/2026-09-23-why-ai-agents-fail-in-production/).
+
+## How to actually choose
+
+- **Default to small for the narrow steps.** Classify, extract, route, call-a-tool-with-a-schema — start with the smallest model that passes your tests on that step.
+- **Reserve the frontier model for the one hard step.** If your agent has a genuine planning or judgment moment, route *that* call to a larger model. Most agents have one or two such moments, not twenty.
+- **Build it heterogeneous.** A routing step that sends easy work to a small model and escalates the rest is the design the paper recommends — and provider-agnostic frameworks make mixing models straightforward (see [LangGraph vs CrewAI](/en/news/2026-10-05-langgraph-vs-crewai/), both of which let you set a different model per step).
+- **Measure on your own tasks, not a leaderboard.** A model that tops a general benchmark can still lose on your specific classification job. Run both on 20–50 of your real cases and compare.
+
+New to the whole idea of agents? Start with [Agent 101](/en/agent-101/).
+
+## FAQ
+
+**Can small language models run AI agents, or do I need a frontier model?**
+For most of an agent's work, small models are enough. [NVIDIA Research argues](https://arxiv.org/abs/2506.02153) that the majority of agentic subtasks are repetitive and narrowly scoped, so small language models "not only suffice, but are often preferable." The practical design is heterogeneous: small models for the routine steps, a frontier model reserved for genuine planning or ambiguous judgment.
+
+**What counts as a "small" language model?**
+There's no fixed cutoff. [NVIDIA's paper](https://research.nvidia.com/labs/lpr/slm-agents/) frames an SLM as one that fits on a common consumer device and serves a single user with usable latency — in 2025 practice, often in the low-billions to roughly 10-billion-parameter range. The boundary moves up every year as smaller models get more capable.
+
+**Which small models should I look at?**
+Open-weight options you can download and run include [Microsoft Phi-4](https://huggingface.co/microsoft/phi-4) (a 14B reasoning-focused model), the [Hugging Face SmolLM](https://huggingface.co/blog/smollm) family (small enough for a phone or browser), and [Google Gemma](https://ai.google.dev/gemma) (sized to run on a single GPU). Tools like [Ollama](https://ollama.com/) run them locally.
+
+**Are small models actually cheaper to run?**
+Yes, and the saving compounds because an agent calls its model repeatedly. The NVIDIA paper calls SLMs "necessarily more economical" for high-frequency agent calls. Since per-call cost is what [quietly runs up an agent's bill](/en/news/2026-08-24-how-much-do-ai-agents-cost/), moving the high-volume steps to a smaller model is often the single biggest cost lever you have.
+
+**When should I still use a frontier model?**
+For the steps that need real reasoning: open-ended planning across many actions, ambiguous judgment, or synthesis where a shallow answer causes harm. Route those specific calls to a larger model and keep anything irreversible behind a [human gate](/en/news/2026-08-13-human-in-the-loop-ai-agents/). The goal isn't "small everywhere" — it's the right model for each step.
+
+---
+
+The interesting question is never which model is biggest — it's which one each step of the job actually needs. Every week this series documents the real setups professionals run, model choices and all. [Subscribe free](/en/) and get each build in your inbox.
