@@ -1,6 +1,6 @@
 {
   "$comment": "SEO keyword feed — a living file. The scheduled Cowork routine ideates entries; scripts/seo/feeds.mjs persists them (dedupe + status + timestamps). intent: informational|commercial|transactional. funnel: TOFU|MOFU|BOFU. cluster: use-case|template|comparison|industry|tool-stack. status: new|used.",
-  "updatedAt": "2026-10-11",
+  "updatedAt": "2026-10-12",
   "keywords": [
     {
       "term": "AI agent use cases",
@@ -1097,9 +1097,9 @@
       "funnel": "MOFU",
       "cluster": "tool-stack",
       "locale": "both",
-      "status": "new",
+      "status": "used",
       "addedAt": "2026-10-04",
-      "note": "Sunday feed research 2026-10-04. GitHub Spec Kit and the Spec->Plan->Tasks->Implement loop: write a spec + constitution.md of constraints first, let the coding agent build against it instead of ad-hoc prompting (github.github.com/spec-kit, repo github/spec-kit). The 'give the agent structured context' discipline mirrors our context-engineering + why-agents-fail themes. Verify at write time against the Spec Kit docs/repo and Visual Studio Magazine's launch coverage. Clusters with ai-coding-agents-for-developers, context-engineering-for-ai-agents (09-22), ai-agent-design-patterns, why-ai-agents-fail-in-production."
+      "note": "Sunday feed research 2026-10-04. GitHub Spec Kit and the Spec->Plan->Tasks->Implement loop: write a spec + constitution.md of constraints first, let the coding agent build against it instead of ad-hoc prompting (github.github.com/spec-kit, repo github/spec-kit). The 'give the agent structured context' discipline mirrors our context-engineering + why-agents-fail themes. Verify at write time against the Spec Kit docs/repo and Visual Studio Magazine's launch coverage. Clusters with ai-coding-agents-for-developers, context-engineering-for-ai-agents (09-22), ai-agent-design-patterns, why-ai-agents-fail-in-production. | Used 2026-10-12 -> content/news/2026-10-12-spec-driven-development-ai-agents-{en,zh}.mdx (title 'Spec-Driven Development for AI Coding Agents'). Spec-first-vs-vibe-coding framing: write the spec (what+why) before the coding agent writes code, review that, then let it build against it. GitHub Spec Kit (open-source `specify` CLI + slash commands constitution->specify->plan->tasks->implement, each phase a Markdown artifact, works across Claude Code/Copilot/Cursor/Gemini CLI, per github.github.com/spec-kit + repo github/spec-kit) and AWS Kiro (requirements.md/design.md/tasks.md in .kiro/specs/, EARS-notation requirements, approval gates between phases, per kiro.dev/docs/specs). Honest line: overhead for throwaway scripts, pays off on shared-codebase features; the spec moves review earlier, doesn't remove the human. Grounded in Anthropic Building Effective Agents (clear instructions, simplest structure) + Issue #001 (the system prompt is the spec). Wove an inbound link from ai-coding-agents-for-developers (09-12) closing (en+zh). Clusters with ai-coding-agents (09-12), claude-agent-skills (09-07), how-to-build (09-01), langgraph-vs-crewai (10-05), human-in-the-loop (08-13). Appended EN to public/llms.txt as an evergreen page."
     },
     {
       "term": "EU AI Act for AI agents",

@@ -1,0 +1,59 @@
+---
+title: "Spec-Driven Development for AI Coding Agents"
+date: "2026-10-12"
+excerpt: "Spec-driven development means writing the spec before the coding agent writes code. What GitHub Spec Kit and AWS Kiro do, and when it's worth the overhead."
+---
+
+Spec-driven development means writing a clear specification — what to build and why — before an AI coding agent writes any code. Tools like [GitHub Spec Kit](https://github.github.com/spec-kit/) and [AWS Kiro](https://kiro.dev/docs/specs/concepts) turn that spec into a plan, then into tasks, then into code you review. It trades a little up-front structure for far fewer wrong turns.
+
+The reflex with a capable [coding agent](/en/news/2026-09-12-ai-coding-agents-for-developers/) is to type a prompt and watch it go — "vibe coding." That works for a throwaway script and falls apart on anything a team has to live with: the agent guesses at intent, you discover the wrong guess three files deep, and the fix is another prompt on top of a pile you can no longer see. Spec-driven development inverts the order. You write down the intent first, review *that*, and only then let the agent build against it.
+
+## The idea: the spec is the source of truth
+
+The move is to make a written specification — not the prompt history — the artifact everyone (you, your teammates, the agent) works from. The spec says what the feature does and why; the plan says how; the tasks break the how into reviewable steps. Each step is small enough to read, and each is traceable back to a line in the spec.
+
+This isn't a new idea so much as an old discipline the agents finally reward. Anthropic's [*Building Effective Agents*](https://www.anthropic.com/engineering/building-effective-agents) makes the underlying point for agents generally: clear, explicit instructions beat clever ones, and the simplest structure that works is the one to ship. A spec is that clarity written down once, instead of re-explained in every prompt — the same instinct behind saving a repeatable procedure as a [Claude Agent Skill](/en/news/2026-09-07-claude-agent-skills/).
+
+## GitHub Spec Kit: the spec as slash commands
+
+[Spec Kit](https://github.com/github/spec-kit) is GitHub's open-source toolkit for this workflow. You install its `specify` CLI and run `specify init`, which drops the method into your project as a set of slash commands your agent runs in order. Per the [official docs](https://github.github.com/spec-kit/), the core sequence is **constitution → specify → plan → tasks → implement**:
+
+- `/speckit.constitution` sets the project's standing rules — the conventions and constraints every later step must respect.
+- `/speckit.specify` captures the *what and why*, deliberately not the tech stack.
+- `/speckit.plan` turns the spec into a technical approach, and `/speckit.tasks` breaks that plan into a checklist.
+- `/speckit.implement` executes the tasks, with an optional `/speckit.analyze` to sanity-check the plan first.
+
+Each phase produces a Markdown artifact that feeds the next, so the paper trail *is* the workflow. Spec Kit isn't tied to one assistant — its templates target Claude Code, GitHub Copilot, Cursor, Gemini CLI, and many other coding agents — so the method outlives whichever tool you're using this month.
+
+## AWS Kiro: the spec as files in your repo
+
+[Kiro](https://kiro.dev/docs/specs/concepts), AWS's agentic IDE, bakes the same discipline into the editor. Per its docs, each spec generates three files in a `.kiro/specs/` folder: `requirements.md`, `design.md`, and `tasks.md` — the what, the how, and the step list. Requirements are written as user stories with acceptance criteria in [EARS notation](https://kiro.dev/docs/specs/feature-specs/requirements-first/) (Easy Approach to Requirements Syntax), a structured "WHEN… THE SYSTEM SHALL…" format meant to be testable rather than vague.
+
+The part that matters for trust is the gates. Kiro's docs recommend reviewing and iterating on the requirements with stakeholders *before* a design is generated, and when requirements change later you edit `requirements.md` and let the design and tasks update to match. The spec stays the source of truth, and a human signs off at each phase boundary — the same [human-in-the-loop](/en/news/2026-08-13-human-in-the-loop-ai-agents/) gate that governs any consequential agent action, moved to the front of the build.
+
+## The honest part: when it's overhead
+
+Spec-driven development is not free, and it is not for everything. Writing a spec and reviewing a plan is real work; for a one-off script, a quick data pull, or a throwaway experiment, it's ceremony you'll resent. The payoff shows up on features that outlive the session: anything a teammate will read, anything that touches a shared codebase, anything you'll have to debug in a month.
+
+And the spec doesn't remove the human — it moves the human earlier. You still read the diff; you've just also read the intent the diff is supposed to satisfy, which makes the review faster and the wrong turns cheaper. The method makes the agent's work legible, not autonomous. If you're still deciding whether you even need orchestration in code, start one level up with [how to build an AI agent](/en/news/2026-09-01-how-to-build-an-ai-agent/) and, if you do, the [LangGraph vs CrewAI](/en/news/2026-10-05-langgraph-vs-crewai/) comparison. The [Gmail triage agent in Issue #001](/en/posts/2026-05-13-gmail-ai-agent/) is itself a spec-first build: the system prompt *is* the spec, written and reviewed before the agent ever touched an inbox. New to all of this? Start at [Agent 101](/en/agent-101/).
+
+## FAQ
+
+**What is spec-driven development for AI coding agents?**
+It's a workflow where you write a clear specification — what to build and why — before the agent writes code, then let it generate a plan, tasks, and implementation against that spec. [GitHub Spec Kit](https://github.github.com/spec-kit/) and [AWS Kiro](https://kiro.dev/docs/specs/concepts) are the two best-known tools. The spec, not your prompt history, becomes the source of truth everyone works from.
+
+**How is it different from just prompting a coding agent?**
+Ad-hoc prompting ("vibe coding") lets the agent guess at your intent and buries the reasoning in a chat log you can't review. Spec-driven development writes the intent down first and reviews it, so the agent builds against an approved target. It's slower to start and far cheaper to correct — you catch a wrong assumption in the spec, not three files into the code.
+
+**What does GitHub Spec Kit do?**
+[Spec Kit](https://github.com/github/spec-kit) is GitHub's open-source toolkit that installs a `specify` CLI and a set of slash commands — constitution, specify, plan, tasks, implement — that your [coding agent](/en/news/2026-09-12-ai-coding-agents-for-developers/) runs in order. Each step writes a Markdown artifact that feeds the next, and it works across Claude Code, Copilot, Cursor, and other agents.
+
+**Do I always need a spec?**
+No. For a throwaway script or a quick experiment, writing a spec is overhead you don't need. It pays off on work that outlives the session — features a teammate will read, code on a shared repo, anything you'll debug later. Match the ceremony to the stakes.
+
+**Does spec-driven development mean the agent builds without review?**
+No — it moves the review earlier. You approve the requirements and plan up front, and still read the final diff. [Kiro's](https://kiro.dev/docs/specs/feature-specs/requirements-first/) approval gates and the general [human-in-the-loop](/en/news/2026-08-13-human-in-the-loop-ai-agents/) rule both keep a person signing off at each phase.
+
+---
+
+The method is the easy part to name and the hard part to keep. Every week this series documents the exact setups professionals actually run — specs, prompts, tools, and all. [Subscribe free](/en/) and get each build in your inbox.

@@ -1,0 +1,59 @@
+---
+title: "面向 AI 编程智能体的规格驱动开发"
+date: "2026-10-12"
+excerpt: "规格驱动开发：先写清规格，再让编程智能体照着实现，而不是临时拼 prompt。GitHub Spec Kit 和 AWS Kiro 到底做了什么，什么时候这份额外功夫才值得。"
+---
+
+规格驱动开发（spec-driven development）的意思是：在 AI 编程智能体写任何代码之前，先写清一份规格——要做什么、为什么做。[GitHub Spec Kit](https://github.github.com/spec-kit/) 和 [AWS Kiro](https://kiro.dev/docs/specs/concepts) 这类工具会把这份规格变成计划、再变成任务、再变成你来审阅的代码。它用一点前期结构，换来少得多的走错路。
+
+拿到一个有能力的[编程智能体](/zh/news/2026-09-12-ai-coding-agents-for-developers/)，本能就是敲一句 prompt 看它跑——「vibe coding」。对一个用完即弃的脚本没问题，但对任何团队得长期维护的东西就会崩：智能体靠猜来理解你的意图，你在第三个文件深处才发现它猜错了，而修复又是在一堆你再也看不清的 prompt 上面再叠一句。规格驱动开发把顺序反过来：先把意图写下来、先审阅*它*，然后才让智能体照着它去实现。
+
+## 核心：规格就是唯一事实来源
+
+关键一步，是让一份写下来的规格——而不是 prompt 历史——成为所有人（你、队友、智能体）共同依据的那份东西。规格说清这个功能做什么、为什么；计划说清怎么做；任务把「怎么做」拆成可审阅的步骤。每一步都小到能读懂，每一步都能回溯到规格里的某一行。
+
+这不算新想法，更像一门老纪律，只是如今智能体终于会回报它。Anthropic 在 [*Building Effective Agents*](https://www.anthropic.com/engineering/building-effective-agents) 里对 Agent 普遍地讲了底层道理：清晰、明确的指令胜过花哨的指令，能跑起来的最简单结构就是该上线的那个。规格就是把这份清晰只写一次，而不是在每句 prompt 里反复解释——和把一套可复用流程存成 [Claude Agent Skill](/zh/news/2026-09-07-claude-agent-skills/) 是同一个直觉。
+
+## GitHub Spec Kit：把规格变成斜杠命令
+
+[Spec Kit](https://github.com/github/spec-kit) 是 GitHub 为这套流程开源的工具包。你装上它的 `specify` CLI，运行 `specify init`，它就把这套方法以一组斜杠命令的形式放进你的项目，让智能体按顺序执行。按[官方文档](https://github.github.com/spec-kit/)，核心顺序是 **constitution → specify → plan → tasks → implement**：
+
+- `/speckit.constitution` 设定项目的长期规约——后面每一步都要遵守的约定和约束。
+- `/speckit.specify` 捕捉*做什么、为什么*，刻意不碰技术栈。
+- `/speckit.plan` 把规格变成技术方案，`/speckit.tasks` 再把方案拆成清单。
+- `/speckit.implement` 执行任务，还可选先用 `/speckit.analyze` 给方案做一遍自检。
+
+每个阶段都产出一份 Markdown 文件喂给下一步，所以这条「纸面痕迹」本身*就是*工作流。Spec Kit 不绑定某一个助手——它的模板覆盖 Claude Code、GitHub Copilot、Cursor、Gemini CLI 以及许多其他编程智能体——所以这套方法能活得比你这个月在用的工具更久。
+
+## AWS Kiro：把规格变成仓库里的文件
+
+[Kiro](https://kiro.dev/docs/specs/concepts) 是 AWS 的 agentic IDE，把同一门纪律做进了编辑器里。按其文档，每份规格会在 `.kiro/specs/` 目录生成三个文件：`requirements.md`、`design.md`、`tasks.md`——即「做什么」「怎么做」「步骤表」。需求以用户故事加验收标准的形式写成，采用 [EARS 记法](https://kiro.dev/docs/specs/feature-specs/requirements-first/)（Easy Approach to Requirements Syntax），一种结构化的「WHEN… THE SYSTEM SHALL…」格式，目的是可测试、而不是含糊。
+
+真正关乎信任的是那些闸门。Kiro 的文档建议在生成设计*之前*，先和相关人一起审阅、迭代需求；之后需求变了，就改 `requirements.md`，让设计和任务随之更新。规格始终是唯一事实来源，而人在每个阶段的交界处签字放行——就是那道管住任何有后果的智能体动作的[人在环中](/zh/news/2026-08-13-human-in-the-loop-ai-agents/)闸门，只是被挪到了构建的最前面。
+
+## 诚实的部分：什么时候它是累赘
+
+规格驱动开发不是免费的，也不是什么都该用。写规格、审方案是实打实的工作；对一次性脚本、临时拉个数、随手做的实验来说，这是你会嫌烦的繁文缛节。真正的回报出现在那些比本次会话活得更久的功能上：队友要读的、碰到共享代码库的、你一个月后还得来 debug 的。
+
+而且规格并不把人拿掉——它把人往前挪。你照样要读 diff；只是你同时也读过了这份 diff 本该满足的意图，这让审阅更快、让走错路更便宜。这套方法让智能体的工作变得可读，而不是让它变得自治。如果你还在拿不准到底要不要用代码做编排，先回到上一层看[如何搭建 AI Agent](/zh/news/2026-09-01-how-to-build-an-ai-agent/)；真要用，再看 [LangGraph 对比 CrewAI](/zh/news/2026-10-05-langgraph-vs-crewai/)。[Issue #001 的 Gmail 分拣 Agent](/zh/posts/2026-05-13-gmail-ai-agent/) 本身就是一次规格先行的搭建：那段系统提示词*就是*规格，在智能体碰到收件箱之前就写好、审过了。对整件事还陌生？先看 [Agent 101](/zh/agent-101/)。
+
+## FAQ
+
+**什么是面向 AI 编程智能体的规格驱动开发？**
+这是一种工作流：在智能体写代码之前，先写清一份规格——做什么、为什么——再让它照着这份规格生成计划、任务和实现。[GitHub Spec Kit](https://github.github.com/spec-kit/) 和 [AWS Kiro](https://kiro.dev/docs/specs/concepts) 是最有名的两个工具。成为所有人共同依据的，是规格，而不是你的 prompt 历史。
+
+**它和直接给编程智能体发 prompt 有什么不同？**
+临时发 prompt（「vibe coding」）让智能体靠猜来理解意图，并把推理埋进一段你无法审阅的聊天记录里。规格驱动开发先把意图写下来、审过，再让智能体照着一个已批准的目标去做。起步更慢，纠错却便宜得多——你是在规格里逮到错误假设，而不是在代码写进三个文件之后。
+
+**GitHub Spec Kit 是做什么的？**
+[Spec Kit](https://github.com/github/spec-kit) 是 GitHub 开源的工具包，它装上一个 `specify` CLI 和一组斜杠命令——constitution、specify、plan、tasks、implement——让你的[编程智能体](/zh/news/2026-09-12-ai-coding-agents-for-developers/)按顺序执行。每一步都写出一份 Markdown 文件喂给下一步，并兼容 Claude Code、Copilot、Cursor 等多种智能体。
+
+**我是不是每次都得写规格？**
+不是。对一次性脚本或随手的实验，写规格是你用不上的累赘。它的回报在那些活得比本次会话更久的活儿上——队友要读的功能、共享仓库里的代码、你以后还得 debug 的东西。按风险大小来决定要不要这套仪式。
+
+**规格驱动开发是不是意味着智能体不用审阅就能构建？**
+不是——它把审阅往前挪。你在最前面批准需求和计划，最后照样读 diff。[Kiro](https://kiro.dev/docs/specs/feature-specs/requirements-first/) 的审批闸门，和通用的[人在环中](/zh/news/2026-08-13-human-in-the-loop-ai-agents/)原则，都让人在每个阶段签字放行。
+
+---
+
+方法好起名字，难在坚持。本系列每周记录职场人真正在跑的搭建方案——规格、prompt、工具，全都写进去。[免费订阅](/zh/)，每期直达你的邮箱。
