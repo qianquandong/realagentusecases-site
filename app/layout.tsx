@@ -50,9 +50,13 @@ export const metadata: Metadata = {
 
 const easterEgg = `console.log("%cCurious what powers this site? It's just Next.js + my caffeine.\\nSubscribe so Jack can buy more coffee.", "color:#5fa37c;font-family:ui-monospace,monospace;font-size:12px;line-height:1.6");`;
 
+const CF_BEACON_TOKEN = "6a6720f6d4944e7784106922f925670d";
+
 function deferredThirdPartyScripts(): string {
   const snippets = [easterEgg];
-  const cfToken = process.env.NEXT_PUBLIC_CF_BEACON_TOKEN;
+  // Cloudflare Web Analytics site token (public by design; created 2026-10-17 for realagentusecases.com).
+  // The production build has no env vars set, so the default lives here.
+  const cfToken = process.env.NEXT_PUBLIC_CF_BEACON_TOKEN || CF_BEACON_TOKEN;
   const gaId = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID;
 
   if (cfToken) {
