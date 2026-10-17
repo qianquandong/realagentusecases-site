@@ -1,0 +1,55 @@
+---
+title: "医疗的 AI Agent：2026 现状"
+excerpt: "医疗里真正在跑的 AI agent 主要干文书活，不是诊断——环境病历、收件箱草稿、事前授权。诊断和治疗的最终签字，必须留给临床医生。"
+date: "2026-10-13"
+---
+
+在医疗里，真正大规模跑起来的 AI agent 干的是文书活，不是诊断：环境式病历助手把问诊对话起草成一份病历、起草给患者消息的回复、以及处理事前授权的后台 agent。而在每一个真正在跑的部署里，都由临床医生过目并签字——医疗决定仍然归人。
+
+医疗是受监管、高风险的行业，所以它是本站那条规则最清晰的试金石：自动化的是活，不是决定。这里真实存在的 agent 都聚在文书和行政上——围绕诊疗的那些琐碎活儿——而临床判断仍归一位持证专业人员。下面讲清楚：到底什么真的落地了、每个真实搭建都保留的那道过目关、以及人工那条线是被政策而非偏好画出来的。
+
+## 「医疗 AI agent」今天到底在做什么
+
+真正落地的是环境式临床病历——一个听着问诊、把病历起草出来的 agent。微软的 [Dragon Copilot](https://www.fiercehealthcare.com/ai-and-machine-learning/athenahealth-integrates-dragon-copilot-ai-assistant-microsoft-moves-deeper) 把它的 Dragon Medical One 听写和 DAX Copilot 环境聆听两个产品合二为一，从诊室里的对话起草病历、转诊信和就诊后小结。按 2025 年 12 月的 [athenahealth 合作公告](https://www.businesswire.com/news/home/20251209452332/en/athenahealth-Collaborates-with-Microsoft-to-Offer-Microsoft-Dragon-Copilot-as-Ambient-Notes-Option-Enhancing-Choice-and-Flexibility-for-Ambulatory-Clinicians)，底层的 Dragon 环境技术已被 650 多家医疗机构使用，而 athenahealth 的 Ambient Notes 已向其网络上 17 万多名临床医生开放。这些病历是「起草好、供过目和编辑」的——归档里写什么，由医生而非 agent 掌管。
+
+同样的形状也出现在 EHR 内部。[Abridge](https://www.businesswire.com/news/home/20240213503774/en/Abridge-Announces-“Abridge-Inside”-with-Epic-Integration-from-Haiku-to-Hyperdrive) 把「Abridge Inside」直接做进了 Epic 的医生工作流，它的 Linked Evidence 功能让医生能把 AI 起草的小结里的每一句都追溯回源头转写稿——所以在签字之前，草稿是可审计的。这份可追溯性，就是本站那条纪律的医疗版：agent 在你能看到它来源的地方干活，由人来拍板。
+
+第二个真实的活是患者收件箱。Epic 那个给 MyChart 消息起草回复的生成式 AI 功能——据 [eMarketer 转述《纽约时报》](https://www.emarketer.com/content/physicians-using-genai-respond-their-patients--mychart-messages)，已被 150 多家医疗系统、近 1.5 万名医生和助理使用——会生成一份草稿，由医生「过目并批准，或修改，然后再回复」。Epic 自己的研发负责人对 [Becker's Hospital Review](https://www.beckershospitalreview.com/healthcare-information-technology/ehrs/how-unc-healths-epic-chatbot-pilot-will-inform-the-way-ai-is-used-in-ehrs/) 说，这个工具设了护栏不让它给临床建议，而且「并非为改善临床结局而设计」。在 UNC Health 的试点里，医生发现草稿对常规回复——病假条、续药——最有用，并表示该工具无法取代临床判断。这跟本站每个岗位上[都成立的起草范式](/zh/news/2026-08-04-ai-agents-for-work/)是同一个：agent 把你带到 80%，最后一段路归人。
+
+## 人人都引用的那个数，和真正重要的那个数
+
+头条是规模——Dragon 上 650 多家机构、150 多家系统在起草患者回复。这是真的，也是每份厂商 PPT 开头就讲的部分。但能跑好一家安全诊所的数，不是 agent 起草了多少，而是在草稿进病历或发给患者之前，是否真有一位临床医生读过并改过。
+
+这不是锦上添花，而是设计本身。Abridge 的 [Linked Evidence](https://www.businesswire.com/news/home/20240213503774/en/Abridge-Announces-“Abridge-Inside”-with-Epic-Integration-from-Haiku-to-Hyperdrive) 之所以存在，就是为了让过目又快又有据可依；Epic 的回复草稿被明确设为「过目并批准，或修改」（[eMarketer](https://www.emarketer.com/content/physicians-using-genai-respond-their-patients--mychart-messages)），而非自动发送。一个看起来完美无瑕的病历草稿，只要没人核对，照样会记下一个幻觉出来的细节，而在病历里这种错误会层层叠加。标尺是过目质量，不是起草数量——就是[客服部署](/zh/news/2026-09-14-ai-agents-for-customer-service/)吃过苦头才重新学会的那一课，只不过这次赌上的是患者安全，而不是一笔退款。
+
+## 人工那条线得留在哪——以及由谁来画
+
+在医疗里，这条线不是偏好；是一个专业团体画出来的。2026 年 6 月，[美国医学会（AMA）通过政策](https://www.ama-assn.org/press-center/ama-press-releases/ama-policies-ensure-ai-supports-not-replaces-physician-judgment)，明确 AI 应当*辅助*而非取代医生判断，并要求凡 AI 触及患者诊疗之处，都须有透明、问责与医生监督。AMA 尤其反对在保险覆盖裁定中，用自主或半自主 AI 取代医生审核。这就是写进政策的临床决定关：agent 起草、调研、总结；由医生来决定。
+
+它正好对应本站用通用语言讲的那条规则——[把不可逆的拦住，让可逆的跑](/zh/news/2026-08-13-human-in-the-loop-ai-agents/)。在诊所里，起草病历、调取记录、总结消息，都是 agent 可以掌管的可逆活。而诊断、处方、覆盖拒付、诊疗方案变更——那是必须把人的名字留在上面的不可逆、高风险判断。惹上麻烦的医疗 agent，往往就是为了让吞吐量图表好看而模糊了这条线。
+
+另一条不可谈判的是数据。临床 agent 会处理受保护的健康信息（PHI），这让 [AI agent 的安全风险](/zh/news/2026-08-25-ai-agent-security-risks/)变得具体：一个对患者记录有宽泛访问权的 agent 就是一个泄露面，所以在诊疗场景里，最小权限访问和审计日志不是可选项。自动化在记录上的活；治理对它的访问权。
+
+## 行政后台
+
+离开床旁，最稳的医疗用例是付款方和医疗机构互相扯皮的那摊文书：事前授权和理赔。这是一份「起草并提交 + 人工批准」的活，结构上跟[发票处理那条分界](/zh/news/2026-07-20-ai-agent-for-invoice-processing/)一模一样——agent 从病历里拼出授权申请，人来确认。监管的时钟在推着它走：CMS 的[互操作性与事前授权最终规则（CMS-0057-F）](https://www.cms.gov/newsroom/fact-sheets/cms-interoperability-and-prior-authorization-final-rule-cms-0057-f)缩短了所要求的裁定时限，并自 2026 年 1 月 1 日起对受影响付款方新增运营要求，标准化的事前授权 API 须在 2027 年 1 月 1 日前就绪。拼装并跟踪这些申请的 agent 正好接上这套新轨道——但按 [AMA](https://www.ama-assn.org/press-center/ama-press-releases/ama-policies-ensure-ai-supports-not-replaces-physician-judgment) 的说法，覆盖*裁定*本身恰恰是自主 AI 不该坐的位置。
+
+要是你对 agent 到底是什么、不是什么还陌生，[agent 入门](/zh/agent-101/)从头讲起。
+
+## FAQ
+
+**AI agent 能帮医疗团队做什么？**
+大规模落地的那些干的是文书和行政，不是诊断：从问诊起草病历的环境式助手（微软 [Dragon Copilot](https://www.fiercehealthcare.com/ai-and-machine-learning/athenahealth-integrates-dragon-copilot-ai-assistant-microsoft-moves-deeper)、[做进 Epic 的 Abridge](https://www.businesswire.com/news/home/20240213503774/en/Abridge-Announces-“Abridge-Inside”-with-Epic-Integration-from-Haiku-to-Hyperdrive)）、起草患者消息回复的工具（[Epic 的 MyChart 草稿](https://www.emarketer.com/content/physicians-using-genai-respond-their-patients--mychart-messages)）、以及处理事前授权和理赔的后台 agent。每一种里，都由临床医生或工作人员在最终定稿前过目。
+
+**AI agent 能诊断患者或做临床决定吗？**
+不能——它不能独自做，这既是设计也是政策。[AMA 2026 年 6 月的政策](https://www.ama-assn.org/press-center/ama-press-releases/ama-policies-ensure-ai-supports-not-replaces-physician-judgment)讲 AI 应辅助而非取代医生判断，而 Epic 说它的患者回复工具设了护栏不给临床建议，且「并非为改善临床结局而设计」（[Becker's](https://www.beckershospitalreview.com/healthcare-information-technology/ehrs/how-unc-healths-epic-chatbot-pilot-will-inform-the-way-ai-is-used-in-ehrs/)）。诊断和处方，归一位持证临床医生。
+
+**AI 病历助手用在病历里安全吗？**
+作为一个由医生过目并签字的起草工具，它是安全的——这正是 [Abridge](https://www.businesswire.com/news/home/20240213503774/en/Abridge-Announces-“Abridge-Inside”-with-Epic-Integration-from-Haiku-to-Hyperdrive)（带可追溯的 Linked Evidence）和 [Dragon Copilot](https://www.businesswire.com/news/home/20251209452332/en/athenahealth-Collaborates-with-Microsoft-to-Offer-Microsoft-Dragon-Copilot-as-Ambient-Notes-Option-Enhancing-Choice-and-Flexibility-for-Ambulatory-Clinicians)（病历「起草好供过目和编辑」）交付它的方式。风险在于没人过目的病历：解法就是本站处处在用的那道[人在环中的关](/zh/news/2026-08-13-human-in-the-loop-ai-agents/)，再加上对受保护数据的最小权限访问。
+
+**AI agent 能处理事前授权吗？**
+能，作为一份「起草并提交 + 人工批准」的活。CMS 的[事前授权最终规则](https://www.cms.gov/newsroom/fact-sheets/cms-interoperability-and-prior-authorization-final-rule-cms-0057-f)自 2026 年 1 月 1 日起新增运营要求、并要求 2027 年前就绪一套标准化 API，拼装并跟踪申请的 agent 可以接进去——跟[发票处理](/zh/news/2026-07-20-ai-agent-for-invoice-processing/)一样的「起草 vs 付款」纪律。而覆盖*裁定*本身，按 [AMA](https://www.ama-assn.org/press-center/ama-press-releases/ama-policies-ensure-ai-supports-not-replaces-physician-judgment)，仍归医生。
+
+---
+
+真正管用的医疗 agent 遵循的是跟本站每个搭建一样的纪律：它把文书活干完，然后停在那一步你收不回来的动作之前——诊断、处方、那份没人读过的病历。想看真实的搭建——每种职业到底自动化了哪些活、又有哪些仍靠人工签字？[免费订阅](/zh/)，每周的搭建直接进你的邮箱。

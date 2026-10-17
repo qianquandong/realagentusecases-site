@@ -1,6 +1,6 @@
 {
   "$comment": "SEO keyword feed — a living file. The scheduled Cowork routine ideates entries; scripts/seo/feeds.mjs persists them (dedupe + status + timestamps). intent: informational|commercial|transactional. funnel: TOFU|MOFU|BOFU. cluster: use-case|template|comparison|industry|tool-stack. status: new|used.",
-  "updatedAt": "2026-10-12",
+  "updatedAt": "2026-10-13",
   "keywords": [
     {
       "term": "AI agent use cases",
@@ -876,9 +876,10 @@
       "funnel": "TOFU",
       "cluster": "industry",
       "locale": "both",
-      "status": "new",
+      "status": "used",
       "addedAt": "2026-09-13",
-      "note": "Sunday feed research 2026-09-13. Uncovered major vertical. Write only with real, linkable deployments (health-system/EHR vendor case studies); keep clinical claims sourced and human-gated. Clusters with the industry set."
+      "note": "Sunday feed research 2026-09-13. Uncovered major vertical. Write only with real, linkable deployments (health-system/EHR vendor case studies); keep clinical claims sourced and human-gated. Clusters with the industry set. Used 2026-10-13 → content/news/2026-10-13-ai-agents-for-healthcare (en+zh), title \"AI Agents for Healthcare: What's Real in 2026\". Industry hub for the regulated vertical: the real deployments are documentation/admin not diagnosis — ambient scribes (Dragon Copilot 650+ orgs via Dec 2025 athenahealth collab; Abridge Inside Epic w/ Linked Evidence), AI-drafted MyChart replies (Epic, ~15k clinicians/150+ systems per NYT via eMarketer, review-and-approve), prior-auth back office (CMS-0057-F). Clinical decision stays human, grounded in the AMA June-2026 policy. Wove inbound link from human-in-the-loop (08-13 en+zh) into the sensitive-final-call industry list; added to llms.txt.",
+      "usedAt": "2026-10-13"
     },
     {
       "term": "AI agents for supply chain",

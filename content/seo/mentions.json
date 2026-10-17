@@ -1,7 +1,19 @@
 {
   "$comment": "LLM brand-mention tracking time series. The scheduled Cowork routine appends one snapshot per run: which target prompts surfaced the brand, in which LLMs, with what sentiment.",
-  "updatedAt": "2026-10-12",
+  "updatedAt": "2026-10-13",
   "snapshots": [
+    {
+      "date": "2026-10-13",
+      "probes": [
+        {
+          "prompt": "What AI agents can help healthcare teams?",
+          "cited": false,
+          "url": null,
+          "position": null,
+          "note": "Tuesday run. Least-recently-probed pick: never-before-probed EN GEO prompt (maps directly to today's shipped healthcare keyword); older never-probed ZH prompts exist but followed the established article-tied EN-SERP precedent. Verbatim web search returned a vendor-only SERP with ZERO realagentusecases.com presence: glideapps.com (team-collaboration healthcare agents), salesforce.com/healthcare AI-agents (many regional variants). Not cited (position null). Source-research gate PASSED with 6 real linkable sources: athenahealth×Microsoft Dragon Copilot collab (businesswire, Dec 2025 — 650+ healthcare orgs on Dragon ambient tech, 170k+ athenaOne clinicians, notes ready for review/editing) + FierceHealthcare; Abridge Inside Epic (businesswire, Feb 2024 — Linked Evidence traces each AI line to the transcript, clinician reviews); Epic MyChart generative-AI reply drafts (eMarketer relaying NYT — ~15k clinicians/150+ systems, review-and-approve; Becker's UNC Health pilot — routine replies only, cannot substitute for clinicians, guardrails against clinical advice); AMA June-2026 policy (ama-assn.org — AI assists not replaces physician judgment; opposes autonomous AI in coverage determinations); CMS-0057-F prior-auth final rule (cms.gov fact sheet — operational reqs from Jan 1 2026, Prior Authorization API by Jan 1 2027); plus Issue #001. Shipped content/news/2026-10-13-ai-agents-for-healthcare (en+zh); article answers this prompt verbatim in FAQ 1; wove inbound link from human-in-the-loop (08-13 en+zh); added to llms.txt; keyword marked used. Health check: WebFetch of realagentusecases.com/en/ + /sitemap.xml ENOTFOUND (DNS) — the recurring sandbox egress block seen prior runs; ALL external WebFetch (businesswire/ama/cms) also ENOTFOUND, so verification done via WebSearch (which works) not WebFetch; git log shows deploys still landing via auto-merge to main (latest ea5c19b), so treated as proxy/DNS egress, not a site outage; relied on local build gate."
+        }
+      ]
+    },
     {
       "date": "2026-10-12",
       "probes": [
