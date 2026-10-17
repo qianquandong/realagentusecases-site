@@ -28,7 +28,7 @@ excerpt: "多数 AI agent 安全风险，都源自同一件事：给了它太多
 
 一个读不可信邮件、起草回复、但*不能*发送的 agent，放弃了第 3 条——提示词注入无处可去。一个能碰敏感数据、也能动手，但只处理可信内部输入的 agent，放弃了第 1 条。[Issue #001 里的 Gmail 分拣 agent](/zh/posts/2026-05-13-gmail-ai-agent/) 读不可信的邮件、也碰真实的收件箱（第 1、2 条）——但发送键还是人来按（没有第 3 条）。这不是巧合，是设计。
 
-一个具体的提醒，说明这些并非空谈：2026 年 7 月，安全研究者披露了 [MCP 服务器里的 ANSI 转义序列注入漏洞](/zh/news/2026-07-23-information-security-analysts-mcp-ansi-injection-defense/)——恶意内容正是通过那些赋予 agent 能力的工具连接偷渡进来的。让 agent 能[够到你 Gmail 或数据库](/zh/news/2026-08-08-google-workspace-mcp-server/)的那套管道，也正是攻击者瞄准的入口。
+这些风险和其他风险一样，走的是[提示注入](/zh/news/2026-09-24-ai-agent-prompt-injection/)这条路：让 agent 能[够到你 Gmail 或数据库](/zh/news/2026-08-08-google-workspace-mcp-server/)的那套管道，也正是攻击者瞄准的入口。
 
 ## 怎么逐个消掉
 

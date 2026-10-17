@@ -35,7 +35,7 @@ excerpt: "MCP 服务器现在数以千计，但你只需要一小批：官方参
 
 ## 比任何清单都长命的那条规则
 
-无论你挑哪些服务器，安全规则都不变。一个 MCP 服务器给 agent 的是真实访问权，而那些工具带着真实风险——包括今年在 MCP 服务器里被记录的[提示注入风险](/zh/news/2026-07-23-information-security-analysts-mcp-ansi-injection-defense/)。只授予任务所需的最小访问，任何发送、付款或删除都留人工确认，先从只读服务器开始再上有写权限的。一组短而权限清晰的，永远胜过一组长的。
+无论你挑哪些服务器，安全规则都不变。一个 MCP 服务器给 agent 的是真实访问权，而那些工具带着真实风险——包括今年在 MCP 服务器里被记录的[提示注入风险](/zh/news/2026-09-24-ai-agent-prompt-injection/)。只授予任务所需的最小访问，任何发送、付款或删除都留人工确认，先从只读服务器开始再上有写权限的。一组短而权限清晰的，永远胜过一组长的。
 
 ## FAQ
 
@@ -46,7 +46,7 @@ excerpt: "MCP 服务器现在数以千计，但你只需要一小批：官方参
 [官方 MCP Registry](https://blog.modelcontextprotocol.io/posts/2025-09-08-mcp-registry-preview/)，2025 年 9 月推出预览版，由 Anthropic、GitHub、Microsoft 和 PulseMCP 支持，是已发布服务器的正统目录。当厂商自己有服务器时，优先它，而不是第三方复制品。
 
 **我怎么知道一个 MCP 服务器安不安全？**
-连接前查两件事：谁在维护它，它要什么访问范围。只授予任务所需的最小权限，先从只读开始。MCP 服务器可能带[提示注入风险](/zh/news/2026-07-23-information-security-analysts-mcp-ansi-injection-defense/)，所以任何发送、付款、删除的动作都要留人工确认。
+连接前查两件事：谁在维护它，它要什么访问范围。只授予任务所需的最小权限，先从只读开始。MCP 服务器可能带[提示注入风险](/zh/news/2026-09-24-ai-agent-prompt-injection/)，所以任何发送、付款、删除的动作都要留人工确认。
 
 **我必须自己安装 MCP 服务器吗？**
 在无代码平台上不用。比如 n8n 提供原生的 [MCP Client](https://docs.n8n.io/integrations/builtin/core-nodes/n8n-nodes-langchain.mcpclient/) 和 [MCP Server Trigger](https://docs.n8n.io/integrations/builtin/core-nodes/n8n-nodes-langchain.mcptrigger/) 节点，把选服务器变成一个菜单项。全是新概念？从 [Agent 101](/zh/agent-101/) 开始。

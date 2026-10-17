@@ -30,10 +30,27 @@ export const en: Dict = {
       "Substack just sent a confirmation email. Click the link inside and you're in.",
     errorMsg: "Something broke. Try again?",
   },
+  training: {
+    eyebrow: "For teams · Dallas–Fort Worth & live online",
+    heading: "Want your team to actually use this?",
+    body: "I also teach this as hands-on training for business teams: each person brings a real task, builds a working workflow with the AI tool your company already uses, and learns what to check before anything goes out.",
+    note: "Quoted per team, by email.",
+    labels: {
+      hub: "See how team training works",
+      workshop: "See the 90-minute team workshop",
+      sales: "AI training for sales teams",
+      marketing: "AI training for marketing teams",
+      operations: "AI training for operations teams",
+      leadership: "AI training for leadership teams",
+      claude: "Claude training for teams",
+      chatgpt: "ChatGPT training for employees",
+      copilot: "Microsoft Copilot training for teams",
+    },
+  },
   post: {
     ctaHeading: "Liked this?",
     ctaBody:
-      "One real AI agent a week, straight to your inbox. Free, no upsell.",
+      "One real AI agent a week, straight to your inbox. Free.",
     ctaButton: "Subscribe — free",
     notFoundTitle: "Episode not found",
     notFoundBody:

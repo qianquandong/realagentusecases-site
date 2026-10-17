@@ -28,7 +28,7 @@ The cleanest way to think about this comes from [Meta's "Agents Rule of Two."](h
 
 An agent that reads untrusted email and drafts replies but *can't* send them has given up leg 3 — a prompt injection has nowhere to go. An agent that touches sensitive data and can act, but only over trusted, internal input, has given up leg 1. The [Gmail triage agent in Issue #001](/en/posts/2026-05-13-gmail-ai-agent/) reads untrusted mail and touches a real inbox (legs 1 and 2) — but a human still presses send (no leg 3). That's not an accident; it's the design.
 
-A concrete reminder that these aren't hypothetical: in July 2026, security researchers disclosed an [ANSI escape-sequence injection flaw in MCP servers](/en/news/2026-07-23-information-security-analysts-mcp-ansi-injection-defense/) — malicious content smuggled through the very tool connections that give agents their power. The plumbing that lets an agent [reach your Gmail or database](/en/news/2026-08-08-google-workspace-mcp-server/) is also the surface an attacker aims at.
+These risks travel through the same [prompt-injection](/en/news/2026-09-24-ai-agent-prompt-injection/) path as everything else: the plumbing that lets an agent [reach your Gmail or database](/en/news/2026-08-08-google-workspace-mcp-server/) is also the surface an attacker aims at.
 
 ## How to cut each risk
 

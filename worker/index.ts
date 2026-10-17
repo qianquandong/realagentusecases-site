@@ -99,8 +99,8 @@ function withSecurityHeaders(response: Response, path: string): Response {
   });
 }
 
-// The 22 auto-generated article pairs removed in the 2026-07-06 content
-// cleanup (commit 7605312). Google still recrawls the dead URLs; 410 (vs the
+// Auto-generated occupation×news article pairs removed in the 2026-07-06 content
+// cleanup (commit 7605312, 22 pairs) and the 2026-10-17 follow-up (30 pairs). Google still recrawls the dead URLs; 410 (vs the
 // implicit 404) tells crawlers the removal is permanent so they drop out of
 // the index faster. Matches any sub-path too (old relative-link artifacts
 // like .../pu-sh-shell-agent/pu.sh).
@@ -127,6 +127,38 @@ const GONE_NEWS_SLUGS = new Set([
   "2026-06-16-customer-service-representatives-fin-ai-agent",
   "2026-06-17-network-computer-systems-administrators-opencode-self-hosted-ai-agent",
   "2026-06-19-construction-managers-ai-inspection-agent",
+  // 2026-10-17 second cleanup: the 30 occupation×news mashup pairs that survived the first pass
+  // (the pattern CLAUDE.md rule 2 bans; several carried unsourced stats).
+  "2026-06-20-software-qa-testers-testerarmy-ai-agent",
+  "2026-06-21-agricultural-workers-agentic-agritech-qa",
+  "2026-06-22-librarians-agentic-resource-discovery",
+  "2026-06-23-sports-officials-agentic-resource-discovery",
+  "2026-06-24-heavy-tractor-trailer-truck-drivers-qwen-agentworld-route-planning",
+  "2026-06-25-bookkeeping-accounting-auditing-clerks-gemini-computer-use",
+  "2026-06-26-producers-and-directors-krea-2-storyboards",
+  "2026-06-27-teacher-assistants-open-knowledge-agent-native-kb",
+  "2026-06-28-customer-service-representatives-ai-prompt-injection-defense",
+  "2026-06-29-human-resources-specialists-ai-ats-non-determinism",
+  "2026-07-01-speech-language-pathologists-brain2qwerty-noninvasive-bci",
+  "2026-07-02-biochemists-and-biophysicists-claude-science-ai-workbench",
+  "2026-07-03-insurance-underwriters-tabfm-zero-shot-tabular-ai",
+  "2026-07-04-software-developers-pxpipe-llm-context-compression",
+  "2026-07-05-forest-and-conservation-workers-ai-agent-memory-stack",
+  "2026-07-07-drafters-vision-llm-sketch-to-cad",
+  "2026-07-10-barbers-hairstylists-cosmetologists-ai-agent-video-editor",
+  "2026-07-11-logging-workers-hy3-agent-compliance",
+  "2026-07-12-chefs-and-head-cooks-ai-review-management",
+  "2026-07-13-coaches-and-scouts-ai-coding-agent-visualization",
+  "2026-07-14-dancers-choreographers-lisp-agent-custom-tools",
+  "2026-07-17-forest-conservation-workers-gemini-notebook",
+  "2026-07-18-training-and-development-managers-lm-studio-bionic",
+  "2026-07-19-geographers-gemini-notebook-cloud-code",
+  "2026-07-20-fishing-hunting-workers-kimi-k3-noaa-compliance",
+  "2026-07-21-farmers-ranchers-qwen-image-3-diy-product-labels",
+  "2026-07-23-information-security-analysts-mcp-ansi-injection-defense",
+  "2026-07-24-database-administrators-ai-coding-agents-schema-review",
+  "2026-07-26-software-developers-palmier-pro-mcp-video-editor",
+  "2026-07-27-medical-records-specialists-screenpipe-clinical-coding",
 ]);
 
 export default {

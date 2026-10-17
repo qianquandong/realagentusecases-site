@@ -18,6 +18,17 @@ export interface Dict {
     tagGuide: string;
     empty: string;
   };
+  // "Train your team" box above the subscribe CTA on news articles → aimanjack.com training pages.
+  training: {
+    eyebrow: string;
+    heading: string;
+    body: string;
+    note: string;
+    labels: Record<
+      "hub" | "workshop" | "sales" | "marketing" | "operations" | "leadership" | "claude" | "chatgpt" | "copilot",
+      string
+    >;
+  };
   post: {
     ctaHeading: string;
     ctaBody: string;

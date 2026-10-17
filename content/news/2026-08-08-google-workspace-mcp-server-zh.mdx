@@ -26,7 +26,7 @@ MCP——[模型上下文协议（Model Context Protocol）](https://modelcontex
 
 ## 安全权衡——永远最小权限
 
-说点实在的风险。正如 Strac 的 [Google Workspace MCP 安全分析](https://www.strac.io/blog/google-workspace-mcp-server) 所说，每一次 Workspace MCP 工具调用，返回的都是授权用户能看到的数据——里面常有 PII、财务记录、合同、以及躺在旧邮件里的凭证。两条规则保平安：只授予任务所需的*最窄*范围（只读就只给只读）；并记住 MCP 工具和任何用工具的 agent 一样有提示注入风险——一封恶意邮件可能试图劫持有发送或删除权限的 agent。我们为[信息安全分析师](/zh/news/2026-07-23-information-security-analysts-mcp-ansi-injection-defense/)拆过这块攻击面。安全默认值：最小范围，任何发送前先人工确认。
+说点实在的风险。正如 Strac 的 [Google Workspace MCP 安全分析](https://www.strac.io/blog/google-workspace-mcp-server) 所说，每一次 Workspace MCP 工具调用，返回的都是授权用户能看到的数据——里面常有 PII、财务记录、合同、以及躺在旧邮件里的凭证。两条规则保平安：只授予任务所需的*最窄*范围（只读就只给只读）；并记住 MCP 工具和任何用工具的 agent 一样有提示注入风险——一封恶意邮件可能试图劫持有发送或删除权限的 agent。我们为[信息安全分析师](/zh/news/2026-09-24-ai-agent-prompt-injection/)拆过这块攻击面。安全默认值：最小范围，任何发送前先人工确认。
 
 ## 该选哪条路
 
@@ -47,7 +47,7 @@ MCP——[模型上下文协议（Model Context Protocol）](https://modelcontex
 靠 OAuth 范围。按 [Google 文档](https://developers.google.com/workspace/guides/configure-mcp-servers)，在 Data Access 下勾选范围；agent 只需读取时，给 `gmail.readonly` 这类只读范围。正如 [Strac 指出的](https://www.strac.io/blog/google-workspace-mcp-server)，每次调用都会返回授权用户能看到的一切，所以最小权限是主要的安全阀。
 
 **MCP 服务器用在工作邮箱上安全吗？**
-有纪律就可以。用最窄范围，任何发送或删除都留人工确认，并把收到的邮件当作不可信——对任何用工具的 agent 适用的[提示注入防范](/zh/news/2026-07-23-information-security-analysts-mcp-ansi-injection-defense/)，这里同样适用。
+有纪律就可以。用最窄范围，任何发送或删除都留人工确认，并把收到的邮件当作不可信——对任何用工具的 agent 适用的[提示注入防范](/zh/news/2026-09-24-ai-agent-prompt-injection/)，这里同样适用。
 
 ---
 

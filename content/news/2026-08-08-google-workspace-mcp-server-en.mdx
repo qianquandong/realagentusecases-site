@@ -26,7 +26,7 @@ No matter which route, access flows through OAuth, and the unit of access is the
 
 ## The security tradeoff — least privilege, always
 
-Here's the honest risk. As Strac's [Google Workspace MCP security write-up](https://www.strac.io/blog/google-workspace-mcp-server) puts it, every Workspace MCP tool call returns the data the authorizing user can see — which routinely includes PII, financial records, contracts, and credentials sitting in old emails. Two rules keep that safe: grant the *narrowest* scopes the task needs (read-only if it only reads), and remember MCP tools carry the same prompt-injection exposure as any tool-using agent — a malicious email can try to hijack an agent that has send or delete power. We unpacked that attack surface for [security analysts](/en/news/2026-07-23-information-security-analysts-mcp-ansi-injection-defense/). The safe default: least scope, human approval before any send.
+Here's the honest risk. As Strac's [Google Workspace MCP security write-up](https://www.strac.io/blog/google-workspace-mcp-server) puts it, every Workspace MCP tool call returns the data the authorizing user can see — which routinely includes PII, financial records, contracts, and credentials sitting in old emails. Two rules keep that safe: grant the *narrowest* scopes the task needs (read-only if it only reads), and remember MCP tools carry the same prompt-injection exposure as any tool-using agent — a malicious email can try to hijack an agent that has send or delete power. We unpacked that attack surface for [security analysts](/en/news/2026-09-24-ai-agent-prompt-injection/). The safe default: least scope, human approval before any send.
 
 ## Which route should you pick?
 
@@ -47,7 +47,7 @@ No. A native connector like [Claude's Google Workspace connectors](https://suppo
 Through OAuth scopes. Per [Google's docs](https://developers.google.com/workspace/guides/configure-mcp-servers), pick scopes under Data Access; grant read-only ones like `gmail.readonly` when the agent only needs to read. As [Strac notes](https://www.strac.io/blog/google-workspace-mcp-server), every call returns whatever the authorizing user can see, so least-privilege scoping is the main safety lever.
 
 **Is an MCP server safe for a work inbox?**
-It can be, with discipline. Use the narrowest scopes, keep a human approving any send or delete, and treat incoming email as untrusted — the same [prompt-injection precautions](/en/news/2026-07-23-information-security-analysts-mcp-ansi-injection-defense/) that apply to any tool-using agent apply here.
+It can be, with discipline. Use the narrowest scopes, keep a human approving any send or delete, and treat incoming email as untrusted — the same [prompt-injection precautions](/en/news/2026-09-24-ai-agent-prompt-injection/) that apply to any tool-using agent apply here.
 
 ---
 

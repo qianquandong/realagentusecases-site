@@ -9,7 +9,9 @@ export const SITE_CONFIG = {
   // Form posts to <url>/api/v1/free; on failure (CORS / 4xx / network),
   // falls back to redirecting to <url>/subscribe with email prefilled.
   // No trailing slash.
-  substackUrl: process.env.NEXT_PUBLIC_SUBSTACK_URL ?? "",
+  // Default to the live publication: the production build had no env var set, so every form
+  // fell back to /subscribe (a redirect home) and the email was dropped (found 2026-10-17).
+  substackUrl: process.env.NEXT_PUBLIC_SUBSTACK_URL || "https://newsletter.realagentusecases.com",
   subscriberCount: 0,
   social: {
     xiaohongshu: "",

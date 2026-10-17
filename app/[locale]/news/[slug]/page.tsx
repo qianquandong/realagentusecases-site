@@ -6,6 +6,7 @@ import { getDict } from "@/lib/i18n";
 import { SITE_CONFIG, type Locale } from "@/lib/config";
 import { formatContentDate } from "@/lib/date";
 import { PostCta } from "@/components/post-cta";
+import { TrainingCta } from "@/components/training-cta";
 import { YouTube } from "@/components/mdx/youtube";
 import { JsonLd } from "@/components/json-ld";
 import {
@@ -117,6 +118,7 @@ export default async function NewsArticlePage({
         {content}
       </div>
 
+      <TrainingCta locale={typed} slug={slug} />
       <PostCta locale={typed} />
       </article>
     </>

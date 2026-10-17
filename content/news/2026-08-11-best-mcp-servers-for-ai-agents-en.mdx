@@ -35,7 +35,7 @@ You may never install a server by hand. n8n ships native MCP nodes — an [MCP C
 
 ## The one rule that outlives any list
 
-Whichever servers you pick, the safety rule doesn't change. An MCP server grants an agent real access, and those tools carry real exposure — including the [prompt-injection risk](/en/news/2026-07-23-information-security-analysts-mcp-ansi-injection-defense/) documented in MCP servers this year. Grant the least access the task needs, keep a human on any send, pay, or delete, and start with read-only servers before write-capable ones. A short, well-scoped set beats a long one every time.
+Whichever servers you pick, the safety rule doesn't change. An MCP server grants an agent real access, and those tools carry real exposure — including the [prompt-injection risk](/en/news/2026-09-24-ai-agent-prompt-injection/) documented in MCP servers this year. Grant the least access the task needs, keep a human on any send, pay, or delete, and start with read-only servers before write-capable ones. A short, well-scoped set beats a long one every time.
 
 ## FAQ
 
@@ -46,7 +46,7 @@ The best set is the one matched to your tools, not a universal ranking. A depend
 The [official MCP Registry](https://blog.modelcontextprotocol.io/posts/2025-09-08-mcp-registry-preview/), launched in preview in September 2025 and backed by Anthropic, GitHub, Microsoft, and PulseMCP, is the canonical catalog of published servers. Prefer a vendor's own server over a third-party copy when one exists.
 
 **How do I know an MCP server is safe to use?**
-Check two things before connecting: who maintains it, and what access scope it requests. Grant the least privilege the job needs and start read-only. MCP servers can carry a [prompt-injection exposure](/en/news/2026-07-23-information-security-analysts-mcp-ansi-injection-defense/), so keep a human on any action that sends, pays, or deletes.
+Check two things before connecting: who maintains it, and what access scope it requests. Grant the least privilege the job needs and start read-only. MCP servers can carry a [prompt-injection exposure](/en/news/2026-09-24-ai-agent-prompt-injection/), so keep a human on any action that sends, pays, or deletes.
 
 **Do I need to install MCP servers myself?**
 Not on a no-code platform. n8n, for example, offers native [MCP Client](https://docs.n8n.io/integrations/builtin/core-nodes/n8n-nodes-langchain.mcpclient/) and [MCP Server Trigger](https://docs.n8n.io/integrations/builtin/core-nodes/n8n-nodes-langchain.mcptrigger/) nodes, turning server choice into a menu item. New to all of this? Start at [Agent 101](/en/agent-101/).
