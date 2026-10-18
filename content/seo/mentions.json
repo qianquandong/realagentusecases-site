@@ -1,7 +1,19 @@
 {
   "$comment": "LLM brand-mention tracking time series. The scheduled Cowork routine appends one snapshot per run: which target prompts surfaced the brand, in which LLMs, with what sentiment.",
-  "updatedAt": "2026-10-13",
+  "updatedAt": "2026-10-18",
   "snapshots": [
+    {
+      "date": "2026-10-18",
+      "probes": [
+        {
+          "prompt": "What AI agents can automate daily work?",
+          "cited": false,
+          "url": null,
+          "position": null,
+          "note": "Sunday run (feed-replenishment day, no article). GEO probe = least-recently-probed on-topic prompt WITH history: last probed 2026-07-10 (status still new), ~3 months stale and the clear least-recently-probed pick; on the preferred team-adoption theme (automating everyday work). Web search (verbatim, standard mode) returned a vendor-marketing + newsletter SERP with ZERO realagentusecases.com presence: epicshops.com (AI Agents That Save You Time), avaamo.com, clickup.com/p/ai-agents/workday, campana-schott.com, globalcommons.onrender.com, droomdroom.beehiiv.com newsletter, plus an Engineering News relay of Microsoft/Gartner (by 2027, 33% of enterprise apps include agentic AI, 15% of daily work done autonomously — the one credible linkable figure, via press briefing). Not cited (position null) — the field is vendor 'agents that save you time' marketing + generic everyday-automation listicles with no real-professional-desk-build angle, this site's gap to own. Re-probe post-index. Health: WebFetch of realagentusecases.com/sitemap.xml returned getaddrinfo ENOTFOUND (DNS/egress denial at the sandbox proxy — the known recurring network-policy block seen every run; external WebSearch works fine, so this is a sandbox limitation, NOT a site outage); live indexing could not be reconfirmed from this environment this run (prior runs confirmed a live indexed page at /en/news/2026-05-14-claude-system-prompt-email-triage/, cited ~position 6 for the inbox-triage prompt on 08-17 — a standing GEO win). Repo pipeline: local HEAD == origin/main (338b55c 'Cloudflare Web Analytics on every page'); the designated branch for this session (claude/adoring-mccarthy-2z7u5w) had its remote ref already cleaned up (prior PR merged), so restarted it fresh from origin/main per the merged-PR rule; news files present locally through 2026-10-13 (healthcare); working tree clean before this run, committing only content/seo feed changes on the designated branch for the auto-merge bot. SUNDAY FEED REPLENISHMENT recorded below alongside the weekly summary."
+        }
+      ]
+    },
     {
       "date": "2026-10-13",
       "probes": [
