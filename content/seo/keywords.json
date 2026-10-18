@@ -1,6 +1,6 @@
 {
   "$comment": "SEO keyword feed — a living file. The scheduled Cowork routine ideates entries; scripts/seo/feeds.mjs persists them (dedupe + status + timestamps). intent: informational|commercial|transactional. funnel: TOFU|MOFU|BOFU. cluster: use-case|template|comparison|industry|tool-stack. status: new|used.",
-  "updatedAt": "2026-10-13",
+  "updatedAt": "2026-10-18",
   "keywords": [
     {
       "term": "AI agent use cases",
@@ -1191,6 +1191,96 @@
       "status": "new",
       "addedAt": "2026-10-11",
       "note": "Ideated 2026-10-11. Hub comparing the big-three enterprise stacks (Microsoft Agent 365, Google Gemini Enterprise, Amazon Bedrock AgentCore). Ties together the five vendor keywords added this week for internal linking; BOFU-adjacent decision query."
+    },
+    {
+      "term": "Microsoft Copilot rollout for teams",
+      "intent": "informational",
+      "funnel": "MOFU",
+      "cluster": "tool-stack",
+      "locale": "both",
+      "status": "new",
+      "addedAt": "2026-10-18",
+      "note": "Sunday feed research 2026-10-18. Team-adoption: how a manager rolls Microsoft 365 Copilot out across a non-technical team (pick first use cases, champions, measure, iterate) — distinct from building an agent. Slug carries 'copilot' so the training-cta box maps to the Copilot training page. Ground at write time in Microsoft's own adoption guidance (adoption.microsoft.com Copilot Scenario Library + Copilot Dashboard/Viva Insights) and the Microsoft 2026 Work Trend Index; NOT a training-services pitch (aimanjack owns 'AI training'). Clusters with the department hubs + measure-AI-adoption keyword."
+    },
+    {
+      "term": "AI agent for employee onboarding",
+      "intent": "informational",
+      "funnel": "MOFU",
+      "cluster": "use-case",
+      "locale": "both",
+      "status": "new",
+      "addedAt": "2026-10-18",
+      "note": "Sunday feed research 2026-10-18. Team-adoption department use case under HR/ops: an agent that answers new-hire FAQs, assembles the first-week checklist, and files IT/access provisioning requests behind a human gate. Two-jobs framing (answer-and-prep vs auto-provision) mirrors the site's pattern. Ground at write time in HR-suite agents (Workday / Microsoft 365 Copilot onboarding, ServiceNow HR) + Issue #001's read-vs-write discipline. Child under the still-new 'AI agents for HR teams' hub."
+    },
+    {
+      "term": "workplace AI use policy",
+      "intent": "informational",
+      "funnel": "TOFU",
+      "cluster": "tool-stack",
+      "locale": "both",
+      "status": "new",
+      "addedAt": "2026-10-18",
+      "note": "Sunday feed research 2026-10-18. Team-adoption/governance: what a company AI acceptable-use policy should cover (approved tools, data that must never go in, when a human must review, logging) before a team adopts agents. A governance document, NOT training services — does not touch aimanjack's owned 'AI training' terms. Ground at write time in primary sources (SHRM / NIST AI RMF / the company's own data-handling rules) + the site's guardrails (08-29) and security-risks (08-25) articles. Clusters with guardrails, human-in-the-loop, identity-access."
+    },
+    {
+      "term": "how to measure AI adoption at work",
+      "intent": "informational",
+      "funnel": "MOFU",
+      "cluster": "use-case",
+      "locale": "both",
+      "status": "new",
+      "addedAt": "2026-10-18",
+      "note": "Sunday feed research 2026-10-18. Team-adoption: how a manager tells whether AI is actually landing — active users vs seats, tasks/workflows touched, time saved on a named task — not vanity logins. Pairs with the existing 'AI agent adoption statistics' keyword (that's the macro numbers; this is measure-your-own-team). Ground at write time in Microsoft Copilot Dashboard/Viva Insights adoption metrics + the measure-ROI article (08-21). GEO-probe 2026-10-18 surfaced the Microsoft/Gartner '15% of daily work done autonomously by 2027' framing as the macro backdrop."
+    },
+    {
+      "term": "ChatGPT Projects for sales teams",
+      "intent": "informational",
+      "funnel": "MOFU",
+      "cluster": "use-case",
+      "locale": "both",
+      "status": "new",
+      "addedAt": "2026-10-18",
+      "note": "Sunday feed research 2026-10-18. Team-adoption: using ChatGPT Projects (shared instructions + files + chats) to standardize how a sales team drafts outreach, preps calls, and keeps account context — adopt-the-tool-your-team-already-has angle. Slug carries 'chatgpt' + 'sales' so the training-cta maps to the sales training page (matches the routine's own slug example chatgpt-projects-for-sales-teams). Ground at write time in OpenAI's ChatGPT Projects docs/help + ChatGPT for Work. Clusters with ai-agents-for-sales-teams (09-17), sdr-cold-outreach (08-28)."
+    },
+    {
+      "term": "AI agents for customer success teams",
+      "intent": "informational",
+      "funnel": "TOFU",
+      "cluster": "industry",
+      "locale": "both",
+      "status": "new",
+      "addedAt": "2026-10-18",
+      "note": "Sunday feed research 2026-10-18. Department hub (team-adoption) sibling of the sales/marketing/finance hubs: maps the CS motion to agents — health-score monitoring, renewal/QBR prep, ticket deflection — with the human keeping the relationship and the renewal decision. Ground at write time in Gainsight AI / Intercom Fin / Zendesk CX + the customer-service (09-14) and lead-qualification articles. Human-stays line = the account relationship."
+    },
+    {
+      "term": "AI agents for finance teams",
+      "intent": "informational",
+      "funnel": "TOFU",
+      "cluster": "industry",
+      "locale": "both",
+      "status": "new",
+      "addedAt": "2026-10-18",
+      "note": "Sunday feed research 2026-10-18. Department hub (team-adoption) distinct from the role-level accountants hub (07-28): the FP&A/close/reporting team's everyday agents — variance analysis, close-task tracking, report drafting — with sign-off staying human. Ground at write time in Microsoft 365 Copilot Finance + FloQast AI Agents + the financial-analysts (07-31) and data-analysis (08-20) articles. Parent for invoice-processing/expense-management children."
+    },
+    {
+      "term": "managing shadow AI at work",
+      "intent": "informational",
+      "funnel": "TOFU",
+      "cluster": "tool-stack",
+      "locale": "both",
+      "status": "new",
+      "addedAt": "2026-10-18",
+      "note": "Sunday feed research 2026-10-18. Team-adoption/governance, strongly sourced this week: employees already use personal AI tools for work faster than IT can sanction them. Anchor in primary/linkable data — University of Konstanz May 2026 (only ~55% of active users got their main AI tool through official channels), MIT Project NANDA (personal AI tools used for work in 90%+ of orgs), ~44% of workers report no clear employer AI policy (Gallup/coverage) — the demand behind the workplace-AI-use-policy keyword. Verify each stat on its primary page at write time. Clusters with workplace-AI-use-policy, guardrails (08-29), security-risks (08-25)."
+    },
+    {
+      "term": "AI agent for standup and status updates",
+      "intent": "informational",
+      "funnel": "MOFU",
+      "cluster": "use-case",
+      "locale": "both",
+      "status": "new",
+      "addedAt": "2026-10-18",
+      "note": "Sunday feed research 2026-10-18. Team-adoption use case for managers: an agent that compiles a daily standup / weekly status digest from Slack, Jira/Linear, and GitHub so people stop writing them by hand — summarize-vs-decide (it drafts; the manager still reads the room). Ground at write time in Slack AI recaps + Geekbot/Standuply + the slack-summaries (07-14) and meeting-notes (08-05) articles. Clusters with the triage-the-firehose family."
     }
   ]
 }
