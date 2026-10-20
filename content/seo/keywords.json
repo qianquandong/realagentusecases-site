@@ -1,6 +1,6 @@
 {
   "$comment": "SEO keyword feed — a living file. The scheduled Cowork routine ideates entries; scripts/seo/feeds.mjs persists them (dedupe + status + timestamps). intent: informational|commercial|transactional. funnel: TOFU|MOFU|BOFU. cluster: use-case|template|comparison|industry|tool-stack. status: new|used.",
-  "updatedAt": "2026-10-18",
+  "updatedAt": "2026-10-20",
   "keywords": [
     {
       "term": "AI agent use cases",
@@ -1198,9 +1198,9 @@
       "funnel": "MOFU",
       "cluster": "tool-stack",
       "locale": "both",
-      "status": "new",
+      "status": "used",
       "addedAt": "2026-10-18",
-      "note": "Sunday feed research 2026-10-18. Team-adoption: how a manager rolls Microsoft 365 Copilot out across a non-technical team (pick first use cases, champions, measure, iterate) — distinct from building an agent. Slug carries 'copilot' so the training-cta box maps to the Copilot training page. Ground at write time in Microsoft's own adoption guidance (adoption.microsoft.com Copilot Scenario Library + Copilot Dashboard/Viva Insights) and the Microsoft 2026 Work Trend Index; NOT a training-services pitch (aimanjack owns 'AI training'). Clusters with the department hubs + measure-AI-adoption keyword."
+      "note": "Sunday feed research 2026-10-18. Team-adoption: how a manager rolls Microsoft 365 Copilot out across a non-technical team (pick first use cases, champions, measure, iterate) — distinct from building an agent. Slug carries 'copilot' so the training-cta box maps to the Copilot training page. Ground at write time in Microsoft's own adoption guidance (adoption.microsoft.com Copilot Scenario Library + Copilot Dashboard/Viva Insights) and the Microsoft 2026 Work Trend Index; NOT a training-services pitch (aimanjack owns 'AI training'). Clusters with the department hubs + measure-AI-adoption keyword. | Used 2026-10-20 → content/news/2026-10-20-microsoft-copilot-rollout-for-teams-{en,zh}.mdx (title 'How to Roll Out Microsoft Copilot to Your Team', ZH '如何在团队中推广 Microsoft Copilot'). Team-adoption MOFU rollout playbook grounded entirely in Microsoft primary docs: staged rollout guidance (learn.microsoft.com .../microsoft-365-copilot-minimum-requirements-rollout — pilot→feedback→refine→expand), Copilot Scenario Library (adoption.microsoft.com/copilot-scenario-library — use cases by department/role/outcome with apps+prompts, Microsoft's own 'demonstration only, validate against your processes/regulatory/responsible-AI' caveat), the admin-center Copilot usage report (learn.microsoft.com/microsoft-365/admin/activity-reports/microsoft-365-copilot-usage — Enabled/Active users + active-users rate, 7–180d, 72h latency) + Viva Insights Copilot Dashboard one-pager (usage intensity + retention), and the 2025 Work Trend Index (microsoft.com/worklab, 'AI-operated but human-led', leaders ahead of employees — kept qualitative, dropped the contested 82% framing per the no-fabricated-numbers gate; also dropped conflicting third-party pilot-size numbers 25–100/200–500 and the unsourced '73% fewer failures' consultancy stats). Slug maps to the Copilot training page via the 'microsoft' token in the training-cta RULES. Wove reciprocal inbound link from measure-ROI (08-21, en+zh) 'appetite isn't ROI — and neither is adoption' line. Internal links: ai-agents-for-work (08-04), measure-ROI (08-21), guardrails (08-29), human-in-the-loop (08-13), Issue #001, agent-101. Answers GEO prompt 'How do I roll out Microsoft Copilot to my team?' verbatim in FAQ 1 (probed 2026-10-20 on-publish baseline, not cited). Appended EN to public/llms.txt as evergreen."
     },
     {
       "term": "AI agent for employee onboarding",
