@@ -1,0 +1,60 @@
+---
+title: "How to Roll Out Microsoft Copilot to Your Team"
+date: "2026-10-20"
+excerpt: "Rolling out Microsoft 365 Copilot isn't buying seats — it's a staged pilot: pick real use cases, name champions, and measure active users, not logins."
+---
+
+To roll out Microsoft 365 Copilot to a team, don't just assign licenses — run a staged pilot. Pick a few real use cases from Microsoft's Scenario Library, start with one engaged group and a couple of champions, measure active users against enabled users, then expand based on what those numbers tell you.
+
+Most Copilot rollouts fail the same quiet way: the licenses go out, a launch email goes with them, and three months later usage is a handful of people asking it to summarize email. The tool works; the rollout didn't. Buying seats is a purchase. Getting a team to actually change how it works is a project — and it's the project this guide is about. The same lesson runs under every build on this site: [the tool is the easy part, the adoption is the work](/en/news/2026-08-04-ai-agents-for-work/).
+
+## Buying seats is not a rollout
+
+Microsoft's own [2025 Work Trend Index](https://www.microsoft.com/en-us/worklab/work-trend-index/2025-the-year-the-frontier-firm-is-born) — produced with LinkedIn across 31,000 professionals in 31 countries — frames the goal as systems that are "AI-operated but human-led," and names the gap plainly: leaders are further along with AI than the employees they're asking to use it. That gap is the whole ballgame. A rollout that treats Copilot as a switch to flip ignores it; a rollout that treats it as a change to lead closes it.
+
+So the sequence matters. You don't start by distributing licenses and hoping. You start by deciding *what work* Copilot should change, for *which people*, and *how you'll know* it worked. Those three decisions — use cases, pilot, measurement — are the rollout.
+
+## Step 1 — Pick the use cases before the people
+
+The fastest way to waste a pilot is to hand people a blank assistant and say "try it." Start instead from concrete jobs. Microsoft's [Copilot Scenario Library](https://adoption.microsoft.com/copilot-scenario-library) is a curated, searchable set of use cases organized by department, role, and outcome, and each entry names the specific Copilot apps and sample prompts for that task — a day-in-the-life for an HR manager, an IT admin, a comms director, and so on.
+
+Pick three or four scenarios that match a real, recurring task your pilot group already does — catching up on a long email thread, drafting a first-pass status report, pulling the thread of a meeting they missed. Microsoft's own scenario pages are explicit that the examples are for demonstration and should be checked against your own business processes, regulatory requirements, and responsible-AI principles before you lean on them — so adapt, don't copy. A handful of repeatable wins beats a tour of every feature.
+
+## Step 2 — Pilot with one team and a couple of champions
+
+Microsoft's [rollout guidance](https://learn.microsoft.com/microsoft-365/copilot/microsoft-365-copilot-minimum-requirements-rollout) describes a staged approach rather than a tenant-wide switch-on: start with a pilot group, gather feedback, use what you learn to refine, then expand to the next group and scale across departments. Keep the first group small and engaged — one team with a manager who wants this to work — rather than a random slice of the org.
+
+Name one or two champions inside that group. A champion isn't an IT role; it's the person who shares the prompt that actually saved them twenty minutes, runs the office hours, and answers "wait, how do I…" in the team chat so the questions don't all pile on IT. Peer proof travels further than a launch deck. The point of the pilot isn't to prove Copilot is good — it's to find the two or three scenarios that stick for *this* team, and the friction (permissions, stale content, unclear prompts) you'll need to fix before you widen it.
+
+## Step 3 — Measure active users, not seats
+
+This is the step that separates a rollout from a purchase order, and it's the same discipline behind [measuring any agent's ROI](/en/news/2026-08-21-how-to-measure-ai-agent-roi/): a seat count is activity, not adoption. Microsoft's [Copilot usage report in the Microsoft 365 admin center](https://learn.microsoft.com/microsoft-365/admin/activity-reports/microsoft-365-copilot-usage) gives you the honest numbers — **Enabled Users** (how many have a license), **Active Users** (how many actually used a Copilot feature in an app), and the **active-users rate** (active ÷ enabled) — over a 7-, 30-, 90-, or 180-day window, with data available within 72 hours. The gap between enabled and active is your rollout's real score.
+
+For teams with Viva Insights, the [Copilot Dashboard](https://adoption.microsoft.com/files/copilot/Microsoft-Copilot-dashboard-1-pager.pdf) adds usage-intensity and retention views — not just whether people tried it once, but whether they keep coming back, and in which apps. Watch retention, not the launch-week spike. And pair the platform numbers with one task-level metric you set before the pilot: minutes saved on the named job, reports drafted, threads caught up on. If the active-users rate is climbing and people can point to a task that got easier, the rollout is working. If seats are full but the rate is flat, you have a license bill and an adoption problem — go back to Step 1.
+
+## Settle the governance before you widen it
+
+Two things should be decided before Copilot reaches the whole org, not after. First, a short acceptable-use policy: which tools are approved, what data must never go into a prompt, and when a human has to review the output. Copilot draws on the content in your tenant, so over-shared files and stale permissions become its blind spots — clean that up as part of the rollout, not as a cleanup later. The same [guardrails that make any business agent safe](/en/news/2026-08-29-ai-agent-guardrails-for-business/) apply here: least privilege on the data, and a clear line on what the assistant may do on its own.
+
+Second, keep a person on the irreversible steps. Copilot drafting an email, summarizing a channel, or assembling a report is reversible work it can own; the send, the external commit, the decision stays yours — the [gate-the-irreversible rule](/en/news/2026-08-13-human-in-the-loop-ai-agents/) this site applies to every agent. The discipline is identical to the one in [Issue #001](/en/posts/2026-05-13-gmail-ai-agent/), where a Gmail agent buckets and drafts but a person decides what actually gets sent. New to the whole idea of what an assistant like this can and can't do? The [agent basics](/en/agent-101/) primer starts from scratch.
+
+## FAQ
+
+**How do I roll out Microsoft Copilot to my team?**
+Run a staged pilot, not a tenant-wide switch-on. Pick three or four concrete use cases from Microsoft's [Scenario Library](https://adoption.microsoft.com/copilot-scenario-library), start with one engaged team and a couple of champions, and follow Microsoft's [staged rollout guidance](https://learn.microsoft.com/microsoft-365/copilot/microsoft-365-copilot-minimum-requirements-rollout) — pilot, gather feedback, refine, then expand. Measure active users against enabled users before you widen it.
+
+**How do I measure whether a Copilot rollout is working?**
+Use the [Copilot usage report in the Microsoft 365 admin center](https://learn.microsoft.com/microsoft-365/admin/activity-reports/microsoft-365-copilot-usage): track the active-users rate (active ÷ enabled), not the seat count. With Viva Insights, the [Copilot Dashboard](https://adoption.microsoft.com/files/copilot/Microsoft-Copilot-dashboard-1-pager.pdf) adds retention and usage-intensity. Pair those with one task-level metric you set before the pilot, the same way you'd [measure an agent's ROI](/en/news/2026-08-21-how-to-measure-ai-agent-roi/).
+
+**How many people should be in a Copilot pilot?**
+Microsoft's guidance is to start with a pilot group, learn from it, then expand — it doesn't prescribe a headcount, and third-party numbers vary widely, so don't anchor on one. What matters more than size is that the group is engaged and does a real, recurring task you can measure, with a manager who wants it to work and a champion to lead it.
+
+**Do we need an AI use policy before rolling out Copilot?**
+Yes. Decide up front which tools are approved, what data must never go into a prompt, and when a human reviews output — and clean up over-shared files and stale permissions, since Copilot draws on the content in your tenant. It's the same [least-privilege and review discipline](/en/news/2026-08-29-ai-agent-guardrails-for-business/) that makes any workplace agent safe.
+
+**Is Microsoft 365 Copilot an AI agent?**
+It's an AI assistant built into the Office apps, and its newer Researcher and Analyst features are agent-like — they plan and act across multiple steps. The rollout playbook is the same either way: pick real jobs, pilot, measure adoption, and [keep a human on the steps you can't undo](/en/news/2026-08-13-human-in-the-loop-ai-agents/).
+
+---
+
+A Copilot rollout works the way every build on this site works: start from a real job, prove it with one team, measure what actually changed, and keep a hand on the decisions. Want one real, documented AI-agent build like that every week — the exact job, the prompt, and the honest numbers? [Subscribe free](/en/) and get each week's in your inbox.
