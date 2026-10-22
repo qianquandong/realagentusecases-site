@@ -1,6 +1,6 @@
 {
   "$comment": "GEO prompt feed — the questions working professionals ask ChatGPT / Perplexity / Gemini. The scheduled Cowork routine ideates entries; scripts/seo/feeds.mjs persists them. cluster: use-case|template|comparison|industry|tool-stack. status: new|covered (covered = a published article targets it). Phase 7 tracks whether the brand is cited for each.",
-  "updatedAt": "2026-10-20",
+  "updatedAt": "2026-10-22",
   "prompts": [
     {
       "prompt": "What are real examples of AI agents at work?",
@@ -746,9 +746,9 @@
       "prompt": "How do I measure whether AI is actually helping my team?",
       "cluster": "use-case",
       "locale": "en",
-      "status": "new",
+      "status": "covered",
       "addedAt": "2026-10-18",
-      "note": "Sunday feed research 2026-10-18. Pairs with the 'how to measure AI adoption at work' keyword; active-users/time-saved vs vanity-login intent. Ground in Copilot Dashboard metrics + measure-ROI (08-21)."
+      "note": "Sunday feed research 2026-10-18. Pairs with the 'how to measure AI adoption at work' keyword; active-users/time-saved vs vanity-login intent. Ground in Copilot Dashboard metrics + measure-ROI (08-21). Covered 2026-10-22 by content/news/2026-10-22-how-to-measure-ai-adoption-at-work (en+zh). GEO-probed 2026-10-22 (on-publish baseline, verbatim standard web search): not cited -- SERP dominated by engineering-team/workforce-analytics vendors (getdx.com measure-ai-impact, harness.io AI Productivity Insights, nojitter.com 'Measure AI by the team not the task', activtrak.com measuring-ai-impact, glean.com, eng-leadership newsletter); realagentusecases.com did not appear -- the field is dev-productivity + workforce-analytics tooling with no independent seats-vs-active-use / adoption!=impact!=ROI ladder grounded in a real desk build, this site's gap to own. Notably the same SERP independently states the article's thesis (measure outcomes not usage; counting outputs is among the least reliable measures; set a baseline first; watch hidden costs) -- corroboration, not fabrication. The article answers this prompt verbatim in its first FAQ; re-probe post-index to track lift."
     },
     {
       "prompt": "Do we need an AI use policy for employees?",
