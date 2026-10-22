@@ -1,6 +1,6 @@
 {
   "$comment": "SEO keyword feed — a living file. The scheduled Cowork routine ideates entries; scripts/seo/feeds.mjs persists them (dedupe + status + timestamps). intent: informational|commercial|transactional. funnel: TOFU|MOFU|BOFU. cluster: use-case|template|comparison|industry|tool-stack. status: new|used.",
-  "updatedAt": "2026-10-20",
+  "updatedAt": "2026-10-22",
   "keywords": [
     {
       "term": "AI agent use cases",
@@ -1228,9 +1228,9 @@
       "funnel": "MOFU",
       "cluster": "use-case",
       "locale": "both",
-      "status": "new",
+      "status": "used",
       "addedAt": "2026-10-18",
-      "note": "Sunday feed research 2026-10-18. Team-adoption: how a manager tells whether AI is actually landing — active users vs seats, tasks/workflows touched, time saved on a named task — not vanity logins. Pairs with the existing 'AI agent adoption statistics' keyword (that's the macro numbers; this is measure-your-own-team). Ground at write time in Microsoft Copilot Dashboard/Viva Insights adoption metrics + the measure-ROI article (08-21). GEO-probe 2026-10-18 surfaced the Microsoft/Gartner '15% of daily work done autonomously by 2027' framing as the macro backdrop."
+      "note": "Sunday feed research 2026-10-18. Team-adoption: how a manager tells whether AI is actually landing — active users vs seats, tasks/workflows touched, time saved on a named task — not vanity logins. Pairs with the existing 'AI agent adoption statistics' keyword (that's the macro numbers; this is measure-your-own-team). Ground at write time in Microsoft Copilot Dashboard/Viva Insights adoption metrics + the measure-ROI article (08-21). GEO-probe 2026-10-18 surfaced the Microsoft/Gartner '15% of daily work done autonomously by 2027' framing as the macro backdrop. Used 2026-10-22 -> content/news/2026-10-22-how-to-measure-ai-adoption-at-work-{en,zh}.mdx (title 'How to Measure AI Adoption at Work: Seats vs. Use'). Measurement companion to the Copilot rollout (10-20): the adoption ladder seats->active users->retention/intensity->one task-level outcome, across Microsoft Copilot AND ChatGPT. Sources: MS 365 Copilot usage report (Enabled/Active/active-users rate, 7-180d windows, ~72h latency, learn.microsoft.com), Viva Insights Copilot Dashboard Adoption view (intensity+retention) + separate Impact tab (adoption.microsoft.com 1-pager), OpenAI ChatGPT Enterprise/Edu workspace analytics (unique active users, Benchmarks: activation rate / WAU per activated user / messages per WAU vs industry median, task-type view, workspace-level only no individual prompts, help.openai.com art 10875114), Issue #001. Signature line: adoption != impact != ROI (dollar step -> measure-ROI 08-21); don't count outputs as productivity; workspace-level not per-person surveillance. Wove inbound link from the Copilot rollout article (10-20, en+zh) Step 3. Answers GEO prompt 'How do I measure whether AI is actually helping my team?' verbatim in FAQ 1 (probed this run, not cited). Appended EN to llms.txt. Team-adoption cluster; slug maps to training hub (no tool/role token)."
     },
     {
       "term": "ChatGPT Projects for sales teams",

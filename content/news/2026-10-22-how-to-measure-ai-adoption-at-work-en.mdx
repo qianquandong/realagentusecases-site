@@ -1,0 +1,63 @@
+---
+title: "How to Measure AI Adoption at Work: Seats vs. Use"
+date: "2026-10-22"
+excerpt: "Buying seats isn't adoption. Measure AI at work by active users, retention, and one task-level outcome — using the Copilot and ChatGPT dashboards you have."
+---
+
+To measure AI adoption at work, don't count seats — count behavior. Track active users against the licenses you bought, watch retention and usage intensity over weeks, and pair those platform numbers with one task-level outcome you set before launch. Copilot and ChatGPT both expose the first three in built-in dashboards. Adoption is not the same as impact.
+
+Once you've [rolled a tool out to a team](/en/news/2026-10-20-microsoft-copilot-rollout-for-teams/), the next question lands fast: is anyone actually using it? Most teams answer with the wrong number. They report how many seats they bought, or how many people logged in launch week, and call it adoption. Both are purchases dressed up as progress. The tool is the easy part; whether work actually changed is the thing worth measuring — and the platforms you already pay for will tell you, if you ask them the right question.
+
+## The adoption ladder
+
+Think of adoption as a ladder, not a checkbox. Each rung is a harder, more honest question than the one below it:
+
+1. **Seats** — how many licenses you assigned. This is a cost, not a signal.
+2. **Active users** — how many people actually used the tool in a given window. The gap between seats and active users is your real score.
+3. **Retention and intensity** — not whether someone tried it once, but whether they keep coming back, and how heavily.
+4. **A task-level outcome** — the one real job you expected to get faster or better, measured against a baseline you set *before* launch.
+
+The dashboards hand you rungs 2 and 3. You have to define rung 4 yourself. Rung 1 is the one most reports stop at — don't.
+
+## Microsoft Copilot: read the usage report, then the dashboard
+
+For Microsoft 365 Copilot, the honest numbers live in the admin center. Microsoft's [Copilot usage report](https://learn.microsoft.com/microsoft-365/admin/activity-reports/microsoft-365-copilot-usage) breaks the population into **Enabled Users** (how many hold a license), **Active Users** (how many actually used a Copilot feature in an app), and the **active-users rate** (active ÷ enabled) over a 7-, 30-, 90-, or 180-day window, with a given day's data appearing within about 72 hours. That rate — not the seat count — is the number to put in the monthly update.
+
+To see whether use is *sticking*, teams with Viva Insights get the [Copilot Dashboard](https://adoption.microsoft.com/files/copilot/Microsoft-Copilot-dashboard-1-pager.pdf), whose Adoption view adds usage-intensity and retention insights: how often people use Copilot, how top groups compare by how heavily they use it, and whether use recurs week over week. Watch the retention curve, not the launch-week spike. Note that Microsoft puts *value* on a separate Impact tab — a deliberate signal that usage and impact are two different measurements, which is the whole point of the next section.
+
+## ChatGPT Enterprise: workspace analytics, not individual prompts
+
+If your team runs on ChatGPT, OpenAI's [workspace analytics for ChatGPT Enterprise and Edu](https://help.openai.com/en/articles/10875114-workspace-analytics-for-chatgpt-enterprise-and-edu) covers the same ladder from the other vendor. The Overview shows adoption trends — unique active users and message volume — and a Benchmarks section compares your activation rate, weekly active users per activated user, and messages per weekly active user against an industry median, so you can tell "quiet because no one uses it" from "quiet because this is normal." A task-type view groups conversations into categories so you can see *what kind* of work the tool is actually doing.
+
+One detail matters more than the metrics: OpenAI's own documentation states the dashboard gives workspace-level insights **without exposing individual prompts, conversations, or user-level activity**. That is the right default, and the posture to keep whatever tool you measure. Adoption measurement is a management question about the team, not a surveillance feed on each person — the moment people believe their individual prompts are being read, honest usage stops.
+
+## The one number the dashboards won't give you
+
+Active-users rate and retention tell you people *use* the tool. They do not tell you the work got better. That is rung 4, and no platform can define it for you, because it depends on the job. Before a rollout, pick one concrete, recurring task and one measure of it — minutes to draft the weekly status report, time to catch up on a missed thread, first-pass tickets cleared before lunch — and record where it stands today. After, compare.
+
+Resist the temptation to count *outputs* as the measure. More emails sent or more summaries produced is the easiest number to pull and one of the least trustworthy: once AI handles the intake, sorting, and first draft, a "report" or a "ticket" no longer carries a fixed amount of work, so counting more of them can hide a quality drop rather than reveal a gain. Tie the measure to the outcome you actually wanted — faster, clearer, or more of the valuable work — not to activity volume.
+
+And keep the three rungs distinct. **Adoption** (people use it) is not **impact** (the work improved) is not **ROI** (the improvement is worth more than the bill). The dashboards measure adoption; your task-level metric measures impact; turning that into a dollar figure is a third exercise entirely, the one covered in [how to measure an AI agent's ROI](/en/news/2026-08-21-how-to-measure-ai-agent-roi/). A rollout can show a rising active-users rate and still fail the ROI test — which is exactly why you measure all three instead of stopping at seats.
+
+The discipline is the same one behind every build on this site, including [Issue #001](/en/posts/2026-05-13-gmail-ai-agent/), where the test of a Gmail triage agent was never "did it run" but "did the inbox actually get easier to work." New to how these tools fit together in the first place? The [agent basics](/en/agent-101/) primer starts from scratch.
+
+## FAQ
+
+**How do I measure whether AI is actually helping my team?**
+Measure three things, not one. First, adoption: the active-users rate (active ÷ enabled seats) from your platform's dashboard — the [Microsoft 365 Copilot usage report](https://learn.microsoft.com/microsoft-365/admin/activity-reports/microsoft-365-copilot-usage) or [ChatGPT Enterprise workspace analytics](https://help.openai.com/en/articles/10875114-workspace-analytics-for-chatgpt-enterprise-and-edu). Second, retention — whether people keep coming back, not just launch-week logins. Third, one task-level outcome you baselined before launch. If adoption is climbing and that task got measurably easier, AI is helping; if seats are full but the rate is flat, you have a license bill, not adoption.
+
+**What's the difference between adoption and impact?**
+Adoption means people use the tool; impact means the work improved. They are measured differently: adoption comes from usage dashboards (active users, retention), impact from a task-level metric you define — minutes saved on a named job, say. A team can have high adoption and little impact (everyone uses it for trivia) or vice versa. Measuring only one hides the other.
+
+**Which metrics actually matter for AI adoption?**
+Active-users rate and retention over usage intensity, in that order — they survive the "we bought seats" illusion. Microsoft's Copilot report gives Enabled Users, Active Users, and the active-users rate; its [Viva Insights Copilot Dashboard](https://adoption.microsoft.com/files/copilot/Microsoft-Copilot-dashboard-1-pager.pdf) adds retention and intensity. OpenAI's workspace analytics adds benchmarked rates against an industry median. Avoid vanity counts like total logins or number of outputs produced.
+
+**Can I see what individual employees are prompting?**
+You generally shouldn't, and the good dashboards are built that way: OpenAI states its workspace analytics gives workspace-level insights without exposing individual prompts, conversations, or user-level activity. Treat adoption measurement as a team-level management question, not per-person surveillance — the moment people feel watched, honest usage stops and your numbers get worse, not better.
+
+**How long before adoption numbers mean anything?**
+Give it weeks, not days. A launch-week spike tells you about curiosity, not habit; retention — recurring use over several weeks — is what separates a tool that stuck from one that got tried and abandoned. Set the baseline before launch, check the active-users rate and retention monthly, and don't declare victory or defeat on the first week's chart.
+
+---
+
+Measuring adoption honestly is the same move as every build on this site: start from a real job, change how it's done, and check what actually moved — not what you spent. Want one real, documented AI-agent build every week, with the honest numbers attached? [Subscribe free](/en/) and get each week's in your inbox.
