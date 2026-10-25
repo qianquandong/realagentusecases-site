@@ -1,6 +1,6 @@
 {
   "$comment": "GEO prompt feed — the questions working professionals ask ChatGPT / Perplexity / Gemini. The scheduled Cowork routine ideates entries; scripts/seo/feeds.mjs persists them. cluster: use-case|template|comparison|industry|tool-stack. status: new|covered (covered = a published article targets it). Phase 7 tracks whether the brand is cited for each.",
-  "updatedAt": "2026-10-22",
+  "updatedAt": "2026-10-25",
   "prompts": [
     {
       "prompt": "What are real examples of AI agents at work?",
@@ -773,6 +773,46 @@
       "status": "new",
       "addedAt": "2026-10-18",
       "note": "Sunday feed research 2026-10-18. ZH pair for the employee-onboarding use case; grows the ZH feed. agent 可答新人常见问题、生成首周清单、提交 IT 开通申请，但写操作保留人工确认。"
+    },
+    {
+      "prompt": "How do I get my team to actually use AI?",
+      "cluster": "use-case",
+      "locale": "en",
+      "status": "new",
+      "note": "Sunday ideation 2026-10-25. Pairs with the new 'how to get your team to use AI' keyword; adoption-behavior intent. Team-adoption theme.",
+      "addedAt": "2026-10-25"
+    },
+    {
+      "prompt": "Should we appoint AI champions on our team?",
+      "cluster": "tool-stack",
+      "locale": "en",
+      "status": "new",
+      "note": "Sunday ideation 2026-10-25. Pairs with the new 'AI champions program at work' keyword; the who-leads-the-rollout question. Team-adoption theme.",
+      "addedAt": "2026-10-25"
+    },
+    {
+      "prompt": "How do I roll out ChatGPT Enterprise to my company?",
+      "cluster": "tool-stack",
+      "locale": "en",
+      "status": "new",
+      "note": "Sunday ideation 2026-10-25. Pairs with the new 'ChatGPT rollout for teams' keyword; the ChatGPT mirror of the Copilot-rollout prompt. Team-adoption theme.",
+      "addedAt": "2026-10-25"
+    },
+    {
+      "prompt": "团队怎么共享和管理 AI 提示词？",
+      "cluster": "use-case",
+      "locale": "zh",
+      "status": "new",
+      "note": "Sunday ideation 2026-10-25. ZH pair for the 'AI prompt library for teams' keyword; grows the underweight ZH prompt feed. 把好用的提示词沉淀成团队共享库，而不是锁在个人脑子里。",
+      "addedAt": "2026-10-25"
+    },
+    {
+      "prompt": "公司需要给员工制定 AI 使用政策吗？",
+      "cluster": "tool-stack",
+      "locale": "zh",
+      "status": "new",
+      "note": "Sunday ideation 2026-10-25. ZH pair for the 'workplace AI use policy' theme (EN prompt 'Do we need an AI use policy for employees?' GEO-probed this run, not cited -- SERP owned by employment-law firms). Grows the underweight ZH feed.",
+      "addedAt": "2026-10-25"
     }
   ]
 }
