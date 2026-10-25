@@ -1,6 +1,6 @@
 {
   "$comment": "SEO keyword feed — a living file. The scheduled Cowork routine ideates entries; scripts/seo/feeds.mjs persists them (dedupe + status + timestamps). intent: informational|commercial|transactional. funnel: TOFU|MOFU|BOFU. cluster: use-case|template|comparison|industry|tool-stack. status: new|used.",
-  "updatedAt": "2026-10-22",
+  "updatedAt": "2026-10-25",
   "keywords": [
     {
       "term": "AI agent use cases",
@@ -1281,6 +1281,66 @@
       "status": "new",
       "addedAt": "2026-10-18",
       "note": "Sunday feed research 2026-10-18. Team-adoption use case for managers: an agent that compiles a daily standup / weekly status digest from Slack, Jira/Linear, and GitHub so people stop writing them by hand — summarize-vs-decide (it drafts; the manager still reads the room). Ground at write time in Slack AI recaps + Geekbot/Standuply + the slack-summaries (07-14) and meeting-notes (08-05) articles. Clusters with the triage-the-firehose family."
+    },
+    {
+      "term": "AI champions program at work",
+      "intent": "informational",
+      "funnel": "MOFU",
+      "cluster": "team-adoption",
+      "locale": "both",
+      "status": "new",
+      "note": "Sunday feed research 2026-10-25. Team-adoption rollout tactic: naming internal champions / power-users to drive genuine use rather than a top-down mandate. Grounded in Zapier's internal AI-adoption playbook (urgency -> foundations -> habit; company hackathon; ~800 internal agents reported via Product School Mar 2026) -- verify primary Zapier sources at write time. Companion to the Copilot-rollout (10-20) and measure-adoption (10-22) team-adoption pieces; the manager's who-leads-it question, NOT a training service (avoids aimanjack's owned 'AI training/workshop' terms).",
+      "addedAt": "2026-10-25"
+    },
+    {
+      "term": "ChatGPT rollout for teams",
+      "intent": "informational",
+      "funnel": "MOFU",
+      "cluster": "team-adoption",
+      "locale": "both",
+      "status": "new",
+      "note": "Sunday feed research 2026-10-25. The ChatGPT Enterprise/Business mirror of the Microsoft Copilot rollout article (10-20): pick use cases, run a pilot, measure active use not seats. Ground in OpenAI ChatGPT Enterprise + workspace-analytics docs at write time. 'chatgpt' slug token maps the training CTA to the ChatGPT training page (serves the aimanjack referral). Team-adoption cluster.",
+      "addedAt": "2026-10-25"
+    },
+    {
+      "term": "how to get your team to use AI",
+      "intent": "informational",
+      "funnel": "TOFU",
+      "cluster": "team-adoption",
+      "locale": "both",
+      "status": "new",
+      "note": "Sunday feed research 2026-10-25. The adoption-behavior question behind every stalled rollout: why seats go unused and what actually drives habit (champions, a few high-value use cases, visible wins) vs mandates. Grounds in Zapier's adoption playbook + the governance/adoption gap (WRITER enterprise-AI-adoption 2026: significant ROI from agents reported by only ~23%, ~36% lack a formal plan to supervise agents -- verify primary at write time). Clusters with Copilot-rollout (10-20), measure-adoption (10-22).",
+      "addedAt": "2026-10-25"
+    },
+    {
+      "term": "AI prompt library for teams",
+      "intent": "informational",
+      "funnel": "MOFU",
+      "cluster": "team-adoption",
+      "locale": "both",
+      "status": "new",
+      "note": "Sunday feed research 2026-10-25. How a team shares and governs reusable prompts (and Claude Agent Skills) so good prompts aren't trapped in one person's head. Pairs with Claude Agent Skills (09-07) and context-engineering (09-22); the team-adoption angle on the existing 'AI agent prompt template' keyword (distinct: a shared, governed library for a team, not a single template).",
+      "addedAt": "2026-10-25"
+    },
+    {
+      "term": "SAP Joule AI agents",
+      "intent": "informational",
+      "funnel": "TOFU",
+      "cluster": "industry",
+      "locale": "both",
+      "status": "new",
+      "note": "Sunday competitor/trend sweep 2026-10-25. The enterprise-suite vendor angle: SAP's Joule agentic platform (SAP News: 30+ specialized agents + 2,500+ Joule Skills, agent-to-agent interop across SAP and non-SAP systems; SuccessFactors HR agents + S/4HANA agents). CAUTION: the aggregator 'SAP unveils 1,000 agents at TechEd 2026' framing could NOT be verified against SAP's own newsroom this run -- use SAP's documented figures only, per the no-fabricated-numbers gate. Clusters with the enterprise-platforms keywords (Microsoft Agent 365 / Gemini Enterprise / Bedrock AgentCore).",
+      "addedAt": "2026-10-25"
+    },
+    {
+      "term": "LangSmith vs Langfuse",
+      "intent": "commercial",
+      "funnel": "MOFU",
+      "cluster": "comparison",
+      "locale": "en",
+      "status": "new",
+      "note": "Sunday feed research 2026-10-25. Concrete tool head-to-head for the evaluation/observability theme (existing prompt names LangSmith/Braintrust/Arize Phoenix): hosted LangSmith vs open-source self-hostable Langfuse for traces/evals/cost. Ground in each project's own docs at write time. Clusters with how-to-evaluate (08-27), the monitor-in-production prompt, best-tools (09-26).",
+      "addedAt": "2026-10-25"
     }
   ]
 }
