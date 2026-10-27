@@ -1,0 +1,56 @@
+---
+title: "How to Roll Out ChatGPT to Your Team"
+date: "2026-10-27"
+excerpt: "Rolling out ChatGPT to a team isn't buying seats — it's a staged pilot: name a rollout lead and champions, pick real use cases, then measure active users."
+---
+
+To roll out ChatGPT to a team, don't just hand out logins — run a staged pilot. Split the work between an IT admin and a rollout lead, name a couple of champions, pick a few real use cases your team already does, set up SSO and groups, then measure active users against seats in workspace analytics before you widen it.
+
+This is the ChatGPT twin of [rolling out Microsoft Copilot](/en/news/2026-10-20-microsoft-copilot-rollout-for-teams/), and the lesson underneath is identical: buying seats is a purchase, getting a team to change how it works is a project. The tool is the easy part — [the adoption is the work](/en/news/2026-08-04-ai-agents-for-work/). What's different here is the machinery OpenAI gives you to run that project, and it's worth knowing before you flip the switch.
+
+## Split the two jobs first
+
+OpenAI's own [admin enablement track](https://academy.openai.com/public/clubs/admins-6o6xf/resources/welcome-admins) separates a ChatGPT rollout into two roles, and conflating them is the first mistake. The **technical admin** owns the plumbing — identity provider, SSO, SCIM provisioning, workspace settings. The **rollout lead** owns change management: picking use cases, running enablement, and connecting ChatGPT usage back to a business outcome. The first job ends in week one; the second runs for months. If the same overworked IT person is quietly handed both, the second never happens — which is exactly how seats go out and usage flatlines.
+
+## Phase 1 — Plan before you provision
+
+OpenAI's [example launch planner](https://academy.openai.com/en/public/clubs/admins-6o6xf/resources/example-launch-planner) lays the rollout out in three phases — launch planning, workspace setup, and end-user enablement — and the planning phase happens *before* a single license is assigned. It has you host a planning meeting, name the IT lead, functional leads, and internal champions, and decide which group gets the first licenses. It also puts a baseline survey early — OpenAI's guidance is to send it one to two weeks before provisioning — so you can later tell whether anything actually changed.
+
+Use that planning window to pick concrete jobs, not "try the assistant." Start from a few recurring tasks your pilot group already does — drafting the weekly status update, catching up on a missed thread, turning messy notes into a brief — and standardize them as shared setups (a reusable project or custom GPT per task) so the pilot group works from the same instructions instead of each reinventing a prompt. A handful of repeatable wins beats a feature tour.
+
+## Phase 2 — Set up the workspace (and the privacy posture)
+
+The [admin quickstart](https://help.openai.com/en/articles/20001264-chatgpt-enterprise-admin-quickstart) covers the plumbing in order: connect your identity provider, verify your domains, set up SSO and SCIM so accounts are provisioned and de-provisioned automatically, and organize people into groups before broad onboarding — not after, when fixing access is a migration.
+
+Settle the data posture here too, because it's the question employees ask first. On ChatGPT Enterprise, OpenAI states plainly that it [does not train its models on your business data or conversations](https://openai.com/blog/introducing-chatgpt-enterprise), with SOC 2 compliance and encryption at rest and in transit. Saying that out loud in the launch note removes the single biggest reason people quietly keep using a personal account instead — and a sanctioned tool with a clear data rule is how you pull work out of the shadows rather than driving it there.
+
+## Phase 3 — Enable, then measure active use
+
+Enablement is where champions earn their place. The launch planner's end-user phase sets up an internal hub, a welcome email, and a champions network with a shared channel where people post the prompts and Projects that actually saved them time. Peer proof travels further than a launch deck; the champion who shares the GPT that cut their reporting time is worth more than any mandate.
+
+Then measure honestly. OpenAI's [workspace analytics for ChatGPT Enterprise](https://help.openai.com/en/articles/10875114-workspace-analytics-for-chatgpt-enterprise-and-edu) shows unique active users and message volume, and a Benchmarks section that compares your activation rate, weekly active users per activated user, and messages per weekly active user against an industry median — so you can tell "quiet because nobody uses it" from "quiet because this is normal." Crucially, OpenAI's documentation states the dashboard gives workspace-level insight **without exposing individual prompts or conversations**: adoption is a management question about the team, not a surveillance feed on each person. Watch the gap between seats and active users — that gap is your rollout's real score, the same discipline laid out in [how to measure AI adoption at work](/en/news/2026-10-22-how-to-measure-ai-adoption-at-work/).
+
+## Govern before you widen
+
+Two things should be decided before ChatGPT reaches the whole org. First, a short acceptable-use policy: which tools are approved, what data must never go into a prompt, and when a human reviews output — the same [guardrails that make any workplace agent safe](/en/news/2026-08-29-ai-agent-guardrails-for-business/). Second, keep a person on the irreversible steps. ChatGPT drafting an email, summarizing a thread, or assembling a report is reversible work it can own; the send, the external commit, the decision stays yours — the [gate-the-irreversible rule](/en/news/2026-08-13-human-in-the-loop-ai-agents/) this site applies to every agent, and the one behind [Issue #001](/en/posts/2026-05-13-gmail-ai-agent/), where a Gmail agent buckets and drafts but a person decides what gets sent. New to how these tools fit together? The [agent basics](/en/agent-101/) primer starts from scratch.
+
+## FAQ
+
+**How do I roll out ChatGPT Enterprise to my company?**
+Run a staged pilot, not a company-wide switch-on. Split the work into a technical admin (SSO, SCIM, workspace setup) and a rollout lead (use cases, enablement, measurement), following OpenAI's [launch planner](https://academy.openai.com/en/public/clubs/admins-6o6xf/resources/example-launch-planner). Plan and baseline before provisioning, pilot with one engaged group and a couple of champions, then measure active users against seats in [workspace analytics](https://help.openai.com/en/articles/10875114-workspace-analytics-for-chatgpt-enterprise-and-edu) before you widen it.
+
+**Who should own a ChatGPT rollout?**
+Two people, two jobs. OpenAI's [admin track](https://academy.openai.com/public/clubs/admins-6o6xf/resources/welcome-admins) splits a technical admin — identity provider, SSO, SCIM, settings — from a rollout lead who runs change management and ties usage to a business outcome. Handing both to one IT person is why the enablement half, the half that drives actual use, usually never happens.
+
+**How do I measure whether a ChatGPT rollout is working?**
+Use [ChatGPT Enterprise workspace analytics](https://help.openai.com/en/articles/10875114-workspace-analytics-for-chatgpt-enterprise-and-edu): track unique active users and the benchmarked activation rate against the seats you bought, not the seat count itself. Pair that with one task-level outcome you baselined before launch, the same three-rung approach in [how to measure AI adoption at work](/en/news/2026-10-22-how-to-measure-ai-adoption-at-work/).
+
+**Is our data safe in ChatGPT Enterprise?**
+OpenAI states it [does not train its models on ChatGPT Enterprise business data or conversations](https://openai.com/blog/introducing-chatgpt-enterprise), with SOC 2 compliance and encryption in transit and at rest. Still set your own acceptable-use policy on what data may go into a prompt — the [guardrails discipline](/en/news/2026-08-29-ai-agent-guardrails-for-business/) that applies to any workplace tool.
+
+**ChatGPT or Copilot — is the rollout different?**
+The playbook is the same: plan, pilot, name champions, measure active use, govern. The twin guide for [Microsoft Copilot](/en/news/2026-10-20-microsoft-copilot-rollout-for-teams/) walks the same steps with Microsoft's tooling. What differs is the admin machinery and where the analytics live — this guide covers OpenAI's.
+
+---
+
+A ChatGPT rollout works the way every build on this site works: start from a real job, split the plumbing from the enablement, prove it with one team, and measure what actually changed. Want one real, documented AI-agent build every week — the exact job, the prompt, and the honest numbers? [Subscribe free](/en/) and get each week's in your inbox.
