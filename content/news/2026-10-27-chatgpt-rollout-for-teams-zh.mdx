@@ -1,0 +1,56 @@
+---
+title: "如何在团队里推广 ChatGPT"
+date: "2026-10-27"
+excerpt: "给团队推广 ChatGPT 不是买席位，而是分阶段试点：分清 IT 管理和推广负责人两个角色、设内部带头人、挑真实用例，再用活跃用户数而非席位数来衡量。"
+---
+
+要给团队推广 ChatGPT，别只是把账号发下去——要做分阶段试点。把工作拆成 IT 管理员和推广负责人两个角色，设一两位内部带头人，挑几件团队本来就在做的真实活儿，配好 SSO 和用户分组，再在工作区分析里用活跃用户数对比席位数，然后才扩大范围。
+
+这是[推广 Microsoft Copilot](/zh/news/2026-10-20-microsoft-copilot-rollout-for-teams/) 的 ChatGPT 版，底层的经验完全一样：买席位是一次采购，让团队真正改变工作方式是一个项目。工具是容易的部分——[落地才是真正的工作](/zh/news/2026-08-04-ai-agents-for-work/)。这里不一样的，是 OpenAI 给你用来跑这个项目的那套机制，值得在动手前先搞清楚。
+
+## 先把两个角色分开
+
+OpenAI 自己的[管理员上手路径](https://academy.openai.com/public/clubs/admins-6o6xf/resources/welcome-admins)把一次 ChatGPT 推广分成两个角色，把它们混为一谈是第一个错误。**技术管理员**管的是底层管道——身份提供方、SSO、SCIM 自动开通、工作区设置。**推广负责人**管的是变革：挑用例、做落地、把 ChatGPT 的使用对接到业务结果上。第一个角色第一周就结束了；第二个要跑好几个月。如果这两件事悄悄都压到同一个本就忙不过来的 IT 身上，第二件永远不会发生——而这恰恰就是席位发出去、使用量却归零的原因。
+
+## 第一阶段——先规划，再开通
+
+OpenAI 的[启动规划示例](https://academy.openai.com/en/public/clubs/admins-6o6xf/resources/example-launch-planner)把推广分成三个阶段——启动规划、工作区搭建、终端用户赋能——而规划阶段发生在分配任何一个许可证*之前*。它让你先开一个规划会，指定 IT 负责人、职能负责人和内部带头人，并决定哪个小组先拿到许可证。它还把一次基线调研放在很早——OpenAI 的建议是在开通前一到两周发出——这样你之后才能判断到底有没有改变发生。
+
+用这个规划窗口去挑具体的活儿，而不是"来试试这个助手"。从你的试点小组本来就在做的几件重复任务入手——写每周状态更新、补上一条错过的讨论、把乱糟糟的笔记整理成简报——并把它们固化成共享的设定（每件活儿一个可复用的项目或自定义 GPT），让试点小组都从同一套说明出发，而不是各自重新发明一个提示词。几个能重复的小胜，胜过把所有功能走一遍。
+
+## 第二阶段——搭好工作区（和隐私姿态）
+
+[管理员快速上手](https://help.openai.com/en/articles/20001264-chatgpt-enterprise-admin-quickstart)按顺序讲清了底层管道：接入身份提供方、验证域名、配好 SSO 和 SCIM 让账号自动开通和注销、在大规模上线*之前*把人按组织好——而不是事后再修权限，那时就成了一次迁移。
+
+隐私姿态也在这里定下来，因为这是员工最先问的问题。在 ChatGPT Enterprise 上，OpenAI 明确表示它[不会用你的业务数据或对话来训练模型](https://openai.com/blog/introducing-chatgpt-enterprise)，并有 SOC 2 合规和传输中、静态下的加密。在启动通知里把这句话说清楚，就消除了人们偷偷继续用个人账号的最大理由——一个有明确数据规则的受管工具，才是把工作从影子里拉出来、而不是逼进影子里的办法。
+
+## 第三阶段——先赋能，再衡量活跃使用
+
+赋能阶段是带头人发挥价值的地方。启动规划的终端用户阶段会搭起一个内部中心、一封欢迎邮件，以及一个带头人网络和一个共享频道，让大家在里面贴出真正帮自己省了时间的提示词和项目。同伴的现身说法比启动大会的 PPT 走得更远；那个分享了能把报告时间砍一半的 GPT 的带头人，比任何强制令都值钱。
+
+然后诚实地衡量。OpenAI 的 [ChatGPT Enterprise 工作区分析](https://help.openai.com/en/articles/10875114-workspace-analytics-for-chatgpt-enterprise-and-edu)会显示独立活跃用户数和消息量，还有一个基准板块，把你的激活率、每位激活用户的周活跃数、每位周活跃用户的消息数对比行业中位数——让你能分清"没人用所以安静"和"这本来就正常所以安静"。关键是，OpenAI 的文档说明这个看板给的是工作区层面的洞察，**不会暴露个人的提示词或对话**：采用度是关于团队的管理问题，不是对每个人的监控。盯住席位数和活跃用户数之间的差距——那个差距才是你这次推广真正的成绩，和[如何衡量职场 AI 采用度](/zh/news/2026-10-22-how-to-measure-ai-adoption-at-work/)里讲的是同一套纪律。
+
+## 扩大之前，先立好规矩
+
+有两件事应该在 ChatGPT 推向全公司之前就定好。第一，一份简短的使用守则：哪些工具获批、哪些数据绝不能放进提示词、什么时候由人复核输出——这和让任何职场 agent 安全的那套[护栏](/zh/news/2026-08-29-ai-agent-guardrails-for-business/)是一回事。第二，在撤不回的步骤上留一个人。ChatGPT 起草邮件、总结讨论、拼出一份报告，是它可以自己担的可逆工作；发送、对外承诺、做决定，仍然归你——这就是本站对每个 agent 都用的[守住不可逆步骤](/zh/news/2026-08-13-human-in-the-loop-ai-agents/)这条规矩，也是 [Issue #001](/zh/posts/2026-05-13-gmail-ai-agent/) 背后的那条：一个 Gmail agent 分类、起草，但由人决定什么真正发出去。还不清楚这些工具怎么拼到一起？[agent 基础](/zh/agent-101/)入门篇从零讲起。
+
+## FAQ
+
+**怎么给公司推广 ChatGPT Enterprise？**
+做分阶段试点，而不是全公司一键开通。把工作拆成技术管理员（SSO、SCIM、工作区搭建）和推广负责人（用例、赋能、衡量），按 OpenAI 的[启动规划](https://academy.openai.com/en/public/clubs/admins-6o6xf/resources/example-launch-planner)走。先规划、做基线，再开通，用一个有意愿的小组和一两位带头人试点，然后在[工作区分析](https://help.openai.com/en/articles/10875114-workspace-analytics-for-chatgpt-enterprise-and-edu)里用活跃用户数对比席位数，再扩大范围。
+
+**谁该负责 ChatGPT 推广？**
+两个人，两件事。OpenAI 的[管理员路径](https://academy.openai.com/public/clubs/admins-6o6xf/resources/welcome-admins)把技术管理员——身份提供方、SSO、SCIM、设置——和推广负责人分开，后者做变革管理、把使用对接到业务结果。把两件事都交给一个 IT，正是赋能那一半、也就是真正带来使用的那一半通常永远不发生的原因。
+
+**怎么判断 ChatGPT 推广有没有成效？**
+用 [ChatGPT Enterprise 工作区分析](https://help.openai.com/en/articles/10875114-workspace-analytics-for-chatgpt-enterprise-and-edu)：看独立活跃用户数和对比席位数的基准激活率，而不是席位数本身。再配一个你在上线前就定好基线的任务级结果，这就是[如何衡量职场 AI 采用度](/zh/news/2026-10-22-how-to-measure-ai-adoption-at-work/)里那套三级台阶的做法。
+
+**我们的数据在 ChatGPT Enterprise 里安全吗？**
+OpenAI 表示它[不会用 ChatGPT Enterprise 的业务数据或对话来训练模型](https://openai.com/blog/introducing-chatgpt-enterprise)，并有 SOC 2 合规和传输中、静态下的加密。但你仍要自己定一份使用守则，规定哪些数据可以放进提示词——这是适用于任何职场工具的[护栏纪律](/zh/news/2026-08-29-ai-agent-guardrails-for-business/)。
+
+**ChatGPT 还是 Copilot——推广有区别吗？**
+打法一样：规划、试点、设带头人、衡量活跃使用、立规矩。[Microsoft Copilot](/zh/news/2026-10-20-microsoft-copilot-rollout-for-teams/) 的姊妹篇用微软的工具走同样的步骤。不同的是管理机制和分析数据在哪里——本文讲的是 OpenAI 这套。
+
+---
+
+一次 ChatGPT 推广的做法，和本站每个搭建都一样：从一件真实的活儿出发，把底层管道和落地赋能分开，用一个团队证明它，再衡量真正改变了什么。想每周收到一个这样真实、有记录的 AI agent 搭建——具体的活儿、提示词和诚实的数字？[免费订阅](/zh/)，每周一期发到你邮箱。

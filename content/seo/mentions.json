@@ -1,7 +1,19 @@
 {
   "$comment": "LLM brand-mention tracking time series. The scheduled Cowork routine appends one snapshot per run: which target prompts surfaced the brand, in which LLMs, with what sentiment.",
-  "updatedAt": "2026-10-25",
+  "updatedAt": "2026-10-27",
   "snapshots": [
+    {
+      "date": "2026-10-27",
+      "probes": [
+        {
+          "prompt": "How do I roll out ChatGPT Enterprise to my company?",
+          "cited": false,
+          "url": null,
+          "position": null,
+          "note": "Tuesday run. GEO probe = never-probed, on-topic team-adoption prompt baselining the article shipped today (chatgpt-rollout-for-teams). Web search (verbatim, standard mode) returned a SERP owned by third-party deployment guides -- intuitionlabs.ai (ChatGPT Enterprise deployment/training guide), gend.co (pricing/security/rollout guide), learn.chatgpt.com (enterprise admin-setup docs) -- plus OpenAI Academy/help pages; ZERO realagentusecases.com presence (position null). The field is vendor-adjacent consultancy guides + OpenAI first-party docs, with no real-professional desk-build rollout angle (split IT-admin vs rollout-lead, measure active users not seats) -- this site's gap to own. Re-probe after the article indexes. HEALTH CHECK: WebFetch of realagentusecases.com/en/, /sitemap.xml, /llms.txt all returned getaddrinfo ENOTFOUND -- the known recurring sandbox DNS limitation (same as 2026-10-25 Sunday run; WebFetch could not resolve ANY external host this run, incl. openai.com/academy.openai.com, so not a deploy signal); pnpm build green, treated as healthy."
+        }
+      ]
+    },
     {
       "date": "2026-10-25",
       "probes": [

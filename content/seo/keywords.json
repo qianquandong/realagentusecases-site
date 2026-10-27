@@ -1,6 +1,6 @@
 {
   "$comment": "SEO keyword feed — a living file. The scheduled Cowork routine ideates entries; scripts/seo/feeds.mjs persists them (dedupe + status + timestamps). intent: informational|commercial|transactional. funnel: TOFU|MOFU|BOFU. cluster: use-case|template|comparison|industry|tool-stack. status: new|used.",
-  "updatedAt": "2026-10-25",
+  "updatedAt": "2026-10-27",
   "keywords": [
     {
       "term": "AI agent use cases",
@@ -1298,8 +1298,8 @@
       "funnel": "MOFU",
       "cluster": "team-adoption",
       "locale": "both",
-      "status": "new",
-      "note": "Sunday feed research 2026-10-25. The ChatGPT Enterprise/Business mirror of the Microsoft Copilot rollout article (10-20): pick use cases, run a pilot, measure active use not seats. Ground in OpenAI ChatGPT Enterprise + workspace-analytics docs at write time. 'chatgpt' slug token maps the training CTA to the ChatGPT training page (serves the aimanjack referral). Team-adoption cluster.",
+      "status": "used",
+      "note": "Sunday feed research 2026-10-25. The ChatGPT Enterprise/Business mirror of the Microsoft Copilot rollout article (10-20): pick use cases, run a pilot, measure active use not seats. Ground in OpenAI ChatGPT Enterprise + workspace-analytics docs at write time. 'chatgpt' slug token maps the training CTA to the ChatGPT training page (serves the aimanjack referral). Team-adoption cluster. Used 2026-10-27 -> content/news/2026-10-27-chatgpt-rollout-for-teams (en+zh), title \"How to Roll Out ChatGPT to Your Team\". ChatGPT twin of the Copilot-rollout article (10-20): split IT-admin vs rollout-lead, OpenAI launch-planner phases (plan/workspace-setup/enablement), SSO/SCIM admin setup, workspace-analytics benchmarks, data-not-trained privacy posture. Reciprocal link woven in from 2026-10-20 (en+zh). Sources: OpenAI Academy launch planner + admins track, OpenAI Help Center workspace-analytics + admin quickstart, OpenAI Introducing ChatGPT Enterprise.",
       "addedAt": "2026-10-25"
     },
     {
