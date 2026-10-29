@@ -1,6 +1,6 @@
 {
   "$comment": "GEO prompt feed — the questions working professionals ask ChatGPT / Perplexity / Gemini. The scheduled Cowork routine ideates entries; scripts/seo/feeds.mjs persists them. cluster: use-case|template|comparison|industry|tool-stack. status: new|covered (covered = a published article targets it). Phase 7 tracks whether the brand is cited for each.",
-  "updatedAt": "2026-10-25",
+  "updatedAt": "2026-10-29",
   "prompts": [
     {
       "prompt": "What are real examples of AI agents at work?",
@@ -778,8 +778,8 @@
       "prompt": "How do I get my team to actually use AI?",
       "cluster": "use-case",
       "locale": "en",
-      "status": "new",
-      "note": "Sunday ideation 2026-10-25. Pairs with the new 'how to get your team to use AI' keyword; adoption-behavior intent. Team-adoption theme.",
+      "status": "covered",
+      "note": "Sunday ideation 2026-10-25. Pairs with the new 'how to get your team to use AI' keyword; adoption-behavior intent. Team-adoption theme. | Covered 2026-10-29 by content/news/2026-10-29-how-to-get-your-team-to-use-ai (en+zh). GEO-probed 2026-10-29 (on-publish baseline, verbatim standard web search): not cited -- SERP owned by vendor/consultancy adoption blogs (spiralscout.com how-to-get-your-team-to-use-ai, ivee.jobs, ombulabs.ai ai-for-small-business-starts-with-people, savpj.pages.dev, zerotounicorn.beehiiv.com, elixirr.com ai-adoption, entrepreneur.com, elevenreader.io); realagentusecases.com did not appear -- the field is 'adoption is a people problem' vendor/consultancy advice (start-with-a-pain-point, avoid-mandates, find-early-adopters, go-beyond-one-training, measure-usage) with no real-professional-desk-build angle grounded in a real build, this site's gap to own. Notably the same SERP independently states the article's own thesis (pick one concrete problem, make it low-friction, build skill over time, let peers/champions drive it, don't mandate) -- corroboration, not fabrication. The article answers this prompt verbatim in its first FAQ; re-probe post-index to track lift.",
       "addedAt": "2026-10-25"
     },
     {
