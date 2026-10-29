@@ -1,6 +1,6 @@
 {
   "$comment": "SEO keyword feed — a living file. The scheduled Cowork routine ideates entries; scripts/seo/feeds.mjs persists them (dedupe + status + timestamps). intent: informational|commercial|transactional. funnel: TOFU|MOFU|BOFU. cluster: use-case|template|comparison|industry|tool-stack. status: new|used.",
-  "updatedAt": "2026-10-27",
+  "updatedAt": "2026-10-29",
   "keywords": [
     {
       "term": "AI agent use cases",
@@ -1308,8 +1308,8 @@
       "funnel": "TOFU",
       "cluster": "team-adoption",
       "locale": "both",
-      "status": "new",
-      "note": "Sunday feed research 2026-10-25. The adoption-behavior question behind every stalled rollout: why seats go unused and what actually drives habit (champions, a few high-value use cases, visible wins) vs mandates. Grounds in Zapier's adoption playbook + the governance/adoption gap (WRITER enterprise-AI-adoption 2026: significant ROI from agents reported by only ~23%, ~36% lack a formal plan to supervise agents -- verify primary at write time). Clusters with Copilot-rollout (10-20), measure-adoption (10-22).",
+      "status": "used",
+      "note": "Sunday feed research 2026-10-25. The adoption-behavior question behind every stalled rollout: why seats go unused and what actually drives habit (champions, a few high-value use cases, visible wins) vs mandates. Clusters with Copilot-rollout (10-20), measure-adoption (10-22). | Used 2026-10-29 -> content/news/2026-10-29-how-to-get-your-team-to-use-ai-{en,zh}.mdx (title 'How to Get Your Team to Actually Use AI'). TOFU team-adoption hub: adoption is behavior change not a license rollout -- start with one real disliked task, let early adopters/champions prove it (not mandates), make experimentation safe behind the human-approves-the-result gate, wire the help into the existing workflow, then measure real use. Sources: BCG 'AI at Work 2025' press release (bcg.com/press/26june2025-beyond-ai-adoption-full-potential -- 10,600+ workers/11 countries, 72% use AI regularly but only 36% feel adequately trained, go-beyond-adoption thesis), Microsoft 2025 Work Trend Index (leaders ahead of employees, qualitative), McKinsey State of AI (redesign-the-workflow-not-bolt-it-on, qualitative), Microsoft Copilot Scenario Library (adoption.microsoft.com/copilot-scenario-library -- use cases by role/dept for champions), + Issue #001 as the real one-task build. Sourcing discipline: kept BCG frontline/manager split and the WRITER/Zapier adoption percentages OUT (secondary/unverifiable); cited only the BCG press-release headline figures (72%/36%) + qualitative WTI/McKinsey. Wove a reciprocal inbound link from measure-adoption (10-22, en+zh) opening ('if the honest answer is barely, getting them to use it comes first'). Answers the GEO prompt 'How do I get my team to actually use AI?' verbatim in its first FAQ (probed this run, not cited). Clusters with Copilot-rollout (10-20), chatgpt-rollout (10-27), measure-adoption (10-22), human-in-the-loop (08-13), ai-agents-for-work (08-04), agent-101, Issue #001. Slug has no tool/role token -> training-cta maps to the training hub. Appended EN to public/llms.txt as evergreen.",
       "addedAt": "2026-10-25"
     },
     {
