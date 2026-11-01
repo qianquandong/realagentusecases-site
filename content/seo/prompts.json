@@ -1,6 +1,6 @@
 {
   "$comment": "GEO prompt feed — the questions working professionals ask ChatGPT / Perplexity / Gemini. The scheduled Cowork routine ideates entries; scripts/seo/feeds.mjs persists them. cluster: use-case|template|comparison|industry|tool-stack. status: new|covered (covered = a published article targets it). Phase 7 tracks whether the brand is cited for each.",
-  "updatedAt": "2026-10-29",
+  "updatedAt": "2026-11-01",
   "prompts": [
     {
       "prompt": "What are real examples of AI agents at work?",
@@ -813,6 +813,46 @@
       "status": "new",
       "note": "Sunday ideation 2026-10-25. ZH pair for the 'workplace AI use policy' theme (EN prompt 'Do we need an AI use policy for employees?' GEO-probed this run, not cited -- SERP owned by employment-law firms). Grows the underweight ZH feed.",
       "addedAt": "2026-10-25"
+    },
+    {
+      "prompt": "How do I overcome resistance to AI at work?",
+      "cluster": "team-adoption",
+      "locale": "en",
+      "status": "new",
+      "note": "Sunday ideation 2026-11-01. Pairs with the new 'AI adoption change management' keyword; the resistance-is-emotional-not-technical angle. Related to the uncited 'Should we appoint AI champions' probe this run (both are adoption-people-problem queries the site doesn't yet own). Field is change-management consultancy blogs (HatchWorks, AdvantageClub, Built In); this site's gap = a real-build grounding.",
+      "addedAt": "2026-11-01"
+    },
+    {
+      "prompt": "How do I run an AI pilot program at work?",
+      "cluster": "team-adoption",
+      "locale": "en",
+      "status": "new",
+      "note": "Sunday ideation 2026-11-01. Pairs with the new 'how to run an AI pilot at work' keyword; the pick-one-use-case → baseline → measure → expand playbook answering the 2026 pilot-to-production gap. Ground answers in Microsoft staged-rollout docs + active-use metrics, not seat counts.",
+      "addedAt": "2026-11-01"
+    },
+    {
+      "prompt": "What are good AI use cases for each department?",
+      "cluster": "team-adoption",
+      "locale": "en",
+      "status": "new",
+      "note": "Sunday ideation 2026-11-01. Pairs with the new 'department AI use cases' keyword; the per-function starting-task picker. Ground in Microsoft Copilot Scenario Library (by department/role) + the site's own function hubs (sales/marketers/accountants/operations) + Issue #001.",
+      "addedAt": "2026-11-01"
+    },
+    {
+      "prompt": "怎么说服团队和领导采用 AI？",
+      "cluster": "team-adoption",
+      "locale": "zh",
+      "status": "new",
+      "note": "Sunday ideation 2026-11-01. ZH pair for the change-management / business-case theme; grows the underweight ZH prompt feed (19 ZH / 81 EN). 阻力多是情绪而非技术问题——让人提前参与、围绕 AI 重新设计流程、用真实收益而不是席位数说话。",
+      "addedAt": "2026-11-01"
+    },
+    {
+      "prompt": "公司怎么做 AI 试点项目？",
+      "cluster": "team-adoption",
+      "locale": "zh",
+      "status": "new",
+      "note": "Sunday ideation 2026-11-01. ZH pair for the 'how to run an AI pilot at work' keyword; grows the underweight ZH feed. 先选一个具体场景、找一小组愿意用的人、设好基线、量化活跃使用和产出，再决定扩大还是停。",
+      "addedAt": "2026-11-01"
     }
   ]
 }

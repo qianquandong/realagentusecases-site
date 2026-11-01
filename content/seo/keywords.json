@@ -1,6 +1,6 @@
 {
   "$comment": "SEO keyword feed — a living file. The scheduled Cowork routine ideates entries; scripts/seo/feeds.mjs persists them (dedupe + status + timestamps). intent: informational|commercial|transactional. funnel: TOFU|MOFU|BOFU. cluster: use-case|template|comparison|industry|tool-stack. status: new|used.",
-  "updatedAt": "2026-10-29",
+  "updatedAt": "2026-11-01",
   "keywords": [
     {
       "term": "AI agent use cases",
@@ -1341,6 +1341,69 @@
       "status": "new",
       "note": "Sunday feed research 2026-10-25. Concrete tool head-to-head for the evaluation/observability theme (existing prompt names LangSmith/Braintrust/Arize Phoenix): hosted LangSmith vs open-source self-hostable Langfuse for traces/evals/cost. Ground in each project's own docs at write time. Clusters with how-to-evaluate (08-27), the monitor-in-production prompt, best-tools (09-26).",
       "addedAt": "2026-10-25"
+    },
+    {
+      "term": "AI adoption change management",
+      "intent": "informational",
+      "funnel": "MOFU",
+      "cluster": "team-adoption",
+      "locale": "both",
+      "status": "new",
+      "note": "Sunday feed research 2026-11-01. Team-adoption cluster. The manager's-playbook angle for the uncited GEO probe this run ('Should we appoint AI champions on our team?'). Distinct from 'how to get your team to use AI' (used 10-29, behavior/tactics) and the Copilot/ChatGPT rollout pieces (mechanics): this is the change-management frame — resistance is emotional (relevance/identity/job-security), not technical, so involve people early, redesign the workflow rather than bolt AI on, and budget for enablement not just licenses. Ground at write time in HBR Feb-2026 on stalled adoption (verify primary), Built In 'How to Support Workers During an AI Implementation' (involve frontline staff in tool selection), and Microsoft 2025 Work Trend Index (leaders ahead of the employees they manage). SOURCING CAUTION: the MasterClass 54% / McKinsey 38% / Genius HRTech 71% figures surfaced only via secondary coverage this run — keep them qualitative unless the primary report is found. Clusters with get-team-to-use-AI (10-29), measure-adoption (10-22), AI-champions-program (new), workplace-AI-use-policy (new). NOT an AI-training-services topic (aimanjack-owned) — this is the in-house change frame, slug with no training token."
+    },
+    {
+      "term": "how to run an AI pilot at work",
+      "intent": "informational",
+      "funnel": "MOFU",
+      "cluster": "team-adoption",
+      "locale": "both",
+      "status": "new",
+      "note": "Sunday feed research 2026-11-01. Team-adoption cluster. The pick-one-use-case → small engaged group → set a baseline → measure active use/outcomes → decide expand-or-stop playbook, the step before a full rollout. Directly answers the 2026 pilot-to-production gap (the headline enterprise theme: Gartner's 40%-of-enterprise-apps-embed-agents-by-end-2026 forecast cited widely, verify primary; many pilots stall before production). Ground at write time in Microsoft Learn staged-rollout docs (pilot→feedback→refine→expand), the Copilot usage report metric definitions (active users not seats), and measure-ROI (08-21). Distinct from the Copilot/ChatGPT rollout mechanics (10-20/10-27) — this is the pilot-design layer underneath them. Clusters with how-to-measure-ai-agent-roi (08-21), measure-adoption (10-22), why-agents-fail (09-23). Slug keeps no tool/role token → training-cta maps to the hub."
+    },
+    {
+      "term": "department AI use cases",
+      "intent": "informational",
+      "funnel": "TOFU",
+      "cluster": "team-adoption",
+      "locale": "both",
+      "status": "new",
+      "note": "Sunday feed research 2026-11-01. Team-adoption cluster. The by-department concrete-uses map a champion/manager hands to each function so people see a relevant starting task (not 'go use AI'). Ground at write time in Microsoft Copilot Scenario Library (adoption.microsoft.com/copilot-scenario-library — use cases organized by department/role/outcome with apps+prompts, carrying Microsoft's own validate-against-your-process caveat) and Lindy's '30+ AI Agent Use Cases Across Industries' hub, plus this site's own desk-level builds (Issue #001 + the function hubs: sales 09-17, marketers 07-27, accountants 07-28, operations). The internal aggregator over the site's function hubs. Distinct from 'AI agents for work' (08-04, pattern map) — this is the department-by-department rollout picker. Clusters with the function/industry hubs + get-team-to-use-AI (10-29)."
+    },
+    {
+      "term": "AI business case for managers",
+      "intent": "commercial",
+      "funnel": "BOFU",
+      "cluster": "team-adoption",
+      "locale": "both",
+      "status": "new",
+      "note": "Sunday feed research 2026-11-01. Team-adoption cluster. The get-buy-in / justify-the-spend layer: how a manager frames the problem, the baseline, the expected outcome, the review gate, and the honest costs before asking for licenses or headcount. Pairs with measure-ROI (08-21, the after-the-fact side) — this is the before-you-start side. Ground at write time in the measure-ROI framing + Microsoft Copilot usage/Viva Insights metric definitions (so the case is written in active-use/outcome terms, not seat counts) + the pilot-to-production caution (many agent projects are canceled for weak economics/unclear success criteria — Gartner 40%-by-2027, verify primary). SOURCING CAUTION: keep any adoption/ROI percentages qualitative unless primary-sourced (the WRITER '23% significant ROI / 36% no supervision plan' figures were secondary this run). NOT a training-services pitch — slug with no training token."
+    },
+    {
+      "term": "AI meeting notes for managers",
+      "intent": "informational",
+      "funnel": "MOFU",
+      "cluster": "team-adoption",
+      "locale": "both",
+      "status": "new",
+      "note": "Sunday feed research 2026-11-01. Team-adoption cluster; slug names the plain role ('managers') per the training-cta mapping goal. The manager angle on meeting notes, distinct from the 08-05 'AI agent for meeting notes' capture-vs-act build: here it's the recurring team digest / action-item roll-up / status report a manager actually needs, with the human-stays review on anything that gets posted or assigned. Ground at write time in vendor-documented capabilities only — Notion AI Meeting Notes triggering Custom Agents that update trackers/post recaps (notion.com release notes), scheduled/recurring AI reports from a defined set of meetings (verify on the vendor page), Otter/Fireflies action-item → task hand-off (already cited in 08-05) — and this site's own capture-don't-commit discipline (Issue #001). Keep tool claims to documented features, no time-saved stats. Clusters with meeting-notes (08-05), standup-and-status-updates (new), measure-adoption (10-22)."
+    },
+    {
+      "term": "Make AI Agents",
+      "intent": "commercial",
+      "funnel": "MOFU",
+      "cluster": "tool-stack",
+      "locale": "both",
+      "status": "new",
+      "note": "Sunday competitor sweep 2026-11-01. Completes the no-code trio on this site — Zapier Agents (covered via no-code-tools 07-08 + claude-vs-zapier) and n8n AI Agent node (n8n-vs-zapier 08-14) already have pages; Make's 2026 AI Agents (beta) + MCP server + AI Content Extractor / AI Web Search are the missing third. Reasoning-agent-vs-fixed-scenario angle (Make is strongest at fixed AI steps inside a visual scenario; its Agents add autonomous reasoning on top). Ground at write time in Make's own blog/docs for the 2026 AI Agents + MCP launch (make.com/en/blog — in competitors list; verify the beta/GA status and exact feature names). Clusters with no-code-ai-agent-tools (07-08), n8n-vs-zapier (08-14), zapier-agents-vs-zaps (new), ai-agent-orchestration (08-15)."
+    },
+    {
+      "term": "ChatGPT Enterprise vs Claude Enterprise",
+      "intent": "commercial",
+      "funnel": "BOFU",
+      "cluster": "comparison",
+      "locale": "both",
+      "status": "new",
+      "note": "Sunday competitor/trend sweep 2026-11-01. The enterprise-plan head-to-head teams actually weigh when standardizing a workspace tool — distinct from the model-level 'Claude vs ChatGPT for work automation' (new): this is the plan/controls/deployment comparison (admin/SSO/SCIM, data-use and retention posture, connectors/MCP, agent features, pricing model). Ground at write time in each vendor's own enterprise page/docs (openai.com ChatGPT Enterprise, claude.com/anthropic Claude Enterprise) — do NOT rely on the intuitionlabs/aggregator comparison pages the SERP is full of. SOURCING CAUTION: the OpenAI '1M business customers / 7M ChatGPT-for-Work seats' and Anthropic enterprise-revenue-share figures were secondary/aggregator this run — cite only if confirmed on the primary newsroom page. Clusters with claude-vs-chatgpt-for-work-automation (new), enterprise-ai-agent-platforms (new), workplace-AI-use-policy (new)."
     }
   ]
 }
