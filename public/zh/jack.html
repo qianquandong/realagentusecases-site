@@ -213,7 +213,7 @@
 
     /* STATS */
     .stats-grid {
-      display: grid; grid-template-columns: repeat(3,1fr);
+      display: grid; grid-template-columns: repeat(2,1fr);
       border: 1px solid var(--border); border-radius: 8px;
       overflow: hidden; margin-top: 40px;
     }
@@ -474,11 +474,11 @@
       <p class="hero-sub">我从真实业务流程下手，把跨 SAP、SQL、Excel 和内部工具的重复工作，做成有 dry-run、人工复核和失败边界的 automation。现在希望把这套能力带到 AI FDE / Solutions / Operations Engineer 岗位。</p>
       <ul class="hero-bullets">
         <li><strong>13 个组</strong>的 TI planner 每天在用我做的自动化和报告</li>
-        <li><strong>700+ 成员</strong>的达拉斯首个华人 AI 社群（发起人），5 场活动累计到场 246 人次</li>
+        <li>达拉斯华人 AI 社群发起人：<strong>6 场 AI 活动</strong>（5 场在 Plano 和 Dallas，1 场线上），共 309 人报名</li>
         <li><strong>300 人</strong>的公司内部 AI 社群，每两周分享一次</li>
       </ul>
       <div class="hero-cta">
-        <a href="#builds" class="btn btn-primary">看四个代表案例 →</a>
+        <a href="#builds" class="btn btn-primary">看三个代表案例 →</a>
         <a href="/Jack_Qian_Resume.pdf" class="btn btn-outline" download>下载简历 PDF</a>
       </div>
       <div class="contact-row">
@@ -520,7 +520,7 @@
     </div>
     <div class="xp-card">
       <div class="xp-top"><span class="xp-co">达拉斯华人 AI 社群 · Real Agent Use Cases</span><span class="xp-period">发起人兼主理人（side project）· 2026 至今</span></div>
-      <ul class="xp-ul"><li>发起并从零运营达拉斯首个华人 AI 社群，现有 700+ 成员：2026 年 4 月到 8 月办了 5 场线下活动，累计到场 246 人次，单场最多 70 人。</li><li>办过两场动手 workshop（40 人和 59 人），非技术背景的参与者用模板现场搭出能跑的 email daily brief agent，再演示自己的自动化；还办了一场 37 人的 AI 黑客松。</li><li>到场的人来自各行各业：程序员、数据分析、银行职员、会计、律师、房产中介，还有开饭馆和做小生意的老板。8.22 场报名问卷（59 人全量）：66% 在职上班族，49% 已经每天在用 AI。</li><li>设计并主讲 Agent 101 双语课程和动手 workshop，学员现场用模板搭出自己的 Gmail agent。<a href="/agent-101/live-01/" style="color:var(--brand-text);">看讲座 slides →</a></li><li>上线 realagentusecases.com，社群的双语内容站和课程主页。</li></ul>
+      <ul class="xp-ul"><li>发起并从零运营达拉斯华人 AI 社群：办了 6 场 AI 活动（5 场在 Plano 和 Dallas，1 场线上），共 309 人报名，单场最多 70 人。</li><li>办过两场动手 workshop（40 人和 59 人），非技术背景的参与者用模板现场搭出能跑的 email daily brief agent，再演示自己的自动化；还办了一场 37 人的 AI 黑客松。</li><li>到场的人来自各行各业：程序员、数据分析、银行职员、会计、律师、房产中介，还有开饭馆和做小生意的老板。8.22 场报名问卷（59 人全量）：66% 在职上班族，49% 已经每天在用 AI。</li><li>设计并主讲 Agent 101 双语课程和动手 workshop，学员现场用模板搭出自己的 Gmail agent。<a href="/agent-101/live-01/" style="color:var(--brand-text);">看讲座 slides →</a></li><li>上线 realagentusecases.com，社群的双语内容站和课程主页。</li></ul>
     </div>
     <div class="xp-card">
       <div class="xp-top"><span class="xp-co">Texas A&amp;M University</span><span class="xp-period">2022 届</span></div>
@@ -534,24 +534,13 @@
 
 <section class="section" id="builds">
   <p class="sec-label">代表案例</p>
-  <h2 class="sec-h2">四件事，说明我怎么做 FDE。</h2>
+  <h2 class="sec-h2">三件事，说明我怎么做 FDE。</h2>
   <div class="sec-body">
-    <p>这四项分别对应线上运行的 AI 前台、外部公司每周在用的排班系统、企业内部交付，以及非技术用户现场落地。每项都从具体问题开始，也都保留了人工判断和失败边界。</p>
+    <p>这三项分别对应外部公司每周在用的排班系统、企业内部交付，以及非技术用户现场落地。每项都从具体问题开始，也都保留了人工判断和失败边界。</p>
   </div>
   <div class="case-list">
     <article class="case-card">
-      <div class="case-top"><span class="case-tag">01 · AI 前台 · 线上运行</span><span class="case-status">打电话或发短信 (469) 425-4142 · 中英西三语</span></div>
-      <h3 class="case-title">AI 前台：电话和短信都能接，查档期、完成预约</h3>
-      <div class="case-grid">
-        <div><span class="case-k">问题</span><p class="case-v">小店忙着招呼客人时接不到电话、回不了短信；每个预约都要来回确认时间；潜在客户也应该能在销售电话之前，不注册就先试一试这个前台。</p></div>
-        <div><span class="case-k">交付</span><p class="case-v">OpenAI Realtime 语音线和短信 agent 共用一套 tool（查档期、新建 / 查找 / 改期 / 取消预约），打同一个预约 API（Cloudflare Pages Functions + Supabase Postgres）。每次确认的变更都会给顾客和店主各发一条短信。aimanjack.com 上有公开落地页和自助预约页；同一套短信模式跑在 DFW 一家二手车行的号码上。</p></div>
-        <div><span class="case-k">边界</span><p class="case-v">只报核准过的价格，其余一律转人工；防双重预订做在数据库里，不只靠 prompt；改期和取消有提前时间限制；不收款；每次写入都发确认短信，漏看的对话也能浮出来。</p></div>
-        <div class="case-wide"><span class="case-k">架构与取舍</span><p class="case-v">Twilio 只当管道：TwiML 把通话交给 WebSocket 桥接，来电号码作为参数带进去，语音和短信走同一个 tool 执行器。预约 API 是唯一写入口，容量检查和 advisory lock 放在 Postgres 函数里，所以模型出错最坏是说错一句话，不会产生错误预约。调试接口可以不打电话逐个跑 tool，每次改 API 都跑一遍冒烟测试。</p></div>
-      </div>
-      <div class="case-links"><a class="text-link" href="tel:+14694254142">打演示电话 →</a><a class="text-link" href="sms:+14694254142">发短信体验 →</a><a class="text-link" href="https://aimanjack.com/zh/book/" target="_blank" rel="noopener">自己约一个时间 →</a></div>
-    </article>
-    <article class="case-card">
-      <div class="case-top"><span class="case-tag">02 · 运营自动化 · 线上运行</span><span class="case-status">运营负责人每周省下约 4 小时</span></div>
+      <div class="case-top"><span class="case-tag">01 · 运营自动化 · 线上运行</span><span class="case-status">运营负责人每周省下约 4 小时</span></div>
       <h3 class="case-title">TikTok Shop 直播代运营公司的每周主播排班系统</h3>
       <div class="case-grid">
         <div><span class="case-k">问题</span><p class="case-v">运营负责人每周在群里收主播和运营的可播时间，在 Lark 表格里一格一格拖出几个直播间的班表，还要每天手写一份每人的计划。班表和大家真实可播时间的冲突，全靠肉眼核对。</p></div>
@@ -561,7 +550,7 @@
       </div>
     </article>
     <article class="case-card">
-      <div class="case-top"><span class="case-tag">03 · 企业内部 · 每日使用</span><span class="case-status">13 个组的 planner 日常使用</span></div>
+      <div class="case-top"><span class="case-tag">02 · 企业内部 · 每日使用</span><span class="case-status">13 个组的 planner 日常使用</span></div>
       <h3 class="case-title">Texas Instruments 供应链运营自动化</h3>
       <div class="case-grid">
         <div><span class="case-k">问题</span><p class="case-v">排产、销售订单修正、供应缺口和周期报告，需要反复跨 SAP、Spotfire、Excel 与内部表单核对。</p></div>
@@ -570,12 +559,12 @@
       </div>
     </article>
     <article class="case-card">
-      <div class="case-top"><span class="case-tag">04 · 用户现场 · 双语教学</span><span class="case-status">5 场活动 · 246 人次</span></div>
+      <div class="case-top"><span class="case-tag">03 · 用户现场 · 双语教学</span><span class="case-status">6 场活动 · 309 人报名</span></div>
       <h3 class="case-title">Agent 101：让非技术用户现场搭出第一个 agent</h3>
       <div class="case-grid">
         <div><span class="case-k">问题</span><p class="case-v">听众来自银行、会计、法律、地产、餐饮和软件行业，AI 熟练度差异很大，需要同一套课程让所有人都能动手。</p></div>
         <div><span class="case-k">交付</span><p class="case-v">设计并主讲双语课程和 Gmail agent 模板，把概念、现场 demo、动手环节和一对一排查串成完整 workshop。</p></div>
-        <div><span class="case-k">结果</span><p class="case-v">发起达拉斯首个华人 AI 社群，现有 700+ 成员；5 场活动累计到场 246 人次，单场最多 70 人；8 月 22 日收回 59 份报名问卷。</p></div>
+        <div><span class="case-k">结果</span><p class="case-v">发起达拉斯华人 AI 社群；办了 6 场 AI 活动（5 场在 Plano 和 Dallas，1 场线上），共 309 人报名，单场最多 70 人；8 月 22 日收回 59 份报名问卷。</p></div>
       </div>
       <div class="case-links"><a class="text-link" href="/agent-101/live-01/">查看讲座 slides →</a><a class="text-link" href="#gallery">看活动现场 →</a></div>
     </article>
@@ -645,13 +634,12 @@
   <p class="sec-label">社区</p>
   <h2 class="sec-h2">把 AI 从屏幕带到真实的人群里。</h2>
   <div class="sec-body">
-    <p>这是我发起并运营的达拉斯首个华人 AI 社群，目前已有 700+ 成员。来的人什么行业都有：写代码的、做数据的、在银行上班的，也有开饭馆的、做小生意的，还有会计、律师和房产中介。共同目标很简单：把 AI 真正用进工作里。</p>
-    <p>每个月在达拉斯办一场线下活动。现场演示、真实工作流，还有那种只有到了现场才聊得起来的话题。</p>
+    <p>这是我发起并运营的达拉斯华人 AI 社群。来的人什么行业都有：写代码的、做数据的、在银行上班的，也有开饭馆的、做小生意的，还有会计、律师和房产中介。共同目标很简单：把 AI 真正用进工作里。</p>
+    <p>线下活动在 Plano 和 Dallas。现场演示、真实工作流，还有那种只有到了现场才聊得起来的话题。</p>
   </div>
   <div class="stats-grid">
-    <div class="stat-cell"><div class="stat-n">700+</div><div class="stat-l">社群规模</div></div>
-    <div class="stat-cell"><div class="stat-n">5 场</div><div class="stat-l">线下活动</div></div>
-    <div class="stat-cell"><div class="stat-n">246</div><div class="stat-l">累计到场人次</div></div>
+    <div class="stat-cell"><div class="stat-n">6 场</div><div class="stat-l">AI 活动</div></div>
+    <div class="stat-cell"><div class="stat-n">309</div><div class="stat-l">报名人数</div></div>
   </div>
 </section>
 
@@ -659,12 +647,11 @@
 
 <section class="section" id="events">
   <p class="sec-label">活动</p>
-  <h2 class="sec-h2">每月一场，都在达拉斯。</h2>
+  <h2 class="sec-h2">线下活动在 Plano 和 Dallas。</h2>
   <div class="sec-body">
     <p>线下活动有中文场也有英文场，形式不固定：动手 workshop、agent 实战拆解、黑客松都办过。报名都走 Luma。</p>
   </div>
   <div class="events-list">
-    <div class="ev-row"><span class="ev-date">2026.09.24</span><span class="ev-title">AI Front Desk 101：小型诊所的 AI 前台（面向 DFW 诊所老板的免费讲座，与 Amanda Li 合办）</span><a class="ev-badge up" href="https://luma.com/e1og8vcq" target="_blank" rel="noopener">即将举行 · 报名 →</a></div>
     <div class="ev-row"><span class="ev-date">2026.08.22</span><span class="ev-title">零基础也能上手：用 AI 完成你的第一个小项目（面向学生和家长的免费讲座）</span><a class="ev-badge" href="https://luma.com/xhx7oos8" target="_blank" rel="noopener">59 人参加</a></div>
     <div class="ev-row"><span class="ev-date">2026.07.18</span><span class="ev-title">AI Workflow Automation 实战分享（第三期）</span><a class="ev-badge" href="https://luma.com/rsihvu8x" target="_blank" rel="noopener">40 人参加</a></div>
     <div class="ev-row"><span class="ev-date">2026.05.17</span><span class="ev-title">OpenClaw: 走进 AI Agent 的世界 Meetup #2</span><a class="ev-badge" href="https://luma.com/u1tw9z8m" target="_blank" rel="noopener">70 人参加</a></div>
@@ -717,10 +704,10 @@
   <div class="meta-table">
     <div class="meta-row"><span class="meta-k">邮箱</span><span class="meta-v"><a href="mailto:jack@aimanjack.com" style="color:var(--muted-fg);">jack@aimanjack.com</a></span></div>
     <div class="meta-row"><span class="meta-k">LinkedIn</span><span class="meta-v"><a href="https://www.linkedin.com/in/jackqiandallas/" target="_blank" rel="noopener" style="color:var(--muted-fg);">linkedin.com/in/jackqiandallas</a></span></div>
-    <div class="meta-row"><span class="meta-k">个人项目</span><span class="meta-v"><a href="https://aimanjack.com" target="_blank" rel="noopener" style="color:var(--muted-fg);">aimanjack.com</a>，给本地商家做的 AI demo 与网站</span></div>
+    <div class="meta-row"><span class="meta-k">个人项目</span><span class="meta-v"><a href="https://aimanjack.com" target="_blank" rel="noopener" style="color:var(--muted-fg);">aimanjack.com</a>：企业团队 AI 实操培训</span></div>
     <div class="meta-row"><span class="meta-k">坐标</span><span class="meta-v">美国达拉斯</span></div>
     <div class="meta-row"><span class="meta-k">日常工作</span><span class="meta-v">德州仪器 Business Planner（供应链）</span></div>
-    <div class="meta-row"><span class="meta-k">社群</span><span class="meta-v">达拉斯首个华人 AI 社群发起人，现有 700+ 成员</span></div>
+    <div class="meta-row"><span class="meta-k">社群</span><span class="meta-v">达拉斯华人 AI 社群发起人</span></div>
     <div class="meta-row"><span class="meta-k">GitHub</span><span class="meta-v">github.com/qianquandong</span></div>
     <div class="meta-row"><span class="meta-k">目标方向</span><span class="meta-v">AI FDE · Solutions / Operations Engineer · Enterprise AI workflow</span></div>
   </div>
