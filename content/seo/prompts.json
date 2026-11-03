@@ -786,8 +786,8 @@
       "prompt": "Should we appoint AI champions on our team?",
       "cluster": "tool-stack",
       "locale": "en",
-      "status": "new",
-      "note": "Sunday ideation 2026-10-25. Pairs with the new 'AI champions program at work' keyword; the who-leads-the-rollout question. Team-adoption theme.",
+      "status": "covered",
+      "note": "Sunday ideation 2026-10-25. Pairs with the new 'AI champions program at work' keyword; the who-leads-the-rollout question. Team-adoption theme. GEO-probed 2026-11-01 (Sunday): not cited -- SERP owned by enablement-vendor/consultancy adoption pages (OpenAI Academy, Microsoft adoption, Worklytics, 1Password, metacto). Covered 2026-11-03 by content/news/2026-11-03-ai-champions-program-at-work; the article answers this prompt verbatim in its first FAQ ('Usually yes -- a small number of them...'). Re-probe post-index to track lift.",
       "addedAt": "2026-10-25"
     },
     {
