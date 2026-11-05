@@ -1,6 +1,6 @@
 {
   "$comment": "SEO keyword feed — a living file. The scheduled Cowork routine ideates entries; scripts/seo/feeds.mjs persists them (dedupe + status + timestamps). intent: informational|commercial|transactional. funnel: TOFU|MOFU|BOFU. cluster: use-case|template|comparison|industry|tool-stack. status: new|used.",
-  "updatedAt": "2026-11-01",
+  "updatedAt": "2026-11-05",
   "keywords": [
     {
       "term": "AI agent use cases",
@@ -1357,8 +1357,8 @@
       "funnel": "MOFU",
       "cluster": "team-adoption",
       "locale": "both",
-      "status": "new",
-      "note": "Sunday feed research 2026-11-01. Team-adoption cluster. The pick-one-use-case → small engaged group → set a baseline → measure active use/outcomes → decide expand-or-stop playbook, the step before a full rollout. Directly answers the 2026 pilot-to-production gap (the headline enterprise theme: Gartner's 40%-of-enterprise-apps-embed-agents-by-end-2026 forecast cited widely, verify primary; many pilots stall before production). Ground at write time in Microsoft Learn staged-rollout docs (pilot→feedback→refine→expand), the Copilot usage report metric definitions (active users not seats), and measure-ROI (08-21). Distinct from the Copilot/ChatGPT rollout mechanics (10-20/10-27) — this is the pilot-design layer underneath them. Clusters with how-to-measure-ai-agent-roi (08-21), measure-adoption (10-22), why-agents-fail (09-23). Slug keeps no tool/role token → training-cta maps to the hub."
+      "status": "used",
+      "note": "Sunday feed research 2026-11-01. Team-adoption cluster. The pick-one-use-case → small engaged group → set a baseline → measure active use/outcomes → decide expand-or-stop playbook, the step before a full rollout. Directly answers the 2026 pilot-to-production gap (the headline enterprise theme: Gartner's 40%-of-enterprise-apps-embed-agents-by-end-2026 forecast cited widely, verify primary; many pilots stall before production). Ground at write time in Microsoft Learn staged-rollout docs (pilot→feedback→refine→expand), the Copilot usage report metric definitions (active users not seats), and measure-ROI (08-21). Distinct from the Copilot/ChatGPT rollout mechanics (10-20/10-27) — this is the pilot-design layer underneath them. Clusters with how-to-measure-ai-agent-roi (08-21), measure-adoption (10-22), why-agents-fail (09-23). Slug keeps no tool/role token → training-cta maps to the hub. | Used 2026-11-05 → content/news/2026-11-05-how-to-run-an-ai-pilot-at-work-{en,zh}.mdx (title 'How to Run an AI Pilot at Work: Pick, Measure, Decide'). The pick→baseline→small-willing-group→measure-active-use→decide (expand/adjust/stop) playbook. Sources: Gartner 40%-canceled-by-2027 primary press release (escalating cost/unclear value/weak risk controls), MIT NANDA GenAI Divide 95%-no-return via Fortune reporting, Microsoft Learn phased-pilot training module (defined cohort + structured feedback from champions before expansion) + Copilot usage report (enabled vs active users), + Issue #001. Wove inbound link from get-team-to-use-ai (10-29, en+zh) 'pick the next task and repeat' line. Answers GEO prompt 'How do I run an AI pilot program at work?' verbatim in FAQ 1 (probed 2026-11-05, not cited). Appended EN to public/llms.txt as evergreen."
     },
     {
       "term": "department AI use cases",
