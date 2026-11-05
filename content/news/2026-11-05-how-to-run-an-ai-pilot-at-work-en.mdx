@@ -1,0 +1,66 @@
+---
+title: "How to Run an AI Pilot at Work: Pick, Measure, Decide"
+date: "2026-11-05"
+excerpt: "Run an AI pilot like a test, not a launch: pick one measurable task, set a baseline, measure active use and real outcomes, then decide to expand or stop."
+---
+
+An AI pilot at work is a time-boxed test, not a rollout. Pick one narrow, measurable task; give it to a small, willing group; set a baseline before you start; then measure active use and real outcomes against that baseline. At the end you make one decision: expand, adjust, or stop.
+
+Most teams skip the "test, not launch" part — they buy seats, announce a tool, and hope. A pilot is the discipline that turns "we're trying AI" into a yes-or-no answer you can defend. This is how to design one so the result is honest, whichever way it goes.
+
+## Why pilots stall — and what a good one protects against
+
+The failure rate is not a secret. Gartner predicts that [more than 40% of agentic AI projects will be canceled by the end of 2027](https://www.gartner.com/en/newsroom/press-releases/2025-06-25-gartner-predicts-over-40-percent-of-agentic-ai-projects-will-be-canceled-by-end-of-2027), citing escalating costs, unclear business value, and inadequate risk controls — not bad models. MIT's NANDA initiative, in its *GenAI Divide: State of AI in Business 2025* report, found that [roughly 95% of enterprise generative-AI pilots delivered no measurable return](https://fortune.com/2025/08/18/mit-report-95-percent-generative-ai-pilots-at-companies-failing-cfo/), and attributed the gap to workflow and learning problems rather than model quality.
+
+Read those two findings together and the lesson is the same one this site keeps landing on: [agents fail for operational reasons](/en/news/2026-09-23-why-ai-agents-fail-in-production/) — vague scope, no success criteria, weak economics — far more often than technical ones. A pilot is cheap insurance against all three, because it forces you to name the task, the number, and the decision rule *before* you spend on a full rollout.
+
+## Step 1: Pick one narrow, measurable task
+
+"Pilot AI" is not a task. Pick a single recurring job your team already dislikes and can measure — the inbox that takes too long to triage, the weekly status report nobody wants to write, the tickets that pile up before they're routed. The test is whether *that one job* got easier, not whether people like the tool.
+
+This is the same discipline behind every build on this site. [Issue #001](/en/posts/2026-05-13-gmail-ai-agent/) didn't start with "let's use AI," it started with one specific inbox and a question: does triaging it get faster without things falling through? Narrow enough to measure, real enough to matter. If you're not sure which task to pick, start from the job your team complains about most — relevance beats ambition here.
+
+## Step 2: Set a baseline before you start
+
+A pilot with no baseline can't produce a verdict. Before the tool goes live, write down how the task performs today: how long it takes, how often it's done right, how big the backlog is. Without that number, "it feels faster" is the best you'll get, and feelings don't survive a budget review.
+
+The baseline also keeps you honest about [what ROI actually is](/en/news/2026-08-21-how-to-measure-ai-agent-roi/). Time saved only counts if you know the starting time; quality only counts if you measured the error rate before. Pick one primary outcome metric and one guardrail metric (did errors go up while speed went up?), and record them for a week or two of normal work before anyone touches the pilot.
+
+## Step 3: Give it to a small, willing group
+
+Run the pilot with a handful of people who *want* to try it, not a mandated department. Microsoft's own rollout training stages exactly this — a [defined pilot cohort with structured feedback collected from champions](https://learn.microsoft.com/en-us/training/modules/enable-manage-microsoft-365-copilot/7-exercise-stage-phased-rollout-group) before anything expands. A small, engaged group gives you cleaner signal and faster iteration than a big reluctant one.
+
+If you've already stood up [a few AI champions](/en/news/2026-11-03-ai-champions-program-at-work/), this is their job: use the tool on their own real work, model the human-in-the-loop habit (AI drafts, a person approves), and surface what breaks. Keep the group small enough that you can actually talk to everyone in it every week.
+
+## Step 4: Measure active use and outcomes, not seats
+
+The number that kills honest pilots is the login count. Someone trying the tool once is not adoption. Microsoft's [Copilot usage report](https://learn.microsoft.com/en-us/microsoft-365/admin/activity-reports/microsoft-365-copilot-usage) draws the distinction in its own metrics — *enabled users* (seats) versus *active users* (people actually using it in a given window) — and the active-user rate over several weeks is the one that tells you whether a habit is forming.
+
+So track two things against your Step 2 baseline: did the task-level outcome move (faster, fewer errors, smaller backlog), and did active use *hold* past the novelty week? A spike that fades is curiosity; retention is adoption. This is the same [seats-versus-use distinction](/en/news/2026-10-22-how-to-measure-ai-adoption-at-work/) that separates a real rollout from a license bill, applied early while it's still cheap to change course.
+
+## Step 5: Decide — expand, adjust, or stop
+
+A pilot that never ends is just an unmanaged tool. Set a decision date up front — a few weeks to a couple of months is typical for a single task — and at that date, make one of three calls. **Expand** if the outcome beat the baseline and use held: pick the next task and repeat. **Adjust** if the signal is mixed: usually the fix is the task, the workflow fit, or the training, not the people — change one thing and re-run a short cycle. **Stop** if it didn't move the number; a clean "no" is a successful pilot, because it cost you a few weeks instead of a year.
+
+New to how these tools fit together in the first place? The [agent basics](/en/agent-101/) primer starts from scratch, and once a pilot proves out, [getting the wider team to actually use it](/en/news/2026-10-29-how-to-get-your-team-to-use-ai/) is the next job.
+
+## FAQ
+
+**How do I run an AI pilot program at work?**
+Treat it as a time-boxed test, not a launch. Pick one narrow, recurring task you can measure; set a baseline for how that task performs today; give the tool to a small group that actually wants to use it; then measure active use and the task-level outcome against your baseline over a few weeks. On a set decision date, make one call — expand to the next task, adjust the task or workflow and re-run, or stop. The discipline is naming the metric and the decision rule before you start, so the result is a defensible yes or no rather than a vibe.
+
+**How long should an AI pilot last?**
+Long enough to get past the novelty spike and see whether a habit forms — typically a few weeks to a couple of months for a single task. Too short and you're measuring curiosity, not adoption; too long and it quietly becomes an unmanaged tool with no decision attached. Set the end date and the go/no-go criteria at the start.
+
+**What should I measure during an AI pilot?**
+Two numbers against a pre-pilot baseline: the task-level outcome (time, error rate, or backlog on the specific job you picked) and active use over time (how many of the people with access keep using it, not just logins). Add one guardrail metric so you catch quality dropping while speed rises. Avoid vanity counts — seats assigned and one-time logins tell you nothing about whether the work got better.
+
+**Why do so many AI pilots fail?**
+Mostly for operational reasons, not technical ones. Gartner attributes agentic-AI cancellations to escalating costs, unclear business value, and weak risk controls; MIT's NANDA report ties the no-return majority to workflow and learning gaps rather than model quality. In practice that means pilots fail when the task was vague, no baseline was set, the tool lived outside the real workflow, or there was no decision rule — all of which a well-designed pilot prevents.
+
+**What's the difference between a pilot and a rollout?**
+A pilot is a reversible test that answers "is this worth committing to?" with a small, willing group and a decision date. A rollout is the commitment — you've already decided it's worth it and are expanding use across a team or org. Running a rollout before a pilot is how teams end up paying for seats nobody uses; the pilot is what earns the rollout.
+
+---
+
+Every post on this site is one real, documented AI build — the task, the setup, and the honest result, including what didn't work. That's the clearest template for a pilot worth running. Want one in your inbox each week? [Subscribe free](/en/).
