@@ -27,7 +27,7 @@ function personSchema() {
     jobTitle: "Business Planner",
     worksFor: { "@id": ORG_ID },
     description:
-      "Business planner at Texas Instruments, based in Dallas. Host of Real Agent Use Cases and founder of AI Man Jack, which builds AI automation for Dallas small businesses.",
+      "Business planner at Texas Instruments, based in Dallas. Host of Real Agent Use Cases and founder of AI Man Jack, hands-on AI training for business teams in Dallas–Fort Worth.",
     // Entity association: same Jack Qian as on aimanjack.com
     sameAs: [
       "https://aimanjack.com/",
