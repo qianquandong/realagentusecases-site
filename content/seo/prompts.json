@@ -1,6 +1,6 @@
 {
   "$comment": "GEO prompt feed — the questions working professionals ask ChatGPT / Perplexity / Gemini. The scheduled Cowork routine ideates entries; scripts/seo/feeds.mjs persists them. cluster: use-case|template|comparison|industry|tool-stack. status: new|covered (covered = a published article targets it). Phase 7 tracks whether the brand is cited for each.",
-  "updatedAt": "2026-11-05",
+  "updatedAt": "2026-11-08",
   "prompts": [
     {
       "prompt": "What are real examples of AI agents at work?",
@@ -853,6 +853,36 @@
       "status": "new",
       "note": "Sunday ideation 2026-11-01. ZH pair for the 'how to run an AI pilot at work' keyword; grows the underweight ZH feed. 先选一个具体场景、找一小组愿意用的人、设好基线、量化活跃使用和产出，再决定扩大还是停。",
       "addedAt": "2026-11-01"
+    },
+    {
+      "prompt": "What is an agent boss and how do I manage AI agents?",
+      "cluster": "team-adoption",
+      "status": "new",
+      "addedAt": "2026-11-08"
+    },
+    {
+      "prompt": "How do I write effective AI prompts for work?",
+      "cluster": "team-adoption",
+      "status": "new",
+      "addedAt": "2026-11-08"
+    },
+    {
+      "prompt": "How mature is our company's AI adoption?",
+      "cluster": "team-adoption",
+      "status": "new",
+      "addedAt": "2026-11-08"
+    },
+    {
+      "prompt": "What is Claude Cowork and what can it do?",
+      "cluster": "tool-stack",
+      "status": "new",
+      "addedAt": "2026-11-08"
+    },
+    {
+      "prompt": "怎么像带团队一样管理 AI agent？",
+      "cluster": "team-adoption",
+      "status": "new",
+      "addedAt": "2026-11-08"
     }
   ]
 }
