@@ -6,7 +6,7 @@ excerpt: "上下文工程，就是每一步只把 agent 真正需要的高信号
 
 上下文工程（context engineering），就是在每一步决定 AI agent 的上下文窗口里放什么——同样重要的是，决定不放什么。它把窗口当成一种有限、需要争夺的资源，只挑出模型真正需要的、最小的一组高信号 token，因为塞得越多，agent 往往表现越*差*，而不是越好。
 
-提示工程只是第一步：写一条好指令，得到一个好回答。但 agent 不是一条提示——它是一个循环，会在几十步里不断累积工具结果、检索到的文档、过往对话，以及它自己记的笔记。决定这堆越滚越大的东西每一步该包含什么，是一件完全不同的、系统层面的工作。[Anthropic 把上下文工程](https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents)定义为提示工程的自然延续：提示工程问「我该写什么」，上下文工程问「此刻窗口里该有什么」。
+[提示工程](/zh/news/2026-11-10-writing-effective-ai-prompts-at-work/)只是第一步：写一条好指令，得到一个好回答。但 agent 不是一条提示——它是一个循环，会在几十步里不断累积工具结果、检索到的文档、过往对话，以及它自己记的笔记。决定这堆越滚越大的东西每一步该包含什么，是一件完全不同的、系统层面的工作。[Anthropic 把上下文工程](https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents)定义为提示工程的自然延续：提示工程问「我该写什么」，上下文工程问「此刻窗口里该有什么」。
 
 ## 更大的窗口并不能解决问题
 
