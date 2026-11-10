@@ -1,0 +1,63 @@
+---
+title: "How to Write Effective AI Prompts at Work"
+date: "2026-11-10"
+excerpt: "Write AI prompts that work: give the model a goal, context, an example, and the output format you want — then iterate. A plain, no-jargon starter guide."
+---
+
+A good AI prompt at work gives the model four things: a clear goal (what you want), context (why, and for whom), an example of what "good" looks like, and the output format you need. State them plainly, the way you'd brief a new teammate — then read the result and refine. That loop is the whole skill.
+
+Most people type one vague line, get a generic answer, and conclude "AI isn't that useful." The gap is almost never the model — it's the prompt. Here's the small set of habits that reliably turn a mediocre answer into a usable one, drawn from the vendors' own guidance and from a real prompt this site has run in production.
+
+## The four parts of a workable prompt
+
+Microsoft's own Copilot training breaks an effective prompt into four parts: a [**goal, context, source, and expectations**](https://learn.microsoft.com/en-us/training/modules/optimize-and-extend-microsoft-365-copilot/4-examine-effective-prompt) — and notes that only the goal is strictly required; the other three just make the result more specific. That's a useful checklist for any tool, not just Copilot:
+
+- **Goal** — the task itself. "Summarize this" is weaker than "summarize this in three bullets for a non-technical manager."
+- **Context** — why you're asking and who it's for. The reader, the stakes, the constraints.
+- **Source** — the material to work from: the email thread, the doc, a sample of your own writing.
+- **Expectations** — the shape of the answer: length, format, tone (bullets vs. paragraphs, formal vs. casual).
+
+You rarely need all four. But when an answer comes back wrong, it's usually because one of these was missing — most often the expectations or the context.
+
+## Write it like you're briefing a new teammate
+
+The single most useful test comes from Anthropic's prompt-engineering guide: [show your prompt to a colleague with minimal context and see if they can follow it](https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/be-clear-and-direct). If a person would be confused, the model will be too. Anthropic's core advice is to be clear, contextual, and specific about exactly what you want — the model can't read the intent you left in your head.
+
+OpenAI's guidance says the same thing from the other side: [be specific, give enough context, and avoid ambiguity](https://help.openai.com/en/articles/10032626-prompt-engineering-best-practices-for-chatgpt), and use plain descriptive words for tone — "formal," "friendly," "concise" — to steer the style. The model is capable, but it isn't a mind reader, and it doesn't know what you know about your own job.
+
+## Show, don't just tell: give an example
+
+If you want a particular voice or structure, don't describe it — paste one. Giving the model a sample of what "good" looks like (your past email, a well-formatted report, the exact layout you want filled in) is the fastest way to pin down a style that's hard to put into words. This is why Microsoft's checklist includes a *source* slot and why a short example usually beats a long adjective-laden instruction.
+
+The clearest example of all four habits in one place is a prompt this site actually runs: the [Gmail triage system prompt from Issue #001](/en/news/2026-05-14-claude-system-prompt-email-triage/). It gives the model a role, the context of the inbox, explicit buckets to sort into, and a fixed output format — goal, context, source, and expectations, all spelled out. It's worth reading not to copy verbatim but to copy the *shape*: specific role, specific rules, specific output.
+
+## The first prompt is a draft
+
+Treat prompting as a loop, not a one-shot. OpenAI's guide frames it plainly: [start with a prompt, read the response, then refine — adjust the wording, add context, or simplify](https://help.openai.com/en/articles/10032626-prompt-engineering-best-practices-for-chatgpt). You will rarely get the perfect answer on the first try, and that's normal; the people who get great results aren't writing perfect prompts, they're iterating faster.
+
+When a task is big, split it. Ask for an outline, then the draft, then the polish — each step gives you a checkpoint to correct course before errors compound. And whatever comes back, you stay the editor: the model drafts, a person decides what ships. That human-review habit is the same discipline behind every [documented build on this site](/en/posts/2026-05-13-gmail-ai-agent/) — the agent proposes, you approve.
+
+## Where this fits
+
+Prompt-writing is the day-one skill; once you're comfortable, the next step up is [context engineering](/en/news/2026-09-22-context-engineering-for-ai-agents/) — deciding what information the model should have in front of it, not just how you phrase the ask. And if you're trying to get a whole team past the vague-one-liner stage, that's less about any single prompt and more about [helping people build the habit](/en/news/2026-10-29-how-to-get-your-team-to-use-ai/) on their own real work. New to all of this? Start with the [agent basics](/en/agent-101/) primer.
+
+## FAQ
+
+**How do I write effective AI prompts for work?**
+Give the model four things: a clear goal (the task), context (why you're asking and who it's for), a source or example to work from, and your expectations for the output (length, format, tone). Microsoft's Copilot training uses exactly that goal–context–source–expectations structure, and only the goal is required — the rest just sharpen the result. Write it as plainly as you'd brief a new teammate, paste a sample when you want a specific style, then read the answer and refine. The skill isn't writing one perfect prompt; it's iterating quickly.
+
+**Why does AI give me generic or wrong answers?**
+Almost always because the prompt was vague, not because the model is weak. If you ask "write a summary" you'll get a generic summary; if you ask for "three bullets for my manager, focused on the decision we need, in plain language," you'll get that. Anthropic's advice is a good check: if a colleague with little context couldn't follow your prompt, the model can't either. Add the missing context, audience, and format.
+
+**Do I need to learn "prompt engineering"?**
+Not as a formal discipline for everyday work. The vendor guides from Anthropic, OpenAI, and Microsoft all come down to the same plain habits: be specific, give context, show an example, state the format, and iterate. That's enough to get strong results from ChatGPT, Claude, or Copilot on normal office tasks. The deeper techniques matter more when you're building an agent than when you're asking for a draft.
+
+**Should I include examples in my prompt?**
+Yes, whenever the output has a style or structure that's hard to describe in words. Pasting one good example — a past email in your voice, a report in the format you want, a filled-in template — pins down the result faster than a paragraph of instructions. It's the single highest-leverage habit for getting consistent, on-brand output.
+
+**How many tries should a good prompt take?**
+Expect a few. OpenAI, Anthropic, and Microsoft all describe prompting as iterative: write, read the result, adjust, repeat. If the first answer is 70% right, fix the prompt rather than rewriting the answer by hand — you'll get a better result and a reusable prompt. For big tasks, break the work into steps so you can correct each one before moving on.
+
+---
+
+Every post on this site is one real, documented AI build — the task, the exact prompt, and the honest result, including what didn't work. The clearest way to learn good prompting is to read ones that actually ran. Want one in your inbox each week? [Subscribe free](/en/).
