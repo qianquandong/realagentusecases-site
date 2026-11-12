@@ -1,0 +1,67 @@
+---
+title: "What a Workplace AI Use Policy Should Cover"
+date: "2026-11-12"
+excerpt: "A workplace AI use policy names the approved tools, the data that must never go into them, and who checks the output — plain rules people can actually follow."
+---
+
+A workplace AI use policy is a short, plain document that tells employees which AI tools are approved, what data may and may not go into them, which uses are off-limits, and when a human must review the output. Its job isn't to ban AI — it's to make safe, useful AI the easy default.
+
+Most teams reach for a policy after they notice people are already using AI, often with tools and accounts no one vetted. The right response isn't a blanket ban, which rarely works, or a vague "use AI responsibly" line, which no one can follow. It's a short set of specific rules. Here's what belongs in them, and the one section that matters more than the rest.
+
+## Why a policy beats a ban
+
+People are using AI at work whether or not there's a policy. Deloitte's 2026 GenAI Workforce Survey, which questioned nearly 14,000 AI-using employees, found that [about a third (31%) of people using generative AI at work are doing so without their employer's permission, and 46% are using free, consumer-grade tools](https://www.deloitte.com/uk/en/issues/generative-ai/genai-workforce-survey-shadow-ai.html). That's "shadow AI" — unsanctioned use that happens in the gap where no guidance exists.
+
+A ban doesn't close that gap; it just pushes the activity somewhere you can't see, often onto personal accounts with weaker data protections. A policy that names a few approved tools and clear limits gives people a safe path to do the thing they're going to do anyway. That's the same logic behind [getting a team to actually adopt AI](/en/news/2026-10-29-how-to-get-your-team-to-use-ai/): make the sanctioned route the easy one.
+
+## What a workable policy covers
+
+The law firm Littler, in its guidance on [AI policies in the workplace](https://www.littler.com/news-analysis/asap/considerations-artificial-intelligence-policies-workplace), lays out the sections an effective policy needs. Stripped to the essentials, a usable version covers six things:
+
+- **A purpose line.** One or two sentences on why the policy exists and who it applies to — employees, contractors, and anyone acting for the company.
+- **Approved tools.** A named list of which AI tools are allowed and for what, not a vague category. "The licensed Copilot in our Microsoft tenant" is useful; "AI tools" is not.
+- **Permitted and prohibited uses.** Concrete examples of acceptable work (drafting internal documents, brainstorming) and the lines you don't want crossed (no AI-generated final decisions on hiring, legal, or medical questions without review).
+- **Data rules.** What information may go into each tool — and, more importantly, what may never (customer data, credentials, anything confidential or regulated). This is the section that carries the real risk, covered below.
+- **Human review.** When a person must check AI output before it's used or sent, and who is accountable when something goes wrong.
+- **Ownership and updates.** A named owner, and a commitment to review the policy as tools and the law change.
+
+Littler's own survey found [only 37% of employers had provided AI usage guidance to employees](https://www.littler.com/news-analysis/asap/considerations-artificial-intelligence-policies-workplace) — so most organizations are writing this from scratch, and most templates online are a starting point, not a finished policy. Keep it short and specific; a policy no one reads protects no one.
+
+## The data line matters most
+
+If you get only one section right, make it the data rules — because the biggest, most common risk is an employee pasting something sensitive into a consumer chatbot that may use it to train a model. This is where the difference between an *enterprise* tool and a *consumer* app is not marketing; it's contractual.
+
+With a business account, the major vendors commit not to train on your data. Microsoft's [Enterprise Data Protection for Microsoft 365 Copilot](https://learn.microsoft.com/en-us/copilot/microsoft-365/enterprise-data-protection) states that prompts, responses, and data accessed through Microsoft Graph are excluded from foundation-model training. OpenAI says the same for its business products: [it doesn't train its models on your organization's data by default](https://openai.com/business-data/) across ChatGPT Enterprise, Business, Edu, and the API. The same companies' *personal* plans carry no such promise — a signed-in personal ChatGPT or Copilot account can use your conversations to improve the models unless you opt out.
+
+So the single highest-value rule in most policies is: use the approved enterprise accounts for anything involving company data, and keep company data out of personal AI accounts entirely. That one line prevents most of the damage [a data leak through AI](/en/news/2026-08-25-ai-agent-security-risks/) can cause.
+
+## Enforce the review gate in the workflow, not just the page
+
+A policy is words on a page; words get ignored under deadline pressure. The rules that actually hold are the ones wired into how work happens. For AI that only drafts and suggests, the enforcement is a habit: a person edits and approves before anything ships. For AI that can *act* — send, pay, publish, delete — the enforcement should be a real gate, not a sentence in a handbook.
+
+That's the same distinction behind [agent guardrails](/en/news/2026-08-29-ai-agent-guardrails-for-business/): a line in a prompt or a policy is a request the system can ignore, while a [human-approval step built into the workflow](/en/news/2026-08-13-human-in-the-loop-ai-agents/) holds even when the model — or the employee — is in a hurry. The [Gmail triage agent in Issue #001](/en/posts/2026-05-13-gmail-ai-agent/) is the pattern at desk scale: it reads a real inbox freely, but a human presses send. Your policy should say *what* needs review; your tools should make that review hard to skip.
+
+## Where this fits
+
+A use policy is one piece of putting AI to work on a team, alongside [helping people adopt it](/en/news/2026-10-29-how-to-get-your-team-to-use-ai/) and the technical [guardrails](/en/news/2026-08-29-ai-agent-guardrails-for-business/) on any agent that can take action. New to the whole topic? Start with the [agent basics](/en/agent-101/) primer, then read a [real documented build](/en/posts/2026-05-13-gmail-ai-agent/) to see the review discipline in practice.
+
+## FAQ
+
+**Do we need an AI use policy for employees?**
+For almost any organization, yes. People are already using AI at work — Deloitte's 2026 survey found about a third do so without permission and nearly half use free consumer tools — so the choice isn't "policy or no AI," it's "guided use or shadow use." A short policy that names approved tools, sets clear data rules, and defines when a human reviews output gives people a safe path and reduces the risk of a leak. It doesn't need to be long; it needs to be specific. A blanket ban mostly just moves the activity out of sight.
+
+**What should an AI use policy include?**
+Six things: a purpose line (why it exists, who it covers); a named list of approved tools and what each is approved for; permitted and prohibited uses with concrete examples; data rules (what may and may never go into a tool); a human-review requirement for important output; and a named owner who keeps it current. Littler's workplace-AI guidance covers this ground. Keep it plain — a policy people can't follow protects no one.
+
+**Can employees use ChatGPT or Copilot at work?**
+It depends on the account. A business/enterprise account is designed for it: Microsoft's Enterprise Data Protection and OpenAI's business-data terms both commit not to train their models on your data by default. A personal account carries no such promise and may use your conversations to improve the models, so the common rule is: company data only goes into approved enterprise accounts, never a personal one. That distinction, not the tool's name, is what a good data rule turns on.
+
+**Should we just ban AI instead?**
+Rarely the right call. Bans are hard to enforce and tend to push use onto unmonitored personal accounts — the exact shadow-AI risk a policy exists to reduce. It's usually safer to approve a small set of vetted tools, state clearly what's off-limits, and require review on anything that matters, than to forbid everything and lose visibility. Prohibit specific high-risk uses, not the entire category.
+
+**Who should own the AI use policy?**
+Give it a named owner — often someone in IT, legal, operations, or an AI lead — rather than leaving it ownerless. The owner keeps the approved-tools list current, fields questions about edge cases, and revises the policy as tools and regulations change. Pair the policy with light training so people know which tools are approved and why the data rules exist; a rule nobody understands gets worked around.
+
+---
+
+Every post on this site is one real, documented AI build — the task, the exact setup, and the honest result. A good policy is what lets a team use these builds without creating new risk. Want a new one in your inbox each week? [Subscribe free](/en/).

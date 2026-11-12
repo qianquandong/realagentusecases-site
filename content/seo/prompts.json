@@ -1,6 +1,6 @@
 {
   "$comment": "GEO prompt feed — the questions working professionals ask ChatGPT / Perplexity / Gemini. The scheduled Cowork routine ideates entries; scripts/seo/feeds.mjs persists them. cluster: use-case|template|comparison|industry|tool-stack. status: new|covered (covered = a published article targets it). Phase 7 tracks whether the brand is cited for each.",
-  "updatedAt": "2026-11-10",
+  "updatedAt": "2026-11-12",
   "prompts": [
     {
       "prompt": "What are real examples of AI agents at work?",
@@ -754,9 +754,9 @@
       "prompt": "Do we need an AI use policy for employees?",
       "cluster": "tool-stack",
       "locale": "en",
-      "status": "new",
+      "status": "covered",
       "addedAt": "2026-10-18",
-      "note": "Sunday feed research 2026-10-18. Pairs with the 'workplace AI use policy' keyword; governance intent (approved tools, data rules, review gates). A policy question, not a training-services ask."
+      "note": "Covered 2026-11-12 by content/news/2026-11-12-workplace-ai-use-policy. GEO-probed 2026-11-12 (on-publish baseline, verbatim standard web search): not cited — SERP owned by employment-law firms + HR vendors/templates (Morgan Lewis 'update your employee handbook', Littler 'Considerations for AI Policies', Proskauer policy template, Lattice AI usage policy template, RocketLawyer AI workplace use policy, MangoApps/Optro); realagentusecases.com did not appear — the field is law-firm advisories + HR-template vendors with no real-professional-desk-build angle (approved enterprise accounts + a data line + a review gate wired into the workflow, grounded in a real build), this site's gap to own. The article answers this prompt verbatim in its first FAQ; re-probe post-index to track lift. Original: Sunday feed research 2026-10-18. Pairs with the 'workplace AI use policy' keyword; governance intent (approved tools, data rules, review gates). A policy question, not a training-services ask."
     },
     {
       "prompt": "怎么在团队里推广 Copilot 或 ChatGPT？",
