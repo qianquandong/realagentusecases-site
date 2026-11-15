@@ -1,6 +1,6 @@
 {
   "$comment": "GEO prompt feed — the questions working professionals ask ChatGPT / Perplexity / Gemini. The scheduled Cowork routine ideates entries; scripts/seo/feeds.mjs persists them. cluster: use-case|template|comparison|industry|tool-stack. status: new|covered (covered = a published article targets it). Phase 7 tracks whether the brand is cited for each.",
-  "updatedAt": "2026-11-12",
+  "updatedAt": "2026-11-15",
   "prompts": [
     {
       "prompt": "What are real examples of AI agents at work?",
@@ -835,7 +835,7 @@
       "cluster": "team-adoption",
       "locale": "en",
       "status": "new",
-      "note": "Sunday ideation 2026-11-01. Pairs with the new 'department AI use cases' keyword; the per-function starting-task picker. Ground in Microsoft Copilot Scenario Library (by department/role) + the site's own function hubs (sales/marketers/accountants/operations) + Issue #001.",
+      "note": "Sunday ideation 2026-11-01. Pairs with the new 'department AI use cases' keyword; the per-function starting-task picker. Ground in Microsoft Copilot Scenario Library (by department/role) + the site's own function hubs (sales/marketers/accountants/operations) + Issue #001. GEO-probed 2026-11-15 (Sunday, least-recently-probed on-topic team-adoption prompt): not cited -- verbatim standard web search owned by vendor/consultancy AI-use-case listicles + an OpenAI business guide (stack-ai, moveworks, monday.com, aimultiple, itransition, cdn.openai.com Identifying-and-Scaling-AI-Use-Cases, kanerika, ema.ai, buildaiq, esg-global); realagentusecases.com did not appear. Re-probe when the 'department AI use cases' article ships.",
       "addedAt": "2026-11-01"
     },
     {
@@ -884,6 +884,46 @@
       "cluster": "team-adoption",
       "status": "new",
       "addedAt": "2026-11-08"
+    },
+    {
+      "prompt": "How do I redesign our workflows around AI?",
+      "cluster": "team-adoption",
+      "locale": "en",
+      "status": "new",
+      "addedAt": "2026-11-15",
+      "note": "Sunday ideation 2026-11-15. Pairs with the new 'redesigning workflows for AI' keyword — the #1 2026 ROI lever (McKinsey road-to-ROI, Deloitte State of AI in the Enterprise 2026, Wharton-GBK Adaptive Advantage). Answer = pick one real workflow, redesign it around the tool (not bolt AI onto the old steps), keep the human review gate; ground in a real build (Issue #001)."
+    },
+    {
+      "prompt": "Why has our AI adoption not improved productivity?",
+      "cluster": "team-adoption",
+      "locale": "en",
+      "status": "new",
+      "addedAt": "2026-11-15",
+      "note": "Sunday ideation 2026-11-15. Pairs with the new 'why AI adoption stalls at work' keyword — the productivity paradox (WEF: adoption surged, broad labour productivity largely flat) + adoption-outruns-return (McKinsey/Deloitte). Answer the operational causes (no redesigned workflow/baseline/owner, usage measured not outcomes) with primary-sourced or qualitative framing — NO invented failure-rate stats."
+    },
+    {
+      "prompt": "What happened to Zapier Agents and what is AI by Zapier?",
+      "cluster": "comparison",
+      "locale": "en",
+      "status": "new",
+      "addedAt": "2026-11-15",
+      "note": "Sunday ideation 2026-11-15. Pairs with the new 'AI by Zapier vs Zapier Agents' keyword. Zapier folded standalone Agents into a single AI step in the Zap editor (zapier.com/blog/zapier-agents-is-now-ai-by-zapier, Oct 6 2026, with a migration guide). Ground only in Zapier's own post/docs; date the change so it ages honestly."
+    },
+    {
+      "prompt": "团队应该怎么围绕 AI 重新设计工作流程？",
+      "cluster": "team-adoption",
+      "locale": "zh",
+      "status": "new",
+      "addedAt": "2026-11-15",
+      "note": "Sunday ideation 2026-11-15. ZH pair for the 'redesigning workflows for AI' keyword; grows the underweight ZH feed. 不是把 AI 硬塞进旧流程，而是挑一个真实工作流按 AI 重新设计，并保留人工复核环节；以 McKinsey/Deloitte/Wharton 原始报告与真实搭建（Issue #001）为准，不编造 ROI 数字。"
+    },
+    {
+      "prompt": "公司引入 AI 后为什么没有提升效率？",
+      "cluster": "team-adoption",
+      "locale": "zh",
+      "status": "new",
+      "addedAt": "2026-11-15",
+      "note": "Sunday ideation 2026-11-15. ZH pair for the 'why AI adoption stalls at work' keyword; grows the underweight ZH feed. 采用率上去了但生产率没动（WEF 生产率悖论）——原因多是运营层面：流程没重设、没有基线、没人负责、只衡量使用量不衡量产出。只用原始来源或定性表述，不编造失败率数字。"
     }
   ]
 }

@@ -1,6 +1,6 @@
 {
   "$comment": "SEO keyword feed — a living file. The scheduled Cowork routine ideates entries; scripts/seo/feeds.mjs persists them (dedupe + status + timestamps). intent: informational|commercial|transactional. funnel: TOFU|MOFU|BOFU. cluster: use-case|template|comparison|industry|tool-stack. status: new|used.",
-  "updatedAt": "2026-11-12",
+  "updatedAt": "2026-11-15",
   "keywords": [
     {
       "term": "AI agent use cases",
@@ -1464,6 +1464,66 @@
       "status": "new",
       "addedAt": "2026-11-08",
       "note": "Sunday feed research 2026-11-08. Tool-stack, timely and squarely on-brand (a desktop agent for NON-technical people = exactly this site's audience). Claude Cowork — launched as a research preview Jan 2026, now reported GA on paid Claude plans with web + iOS/Android and the ability to run recurring/scheduled work (verify current status/plan availability on Anthropic's own Cowork page at write time; third-party version/date claims conflict). Distinct from computer-use (09-20, the underlying capability): this is the shipped product a team actually adopts. Write it evergreen — what it does, the kinds of recurring tasks it fits, and the same watch-vs-act gate (human-in-the-loop 08-13) — not a launch-news post; keep every capability claim to Anthropic's documented features. Clusters with computer-use-agents (09-20), AI-agents-for-work (08-04), agent-vs-chatbot (08-12), human-in-the-loop (08-13)."
+    },
+    {
+      "term": "redesigning workflows for AI",
+      "intent": "informational",
+      "funnel": "MOFU",
+      "cluster": "team-adoption",
+      "locale": "both",
+      "status": "new",
+      "addedAt": "2026-11-15",
+      "note": "Sunday feed research 2026-11-15. The #1 2026 ROI lever per this week's primary reports: McKinsey 'The state of AI in 2026: on the road to ROI' (Aug 2026, mckinsey.com/.../the-state-of-ai — workflow redesign has the strongest effect on EBIT impact; ~44% report AI scaling — verify exact figures on the primary PDF), Deloitte 'State of AI in the Enterprise 2026' (deloitte.com — 'redesign the work, not just the workflow'; nearly half add AI without redesign), Wharton-GBK 'Adaptive Advantage' 2026 AI Adoption Report (knowledge.wharton.upenn.edu — departments that combine changed workflows + AI in core processes + agent use report strongly positive ROI far more often, 67% vs 19% — treat the split as that report's finding, verify primary). Angle = the honest gap-filler: buying seats and bolting AI onto the old process is why adoption outruns return; redesign one real workflow around the tool (and keep the human review gate). Grounded in Issue #001 (the inbox workflow actually rebuilt, not 'use AI on email'). Clusters with get-team-to-use-ai (10-29), measure-adoption (10-22), measure-ROI (08-21), why-agents-fail (09-23), AI-pilot (11-05). NO fabricated ROI/time-saved numbers; attribute every percentage to its named report or keep qualitative."
+    },
+    {
+      "term": "why AI adoption stalls at work",
+      "intent": "informational",
+      "funnel": "TOFU",
+      "cluster": "team-adoption",
+      "locale": "both",
+      "status": "new",
+      "addedAt": "2026-11-15",
+      "note": "Sunday feed research 2026-11-15. The productivity-paradox / adoption!=return piece: organizational AI adoption has surged while broad enterprise labour productivity stays largely flat outside a few sectors (World Economic Forum, weforum.org/stories/artificial-intelligence 'why workflows matter more than software'), and adoption has outrun financial return (McKinsey road-to-ROI + Deloitte State of AI in the Enterprise 2026). Honest diagnosis angle = stalls are operational not model-quality: no redesigned workflow, no baseline, no clear owner, training stops at one session, usage measured instead of outcomes — mirrors why-agents-fail (09-23) at the team level. Ground the named causes in the primary reports above + the site's real builds (Issue #001). Distinct from get-team-to-use-ai (10-29, the how-to-drive-adoption playbook): this is the why-it-plateaus explainer. Clusters with redesigning-workflows-for-AI (new), measure-adoption (10-22), AI-pilot (11-05), why-agents-fail (09-23). NO invented failure-rate stats; use only primary-sourced or qualitative."
+    },
+    {
+      "term": "AI use cases for marketing teams",
+      "intent": "informational",
+      "funnel": "MOFU",
+      "cluster": "team-adoption",
+      "locale": "both",
+      "status": "new",
+      "addedAt": "2026-11-15",
+      "note": "Sunday feed research 2026-11-15. Per-department exemplar under the 'department AI use cases' hub (team-adoption everyday-tasks angle, NOT the agents-for-marketers tool hub 07-27): the concrete day-to-day Copilot/ChatGPT/Claude tasks a marketing team actually runs — brief + first-draft of a blog/email/landing page (draft-don't-publish), repurposing one asset into channel drafts, campaign/audience summarizing, competitor-scan digests — each with a human owning the publish button. Ground in Microsoft Copilot Scenario Library (adoption.microsoft.com/copilot-scenario-library, by role/department) + OpenAI 'Identifying and Scaling AI Use Cases' guide (cdn.openai.com) + the site's own content-repurposing (07-24) + marketers hub (07-27) + Issue #001. Distinct from marketers hub = team-adoption 'which everyday tasks to start with', not an agent-tool map. Clusters with department-AI-use-cases (hub), content-repurposing (07-24), social-media-content (07-25). NO adoption/ROI stats unless primary."
+    },
+    {
+      "term": "AI use cases for customer service teams",
+      "intent": "informational",
+      "funnel": "MOFU",
+      "cluster": "team-adoption",
+      "locale": "both",
+      "status": "new",
+      "addedAt": "2026-11-15",
+      "note": "Sunday feed research 2026-11-15. Per-department exemplar under the 'department AI use cases' hub (support is repeatedly flagged as the department with the clearest measurable AI return — e.g. the OpenAI 'Identifying and Scaling AI Use Cases' guide + enterprise-use-case SERP this run): the everyday tasks a support team runs with AI — suggested-reply drafts a human edits, ticket summarizing/triage/routing, knowledge-base answer drafting, macro cleanup — with the resolve-vs-escalate gate kept. Ground in the existing site builds support-triage (07-15, sort-vs-resolve) + customer-service (09-14) + Microsoft Copilot Scenario Library + Issue #001; distinguish the team-adoption 'what to start with at your desk' angle from the agent-product hubs. Clusters with department-AI-use-cases (hub), support-triage (07-15), customer-service (09-14). NO deflection/CSAT stats unless primary-sourced (vendor resolution-rate claims stay attributed/qualitative)."
+    },
+    {
+      "term": "AI adoption ROI gap",
+      "intent": "commercial",
+      "funnel": "BOFU",
+      "cluster": "team-adoption",
+      "locale": "both",
+      "status": "new",
+      "addedAt": "2026-11-15",
+      "note": "Sunday feed research 2026-11-15. The buyer/manager question behind the 2026 headlines: everyone has adopted AI, few can show the return — why, and how to close it. Anchor on primary reports (attribute every figure, verify primary at write time): Wharton-GBK 'Adaptive Advantage' 2026 (knowledge.wharton.upenn.edu — 67% of leaders whose department combines workflow change + AI-in-core-process + agent use report strongly positive ROI vs 19% without; 35% tracking a growth measure report strongly positive ROI vs 13% tracking efficiency alone), McKinsey road-to-ROI (Aug 2026), Deloitte State of AI in the Enterprise 2026 (cost/token/return framing). Close-the-gap thesis = redesign the workflow + measure outcomes not seats (ties to redesigning-workflows-for-AI + measure-adoption 10-22 + measure-ROI 08-21). Distinct from measure-ROI (08-21, the how-to-measure method): this is the why-the-gap-exists diagnosis. Clusters with measure-ROI (08-21), measure-adoption (10-22), redesigning-workflows-for-AI (new), why-AI-adoption-stalls (new). NO invented ROI math."
+    },
+    {
+      "term": "AI by Zapier vs Zapier Agents",
+      "intent": "commercial",
+      "funnel": "MOFU",
+      "cluster": "comparison",
+      "locale": "both",
+      "status": "new",
+      "addedAt": "2026-11-15",
+      "note": "Sunday feed research 2026-11-15 (competitor sweep). Timely: Zapier folded its standalone Agents product into a single AI step inside the Zap editor — 'Zapier Agents is now AI by Zapier' (zapier.com/blog/zapier-agents-is-now-ai-by-zapier, Oct 6 2026; includes a migration guide for existing Agents users). Buyers who built on Zapier Agents will search what changed and what to do. Angle = what moved where + how it fits the rules-vs-reasoning picture (an AI step inside a Zap vs a fixed-rule Zap), not a launch-news rehash. Ground ONLY in Zapier's own post + docs at write time (verify the current product name/state — it is actively shifting). Clusters with zapier-agents-vs-zaps (07-19, still new — this supersedes/updates it; consider merging at write time), claude-vs-zapier, no-code-ai-agent-tools (07-08). Keep it evergreen-ish: name the date of the change so it ages honestly. NO unverified app-count/usage stats (the aggregator '9,000+ apps' figures seen this run were low-quality)."
     }
   ]
 }
