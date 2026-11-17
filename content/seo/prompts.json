@@ -1,6 +1,6 @@
 {
   "$comment": "GEO prompt feed — the questions working professionals ask ChatGPT / Perplexity / Gemini. The scheduled Cowork routine ideates entries; scripts/seo/feeds.mjs persists them. cluster: use-case|template|comparison|industry|tool-stack. status: new|covered (covered = a published article targets it). Phase 7 tracks whether the brand is cited for each.",
-  "updatedAt": "2026-11-15",
+  "updatedAt": "2026-11-17",
   "prompts": [
     {
       "prompt": "What are real examples of AI agents at work?",
@@ -834,8 +834,8 @@
       "prompt": "What are good AI use cases for each department?",
       "cluster": "team-adoption",
       "locale": "en",
-      "status": "new",
-      "note": "Sunday ideation 2026-11-01. Pairs with the new 'department AI use cases' keyword; the per-function starting-task picker. Ground in Microsoft Copilot Scenario Library (by department/role) + the site's own function hubs (sales/marketers/accountants/operations) + Issue #001. GEO-probed 2026-11-15 (Sunday, least-recently-probed on-topic team-adoption prompt): not cited -- verbatim standard web search owned by vendor/consultancy AI-use-case listicles + an OpenAI business guide (stack-ai, moveworks, monday.com, aimultiple, itransition, cdn.openai.com Identifying-and-Scaling-AI-Use-Cases, kanerika, ema.ai, buildaiq, esg-global); realagentusecases.com did not appear. Re-probe when the 'department AI use cases' article ships.",
+      "status": "covered",
+      "note": "Sunday ideation 2026-11-01. Pairs with the new 'department AI use cases' keyword; the per-function starting-task picker. Ground in Microsoft Copilot Scenario Library (by department/role) + the site's own function hubs (sales/marketers/accountants/operations) + Issue #001. GEO-probed 2026-11-15 (Sunday, least-recently-probed on-topic team-adoption prompt): not cited -- verbatim standard web search owned by vendor/consultancy AI-use-case listicles + an OpenAI business guide (stack-ai, moveworks, monday.com, aimultiple, itransition, cdn.openai.com Identifying-and-Scaling-AI-Use-Cases, kanerika, ema.ai, buildaiq, esg-global); realagentusecases.com did not appear. Re-probe when the 'department AI use cases' article ships. | Covered 2026-11-17 by content/news/2026-11-17-department-ai-use-cases (en+zh), title 'AI Use Cases by Department: A Starting Map'. GEO re-probed 2026-11-17 (on-publish baseline, verbatim standard web search): still not cited (position null) — SERP again owned by vendor/consultancy use-case listicles + OpenAI's own guide PDF (stack-ai Most Popular AI Use Cases, moveworks enterprise-ai-use-cases, monday.com, aimultiple, research.esg-global 'AI Use Cases Extend Across Every Department', itransition, kanerika, folio3, ema.ai, buildaiq, cdn.openai.com Identifying-and-Scaling); realagentusecases.com did not appear — the field is enterprise 'AI use cases by department' listicles + a vendor-neutral OpenAI guide with no real-professional-desk-build / one-measurable-task-per-department-grounded-in-a-real-build angle, this site's gap to own. NOTABLY the same SERP independently states the article's own thesis (map common per-department workflows then start with 1-2 high-volume measurable use cases; let employees find role-fit use cases; support is the department with the clearest measurable return) — corroboration for the shipped article, not fabrication. The article answers this prompt verbatim in its first FAQ; re-probe post-index to track lift.",
       "addedAt": "2026-11-01"
     },
     {
