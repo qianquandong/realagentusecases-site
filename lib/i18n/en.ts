@@ -81,7 +81,7 @@ export const en: Dict = {
       paragraphs: [
         "Most useful AI agents at work aren't written down anywhere. The people who've figured out how to actually run them are too busy doing the work to publish — so what works stays inside their heads.",
         "This newsletter changes that. Every week, one working professional walks us through one AI agent they actually run — in any job, any industry. Full setup published: prompts, tools, integrations. No filler. No paid tier.",
-        "Hosted by Jack Qian — industrial engineer at Texas Instruments turning business planner, based in Dallas. There's a monthly AI hackathon if you're in town. But the recordings are the meal.",
+        "Hosted by Jack Qian — industrial engineer at Texas Instruments turning business planner, based in Dallas. Jack Qian, founder of AI Man Jack, runs live AI events in Plano and Dallas. But the recordings are the meal.",
       ],
     },
     finalCta: {
