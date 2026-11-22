@@ -1,6 +1,6 @@
 {
   "$comment": "GEO prompt feed — the questions working professionals ask ChatGPT / Perplexity / Gemini. The scheduled Cowork routine ideates entries; scripts/seo/feeds.mjs persists them. cluster: use-case|template|comparison|industry|tool-stack. status: new|covered (covered = a published article targets it). Phase 7 tracks whether the brand is cited for each.",
-  "updatedAt": "2026-11-17",
+  "updatedAt": "2026-11-22",
   "prompts": [
     {
       "prompt": "What are real examples of AI agents at work?",
@@ -871,7 +871,8 @@
       "prompt": "How mature is our company's AI adoption?",
       "cluster": "team-adoption",
       "status": "new",
-      "addedAt": "2026-11-08"
+      "addedAt": "2026-11-08",
+      "note": "GEO-probed 2026-11-22 (Sunday, least-recently-probed never-before-probed on-topic team-adoption prompt): not cited (position null) — verbatim standard web search owned by AI-maturity-framework vendors/consultancies (G2 ai-maturity-model, CMU SEI AI Adoption Maturity Model + SEI/Accenture partnership, MIT Sloan/CISR Enterprise AI Maturity, DZone five-stages, BMC/Gartner, PwC diagnostic, Deloitte, ActivTrak, Nebius AI Adoption Map); realagentusecases.com did not appear. The field is staged maturity frameworks + assessment tools with no real-professional-desk-build / start-with-one-workflow angle grounded in a real build, this site's gap to own. Pairs with the queued 'AI adoption maturity model' + new 'AI readiness assessment for teams' keywords; re-probe when either article ships."
     },
     {
       "prompt": "What is Claude Cowork and what can it do?",
@@ -924,6 +925,46 @@
       "status": "new",
       "addedAt": "2026-11-15",
       "note": "Sunday ideation 2026-11-15. ZH pair for the 'why AI adoption stalls at work' keyword; grows the underweight ZH feed. 采用率上去了但生产率没动（WEF 生产率悖论）——原因多是运营层面：流程没重设、没有基线、没人负责、只衡量使用量不衡量产出。只用原始来源或定性表述，不编造失败率数字。"
+    },
+    {
+      "prompt": "What AI use cases should an operations team start with?",
+      "cluster": "team-adoption",
+      "locale": "en",
+      "status": "new",
+      "addedAt": "2026-11-22",
+      "note": "Sunday ideation 2026-11-22. Pairs with the new 'AI use cases for operations teams' keyword; per-department starting-task picker. Ground in Microsoft Copilot Scenario Library (operations) + OpenAI 'Identifying and Scaling AI Use Cases' + Issue #001."
+    },
+    {
+      "prompt": "How do I know if my company is ready for AI agents?",
+      "cluster": "team-adoption",
+      "locale": "en",
+      "status": "new",
+      "addedAt": "2026-11-22",
+      "note": "Sunday ideation 2026-11-22. Pairs with the new 'AI readiness assessment for teams' keyword and complements the uncited 'How mature is our company's AI adoption?' probe (this run). Field is maturity-framework vendors (SEI/Accenture, MIT CISR, ActivTrak, Nebius, G2); this site's gap = a start-with-one-real-workflow, grounded-in-a-build answer."
+    },
+    {
+      "prompt": "Should I roll out ChatGPT or Microsoft Copilot to my team?",
+      "cluster": "comparison",
+      "locale": "en",
+      "status": "new",
+      "addedAt": "2026-11-22",
+      "note": "Sunday ideation 2026-11-22. Pairs with the new 'ChatGPT vs Copilot for teams' keyword; the rollout buyer's which-tool question. Ground in Microsoft 365 Copilot + OpenAI ChatGPT Enterprise first-party pages; match-the-tool-to-where-your-work-already-lives."
+    },
+    {
+      "prompt": "运营团队可以先用 AI 做哪些事？",
+      "cluster": "team-adoption",
+      "locale": "zh",
+      "status": "new",
+      "addedAt": "2026-11-22",
+      "note": "Sunday ideation 2026-11-22. ZH pair for 'AI use cases for operations teams'; grows the underweight ZH prompt feed. 从高频、可衡量的任务起步（状态周报、SOP 初稿、邮件与供应商信息整理、数据清洗），写操作保留人工复核；以 Microsoft Copilot 场景库 + 真实搭建（Issue #001）为准。"
+    },
+    {
+      "prompt": "怎么判断公司是否适合引入 AI agent？",
+      "cluster": "team-adoption",
+      "locale": "zh",
+      "status": "new",
+      "addedAt": "2026-11-22",
+      "note": "Sunday ideation 2026-11-22. ZH pair for 'AI readiness assessment for teams'；grows the underweight ZH feed。别先做全公司成熟度审计——挑一个真实工作流先跑，看是否有可衡量收益再谈推广；以 SEI/Accenture、MIT CISR 等原始框架为准，不编造数字。"
     }
   ]
 }

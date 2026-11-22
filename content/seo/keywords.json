@@ -1,6 +1,6 @@
 {
   "$comment": "SEO keyword feed — a living file. The scheduled Cowork routine ideates entries; scripts/seo/feeds.mjs persists them (dedupe + status + timestamps). intent: informational|commercial|transactional. funnel: TOFU|MOFU|BOFU. cluster: use-case|template|comparison|industry|tool-stack. status: new|used.",
-  "updatedAt": "2026-11-19",
+  "updatedAt": "2026-11-22",
   "keywords": [
     {
       "term": "AI agent use cases",
@@ -1524,6 +1524,66 @@
       "status": "new",
       "addedAt": "2026-11-15",
       "note": "Sunday feed research 2026-11-15 (competitor sweep). Timely: Zapier folded its standalone Agents product into a single AI step inside the Zap editor — 'Zapier Agents is now AI by Zapier' (zapier.com/blog/zapier-agents-is-now-ai-by-zapier, Oct 6 2026; includes a migration guide for existing Agents users). Buyers who built on Zapier Agents will search what changed and what to do. Angle = what moved where + how it fits the rules-vs-reasoning picture (an AI step inside a Zap vs a fixed-rule Zap), not a launch-news rehash. Ground ONLY in Zapier's own post + docs at write time (verify the current product name/state — it is actively shifting). Clusters with zapier-agents-vs-zaps (07-19, still new — this supersedes/updates it; consider merging at write time), claude-vs-zapier, no-code-ai-agent-tools (07-08). Keep it evergreen-ish: name the date of the change so it ages honestly. NO unverified app-count/usage stats (the aggregator '9,000+ apps' figures seen this run were low-quality)."
+    },
+    {
+      "term": "AI use cases for operations teams",
+      "intent": "informational",
+      "funnel": "TOFU",
+      "cluster": "team-adoption",
+      "locale": "both",
+      "status": "new",
+      "addedAt": "2026-11-22",
+      "note": "Sunday ideation 2026-11-22. Per-department everyday-tasks exemplar under the department-use-cases hub (11-17), mirroring the shipped marketing exemplar (11-19) and queued customer-service exemplar (11-15). DISTINCT from the agent-tool 'AI agents for operations teams' industry hub (09-13): this is the ops team's everyday AI tasks (status reporting, SOP/process drafting, vendor + email triage, data cleanup) grounded in a real build (Issue #001) + Microsoft Copilot Scenario Library (operations) + OpenAI 'Identifying and Scaling AI Use Cases' at write time. No invented adoption/ROI stats."
+    },
+    {
+      "term": "AI use cases for HR teams",
+      "intent": "informational",
+      "funnel": "TOFU",
+      "cluster": "team-adoption",
+      "locale": "both",
+      "status": "new",
+      "addedAt": "2026-11-22",
+      "note": "Sunday ideation 2026-11-22. Per-department everyday-tasks exemplar under the department-use-cases hub (11-17), sibling of the marketing exemplar (11-19). DISTINCT from the agent-tool 'AI agents for HR teams' industry hub (08-02): this is the HR team's everyday tasks (job-description drafts, policy Q&A, interview-note summaries, onboarding checklists) grounded in Microsoft Copilot Scenario Library (HR) + OpenAI use-case guide + Issue #001. Keep sensitive-data + human-review discipline (workplace-AI-use-policy 11-12). No invented stats."
+    },
+    {
+      "term": "AI use cases for finance teams",
+      "intent": "informational",
+      "funnel": "TOFU",
+      "cluster": "team-adoption",
+      "locale": "both",
+      "status": "new",
+      "addedAt": "2026-11-22",
+      "note": "Sunday ideation 2026-11-22. Per-department everyday-tasks exemplar under the department-use-cases hub (11-17). DISTINCT from the agent-tool 'AI agents for finance teams' industry hub (10-18): this is the finance team's everyday tasks (variance-commentary drafts, reconciliation review, report/deck summaries) grounded in Microsoft 365 Copilot Finance scenarios + the accountants hub (07-28) + financial-analysts hub (07-31) + Issue #001. Human sign-off stays on the numbers. No invented stats."
+    },
+    {
+      "term": "managing multiple AI agents at work",
+      "intent": "informational",
+      "funnel": "MOFU",
+      "cluster": "team-adoption",
+      "locale": "both",
+      "status": "new",
+      "addedAt": "2026-11-22",
+      "note": "Sunday ideation 2026-11-22, off the 2026 multi-agent trend (Menlo Ventures '2026 State of Enterprise AI' ~32% already using multiple agents together; Dock Nov-2026 report ~33.9% of agent work handed off by another agent — both SECONDARY vendor surveys, keep qualitative / verify at write time). The manager-level 'how do I oversee several agents' angle, DISTINCT from the technical 'AI agent orchestration' (08-15, tool-stack); pairs with 'how to manage AI agents as a manager' (new). Human-stays oversight = one review gate per agent + clear ownership (human-in-the-loop 08-13, guardrails 08-29, why-agents-fail 09-23). No invented stats."
+    },
+    {
+      "term": "AI readiness assessment for teams",
+      "intent": "informational",
+      "funnel": "TOFU",
+      "cluster": "team-adoption",
+      "locale": "both",
+      "status": "new",
+      "addedAt": "2026-11-22",
+      "note": "Sunday ideation 2026-11-22, off this run's uncited GEO probe 'How mature is our company's AI adoption?' + 2026 maturity frameworks (CMU SEI/Accenture 5-level AI Adoption Maturity Model, MIT CISR Enterprise AI Maturity, ActivTrak measure-work-change-not-logins, Nebius 5-stage map — all linkable, cite to their own pages). DISTINCT from the queued 'AI adoption maturity model' keyword (the framework itself) — this is the practical 'are we ready / where are we, and what's the first move' checklist, grounded in a real build + the start-with-one-workflow framing (CIO/Finlayson). No invented stats."
+    },
+    {
+      "term": "ChatGPT vs Copilot for teams",
+      "intent": "commercial",
+      "funnel": "MOFU",
+      "cluster": "comparison",
+      "locale": "both",
+      "status": "new",
+      "addedAt": "2026-11-22",
+      "note": "Sunday ideation 2026-11-22. The high-intent rollout buyer question (which to deploy to a team), serving the rollout cluster (Copilot-rollout 10-20, ChatGPT-rollout 10-27). DISTINCT from 'Claude vs ChatGPT for work automation' + 'ChatGPT Enterprise vs Claude Enterprise' (both new). Ground in Microsoft 365 Copilot + OpenAI ChatGPT Enterprise first-party pages at write time; match-the-tool-to-where-your-work-already-lives angle (Copilot = inside M365, ChatGPT = general assistant), no vendor-war hype, no invented benchmark numbers. NOTE: stays a product comparison, NOT an 'AI training' topic (aimanjack.com owns that)."
     }
   ]
 }
