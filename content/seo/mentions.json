@@ -1,6 +1,6 @@
 {
   "$comment": "LLM brand-mention tracking time series. The scheduled Cowork routine appends one snapshot per run: which target prompts surfaced the brand, in which LLMs, with what sentiment.",
-  "updatedAt": "2026-11-22",
+  "updatedAt": "2026-11-24",
   "snapshots": [
     {
       "date": "2026-11-22",
@@ -1341,6 +1341,18 @@
           "cited": false,
           "url": null,
           "position": null
+        }
+      ]
+    },
+    {
+      "date": "2026-11-24",
+      "probes": [
+        {
+          "prompt": "What AI use cases should an operations team start with?",
+          "cited": false,
+          "url": null,
+          "position": null,
+          "note": "Tuesday run. Least-recently-probed pick = a never-before-probed EN team-adoption GEO prompt (added 2026-11-22), the structural twin of today's shipped customer-service exemplar (same per-department 'what to start with' shape). Verbatim web search returned a vendor/explainer SERP with ZERO realagentusecases.com presence: IBM (six strategic AIOps use cases + AI in operations management), BDO (operational AI applications), enterprisedna (AI for operations: where to start), Microsoft adoption (scenario-library/operations), OpenAI (identifying-and-scaling-ai-use-cases), vktr, ClickUp, Parabola, centricconsulting, monday.com, dronahq, ada.cx. Not cited (position null). Field consensus matches our frame (start narrow with one well-defined reversible task, document the SOP first, keep consequential decisions with people) but is all vendor/consultant pages with no independent real-desk build tied to a documented example. Health: WebFetch of realagentusecases.com/en/ + /sitemap.xml + /llms.txt all failed ENOTFOUND (host outside the sandbox network allowlist) — the known recurring egress denial seen every run; git log shows deploys still landing via auto-merge to main, so treated as proxy/DNS egress, not a site outage; relied on the local audit + build gate for verification. adoption.microsoft.com + support.zendesk.com WebFetch also ENOTFOUND, but WebSearch retrieved + quoted their pages (sources real, linkable, attributed)."
         }
       ]
     }
