@@ -213,7 +213,7 @@
 
     /* STATS */
     .stats-grid {
-      display: grid; grid-template-columns: repeat(3,1fr);
+      display: grid; grid-template-columns: repeat(2,1fr);
       border: 1px solid var(--border); border-radius: 8px;
       overflow: hidden; margin-top: 40px;
     }
@@ -474,11 +474,11 @@
       <p class="hero-sub">I turn messy workflows across SAP, SQL, Excel, and internal tools into reliable automations with dry runs, human review, and explicit failure boundaries. I am now exploring AI FDE / Solutions / Operations Engineer roles.</p>
       <ul class="hero-bullets">
         <li><strong>13 groups</strong> of TI planners use my automations and reports every day</li>
-        <li><strong>700+ members</strong> in Dallas's first Chinese AI community (founder); 246 attendees across five events</li>
+        <li>Founder of a Dallas Chinese AI community: <strong>6 AI events</strong> (5 in Plano and Dallas, 1 online), 309 registrations</li>
         <li><strong>300 members</strong> in an internal AI community with biweekly sessions</li>
       </ul>
       <div class="hero-cta">
-        <a href="#builds" class="btn btn-primary">View four case studies →</a>
+        <a href="#builds" class="btn btn-primary">View three case studies →</a>
         <a href="/Jack_Qian_Resume.pdf" class="btn btn-outline" download>Download resume (PDF)</a>
       </div>
       <div class="contact-row">
@@ -520,7 +520,7 @@
     </div>
     <div class="xp-card">
       <div class="xp-top"><span class="xp-co">Dallas Chinese AI Community · Real Agent Use Cases</span><span class="xp-period">Founder &amp; Lead Organizer (side project) · 2026 – Present</span></div>
-      <ul class="xp-ul"><li>Founded and grew Dallas's first Chinese AI community to 700+ members: 5 live events from Apr to Aug 2026, 246 cumulative attendees, 70 at the largest.</li><li>Ran hands-on workshops (40 and 59 attendees) where nontechnical participants built and ran a working email daily-brief agent from a template, then demoed their own automations; also organized a 37-person AI hackathon.</li><li>Drew a cross-industry room: programmers, data analysts, bank staff, accountants, lawyers, real estate agents, restaurant and small-business owners. Aug 22 registration survey (all 59 guests): 66% working professionals, 49% already using AI daily.</li><li>Designed and taught Agent 101, a bilingual course and hands-on workshop; attendees build a working Gmail agent live from a template. <a href="/en/agent-101/live-01/" style="color:var(--brand-text);">View the English lecture slides →</a></li><li>Shipped realagentusecases.com, the community's bilingual content site and course home.</li></ul>
+      <ul class="xp-ul"><li>Founded and grew a Dallas Chinese AI community: 6 AI events (5 in Plano and Dallas, 1 online), 309 registrations, 70 at the largest.</li><li>Ran hands-on workshops (40 and 59 attendees) where nontechnical participants built and ran a working email daily-brief agent from a template, then demoed their own automations; also organized a 37-person AI hackathon.</li><li>Drew a cross-industry room: programmers, data analysts, bank staff, accountants, lawyers, real estate agents, restaurant and small-business owners. Aug 22 registration survey (all 59 guests): 66% working professionals, 49% already using AI daily.</li><li>Designed and taught Agent 101, a bilingual course and hands-on workshop; attendees build a working Gmail agent live from a template. <a href="/en/agent-101/live-01/" style="color:var(--brand-text);">View the English lecture slides →</a></li><li>Shipped realagentusecases.com, the community's bilingual content site and course home.</li></ul>
     </div>
     <div class="xp-card">
       <div class="xp-top"><span class="xp-co">Texas A&amp;M University</span><span class="xp-period">Class of 2022</span></div>
@@ -534,24 +534,13 @@
 
 <section class="section" id="builds">
   <p class="sec-label">Selected case studies</p>
-  <h2 class="sec-h2">Four examples of how I work as an FDE.</h2>
+  <h2 class="sec-h2">Three examples of how I work as an FDE.</h2>
   <div class="sec-body">
-    <p>These span a live AI receptionist for outside businesses, a scheduling system an outside business runs every week, internal enterprise delivery, and hands-on deployment with nontechnical users. Each starts with a concrete problem and keeps human judgment and failure boundaries explicit.</p>
+    <p>These span a scheduling system an outside business runs every week, internal enterprise delivery, and hands-on deployment with nontechnical users. Each starts with a concrete problem and keeps human judgment and failure boundaries explicit.</p>
   </div>
   <div class="case-list">
     <article class="case-card">
-      <div class="case-top"><span class="case-tag">01 · AI receptionist · Live</span><span class="case-status">Call or text (469) 425-4142 · English, Spanish, Chinese</span></div>
-      <h3 class="case-title">AI receptionist that answers by voice and SMS, checks availability, and books</h3>
-      <div class="case-grid">
-        <div><span class="case-k">Problem</span><p class="case-v">Small businesses miss calls and texts while serving customers, every booking turns into back-and-forth over times, and prospects should be able to try the receptionist before a sales call, with no signup.</p></div>
-        <div><span class="case-k">Delivered</span><p class="case-v">An OpenAI Realtime voice line and an SMS agent share one tool set (check availability, create / find / reschedule / cancel booking) over a booking API on Cloudflare Pages Functions + Supabase Postgres. Every confirmed change texts both the customer and the owner. Public landing page and self-serve booking page at aimanjack.com; the same SMS pattern runs on a DFW car dealership's number.</p></div>
-        <div><span class="case-k">Guardrails</span><p class="case-v">Quotes only approved prices and hands off everything else; double-booking is blocked in the database, not just in the prompt; reschedule and cancel follow a notice window; never takes payment; every write produces a confirmation text, so a missed conversation still surfaces.</p></div>
-        <div class="case-wide"><span class="case-k">Architecture &amp; trade-offs</span><p class="case-v">Twilio is a pure pipe: TwiML hands the call to a WebSocket bridge and the caller's number rides along as a parameter, so voice and SMS reach the same tool executor. One booking API is the single write path, and capacity checks plus advisory locks live in Postgres functions, so the worst a model mistake can do is say the wrong thing, never create a bad booking. A debug endpoint exercises each tool without placing a call, and a smoke test runs against the API after every change.</p></div>
-      </div>
-      <div class="case-links"><a class="text-link" href="tel:+14694254142">Call the demo line →</a><a class="text-link" href="sms:+14694254142?body=Hi%2C%20what%20can%20you%20help%20with%3F">Try it by SMS →</a><a class="text-link" href="https://aimanjack.com/book/" target="_blank" rel="noopener">Book a slot yourself →</a></div>
-    </article>
-    <article class="case-card">
-      <div class="case-top"><span class="case-tag">02 · Ops automation · In production</span><span class="case-status">Saves the ops lead ~4 hours a week</span></div>
+      <div class="case-top"><span class="case-tag">01 · Ops automation · In production</span><span class="case-status">Saves the ops lead ~4 hours a week</span></div>
       <h3 class="case-title">Weekly host scheduling system for a TikTok Shop live-commerce agency</h3>
       <div class="case-grid">
         <div><span class="case-k">Problem</span><p class="case-v">Every week the ops lead collected hosts' and operators' availability by chat, hand-dragged the schedule across several live rooms in a Lark sheet, and hand-wrote a per-host plan every day. Conflicts between the schedule and people's real availability were caught by eye.</p></div>
@@ -561,7 +550,7 @@
       </div>
     </article>
     <article class="case-card">
-      <div class="case-top"><span class="case-tag">03 · Internal enterprise · Daily use</span><span class="case-status">In daily use by planners across 13 groups</span></div>
+      <div class="case-top"><span class="case-tag">02 · Internal enterprise · Daily use</span><span class="case-status">In daily use by planners across 13 groups</span></div>
       <h3 class="case-title">Supply-chain operations automation at Texas Instruments</h3>
       <div class="case-grid">
         <div><span class="case-k">Problem</span><p class="case-v">Scheduling, sales-order corrections, supply gaps, and recurring reviews required repeated reconciliation across SAP, Spotfire, Excel, and internal forms.</p></div>
@@ -570,12 +559,12 @@
       </div>
     </article>
     <article class="case-card">
-      <div class="case-top"><span class="case-tag">04 · Live users · Bilingual delivery</span><span class="case-status">5 events · 246 attendees</span></div>
+      <div class="case-top"><span class="case-tag">03 · Live users · Bilingual delivery</span><span class="case-status">6 events · 309 registrations</span></div>
       <h3 class="case-title">Agent 101: helping nontechnical users build a first agent live</h3>
       <div class="case-grid">
         <div><span class="case-k">Problem</span><p class="case-v">The room spans banking, accounting, law, real estate, restaurants, and software, with a wide range of AI experience. One workshop has to get everyone building.</p></div>
         <div><span class="case-k">Delivered</span><p class="case-v">A bilingual course and Gmail-agent template that connects concepts, a live demo, a hands-on build, and one-on-one troubleshooting.</p></div>
-        <div><span class="case-k">Outcome</span><p class="case-v">Founded Dallas's first Chinese AI community and grew it to 700+ members; 246 cumulative attendees across five events, 70 at the largest, and 59 registration responses for the Aug 22 session.</p></div>
+        <div><span class="case-k">Outcome</span><p class="case-v">Founded a Dallas Chinese AI community; 6 AI events (5 in Plano and Dallas, 1 online), 309 registrations, 70 at the largest, and 59 registration responses for the Aug 22 session.</p></div>
       </div>
       <div class="case-links"><a class="text-link" href="/en/agent-101/live-01/">View the English lecture slides →</a><a class="text-link" href="#gallery">See the room →</a></div>
     </article>
@@ -645,13 +634,12 @@
   <p class="sec-label">Community</p>
   <h2 class="sec-h2">Taking AI off the screen and into a real room.</h2>
   <div class="sec-body">
-    <p>I founded and lead Dallas's first Chinese AI community, now 700+ members strong: programmers, data professionals, bankers, restaurant and small-business owners, accountants, lawyers, and real estate agents, all here to put AI to work.</p>
-    <p>Every month, one live event in Dallas. Hands-on demos, real workflows, and the kind of conversations that only happen in the room.</p>
+    <p>I founded and lead a Dallas Chinese AI community: programmers, data professionals, bankers, restaurant and small-business owners, accountants, lawyers, and real estate agents, all here to put AI to work.</p>
+    <p>Live events in Plano and Dallas. Hands-on demos, real workflows, and the kind of conversations that only happen in the room.</p>
   </div>
   <div class="stats-grid">
-    <div class="stat-cell"><div class="stat-n">700+</div><div class="stat-l">Community size</div></div>
-    <div class="stat-cell"><div class="stat-n">5</div><div class="stat-l">Live events</div></div>
-    <div class="stat-cell"><div class="stat-n">246</div><div class="stat-l">Cumulative attendees</div></div>
+    <div class="stat-cell"><div class="stat-n">6</div><div class="stat-l">AI events</div></div>
+    <div class="stat-cell"><div class="stat-n">309</div><div class="stat-l">Registrations</div></div>
   </div>
 </section>
 
@@ -659,12 +647,11 @@
 
 <section class="section" id="events">
   <p class="sec-label">Events</p>
-  <h2 class="sec-h2">Monthly in Dallas.</h2>
+  <h2 class="sec-h2">Live events in Plano and Dallas.</h2>
   <div class="sec-body">
     <p>Live sessions in Dallas: hands-on workshops, real agent walkthroughs, and hackathons, in Chinese and English. All events run through Luma.</p>
   </div>
   <div class="events-list">
-    <div class="ev-row"><span class="ev-date">2026.09.24</span><span class="ev-title">AI Front Desk 101 for Small Clinics (free workshop for DFW practice owners, with Amanda Li)</span><a class="ev-badge up" href="https://luma.com/e1og8vcq" target="_blank" rel="noopener">Upcoming · Register →</a></div>
     <div class="ev-row"><span class="ev-date">2026.08.22</span><span class="ev-title">Build Your First AI Project — No Experience Required (free workshop for students and parents)</span><a class="ev-badge" href="https://luma.com/xhx7oos8" target="_blank" rel="noopener">59 attended</a></div>
     <div class="ev-row"><span class="ev-date">2026.07.18</span><span class="ev-title">AI Workflow Automation in Practice — Session 3</span><a class="ev-badge" href="https://luma.com/rsihvu8x" target="_blank" rel="noopener">40 attended</a></div>
     <div class="ev-row"><span class="ev-date">2026.05.17</span><span class="ev-title">OpenClaw: Enter the World of AI Agents — Meetup #2</span><a class="ev-badge" href="https://luma.com/u1tw9z8m" target="_blank" rel="noopener">70 attended</a></div>
@@ -680,7 +667,7 @@
   <p class="sec-label">Gallery</p>
   <h2 class="sec-h2">From the room.</h2>
   <div class="sec-body">
-    <p>Snapshots from monthly meetups, workshops, and community nights across Dallas.</p>
+    <p>Snapshots from meetups, workshops, and community nights across Dallas.</p>
   </div>
   <div class="gallery-grid">
     <figure class="gallery-fig">
@@ -717,10 +704,10 @@
   <div class="meta-table">
     <div class="meta-row"><span class="meta-k">Email</span><span class="meta-v"><a href="mailto:jack@aimanjack.com" style="color:var(--muted-fg);">jack@aimanjack.com</a></span></div>
     <div class="meta-row"><span class="meta-k">LinkedIn</span><span class="meta-v"><a href="https://www.linkedin.com/in/jackqiandallas/" target="_blank" rel="noopener" style="color:var(--muted-fg);">linkedin.com/in/jackqiandallas</a></span></div>
-    <div class="meta-row"><span class="meta-k">Side project</span><span class="meta-v"><a href="https://aimanjack.com" target="_blank" rel="noopener" style="color:var(--muted-fg);">aimanjack.com</a>, AI demos and websites for local businesses</span></div>
+    <div class="meta-row"><span class="meta-k">Side project</span><span class="meta-v"><a href="https://aimanjack.com" target="_blank" rel="noopener" style="color:var(--muted-fg);">aimanjack.com</a>: hands-on AI training for business teams</span></div>
     <div class="meta-row"><span class="meta-k">Based in</span><span class="meta-v">Dallas, Texas</span></div>
     <div class="meta-row"><span class="meta-k">Day job</span><span class="meta-v">Business Planner (supply chain) at Texas Instruments</span></div>
-    <div class="meta-row"><span class="meta-k">Community</span><span class="meta-v">Founder of Dallas's first Chinese AI community, now 700+ members</span></div>
+    <div class="meta-row"><span class="meta-k">Community</span><span class="meta-v">Founder of a Dallas Chinese AI community</span></div>
     <div class="meta-row"><span class="meta-k">GitHub</span><span class="meta-v">github.com/qianquandong</span></div>
     <div class="meta-row"><span class="meta-k">Target</span><span class="meta-v">AI FDE · Solutions / Operations Engineer · Enterprise AI workflow</span></div>
   </div>
