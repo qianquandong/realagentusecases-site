@@ -1,0 +1,53 @@
+---
+title: "AI Use Cases for Customer Service Teams: Where to Start"
+date: "2026-11-24"
+excerpt: "The everyday AI tasks a customer service team can start with — suggested replies, ticket summaries, triage — with a person owning resolve vs. escalate."
+---
+
+AI use cases for a customer service team are the everyday tasks a person can hand to a support AI today: draft a suggested reply, summarize a long ticket, triage and route by intent, and draft a help-center answer. AI does the first pass; a human decides what to send and what to escalate.
+
+Support is the department most often named as having the clearest, most measurable AI return — high ticket volume, repeatable questions, and a success metric right there in the queue. But "clearest return" still doesn't mean "point an agent at your inbox and walk away." This is the customer-service entry under the site's broader [department-by-department map](/en/news/2026-11-17-department-ai-use-cases/): the concrete tasks a team can start with this week, each framed so the work stays reviewable.
+
+## The everyday tasks to start with
+
+Every vendor that documents support AI lands on the same short list, and it's all some version of *draft it, summarize it, sort it*. Here's the starting set, each tied to where it's documented.
+
+- **Draft a suggested reply a human edits.** Zendesk's [suggested first replies](https://support.zendesk.com/hc/en-us/articles/5524125586330-About-Zendesk-Copilot) use generative AI to propose a first response based on your existing macros and help-center articles — the agent then edits and sends. That "propose, don't send" shape is the whole point: it collapses the blank-page time without taking the send decision away.
+- **Summarize a long ticket.** Zendesk's ticket summaries recap the public comments on a ticket so far, so an agent picking up a long back-and-forth — or a teammate taking a handoff — gets the thread in a sentence instead of scrolling. This is the single lowest-risk place to start: a summary changes nothing a customer sees.
+- **Triage and route by intent.** Classify an incoming ticket by intent, language, and sentiment and send it to the right queue the first time. Zendesk reports this intelligent-triage routing saves an average of 45 seconds per ticket versus manual sorting. This is the [sort-vs-resolve breakdown](/en/news/2026-07-15-ai-agent-customer-support-triage/) the site has covered in detail — the read-only layer that moves work without answering it.
+- **Draft a knowledge-base answer.** Turn a well-resolved ticket into a draft help-center article a person reviews and publishes. Microsoft's [Copilot Scenario Library for customer service](https://adoption.microsoft.com/copilot-scenario-library/customer-service/) documents the adjacent moves — pulling a customer's history and past resolutions to help diagnose a complaint, then drafting the follow-up — with its own caveat that each scenario is illustrative and should be validated against your processes and responsible-AI principles first.
+
+Notice what's shared: the task differs, the shape doesn't. AI does the legwork — the draft, the summary, the sort — and an agent keeps the judgment about what actually goes to the customer.
+
+## What stays a human's job: resolve vs. escalate
+
+The line that keeps a support team out of trouble is *suggest vs. send*, and one level up, *resolve vs. escalate*. A drafted reply is a starting point an agent reads, corrects, and owns — because a confidently wrong answer to a billing or account question isn't a typo, it's a broken promise a customer acts on. So the review step is where a person checks the facts, the tone, and whether this ticket is even one AI should answer.
+
+That's also the boundary between the tasks above and a fully autonomous resolution agent that answers and closes end-to-end. Those exist and have their place, but they're a later, gated step — the deeper tool-by-tool view is in the [AI agents for customer service](/en/news/2026-09-14-ai-agents-for-customer-service/) hub. Start with the assisted tasks, keep the escalation path to a human obvious and easy, and the rough early outputs that come with any new tool get caught on the way out instead of mailed to a customer.
+
+## Turn it into one measurable start
+
+A list of tasks is not a plan. Pick **one** — usually ticket summaries (lowest risk) or triage routing (most measurable, with that 45-second baseline already named) — and run it like a small [AI pilot](/en/news/2026-11-05-how-to-run-an-ai-pilot-at-work/): set a baseline, give it a few weeks, and decide whether it earned a place in the workflow. Then [measure whether it's actually used](/en/news/2026-10-22-how-to-measure-ai-adoption-at-work/), not whether the license was bought.
+
+Support is a good place to start precisely because the metric is sitting in the queue — handle time, first-response time, reopen rate. For the desk-level version of this pattern on an ordinary inbox, see the [Gmail triage agent in Issue #001](/en/posts/2026-05-13-gmail-ai-agent/); for the pattern behind every team's version, [AI agents for work](/en/news/2026-08-04-ai-agents-for-work/); and if you're new to the terms, the [agent basics](/en/agent-101/) primer.
+
+## FAQ
+
+**What are good AI use cases for a customer service team?**
+The everyday ones: drafting a suggested reply an agent edits before sending; summarizing a long ticket so whoever picks it up gets the thread fast; triaging and routing incoming tickets by intent, language, and sentiment; and drafting knowledge-base articles from well-resolved tickets. Zendesk's Copilot documentation and Microsoft's Copilot Scenario Library for customer service both organize the work this way. The common thread is that AI produces the draft or the sort, and a person decides what reaches the customer.
+
+**Should AI answer customer tickets on its own?**
+Start with suggest-don't-send, not autopilot. A drafted reply is a first pass an agent reviews, because a confidently wrong answer about billing or an account is a promise the customer will act on. Fully autonomous resolution agents exist, but treat them as a later, gated step with a clear escalation path to a human — not where a team begins.
+
+**Which support task should we start with?**
+Ticket summaries or triage routing. Summaries are the lowest-risk entry because they change nothing the customer sees, and triage routing is the most measurable — Zendesk already puts a 45-second-per-ticket baseline on it. Pick one, run it as a short pilot against your own numbers, and add the next only once the first clearly helps.
+
+**Is this different from buying a customer-service AI agent?**
+Yes. Most of these starting tasks are a support agent using an assistant well — drafting, summarizing, sorting. A full [agent](/en/agent-101/) that resolves and closes tickets end-to-end is a later step that needs a human-approval and escalation gate once it can send on its own. Begin with the assisted task; graduate to an autonomous agent only when the workflow clearly justifies it.
+
+**Where do these use cases come from?**
+Vendors' own documentation — [Zendesk's Copilot help center](https://support.zendesk.com/hc/en-us/articles/5524125586330-About-Zendesk-Copilot), the [Microsoft Copilot Scenario Library for customer service](https://adoption.microsoft.com/copilot-scenario-library/customer-service/), and OpenAI's [identifying-and-scaling use-case guide](https://openai.com/business/guides-and-resources/identifying-and-scaling-ai-use-cases/) — cross-checked against this site's own [support-triage](/en/news/2026-07-15-ai-agent-customer-support-triage/) breakdown, so each task is one support teams are actually running.
+
+---
+
+Every post on this site is one real, documented AI build — the task, the exact setup, and the honest result. Want a new one in your inbox each week? [Subscribe free](/en/).
