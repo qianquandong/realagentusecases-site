@@ -1,6 +1,6 @@
 {
   "$comment": "GEO prompt feed — the questions working professionals ask ChatGPT / Perplexity / Gemini. The scheduled Cowork routine ideates entries; scripts/seo/feeds.mjs persists them. cluster: use-case|template|comparison|industry|tool-stack. status: new|covered (covered = a published article targets it). Phase 7 tracks whether the brand is cited for each.",
-  "updatedAt": "2026-11-22",
+  "updatedAt": "2026-11-26",
   "prompts": [
     {
       "prompt": "What are real examples of AI agents at work?",
@@ -898,9 +898,9 @@
       "prompt": "Why has our AI adoption not improved productivity?",
       "cluster": "team-adoption",
       "locale": "en",
-      "status": "new",
+      "status": "covered",
       "addedAt": "2026-11-15",
-      "note": "Sunday ideation 2026-11-15. Pairs with the new 'why AI adoption stalls at work' keyword — the productivity paradox (WEF: adoption surged, broad labour productivity largely flat) + adoption-outruns-return (McKinsey/Deloitte). Answer the operational causes (no redesigned workflow/baseline/owner, usage measured not outcomes) with primary-sourced or qualitative framing — NO invented failure-rate stats."
+      "note": "Sunday ideation 2026-11-15. Pairs with the new 'why AI adoption stalls at work' keyword — the productivity paradox (WEF: adoption surged, broad labour productivity largely flat) + adoption-outruns-return (McKinsey/Deloitte). Answer the operational causes (no redesigned workflow/baseline/owner, usage measured not outcomes) with primary-sourced or qualitative framing — NO invented failure-rate stats. | Covered 2026-11-26 by content/news/2026-11-26-why-ai-adoption-stalls-at-work (en+zh); article answers this prompt verbatim in FAQ 1. GEO-probed 2026-11-26 (on-publish baseline, verbatim standard web search): not cited (position null) — SERP owned by arxiv, bcs.org (why AI is failing to transform enterprise productivity), weforum.org (Beyond the AI pilot), c3.unu.edu (AI productivity paradox), computerworld.com (why AI doesn't make companies more productive), theweek.com, mckinsey.com (new productivity paradox UK), zoho.com; realagentusecases.com did not appear — the field is think-tank/vendor productivity-paradox explainers with no real-professional-desk-build / redesign-one-workflow angle grounded in a real build, this site's gap to own. Notably the same SERP independently states the article's own thesis (the gap reflects how work is organized/measured/skilled, not whether the tools work; buying licenses isn't redesigning workflows). Re-probe post-index to track lift."
     },
     {
       "prompt": "What happened to Zapier Agents and what is AI by Zapier?",
